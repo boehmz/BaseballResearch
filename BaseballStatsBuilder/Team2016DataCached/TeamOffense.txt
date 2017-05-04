@@ -1,0 +1,32 @@
+Arizona;ari;4.64;8.81
+Atlanta;atl;4.03;7.70
+Baltimore;bal;4.58;8.20
+Boston;bos;5.36;7.22
+Chi Cubs;chc;4.93;8.33
+Chi Sox;chw;4.23;7.93
+Cincinnati;cin;4.42;7.93
+Cleveland;cle;4.72;7.86
+Colorado;col;5.22;8.21
+Detroit;det;4.66;8.09
+Houston;hou;4.47;8.96
+Kansas City;kan;4.17;7.56
+LA Angels;laa;4.43;6.12	
+LA Dodgers;lad;4.40;8.13
+Miami;mia;4.07;7.53
+Milwaukee;mil;4.14;9.52
+Minnesota;min;4.46;8.80
+NY Mets;nym;4.12;8.02
+NY Yankees;nyy;4.20;7.33
+Oakland;oak;4.03;7.07
+Philadelphia;phi;3.77;8.49	
+Pittsburgh;pit;4.50;8.23
+San Diego;sdg;4.23;9.26
+Seattle;sea;4.74;7.95
+SF Giants;sfo;4.38;6.87
+St. Louis;stl;4.81;8.14
+Tampa Bay;tam;4.15;9.15
+Texas;tex;4.70;7.53
+Toronto;tor;4.64;8.43
+Washington;was;4.71;7.87
+
+Team name;3 letter code;2016 runs per game;2016 k per game

@@ -1,0 +1,35 @@
+Tampa Bay Rays;Tropicana Field;Tampa Bay;tam;
+Boston Red Sox;Fenway Park;Boston;bos;
+Chicago White Sox;U.S. Cellular Field;Chi Sox;chw;
+New York Yankees;Yankee Stadium;NY Yankees;nyy;
+Pittsburgh Pirates;PNC Park;Pittsburgh;pit;
+St. Louis Cardinals;Busch Stadium;St. Louis;stl;
+San Diego Padres;Petco Park;San Diego;sdg;
+Atlanta Braves;SunTrust Park;Atlanta;atl;
+Milwaukee Brewers;Miller Park;Milwaukee;mil;
+Chicago Cubs;Wrigley Field;Chi Cubs;chc;
+Cleveland Indians;Progressive Field;Cleveland;cle;
+Minnesota Twins;Target Field;Minnesota;min;
+Los Angeles Angels;Angel Stadium;LA Angels;laa;
+Houston Astros;Minute Maid Park;Houston;hou;
+Texas Rangers;Rangers Ballpark;Texas;tex;
+Oakland Athletics;Oakland Coliseum;Oakland;oak;
+Miami Marlins;Marlins Park;Miami;mia;
+Seattle Mariners;Safeco Field;Seattle;sea;
+Arizona Diamondbacks;Chase Field;Arizona;ari;
+Los Angeles Dodgers;Dodger Stadium;LA Dodgers;lad;
+Toronto Blue Jays;Rogers Centre;Toronto;tor;
+Baltimore Orioles;Camden Yards;Baltimore;bal;
+Cincinnati Reds;Great American Ball Park;Cincinnati;cin;
+San Francisco Giants;AT&T Park;SF Giants;sfo;
+Kansas City Royals;Kauffman Stadium;Kansas City;kan;
+Philadelphia Phillies;Citizens Bank Park;Philadelphia;phi;
+New York Mets;Citi Field;NY Mets;nym;
+Detroit Tigers;Comerica Park;Detroit;det;
+Colorado Rockies;Coors Field;Colorado;col;
+Washington Nationals;Nationals Park;Washington;was;
+
+weather data name; stadium name; .teamrankings.com name; 3 letter code
+// still need to confirm:
+// Giants stadium name
+// Indians stadium name
