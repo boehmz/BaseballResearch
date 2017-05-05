@@ -105,6 +105,8 @@ void PopulateProbableRainoutGames();
 
 struct FullSeasonStatsAdvanced
 {
+	float averageVersusLefty;
+	float averageVersusRighty;
 	float sluggingVersusLefty;
 	float sluggingVersusRighty;
 	float opsVersusLefty;
@@ -121,7 +123,9 @@ struct FullSeasonStatsAdvanced
 		wobaVersusLefty(-1),
 		wobaVersusRighty(-1),
 		isoVersusLefty(-1),
-		isoVersusRighty(-1)
+		isoVersusRighty(-1),
+		averageVersusRighty(-1),
+		averageVersusLefty(-1)
 	{
 	}
 };
@@ -134,6 +138,7 @@ struct FullSeasonPitcherStats
 	float fip;
 	float strikeOutsPer9;
 	float numInnings;
+	float whip;
 
 	FullSeasonPitcherStats()
 	{
@@ -164,8 +169,8 @@ vector<string> probableRainoutGames;
 
 int main(void)
 {
-	//Analyze2016Stats();
-	//return 0;
+	Analyze2016Stats();
+	return 0;
 
 	if (bCheckResultsOnly)
 		RefineAlgorithm();
@@ -1455,7 +1460,16 @@ FullSeasonPitcherStats GetPitcher2017Stats(string playerId, CURL *curl)
 			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
 			pitcher2017Stats.strikeOutsPer9 = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
 
-			for (int i = 0; i < 12; ++i)
+			for (int i = 0; i < 9; ++i)
+			{
+				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
+			}
+			fangraphsNextIndex = fangraphsCurrentIndex;
+			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
+			pitcher2017Stats.whip = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
+
+
+			for (int i = 0; i < 4; ++i)
 			{
 				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
 			}
@@ -1513,7 +1527,15 @@ FullSeasonPitcherStats GetPitcher2016Stats(string playerId, CURL *curl)
 			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
 			pitcher2016Stats.strikeOutsPer9 = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
 
-			for (int i = 0; i < 12; ++i)
+			for (int i = 0; i < 9; ++i)
+			{
+				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
+			}
+			fangraphsNextIndex = fangraphsCurrentIndex;
+			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
+			pitcher2016Stats.whip = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
+
+			for (int i = 0; i < 4; ++i)
 			{
 				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
 			}
@@ -1571,7 +1593,15 @@ FullSeasonPitcherStats GetPitcherCareerStats(string playerId, CURL *curl)
 			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
 			pitcherCareerStats.strikeOutsPer9 = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
 
-			for (int i = 0; i < 12; ++i)
+			for (int i = 0; i < 9; ++i)
+			{
+				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
+			}
+			fangraphsNextIndex = fangraphsCurrentIndex;
+			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
+			pitcherCareerStats.whip = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
+
+			for (int i = 0; i < 4; ++i)
 			{
 				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
 			}
@@ -1603,7 +1633,7 @@ FullSeasonStatsAdvanced GetPitcherAdvancedStats(string playerId, string yearStri
 			}
 			size_t fangraphsNextIndex = fangraphsCurrentIndex;
 			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherAdvancedStats.isoVersusLefty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
+			pitcherAdvancedStats.averageVersusLefty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
 
 			for (int i = 0; i < 2; ++i)
 			{
@@ -1622,7 +1652,7 @@ FullSeasonStatsAdvanced GetPitcherAdvancedStats(string playerId, string yearStri
 			float slugging = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
 			pitcherAdvancedStats.opsVersusLefty += slugging;
 			pitcherAdvancedStats.sluggingVersusLefty = slugging;
-			pitcherAdvancedStats.isoVersusLefty = slugging - pitcherAdvancedStats.isoVersusLefty;
+			pitcherAdvancedStats.isoVersusLefty = slugging - pitcherAdvancedStats.averageVersusLefty;
 
 			for (int i = 0; i < 2; ++i)
 			{
@@ -1650,7 +1680,7 @@ FullSeasonStatsAdvanced GetPitcherAdvancedStats(string playerId, string yearStri
 			}
 			size_t fangraphsNextIndex = fangraphsCurrentIndex;
 			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherAdvancedStats.isoVersusRighty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
+			pitcherAdvancedStats.averageVersusRighty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
 
 			for (int i = 0; i < 2; ++i)
 			{
@@ -1669,7 +1699,7 @@ FullSeasonStatsAdvanced GetPitcherAdvancedStats(string playerId, string yearStri
 			float slugging = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
 			pitcherAdvancedStats.opsVersusRighty += slugging;
 			pitcherAdvancedStats.sluggingVersusRighty = slugging;
-			pitcherAdvancedStats.isoVersusRighty = slugging - pitcherAdvancedStats.isoVersusRighty;
+			pitcherAdvancedStats.isoVersusRighty = slugging - pitcherAdvancedStats.averageVersusRighty;
 
 			for (int i = 0; i < 2; ++i)
 			{
@@ -1702,7 +1732,7 @@ FullSeasonStatsAdvanced GetBatterAdvancedStats(string playerId, string yearStrin
 			}
 			size_t fangraphsNextIndex = fangraphsCurrentIndex;
 			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			batterAdvancedStats.isoVersusLefty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
+			batterAdvancedStats.averageVersusLefty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
 		}
 	}
 
@@ -1720,7 +1750,7 @@ FullSeasonStatsAdvanced GetBatterAdvancedStats(string playerId, string yearStrin
 			size_t fangraphsNextIndex = fangraphsCurrentIndex;
 			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
 			batterAdvancedStats.sluggingVersusLefty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-			batterAdvancedStats.isoVersusLefty = batterAdvancedStats.sluggingVersusLefty - batterAdvancedStats.isoVersusLefty;
+			batterAdvancedStats.isoVersusLefty = batterAdvancedStats.sluggingVersusLefty - batterAdvancedStats.averageVersusLefty;
 
 			for (int i = 0; i < 2; ++i)
 			{
@@ -1754,7 +1784,7 @@ FullSeasonStatsAdvanced GetBatterAdvancedStats(string playerId, string yearStrin
 			}
 			size_t fangraphsNextIndex = fangraphsCurrentIndex;
 			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			batterAdvancedStats.isoVersusRighty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
+			batterAdvancedStats.averageVersusRighty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
 		}
 	}
 	fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"advanced\"", 0);
@@ -1771,7 +1801,7 @@ FullSeasonStatsAdvanced GetBatterAdvancedStats(string playerId, string yearStrin
 			size_t fangraphsNextIndex = fangraphsCurrentIndex;
 			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
 			batterAdvancedStats.sluggingVersusRighty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-			batterAdvancedStats.isoVersusRighty = batterAdvancedStats.sluggingVersusRighty - batterAdvancedStats.isoVersusRighty;
+			batterAdvancedStats.isoVersusRighty = batterAdvancedStats.sluggingVersusRighty - batterAdvancedStats.averageVersusRighty;
 
 			for (int i = 0; i < 2; ++i)
 			{
@@ -2312,7 +2342,6 @@ void Analyze2016Stats()
 						{
 						}
 					}
-					// probably add ISO
 					// Name GID slgVL opsVL wobaVL isoVL ppgVL slgVR opsVR wobaVR isoVR ppgVR
 					FullSeasonStats batter2016Stats = GetBatter2016Stats(playerId, curl);
 					FullSeasonStatsAdvanced batter2016AdvancedStats = GetBatterAdvancedStats(playerId, "2016", curl);
