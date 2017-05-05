@@ -9,11 +9,11 @@
 #include <unordered_map>
 #include "SharedGlobals.h"
 #include "StatsCollectionFunctions.h"
+#include "Main.h"
 using namespace std;
 
 GameType gameType = Fanduel;
-bool bCheckResultsOnly = false;
-int maxTotalBudget = 35000 - 11400;
+int maxTotalBudget = 35000 - 10400;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
@@ -22,10 +22,40 @@ int reviewDateStart = 406;
 int reviewDateEnd = 504;
 float percentOf2017SeasonPassed = 25.0f / 162.0f;
 
-const float leagueAverageOps = 0.72f;
-int minGamesPlayed2016 = 99;
 
-vector<PlayerData> OptimizeLineupToFitBudget();
+const float leagueAverageOps = 0.72f;
+const int minGamesPlayed2016 = 99;
+
+
+vector< vector<PlayerData> > allPlayers;
+unordered_map<std::string, OpponentInformation> opponentMap;
+vector<string> probableRainoutGames;
+
+int main(void)
+{
+	enum ProcessType { Analyze2016, GenerateLineup, Refine};
+	ProcessType processType = GenerateLineup;
+
+	switch (processType)
+	{
+	case Analyze2016:
+		Analyze2016Stats();
+		break;
+	case Refine:
+		RefineAlgorithm();
+		break;
+	default:
+	case GenerateLineup:
+		PopulateProbableRainoutGames();
+		ChooseAPitcher();
+		GenerateNewLineup();
+		break;
+	}
+
+	cout << "program has finished" << endl;
+	getchar();
+	return 0;
+}
 
 bool comparePlayerByPointsPerGame(PlayerData i, PlayerData j)
 {
@@ -35,52 +65,9 @@ bool comparePlayerByPointsPerGame(PlayerData i, PlayerData j)
 		return (i.playerPointsPerGame > j.playerPointsPerGame);
 }
 
-bool comparePlayersBySalary(PlayerData i, PlayerData j) 
-{ 
-		return i.playerSalary < j.playerSalary;
-}
-
-vector< vector<PlayerData> > allPlayers;
-
-void RefineAlgorithm();
-void GenerateNewLineup();
-void ChooseAPitcher();
-void Analyze2016Stats();
-
-void PopulateProbableRainoutGames();
-
-struct OpponentInformation
+bool comparePlayersBySalary(PlayerData i, PlayerData j)
 {
-	string ballParkPlayedIn;
-	// weather report team name
-	string weatherSiteTeamName;
-	// teamrankings.com team name
-	string rankingsSiteTeamName;
-	// 3 letter code
-	string teamCode;
-
-	FullSeasonStatsAdvanced pitcherAdvancedStats;
-};
-unordered_map<std::string, OpponentInformation> opponentMap;
-vector<string> probableRainoutGames;
-
-int main(void)
-{
-	Analyze2016Stats();
-	return 0;
-
-	if (bCheckResultsOnly)
-		RefineAlgorithm();
-	else
-	{
-		PopulateProbableRainoutGames();
-		ChooseAPitcher();
-		GenerateNewLineup();
-	}
-
-	cout << "program has finished" << endl;
-	getchar();
-	return 0;
+	return i.playerSalary < j.playerSalary;
 }
 
 void RefineAlgorithm()
@@ -189,9 +176,6 @@ void RefineAlgorithm()
 			inputCoefficients[0] += fCoefficientStep;
 			inputCoefficients[1] -= fCoefficientStep;
 		}
-
-		
-		
 
 		inputCoefficients[0] = inputCoefficients[0];
 
@@ -1200,7 +1184,6 @@ void PopulateProbableRainoutGames()
 		}
 	}
 }
-
 
 void Analyze2016Stats()
 {

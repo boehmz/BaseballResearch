@@ -6,7 +6,6 @@
 enum GameType { Fanduel, DraftKings };
 
 extern GameType gameType;
-extern bool bCheckResultsOnly;
 extern int maxTotalBudget;
 // game times in Eastern and 24 hour format
 extern int latestGameTime;
