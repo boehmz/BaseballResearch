@@ -129,6 +129,7 @@
     <ClCompile Include="..\Src\StatsCollectionFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Src\Main.h" />
     <ClInclude Include="..\Src\SharedGlobals.h" />
     <ClInclude Include="..\Src\StatsCollectionFunctions.h" />
   </ItemGroup>

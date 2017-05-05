@@ -32,5 +32,8 @@
     <ClInclude Include="..\Src\SharedGlobals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Src\Main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
