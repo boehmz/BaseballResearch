@@ -3,3 +3,11 @@
 *.ilk
 *.obj
 *.opendb
+*.db
+*.pdb
+*.iobj
+*.ilk
+*.obj
+*.tlog
+*.db
+*.enc
