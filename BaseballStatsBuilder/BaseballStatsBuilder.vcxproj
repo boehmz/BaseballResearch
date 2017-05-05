@@ -126,6 +126,11 @@
   <ItemGroup>
     <ClCompile Include="..\Src\Deprecated.cpp" />
     <ClCompile Include="..\Src\Main.cpp" />
+    <ClCompile Include="..\Src\StatsCollectionFunctions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Src\SharedGlobals.h" />
+    <ClInclude Include="..\Src\StatsCollectionFunctions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
