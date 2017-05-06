@@ -1,4 +1,4 @@
-20170504/ZachDateMetaData
+20170506/ZachDateMetaData
 text/javascript"></script>
 
 <script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=yONnNeg0_tp3KoLSBL2DqY6gAKfm_dA7JxGUf1pSEcg1"></script>
@@ -210,7 +210,7 @@ text/javascript"></script>
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-04">Probable Pitchers</a>
+                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-05">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -525,7 +525,7 @@ text/javascript"></script>
                             <strong style="font-size:15pt;">Tyler Anderson</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 12/30/1989 (27 y, 4 m, 5 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-4/210 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=12880&position=P#draft" style="text-decoration:none;">2011 June Amateur Draft - Round: 1, Pick: 20, Overall: 20, Team: Colorado Rockies</a><br /><strong>Contract:</strong> <a href="contractmake.aspx?playerid=12880" style="text-decoration:none;">Add New Contract</a>
+                            <strong>Birthdate:</strong> 12/30/1989 (27 y, 4 m, 6 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-4/210 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=12880&position=P#draft" style="text-decoration:none;">2011 June Amateur Draft - Round: 1, Pick: 20, Overall: 20, Team: Colorado Rockies</a><br /><strong>Contract:</strong> <a href="contractmake.aspx?playerid=12880" style="text-decoration:none;">Add New Contract</a>
                         </div>
                     </td>
                     <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><span style="padding-left:0px;"><b>Reported</b>: 9/15/2014&nbsp;&nbsp;<b>Risk</b>: 2&nbsp;&nbsp;<b>ETA</b>: 2016&nbsp;&nbsp;<b>Team Rank</b>: 7&nbsp;&nbsp;<b>Positional Rank</b>: NA&nbsp;&nbsp;<b>Overall Rank</b>: NA</span><table class="depth_chart" cellspacing="0" cellpadding="2" style="margin-top:3px; width:90%; border:1px solid Gray; font-size:9pt; text-align:center;"><tr><td style="background-color:Gray; color:white;">Fastball</td><td style="background-color:Gray; color:white;">Slider</td><td style="background-color:Gray; color:white;">Curveball</td><td style="background-color:Gray; color:white;">Changeup</td><td style="background-color:Gray; color:white;">Command</td><td style="background-color:Gray; color:white;">Future Value</td></tr><tr class="depth_team"><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">50 / 50+</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">45 / 45+</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">40 / 45</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">55 / 60</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">45 / 50+</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">50</td></tr></table></div></td></tr>
@@ -957,7 +957,7 @@ text/javascript"></script>
 	<tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__0">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.79</td><td class="grid_line_regular" align="right">2.20</td><td class="grid_line_regular" align="right">3.54</td><td class="grid_line_regular" align="right">0.94</td><td class="grid_line_regular" align="right">20.7 %</td><td class="grid_line_regular" align="right">5.9 %</td><td class="grid_line_regular" align="right">14.9 %</td><td class="grid_line_regular" align="right">.266</td><td class="grid_line_regular" align="right">1.29</td><td class="grid_line_regular" align="right">.319</td><td class="grid_line_regular" align="right">75.1 %</td><td class="grid_line_regular" align="right">3.59</td><td class="grid_line_regular" align="right">3.64</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__1">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.12</td><td class="grid_line_regular" align="right">3.26</td><td class="grid_line_regular" align="right">2.18</td><td class="grid_line_regular" align="right">2.67</td><td class="grid_line_regular" align="right">17.5 %</td><td class="grid_line_regular" align="right">8.0 %</td><td class="grid_line_regular" align="right">9.5 %</td><td class="grid_line_regular" align="right">.296</td><td class="grid_line_regular" align="right">1.58</td><td class="grid_line_regular" align="right">.304</td><td class="grid_line_regular" align="right">57.7 %</td><td class="grid_line_regular" align="right">6.51</td><td class="grid_line_regular" align="right">4.68</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.12</td><td class="grid_line_regular" align="right">3.26</td><td class="grid_line_regular" align="right">2.18</td><td class="grid_line_regular" align="right">2.67</td><td class="grid_line_regular" align="right">17.5 %</td><td class="grid_line_regular" align="right">8.0 %</td><td class="grid_line_regular" align="right">9.5 %</td><td class="grid_line_regular" align="right">.296</td><td class="grid_line_regular" align="right">1.58</td><td class="grid_line_regular" align="right">.304</td><td class="grid_line_regular" align="right">57.7 %</td><td class="grid_line_regular" align="right">6.50</td><td class="grid_line_regular" align="right">4.67</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__2">
 		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.65</td><td class="grid_line_regular" align="right">2.43</td><td class="grid_line_regular" align="right">3.15</td><td class="grid_line_regular" align="right">1.31</td><td class="grid_line_regular" align="right">20.0 %</td><td class="grid_line_regular" align="right">6.3 %</td><td class="grid_line_regular" align="right">13.7 %</td><td class="grid_line_regular" align="right">.273</td><td class="grid_line_regular" align="right">1.35</td><td class="grid_line_regular" align="right">.315</td><td class="grid_line_regular" align="right">71.3 %</td><td class="grid_line_regular" align="right">4.20</td><td class="grid_line_regular" align="right">3.86</td>
 	</tr>
@@ -1101,7 +1101,7 @@ text/javascript"></script>
 <div class="footer-bar">
     <div class="footer-bar-background"></div>
     <div class="footer-bar-item">
-        Updated: Thursday, May 4, 2017 4:31 AM ET
+        Updated: Friday, May 5, 2017 4:35 AM ET
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
