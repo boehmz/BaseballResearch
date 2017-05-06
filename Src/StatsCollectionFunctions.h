@@ -82,9 +82,7 @@ struct FullSeasonPitcherStats
 		numInnings = -1;
 	}
 };
-FullSeasonPitcherStats GetPitcherCareerStats(std::string playerId, CURL *curl);
-FullSeasonPitcherStats GetPitcher2016Stats(std::string playerId, CURL *curl);
-FullSeasonPitcherStats GetPitcher2017Stats(std::string playerId, CURL *curl);
+FullSeasonPitcherStats GetPitcherStats(std::string playerId, std::string yearString, CURL *curl);
 
 #endif
 

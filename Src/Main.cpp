@@ -17,10 +17,10 @@ int maxTotalBudget = 35000 - 10400;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170504";
+std::string todaysDate = "20170506";
 int reviewDateStart = 406;
 int reviewDateEnd = 504;
-float percentOf2017SeasonPassed = 25.0f / 162.0f;
+float percentOf2017SeasonPassed = 26.0f / 162.0f;
 
 
 const float leagueAverageOps = 0.72f;
@@ -304,9 +304,9 @@ void ChooseAPitcher()
 
 			// now look up 2016 points per game
 			singlePlayerData.playerPointsPerGame = 0;
-			FullSeasonPitcherStats newPitcherStats = GetPitcher2017Stats(singlePlayerData.playerId, curl);
-			FullSeasonPitcherStats pitcherStats = GetPitcher2016Stats(singlePlayerData.playerId, curl);
-			FullSeasonPitcherStats pitcherCareerStats = GetPitcherCareerStats(singlePlayerData.playerId, curl);
+			FullSeasonPitcherStats newPitcherStats = GetPitcherStats(singlePlayerData.playerId, "2017", curl);
+			FullSeasonPitcherStats pitcherStats = GetPitcherStats(singlePlayerData.playerId, "2016", curl);
+			FullSeasonPitcherStats pitcherCareerStats = GetPitcherStats(singlePlayerData.playerId, "Total", curl);
 			// default to average
 			float opponentRunsPerGame = 4.4f;
 			float opponentStrikeoutsPerGame = 8.1f;
@@ -1273,7 +1273,7 @@ void Analyze2016Stats()
 						if (qualityStartString == "1")
 							pointsInGame += 4.0f;
 
-						FullSeasonPitcherStats pitcher2016Stats = GetPitcher2016Stats(playerId, curl);
+						FullSeasonPitcherStats pitcher2016Stats = GetPitcherStats(playerId, "2016", curl);
 						if (pitcher2016Stats.strikeOutsPer9 >= 0)
 						{
 							// Name GID inningsPerStart fip era k/9 oppR/G oppK/9 FDPcorrected
