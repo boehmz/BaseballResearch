@@ -156,11 +156,11 @@ FullSeasonPitcherStats GetPitcherStats(string playerId, string yearString, CURL 
 
 	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != "2017", AdvancedStatsPitchingStarterStatsOnly);
 	size_t fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"standard\"", 0);
+	size_t fangraphsNextCategoryIndex = fangraphsPlayerData.find("name=\"advanced\"", 0);
 	if (fangraphsCurrentIndex != string::npos)
 	{
 		fangraphsCurrentIndex = fangraphsPlayerData.find(yearString, fangraphsCurrentIndex + 1);
-
-		if (fangraphsCurrentIndex != string::npos)
+		if (fangraphsCurrentIndex != string::npos && fangraphsCurrentIndex < fangraphsNextCategoryIndex)
 		{
 			for (int i = 0; i < 3; ++i)
 			{
@@ -182,11 +182,12 @@ FullSeasonPitcherStats GetPitcherStats(string playerId, string yearString, CURL 
 	}
 
 	fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"advanced\"", 0);
+	fangraphsNextCategoryIndex = fangraphsPlayerData.find("name=\"battedball\"", 0);
 	if (fangraphsCurrentIndex != string::npos)
 	{
 		fangraphsCurrentIndex = fangraphsPlayerData.find(yearString, fangraphsCurrentIndex + 1);
 
-		if (fangraphsCurrentIndex != string::npos)
+		if (fangraphsCurrentIndex != string::npos && fangraphsCurrentIndex < fangraphsNextCategoryIndex)
 		{
 			for (int i = 0; i < 3; ++i)
 			{
