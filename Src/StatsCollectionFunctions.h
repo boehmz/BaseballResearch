@@ -34,6 +34,8 @@ struct FullSeasonStats
 	float averagePpgVsLefty;
 	float averagePpgVsRighty;
 	int totalGamesStarted;
+
+	bool operator==(const FullSeasonStats& rhs);
 };
 FullSeasonStats GetBatter2016Stats(std::string playerId, CURL *curl);
 
@@ -62,6 +64,8 @@ struct FullSeasonStatsAdvanced
 		averageVersusLefty(-1)
 	{
 	}
+
+	bool operator==(const FullSeasonStatsAdvanced& rhs);
 };
 FullSeasonStatsAdvanced GetBatterAdvancedStats(std::string playerId, std::string yearString, CURL *curl);
 FullSeasonStatsAdvanced GetPitcherAdvancedStats(std::string playerId, std::string yearString, CURL *curl);
@@ -81,8 +85,10 @@ struct FullSeasonPitcherStats
 		strikeOutsPer9 = -999;
 		numInnings = -1;
 	}
+	bool operator==(const FullSeasonPitcherStats& rhs);
 };
 FullSeasonPitcherStats GetPitcherStats(std::string playerId, std::string yearString, CURL *curl);
+
 
 #endif
 

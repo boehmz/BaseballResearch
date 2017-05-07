@@ -46,3 +46,5 @@ std::vector<PlayerData> OptimizeLineupToFitBudget();
 void PopulateProbableRainoutGames();
 
 void Analyze2016Stats();
+
+void UnitTestAllStatCollectionFunctions();

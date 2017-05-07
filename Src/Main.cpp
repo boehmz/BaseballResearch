@@ -7,20 +7,21 @@
 #include <algorithm>
 #include <sstream>
 #include <unordered_map>
+#include <assert.h>
 #include "SharedGlobals.h"
 #include "StatsCollectionFunctions.h"
 #include "Main.h"
 using namespace std;
 
 GameType gameType = Fanduel;
-int maxTotalBudget = 35000 - 10400;
+int maxTotalBudget = 35000 - 8300;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170506";
+std::string todaysDate = "20170507";
 int reviewDateStart = 406;
 int reviewDateEnd = 504;
-float percentOf2017SeasonPassed = 26.0f / 162.0f;
+float percentOf2017SeasonPassed = 27.0f / 162.0f;
 
 
 const float leagueAverageOps = 0.72f;
@@ -33,11 +34,14 @@ vector<string> probableRainoutGames;
 
 int main(void)
 {
-	enum ProcessType { Analyze2016, GenerateLineup, Refine};
-	ProcessType processType = GenerateLineup;
+	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest};
+	ProcessType processType = ProcessType::UnitTest;
 
 	switch (processType)
 	{
+	case UnitTest:
+		UnitTestAllStatCollectionFunctions();
+		break;
 	case Analyze2016:
 		Analyze2016Stats();
 		break;
@@ -680,6 +684,10 @@ void GenerateNewLineup()
 					closestRainOutPark = thisRainoutPark;
 			}
 			bool bRainedOut = closestRainOutPark != string::npos && closestRainOutPark < readBuffer.find("\n", placeHolderIndex + 1);
+			if (singlePlayerData.playerName.find("Braun, Ryan") != string::npos)
+				bRainedOut = true;
+			if (singlePlayerData.playerName.find("Gyorko, Jedd") != string::npos)
+				bRainedOut = true;
 			// throw this guy out if he's not a starter or his game will most likely be rained out
 			if (numGamesPlayed2016 >= minGamesPlayed2016 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
 				positionalPlayerData.push_back(singlePlayerData);
@@ -1183,6 +1191,78 @@ void PopulateProbableRainoutGames()
 			weatherDataBeginIndex = nextWeatherDataRow;
 		}
 	}
+}
+
+void UnitTestAllStatCollectionFunctions()
+{
+	CURL *curl;
+
+	curl = curl_easy_init();
+	if (curl)
+	{
+		FullSeasonStats batterStats = GetBatter2016Stats("3215", curl);
+		FullSeasonStatsAdvanced batterCareerAdvancedStats = GetBatterAdvancedStats("3215", "Total", curl);
+		//FullSeasonStatsAdvanced batter2017AdvancedStats = GetBatterAdvancedStats("3215", "2017", curl);
+		FullSeasonStatsAdvanced batter2016AdvancedStats = GetBatterAdvancedStats("3215", "2016", curl);
+		
+		FullSeasonStatsAdvanced pitcherAdvancedCareerStats = GetPitcherAdvancedStats("1580", "Total", curl);
+		//FullSeasonStatsAdvanced pitcherAdvanced2017Stats = GetPitcherAdvancedStats("1580", "2017", curl);
+		FullSeasonStatsAdvanced pitcherAdvanced2016Stats = GetPitcherAdvancedStats("1580", "2016", curl);
+		FullSeasonPitcherStats pitcherCareerStats = GetPitcherStats("1580", "Total", curl);
+		//FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats("1580", "2017", curl);
+		FullSeasonPitcherStats pitcher2016Stats = GetPitcherStats("1580", "2016", curl);
+		
+		// cache greinke 2016 stats for easier testing
+		FullSeasonPitcherStats expectedPitcher2016Stats;
+		expectedPitcher2016Stats.era = 4.37f;
+		expectedPitcher2016Stats.fip = 4.12f;
+		expectedPitcher2016Stats.numInnings = 158.6666666f;
+		expectedPitcher2016Stats.strikeOutsPer9 = 7.6f;
+		expectedPitcher2016Stats.whip = 1.27f;
+		FullSeasonStatsAdvanced expectedPitcherAdvanced2016Stats;
+		expectedPitcherAdvanced2016Stats.averageVersusLefty = 0.251f;
+		expectedPitcherAdvanced2016Stats.isoVersusLefty = 0.2f;
+		expectedPitcherAdvanced2016Stats.opsVersusLefty = 0.745f;
+		expectedPitcherAdvanced2016Stats.sluggingVersusLefty = 0.451f;
+		expectedPitcherAdvanced2016Stats.wobaVersusLefty = 0.315f;
+		expectedPitcherAdvanced2016Stats.averageVersusRighty = 0.265f;
+		expectedPitcherAdvanced2016Stats.isoVersusRighty = 0.17f;
+		expectedPitcherAdvanced2016Stats.opsVersusRighty = 0.756f;
+		expectedPitcherAdvanced2016Stats.sluggingVersusRighty = 0.435f;
+		expectedPitcherAdvanced2016Stats.wobaVersusRighty = 0.323f;
+		// cache hosmer 2016 stats for easier testing
+		FullSeasonStats expectedBatterStats;
+		expectedBatterStats.averagePpg = 10.2f;
+		expectedBatterStats.averagePpgVsLefty = 9.3f;
+		expectedBatterStats.averagePpgVsRighty = 10.5f;
+		expectedBatterStats.totalGamesStarted = 158;
+		FullSeasonStatsAdvanced expectedBatter2016AdvancedStats;
+		expectedBatter2016AdvancedStats.averageVersusLefty = 0.233f;
+		expectedBatter2016AdvancedStats.sluggingVersusLefty = 0.381f;
+		expectedBatter2016AdvancedStats.isoVersusLefty = 0.148f;
+		expectedBatter2016AdvancedStats.opsVersusLefty = 0.656f;
+		expectedBatter2016AdvancedStats.wobaVersusLefty = 0.280f;
+		expectedBatter2016AdvancedStats.averageVersusRighty = 0.283f;
+		expectedBatter2016AdvancedStats.sluggingVersusRighty = 0.459f;
+		expectedBatter2016AdvancedStats.opsVersusRighty = 0.813f;
+		expectedBatter2016AdvancedStats.isoVersusRighty = 0.176f;
+		expectedBatter2016AdvancedStats.wobaVersusRighty = 0.348f;
+
+		assert(expectedPitcher2016Stats == pitcher2016Stats);
+		assert(expectedPitcherAdvanced2016Stats == pitcherAdvanced2016Stats);
+		assert(expectedBatterStats == batterStats);
+		assert(expectedBatter2016AdvancedStats == batter2016AdvancedStats);
+
+		int iBreakpoint = 0;
+		iBreakpoint = iBreakpoint;
+	}
+	// Zack Greinke
+	// http://rotoguru1.com/cgi-bin/player16.cgi?1580x
+
+	// Eric Hosmer
+	// http://rotoguru1.com/cgi-bin/player16.cgi?3215x
+	
+		
 }
 
 void Analyze2016Stats()

@@ -555,6 +555,59 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 	return fangraphsData;
 }
 
+bool FullSeasonPitcherStats::operator==(const FullSeasonPitcherStats& rhs)
+{
+	if (abs(rhs.era - era) > 0.0015f)
+		return false;
+	if (abs(rhs.fip - fip) > 0.0015f)
+		return false;
+	if (abs(rhs.numInnings - numInnings) > 0.015f)
+		return false;
+	if (abs(rhs.strikeOutsPer9 - strikeOutsPer9) > 0.015f)
+		return false;
+	if (abs(rhs.whip - whip) > 0.015f)
+		return false;
+	return true;
+}
+
+bool FullSeasonStatsAdvanced::operator==(const FullSeasonStatsAdvanced& rhs)
+{
+	if (abs(rhs.averageVersusLefty - averageVersusLefty) > 0.0015f)
+		return false;
+	if (abs(rhs.averageVersusRighty - averageVersusRighty) > 0.0015f)
+		return false;
+	if (abs(rhs.isoVersusLefty - isoVersusLefty) > 0.0015f)
+		return false;
+	if (abs(rhs.isoVersusRighty - isoVersusRighty) > 0.0015f)
+		return false;
+	if (abs(rhs.opsVersusLefty - opsVersusLefty) > 0.0015f)
+		return false;
+	if (abs(rhs.opsVersusRighty - opsVersusRighty) > 0.0015f)
+		return false;
+	if (abs(rhs.sluggingVersusLefty - sluggingVersusLefty) > 0.0015f)
+		return false;
+	if (abs(rhs.sluggingVersusRighty - sluggingVersusRighty) > 0.0015f)
+		return false;
+	if (abs(rhs.wobaVersusLefty - wobaVersusLefty) > 0.0015f)
+		return false;
+	if (abs(rhs.wobaVersusRighty - wobaVersusRighty) > 0.0015f)
+		return false;
+	return true;
+}
+
+bool FullSeasonStats::operator==(const FullSeasonStats& rhs)
+{
+	if (abs(rhs.averagePpg - averagePpg) > 0.15f)
+		return false;
+	if (abs(rhs.averagePpgVsLefty - averagePpgVsLefty) > 0.15f)
+		return false;
+	if (abs(rhs.averagePpgVsRighty - averagePpgVsRighty) > 0.0015f)
+		return false;
+	if (abs(rhs.totalGamesStarted - totalGamesStarted) > 0.5f)
+		return false;
+	return true;
+}
+
 /*
 http://rotoguru1.com/cgi-bin/stats.cgi?pos=6&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=1&hithand=1&numlist=c
 0    1    2               3     4         5             6      7    8     9        10             11       12           13      14      15      16        17     18    19       20    21     22          23
