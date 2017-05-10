@@ -8,6 +8,7 @@ struct PlayerData
 {
 	std::string playerId;
 	std::string playerName;
+	std::string teamCode;
 	int playerSalary;
 	bool batsLeftHanded;
 	bool isFacingLefthander;

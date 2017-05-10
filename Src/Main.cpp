@@ -16,13 +16,17 @@ using namespace std;
 GameType gameType = Fanduel;
 int maxTotalBudget = 35000 - 8300;
 // game times in Eastern and 24 hour format
-int latestGameTime = 25;
-int earliestGameTime = -1;
-std::string todaysDate = "20170507";
+int latestGameTime = 15;
+int earliestGameTime = 13;
+std::string todaysDate = "20170510";
 int reviewDateStart = 406;
 int reviewDateEnd = 504;
-float percentOf2017SeasonPassed = 27.0f / 162.0f;
+float percentOf2017SeasonPassed = 32.0f / 162.0f;
 
+int dayToDayInjuredPlayersNum = 1;
+string dayToDayInjuredPlayers[] = { "Cano, Robinson" };
+
+string pitcherOpponentTeamCode = "";
 
 const float leagueAverageOps = 0.72f;
 const int minGamesPlayed2016 = 99;
@@ -35,7 +39,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest};
-	ProcessType processType = ProcessType::UnitTest;
+	ProcessType processType = ProcessType::GenerateLineup;
 
 	switch (processType)
 	{
@@ -249,7 +253,7 @@ void ChooseAPitcher()
 			// player's team code
 			placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
 			nextIndex = readBuffer.find(";", placeHolderIndex + 1);
-			string playerTeamCode = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1).c_str();
+			singlePlayerData.teamCode = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1).c_str();
 
 			// player salary
 			placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
@@ -295,10 +299,10 @@ void ChooseAPitcher()
 				pitcherVBatterCareerStats.sluggingVersusRighty = (1.0f - percentOf2017SeasonPassed) * pitcherVBatterCareerStats.sluggingVersusRighty + percentOf2017SeasonPassed * pitcherVBatter2017Stats.sluggingVersusRighty;
 			}
 			string opponentTeamCode = "";
-			auto opponent = opponentMap.find(playerTeamCode);
+			auto opponent = opponentMap.find(singlePlayerData.teamCode);
 			if (opponent != opponentMap.end())
 			{
-				opponentTeamCode = opponent->second.teamCode;
+				opponentTeamCode = opponent->second.teamCodeRotoGuru;
 				auto myTeam = opponentMap.find(opponentTeamCode);
 				if (myTeam != opponentMap.end())
 				{
@@ -315,11 +319,11 @@ void ChooseAPitcher()
 			float opponentRunsPerGame = 4.4f;
 			float opponentStrikeoutsPerGame = 8.1f;
 
-			auto opponentsInfo = opponentMap.find(playerTeamCode);
+			auto opponentsInfo = opponentMap.find(singlePlayerData.teamCode);
 
 			if (opponentsInfo != opponentMap.end())
 			{
-				size_t opponentTeamIndex = team2016OffensiveData.find(";" + opponentsInfo->second.teamCode + ";", 0);
+				size_t opponentTeamIndex = team2016OffensiveData.find(";" + opponentsInfo->second.teamCodeRankingsSite + ";", 0);
 				opponentTeamIndex = team2016OffensiveData.find(";", opponentTeamIndex + 1);
 				size_t opponentTeamNextIndex = team2016OffensiveData.find(";", opponentTeamIndex + 1);
 				opponentRunsPerGame = stof(team2016OffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
@@ -328,6 +332,7 @@ void ChooseAPitcher()
 				opponentTeamNextIndex = team2016OffensiveData.find("\n", opponentTeamIndex + 1);
 				opponentStrikeoutsPerGame = stof(team2016OffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 			}
+
 			if (pitcherStats.strikeOutsPer9 >= 0 && pitcherCareerStats.strikeOutsPer9 >= 0)
 			{
 				pitcherStats.era = 0.5f * pitcherStats.era + 0.5f * pitcherCareerStats.era;
@@ -425,6 +430,7 @@ void ChooseAPitcher()
 			*/
 			
 			bool bRainedOut = false;
+			int gameStartTime = 99;
 			if (opponentsInfo != opponentMap.end())
 			{
 				size_t closestRainOutPark = string::npos;
@@ -436,13 +442,11 @@ void ChooseAPitcher()
 						break;
 					}
 				}
+				gameStartTime = opponentsInfo->second.gameTime;
 			}
 			
-			/*
 			// throw this guy out if his game will most likely be rained out
-			if (gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
-			*/
-			if (pitcherStats.strikeOutsPer9 >= 0 && !bRainedOut)
+			if (pitcherStats.strikeOutsPer9 >= 0 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
 				positionalPlayerData.push_back(singlePlayerData);
 			if (placeHolderIndex == string::npos)
 				break;
@@ -451,6 +455,26 @@ void ChooseAPitcher()
 		}
 
 		sort(positionalPlayerData.begin(), positionalPlayerData.end(), comparePlayerByPointsPerGame);
+		for (unsigned int i = 0; i < positionalPlayerData.size() && i < 10; ++i)
+		{
+			cout << i << ".  " << positionalPlayerData[i].playerName << "  " << positionalPlayerData[i].playerPointsPerGame << "  " << positionalPlayerData[i].playerSalary << endl;
+		}
+		cout << "Choose between pitcher 0 and 9." << endl;
+		int pitcherSelected = -1;
+		cin >> pitcherSelected;
+		while (!cin || pitcherSelected < 0 || pitcherSelected > 9)
+		{
+			cout << "Must select between 0 and 9." << endl;
+			cin.clear();
+			cin.ignore();
+			cin >> pitcherSelected;
+		}
+		maxTotalBudget = 35000 - positionalPlayerData[pitcherSelected].playerSalary;
+		auto opponentInformation = opponentMap.find(positionalPlayerData[pitcherSelected].teamCode);
+		if (opponentInformation != opponentMap.end())
+		{
+			pitcherOpponentTeamCode = opponentInformation->second.teamCodeRotoGuru;
+		}
 		curl_easy_cleanup(curl);
 	}
 }
@@ -512,7 +536,7 @@ void GenerateNewLineup()
 				placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
 			}
 			nextIndex = readBuffer.find(";", placeHolderIndex + 1);
-			string playerTeamCode = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+			singlePlayerData.teamCode = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
 
 			// player salary
 			for (int i = 0; i < 1; ++i)
@@ -568,13 +592,15 @@ void GenerateNewLineup()
 			{
 				singlePlayerData.isFacingLefthander = true;
 				// about 30% of starters are left handed
-				thisSeasonPercent /= (162.0f * 0.3f);
+				// two thirds of the season becomes the point where we disregard last season
+				thisSeasonPercent /= (162.0f * 0.2f);
 			}
 			else
 			{
 				singlePlayerData.isFacingLefthander = false;
 				// about 70% of starters are right handed
-				thisSeasonPercent /= (162.0f * 0.5f);
+				// two thirds of the season becomes the point where we disregard last season
+				thisSeasonPercent /= (162.0f * 0.46f);
 			}
 			if (thisSeasonPercent > 1)
 				thisSeasonPercent = 1;
@@ -597,7 +623,7 @@ void GenerateNewLineup()
 			float pitcherFactor = 1.0f;
 			float ballParkFactor = 1.0f;
 			FullSeasonStatsAdvanced opposingPitcherAdvancedStats;
-			auto opponentInformation = opponentMap.find(playerTeamCode);
+			auto opponentInformation = opponentMap.find(singlePlayerData.teamCode);
 			if (opponentInformation != opponentMap.end())
 			{
 				opposingPitcherAdvancedStats = opponentInformation->second.pitcherAdvancedStats;
@@ -619,6 +645,11 @@ void GenerateNewLineup()
 					if (ballParkIndex != string::npos && ballParkEndIndex != string::npos)
 						ballParkFactor = stof(ballParkFactorData.substr(ballParkIndex + 1, ballParkEndIndex - ballParkIndex - 1));
 				}
+			}
+			else
+			{	
+				string playerHasNoOpponentInformation = singlePlayerData.teamCode;
+				assert(playerHasNoOpponentInformation == "nope");
 			}
 	//		if (singlePlayerData.playerName.find("Kinsler") != string::npos)
 	//			singlePlayerData = singlePlayerData;
@@ -684,12 +715,17 @@ void GenerateNewLineup()
 					closestRainOutPark = thisRainoutPark;
 			}
 			bool bRainedOut = closestRainOutPark != string::npos && closestRainOutPark < readBuffer.find("\n", placeHolderIndex + 1);
-			if (singlePlayerData.playerName.find("Braun, Ryan") != string::npos)
-				bRainedOut = true;
-			if (singlePlayerData.playerName.find("Gyorko, Jedd") != string::npos)
-				bRainedOut = true;
+			for (int inj = 0; inj < dayToDayInjuredPlayersNum; ++inj)
+			{
+				if (singlePlayerData.playerName.find(dayToDayInjuredPlayers[inj]) != string::npos)
+				{
+					bRainedOut = true;
+					break;
+				}
+			}
+			bool bFacingChosenPitcher = singlePlayerData.teamCode == pitcherOpponentTeamCode;
 			// throw this guy out if he's not a starter or his game will most likely be rained out
-			if (numGamesPlayed2016 >= minGamesPlayed2016 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
+			if (!bFacingChosenPitcher && numGamesPlayed2016 >= minGamesPlayed2016 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
 				positionalPlayerData.push_back(singlePlayerData);
 			
 			if (placeHolderIndex == string::npos)
@@ -1119,24 +1155,28 @@ void PopulateProbableRainoutGames()
 				int gameTimePercipByHour[6] { 0,0,0,0,0 };
 				size_t precipPercentEnd = weatherData.find("Precip%:", weatherDataBeginIndex + 1);
 				precipPercentEnd += 8;
+				size_t windIndex = weatherData.find("Wind:", precipPercentEnd);
 				for (int i = 0; i < 4; ++i)
 				{
 					precipPercentEnd = weatherData.find("%", precipPercentEnd + 1);
 				}
-				for (int i = 0; i < 6; ++i)
+				if (precipPercentEnd < windIndex)
 				{
-					size_t precipPercentStart = weatherData.rfind(">", precipPercentEnd);
-					gameTimePercipByHour[i] = atoi(weatherData.substr(precipPercentStart + 1, precipPercentEnd - precipPercentStart - 1).c_str());
-					precipPercentEnd = weatherData.find("%", precipPercentEnd + 1);
-				}
-				for (int i = 0; i < 4; ++i)
-				{
-					if (gameTimePercipByHour[i] + gameTimePercipByHour[i+1] + gameTimePercipByHour[i+2] > 135)
+					for (int i = 0; i < 6; ++i)
 					{
-						bProbableRainout = true;
-						break;
+						size_t precipPercentStart = weatherData.rfind(">", precipPercentEnd);
+						gameTimePercipByHour[i] = atoi(weatherData.substr(precipPercentStart + 1, precipPercentEnd - precipPercentStart - 1).c_str());
+						precipPercentEnd = weatherData.find("%", precipPercentEnd + 1);
 					}
-				}				
+					for (int i = 0; i < 4; ++i)
+					{
+						if (gameTimePercipByHour[i] + gameTimePercipByHour[i + 1] + gameTimePercipByHour[i + 2] > 135)
+						{
+							bProbableRainout = true;
+							break;
+						}
+					}
+				}
 			}
 			size_t timeIndex = weatherData.rfind("DT - ", weatherDataBeginIndex);
 			size_t markupIndex = weatherData.find("<", timeIndex);
@@ -1148,6 +1188,19 @@ void PopulateProbableRainoutGames()
 
 
 			size_t dashIndex = weatherData.rfind(" – ", timeIndex);
+			
+			size_t colonIndex = weatherData.find(":", dashIndex);
+			int gameStartTime = atoi(weatherData.substr(dashIndex + 3, colonIndex - dashIndex - 3).c_str());
+			if (gameStartTime < 10)
+				gameStartTime += 12;
+			if (weatherData.find("PDT", dashIndex) < timeIndex)
+				gameStartTime += 3;
+			else if (weatherData.find("MDT", dashIndex) < timeIndex)
+				gameStartTime += 2;
+			else if (weatherData.find("CDT", dashIndex) < timeIndex)
+				gameStartTime += 1;
+
+			
 			size_t atIndex = weatherData.rfind(" at ", dashIndex);
 			string homeTeam = weatherData.substr(atIndex + 4, dashIndex - atIndex - 4);
 			dashIndex = weatherData.rfind(">", atIndex);
@@ -1178,16 +1231,35 @@ void PopulateProbableRainoutGames()
 			OpponentInformation homeTeamInformation;
 			homeTeamInformation.ballParkPlayedIn = ballparkName;
 			homeTeamInformation.weatherSiteTeamName = homeTeam;
-			homeTeamInformation.teamCode = homeTeamCode;
+			homeTeamInformation.teamCodeRankingsSite = homeTeamCode;
+			homeTeamInformation.teamCodeRotoGuru = homeTeamCode;
 			homeTeamInformation.rankingsSiteTeamName = homeTeamAlternativeName;
+			homeTeamInformation.gameTime = gameStartTime;
 
 			OpponentInformation awayTeamInformation;
 			awayTeamInformation.ballParkPlayedIn = ballparkName;
 			awayTeamInformation.weatherSiteTeamName = awayTeam;
-			awayTeamInformation.teamCode = awayTeamCode;
+			awayTeamInformation.teamCodeRankingsSite = awayTeamCode;
+			awayTeamInformation.teamCodeRotoGuru = awayTeamCode;
 			awayTeamInformation.rankingsSiteTeamName = awayTeamAlternativeName;
-			
-			opponentMap.insert({ { homeTeamCode,awayTeamInformation },{ awayTeamCode,homeTeamInformation } });
+			awayTeamInformation.gameTime = gameStartTime;
+
+			// rotogur1.com uses different team codes than standard...
+			if (awayTeamInformation.teamCodeRotoGuru == "laa")
+				awayTeamInformation.teamCodeRotoGuru = "ana";
+			if (homeTeamInformation.teamCodeRotoGuru == "laa")
+				homeTeamInformation.teamCodeRotoGuru = "ana";
+			if (awayTeamInformation.teamCodeRotoGuru == "lad")
+				awayTeamInformation.teamCodeRotoGuru = "los";
+			if (homeTeamInformation.teamCodeRotoGuru == "lad")
+				homeTeamInformation.teamCodeRotoGuru = "los";
+			if (awayTeamInformation.teamCodeRotoGuru == "mia")
+				awayTeamInformation.teamCodeRotoGuru = "fla";
+			if (homeTeamInformation.teamCodeRotoGuru == "mia")
+				homeTeamInformation.teamCodeRotoGuru = "fla";
+
+			opponentMap.insert({ { homeTeamInformation.teamCodeRotoGuru,awayTeamInformation },{ awayTeamInformation.teamCodeRotoGuru,homeTeamInformation } });
+
 			weatherDataBeginIndex = nextWeatherDataRow;
 		}
 	}

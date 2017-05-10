@@ -30,7 +30,11 @@ struct OpponentInformation
 	// teamrankings.com team name
 	std::string rankingsSiteTeamName;
 	// 3 letter code
-	std::string teamCode;
+	std::string teamCodeRotoGuru;
+	// 3 letter code used for team statistics stie
+	std::string teamCodeRankingsSite;
+
+	int gameTime;
 
 	FullSeasonStatsAdvanced pitcherAdvancedStats;
 };
