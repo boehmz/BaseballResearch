@@ -1,4 +1,4 @@
-20170504/ZachDateMetaData
+20170508/ZachDateMetaData
 text/javascript"></script>
 
 <script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=yONnNeg0_tp3KoLSBL2DqY6gAKfm_dA7JxGUf1pSEcg1"></script>
@@ -210,7 +210,7 @@ text/javascript"></script>
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-03">Probable Pitchers</a>
+                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-09">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -274,7 +274,7 @@ text/javascript"></script>
                         A: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=11&qual=y&type=0&season=2017">Midwest</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=14&qual=y&type=0&season=2017">South Atlantic</a><br />
                         A-: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=12&qual=y&type=0&season=2017">New York-Penn</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=13&qual=y&type=0&season=2017">Northwest</a><br />
                         R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=15&qual=y&type=0&season=2017">Appalachian</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=17&qual=y&type=0&season=2017">Gulf Coast</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=18&qual=y&type=0&season=2017">Pioneer</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=16&qual=y&type=0&season=2017">Arizona</a><br />
-                        R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=30&qual=y&type=0&season=2017">Dominican</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=32&qual=y&type=0&season=2017">Venezuelan</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=33&qual=y&type=0&season=2017">Arizona Fall</a>
+                        R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=30&qual=y&type=0&season=2017">Dominican</a>
                         <hr />
                         <div class="menu-sub-header">
                             WAR Tools
@@ -525,7 +525,7 @@ text/javascript"></script>
                             <strong style="font-size:15pt;">Zack Wheeler</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 5/30/1990 (26 y, 11 m, 4 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-4/195 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=10310&position=P#draft" style="text-decoration:none;">2009 June Amateur Draft - Round: 1, Pick: 6, Overall: 6, Team: San Francisco Giants</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=10310&position=P#contract" style="text-decoration:none;">$0.8M / 1 Years (2017)</a>
+                            <strong>Birthdate:</strong> 5/30/1990 (26 y, 11 m, 9 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-4/195 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=10310&position=P#draft" style="text-decoration:none;">2009 June Amateur Draft - Round: 1, Pick: 6, Overall: 6, Team: San Francisco Giants</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=10310&position=P#contract" style="text-decoration:none;">$0.8M / 1 Years (2017)</a>
                         </div>
                     </td>
                     
@@ -961,7 +961,7 @@ text/javascript"></script>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__1">
 		<td class="grid_line_regular">2014</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">9.08</td><td class="grid_line_regular" align="right">3.84</td><td class="grid_line_regular" align="right">2.37</td><td class="grid_line_regular" align="right">0.68</td><td class="grid_line_regular" align="right">23.6 %</td><td class="grid_line_regular" align="right">10.0 %</td><td class="grid_line_regular" align="right">13.6 %</td><td class="grid_line_regular" align="right">.237</td><td class="grid_line_regular" align="right">1.33</td><td class="grid_line_regular" align="right">.304</td><td class="grid_line_regular" align="right">72.9 %</td><td class="grid_line_regular" align="right">3.55</td><td class="grid_line_regular" align="right">3.49</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__2">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">8.54</td><td class="grid_line_regular" align="right">3.42</td><td class="grid_line_regular" align="right">2.50</td><td class="grid_line_regular" align="right">1.03</td><td class="grid_line_regular" align="right">22.5 %</td><td class="grid_line_regular" align="right">9.0 %</td><td class="grid_line_regular" align="right">13.5 %</td><td class="grid_line_regular" align="right">.230</td><td class="grid_line_regular" align="right">1.25</td><td class="grid_line_regular" align="right">.278</td><td class="grid_line_regular" align="right">63.8 %</td><td class="grid_line_regular" align="right">3.84</td><td class="grid_line_regular" align="right">3.77</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">8.54</td><td class="grid_line_regular" align="right">3.42</td><td class="grid_line_regular" align="right">2.50</td><td class="grid_line_regular" align="right">1.03</td><td class="grid_line_regular" align="right">22.5 %</td><td class="grid_line_regular" align="right">9.0 %</td><td class="grid_line_regular" align="right">13.5 %</td><td class="grid_line_regular" align="right">.230</td><td class="grid_line_regular" align="right">1.25</td><td class="grid_line_regular" align="right">.278</td><td class="grid_line_regular" align="right">63.8 %</td><td class="grid_line_regular" align="right">3.83</td><td class="grid_line_regular" align="right">3.74</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__3">
 		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">8.55</td><td class="grid_line_regular" align="right">3.90</td><td class="grid_line_regular" align="right">2.19</td><td class="grid_line_regular" align="right">0.78</td><td class="grid_line_regular" align="right">22.2 %</td><td class="grid_line_regular" align="right">10.1 %</td><td class="grid_line_regular" align="right">12.1 %</td><td class="grid_line_regular" align="right">.236</td><td class="grid_line_regular" align="right">1.33</td><td class="grid_line_regular" align="right">.294</td><td class="grid_line_regular" align="right">73.8 %</td><td class="grid_line_regular" align="right">3.77</td><td class="grid_line_regular" align="right">3.74</td>
 	</tr>
@@ -1107,7 +1107,7 @@ text/javascript"></script>
 <div class="footer-bar">
     <div class="footer-bar-background"></div>
     <div class="footer-bar-item">
-        Updated: Wednesday, May 3, 2017 6:33 AM ET
+        Updated: Tuesday, May 9, 2017 4:25 AM ET
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>

@@ -1,4 +1,4 @@
-20170504/ZachDateMetaData
+20170510/ZachDateMetaData
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -228,7 +228,7 @@
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-03">Probable Pitchers</a>
+                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-09">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -292,7 +292,7 @@
                         A: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=11&qual=y&type=0&season=2017">Midwest</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=14&qual=y&type=0&season=2017">South Atlantic</a><br />
                         A-: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=12&qual=y&type=0&season=2017">New York-Penn</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=13&qual=y&type=0&season=2017">Northwest</a><br />
                         R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=15&qual=y&type=0&season=2017">Appalachian</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=17&qual=y&type=0&season=2017">Gulf Coast</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=18&qual=y&type=0&season=2017">Pioneer</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=16&qual=y&type=0&season=2017">Arizona</a><br />
-                        R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=30&qual=y&type=0&season=2017">Dominican</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=32&qual=y&type=0&season=2017">Venezuelan</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=33&qual=y&type=0&season=2017">Arizona Fall</a>
+                        R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=30&qual=y&type=0&season=2017">Dominican</a>
                         <hr />
                         <div class="menu-sub-header">
                             WAR Tools
@@ -543,7 +543,7 @@
                             <strong style="font-size:15pt;">Jaime Garcia</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 7/8/1986 (30 y, 9 m, 26 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-2/215 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=8137&position=P#draft" style="text-decoration:none;">2005 June Amateur Draft - Round: 22, Pick: 30, Overall: 680, Team: St. Louis Cardinals</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=8137&position=P#contract" style="text-decoration:none;">$27.5M / 4 Years (2012 - 2015) + 2 Option Years</a>
+                            <strong>Birthdate:</strong> 7/8/1986 (30 y, 10 m, 2 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-2/215 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=8137&position=P#draft" style="text-decoration:none;">2005 June Amateur Draft - Round: 22, Pick: 30, Overall: 680, Team: St. Louis Cardinals</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=8137&position=P#contract" style="text-decoration:none;">$27.5M / 4 Years (2012 - 2015) + 2 Option Years</a>
                         </div>
                     </td>
                     
@@ -1003,7 +1003,7 @@
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__7">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">8.23</td><td class="grid_line_regular" align="right">1.80</td><td class="grid_line_regular" align="right">4.57</td><td class="grid_line_regular" align="right">1.03</td><td class="grid_line_regular" align="right">22.1 %</td><td class="grid_line_regular" align="right">4.8 %</td><td class="grid_line_regular" align="right">17.2 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.14</td><td class="grid_line_regular" align="right">.293</td><td class="grid_line_regular" align="right">77.5 %</td><td class="grid_line_regular" align="right">3.66</td><td class="grid_line_regular" align="right">3.46</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__8">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">6.75</td><td class="grid_line_regular" align="right">2.70</td><td class="grid_line_regular" align="right">2.50</td><td class="grid_line_regular" align="right">0.00</td><td class="grid_line_regular" align="right">17.2 %</td><td class="grid_line_regular" align="right">6.9 %</td><td class="grid_line_regular" align="right">10.3 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.05</td><td class="grid_line_regular" align="right">.238</td><td class="grid_line_regular" align="right">87.5 %</td><td class="grid_line_regular" align="right">2.86</td><td class="grid_line_regular" align="right">5.13</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">6.75</td><td class="grid_line_regular" align="right">2.70</td><td class="grid_line_regular" align="right">2.50</td><td class="grid_line_regular" align="right">0.00</td><td class="grid_line_regular" align="right">17.2 %</td><td class="grid_line_regular" align="right">6.9 %</td><td class="grid_line_regular" align="right">10.3 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.05</td><td class="grid_line_regular" align="right">.238</td><td class="grid_line_regular" align="right">87.5 %</td><td class="grid_line_regular" align="right">2.85</td><td class="grid_line_regular" align="right">5.09</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__9">
 		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">8.24</td><td class="grid_line_regular" align="right">2.18</td><td class="grid_line_regular" align="right">3.78</td><td class="grid_line_regular" align="right">0.71</td><td class="grid_line_regular" align="right">21.6 %</td><td class="grid_line_regular" align="right">5.7 %</td><td class="grid_line_regular" align="right">15.9 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.27</td><td class="grid_line_regular" align="right">.323</td><td class="grid_line_regular" align="right">70.8 %</td><td class="grid_line_regular" align="right">3.20</td><td class="grid_line_regular" align="right">3.29</td>
 	</tr>
@@ -1161,7 +1161,7 @@
 <div class="footer-bar">
     <div class="footer-bar-background"></div>
     <div class="footer-bar-item">
-        Updated: Wednesday, May 3, 2017 6:33 AM ET
+        Updated: Tuesday, May 9, 2017 4:26 AM ET
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
