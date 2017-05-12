@@ -52,3 +52,5 @@ void PopulateProbableRainoutGames();
 void Analyze2016Stats();
 
 void UnitTestAllStatCollectionFunctions();
+
+void GetBallparkFactors(std::string ballparkName, std::string statName, float& outFactorLeftyBatter, float& outFactorRightyBatter);

@@ -16,15 +16,15 @@ using namespace std;
 GameType gameType = Fanduel;
 int maxTotalBudget = 35000 - 8300;
 // game times in Eastern and 24 hour format
-int latestGameTime = 15;
-int earliestGameTime = 13;
-std::string todaysDate = "20170510";
+int latestGameTime = 25;
+int earliestGameTime = -1;
+std::string todaysDate = "20170512";
 int reviewDateStart = 406;
 int reviewDateEnd = 504;
-float percentOf2017SeasonPassed = 32.0f / 162.0f;
+float percentOf2017SeasonPassed = 35.0f / 162.0f;
 
-int dayToDayInjuredPlayersNum = 1;
-string dayToDayInjuredPlayers[] = { "Cano, Robinson" };
+int dayToDayInjuredPlayersNum = 2;
+string dayToDayInjuredPlayers[] = { "Cano, Robinson", "Braun, Ryan" };
 
 string pitcherOpponentTeamCode = "";
 
@@ -196,7 +196,6 @@ void RefineAlgorithm()
 void ChooseAPitcher()
 {
 	CURL *curl;
-	//CURLcode res;  
 
 	curl = curl_easy_init();
 	if (curl)
@@ -309,6 +308,10 @@ void ChooseAPitcher()
 					myTeam->second.pitcherAdvancedStats = pitcherVBatterCareerStats;
 				}
 			}
+			else
+			{
+				assert("No opponent information for pitcher found" == "");
+			}
 
 			// now look up 2016 points per game
 			singlePlayerData.playerPointsPerGame = 0;
@@ -331,6 +334,10 @@ void ChooseAPitcher()
 				opponentTeamIndex = team2016OffensiveData.find(";", opponentTeamIndex + 1);
 				opponentTeamNextIndex = team2016OffensiveData.find("\n", opponentTeamIndex + 1);
 				opponentStrikeoutsPerGame = stof(team2016OffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+			}
+			else
+			{
+				assert("No opponent information for pitcher found" == "");
 			}
 
 			if (pitcherStats.strikeOutsPer9 >= 0 && pitcherCareerStats.strikeOutsPer9 >= 0)
@@ -356,11 +363,6 @@ void ChooseAPitcher()
 					pitcherStats.fip += newPitcherStats.fip * percentOf2017SeasonPassed;
 					pitcherStats.strikeOutsPer9 += newPitcherStats.strikeOutsPer9 * percentOf2017SeasonPassed;
 				}
-			}
-			else
-			{
-				// for now, no rookies.
-				//pitcherStats = newPitcherStats;
 			}
 
 			if (opponentsInfo != opponentMap.end())
@@ -407,27 +409,6 @@ void ChooseAPitcher()
 			{
 				singlePlayerData.playerPointsPerGame += pitcherInputStats[i] * pitcherInputCoefficients[i];
 			}
-			/*
-			int gameStartTime = 24;
-			size_t colonIndex = readBuffer.find(":", placeHolderIndex + 1);
-			size_t nextSemiColonIndex = readBuffer.find(";", placeHolderIndex + 1);
-			if (colonIndex != string::npos && colonIndex < nextSemiColonIndex)
-			{
-				size_t spaceIndex = readBuffer.rfind(" ", colonIndex);
-				gameStartTime = atoi(readBuffer.substr(spaceIndex + 1, colonIndex - spaceIndex - 1).c_str());
-				size_t pmIndex = readBuffer.find("PM", spaceIndex);
-				size_t edtIndex = readBuffer.find("EDT", spaceIndex);
-				if (pmIndex != string::npos && pmIndex < edtIndex)
-				{
-					gameStartTime += 12;
-				}
-			}
-			else if (readBuffer.find("Final", placeHolderIndex + 1) != string::npos && readBuffer.find("Final", placeHolderIndex + 1) < nextSemiColonIndex)
-			{
-				// game has gone final
-				gameStartTime = 999;
-			}
-			*/
 			
 			bool bRainedOut = false;
 			int gameStartTime = 99;
@@ -483,8 +464,6 @@ void GenerateNewLineup()
 {
 	CURL *curl;
 	//CURLcode res;
-
-	string ballParkFactorData = GetEntireFileContents("BallparkFactors.txt");
 
 	curl = curl_easy_init();
 	if (curl)
@@ -627,24 +606,12 @@ void GenerateNewLineup()
 			if (opponentInformation != opponentMap.end())
 			{
 				opposingPitcherAdvancedStats = opponentInformation->second.pitcherAdvancedStats;
-				size_t ballParkIndex = ballParkFactorData.find(opponentInformation->second.ballParkPlayedIn, 0);
-				if (ballParkIndex != string::npos)
-				{
-					ballParkIndex = ballParkFactorData.find(";SLG;", ballParkIndex);
-					size_t ballParkEndIndex;
-					if (singlePlayerData.batsLeftHanded)
-					{
-						ballParkIndex += 4;
-						ballParkEndIndex = ballParkFactorData.find("\n", ballParkIndex);
-					}
-					else
-					{
-						ballParkEndIndex = ballParkIndex;
-						ballParkIndex = ballParkFactorData.rfind("\n", ballParkEndIndex);
-					}
-					if (ballParkIndex != string::npos && ballParkEndIndex != string::npos)
-						ballParkFactor = stof(ballParkFactorData.substr(ballParkIndex + 1, ballParkEndIndex - ballParkIndex - 1));
-				}
+				float ballParkFactorAsLefty, ballParkFactorAsRighty;
+				GetBallparkFactors(opponentInformation->second.ballParkPlayedIn, "SLG", ballParkFactorAsLefty, ballParkFactorAsRighty);
+				if (singlePlayerData.batsLeftHanded)
+					ballParkFactor = ballParkFactorAsLefty;
+				else
+					ballParkFactor = ballParkFactorAsRighty;
 			}
 			else
 			{	
@@ -1335,6 +1302,28 @@ void UnitTestAllStatCollectionFunctions()
 	// http://rotoguru1.com/cgi-bin/player16.cgi?3215x
 	
 		
+	float fenwayHomeRunFactorLeftyBatter;
+	float fenwayHomeRunFactorRightyBatter;
+	float petcoSluggingFactorLeftyBatter;
+	float petcoSluggingFactorRightyBatter;
+	float kauffmanAverageFactorLeftyBatter;
+	float kauffmanAverageFactorRightyBatter;
+	float coorsRunsFactorLeftyBatter;
+	float coorsRunsFactorRightyBatter;
+
+	GetBallparkFactors("Fenway Park", "HR", fenwayHomeRunFactorLeftyBatter, fenwayHomeRunFactorRightyBatter);
+	GetBallparkFactors("Petco Park", "SLG", petcoSluggingFactorLeftyBatter, petcoSluggingFactorRightyBatter);
+	GetBallparkFactors("Kauffman Stadium", "AVG", kauffmanAverageFactorLeftyBatter, kauffmanAverageFactorRightyBatter);
+	GetBallparkFactors("Coors Field", "R", coorsRunsFactorLeftyBatter, coorsRunsFactorRightyBatter);
+
+	assert(abs(fenwayHomeRunFactorLeftyBatter - 0.79f) < 0.01f);
+	assert(abs(fenwayHomeRunFactorRightyBatter - 1.15f) < 0.01f);
+	assert(abs(petcoSluggingFactorLeftyBatter - 0.96f) < 0.01f);
+	assert(abs(petcoSluggingFactorRightyBatter - 1.00f) < 0.01f);
+	assert(abs(kauffmanAverageFactorLeftyBatter - 1.04f) < 0.01f);
+	assert(abs(kauffmanAverageFactorRightyBatter - 1.03f) < 0.01f);
+	assert(abs(coorsRunsFactorLeftyBatter - 1.32f) < 0.01f);
+	assert(abs(coorsRunsFactorRightyBatter - 1.37f) < 0.01f);
 }
 
 void Analyze2016Stats()
@@ -1790,6 +1779,29 @@ void Analyze2016Stats()
 	}
 }
 
+static string ballParkFactorData = "";
+void GetBallparkFactors(string ballparkName, string statName, float& outFactorLeftyBatter, float& outFactorRightyBatter)
+{
+	if (ballParkFactorData == "")
+		ballParkFactorData = GetEntireFileContents("BallparkFactors.txt");
+
+	size_t ballParkIndex = ballParkFactorData.find(ballparkName, 0);
+	if (ballParkIndex != string::npos)
+	{
+		ballParkIndex = ballParkFactorData.find(";" + statName + ";", ballParkIndex);
+		size_t ballParkEndIndex;
+		size_t leftHandedBatterIndex = ballParkIndex + statName.length() + 1;
+		ballParkEndIndex = ballParkFactorData.find("\n", leftHandedBatterIndex);
+		if (leftHandedBatterIndex != string::npos && ballParkEndIndex != string::npos)
+			outFactorLeftyBatter = stof(ballParkFactorData.substr(leftHandedBatterIndex + 1, ballParkEndIndex - leftHandedBatterIndex - 1));
+
+		ballParkEndIndex = ballParkIndex;
+		size_t rightHandedBatterIndex = ballParkFactorData.rfind("\n", ballParkEndIndex);
+		if (rightHandedBatterIndex != string::npos && ballParkEndIndex != string::npos)
+			outFactorRightyBatter = stof(ballParkFactorData.substr(rightHandedBatterIndex + 1, ballParkEndIndex - rightHandedBatterIndex - 1));
+
+	}
+}
 /*
 http://rotoguru1.com/cgi-bin/stats.cgi?pos=6&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=1&hithand=1&numlist=c
 0    1    2               3     4         5             6      7    8     9        10             11       12           13      14      15      16        17     18    19       20    21     22          23
