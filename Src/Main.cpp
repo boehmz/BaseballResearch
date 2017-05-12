@@ -365,6 +365,8 @@ void ChooseAPitcher()
 				}
 			}
 
+			float parkHomerFactor = 1;
+			float parkRunsFactor = 1;
 			if (opponentsInfo != opponentMap.end())
 			{
 				opponentRunsPerGame *= max(0.0f, 1.0f - (percentOf2017SeasonPassed * 2.0f));
@@ -383,7 +385,18 @@ void ChooseAPitcher()
 				opponentTeamNextIndex = team2017StrikeoutData.find("<", opponentTeamIndex + 1);
 				temp = stof(team2017StrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 				opponentStrikeoutsPerGame += stof(team2017StrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str()) * min(1.0f, percentOf2017SeasonPassed * 2.0f);
+			
+				// ballpark factors
+				float pitcherBallparkHomerRateVsRighty, pitcherBallparkHomerRateVsLefty;
+				float pitcherBallparkRunsRateVsRighty, pitcherBallparkRunsRateVsLefty;
+				GetBallparkFactors(opponentsInfo->second.ballParkPlayedIn, "HR", pitcherBallparkHomerRateVsLefty, pitcherBallparkHomerRateVsRighty);
+				GetBallparkFactors(opponentsInfo->second.ballParkPlayedIn, "R", pitcherBallparkRunsRateVsLefty, pitcherBallparkRunsRateVsRighty);
+				parkRunsFactor = (pitcherBallparkRunsRateVsLefty + pitcherBallparkRunsRateVsRighty) * 0.5f;
+				parkHomerFactor = (pitcherBallparkHomerRateVsLefty + pitcherBallparkHomerRateVsRighty) * 0.5f;
 			}
+
+			pitcherStats.era *= parkRunsFactor;
+			pitcherStats.fip *= parkHomerFactor;
 
 			//fip,			era,			kper9,	oppRunsPerGame,	oppKPer9
 			//0.200000003, 0.600000024, 0.500000000, 1.00000012, 0.500000000
