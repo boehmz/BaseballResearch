@@ -45,6 +45,9 @@ void ChooseAPitcher();
 
 void GenerateNewLineup();
 
+std::unordered_map<std::string, bool> probableStarters;
+void DetermineProbableStarters(CURL* curl);
+
 std::vector<PlayerData> OptimizeLineupToFitBudget();
 
 void PopulateProbableRainoutGames();

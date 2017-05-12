@@ -23,8 +23,8 @@ int reviewDateStart = 406;
 int reviewDateEnd = 504;
 float percentOf2017SeasonPassed = 35.0f / 162.0f;
 
-int dayToDayInjuredPlayersNum = 2;
-string dayToDayInjuredPlayers[] = { "Cano, Robinson", "Braun, Ryan" };
+int dayToDayInjuredPlayersNum = 3;
+string dayToDayInjuredPlayers[] = { "Cano, Robinson", "Braun, Ryan", "Conforto, Michael" };
 
 string pitcherOpponentTeamCode = "";
 
@@ -95,7 +95,7 @@ void RefineAlgorithm()
 			_itoa_s(d, thisDateCStr, 10);
 			string thisDate = thisDateCStr;
 			string actualResults;
-			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + thisDate + "&game=fd&scsv=1&nowrap=1";
+			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + thisDate + "&game=fd&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
 			curl_easy_setopt(curl, CURLOPT_URL, resultsURL.c_str());
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &actualResults);
@@ -201,7 +201,7 @@ void ChooseAPitcher()
 	if (curl)
 	{
 		std::string readBuffer;
-		string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=1&sort=4&game=d&colA=0&daypt=0&denom=3&xavg=0&inact=0&maxprc=99999&sched=1&starters=1&hithand=0&numlist=c";
+		string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=1&sort=4&game=d&colA=0&daypt=0&denom=3&xavg=0&inact=0&maxprc=99999&sched=1&starters=1&hithand=0&numlist=c&user=GoldenExcalibur&key=G5970032941";
 		curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
@@ -481,6 +481,8 @@ void GenerateNewLineup()
 	curl = curl_easy_init();
 	if (curl)
 	{
+	  DetermineProbableStarters(curl);
+	
 	  for (int p = 2; p <= 7; ++p)
 	  {
 		  // first basemen
@@ -488,7 +490,7 @@ void GenerateNewLineup()
 		  char pAsString[5];
 		  _itoa_s(p, pAsString, 10);
 		  string pAsStringString(pAsString);
-		  string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c";
+		  string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941";
 
 		  curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
 		  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -631,8 +633,6 @@ void GenerateNewLineup()
 				string playerHasNoOpponentInformation = singlePlayerData.teamCode;
 				assert(playerHasNoOpponentInformation == "nope");
 			}
-	//		if (singlePlayerData.playerName.find("Kinsler") != string::npos)
-	//			singlePlayerData = singlePlayerData;
 			if ((singlePlayerData.batsLeftHanded && opposingPitcherAdvancedStats.opsVersusLefty >= 0) ||
 				(!singlePlayerData.batsLeftHanded && opposingPitcherAdvancedStats.opsVersusRighty >= 0))
 			{
@@ -705,7 +705,9 @@ void GenerateNewLineup()
 			}
 			bool bFacingChosenPitcher = singlePlayerData.teamCode == pitcherOpponentTeamCode;
 			// throw this guy out if he's not a starter or his game will most likely be rained out
-			if (!bFacingChosenPitcher && numGamesPlayed2016 >= minGamesPlayed2016 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
+			//if (!bFacingChosenPitcher && numGamesPlayed2016 >= minGamesPlayed2016 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
+			bool bIsProbableStarter = probableStarters.find(singlePlayerData.playerId) != probableStarters.end();
+			if (!bFacingChosenPitcher && bIsProbableStarter && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
 				positionalPlayerData.push_back(singlePlayerData);
 			
 			if (placeHolderIndex == string::npos)
@@ -1101,6 +1103,123 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 	}
 
 	return playersToReturn;
+}
+
+void DetermineProbableStarters(CURL* curl)
+{
+	if (curl == NULL)
+		curl = curl_easy_init();
+
+	if (curl)
+	{
+		for (int p = 2; p <= 7; ++p)
+		{
+			// first basemen
+			std::string readBuffer;
+			char pAsString[5];
+			_itoa_s(p, pAsString, 10);
+			string pAsStringString(pAsString);
+			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=4&game=d&colA=0&daypt=1&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941";
+
+			curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+			curl_easy_perform(curl);
+			curl_easy_reset(curl);
+
+			vector<PlayerData> positionalPlayerData;
+
+			size_t placeHolderIndex = readBuffer.find("GID;", 0);
+			size_t endOfPlayerDataIndex = readBuffer.find("Statistical data provided", placeHolderIndex);
+
+			for (int i = 0; i < 23; ++i)
+			{
+				placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+			}
+			placeHolderIndex = readBuffer.find("\n", placeHolderIndex + 1);
+			while (placeHolderIndex != string::npos && readBuffer.find(";", placeHolderIndex + 1) < endOfPlayerDataIndex - 1)
+			{
+				PlayerData singlePlayerData;
+
+				// player id
+				size_t nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.playerId = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+
+				// player name
+				for (int i = 0; i < 2; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.playerName = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+
+				// team name code
+				for (int i = 0; i < 1; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.teamCode = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+
+				// number of games started this season
+				for (int i = 0; i < 4; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				int gamesStartedLast30Days = atoi(readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1).c_str());
+
+				// now look for teammates who might have more starts
+				int maxNumPlayersWithMoreStarts = 0;
+				// should probably be for AL only when p == 3
+				if (p == 3)
+					maxNumPlayersWithMoreStarts = 1;
+				if (p == 7)
+					maxNumPlayersWithMoreStarts = 2;
+
+				int numPlayersWithMoreStarts = 0;
+				size_t teammateIndex = readBuffer.find(";" + singlePlayerData.teamCode + ";", 0);
+				size_t teammateNextLine = readBuffer.find("\n", teammateIndex);
+				for (int i = 0; i < 4; ++i)
+				{
+					if (teammateIndex == string::npos)
+						break;
+					teammateIndex = readBuffer.find(";", teammateIndex + 1);
+				}
+				while (teammateIndex != string::npos)
+				{
+					if (teammateIndex < teammateNextLine && teammateIndex != placeHolderIndex)
+					{
+						size_t nextTeammateIndex = readBuffer.find(";", teammateIndex + 1);
+						int numGamesTeammateStarted = atoi(readBuffer.substr(teammateIndex + 1, nextTeammateIndex - teammateIndex - 1).c_str());
+						if (numGamesTeammateStarted > gamesStartedLast30Days)
+							numPlayersWithMoreStarts++;
+					}
+					teammateIndex = readBuffer.find(";" + singlePlayerData.teamCode + ";", teammateIndex + 1);
+					teammateNextLine = readBuffer.find("\n", teammateIndex);
+					for (int i = 0; i < 4; ++i)
+					{
+						if (teammateIndex == string::npos)
+							break;
+						teammateIndex = readBuffer.find(";", teammateIndex + 1);
+					}
+				}
+				// we are a starter
+				if (numPlayersWithMoreStarts <= maxNumPlayersWithMoreStarts)
+					probableStarters.insert({singlePlayerData.playerId, true});
+
+				// go to next player
+				for (int i = 0; i < 16; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				if (placeHolderIndex == string::npos)
+					break;
+				else
+					placeHolderIndex = readBuffer.find("\n", placeHolderIndex + 1);
+			}
+		}
+	}
 }
 
 void PopulateProbableRainoutGames()
@@ -1815,23 +1934,24 @@ void GetBallparkFactors(string ballparkName, string statName, float& outFactorLe
 
 	}
 }
+
 /*
-http://rotoguru1.com/cgi-bin/stats.cgi?pos=6&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=1&hithand=1&numlist=c
+http://rotoguru1.com/cgi-bin/stats.cgi?pos=6&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=1&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941
 0    1    2               3     4         5             6      7    8     9        10             11       12           13      14      15      16        17     18    19       20    21     22          23
 GID; Pos; Name;           Team; Salary; Salary Change; Points; GS;  GP; Active; Pts / Game; Pts / G / $; Pts / G(alt); Last; Days ago; MLBID;  ESPNID; YahooID; Bats; Throws; H / A; Oppt; Oppt hand; Game title
 5125; 3; Cabrera, Miguel; det;  4000;      0;             0;     0; 0;    1;     0;           0;             0;         0;      0;     408234; 5544;   7163;     R;      R;     A;    chw;    L;       Jose Quintana(L) chw vs.det - 4:10 PM EDT - U.S.Cellular Field
 
 
 
-http://dailybaseballdata.com/cgi-bin/dailyhit.pl?date=&xyear=0&pa=1&showdfs=&sort=woba&r40=0&scsv=0
-http://dailybaseballdata.com/cgi-bin/dailyhit.pl?date=&xyear=0&pa=1&showdfs=&sort=woba&r40=0&scsv=1&nohead=1
+http://dailybaseballdata.com/cgi-bin/dailyhit.pl?date=&xyear=0&pa=1&showdfs=&sort=woba&r40=0&scsv=0&user=GoldenExcalibur&key=G5970032941
+http://dailybaseballdata.com/cgi-bin/dailyhit.pl?date=&xyear=0&pa=1&showdfs=&sort=woba&r40=0&scsv=1&nohead=1&user=GoldenExcalibur&key=G5970032941
 pitcher vs batter matchups
 MLB_ID;  ESPN_ID;  Name(LF);          Name(FL);         Team;  H/A;  Bats;  Active;  FD_pos;  DK_pos;  DD_pos;  YH_pos;  FD_sal;  DK_sal;  DD_sal;  YH_sal;  NP;  PA;  AB;  Hits;  2B;  3B;  HR;  Runs;  RBI;  BB;  IBB;  SO;  HBP;  SB;  CS;  AVG;   OBP;   SLG;   OPS;     wOBA;  MLB_ID(p);  ESPN_ID(p);  Pitcher_name(LF);  Pitcher_name(FL);  P_Team;  Throws;  game_time;    Stadium;        FD_sal;  DK_sal;  DD_sal;  YH_sal
 453056;  28637;    Ellsbury, Jacoby;  Jacoby Ellsbury;  nyy;   H;    L;     1;       7;       7;       7;       7;        ;       ;        ;        ;        16;  4;   4;   2;     0;   0;   0;   0;     1;    0;   0;    2;   0;    0;   1;   .500;  .500;  .500;  1.000;  .450;   502009;     30196;       Latos, Mat;        Mat Latos;         tor;     R;       7:05 PM EDT;  Yankee Stadium; ;        ;        ;
 
 
-http://rotoguru1.com/cgi-bin/byday.pl?date=404&game=fd&scsv=1
-http://rotoguru1.com/cgi-bin/byday.pl?date=404&game=fd&scsv=1&nowrap=1
+http://rotoguru1.com/cgi-bin/byday.pl?date=404&game=fd&scsv=1&user=GoldenExcalibur&key=G5970032941
+http://rotoguru1.com/cgi-bin/byday.pl?date=404&game=fd&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941
 recap of stats earned
 0           1         2       3                  4           5         6          7      8       9      10     11       12         13
 Date;       GID;   MLB_ID;  Name;              Starter;  Bat order;  FD posn;  FD pts;  FD sal;  Team;  Oppt;  dblhdr;  Tm Runs;  Opp Runs
