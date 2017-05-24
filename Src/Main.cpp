@@ -20,7 +20,7 @@ int latestGameTime = 25;
 int earliestGameTime = -1;
 std::string todaysDate = "20170524";
 int reviewDateStart = 406;
-int reviewDateEnd = 517;
+int reviewDateEnd = 524;
 float percentOf2017SeasonPassed = 40.0f / 162.0f;
 
 int dayToDayInjuredPlayersNum = 1;
@@ -39,7 +39,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 
 	switch (processType)
 	{
@@ -50,7 +50,10 @@ int main(void)
 		Analyze2016Stats();
 		break;
 	case Refine:
-		RefineAlgorithm();
+		if (gameType == GameType::BeatTheStreak)
+			RefineAlgorithmForBeatTheStreak();
+		else
+			RefineAlgorithm();
 		break;
 	default:
 	case GenerateLineup:
@@ -197,6 +200,168 @@ void RefineAlgorithm()
 	//	ofstream writeResultsTrackerFile(resultsTrackerFileName);
 	//	writeResultsTrackerFile << finalWriteString;
 	//	writeResultsTrackerFile.close();
+	}
+}
+
+void RefineAlgorithmForBeatTheStreak()
+{
+	CURL *curl;
+
+	curl = curl_easy_init();
+	if (curl)
+	{
+		vector<BeatTheStreakPlayerProfile> playersYesHit;
+		vector<BeatTheStreakPlayerProfile> playersNoHit;
+
+		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
+		{
+			char thisDateCStr[5];
+			_itoa_s(d, thisDateCStr, 10);
+			string thisDate = thisDateCStr;
+			string actualResults;
+			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + thisDate + "&game=fd&user=GoldenExcalibur&key=G5970032941";
+			curl_easy_setopt(curl, CURLOPT_URL, resultsURL.c_str());
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &actualResults);
+			curl_easy_perform(curl);
+			curl_easy_reset(curl);
+
+			ifstream resultsTrackerFile;
+			string resultsTrackerFileName = "2017ResultsTracker\\BeatTheStreak\\AllPlayersDaily\\2017";
+			if (d < 1000)
+				resultsTrackerFileName += "0";
+			resultsTrackerFileName += thisDate + ".txt";
+			resultsTrackerFile.open(resultsTrackerFileName);
+
+			string resultsLine;
+
+			while (getline(resultsTrackerFile, resultsLine))
+			{
+				// 0   ;1                    ;2           ;3          ;4          ;5         ;6           ;7
+				// Name;HitsPerGameLast30Days;AvgLast7Days;AvgVPitcher;PitcherWhip;PitcherEra;PitcherKPer9;PitcherAvgAgainst;
+				vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
+				BeatTheStreakPlayerProfile thisPlayer;
+				thisPlayer.playerName = lineValues[0];
+				
+
+				size_t playerIdIndex = actualResults.find(thisPlayer.playerName, 0);
+				if (playerIdIndex != string::npos)
+				{
+					for (int i = 0; i < 7; ++i)
+					{
+						playerIdIndex = actualResults.find("</td>", playerIdIndex + 1);
+					}
+					size_t prevPlayerIdIndex = actualResults.rfind(">", playerIdIndex - 1);
+					prevPlayerIdIndex = actualResults.find("/", prevPlayerIdIndex + 1);
+					if (prevPlayerIdIndex < playerIdIndex)
+					{
+						playerIdIndex = prevPlayerIdIndex;
+						prevPlayerIdIndex = actualResults.rfind(" ", prevPlayerIdIndex);
+						int numHits = atoi(actualResults.substr(prevPlayerIdIndex + 1, playerIdIndex - prevPlayerIdIndex - 1).c_str());
+
+						thisPlayer.hitsPerGameLast30Days = stof(lineValues[1].c_str());
+						thisPlayer.averageLast7Days = stof(lineValues[2]);
+						thisPlayer.averageVsPitcherFacing = stof(lineValues[3]);
+						thisPlayer.opposingPitcherWhip = stof(lineValues[4]);
+						thisPlayer.opposingPitcherEra = stof(lineValues[5]);
+						thisPlayer.opposingPitcherStrikeOutsPer9 = stof(lineValues[6]);
+						thisPlayer.opposingPitcherAverageAgainstHandedness = stof(lineValues[7]);
+
+						if (numHits > 0)
+							playersYesHit.push_back(thisPlayer);
+						else
+							playersNoHit.push_back(thisPlayer);
+					}
+				}
+
+			}
+			resultsTrackerFile.close();
+		}
+
+		BeatTheStreakPlayerProfile yesHitMin(1);
+		BeatTheStreakPlayerProfile yesHitAvg(0);
+		int eligibleVPitcherCount = 0;
+		for (unsigned int p = 0; p < playersYesHit.size(); ++p)
+		{
+			if (playersYesHit[p].averageLast7Days < yesHitMin.averageLast7Days)
+				yesHitMin.averageLast7Days = playersYesHit[p].averageLast7Days;
+			if (playersYesHit[p].averageVsPitcherFacing >= 0 &&
+				playersYesHit[p].averageVsPitcherFacing < yesHitMin.averageVsPitcherFacing)
+				yesHitMin.averageVsPitcherFacing = playersYesHit[p].averageVsPitcherFacing;
+			if (playersYesHit[p].hitsPerGameLast30Days < yesHitMin.hitsPerGameLast30Days)
+				yesHitMin.hitsPerGameLast30Days = playersYesHit[p].hitsPerGameLast30Days;
+			if (playersYesHit[p].opposingPitcherAverageAgainstHandedness < yesHitMin.opposingPitcherAverageAgainstHandedness)
+				yesHitMin.opposingPitcherAverageAgainstHandedness = playersYesHit[p].opposingPitcherAverageAgainstHandedness;
+			if (playersYesHit[p].opposingPitcherEra < yesHitMin.opposingPitcherEra)
+				yesHitMin.opposingPitcherEra = playersYesHit[p].opposingPitcherEra;
+			if (playersYesHit[p].opposingPitcherWhip < yesHitMin.opposingPitcherWhip)
+				yesHitMin.opposingPitcherWhip = playersYesHit[p].opposingPitcherWhip;
+			if (playersYesHit[p].opposingPitcherStrikeOutsPer9 > yesHitMin.opposingPitcherStrikeOutsPer9)
+				yesHitMin.opposingPitcherStrikeOutsPer9 = playersYesHit[p].opposingPitcherStrikeOutsPer9;
+
+			yesHitAvg.averageLast7Days += playersYesHit[p].averageLast7Days;
+			if (playersYesHit[p].averageVsPitcherFacing >= 0)
+			{
+				eligibleVPitcherCount++;
+				yesHitAvg.averageVsPitcherFacing += playersYesHit[p].averageVsPitcherFacing;
+			}
+			yesHitAvg.hitsPerGameLast30Days += playersYesHit[p].hitsPerGameLast30Days;
+			yesHitAvg.opposingPitcherAverageAgainstHandedness += playersYesHit[p].opposingPitcherAverageAgainstHandedness;
+			yesHitAvg.opposingPitcherEra += playersYesHit[p].opposingPitcherEra;
+			yesHitAvg.opposingPitcherWhip += playersYesHit[p].opposingPitcherWhip;
+			yesHitAvg.opposingPitcherStrikeOutsPer9 += playersYesHit[p].opposingPitcherStrikeOutsPer9;
+		}
+		yesHitAvg.averageLast7Days /= (float)playersYesHit.size();
+		yesHitAvg.averageVsPitcherFacing /= (float)eligibleVPitcherCount;
+		yesHitAvg.hitsPerGameLast30Days /= (float)playersYesHit.size();
+		yesHitAvg.opposingPitcherAverageAgainstHandedness /= (float)playersYesHit.size();
+		yesHitAvg.opposingPitcherEra /= (float)playersYesHit.size();
+		yesHitAvg.opposingPitcherWhip /= (float)playersYesHit.size();
+		yesHitAvg.opposingPitcherStrikeOutsPer9 /= (float)playersYesHit.size();
+
+
+		BeatTheStreakPlayerProfile noHitMax(-1);
+		BeatTheStreakPlayerProfile noHitAvg(0);
+		eligibleVPitcherCount = 0;
+		for (unsigned int p = 0; p < playersNoHit.size(); ++p)
+		{
+			if (playersNoHit[p].averageLast7Days > noHitMax.averageLast7Days)
+				noHitMax.averageLast7Days = playersNoHit[p].averageLast7Days;
+			if (playersNoHit[p].averageVsPitcherFacing >= 0 &&
+				playersNoHit[p].averageVsPitcherFacing > noHitMax.averageVsPitcherFacing)
+				noHitMax.averageVsPitcherFacing = playersNoHit[p].averageVsPitcherFacing;
+			if (playersNoHit[p].hitsPerGameLast30Days > noHitMax.hitsPerGameLast30Days)
+				noHitMax.hitsPerGameLast30Days = playersNoHit[p].hitsPerGameLast30Days;
+			if (playersNoHit[p].opposingPitcherAverageAgainstHandedness > noHitMax.opposingPitcherAverageAgainstHandedness)
+				noHitMax.opposingPitcherAverageAgainstHandedness = playersNoHit[p].opposingPitcherAverageAgainstHandedness;
+			if (playersNoHit[p].opposingPitcherEra > noHitMax.opposingPitcherEra)
+				noHitMax.opposingPitcherEra = playersNoHit[p].opposingPitcherEra;
+			if (playersNoHit[p].opposingPitcherWhip > noHitMax.opposingPitcherWhip)
+				noHitMax.opposingPitcherWhip = playersNoHit[p].opposingPitcherWhip;
+			if (playersNoHit[p].opposingPitcherStrikeOutsPer9 < noHitMax.opposingPitcherStrikeOutsPer9)
+				noHitMax.opposingPitcherStrikeOutsPer9 = playersNoHit[p].opposingPitcherStrikeOutsPer9;
+
+			noHitAvg.averageLast7Days += playersNoHit[p].averageLast7Days;
+			if (playersNoHit[p].averageVsPitcherFacing >= 0)
+			{
+				eligibleVPitcherCount++;
+				noHitAvg.averageVsPitcherFacing += playersNoHit[p].averageVsPitcherFacing;
+			}
+			noHitAvg.hitsPerGameLast30Days += playersNoHit[p].hitsPerGameLast30Days;
+			noHitAvg.opposingPitcherAverageAgainstHandedness += playersNoHit[p].opposingPitcherAverageAgainstHandedness;
+			noHitAvg.opposingPitcherEra += playersNoHit[p].opposingPitcherEra;
+			noHitAvg.opposingPitcherWhip += playersNoHit[p].opposingPitcherWhip;
+			noHitAvg.opposingPitcherStrikeOutsPer9 += playersNoHit[p].opposingPitcherStrikeOutsPer9;
+		}
+		noHitAvg.averageLast7Days /= (float)playersNoHit.size();
+		noHitAvg.averageVsPitcherFacing /= (float)eligibleVPitcherCount;
+		noHitAvg.hitsPerGameLast30Days /= (float)playersNoHit.size();
+		noHitAvg.opposingPitcherAverageAgainstHandedness /= (float)playersNoHit.size();
+		noHitAvg.opposingPitcherEra /= (float)playersNoHit.size();
+		noHitAvg.opposingPitcherWhip /= (float)playersNoHit.size();
+		noHitAvg.opposingPitcherStrikeOutsPer9 /= (float)playersNoHit.size();
+		
+		yesHitMin = yesHitMin;
 	}
 }
 
@@ -1936,20 +2101,6 @@ void Analyze2016Stats()
 
 void GetBeatTheStreakCandidates()
 {
-	struct BeatTheStreakPlayerProfile
-	{
-		string playerName;
-		float hitsPerGameLast30Days;
-		float averageLast7Days;
-		float averageVsPitcherFacing;
-		string opposingPitcherName;
-		float opposingPitcherEra;
-		float opposingPitcherStrikeOutsPer9;
-		float opposingPitcherWhip;
-		float opposingPitcherAverageAgainstHandedness;
-		string batterHandedness;
-	};
-
 	CURL *curl;
 
 	curl = curl_easy_init();
@@ -2314,6 +2465,21 @@ void GetBallparkFactors(string ballparkName, string statName, float& outFactorLe
 			outFactorRightyBatter = stof(ballParkFactorData.substr(rightHandedBatterIndex + 1, ballParkEndIndex - rightHandedBatterIndex - 1));
 
 	}
+}
+
+std::vector<string> SplitStringIntoMultiple(std::string wholeString, std::string tokens)
+{
+	vector<string> stringArray;
+	std::vector<char> writableWholeString(wholeString.begin(), wholeString.end());
+	writableWholeString.push_back('\0');
+	char * pch;
+	pch = strtok(&writableWholeString[0], tokens.c_str());
+	while (pch != NULL)
+	{
+		stringArray.push_back(pch);
+		pch = strtok(NULL, tokens.c_str());
+	}
+	return stringArray;
 }
 
 /*

@@ -16,9 +16,74 @@ bool comparePlayerByPointsPerGame(PlayerData i, PlayerData j);
 bool comparePlayersBySalary(PlayerData i, PlayerData j);
 
 void RefineAlgorithm();
+void RefineAlgorithmForBeatTheStreak();
 void GenerateNewLineup();
 void ChooseAPitcher();
 void Analyze2016Stats();
+
+struct BeatTheStreakPlayerProfile
+{
+	std::string playerName;
+	float hitsPerGameLast30Days;
+	float averageLast7Days;
+	float averageVsPitcherFacing;
+	std::string opposingPitcherName;
+	float opposingPitcherEra;
+	float opposingPitcherStrikeOutsPer9;
+	float opposingPitcherWhip;
+	float opposingPitcherAverageAgainstHandedness;
+	std::string batterHandedness;
+
+	BeatTheStreakPlayerProfile() : playerName(""),
+	hitsPerGameLast30Days(-1),
+	 averageLast7Days(-1),
+	 averageVsPitcherFacing(-1),
+	 opposingPitcherName(""),
+	 opposingPitcherEra(-1),
+	 opposingPitcherStrikeOutsPer9(-1),
+	 opposingPitcherWhip(-1),
+	 opposingPitcherAverageAgainstHandedness(-1),
+	 batterHandedness("")
+	{
+
+	}
+
+	BeatTheStreakPlayerProfile(int minMaxInitializer) : playerName(""),		
+		opposingPitcherName(""),
+		batterHandedness("")
+	{
+		if (minMaxInitializer == 0)
+		{
+			hitsPerGameLast30Days = 0;
+			averageLast7Days = 0;
+			averageVsPitcherFacing = 0;
+			opposingPitcherEra = 0;
+			opposingPitcherStrikeOutsPer9 = 0;
+			opposingPitcherWhip = 0;
+			opposingPitcherAverageAgainstHandedness = 0;
+		}
+		else if (minMaxInitializer < 0)
+		{
+			hitsPerGameLast30Days = -1;
+			averageLast7Days = -1;
+			averageVsPitcherFacing = -1;
+			opposingPitcherEra = -1;
+			opposingPitcherStrikeOutsPer9 = 9999;
+			opposingPitcherWhip = -1;
+			opposingPitcherAverageAgainstHandedness = -1;
+		}
+		else if (minMaxInitializer > 0)
+		{
+			hitsPerGameLast30Days = 9999;
+			averageLast7Days = 9999;
+			averageVsPitcherFacing = 9999;
+			opposingPitcherEra = 9999;
+			opposingPitcherStrikeOutsPer9 = -1;
+			opposingPitcherWhip = 9999;
+			opposingPitcherAverageAgainstHandedness = 9999;
+		}
+	}
+};
 
 void PopulateProbableRainoutGames();
 
@@ -59,3 +124,5 @@ void UnitTestAllStatCollectionFunctions();
 void GetBallparkFactors(std::string ballparkName, std::string statName, float& outFactorLeftyBatter, float& outFactorRightyBatter);
 
 void GetBeatTheStreakCandidates();
+
+std::vector<std::string> SplitStringIntoMultiple(std::string wholeString, std::string tokens);
