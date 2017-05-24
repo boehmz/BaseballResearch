@@ -13,18 +13,18 @@
 #include "Main.h"
 using namespace std;
 
-GameType gameType = Fanduel;
-int maxTotalBudget = 35000 - 8300;
+GameType gameType = GameType::BeatTheStreak;
+int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170512";
+std::string todaysDate = "20170524";
 int reviewDateStart = 406;
-int reviewDateEnd = 504;
-float percentOf2017SeasonPassed = 35.0f / 162.0f;
+int reviewDateEnd = 517;
+float percentOf2017SeasonPassed = 40.0f / 162.0f;
 
-int dayToDayInjuredPlayersNum = 3;
-string dayToDayInjuredPlayers[] = { "Cano, Robinson", "Braun, Ryan", "Conforto, Michael" };
+int dayToDayInjuredPlayersNum = 1;
+string dayToDayInjuredPlayers[] = { "Szczur, Matt" };
 
 string pitcherOpponentTeamCode = "";
 
@@ -55,8 +55,15 @@ int main(void)
 	default:
 	case GenerateLineup:
 		PopulateProbableRainoutGames();
-		ChooseAPitcher();
-		GenerateNewLineup();
+		if (gameType == GameType::BeatTheStreak)
+		{
+			GetBeatTheStreakCandidates();
+		}
+		else
+		{
+			ChooseAPitcher();
+			GenerateNewLineup();
+		}
 		break;
 	}
 
@@ -121,7 +128,7 @@ void RefineAlgorithm()
 				string thisPlayerId = resultsLine.substr(0, columnStartIndex);
 
 
-				FullSeasonStats player2016Stats = GetBatter2016Stats(thisPlayerId, curl);
+				FullSeasonStats player2016Stats = GetBatterStats(thisPlayerId, "2017", curl);
 				columnStartIndex = resultsLine.find(";", columnStartIndex + 1);
 				size_t nextIndex = resultsLine.find(";", columnStartIndex + 1);
 				string opposingHandedness = resultsLine.substr(columnStartIndex + 1, nextIndex - columnStartIndex - 1);
@@ -596,7 +603,7 @@ void GenerateNewLineup()
 				// two thirds of the season becomes the point where we disregard last season
 				thisSeasonPercent /= (162.0f * 0.46f);
 			}
-			if (thisSeasonPercent > 1)
+		//	if (thisSeasonPercent > 1)
 				thisSeasonPercent = 1;
 
 			// game name
@@ -607,7 +614,7 @@ void GenerateNewLineup()
 
 			// now look up 2016 points per game
 			singlePlayerData.playerPointsPerGame *= thisSeasonPercent;
-			FullSeasonStats player2016Stats = GetBatter2016Stats(singlePlayerData.playerId, curl);
+			FullSeasonStats player2016Stats = GetBatterStats(singlePlayerData.playerId, "2016", curl);
 			if (singlePlayerData.isFacingLefthander)
 				singlePlayerData.playerPointsPerGame += player2016Stats.averagePpgVsLefty * (1.0f - thisSeasonPercent);
 			else
@@ -644,6 +651,10 @@ void GenerateNewLineup()
 				else
 					opposingPitcherAveragePointsAllowed += 5.89791155f * opposingPitcherAdvancedStats.opsVersusRighty;
 				pitcherFactor = opposingPitcherAveragePointsAllowed / averagePointsPerGame;
+				if (singlePlayerData.batsLeftHanded)
+					pitcherFactor = opposingPitcherAdvancedStats.opsVersusLefty / leagueAverageOps;
+				else
+					pitcherFactor = opposingPitcherAdvancedStats.opsVersusRighty / leagueAverageOps;
 			}
 			singlePlayerData.playerPointsPerGame *= pitcherFactor * ballParkFactor;
 			
@@ -966,6 +977,18 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 					continue;
 				for (unsigned int bs = idealPlayerPerPosition[swappee] + 1; bs < allPlayers[swappeePositionIndex].size(); ++bs)
 				{
+					if (swappee == idealPlayerPerPosition.size() - 3)
+					{
+						if (bs == idealPlayerPerPosition[idealPlayerPerPosition.size() - 2])
+							continue;
+						if (bs == idealPlayerPerPosition[idealPlayerPerPosition.size() - 1])
+							continue;
+					}
+					else if (swappee == idealPlayerPerPosition.size() - 2)
+					{
+						if (bs == idealPlayerPerPosition[idealPlayerPerPosition.size() - 1])
+							continue;
+					}
 					int swappedSalaryGained = allPlayers[swappeePositionIndex][idealPlayerPerPosition[swappee]].playerSalary - allPlayers[swappeePositionIndex][bs].playerSalary;
 					float pointsLost = allPlayers[swappeePositionIndex][idealPlayerPerPosition[swappee]].playerPointsPerGame - allPlayers[swappeePositionIndex][bs].playerPointsPerGame;
 					if (pointsGained > pointsLost && totalSalary - swappedSalaryGained + salaryNeeded <= maxTotalBudget)
@@ -1205,7 +1228,7 @@ void DetermineProbableStarters(CURL* curl)
 					}
 				}
 				// we are a starter
-				if (numPlayersWithMoreStarts <= maxNumPlayersWithMoreStarts)
+				if ( gamesStartedLast30Days > 3 && numPlayersWithMoreStarts <= maxNumPlayersWithMoreStarts)
 					probableStarters.insert({singlePlayerData.playerId, true});
 
 				// go to next player
@@ -1371,7 +1394,7 @@ void UnitTestAllStatCollectionFunctions()
 	curl = curl_easy_init();
 	if (curl)
 	{
-		FullSeasonStats batterStats = GetBatter2016Stats("3215", curl);
+		FullSeasonStats batterStats = GetBatterStats("3215", "2016", curl);
 		FullSeasonStatsAdvanced batterCareerAdvancedStats = GetBatterAdvancedStats("3215", "Total", curl);
 		//FullSeasonStatsAdvanced batter2017AdvancedStats = GetBatterAdvancedStats("3215", "2017", curl);
 		FullSeasonStatsAdvanced batter2016AdvancedStats = GetBatterAdvancedStats("3215", "2016", curl);
@@ -1850,7 +1873,7 @@ void Analyze2016Stats()
 						}
 					}
 					// Name GID slgVL opsVL wobaVL isoVL ppgVL slgVR opsVR wobaVR isoVR ppgVR
-					FullSeasonStats batter2016Stats = GetBatter2016Stats(playerId, curl);
+					FullSeasonStats batter2016Stats = GetBatterStats(playerId, "2016", curl);
 					FullSeasonStatsAdvanced batter2016AdvancedStats = GetBatterAdvancedStats(playerId, "2016", curl);
 					battersDataFile << playerName << ";" << playerId << ";" << batter2016AdvancedStats.sluggingVersusLefty << ";" << batter2016AdvancedStats.opsVersusLefty << ";" << batter2016AdvancedStats.wobaVersusLefty << ";" << batter2016AdvancedStats.isoVersusLefty << ";" << batter2016Stats.averagePpgVsLefty << "; " << batter2016AdvancedStats.sluggingVersusRighty << "; " << batter2016AdvancedStats.opsVersusRighty << "; " << batter2016AdvancedStats.wobaVersusRighty << "; " << batter2016AdvancedStats.isoVersusRighty << ";" << batter2016Stats.averagePpgVsRighty << endl;
 					batter2016Stats = batter2016Stats;
@@ -1908,6 +1931,364 @@ void Analyze2016Stats()
 				//ops to points = 5.89791155 * ops + 3.76171160
 			}
 		}
+	}
+}
+
+void GetBeatTheStreakCandidates()
+{
+	struct BeatTheStreakPlayerProfile
+	{
+		string playerName;
+		float hitsPerGameLast30Days;
+		float averageLast7Days;
+		float averageVsPitcherFacing;
+		string opposingPitcherName;
+		float opposingPitcherEra;
+		float opposingPitcherStrikeOutsPer9;
+		float opposingPitcherWhip;
+		float opposingPitcherAverageAgainstHandedness;
+		string batterHandedness;
+	};
+
+	CURL *curl;
+
+	curl = curl_easy_init();
+	if (curl)
+	{
+		string readURL;
+		vector<BeatTheStreakPlayerProfile> allPlayers;
+		vector<BeatTheStreakPlayerProfile> eligiblePlayers;
+
+		// do the top x pages
+		for (int page = 0; page < 4; ++page)
+		{
+			std::string last30DaysStats;
+			char pageCStr[3];
+			_itoa_s(page + 1, pageCStr, 10);
+			string pageStr = pageCStr;
+			readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=0&season=2017&month=3&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=6,d&page=" + pageStr + "_50";
+			curl_easy_setopt(curl, CURLOPT_URL, readURL.c_str());
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &last30DaysStats);
+			curl_easy_perform(curl);
+			curl_easy_reset(curl);
+
+			size_t playerPositionIndex = last30DaysStats.find("LeaderBoard1_dg1_ctl00__", 0);
+			while (playerPositionIndex != string::npos)
+			{
+				BeatTheStreakPlayerProfile playerProfile;
+
+				for (int i = 0; i < 2; ++i)
+				{
+					playerPositionIndex = last30DaysStats.find("</td>", playerPositionIndex + 1);
+				}
+				playerPositionIndex -= 4;
+				size_t playerPositionPrevIndex = last30DaysStats.rfind(">", playerPositionIndex);
+				playerProfile.playerName = last30DaysStats.substr(playerPositionPrevIndex + 1, playerPositionIndex - playerPositionPrevIndex - 1);
+
+				for (int i = 0; i < 3; ++i)
+				{
+					playerPositionIndex = last30DaysStats.find("</td>", playerPositionIndex + 1);
+				}
+				playerPositionPrevIndex = last30DaysStats.rfind(">", playerPositionIndex);
+				int numGamesPlayed = atoi(last30DaysStats.substr(playerPositionPrevIndex + 1, playerPositionIndex - playerPositionPrevIndex - 1).c_str());
+
+				for (int i = 0; i < 3; ++i)
+				{
+					playerPositionIndex = last30DaysStats.find("</td>", playerPositionIndex + 1);
+				}
+				playerPositionPrevIndex = last30DaysStats.rfind(">", playerPositionIndex);
+				int numHitsGot = atoi(last30DaysStats.substr(playerPositionPrevIndex + 1, playerPositionIndex - playerPositionPrevIndex - 1).c_str());
+
+				playerProfile.hitsPerGameLast30Days = (float)numHitsGot / (float)numGamesPlayed;
+				if (playerProfile.hitsPerGameLast30Days > 1.0f)
+					eligiblePlayers.push_back(playerProfile);
+				allPlayers.push_back(playerProfile);
+				playerPositionIndex = last30DaysStats.find("LeaderBoard1_dg1_ctl00__", playerPositionIndex + 1);
+			}
+		}
+
+		std::string last7DaysStats;
+		for (int page = 0; page < 6; ++page)
+		{
+			std::string last30DaysStats;
+			char pageCStr[3];
+			_itoa_s(page + 1, pageCStr, 10);
+			string pageStr = pageCStr;
+			readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=10&type=0&season=2017&month=1&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=22,d&page=" + pageStr + "_50";
+			curl_easy_setopt(curl, CURLOPT_URL, readURL.c_str());
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &last7DaysStats);
+			curl_easy_perform(curl);
+			curl_easy_reset(curl);
+		}		
+
+		for (int i = allPlayers.size() - 1; i >= 0; --i)
+		{
+			size_t positionOn7DayList = last7DaysStats.find(allPlayers[i].playerName, 0);
+			if (positionOn7DayList != string::npos)
+			{
+				for (int i = 0; i < 22; ++i)
+				{
+					positionOn7DayList = last7DaysStats.find("</td>", positionOn7DayList + 1);
+				}
+				size_t prevPositionOn7DayList = last7DaysStats.rfind(">", positionOn7DayList);
+				allPlayers[i].averageLast7Days = stof(last7DaysStats.substr(prevPositionOn7DayList + 1, positionOn7DayList - prevPositionOn7DayList - 1));
+			}
+			else
+				allPlayers.erase(allPlayers.begin() + i);
+		}
+
+		for (int i = eligiblePlayers.size() - 1; i >= 0; --i)
+		{
+			size_t positionOn7DayList = last7DaysStats.find(eligiblePlayers[i].playerName, 0);
+			bool bKeep = false;
+			if (positionOn7DayList != string::npos)
+			{
+				for (int i = 0; i < 22; ++i)
+				{
+					positionOn7DayList = last7DaysStats.find("</td>", positionOn7DayList + 1);
+				}
+				size_t prevPositionOn7DayList = last7DaysStats.rfind(">", positionOn7DayList);
+				eligiblePlayers[i].averageLast7Days = stof(last7DaysStats.substr(prevPositionOn7DayList + 1, positionOn7DayList - prevPositionOn7DayList - 1));
+				bKeep = eligiblePlayers[i].averageLast7Days >= 0.299f;
+			}
+			if (!bKeep)
+				eligiblePlayers.erase(eligiblePlayers.begin() + i);
+		}
+
+		std::string versusPitcherDirectStats;
+		readURL = "http://dailybaseballdata.com/cgi-bin/dailyhit.pl?date=&xyear=0&pa=0&showdfs=&sort=woba&r40=0&scsv=1&nohead=1&user=GoldenExcalibur&key=G5970032941";
+		curl_easy_setopt(curl, CURLOPT_URL, readURL.c_str());
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &versusPitcherDirectStats);
+		curl_easy_perform(curl);
+		curl_easy_reset(curl);
+
+		for (int i = allPlayers.size() - 1; i >= 0; --i)
+		{
+			size_t positionOnVPitcherList = versusPitcherDirectStats.find(allPlayers[i].playerName, 0);
+			if (positionOnVPitcherList != string::npos)
+			{
+				for (int i = 0; i < 4; ++i)
+				{
+					positionOnVPitcherList = versusPitcherDirectStats.find(";", positionOnVPitcherList + 1);
+				}
+				size_t prevPositionOnVPitcherList = versusPitcherDirectStats.rfind(";", positionOnVPitcherList - 1);
+				allPlayers[i].batterHandedness = versusPitcherDirectStats.substr(prevPositionOnVPitcherList + 1, positionOnVPitcherList - prevPositionOnVPitcherList - 1);
+
+				for (int i = 0; i < 12; ++i)
+				{
+					positionOnVPitcherList = versusPitcherDirectStats.find(";", positionOnVPitcherList + 1);
+				}
+				prevPositionOnVPitcherList = versusPitcherDirectStats.rfind(";", positionOnVPitcherList - 1);
+				int numABsVPitcher = atoi(versusPitcherDirectStats.substr(prevPositionOnVPitcherList + 1, positionOnVPitcherList - prevPositionOnVPitcherList - 1).c_str());
+
+				for (int i = 0; i < 1; ++i)
+				{
+					positionOnVPitcherList = versusPitcherDirectStats.find(";", positionOnVPitcherList + 1);
+				}
+				prevPositionOnVPitcherList = versusPitcherDirectStats.rfind(";", positionOnVPitcherList - 1);
+				int numHitsVPitcher = atoi(versusPitcherDirectStats.substr(prevPositionOnVPitcherList + 1, positionOnVPitcherList - prevPositionOnVPitcherList - 1).c_str());
+
+				for (int i = 0; i < 19; ++i)
+				{
+					positionOnVPitcherList = versusPitcherDirectStats.find(";", positionOnVPitcherList + 1);
+				}
+				prevPositionOnVPitcherList = versusPitcherDirectStats.rfind(";", positionOnVPitcherList - 1);
+				allPlayers[i].opposingPitcherName = versusPitcherDirectStats.substr(prevPositionOnVPitcherList + 1, positionOnVPitcherList - prevPositionOnVPitcherList - 1);
+
+				if (numABsVPitcher >= 3)
+				{
+					allPlayers[i].averageVsPitcherFacing = (float)numHitsVPitcher / (float)numABsVPitcher;
+				}
+				else
+				{
+					allPlayers[i].averageVsPitcherFacing = -1;
+				}
+			}
+			else
+			{
+				allPlayers.erase(allPlayers.begin() + i);
+			}
+			
+		}
+
+		for (int i = eligiblePlayers.size() - 1; i >= 0; --i)
+		{
+			size_t positionOnVPitcherList = versusPitcherDirectStats.find(eligiblePlayers[i].playerName, 0);
+			bool bKeep = false;
+			if (positionOnVPitcherList != string::npos)
+			{
+				for (int i = 0; i < 4; ++i)
+				{
+					positionOnVPitcherList = versusPitcherDirectStats.find(";", positionOnVPitcherList + 1);
+				}
+				size_t prevPositionOnVPitcherList = versusPitcherDirectStats.rfind(";", positionOnVPitcherList - 1);
+				eligiblePlayers[i].batterHandedness = versusPitcherDirectStats.substr(prevPositionOnVPitcherList + 1, positionOnVPitcherList - prevPositionOnVPitcherList - 1);
+
+				for (int i = 0; i < 12; ++i)
+				{
+					positionOnVPitcherList = versusPitcherDirectStats.find(";", positionOnVPitcherList + 1);
+				}
+				prevPositionOnVPitcherList = versusPitcherDirectStats.rfind(";", positionOnVPitcherList - 1);
+				int numABsVPitcher = atoi(versusPitcherDirectStats.substr(prevPositionOnVPitcherList + 1, positionOnVPitcherList - prevPositionOnVPitcherList - 1).c_str());
+
+				for (int i = 0; i < 1; ++i)
+				{
+					positionOnVPitcherList = versusPitcherDirectStats.find(";", positionOnVPitcherList + 1);
+				}
+				prevPositionOnVPitcherList = versusPitcherDirectStats.rfind(";", positionOnVPitcherList - 1);
+				int numHitsVPitcher = atoi(versusPitcherDirectStats.substr(prevPositionOnVPitcherList + 1, positionOnVPitcherList - prevPositionOnVPitcherList - 1).c_str());
+
+				for (int i = 0; i < 19; ++i)
+				{
+					positionOnVPitcherList = versusPitcherDirectStats.find(";", positionOnVPitcherList + 1);
+				}
+				prevPositionOnVPitcherList = versusPitcherDirectStats.rfind(";", positionOnVPitcherList - 1);
+				eligiblePlayers[i].opposingPitcherName = versusPitcherDirectStats.substr(prevPositionOnVPitcherList + 1, positionOnVPitcherList - prevPositionOnVPitcherList - 1);
+
+				if (numABsVPitcher >= 3)
+				{
+					eligiblePlayers[i].averageVsPitcherFacing = (float)numHitsVPitcher / (float)numABsVPitcher;
+					if (eligiblePlayers[i].averageVsPitcherFacing >= 0.299f)
+						bKeep = true;
+				}
+				else
+				{
+					eligiblePlayers[i].averageVsPitcherFacing = -1;
+					bKeep = true;
+				}
+			}
+			else
+			{
+				cout << eligiblePlayers[i].playerName << " not found on player versus batter page." << endl;
+			}
+			if (!bKeep)
+				eligiblePlayers.erase(eligiblePlayers.begin() + i);
+		}
+
+
+		std::string startingPitcherData;
+		readURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=1&sort=4&game=d&colA=0&daypt=0&denom=3&xavg=0&inact=0&maxprc=99999&sched=1&starters=1&hithand=0&numlist=c&user=GoldenExcalibur&key=G5970032941";
+		curl_easy_setopt(curl, CURLOPT_URL, readURL.c_str());
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &startingPitcherData);
+		curl_easy_perform(curl);
+		curl_easy_reset(curl);
+
+		for (int i = allPlayers.size() - 1; i >= 0; --i)
+		{
+			size_t pitcherIndex = startingPitcherData.find(allPlayers[i].opposingPitcherName, 0);
+			size_t prevPitcherIndex = startingPitcherData.rfind("\n", pitcherIndex);
+			pitcherIndex = startingPitcherData.find(";", prevPitcherIndex + 1);
+			if (pitcherIndex != string::npos)
+			{
+				string pitcherGID = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
+
+				//FullSeasonStatsAdvanced pitcherVBatter2017Stats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
+				FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats(pitcherGID, "2017", curl);
+				for (int i = 0; i < 19; ++i)
+				{
+					pitcherIndex = startingPitcherData.find(";", pitcherIndex + 1);
+				}
+				prevPitcherIndex = startingPitcherData.rfind(";", pitcherIndex - 1);
+				string pitcherHandedness = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
+				FullSeasonStatsAdvanced pitcher2017AdvancedStats = GetPitcherAdvancedStats(pitcherGID, "2017", curl);
+
+				allPlayers[i].opposingPitcherEra = pitcher2017Stats.era;
+				allPlayers[i].opposingPitcherStrikeOutsPer9 = pitcher2017Stats.strikeOutsPer9;
+				allPlayers[i].opposingPitcherWhip = pitcher2017Stats.whip;
+				allPlayers[i].opposingPitcherAverageAgainstHandedness = (pitcher2017AdvancedStats.averageVersusLefty + pitcher2017AdvancedStats.averageVersusRighty) * 0.5f;
+				if (allPlayers[i].batterHandedness == "L")
+					allPlayers[i].opposingPitcherAverageAgainstHandedness = pitcher2017AdvancedStats.averageVersusLefty;
+				else if (allPlayers[i].batterHandedness == "R")
+					allPlayers[i].opposingPitcherAverageAgainstHandedness = pitcher2017AdvancedStats.averageVersusRighty;
+
+				if (allPlayers[i].opposingPitcherEra < 0)
+					allPlayers.erase(allPlayers.begin() + i);
+			}
+			else
+			{
+				allPlayers.erase(allPlayers.begin() + i);
+			}
+		}
+
+		for (int i = eligiblePlayers.size() - 1; i >= 0; --i)
+		{
+			size_t pitcherIndex = startingPitcherData.find(eligiblePlayers[i].opposingPitcherName, 0);
+			size_t prevPitcherIndex = startingPitcherData.rfind("\n", pitcherIndex);
+			pitcherIndex = startingPitcherData.find(";", prevPitcherIndex + 1);
+			bool bKeep = false;
+			if (pitcherIndex != string::npos)
+			{
+				string pitcherGID = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
+				
+				//FullSeasonStatsAdvanced pitcherVBatter2017Stats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
+				FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats(pitcherGID, "2017", curl);
+				// era above 4
+				// whip above 1.25
+				if ( pitcher2017Stats.strikeOutsPer9 < 9.01f && pitcher2017Stats.era >= 4.01f && pitcher2017Stats.whip >= 1.26f)
+				{
+					for (int i = 0; i < 19; ++i)
+					{
+						pitcherIndex = startingPitcherData.find(";", pitcherIndex + 1);
+					}
+					prevPitcherIndex = startingPitcherData.rfind(";", pitcherIndex - 1);
+					string pitcherHandedness = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
+					FullSeasonStatsAdvanced pitcher2017AdvancedStats = GetPitcherAdvancedStats(pitcherGID, "2017", curl);
+					
+					eligiblePlayers[i].opposingPitcherEra = pitcher2017Stats.era;
+					eligiblePlayers[i].opposingPitcherStrikeOutsPer9 = pitcher2017Stats.strikeOutsPer9;
+					eligiblePlayers[i].opposingPitcherWhip = pitcher2017Stats.whip;
+					eligiblePlayers[i].opposingPitcherAverageAgainstHandedness = (pitcher2017AdvancedStats.averageVersusLefty + pitcher2017AdvancedStats.averageVersusRighty) * 0.5f;
+					if (eligiblePlayers[i].batterHandedness == "L")
+						eligiblePlayers[i].opposingPitcherAverageAgainstHandedness = pitcher2017AdvancedStats.averageVersusLefty;
+					else if (eligiblePlayers[i].batterHandedness == "R")
+						eligiblePlayers[i].opposingPitcherAverageAgainstHandedness = pitcher2017AdvancedStats.averageVersusRighty;
+
+					if (eligiblePlayers[i].opposingPitcherAverageAgainstHandedness >= 0.275f)
+						bKeep = true;
+				}
+			}
+			else
+			{
+				cout << eligiblePlayers[i].playerName << " opposing pitcher not found on starting pitchers page." << endl;
+			}
+			if (!bKeep)
+				eligiblePlayers.erase(eligiblePlayers.begin() + i);
+		}
+
+		// park avg factor above 0.99
+
+		sort(eligiblePlayers.begin(), eligiblePlayers.end(),
+			[](const BeatTheStreakPlayerProfile& s1, const BeatTheStreakPlayerProfile& s2) -> bool
+		{
+			return s1.hitsPerGameLast30Days > s2.hitsPerGameLast30Days;
+		});
+
+		ofstream resultsTrackerFile;
+		string resultsTrackerFileName = "2017ResultsTracker\\BeatTheStreak\\" + todaysDate + ".txt";
+		resultsTrackerFile.open(resultsTrackerFileName);
+		for (unsigned int i = 0; i < eligiblePlayers.size(); ++i)
+		{
+			resultsTrackerFile << eligiblePlayers[i].playerName << ";" << eligiblePlayers[i].hitsPerGameLast30Days << ";" << eligiblePlayers[i].averageLast7Days << ";" << eligiblePlayers[i].averageVsPitcherFacing << ";";
+			resultsTrackerFile << endl;
+		}
+		resultsTrackerFile.close();
+
+		ofstream allResultsTrackerFile;
+		string allResultsTrackerFileName = "2017ResultsTracker\\BeatTheStreak\\AllPlayersDaily\\" + todaysDate + ".txt";
+		allResultsTrackerFile.open(allResultsTrackerFileName);
+
+		for (unsigned int i = 0; i < allPlayers.size(); ++i)
+		{
+			// Name;HitsPerGameLast30Days;AvgLast7Days;AvgVPitcher;PitcherWhip;PitcherEra;PitcherKPer9;PitcherAvgAgainst;
+			allResultsTrackerFile << allPlayers[i].playerName << ";" << allPlayers[i].hitsPerGameLast30Days << ";" << allPlayers[i].averageLast7Days << ";" << allPlayers[i].averageVsPitcherFacing << ";" << allPlayers[i].opposingPitcherWhip << ";" << allPlayers[i].opposingPitcherEra << ";" << allPlayers[i].opposingPitcherStrikeOutsPer9 << ";" << allPlayers[i].opposingPitcherAverageAgainstHandedness << ";";
+			allResultsTrackerFile << endl;
+		}
+		allResultsTrackerFile.close();
+		int x = 0;
 	}
 }
 
@@ -1972,5 +2353,16 @@ http://rotoguru1.com/cgi-bin/mlb-dbd-2016.pl?user=GoldenExcalibur&key=G597003294
 GID:  MLB_ID:  Name_Last_First:  Name_First_Last:  P/H:  Hand:  Date:     Team:  Oppt:  H/A:  Game#(1 unless double header):  Game_ID:            Gametime_ET:  Team_score:  Oppt_score:  Home_Ump:     Temp:  Condition:  W_speed:  W_dir:      ADI:    prior_ADI:  GS:  GP:  Pos:  Order:  Oppt_pitch_hand:  Oppt_pich_GID:  Oppt_pitch_MLB_ID:  Oppt_pitch_Name:  PA:  wOBA_num:  IP:   W/L/S:  QS:  FD_points:  DK_points:  DD_points:  YH_points:  FD_salary:  DK_salary:  DD_salary:  YH_salary:  FD_pos:  DK_pos:  DD_pos:  YH_pos
 2407: 547989:  Abreu, Jose:      Jose Abreu:       H:    R:     20161002: chw:   min:   h:    1:                              20161002-min-chw-1: 15.10:        3:           6:           Nic Lentz:    65:    cloudy:     6:        Out to LF:  65.90:  65.56:      1:   1:   1B:   4:      R:                136p:           621244:             Berrios, Jose:    4:   2.3:       :     :       :    12.5:       9.00:       19:         8:          3200:       3900:       8350:       19:         3:       3:       3:       3:
 136r: 534947:  Adleman, Timothy: Tim Adleman:      P:    R:     20161001: cin:   chc:   h:    1:                              20161001-chc-cin-1: 16.10:        7:           4:           Tom Hallion:  65:    overcast:   8:        R to L:     65.05:  66.30:      1:   1:   P:    9:      L:                1506:           452657:             Lester, Jon:      2:   0.9:       5.0:  W:      1:   30:         12.45:      20:         13:         6100:       5500:       9000:       28:         1:       1:       1:       1:
+
+
+http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=0&season=2017&month=3&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=6,d&page=1_50
+top batters sorted by total hits last 30 days
+http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=10&type=0&season=2017&month=1&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=22,d&page=1_50
+top batters sorted by average last 7 days
+
+http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=0&season=2017&month=13&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&page=1_50
+http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=0&season=2017&month=14&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&page=1_50
+top batters vs leftys, 2017 season
+top batters vs rightys, 2017 season
 
 */

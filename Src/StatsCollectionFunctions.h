@@ -21,7 +21,7 @@ std::string ReplaceURLWhiteSpaces(std::string originalURL);
 
 float CalculateRSquared(std::vector<float> finalInputs, std::vector<float> outputValues);
 
-std::string GetBatter2016StatsRawString(std::string playerId, CURL *curl);
+std::string GetPlayerStatsRawString(std::string playerId, std::string yearString, CURL *curl);
 const int AdvancedStatsBattingSplitsVersusRightHand = 1;
 const int AdvancedStatsBattingSplitsVersusLeftHand = 2;
 const int AdvancedStatsPitchingSplitsVersusRightHand = 4;
@@ -38,7 +38,7 @@ struct FullSeasonStats
 
 	bool operator==(const FullSeasonStats& rhs);
 };
-FullSeasonStats GetBatter2016Stats(std::string playerId, CURL *curl);
+FullSeasonStats GetBatterStats(std::string playerId, std::string yearString, CURL *curl);
 
 struct FullSeasonStatsAdvanced
 {

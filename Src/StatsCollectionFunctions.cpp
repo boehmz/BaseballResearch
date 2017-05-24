@@ -88,15 +88,29 @@ float CalculateRSquared(vector<float> finalInputs, vector<float> outputValues)
 	return rSquared;
 }
 
-string GetBatter2016StatsRawString(string playerId, CURL *curl)
+string GetPlayerStatsRawString(string playerId, string yearString, CURL *curl)
 {
-	if (curl == NULL)
-		curl = curl_easy_init();
+	string playerStatsLookupBuffer = "";
+	if (yearString == "2016")
+		playerStatsLookupBuffer	= GetEntireFileContents("Player2016DataCached\\PlayerId" + playerId + ".txt");
+	else 
+		playerStatsLookupBuffer = GetEntireFileContents("Player2017DataCached\\PlayerId" + playerId + ".txt");
+	
+	if (yearString == "2017")
+	{
+		size_t dateMetaDataIndex = playerStatsLookupBuffer.find("/ZachDateMetaData", 0);
+		if (dateMetaDataIndex == string::npos || playerStatsLookupBuffer.substr(0, dateMetaDataIndex) < todaysDate)
+			playerStatsLookupBuffer = "";
+	}
 
-	string playerStatsLookupBuffer = GetEntireFileContents("Player2016DataCached\\PlayerId" + playerId + ".txt");
 	if (playerStatsLookupBuffer == "")
 	{
-		string playerStatsLookupURL = "http://rotoguru1.com/cgi-bin/player16.cgi?" + playerId + "x";
+		if (curl == NULL)
+			curl = curl_easy_init();
+
+		string playerStatsLookupURL = "http://rotoguru1.com/cgi-bin/player.cgi?" + playerId + "x";
+		if (yearString == "2016")
+			playerStatsLookupURL = "http://rotoguru1.com/cgi-bin/player16.cgi?" + playerId + "x";
 
 		curl_easy_setopt(curl, CURLOPT_URL, playerStatsLookupURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -108,46 +122,53 @@ string GetBatter2016StatsRawString(string playerId, CURL *curl)
 		if (writeToFileIndex == string::npos)
 			writeToFileIndex = playerStatsLookupBuffer.find("No data found", 0);
 		ofstream writeToFile;
-		writeToFile.open("Player2016DataCached\\PlayerId" + playerId + ".txt");
+		if (yearString == "2016")
+			writeToFile.open("Player2016DataCached\\PlayerId" + playerId + ".txt");
+		else
+		{
+			writeToFile.open("Player2017DataCached\\PlayerId" + playerId + ".txt");
+			writeToFile << todaysDate << "/ZachDateMetaData" << endl;
+		}
 		writeToFile << playerStatsLookupBuffer.substr(0, writeToFileIndex);
 		writeToFile.close();
+		
 	}
 	return playerStatsLookupBuffer;
 }
 
-FullSeasonStats GetBatter2016Stats(string playerId, CURL *curl)
+FullSeasonStats GetBatterStats(string playerId, string yearString, CURL *curl)
 {
-	string playerStatsLookupBuffer = GetBatter2016StatsRawString(playerId, curl);
-	FullSeasonStats player2016Stats;
-	player2016Stats.averagePpg = player2016Stats.averagePpgVsLefty = player2016Stats.averagePpgVsRighty = 0;
-	player2016Stats.totalGamesStarted = 0;
+	string playerStatsLookupBuffer = GetPlayerStatsRawString(playerId, yearString, curl);
+	FullSeasonStats playerStats;
+	playerStats.averagePpg = playerStats.averagePpgVsLefty = playerStats.averagePpgVsRighty = 0;
+	playerStats.totalGamesStarted = 0;
 
 	size_t ppgIndex = playerStatsLookupBuffer.find("full season averages", 0);
 	if (ppgIndex != string::npos)
 	{
 		ppgIndex = playerStatsLookupBuffer.find("(R)", ppgIndex);
 		size_t ppgStartIndex = playerStatsLookupBuffer.find_last_of(" ", ppgIndex);
-		player2016Stats.averagePpgVsRighty = stof(playerStatsLookupBuffer.substr(ppgStartIndex + 1, ppgIndex - ppgStartIndex - 1).c_str());
+		playerStats.averagePpgVsRighty = stof(playerStatsLookupBuffer.substr(ppgStartIndex + 1, ppgIndex - ppgStartIndex - 1).c_str());
 
 		ppgIndex = playerStatsLookupBuffer.find("(L)", ppgIndex);
 		ppgStartIndex = playerStatsLookupBuffer.find_last_of(" ", ppgIndex);
-		player2016Stats.averagePpgVsLefty = stof(playerStatsLookupBuffer.substr(ppgStartIndex + 1, ppgIndex - ppgStartIndex - 1).c_str());
+		playerStats.averagePpgVsLefty = stof(playerStatsLookupBuffer.substr(ppgStartIndex + 1, ppgIndex - ppgStartIndex - 1).c_str());
 
 		ppgIndex = playerStatsLookupBuffer.find("(starting)", 0);
 		ppgIndex = playerStatsLookupBuffer.find_last_of(" ", ppgIndex);
 		ppgStartIndex = playerStatsLookupBuffer.find_last_of(" ", ppgIndex - 1);
-		player2016Stats.averagePpg = stof(playerStatsLookupBuffer.substr(ppgStartIndex + 1, ppgIndex - ppgStartIndex - 1).c_str());
+		playerStats.averagePpg = stof(playerStatsLookupBuffer.substr(ppgStartIndex + 1, ppgIndex - ppgStartIndex - 1).c_str());
 
 		size_t gamesStartedIndex = playerStatsLookupBuffer.find("started:", 0);
 		if (gamesStartedIndex != string::npos)
 		{
 			size_t gamesStartedLeftIndex = playerStatsLookupBuffer.rfind(">", gamesStartedIndex);
 			string gamesStartedString = playerStatsLookupBuffer.substr(gamesStartedLeftIndex + 1, gamesStartedIndex - gamesStartedLeftIndex - 2);
-			player2016Stats.totalGamesStarted = atoi(gamesStartedString.c_str());
+			playerStats.totalGamesStarted = atoi(gamesStartedString.c_str());
 		}
 	}
 
-	return player2016Stats;
+	return playerStats;
 }
 
 FullSeasonPitcherStats GetPitcherStats(string playerId, string yearString, CURL *curl)
@@ -453,7 +474,7 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 		if (curl == NULL)
 			curl = curl_easy_init();
 
-		string playerRotoGuruData = GetBatter2016StatsRawString(playerId, curl);
+		string playerRotoGuruData = GetPlayerStatsRawString(playerId, "any", curl);
 
 		size_t fangraphsURLIndexStart = playerRotoGuruData.find("www.fangraphs.com", 0);
 		fangraphsURLIndexStart = playerRotoGuruData.rfind("\"", fangraphsURLIndexStart);

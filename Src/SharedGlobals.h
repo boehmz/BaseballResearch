@@ -3,7 +3,7 @@
 
 #include <string>
 
-enum GameType { Fanduel, DraftKings };
+enum GameType { Fanduel, DraftKings, BeatTheStreak };
 
 extern GameType gameType;
 extern int maxTotalBudget;
