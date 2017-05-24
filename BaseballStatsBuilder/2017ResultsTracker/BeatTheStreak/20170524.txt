@@ -1,0 +1,4 @@
+Ender Inciarte;1.52;0.452;-1;
+Starlin Castro;1.36;0.308;0.555556;
+Michael Brantley;1.04545;0.318;-1;
+Jose Altuve;1.03846;0.32;-1;

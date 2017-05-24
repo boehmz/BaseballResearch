@@ -1,0 +1,11 @@
+Bryce Harper;1.5;0.417;-1;
+Corey Dickerson;1.38462;0.483;-1;
+Aaron Judge;1.26087;0.313;-1;
+DJ LeMahieu;1.25926;0.379;-1;
+Nolan Arenado;1.23077;0.333;1;
+Paul Goldschmidt;1.17857;0.304;0.666667;
+Hernan Perez;1.17391;0.381;0.333333;
+Brandon Drury;1.16667;0.45;-1;
+Keon Broxton;1.04167;0.4;-1;
+Josh Reddick;1.04;0.389;-1;
+Chris Owings;1.03846;0.364;-1;

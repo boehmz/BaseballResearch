@@ -1,11 +1,11 @@
-20170506/ZachDateMetaData
+20170524/ZachDateMetaData
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1"><title>
 	Robert Gsellman &raquo; Splits &raquo; vs R &raquo; Pitching | FanGraphs Baseball
 </title><meta name='description' content='Robert Gsellman vs R pitching splits for Major League baseball' />
-<meta name='keywords' content='robert gsellman, robert gsellman splits' /><link href="//cdn.fangraphs.com/css/fg?v=5tJXTu2hCeZmyChZ6lbAFIlhDVKFIsn-U7kcS00XnRM1" rel="stylesheet">
+<meta name='keywords' content='robert gsellman, robert gsellman splits' /><link href="//cdn.fangraphs.com/css/fg?v=qRmUNAcJDdfFNBGQXdPWJ85SGIy0TcribLYLh30eEk81" rel="stylesheet">
 
 <link href="//cdn.fangraphs.com/css/telerik?v=7kp8vZ-2gyqQIN75Z0UB_Vbc6sYJCM3fVOkK0XkRN401" rel="stylesheet">
 
@@ -228,7 +228,7 @@
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-05">Probable Pitchers</a>
+                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-23">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -292,7 +292,7 @@
                         A: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=11&qual=y&type=0&season=2017">Midwest</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=14&qual=y&type=0&season=2017">South Atlantic</a><br />
                         A-: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=12&qual=y&type=0&season=2017">New York-Penn</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=13&qual=y&type=0&season=2017">Northwest</a><br />
                         R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=15&qual=y&type=0&season=2017">Appalachian</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=17&qual=y&type=0&season=2017">Gulf Coast</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=18&qual=y&type=0&season=2017">Pioneer</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=16&qual=y&type=0&season=2017">Arizona</a><br />
-                        R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=30&qual=y&type=0&season=2017">Dominican</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=32&qual=y&type=0&season=2017">Venezuelan</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=33&qual=y&type=0&season=2017">Arizona Fall</a>
+                        R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=30&qual=y&type=0&season=2017">Dominican</a>
                         <hr />
                         <div class="menu-sub-header">
                             WAR Tools
@@ -543,11 +543,11 @@
                             <strong style="font-size:15pt;">Robert Gsellman</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 7/18/1993 (23 y, 9 m, 18 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-4/205 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=13696&position=P#draft" style="text-decoration:none;">2011 June Amateur Draft - Round: 13, Pick: 11, Overall: 402, Team: New York Mets</a><br /><strong>Contract:</strong> <a href="contractmake.aspx?playerid=13696" style="text-decoration:none;">Add New Contract</a>
+                            <strong>Birthdate:</strong> 7/18/1993 (23 y, 10 m, 6 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-4/205 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=13696&position=P#draft" style="text-decoration:none;">2011 June Amateur Draft - Round: 13, Pick: 11, Overall: 402, Team: New York Mets</a><br /><strong>Contract:</strong> <a href="contractmake.aspx?playerid=13696" style="text-decoration:none;">Add New Contract</a>
                         </div>
                     </td>
                     
-                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=13784" style="text-decoration:none;">RotoWire News</a>:</b> Gsellman (1-2) allowed five runs on six hits (one home run) while walking one and striking out none over five innings for his first win of the year in Monday's 7-5 victory over the Braves. (5/1/2017)</div></td></tr>
+                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=13784" style="text-decoration:none;">RotoWire News</a>:</b> Gsellman gave up a run on a hit and a walk while recording a strikeout over an inning of work in his first MLB relief appearance Wednesday against Arizona. (5/17/2017)</div></td></tr>
 
                 </tr>
                 <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">5/2/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-452-10-sp-value-changes/">The Sleeper and the Bust Episode: 452 – 10 SP Valu&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-452-10-sp-value-changes/#comments"><img src="images/commentslink.gif" border="0px" />6</a></span><br /><span class="m_date">5/1/2017</span> - <a href="http://www.fangraphs.com/fantasy/mixing-fantasy-reality-thames-gray-10-day-dl-rant/">Mixing Fantasy & Reality: Thames, Gray, & 10-Day D&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=7554">Jeff Zimmerman (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/mixing-fantasy-reality-thames-gray-10-day-dl-rant/#comments"><img src="images/commentslink.gif" border="0px" />9</a></span><br /><span class="m_date">5/1/2017</span> - <a href="http://www.fangraphs.com/blogs/robert-gsellmans-ominous-velocity-and-spin-trends/">Robert Gsellman’s Ominous Velocity and Spin Trends</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=92255">Gerald Schifman (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/robert-gsellmans-ominous-velocity-and-spin-trends/#comments"><img src="images/commentslink.gif" border="0px" />16</a></span><br /><span class="m_date">4/22/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-449-replacing-miggy-marte/">The Sleeper and the Bust Episode: 449 – Replacing &raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-449-replacing-miggy-marte/#comments"><img src="images/commentslink.gif" border="0px" />12</a></span><br /><span class="m_date">4/22/2017</span> - <a href="http://www.fangraphs.com/fantasy/2xsp-4-24-30/">#2xSP (4.24-30)</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=26727">Brandon Warne (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/2xsp-4-24-30/#comments"><img src="images/commentslink.gif" border="0px" />1</a></span><br /></div></td></tr>
@@ -936,9 +936,9 @@
 	<tr class="rgRow" id="SeasonSplits1_dgSeason1_ctl00__0">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">24.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">102</td><td class="grid_line_regular" align="right">25</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">7</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">19</td><td class="grid_line_regular" align="right">.266</td><td class="grid_line_regular" align="right">.333</td><td class="grid_line_regular" align="right">.348</td><td class="grid_line_regular" align="right">.292</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason1_ctl00__1">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">15.0</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">71</td><td class="grid_line_regular" align="right">21</td><td class="grid_line_regular" align="right">7</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">17</td><td class="grid_line_regular" align="right">15</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">.318</td><td class="grid_line_regular" align="right">.366</td><td class="grid_line_regular" align="right">.563</td><td class="grid_line_regular" align="right">.389</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">22.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">110</td><td class="grid_line_regular" align="right">36</td><td class="grid_line_regular" align="right">10</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">25</td><td class="grid_line_regular" align="right">23</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">7</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">12</td><td class="grid_line_regular" align="right">.353</td><td class="grid_line_regular" align="right">.400</td><td class="grid_line_regular" align="right">.600</td><td class="grid_line_regular" align="right">.419</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason1_ctl00__2">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">39.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">173</td><td class="grid_line_regular" align="right">46</td><td class="grid_line_regular" align="right">10</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">25</td><td class="grid_line_regular" align="right">23</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">11</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">27</td><td class="grid_line_regular" align="right">.288</td><td class="grid_line_regular" align="right">.347</td><td class="grid_line_regular" align="right">.438</td><td class="grid_line_regular" align="right">.333</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">46.2</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">212</td><td class="grid_line_regular" align="right">61</td><td class="grid_line_regular" align="right">13</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">33</td><td class="grid_line_regular" align="right">31</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">14</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">31</td><td class="grid_line_regular" align="right">.311</td><td class="grid_line_regular" align="right">.368</td><td class="grid_line_regular" align="right">.481</td><td class="grid_line_regular" align="right">.360</td>
 	</tr>
 	</tbody>
 
@@ -975,9 +975,9 @@
 	<tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__0">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">7.03</td><td class="grid_line_regular" align="right">2.59</td><td class="grid_line_regular" align="right">2.71</td><td class="grid_line_regular" align="right">0.37</td><td class="grid_line_regular" align="right">18.6 %</td><td class="grid_line_regular" align="right">6.9 %</td><td class="grid_line_regular" align="right">11.8 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.32</td><td class="grid_line_regular" align="right">.324</td><td class="grid_line_regular" align="right">79.1 %</td><td class="grid_line_regular" align="right">3.11</td><td class="grid_line_regular" align="right">3.60</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__1">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">4.80</td><td class="grid_line_regular" align="right">2.40</td><td class="grid_line_regular" align="right">2.00</td><td class="grid_line_regular" align="right">1.20</td><td class="grid_line_regular" align="right">11.3 %</td><td class="grid_line_regular" align="right">5.6 %</td><td class="grid_line_regular" align="right">5.6 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.67</td><td class="grid_line_regular" align="right">.339</td><td class="grid_line_regular" align="right">38.8 %</td><td class="grid_line_regular" align="right">4.71</td><td class="grid_line_regular" align="right">4.30</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">4.84</td><td class="grid_line_regular" align="right">2.82</td><td class="grid_line_regular" align="right">1.71</td><td class="grid_line_regular" align="right">1.61</td><td class="grid_line_regular" align="right">10.9 %</td><td class="grid_line_regular" align="right">6.4 %</td><td class="grid_line_regular" align="right">4.5 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.93</td><td class="grid_line_regular" align="right">.372</td><td class="grid_line_regular" align="right">49.5 %</td><td class="grid_line_regular" align="right">5.36</td><td class="grid_line_regular" align="right">4.64</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__2">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">6.18</td><td class="grid_line_regular" align="right">2.52</td><td class="grid_line_regular" align="right">2.45</td><td class="grid_line_regular" align="right">0.69</td><td class="grid_line_regular" align="right">15.6 %</td><td class="grid_line_regular" align="right">6.4 %</td><td class="grid_line_regular" align="right">9.3 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.45</td><td class="grid_line_regular" align="right">.331</td><td class="grid_line_regular" align="right">62.0 %</td><td class="grid_line_regular" align="right">3.72</td><td class="grid_line_regular" align="right">3.87</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">5.98</td><td class="grid_line_regular" align="right">2.70</td><td class="grid_line_regular" align="right">2.21</td><td class="grid_line_regular" align="right">0.96</td><td class="grid_line_regular" align="right">14.6 %</td><td class="grid_line_regular" align="right">6.6 %</td><td class="grid_line_regular" align="right">8.0 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.61</td><td class="grid_line_regular" align="right">.350</td><td class="grid_line_regular" align="right">62.9 %</td><td class="grid_line_regular" align="right">4.18</td><td class="grid_line_regular" align="right">4.10</td>
 	</tr>
 	</tbody>
 
@@ -1017,9 +1017,9 @@
 	<tr class="rgRow" id="SeasonSplits1_dgSeason3_ctl00__0">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">2.73</td><td class="grid_line_regular" align="right">21.1 %</td><td class="grid_line_regular" align="right">57.7 %</td><td class="grid_line_regular" align="right">21.1 %</td><td class="grid_line_regular" align="right">20.0 %</td><td class="grid_line_regular" align="right">6.7 %</td><td class="grid_line_regular" align="right">4.9 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">37.3 %</td><td class="grid_line_regular" align="right">40.0 %</td><td class="grid_line_regular" align="right">22.7 %</td><td class="grid_line_break" align="right">25.3 %</td><td class="grid_line_regular" align="right">52.0 %</td><td class="grid_line_regular" align="right">22.7 %</td><td class="grid_line_break" align="right">387</td><td class="grid_line_regular" align="right">144</td><td class="grid_line_regular" align="right">243</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason3_ctl00__1">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">2.83</td><td class="grid_line_regular" align="right">19.3 %</td><td class="grid_line_regular" align="right">59.6 %</td><td class="grid_line_regular" align="right">21.1 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">16.7 %</td><td class="grid_line_regular" align="right">8.8 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">43.1 %</td><td class="grid_line_regular" align="right">31.0 %</td><td class="grid_line_regular" align="right">25.9 %</td><td class="grid_line_break" align="right">17.2 %</td><td class="grid_line_regular" align="right">48.3 %</td><td class="grid_line_regular" align="right">34.5 %</td><td class="grid_line_break" align="right">257</td><td class="grid_line_regular" align="right">94</td><td class="grid_line_regular" align="right">163</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">2.48</td><td class="grid_line_regular" align="right">18.0 %</td><td class="grid_line_regular" align="right">58.4 %</td><td class="grid_line_regular" align="right">23.6 %</td><td class="grid_line_regular" align="right">4.8 %</td><td class="grid_line_regular" align="right">19.0 %</td><td class="grid_line_regular" align="right">9.6 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">36.7 %</td><td class="grid_line_regular" align="right">36.7 %</td><td class="grid_line_regular" align="right">26.7 %</td><td class="grid_line_break" align="right">18.9 %</td><td class="grid_line_regular" align="right">46.7 %</td><td class="grid_line_regular" align="right">34.4 %</td><td class="grid_line_break" align="right">414</td><td class="grid_line_regular" align="right">160</td><td class="grid_line_regular" align="right">254</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason3_ctl00__2">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">2.78</td><td class="grid_line_regular" align="right">20.3 %</td><td class="grid_line_regular" align="right">58.6 %</td><td class="grid_line_regular" align="right">21.1 %</td><td class="grid_line_regular" align="right">11.1 %</td><td class="grid_line_regular" align="right">11.1 %</td><td class="grid_line_regular" align="right">6.7 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">39.9 %</td><td class="grid_line_regular" align="right">36.1 %</td><td class="grid_line_regular" align="right">24.1 %</td><td class="grid_line_break" align="right">21.8 %</td><td class="grid_line_regular" align="right">50.4 %</td><td class="grid_line_regular" align="right">27.8 %</td><td class="grid_line_break" align="right">644</td><td class="grid_line_regular" align="right">238</td><td class="grid_line_regular" align="right">406</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">2.58</td><td class="grid_line_regular" align="right">19.4 %</td><td class="grid_line_regular" align="right">58.1 %</td><td class="grid_line_regular" align="right">22.5 %</td><td class="grid_line_regular" align="right">11.1 %</td><td class="grid_line_regular" align="right">13.9 %</td><td class="grid_line_regular" align="right">7.5 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">37.0 %</td><td class="grid_line_regular" align="right">38.2 %</td><td class="grid_line_regular" align="right">24.9 %</td><td class="grid_line_break" align="right">21.8 %</td><td class="grid_line_regular" align="right">49.1 %</td><td class="grid_line_regular" align="right">29.1 %</td><td class="grid_line_break" align="right">801</td><td class="grid_line_regular" align="right">304</td><td class="grid_line_regular" align="right">497</td>
 	</tr>
 	</tbody>
 
@@ -1119,7 +1119,7 @@
 <div class="footer-bar">
     <div class="footer-bar-background"></div>
     <div class="footer-bar-item">
-        Updated: Friday, May 5, 2017 4:35 AM ET
+        Updated: Wednesday, May 24, 2017 5:29 AM ET
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
@@ -1201,6 +1201,40 @@ var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
 
     ga('require', 'eventTracker');
     ga('require', 'maxScrollTracker');
+
+    ga('require', 'impressionTracker', {
+      elements: [
+        {
+          id: 'index-01-featured',
+          threshold: 0.5
+        },
+        {
+          id: 'index-02-fg',
+          threshold: 0.5
+        },
+        {
+          id: 'index-03-rg',
+          threshold: 0.5
+        },
+        {
+          id: 'index-04-tht',
+          threshold: 0.5
+        },
+        {
+          id: 'index-05-com',
+          threshold: 0.5
+        },
+        {
+          id: 'index-06-mc',
+          threshold: 0.5
+        },
+        {
+          id: 'index-07-tools',
+          threshold: 0.5
+        }
+      ]
+    });
+
     ga('send', 'pageview');
 </script>
 

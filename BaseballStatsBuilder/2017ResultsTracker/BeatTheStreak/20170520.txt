@@ -1,0 +1,6 @@
+Jean Segura;1.68182;0.333;0.333333;
+Tim Anderson;1.31579;0.583;-1;
+Tim Beckham;1.24;0.389;0.333333;
+Adam Jones;1.2;0.35;-1;
+Jayson Werth;1.15;0.4;0.375;
+DJ LeMahieu;1.11538;0.35;-1;

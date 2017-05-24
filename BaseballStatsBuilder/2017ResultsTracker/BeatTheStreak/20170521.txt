@@ -1,0 +1,8 @@
+Buster Posey;1.34615;0.381;0.352941;
+Chris Owings;1.30769;0.444;0.454545;
+Paul Goldschmidt;1.25926;0.318;0.380952;
+Kolten Wong;1.21739;0.438;0.333333;
+Albert Pujols;1.20833;0.364;0.44;
+Miguel Sano;1.18182;0.3;0.5;
+Eduardo Nunez;1.03846;0.417;0.666667;
+Justin Bour;1.03704;0.333;-1;
