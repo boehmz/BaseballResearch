@@ -1,0 +1,46 @@
+yesHitMin	
++		
+		hitsPerGameLast30Days	0.538461983	float
+		averageLast7Days	0.0529999994	float
+		averageVsPitcherFacing	0.000000000	float
++		
+		opposingPitcherEra	1.52999997	float
+		opposingPitcherStrikeOutsPer9	9.69999981	float
+		opposingPitcherWhip	0.850000024	float
+		opposingPitcherAverageAgainstHandedness	0.133000001	float
++		
+-		
+yesHitAvg	
+		hitsPerGameLast30Days	1.02195871	float
+		averageLast7Days	0.267915756	float
+		averageVsPitcherFacing	0.318729818	float
++		
+		opposingPitcherEra	3.81147408	float
+		opposingPitcherStrikeOutsPer9	7.30610657	float
+		opposingPitcherWhip	1.25536859	float
+		opposingPitcherAverageAgainstHandedness	0.242815837	float
++		
+-		
+
+noHitAvg	
++		
+		hitsPerGameLast30Days	0.948079884	float
+		averageLast7Days	0.249034435	float
+		averageVsPitcherFacing	0.223228276	float
++		
+		opposingPitcherEra	3.88362074	float
+		opposingPitcherStrikeOutsPer9	7.46637964	float
+		opposingPitcherWhip	1.23000002	float
+		opposingPitcherAverageAgainstHandedness	0.235508665	float
++		
+-		
+noHitMax
++		
+		hitsPerGameLast30Days	1.48000002	float
+		averageLast7Days	0.500000000	float
+		averageVsPitcherFacing	0.666666985	float
++		
+		opposingPitcherEra	7.46999979	float
+		opposingPitcherStrikeOutsPer9	4.23999977	float
+		opposingPitcherWhip	1.95000005	float
+		opposingPitcherAverageAgainstHandedness	0.342999995	float
