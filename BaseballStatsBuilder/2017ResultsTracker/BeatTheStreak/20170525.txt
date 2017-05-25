@@ -1,0 +1,2 @@
+Paul Goldschmidt;1.2963;0.381;-1;
+Chris Owings;1.23077;0.318;-1;

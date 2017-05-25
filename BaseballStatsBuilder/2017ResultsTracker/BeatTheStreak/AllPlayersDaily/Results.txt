@@ -44,3 +44,58 @@ noHitMax
 		opposingPitcherStrikeOutsPer9	4.23999977	float
 		opposingPitcherWhip	1.95000005	float
 		opposingPitcherAverageAgainstHandedness	0.342999995	float
+
+
+
+
+
+
+
+-		yesHitMin	{playerName="" hitsPerGameLast30Days=0.500000000 averageLast7Days=0.0529999994 ...}	BeatTheStreakPlayerProfile
++		playerName	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
+		hitsPerGameLast30Days	0.500000000	float
+		averageLast7Days	0.0529999994	float
+		averageVsPitcherFacing	0.000000000	float
++		opposingPitcherName	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
+		opposingPitcherEra	0.589999974	float
+		opposingPitcherStrikeOutsPer9	13.0200005	float
+		opposingPitcherWhip	0.389999986	float
+		opposingPitcherAverageAgainstHandedness	0.000000000	float
++		batterHandedness	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
+-		
+yesHitAvg	{playerName="" hitsPerGameLast30Days=1.00567043 averageLast7Days=0.270103991 ...}	BeatTheStreakPlayerProfile
++		playerName	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
+		hitsPerGameLast30Days	1.00567043	float
+		averageLast7Days	0.270103991	float
+		averageVsPitcherFacing	0.289244086	float
++		opposingPitcherName	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
+		opposingPitcherEra	3.94247746	float
+		opposingPitcherStrikeOutsPer9	7.44049358	float
+		opposingPitcherWhip	1.28935635	float
+		opposingPitcherAverageAgainstHandedness	0.248242617	float
++		batterHandedness	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
+-		
+
+noHitAvg	{playerName="" hitsPerGameLast30Days=0.968092144 averageLast7Days=0.248923779 ...}	BeatTheStreakPlayerProfile
++		playerName	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
+		hitsPerGameLast30Days	0.968092144	float
+		averageLast7Days	0.248923779	float
+		averageVsPitcherFacing	0.248718560	float
++		opposingPitcherName	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
+		opposingPitcherEra	4.01628542	float
+		opposingPitcherStrikeOutsPer9	7.74047661	float
+		opposingPitcherWhip	1.27019024	float
+		opposingPitcherAverageAgainstHandedness	0.239309549	float
++		batterHandedness	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
+-		
+noHitMax	{playerName="" hitsPerGameLast30Days=1.53846002 averageLast7Days=0.500000000 ...}	BeatTheStreakPlayerProfile
++		playerName	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
+		hitsPerGameLast30Days	1.53846002	float
+		averageLast7Days	0.500000000	float
+		averageVsPitcherFacing	0.666666985	float
++		opposingPitcherName	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
+		opposingPitcherEra	7.46999979	float
+		opposingPitcherStrikeOutsPer9	3.95000005	float
+		opposingPitcherWhip	1.95000005	float
+		opposingPitcherAverageAgainstHandedness	0.381999999	float
++		batterHandedness	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
