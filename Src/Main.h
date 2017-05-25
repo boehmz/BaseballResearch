@@ -83,6 +83,8 @@ struct BeatTheStreakPlayerProfile
 			opposingPitcherAverageAgainstHandedness = 9999;
 		}
 	}
+
+	std::string ToString();
 };
 
 void PopulateProbableRainoutGames();

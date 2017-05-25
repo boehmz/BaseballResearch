@@ -18,7 +18,7 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170524";
+std::string todaysDate = "20170525";
 int reviewDateStart = 406;
 int reviewDateEnd = 524;
 float percentOf2017SeasonPassed = 40.0f / 162.0f;
@@ -101,6 +101,11 @@ void RefineAlgorithm()
 
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
+			if (d - ((d / 100) * 100) > 31)
+			{
+				d = ((d / 100)+1) * 100;
+				continue;
+			}
 			char thisDateCStr[5];
 			_itoa_s(d, thisDateCStr, 10);
 			string thisDate = thisDateCStr;
@@ -215,6 +220,11 @@ void RefineAlgorithmForBeatTheStreak()
 
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
+			if (d - ((d / 100) * 100) > 31)
+			{
+				d = ((d / 100) + 1) * 100;
+				continue;
+			}
 			char thisDateCStr[5];
 			_itoa_s(d, thisDateCStr, 10);
 			string thisDate = thisDateCStr;
@@ -362,6 +372,23 @@ void RefineAlgorithmForBeatTheStreak()
 		noHitAvg.opposingPitcherStrikeOutsPer9 /= (float)playersNoHit.size();
 		
 		yesHitMin = yesHitMin;
+
+		ofstream yesHitTrackerFile;
+		string yesHitTrackerFileName = "2017ResultsTracker\\BeatTheStreak\\PlayersYesHit.txt";
+		yesHitTrackerFile.open(yesHitTrackerFileName);
+		for (unsigned int y = 0; y < playersYesHit.size(); ++y)
+		{
+			yesHitTrackerFile << playersYesHit[y].ToString() << endl;
+		}
+		yesHitTrackerFile.close();
+		ofstream noHitTrackerFile;
+		string noHitTrackerFileName = "2017ResultsTracker\\BeatTheStreak\\PlayersNoHit.txt";
+		noHitTrackerFile.open(noHitTrackerFileName);
+		for (unsigned int n = 0; n < playersNoHit.size(); ++n)
+		{
+			noHitTrackerFile << playersNoHit[n].ToString() << endl;
+		}
+		noHitTrackerFile.close();
 	}
 }
 
@@ -2434,8 +2461,7 @@ void GetBeatTheStreakCandidates()
 
 		for (unsigned int i = 0; i < allPlayers.size(); ++i)
 		{
-			// Name;HitsPerGameLast30Days;AvgLast7Days;AvgVPitcher;PitcherWhip;PitcherEra;PitcherKPer9;PitcherAvgAgainst;
-			allResultsTrackerFile << allPlayers[i].playerName << ";" << allPlayers[i].hitsPerGameLast30Days << ";" << allPlayers[i].averageLast7Days << ";" << allPlayers[i].averageVsPitcherFacing << ";" << allPlayers[i].opposingPitcherWhip << ";" << allPlayers[i].opposingPitcherEra << ";" << allPlayers[i].opposingPitcherStrikeOutsPer9 << ";" << allPlayers[i].opposingPitcherAverageAgainstHandedness << ";";
+			allResultsTrackerFile << allPlayers[i].ToString();
 			allResultsTrackerFile << endl;
 		}
 		allResultsTrackerFile.close();
@@ -2482,6 +2508,11 @@ std::vector<string> SplitStringIntoMultiple(std::string wholeString, std::string
 	return stringArray;
 }
 
+string BeatTheStreakPlayerProfile::ToString()
+{
+	// Name;HitsPerGameLast30Days;AvgLast7Days;AvgVPitcher;PitcherWhip;PitcherEra;PitcherKPer9;PitcherAvgAgainst;
+	return playerName + ";" + to_string(hitsPerGameLast30Days) + ";" + to_string(averageLast7Days) + ";" + to_string(averageVsPitcherFacing) + ";" + to_string(opposingPitcherWhip) + ";" + to_string(opposingPitcherEra) + ";" + to_string(opposingPitcherStrikeOutsPer9) + ";" + to_string(opposingPitcherAverageAgainstHandedness) + ";";
+}
 /*
 http://rotoguru1.com/cgi-bin/stats.cgi?pos=6&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=1&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941
 0    1    2               3     4         5             6      7    8     9        10             11       12           13      14      15      16        17     18    19       20    21     22          23
