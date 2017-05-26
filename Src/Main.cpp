@@ -18,7 +18,7 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170525";
+std::string todaysDate = "20170526";
 int reviewDateStart = 406;
 int reviewDateEnd = 524;
 float percentOf2017SeasonPassed = 40.0f / 162.0f;
@@ -39,7 +39,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 
 	switch (processType)
 	{
@@ -636,6 +636,13 @@ void ChooseAPitcher()
 					}
 				}
 				gameStartTime = opponentsInfo->second.gameTime;
+
+				string opponentTeamCode = opponent->second.teamCodeRotoGuru;
+				auto myTeam = opponentMap.find(opponentTeamCode);
+				if (myTeam != opponentMap.end())
+				{
+					myTeam->second.pitcherEstimatedPpg = singlePlayerData.playerPointsPerGame;
+				}
 			}
 			
 			// throw this guy out if his game will most likely be rained out
@@ -648,6 +655,25 @@ void ChooseAPitcher()
 		}
 
 		sort(positionalPlayerData.begin(), positionalPlayerData.end(), comparePlayerByPointsPerGame);
+
+		ofstream teamWinTrackerFile;
+		string teamWinTrackerFileName = "2017ResultsTracker\\TeamWinResults\\" + todaysDate + ".txt";
+		teamWinTrackerFile.open(teamWinTrackerFileName);
+		for (unsigned int i = 0; i < positionalPlayerData.size(); ++i)
+		{
+			string alreadyWrittenData = GetEntireFileContents(teamWinTrackerFileName);
+			if (alreadyWrittenData.find(positionalPlayerData[i].teamCode) == string::npos)
+			{
+				auto opponentsInfo = opponentMap.find(positionalPlayerData[i].teamCode);
+				if (opponentsInfo != opponentMap.end())
+				{
+					teamWinTrackerFile << positionalPlayerData[i].teamCode << ";" << positionalPlayerData[i].playerPointsPerGame << ";" << opponentsInfo->second.teamCodeRotoGuru << ";" << opponentsInfo->second.pitcherEstimatedPpg << ";";
+					teamWinTrackerFile << endl;
+				}
+			}
+		}
+		teamWinTrackerFile.close();
+		
 		for (unsigned int i = 0; i < positionalPlayerData.size() && i < 10; ++i)
 		{
 			cout << i << ".  " << positionalPlayerData[i].playerName << "  " << positionalPlayerData[i].playerPointsPerGame << "  " << positionalPlayerData[i].playerSalary << endl;

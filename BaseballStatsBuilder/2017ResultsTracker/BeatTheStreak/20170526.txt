@@ -1,0 +1,7 @@
+Ender Inciarte;1.53846;0.452;-1;
+Jose Abreu;1.38462;0.406;0.5;
+Michael Conforto;1.28;0.563;-1;
+Mark Trumbo;1.25926;0.37;-1;
+Dustin Pedroia;1.24;0.385;0.388889;
+Tim Anderson;1.2381;0.333;0.333333;
+Delino DeShields;1.11538;0.35;-1;

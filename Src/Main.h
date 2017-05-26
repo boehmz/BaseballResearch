@@ -104,6 +104,7 @@ struct OpponentInformation
 	int gameTime;
 
 	FullSeasonStatsAdvanced pitcherAdvancedStats;
+	float pitcherEstimatedPpg;
 };
 
 void RefineAlgorithm();
