@@ -1,11 +1,11 @@
-20170511/ZachDateMetaData
+20170526/ZachDateMetaData
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1"><title>
 	Eduardo Rodriguez &raquo; Splits &raquo; vs L &raquo; Pitching | FanGraphs Baseball
 </title><meta name='description' content='Eduardo Rodriguez vs L pitching splits for Major League baseball' />
-<meta name='keywords' content='eduardo rodriguez, eduardo rodriguez splits' /><link href="//cdn.fangraphs.com/css/fg?v=5tJXTu2hCeZmyChZ6lbAFIlhDVKFIsn-U7kcS00XnRM1" rel="stylesheet">
+<meta name='keywords' content='eduardo rodriguez, eduardo rodriguez splits' /><link href="//cdn.fangraphs.com/css/fg?v=qRmUNAcJDdfFNBGQXdPWJ85SGIy0TcribLYLh30eEk81" rel="stylesheet">
 
 <link href="//cdn.fangraphs.com/css/telerik?v=7kp8vZ-2gyqQIN75Z0UB_Vbc6sYJCM3fVOkK0XkRN401" rel="stylesheet">
 
@@ -228,7 +228,7 @@
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-10">Probable Pitchers</a>
+                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-25">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -543,11 +543,11 @@
                             <strong style="font-size:15pt;">Eduardo Rodriguez</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 4/7/1993 (24 y, 1 m, 4 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-2/220 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><strong>Contract:</strong> <a href="statss.aspx?playerid=13164&position=P#contract" style="text-decoration:none;">$0.5M / 1 Years (2016)</a>
+                            <strong>Birthdate:</strong> 4/7/1993 (24 y, 1 m, 19 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-2/220 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><strong>Contract:</strong> <a href="statss.aspx?playerid=13164&position=P#contract" style="text-decoration:none;">$0.5M / 1 Years (2016)</a>
                         </div>
                     </td>
                     <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><span style="padding-left:0px;"><b>Reported</b>: 11/15/2014&nbsp;&nbsp;<b>Risk</b>: 3&nbsp;&nbsp;<b>ETA</b>: 2016&nbsp;&nbsp;<b>Team Rank</b>: 2&nbsp;&nbsp;<b>Positional Rank</b>: NA&nbsp;&nbsp;<b>Overall Rank</b>: NA</span><table class="depth_chart" cellspacing="0" cellpadding="2" style="margin-top:3px; width:90%; border:1px solid Gray; font-size:9pt; text-align:center;"><tr><td style="background-color:Gray; color:white;">Fastball</td><td style="background-color:Gray; color:white;">Slider</td><td style="background-color:Gray; color:white;">Changeup</td><td style="background-color:Gray; color:white;">Command</td><td style="background-color:Gray; color:white;">Future Value</td></tr><tr class="depth_team"><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">60 / 65</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">50 / 55</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">50 / 60</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">45 / 50</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">60</td></tr></table></div></td></tr>
-                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=12783" style="text-decoration:none;">RotoWire News</a>:</b> Rodriguez allowed three runs on seven hits and one intentional walk while striking out six over six-plus innings in Friday's 4-3 loss to the Twins. (5/6/2017)</div></td></tr>
+                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=12783" style="text-decoration:none;">RotoWire News</a>:</b> Rodriguez (3-1) allowed three runs on six hits (one homer) while walking one and striking out eight over eight innings in Sunday's 12-3 win over the Athletics. (5/21/2017)</div></td></tr>
 
                 </tr>
                 <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">4/16/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-446-making-a-judgment-call/">The Sleeper and the Bust Episode: 446 – Making a J&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-446-making-a-judgment-call/#comments"><img src="images/commentslink.gif" border="0px" />12</a></span><br /><span class="m_date">3/22/2017</span> - <a href="http://www.fangraphs.com/fantasy/market-watch-a-blizzard-of-activity/">Market Watch: A Blizzard of Activity</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/market-watch-a-blizzard-of-activity/#comments"><img src="images/commentslink.gif" border="0px" />5</a></span><br /><span class="m_date">3/21/2017</span> - <a href="http://www.fangraphs.com/fantasy/tipping-pitches-sp-risers-in-my-latest-rankings/">Tipping Pitches: SP Risers in My Latest Rankings</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/tipping-pitches-sp-risers-in-my-latest-rankings/#comments"><img src="images/commentslink.gif" border="0px" />21</a></span><br /><span class="m_date">11/22/2016</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-406-a-lockout/">The Sleeper and the Bust Episode: 406 – A Lockout?&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-406-a-lockout/#comments"><img src="images/commentslink.gif" border="0px" />0</a></span><br /><span class="m_date">9/28/2016</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-394-playing-hurt-hidden-second-halves/">The Sleeper and the Bust Episode: 394 – Playing Hu&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-394-playing-hurt-hidden-second-halves/#comments"><img src="images/commentslink.gif" border="0px" />2</a></span><br /></div></td></tr>
@@ -938,9 +938,9 @@
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason1_ctl00__1">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">21.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">97</td><td class="grid_line_regular" align="right">23</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">9</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">25</td><td class="grid_line_regular" align="right">.267</td><td class="grid_line_regular" align="right">.351</td><td class="grid_line_regular" align="right">.360</td><td class="grid_line_regular" align="right">.318</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason1_ctl00__2">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">6.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">29</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">.308</td><td class="grid_line_regular" align="right">.379</td><td class="grid_line_regular" align="right">.462</td><td class="grid_line_regular" align="right">.366</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">8.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">36</td><td class="grid_line_regular" align="right">10</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">.303</td><td class="grid_line_regular" align="right">.361</td><td class="grid_line_regular" align="right">.438</td><td class="grid_line_regular" align="right">.342</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason1_ctl00__3">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">57.0</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">252</td><td class="grid_line_regular" align="right">62</td><td class="grid_line_regular" align="right">11</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">26</td><td class="grid_line_regular" align="right">25</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">16</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">58</td><td class="grid_line_regular" align="right">.268</td><td class="grid_line_regular" align="right">.335</td><td class="grid_line_regular" align="right">.447</td><td class="grid_line_regular" align="right">.339</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">59.0</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">259</td><td class="grid_line_regular" align="right">64</td><td class="grid_line_regular" align="right">11</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">27</td><td class="grid_line_regular" align="right">26</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">16</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">58</td><td class="grid_line_regular" align="right">.269</td><td class="grid_line_regular" align="right">.333</td><td class="grid_line_regular" align="right">.444</td><td class="grid_line_regular" align="right">.337</td>
 	</tr>
 	</tbody>
 
@@ -979,9 +979,9 @@
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__1">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">10.55</td><td class="grid_line_regular" align="right">3.80</td><td class="grid_line_regular" align="right">2.78</td><td class="grid_line_regular" align="right">0.42</td><td class="grid_line_regular" align="right">25.8 %</td><td class="grid_line_regular" align="right">9.3 %</td><td class="grid_line_regular" align="right">16.5 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.50</td><td class="grid_line_regular" align="right">.367</td><td class="grid_line_regular" align="right">79.8 %</td><td class="grid_line_regular" align="right">2.96</td><td class="grid_line_regular" align="right">4.15</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__2">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">11.37</td><td class="grid_line_regular" align="right">2.84</td><td class="grid_line_regular" align="right">4.00</td><td class="grid_line_regular" align="right">0.00</td><td class="grid_line_regular" align="right">27.6 %</td><td class="grid_line_regular" align="right">6.9 %</td><td class="grid_line_regular" align="right">20.7 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.58</td><td class="grid_line_regular" align="right">.444</td><td class="grid_line_regular" align="right">90.9 %</td><td class="grid_line_regular" align="right">1.91</td><td class="grid_line_regular" align="right">2.70</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">8.64</td><td class="grid_line_regular" align="right">2.16</td><td class="grid_line_regular" align="right">4.00</td><td class="grid_line_regular" align="right">0.00</td><td class="grid_line_regular" align="right">22.2 %</td><td class="grid_line_regular" align="right">5.6 %</td><td class="grid_line_regular" align="right">16.7 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.44</td><td class="grid_line_regular" align="right">.400</td><td class="grid_line_regular" align="right">84.6 %</td><td class="grid_line_regular" align="right">2.19</td><td class="grid_line_regular" align="right">3.64</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__3">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">9.16</td><td class="grid_line_regular" align="right">2.53</td><td class="grid_line_regular" align="right">3.63</td><td class="grid_line_regular" align="right">1.26</td><td class="grid_line_regular" align="right">23.0 %</td><td class="grid_line_regular" align="right">6.4 %</td><td class="grid_line_regular" align="right">16.7 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.37</td><td class="grid_line_regular" align="right">.327</td><td class="grid_line_regular" align="right">79.4 %</td><td class="grid_line_regular" align="right">4.02</td><td class="grid_line_regular" align="right">3.91</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">8.85</td><td class="grid_line_regular" align="right">2.44</td><td class="grid_line_regular" align="right">3.63</td><td class="grid_line_regular" align="right">1.22</td><td class="grid_line_regular" align="right">22.4 %</td><td class="grid_line_regular" align="right">6.2 %</td><td class="grid_line_regular" align="right">16.2 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.36</td><td class="grid_line_regular" align="right">.326</td><td class="grid_line_regular" align="right">78.6 %</td><td class="grid_line_regular" align="right">3.99</td><td class="grid_line_regular" align="right">4.00</td>
 	</tr>
 	</tbody>
 
@@ -1023,9 +1023,9 @@
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason3_ctl00__1">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">1.09</td><td class="grid_line_regular" align="right">21.3 %</td><td class="grid_line_regular" align="right">41.0 %</td><td class="grid_line_regular" align="right">37.7 %</td><td class="grid_line_regular" align="right">4.3 %</td><td class="grid_line_regular" align="right">4.3 %</td><td class="grid_line_regular" align="right">8.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">37.7 %</td><td class="grid_line_regular" align="right">36.1 %</td><td class="grid_line_regular" align="right">26.2 %</td><td class="grid_line_break" align="right">18.0 %</td><td class="grid_line_regular" align="right">62.3 %</td><td class="grid_line_regular" align="right">19.7 %</td><td class="grid_line_break" align="right">399</td><td class="grid_line_regular" align="right">149</td><td class="grid_line_regular" align="right">250</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason3_ctl00__2">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">2.67</td><td class="grid_line_regular" align="right">38.9 %</td><td class="grid_line_regular" align="right">44.4 %</td><td class="grid_line_regular" align="right">16.7 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">27.8 %</td><td class="grid_line_regular" align="right">44.4 %</td><td class="grid_line_regular" align="right">27.8 %</td><td class="grid_line_break" align="right">22.2 %</td><td class="grid_line_regular" align="right">44.4 %</td><td class="grid_line_regular" align="right">33.3 %</td><td class="grid_line_break" align="right">132</td><td class="grid_line_regular" align="right">53</td><td class="grid_line_regular" align="right">79</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">1.43</td><td class="grid_line_regular" align="right">32.0 %</td><td class="grid_line_regular" align="right">40.0 %</td><td class="grid_line_regular" align="right">28.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">32.0 %</td><td class="grid_line_regular" align="right">40.0 %</td><td class="grid_line_regular" align="right">28.0 %</td><td class="grid_line_break" align="right">20.0 %</td><td class="grid_line_regular" align="right">48.0 %</td><td class="grid_line_regular" align="right">32.0 %</td><td class="grid_line_break" align="right">166</td><td class="grid_line_regular" align="right">65</td><td class="grid_line_regular" align="right">101</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason3_ctl00__3">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">1.02</td><td class="grid_line_regular" align="right">24.4 %</td><td class="grid_line_regular" align="right">38.1 %</td><td class="grid_line_regular" align="right">37.5 %</td><td class="grid_line_regular" align="right">6.3 %</td><td class="grid_line_regular" align="right">12.7 %</td><td class="grid_line_regular" align="right">3.1 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">33.7 %</td><td class="grid_line_regular" align="right">40.1 %</td><td class="grid_line_regular" align="right">26.2 %</td><td class="grid_line_break" align="right">18.0 %</td><td class="grid_line_regular" align="right">51.7 %</td><td class="grid_line_regular" align="right">30.2 %</td><td class="grid_line_break" align="right">1003</td><td class="grid_line_regular" align="right">360</td><td class="grid_line_regular" align="right">643</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">0.99</td><td class="grid_line_regular" align="right">24.0 %</td><td class="grid_line_regular" align="right">37.7 %</td><td class="grid_line_regular" align="right">38.3 %</td><td class="grid_line_regular" align="right">6.0 %</td><td class="grid_line_regular" align="right">11.9 %</td><td class="grid_line_regular" align="right">3.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">34.1 %</td><td class="grid_line_regular" align="right">39.7 %</td><td class="grid_line_regular" align="right">26.3 %</td><td class="grid_line_break" align="right">17.9 %</td><td class="grid_line_regular" align="right">52.0 %</td><td class="grid_line_regular" align="right">30.2 %</td><td class="grid_line_break" align="right">1037</td><td class="grid_line_regular" align="right">372</td><td class="grid_line_regular" align="right">665</td>
 	</tr>
 	</tbody>
 
@@ -1125,7 +1125,7 @@
 <div class="footer-bar">
     <div class="footer-bar-background"></div>
     <div class="footer-bar-item">
-        Updated: Wednesday, May 10, 2017 4:29 AM ET
+        Updated: Thursday, May 25, 2017 4:31 AM ET
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
@@ -1207,6 +1207,40 @@ var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
 
     ga('require', 'eventTracker');
     ga('require', 'maxScrollTracker');
+
+    ga('require', 'impressionTracker', {
+      elements: [
+        {
+          id: 'index-01-featured',
+          threshold: 0.5
+        },
+        {
+          id: 'index-02-fg',
+          threshold: 0.5
+        },
+        {
+          id: 'index-03-rg',
+          threshold: 0.5
+        },
+        {
+          id: 'index-04-tht',
+          threshold: 0.5
+        },
+        {
+          id: 'index-05-com',
+          threshold: 0.5
+        },
+        {
+          id: 'index-06-mc',
+          threshold: 0.5
+        },
+        {
+          id: 'index-07-tools',
+          threshold: 0.5
+        }
+      ]
+    });
+
     ga('send', 'pageview');
 </script>
 
