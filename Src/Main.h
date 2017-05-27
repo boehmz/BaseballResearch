@@ -17,8 +17,8 @@ bool comparePlayersBySalary(PlayerData i, PlayerData j);
 
 void RefineAlgorithm();
 void RefineAlgorithmForBeatTheStreak();
-void GenerateNewLineup();
-void ChooseAPitcher();
+void GenerateNewLineup(CURL *curl);
+void ChooseAPitcher(CURL *curl);
 void Analyze2016Stats();
 
 struct BeatTheStreakPlayerProfile
@@ -116,14 +116,16 @@ void GenerateNewLineup();
 std::unordered_map<std::string, bool> probableStarters;
 void DetermineProbableStarters(CURL* curl);
 
-struct batterSplitsData
+struct BatterSplitsData
 {
 	float opsSeason;
 	float opsLast30Days;
 	float opsLast7Days;
 
-	float opsHandednessSeason;
-	float opsHandednessLast30Days;
+	float opsVersusLeftySeason;
+	float opsVersusRightySeason;
+	float opsVersusLeftyLast30Days;
+	float opsVersusRightyLast30Days;
 
 
 	float ppgSeason;
@@ -133,11 +135,13 @@ struct batterSplitsData
 	float ppgHandednessSeason;
 	float ppgHandednessLast30Days;
 
-	batterSplitsData() : opsSeason(-1),
+	BatterSplitsData() : opsSeason(-1),
 		opsLast30Days(-1),
 		opsLast7Days(-1),
-		opsHandednessSeason(-1),
-		opsHandednessLast30Days(-1),
+		opsVersusLeftySeason(-1),
+		opsVersusRightySeason(-1),
+		opsVersusLeftyLast30Days(-1),
+		opsVersusRightyLast30Days(-1),
 		ppgSeason(-1),
 		ppgLast30Days(-1),
 		ppgLast7Days(-1),
@@ -146,14 +150,14 @@ struct batterSplitsData
 		{
 		}
 };
-std::unordered_map<std::string, batterSplitsData> allBattersSplits;
-void AssembleBatterSplits();
+std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
+void AssembleBatterSplits(CURL *curl);
 std::string ConvertFLNameToLFName(std::string firstLast);
 std::string ConvertLFNameToFLName(std::string lastFirst);
 
 std::vector<PlayerData> OptimizeLineupToFitBudget();
 
-void PopulateProbableRainoutGames();
+void PopulateProbableRainoutGames(CURL* curl);
 
 void Analyze2016Stats();
 
@@ -161,6 +165,8 @@ void UnitTestAllStatCollectionFunctions();
 
 void GetBallparkFactors(std::string ballparkName, std::string statName, float& outFactorLeftyBatter, float& outFactorRightyBatter);
 
-void GetBeatTheStreakCandidates();
+void GetBeatTheStreakCandidates(CURL *curl);
 
 std::vector<std::string> SplitStringIntoMultiple(std::string wholeString, std::string tokens);
+
+void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuffer);

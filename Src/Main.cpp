@@ -13,15 +13,15 @@
 #include "Main.h"
 using namespace std;
 
-GameType gameType = GameType::Fanduel;
+GameType gameType = GameType::BeatTheStreak;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170526";
+std::string todaysDate = "20170527";
 int reviewDateStart = 406;
 int reviewDateEnd = 524;
-float percentOf2017SeasonPassed = 40.0f / 162.0f;
+float percentOf2017SeasonPassed = 50.0f / 162.0f;
 
 int dayToDayInjuredPlayersNum = 1;
 string dayToDayInjuredPlayers[] = { "Szczur, Matt" };
@@ -39,7 +39,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest};
-	ProcessType processType = ProcessType::UnitTest;
+	ProcessType processType = ProcessType::GenerateLineup;
 
 	switch (processType)
 	{
@@ -57,16 +57,17 @@ int main(void)
 		break;
 	default:
 	case GenerateLineup:
-		PopulateProbableRainoutGames();
+		CURL* curl = NULL;
+		PopulateProbableRainoutGames(curl);
 		if (gameType == GameType::BeatTheStreak)
 		{
-			GetBeatTheStreakCandidates();
+			GetBeatTheStreakCandidates(curl);
 		}
 		else
 		{
-			AssembleBatterSplits();
-			ChooseAPitcher();
-			GenerateNewLineup();
+			AssembleBatterSplits(curl);
+			ChooseAPitcher(curl);
+			GenerateNewLineup(curl);
 		}
 		break;
 	}
@@ -393,11 +394,11 @@ void RefineAlgorithmForBeatTheStreak()
 	}
 }
 
-void ChooseAPitcher()
+void ChooseAPitcher(CURL *curl)
 {
-	CURL *curl;
+	if (curl == NULL)
+		curl = curl_easy_init();
 
-	curl = curl_easy_init();
 	if (curl)
 	{
 		std::string readBuffer;
@@ -672,8 +673,11 @@ void ChooseAPitcher()
 				auto opponentsInfo = opponentMap.find(positionalPlayerData[i].teamCode);
 				if (opponentsInfo != opponentMap.end())
 				{
-					teamWinTrackerFile << positionalPlayerData[i].teamCode << ";" << positionalPlayerData[i].playerPointsPerGame << ";" << opponentsInfo->second.teamCodeRotoGuru << ";" << opponentsInfo->second.pitcherEstimatedPpg << ";";
-					teamWinTrackerFile << endl;
+					if (positionalPlayerData[i].playerPointsPerGame > 0 && opponentsInfo->second.pitcherEstimatedPpg > 0)
+					{
+						teamWinTrackerFile << positionalPlayerData[i].teamCode << ";" << positionalPlayerData[i].playerPointsPerGame << ";" << opponentsInfo->second.teamCodeRotoGuru << ";" << opponentsInfo->second.pitcherEstimatedPpg << ";";
+						teamWinTrackerFile << endl;
+					}
 				}
 			}
 			playerResultsTrackerFile << positionalPlayerData[i].playerId << ";" << positionalPlayerData[i].playerName << ";" << positionalPlayerData[i].playerPointsPerGame;
@@ -706,12 +710,10 @@ void ChooseAPitcher()
 	}
 }
 
-void GenerateNewLineup()
+void GenerateNewLineup(CURL *curl)
 {
-	CURL *curl;
-	//CURLcode res;
-
-	curl = curl_easy_init();
+	if (curl == NULL)
+		curl = curl_easy_init();
 	if (curl)
 	{
 	  DetermineProbableStarters(curl);
@@ -974,6 +976,15 @@ void GenerateNewLineup()
 		  else
 			  resultsTrackerFile << ";R;";
 		  resultsTrackerFile << allPlayers[i][p].playerPointsPerGame << ";";
+		  auto playerSplits = allBattersSplits.find(ConvertLFNameToFLName(allPlayers[i][p].playerName));
+		  if (playerSplits != allBattersSplits.end())
+		  {
+			  resultsTrackerFile << playerSplits->second.opsSeason << ";" << playerSplits->second.opsLast30Days << ";" << playerSplits->second.opsLast7Days << ";";
+		  }
+		  else
+		  {
+			  resultsTrackerFile << "-1;-1;-1;";
+		  }
 		  resultsTrackerFile << allPlayers[i][p].pitcherFactor << ";" << allPlayers[i][p].parkFactor << "; ";
 		  resultsTrackerFile << endl;
 	  }
@@ -1474,11 +1485,10 @@ void DetermineProbableStarters(CURL* curl)
 	}
 }
 
-void PopulateProbableRainoutGames()
+void PopulateProbableRainoutGames(CURL *curl)
 {
-	CURL *curl;
-
-	curl = curl_easy_init();
+	if (curl == NULL)
+		curl = curl_easy_init();
 	if (curl)
 	{
 		string weatherData;
@@ -2094,8 +2104,6 @@ void Analyze2016Stats()
 					{
 						batterIndex = total2016Data.find(":", batterIndex + 1);
 					}
-					if (playerName.find("Giovanny Urshela") != string::npos)
-						nextIndex = nextIndex;
 					nextIndex = total2016Data.find(":", batterIndex + 1);
 					string pointsInGameString = total2016Data.substr(batterIndex + 1, nextIndex - batterIndex - 1);
 					float pointsInGame = 0;
@@ -2171,11 +2179,10 @@ void Analyze2016Stats()
 	}
 }
 
-void GetBeatTheStreakCandidates()
+void GetBeatTheStreakCandidates(CURL *curl)
 {
-	CURL *curl;
-
-	curl = curl_easy_init();
+	if (curl == NULL)
+		curl = curl_easy_init();
 	if (curl)
 	{
 		string readURL;
@@ -2559,10 +2566,99 @@ string BeatTheStreakPlayerProfile::ToString()
 	return playerName + ";" + to_string(hitsPerGameLast30Days) + ";" + to_string(averageLast7Days) + ";" + to_string(averageVsPitcherFacing) + ";" + to_string(opposingPitcherWhip) + ";" + to_string(opposingPitcherEra) + ";" + to_string(opposingPitcherStrikeOutsPer9) + ";" + to_string(opposingPitcherAverageAgainstHandedness) + ";";
 }
 
-void AssembleBatterSplits()
+void AssembleBatterSplits(CURL *curl)
 {
-	//http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=3&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=1_50
+	if (curl == NULL)
+		curl = curl_easy_init();
+	if (curl)
+	{
+		for (int page = 0; page < 6; ++page)
+		{
+			std::string seasonStats;
+			char pageCStr[3];
+			_itoa_s(page + 1, pageCStr, 10);
+			string pageStr = pageCStr;
+			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=80&type=1&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
+			CurlGetSiteContents(curl, readURL, seasonStats);
+
+			size_t playerPositionIndex = seasonStats.find("LeaderBoard1_dg1_ctl00__", 0);
+			while (playerPositionIndex != string::npos)
+			{
+				BatterSplitsData playerProfile;
+
+				for (int i = 0; i < 2; ++i)
+				{
+					playerPositionIndex = seasonStats.find("</td>", playerPositionIndex + 1);
+				}
+				playerPositionIndex -= 4;
+				size_t playerPositionPrevIndex = seasonStats.rfind(">", playerPositionIndex);
+				string playerName = seasonStats.substr(playerPositionPrevIndex + 1, playerPositionIndex - playerPositionPrevIndex - 1);
+				
+				for (int i = 0; i < 10; ++i)
+				{
+					playerPositionIndex = seasonStats.find("</td>", playerPositionIndex + 1);
+				}
+				playerPositionPrevIndex = seasonStats.rfind(">", playerPositionIndex);
+				playerProfile.opsSeason = stof(seasonStats.substr(playerPositionPrevIndex + 1, playerPositionIndex - playerPositionPrevIndex - 1).c_str());
+				
+				if (allBattersSplits.find(playerName) == allBattersSplits.end())
+					allBattersSplits.insert({ playerName,playerProfile });
+
+				playerPositionIndex = seasonStats.find("LeaderBoard1_dg1_ctl00__", playerPositionIndex + 1);
+			}
+		}
+
+		std::string last30DaysStats;
+		for (int page = 0; page < 6; ++page)
+		{
+			char pageCStr[3];
+			_itoa_s(page + 1, pageCStr, 10);
+			string pageStr = pageCStr;
+			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=60&type=1&season=2017&month=3&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
+			CurlGetSiteContents(curl, readURL, last30DaysStats);
+			
+		}
+		for (auto& it : allBattersSplits)
+		{
+			size_t playerPositionIndex = last30DaysStats.find("LeaderBoard1_dg1_ctl00__", 0);
+			playerPositionIndex = last30DaysStats.find(it.first, playerPositionIndex);
+			if (playerPositionIndex != string::npos)
+			{
+				for (int i = 0; i < 10; ++i)
+				{
+					playerPositionIndex = last30DaysStats.find("</td>", playerPositionIndex + 1);
+				}
+				size_t playerPositionPrevIndex = last30DaysStats.rfind(">", playerPositionIndex);
+				it.second.opsLast30Days = stof(last30DaysStats.substr(playerPositionPrevIndex + 1, playerPositionIndex - playerPositionPrevIndex - 1).c_str());
+			}
+		}
+
+		std::string last7DaysStats;
+		for (int page = 0; page < 6; ++page)
+		{
+			char pageCStr[3];
+			_itoa_s(page + 1, pageCStr, 10);
+			string pageStr = pageCStr;
+			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=10&type=1&season=2017&month=1&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
+			CurlGetSiteContents(curl, readURL, last7DaysStats);
+		}
+		for (auto& it : allBattersSplits)
+		{
+			size_t playerPositionIndex = last7DaysStats.find("LeaderBoard1_dg1_ctl00__", 0);
+			playerPositionIndex = last7DaysStats.find(it.first, playerPositionIndex);
+			if (playerPositionIndex != string::npos)
+			{
+				for (int i = 0; i < 10; ++i)
+				{
+					playerPositionIndex = last7DaysStats.find("</td>", playerPositionIndex + 1);
+				}
+				size_t playerPositionPrevIndex = last7DaysStats.rfind(">", playerPositionIndex);
+				it.second.opsLast7Days = stof(last7DaysStats.substr(playerPositionPrevIndex + 1, playerPositionIndex - playerPositionPrevIndex - 1).c_str());
+			}
+		}
+	}
 }
+
 std::string ConvertFLNameToLFName(std::string firstLast)
 {
 	string convertedName = firstLast;
@@ -2586,6 +2682,21 @@ std::string ConvertLFNameToFLName(std::string lastFirst)
 		convertedName += lastFirst.substr(0, commaIndex);
 	}
 	return convertedName;
+}
+
+void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuffer)
+{
+	if (curl == NULL)
+		curl = curl_easy_init();
+
+	if (curl)
+	{
+		curl_easy_setopt(curl, CURLOPT_URL, readURL.c_str());
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &writeBuffer);
+		curl_easy_perform(curl);
+		curl_easy_reset(curl);
+	}
 }
 
 /*
