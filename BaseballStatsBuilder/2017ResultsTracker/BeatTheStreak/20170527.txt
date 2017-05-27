@@ -1,0 +1,4 @@
+Charlie Blackmon;1.62963;0.438;0.583333;
+Aaron Judge;1.24;0.316;-1;
+Joey Votto;1.2;0.318;0.333333;
+Anthony Rendon;1.12;0.444;-1;
