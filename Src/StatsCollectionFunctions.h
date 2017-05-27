@@ -13,6 +13,9 @@ struct PlayerData
 	bool batsLeftHanded;
 	bool isFacingLefthander;
 	float playerPointsPerGame;
+
+	float pitcherFactor;
+	float parkFactor;
 };
 
 size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);

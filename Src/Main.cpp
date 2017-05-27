@@ -13,7 +13,7 @@
 #include "Main.h"
 using namespace std;
 
-GameType gameType = GameType::BeatTheStreak;
+GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
@@ -656,6 +656,10 @@ void ChooseAPitcher()
 
 		sort(positionalPlayerData.begin(), positionalPlayerData.end(), comparePlayerByPointsPerGame);
 
+		ofstream playerResultsTrackerFile;
+		string playerResultsTrackerFileName = "2017ResultsTracker\\Pitchers\\" + todaysDate + ".txt";
+		playerResultsTrackerFile.open(playerResultsTrackerFileName);
+
 		ofstream teamWinTrackerFile;
 		string teamWinTrackerFileName = "2017ResultsTracker\\TeamWinResults\\" + todaysDate + ".txt";
 		teamWinTrackerFile.open(teamWinTrackerFileName);
@@ -671,9 +675,12 @@ void ChooseAPitcher()
 					teamWinTrackerFile << endl;
 				}
 			}
+			playerResultsTrackerFile << positionalPlayerData[i].playerId << ";" << positionalPlayerData[i].playerName << ";" << positionalPlayerData[i].playerPointsPerGame;
+			playerResultsTrackerFile << endl;
 		}
 		teamWinTrackerFile.close();
-		
+		playerResultsTrackerFile.close();
+
 		for (unsigned int i = 0; i < positionalPlayerData.size() && i < 10; ++i)
 		{
 			cout << i << ".  " << positionalPlayerData[i].playerName << "  " << positionalPlayerData[i].playerPointsPerGame << "  " << positionalPlayerData[i].playerSalary << endl;
@@ -875,7 +882,8 @@ void GenerateNewLineup()
 					pitcherFactor = opposingPitcherAdvancedStats.opsVersusRighty / leagueAverageOps;
 			}
 			singlePlayerData.playerPointsPerGame *= pitcherFactor * ballParkFactor;
-			
+			singlePlayerData.pitcherFactor = pitcherFactor;
+			singlePlayerData.parkFactor = ballParkFactor;
 
 			
 			int gameStartTime = 24;
@@ -964,6 +972,8 @@ void GenerateNewLineup()
 			  resultsTrackerFile << ";L;";
 		  else
 			  resultsTrackerFile << ";R;";
+		  resultsTrackerFile << allPlayers[i][p].playerPointsPerGame << ";";
+		  resultsTrackerFile << allPlayers[i][p].pitcherFactor << ";" << allPlayers[i][p].parkFactor << "; ";
 		  resultsTrackerFile << endl;
 	  }
   }
