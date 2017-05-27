@@ -39,7 +39,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::UnitTest;
 
 	switch (processType)
 	{
@@ -64,6 +64,7 @@ int main(void)
 		}
 		else
 		{
+			AssembleBatterSplits();
 			ChooseAPitcher();
 			GenerateNewLineup();
 		}
@@ -1678,6 +1679,14 @@ void UnitTestAllStatCollectionFunctions()
 		int iBreakpoint = 0;
 		iBreakpoint = iBreakpoint;
 	}
+	string zackGreinkeName = "Zack Greinke";
+	string greinkeZackName = "Greinke, Zack";
+	string ericHosmerName = "Eric Hosmer";
+	string hosmerEricName = "Hosmer, Eric";
+	assert(ConvertLFNameToFLName(greinkeZackName) == zackGreinkeName);
+	assert(ConvertFLNameToLFName(zackGreinkeName) == greinkeZackName);
+	assert(ConvertLFNameToFLName(hosmerEricName) == ericHosmerName);
+	assert(ConvertFLNameToLFName(ericHosmerName) == hosmerEricName);
 	// Zack Greinke
 	// http://rotoguru1.com/cgi-bin/player16.cgi?1580x
 
@@ -2549,6 +2558,36 @@ string BeatTheStreakPlayerProfile::ToString()
 	// Name;HitsPerGameLast30Days;AvgLast7Days;AvgVPitcher;PitcherWhip;PitcherEra;PitcherKPer9;PitcherAvgAgainst;
 	return playerName + ";" + to_string(hitsPerGameLast30Days) + ";" + to_string(averageLast7Days) + ";" + to_string(averageVsPitcherFacing) + ";" + to_string(opposingPitcherWhip) + ";" + to_string(opposingPitcherEra) + ";" + to_string(opposingPitcherStrikeOutsPer9) + ";" + to_string(opposingPitcherAverageAgainstHandedness) + ";";
 }
+
+void AssembleBatterSplits()
+{
+	//http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=3&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=1_50
+}
+std::string ConvertFLNameToLFName(std::string firstLast)
+{
+	string convertedName = firstLast;
+	size_t spaceIndex = firstLast.find(" ", 0);
+	if (spaceIndex != string::npos)
+	{
+		convertedName = firstLast.substr(spaceIndex + 1);
+		convertedName += ", ";
+		convertedName += firstLast.substr(0, spaceIndex);
+	}
+	return convertedName;
+}
+std::string ConvertLFNameToFLName(std::string lastFirst)
+{
+	string convertedName = lastFirst;
+	size_t commaIndex = lastFirst.find(", ", 0);
+	if (commaIndex != string::npos)
+	{
+		convertedName = lastFirst.substr(commaIndex + 2);
+		convertedName += " ";
+		convertedName += lastFirst.substr(0, commaIndex);
+	}
+	return convertedName;
+}
+
 /*
 http://rotoguru1.com/cgi-bin/stats.cgi?pos=6&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=1&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941
 0    1    2               3     4         5             6      7    8     9        10             11       12           13      14      15      16        17     18    19       20    21     22          23

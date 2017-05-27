@@ -116,6 +116,41 @@ void GenerateNewLineup();
 std::unordered_map<std::string, bool> probableStarters;
 void DetermineProbableStarters(CURL* curl);
 
+struct batterSplitsData
+{
+	float opsSeason;
+	float opsLast30Days;
+	float opsLast7Days;
+
+	float opsHandednessSeason;
+	float opsHandednessLast30Days;
+
+
+	float ppgSeason;
+	float ppgLast30Days;
+	float ppgLast7Days;
+
+	float ppgHandednessSeason;
+	float ppgHandednessLast30Days;
+
+	batterSplitsData() : opsSeason(-1),
+		opsLast30Days(-1),
+		opsLast7Days(-1),
+		opsHandednessSeason(-1),
+		opsHandednessLast30Days(-1),
+		ppgSeason(-1),
+		ppgLast30Days(-1),
+		ppgLast7Days(-1),
+		ppgHandednessSeason(-1),
+		ppgHandednessLast30Days(-1)
+		{
+		}
+};
+std::unordered_map<std::string, batterSplitsData> allBattersSplits;
+void AssembleBatterSplits();
+std::string ConvertFLNameToLFName(std::string firstLast);
+std::string ConvertLFNameToFLName(std::string lastFirst);
+
 std::vector<PlayerData> OptimizeLineupToFitBudget();
 
 void PopulateProbableRainoutGames();
