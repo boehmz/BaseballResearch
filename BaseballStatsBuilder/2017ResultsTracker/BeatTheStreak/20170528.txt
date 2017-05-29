@@ -1,0 +1,7 @@
+Jean Segura;1.44444;0.333;-1;
+Jose Abreu;1.4;0.464;0.555556;
+Xander Bogaerts;1.37037;0.375;-1;
+Joey Votto;1.2;0.318;-1;
+Avisail Garcia;1.2;0.333;0.5;
+Dustin Pedroia;1.19231;0.368;-1;
+Melky Cabrera;1.07692;0.346;0.307692;
