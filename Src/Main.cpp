@@ -13,15 +13,15 @@
 #include "Main.h"
 using namespace std;
 
-GameType gameType = GameType::BeatTheStreak;
+GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170527";
-int reviewDateStart = 406;
-int reviewDateEnd = 524;
-float percentOf2017SeasonPassed = 50.0f / 162.0f;
+std::string todaysDate = "20170529";
+int reviewDateStart = 515;
+int reviewDateEnd = 528;
+float percentOf2017SeasonPassed = 51.0f / 162.0f;
 
 int dayToDayInjuredPlayersNum = 1;
 string dayToDayInjuredPlayers[] = { "Szczur, Matt" };
@@ -98,6 +98,14 @@ void RefineAlgorithm()
 	if (curl)
 	{
 		vector< vector<float> > inputVariables;
+		vector<float> expectedPointsInputVariables;
+		vector<float> seasonOpsInputVariables;
+		vector<float> last30DaysOpsInputVariables;
+		vector<float> last7DaysOpsInputVariables;
+		vector<float> seasonOpsAdjustedInputVariables;
+		vector<float> last30DayAdjustedsOpsInputVariables;
+		vector<float> last7DaysOpsAdjustedInputVariables;
+		vector<float> validOutputValues;
 		float inputCoefficients[2] = { 0.0f, 1.0f };
 		vector< float > outputValues;
 
@@ -127,26 +135,23 @@ void RefineAlgorithm()
 			resultsTrackerFile.open(resultsTrackerFileName);
 
 			string resultsLine;
-			string finalWriteString;
 
 			while (getline(resultsTrackerFile, resultsLine))
 			{
 				vector<float> thisInputVariables;
 				thisInputVariables.push_back(0);
 				thisInputVariables.push_back(0);
-				size_t columnStartIndex = resultsLine.find(";", 0);
-				string thisPlayerId = resultsLine.substr(0, columnStartIndex);
+				vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
+				string thisPlayerId = lineValues[0];
 
 
 				FullSeasonStats player2016Stats = GetBatterStats(thisPlayerId, "2017", curl);
-				columnStartIndex = resultsLine.find(";", columnStartIndex + 1);
-				size_t nextIndex = resultsLine.find(";", columnStartIndex + 1);
-				string opposingHandedness = resultsLine.substr(columnStartIndex + 1, nextIndex - columnStartIndex - 1);
-				if (opposingHandedness == "L")
+				if (lineValues[2] == "L")
 					thisInputVariables[1] = player2016Stats.averagePpgVsLefty;
 				else
 					thisInputVariables[1] = player2016Stats.averagePpgVsRighty;
 				thisInputVariables[0] = player2016Stats.averagePpg;
+
 
 				size_t playerIdIndex = actualResults.find(";" + thisPlayerId + ";", 0);
 				if (playerIdIndex != string::npos && thisInputVariables[1] > 0)
@@ -157,11 +162,24 @@ void RefineAlgorithm()
 						playerIdIndex = actualResults.find(";", playerIdIndex + 1);
 					}
 					size_t nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
+					expectedPointsInputVariables.push_back(stof(lineValues[3].c_str()));
 					outputValues.push_back(stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str()));
-				}
 
-				finalWriteString += resultsLine;
-				finalWriteString += "\n";
+					float seasonOps = stof(lineValues[4].c_str());
+					float last30DaysOps = stof(lineValues[5].c_str());
+					float last7DaysOps = stof(lineValues[6].c_str());
+					if (seasonOps >= 0 && last30DaysOps >= 0 && last7DaysOps >= 0)
+					{
+						float adjustmentFactor = stof(lineValues[7].c_str()) * stof(lineValues[8].c_str());
+						seasonOpsInputVariables.push_back(seasonOps);
+						last30DaysOpsInputVariables.push_back(last30DaysOps);
+						last7DaysOpsInputVariables.push_back(last7DaysOps);
+						seasonOpsAdjustedInputVariables.push_back(seasonOps * adjustmentFactor);
+						last30DayAdjustedsOpsInputVariables.push_back(last30DaysOps * adjustmentFactor);
+						last7DaysOpsAdjustedInputVariables.push_back(last7DaysOps * adjustmentFactor);
+						validOutputValues.push_back(outputValues[outputValues.size() - 1]);
+					}
+				}
 			}
 			resultsTrackerFile.close();
 		}
@@ -202,11 +220,17 @@ void RefineAlgorithm()
 			inputCoefficients[1] -= fCoefficientStep;
 		}
 
+		float expectedPointsRSquared = CalculateRSquared(expectedPointsInputVariables, outputValues);
+		
+		float seasonOpsRSquared = CalculateRSquared(seasonOpsInputVariables, validOutputValues);
+		float last30OpsRSquared = CalculateRSquared(last30DaysOpsInputVariables, validOutputValues);
+		float last7OpsRSquared = CalculateRSquared(last7DaysOpsInputVariables, validOutputValues);
+		float seasonOpsAdjustedRSquared = CalculateRSquared(seasonOpsAdjustedInputVariables, validOutputValues);
+		float last30OpsAdjustedRSquared = CalculateRSquared(last30DayAdjustedsOpsInputVariables, validOutputValues);
+		float last7OpsAdjustedRSquared = CalculateRSquared(last7DaysOpsAdjustedInputVariables, validOutputValues);
+
 		inputCoefficients[0] = inputCoefficients[0];
 
-	//	ofstream writeResultsTrackerFile(resultsTrackerFileName);
-	//	writeResultsTrackerFile << finalWriteString;
-	//	writeResultsTrackerFile.close();
 	}
 }
 

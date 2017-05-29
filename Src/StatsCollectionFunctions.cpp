@@ -43,7 +43,7 @@ string ReplaceURLWhiteSpaces(string originalURL)
 float CalculateRSquared(vector<float> finalInputs, vector<float> outputValues)
 {
 	if (finalInputs.size() != outputValues.size())
-		return 0;
+		return -2;
 
 	float inputAverage = 0;
 	for (unsigned int i = 0; i < finalInputs.size(); ++i)
