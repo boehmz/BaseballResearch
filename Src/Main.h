@@ -154,12 +154,15 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 void AssembleBatterSplits(CURL *curl);
 std::string ConvertFLNameToLFName(std::string firstLast);
 std::string ConvertLFNameToFLName(std::string lastFirst);
+std::string IntToDateYMD(int date, bool roundup = false);
 
 std::vector<PlayerData> OptimizeLineupToFitBudget();
 
 void PopulateProbableRainoutGames(CURL* curl);
 
 void Analyze2016Stats();
+void AnalyzeTeamWinFactors();
+void GatherTeamWins();
 
 void UnitTestAllStatCollectionFunctions();
 

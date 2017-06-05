@@ -18,13 +18,13 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170529";
+std::string todaysDate = "20170602";
 int reviewDateStart = 515;
-int reviewDateEnd = 528;
-float percentOf2017SeasonPassed = 51.0f / 162.0f;
+int reviewDateEnd = 531;
+float percentOf2017SeasonPassed = 55.0f / 162.0f;
 
 int dayToDayInjuredPlayersNum = 1;
-string dayToDayInjuredPlayers[] = { "Szczur, Matt" };
+string dayToDayInjuredPlayers[] = { "Polanco, Gregory" };
 
 string pitcherOpponentTeamCode = "";
 
@@ -38,13 +38,16 @@ vector<string> probableRainoutGames;
 
 int main(void)
 {
-	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest};
-	ProcessType processType = ProcessType::GenerateLineup;
+	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
+	ProcessType processType = ProcessType::AnalyzeTeamWins;
 
 	switch (processType)
 	{
 	case UnitTest:
 		UnitTestAllStatCollectionFunctions();
+		break;
+	case AnalyzeTeamWins:
+		AnalyzeTeamWinFactors();
 		break;
 	case Analyze2016:
 		Analyze2016Stats();
@@ -105,6 +108,7 @@ void RefineAlgorithm()
 		vector<float> seasonOpsAdjustedInputVariables;
 		vector<float> last30DayAdjustedsOpsInputVariables;
 		vector<float> last7DaysOpsAdjustedInputVariables;
+		vector<float> pitcherFactorInputVariables;
 		vector<float> validOutputValues;
 		float inputCoefficients[2] = { 0.0f, 1.0f };
 		vector< float > outputValues;
@@ -170,14 +174,16 @@ void RefineAlgorithm()
 					float last7DaysOps = stof(lineValues[6].c_str());
 					if (seasonOps >= 0 && last30DaysOps >= 0 && last7DaysOps >= 0)
 					{
-						float adjustmentFactor = stof(lineValues[7].c_str()) * stof(lineValues[8].c_str());
+						float adjustmentFactor = stof(lineValues[7].c_str());// *stof(lineValues[8].c_str());
 						seasonOpsInputVariables.push_back(seasonOps);
 						last30DaysOpsInputVariables.push_back(last30DaysOps);
 						last7DaysOpsInputVariables.push_back(last7DaysOps);
 						seasonOpsAdjustedInputVariables.push_back(seasonOps * adjustmentFactor);
 						last30DayAdjustedsOpsInputVariables.push_back(last30DaysOps * adjustmentFactor);
 						last7DaysOpsAdjustedInputVariables.push_back(last7DaysOps * adjustmentFactor);
+						pitcherFactorInputVariables.push_back(stof(lineValues[7].c_str()));
 						validOutputValues.push_back(outputValues[outputValues.size() - 1]);
+
 					}
 				}
 			}
@@ -228,7 +234,7 @@ void RefineAlgorithm()
 		float seasonOpsAdjustedRSquared = CalculateRSquared(seasonOpsAdjustedInputVariables, validOutputValues);
 		float last30OpsAdjustedRSquared = CalculateRSquared(last30DayAdjustedsOpsInputVariables, validOutputValues);
 		float last7OpsAdjustedRSquared = CalculateRSquared(last7DaysOpsAdjustedInputVariables, validOutputValues);
-
+		float pitcherFactorRSquared = CalculateRSquared(pitcherFactorInputVariables, validOutputValues);
 		inputCoefficients[0] = inputCoefficients[0];
 
 	}
@@ -911,7 +917,16 @@ void GenerateNewLineup(CURL *curl)
 			singlePlayerData.playerPointsPerGame *= pitcherFactor * ballParkFactor;
 			singlePlayerData.pitcherFactor = pitcherFactor;
 			singlePlayerData.parkFactor = ballParkFactor;
-
+			auto playerSplits = allBattersSplits.find(ConvertLFNameToFLName(singlePlayerData.playerName));
+			if (playerSplits != allBattersSplits.end())
+			{
+				singlePlayerData.playerPointsPerGame = playerSplits->second.opsLast30Days * 1000.0f;
+				singlePlayerData.playerPointsPerGame *= pitcherFactor;
+			}
+			else
+			{
+				singlePlayerData.playerPointsPerGame = 0;
+			}
 			
 			int gameStartTime = 24;
 			size_t colonIndex = readBuffer.find(":", placeHolderIndex + 1);
@@ -1750,6 +1765,278 @@ void UnitTestAllStatCollectionFunctions()
 	assert(abs(kauffmanAverageFactorRightyBatter - 1.03f) < 0.01f);
 	assert(abs(coorsRunsFactorLeftyBatter - 1.32f) < 0.01f);
 	assert(abs(coorsRunsFactorRightyBatter - 1.37f) < 0.01f);
+}
+
+string ConvertOddsPortalNameToTeamRankingsName(string oddsportalTeamName)
+{
+	string teamCodesData = GetEntireFileContents("TeamCodes.txt");
+
+	size_t teamNameIndex = teamCodesData.find(oddsportalTeamName, 0);
+	if (teamNameIndex == string::npos && oddsportalTeamName.find("Cardinals") != string::npos)
+	{
+		teamNameIndex = teamCodesData.find("Cardinals");
+	}
+	for (int i = 0; i < 2; ++i)
+	{
+		teamNameIndex = teamCodesData.find(";", teamNameIndex + 1);
+	}
+	size_t teamNameEndIndex = teamCodesData.find(";", teamNameIndex + 1);
+	return teamCodesData.substr(teamNameIndex + 1, teamNameEndIndex - teamNameIndex - 1);
+}
+
+void AnalyzeTeamWinFactors()
+{
+	CURL* curl = NULL;
+	//GatherTeamWins();
+	fstream allGamesFile;
+	allGamesFile.open("2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt");
+	ofstream gamesFactorsFile;
+	gamesFactorsFile.open("2017ResultsTracker\\OddsWinsResults\\AllGamesFactors.txt");
+	string resultsLine;
+	string currentDate = "";
+	string currentDateOpsStats = "";
+	string currentDateRunsStats = "";
+	while (getline(allGamesFile, resultsLine))
+	{
+		vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
+		string dateWithDashes = lineValues[0].substr(0,4) + "-" + lineValues[0].substr(4,2) + "-" + lineValues[0].substr(6,2);
+		if (dateWithDashes != currentDate)
+		{
+			currentDate = dateWithDashes;
+			string opsFileName = "2017ResultsTracker\\OddsWinsResults\\TeamOpsCachedData\\" + currentDate + ".txt";
+			currentDateOpsStats = GetEntireFileContents(opsFileName);
+			if (currentDateOpsStats == "")
+			{
+				CurlGetSiteContents(curl, "https://www.teamrankings.com/mlb/stat/on-base-plus-slugging-pct?date=" + currentDate, currentDateOpsStats);
+				ofstream opsOutputFile;
+				opsOutputFile.open(opsFileName);
+				opsOutputFile << currentDateOpsStats;
+				opsOutputFile.close();
+			}
+			string runsFileName = "2017ResultsTracker\\OddsWinsResults\\TeamRunsCachedData\\" + currentDate + ".txt";
+			currentDateRunsStats = GetEntireFileContents(runsFileName);
+			if (currentDateRunsStats == "")
+			{
+				CurlGetSiteContents(curl, "https://www.teamrankings.com/mlb/stat/runs-per-game?date=" + currentDate, currentDateRunsStats);
+				ofstream runsOutputFile;
+				runsOutputFile.open(runsFileName);
+				runsOutputFile << currentDateRunsStats;
+				runsOutputFile.close();
+			}
+		}
+		if (lineValues[4].find(" - ") != string::npos || lineValues[5].find(" - ") != string::npos)
+			continue;
+		
+		string winningTeamRankingsName = ConvertOddsPortalNameToTeamRankingsName(lineValues[2]);
+		string losingTeamRankingsName = ConvertOddsPortalNameToTeamRankingsName(lineValues[3]);
+		size_t teamOpsEnd = currentDateOpsStats.find(">" + winningTeamRankingsName + "<");
+		for (int i = 0; i < 2; ++i)
+		{
+			teamOpsEnd = currentDateOpsStats.find("</td>", teamOpsEnd + 1);
+		}
+		size_t teamOpsBegin = currentDateOpsStats.rfind(">", teamOpsEnd - 1);
+		float winningTeamOps = stof(currentDateOpsStats.substr(teamOpsBegin + 1, teamOpsEnd - teamOpsBegin - 1));
+
+		teamOpsEnd = currentDateOpsStats.find(">" + losingTeamRankingsName + "<");
+		for (int i = 0; i < 2; ++i)
+		{
+			teamOpsEnd = currentDateOpsStats.find("</td>", teamOpsEnd + 1);
+		}
+		teamOpsBegin = currentDateOpsStats.rfind(">", teamOpsEnd - 1);
+		float losingTeamOps = stof(currentDateOpsStats.substr(teamOpsBegin + 1, teamOpsEnd - teamOpsBegin - 1));
+		float opsDiff = winningTeamOps - losingTeamOps;
+
+		size_t teamRunsEnd = currentDateRunsStats.find(">" + winningTeamRankingsName + "<");
+		for (int i = 0; i < 2; ++i)
+		{
+			teamRunsEnd = currentDateRunsStats.find("</td>", teamRunsEnd + 1);
+		}
+		size_t teamRunsBegin = currentDateRunsStats.rfind(">", teamRunsEnd - 1);
+		float winningTeamRuns = stof(currentDateRunsStats.substr(teamRunsBegin + 1, teamRunsEnd - teamRunsBegin - 1));
+
+		teamRunsEnd = currentDateRunsStats.find(">" + losingTeamRankingsName + "<");
+		for (int i = 0; i < 2; ++i)
+		{
+			teamRunsEnd = currentDateRunsStats.find("</td>", teamRunsEnd + 1);
+		}
+		teamRunsBegin = currentDateRunsStats.rfind(">", teamRunsEnd - 1);
+		float losingTeamRuns = stof(currentDateRunsStats.substr(teamRunsBegin + 1, teamRunsEnd - teamRunsBegin - 1));
+		float runsDiff = winningTeamRuns - losingTeamRuns;
+
+
+		int winningMoneyLine = atoi(lineValues[4].c_str());
+		int losingMoneyLine = atoi(lineValues[5].c_str());
+		if (winningMoneyLine <= -150 || losingMoneyLine <= -150)
+		//if ((opsDiff >= 0 && winningMoneyLine > losingMoneyLine) ||
+		//	(opsDiff <= 0 && winningMoneyLine < losingMoneyLine))
+		{
+			gamesFactorsFile << lineValues[0] << ";";
+			gamesFactorsFile << winningMoneyLine << ";" << losingMoneyLine << ";";
+			
+			
+			if (winningMoneyLine > losingMoneyLine)
+				gamesFactorsFile << losingMoneyLine << ";";
+			else
+			{
+				gamesFactorsFile << "10;";// (-1000.0f / (float)winningMoneyLine) << "; ";
+			}
+			if (opsDiff > 0)
+			{
+				if (winningMoneyLine > 0)
+					gamesFactorsFile << winningMoneyLine << ";";
+				else
+					gamesFactorsFile << (-10000.0f / (float)winningMoneyLine) << "; ";
+			}
+			else
+			{
+				gamesFactorsFile << "-10;";
+			}
+			gamesFactorsFile << opsDiff << ";" << runsDiff << ";";
+			gamesFactorsFile << endl;
+		}
+	}
+	gamesFactorsFile.close();
+	allGamesFile.close();
+}
+
+void GatherTeamWins()
+{
+	CURL* curl = NULL;
+	string pageData = "";
+	for (int i = -1; i <= 12; ++i)
+	{
+		char iCStr[4];
+		_itoa_s(i, iCStr, 10);
+		string iStr = iCStr;
+		pageData += GetEntireFileContents("2017ResultsTracker\\OddsWinsResults\\CachedPage" + iStr + ".txt");
+	}
+	fstream allGamesFile;
+	allGamesFile.open("2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt");
+
+	for (int d = 415; d <= 604; ++d)
+	{
+		int monthInteger = (d / 100) * 100;
+		int isolatedDay = d - (monthInteger);
+		char thisDayCStr[3];
+		_itoa_s(isolatedDay, thisDayCStr, 10);
+		string thisDay = thisDayCStr;
+		if (isolatedDay < 10)
+			thisDay = "0" + thisDay;
+		string thisMonth = "";
+		switch (d / 100)
+		{
+		case 3:
+			thisMonth = "March";
+			break;
+		case 4:
+			thisMonth = "Apr";
+			break;
+		case 5:
+			thisMonth = "May";
+			break;
+		case 6:
+			thisMonth = "Jun";
+			break;
+		case 7:
+			thisMonth = "Jul";
+			break;
+		case 8:
+			thisMonth = "Aug";
+			break;
+		case 9:
+			thisMonth = "Sep";
+			break;
+		case 10:
+			thisMonth = "Oct";
+			break;
+		case 11:
+			thisMonth = "Nov";
+			break;
+		}
+
+
+		ofstream winResultsOutputFile;
+		string winResultsFileName = "2017ResultsTracker\\OddsWinsResults\\";
+		winResultsFileName += IntToDateYMD(d) +".txt";
+		winResultsOutputFile.open(winResultsFileName);
+
+		string dateSearchString = thisDay + " " + thisMonth + " 2017";
+		size_t dateIndex = pageData.find(dateSearchString);
+		while (dateIndex != string::npos)
+		{
+			size_t nextDateIndex = pageData.find(" 2017", dateIndex + 9);
+			size_t gameGroup = pageData.find("table-time datet", dateIndex);
+			size_t gameGroupPrev = gameGroup;
+			gameGroup = pageData.find("table-time datet", gameGroupPrev + 1);
+			while (gameGroup != string::npos)
+			{
+				string gameString = pageData.substr(gameGroupPrev, gameGroup - gameGroupPrev);
+				if (gameString.find("abandon") == string::npos)
+				{
+					size_t timeIndex = gameString.find(":");
+					size_t prevTimeIndex = gameString.find(">");
+					string timeString = gameString.substr(prevTimeIndex + 1, timeIndex - prevTimeIndex - 1);
+					size_t winningTeamNameIndex = gameString.find("</span>", 0);
+					size_t teamNamePrevIndex = gameString.rfind(">", winningTeamNameIndex);
+					string winningTeamName = gameString.substr(teamNamePrevIndex + 1, winningTeamNameIndex - teamNamePrevIndex - 1);
+					size_t losingTeamNameIndex = gameString.find(" - ");
+					if (losingTeamNameIndex > winningTeamNameIndex)
+					{
+						teamNamePrevIndex = losingTeamNameIndex + 2;
+						losingTeamNameIndex = gameString.find("<", teamNamePrevIndex);
+					}
+					else
+					{
+						teamNamePrevIndex = gameString.rfind(">", losingTeamNameIndex);
+					}
+					string losingTeamName = gameString.substr(teamNamePrevIndex + 1, losingTeamNameIndex - teamNamePrevIndex - 1);
+
+					size_t payoutIndex = gameString.find("</a></td>", winningTeamNameIndex);
+					if (gameString.find("extra inning") == string::npos)
+						payoutIndex = gameString.find("</a></td>", payoutIndex + 1);
+					string losingTeamPayoutString;
+					size_t payoutIndexPrev;
+					if (winningTeamNameIndex > losingTeamNameIndex)
+					{
+						payoutIndexPrev = gameString.rfind(">", payoutIndex);
+						losingTeamPayoutString = gameString.substr(payoutIndexPrev + 1, payoutIndex - payoutIndexPrev - 1);
+						payoutIndex = gameString.find("</a></td>", payoutIndex + 1);
+					}
+					payoutIndexPrev = gameString.rfind(">", payoutIndex);
+					string payoutString = gameString.substr(payoutIndexPrev + 1, payoutIndex - payoutIndexPrev - 1);
+					if (winningTeamNameIndex < losingTeamNameIndex)
+					{
+						payoutIndex = gameString.find("</a></td>", payoutIndex + 1);
+						payoutIndexPrev = gameString.rfind(">", payoutIndex);
+						losingTeamPayoutString = gameString.substr(payoutIndexPrev + 1, payoutIndex - payoutIndexPrev - 1);
+					}
+
+					if (winningTeamName.find("&") == string::npos && losingTeamName.find("&") == string::npos)
+					{
+						string yearMonthDate = IntToDateYMD(atoi(timeString.c_str()) <= 7 ? d - 1 : d);
+						winResultsOutputFile << yearMonthDate << ";" << timeString << ";";
+						winResultsOutputFile << winningTeamName << ";" << losingTeamName << ";" << payoutString << ";" << losingTeamPayoutString << ";";
+						winResultsOutputFile << endl;
+					}
+				}
+				if (gameGroup < nextDateIndex)
+				{
+					gameGroupPrev = gameGroup;
+					gameGroup = pageData.find("table-time datet", gameGroupPrev + 1);
+					if (gameGroup >= nextDateIndex)
+						gameGroup = nextDateIndex;
+				}
+				else
+					break;
+			}
+			dateIndex = pageData.find(dateSearchString, dateIndex + 1);
+			if (dateIndex != string::npos)
+				int x = 0;
+		}
+		winResultsOutputFile.close();
+		allGamesFile << GetEntireFileContents(winResultsFileName);
+	}
+	allGamesFile.close();
 }
 
 void Analyze2016Stats()
@@ -2706,6 +2993,43 @@ std::string ConvertLFNameToFLName(std::string lastFirst)
 		convertedName += lastFirst.substr(0, commaIndex);
 	}
 	return convertedName;
+}
+std::string IntToDateYMD(int date, bool roundUp)
+{
+	int monthInteger = (date / 100);
+	int isolatedDay = date - (monthInteger * 100);
+	if (isolatedDay == 0)
+	{
+		monthInteger--;
+		date -= 100;
+		switch (monthInteger)
+		{
+		case 4:
+		case 6:
+		case 9:
+			isolatedDay = 30;
+			break;
+		default:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+			isolatedDay = 31;
+			break;
+		}
+		date = monthInteger * 100 + isolatedDay;
+	}
+	
+	char thisDateCStr[5];
+	_itoa_s(date, thisDateCStr, 10);
+	string thisDate = thisDateCStr;
+
+	string dateFormatted = "2017";
+	if (date < 1000)
+		dateFormatted += "0";
+	dateFormatted += thisDate;
+	return dateFormatted;
 }
 
 void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuffer)
