@@ -1,4 +1,4 @@
-20170527/ZachDateMetaData
+20170602/ZachDateMetaData
 text/javascript"></script>
 
 <script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=yONnNeg0_tp3KoLSBL2DqY6gAKfm_dA7JxGUf1pSEcg1"></script>
@@ -210,7 +210,7 @@ text/javascript"></script>
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-26">Probable Pitchers</a>
+                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-06-01">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -525,14 +525,14 @@ text/javascript"></script>
                             <strong style="font-size:15pt;">Michael Fulmer</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 3/15/1993 (24 y, 2 m, 12 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-3/210 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=13218&position=P#draft" style="text-decoration:none;">2011 June Amateur Draft - Round: 1s, Pick: 11, Overall: 44, Team: New York Mets</a><br /><strong>Contract:</strong> <a href="contractmake.aspx?playerid=13218" style="text-decoration:none;">Add New Contract</a>
+                            <strong>Birthdate:</strong> 3/15/1993 (24 y, 2 m, 18 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-3/210 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=13218&position=P#draft" style="text-decoration:none;">2011 June Amateur Draft - Round: 1s, Pick: 11, Overall: 44, Team: New York Mets</a><br /><strong>Contract:</strong> <a href="contractmake.aspx?playerid=13218" style="text-decoration:none;">Add New Contract</a>
                         </div>
                     </td>
                     <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><span style="padding-left:0px;"><b>Reported</b>: 1/1/2015&nbsp;&nbsp;<b>Risk</b>: 4&nbsp;&nbsp;<b>ETA</b>: 2017&nbsp;&nbsp;<b>Team Rank</b>: NA&nbsp;&nbsp;<b>Positional Rank</b>: NA&nbsp;&nbsp;<b>Overall Rank</b>: NA</span><table class="depth_chart" cellspacing="0" cellpadding="2" style="margin-top:3px; width:90%; border:1px solid Gray; font-size:9pt; text-align:center;"><tr><td style="background-color:Gray; color:white;">Fastball</td><td style="background-color:Gray; color:white;">Slider</td><td style="background-color:Gray; color:white;">Curveball</td><td style="background-color:Gray; color:white;">Changeup</td><td style="background-color:Gray; color:white;">Command</td><td style="background-color:Gray; color:white;">Future Value</td></tr><tr class="depth_team"><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">65 / 70</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">50 / 55</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">50 / 60</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">45 / 45+</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">40 / 45+</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">45</td></tr></table></div></td></tr>
-                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=12183" style="text-decoration:none;">RotoWire News</a>:</b> Fulmer (5-2) allowed just one run on eight hits and a walk while striking out four over seven innings, but he was handed a tough-luck loss Monday in 1-0 defeat in Houston. (5/23/2017)</div></td></tr>
+                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=12183" style="text-decoration:none;">RotoWire News</a>:</b> Fulmer (5-4) allowed three runs on nine hits and one walk while striking out four to take the loss Saturday against the White Sox. (5/27/2017)</div></td></tr>
 
                 </tr>
-                <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">2/22/2017</span> - <a href="http://www.fangraphs.com/blogs/last-years-unluckiest-changeup/">Last Year's Unluckiest Changeup</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=22">Eno Sarris (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/last-years-unluckiest-changeup/#comments"><img src="images/commentslink.gif" border="0px" />11</a></span><br /><span class="m_date">1/26/2017</span> - <a href="http://www.fangraphs.com/fantasy/early-adp-thoughts-starting-pitcher-part-i/">Early ADP Thoughts – Starting Pitcher, Part I</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/early-adp-thoughts-starting-pitcher-part-i/#comments"><img src="images/commentslink.gif" border="0px" />23</a></span><br /><span class="m_date">1/19/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-419-slotting-sluggers/">The Sleeper and the Bust Episode: 419 – Slotting S&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-419-slotting-sluggers/#comments"><img src="images/commentslink.gif" border="0px" />0</a></span><br /><span class="m_date">11/14/2016</span> - <a href="http://www.fangraphs.com/blogs/why-i-voted-for-michael-fulmer/">Why I Voted for Michael Fulmer</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=7030">Jeff Sullivan (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/why-i-voted-for-michael-fulmer/#comments"><img src="images/commentslink.gif" border="0px" />26</a></span><br /><span class="m_date">9/28/2016</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-394-playing-hurt-hidden-second-halves/">The Sleeper and the Bust Episode: 394 – Playing Hu&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-394-playing-hurt-hidden-second-halves/#comments"><img src="images/commentslink.gif" border="0px" />2</a></span><br /></div></td></tr>
+                <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">5/31/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-462-checking-in-wera-leaders/">The Sleeper and the Bust Episode: 462 – Checking I&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-462-checking-in-wera-leaders/#comments"><img src="images/commentslink.gif" border="0px" />4</a></span><br /><span class="m_date">2/22/2017</span> - <a href="http://www.fangraphs.com/blogs/last-years-unluckiest-changeup/">Last Year's Unluckiest Changeup</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=22">Eno Sarris (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/last-years-unluckiest-changeup/#comments"><img src="images/commentslink.gif" border="0px" />11</a></span><br /><span class="m_date">1/26/2017</span> - <a href="http://www.fangraphs.com/fantasy/early-adp-thoughts-starting-pitcher-part-i/">Early ADP Thoughts – Starting Pitcher, Part I</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/early-adp-thoughts-starting-pitcher-part-i/#comments"><img src="images/commentslink.gif" border="0px" />23</a></span><br /><span class="m_date">1/19/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-419-slotting-sluggers/">The Sleeper and the Bust Episode: 419 – Slotting S&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-419-slotting-sluggers/#comments"><img src="images/commentslink.gif" border="0px" />0</a></span><br /><span class="m_date">11/14/2016</span> - <a href="http://www.fangraphs.com/blogs/why-i-voted-for-michael-fulmer/">Why I Voted for Michael Fulmer</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=7030">Jeff Sullivan (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/why-i-voted-for-michael-fulmer/#comments"><img src="images/commentslink.gif" border="0px" />26</a></span><br /></div></td></tr>
 
                 <tr id="so1" style="background-color: #FFF;"><td colspan="5" style="border-top:2px solid #D3D3D3; padding:3px; text-align:justify;"><div class="m_stories" style="width:100%; font-size:10pt"><center>Profiles:&nbsp;&nbsp;<a id="soa9"  href="javascript:showMoreSO2017();">2017</a>&nbsp;&nbsp;(Click Year to Expand / <a href="javascript:hideSO('so1');">Close</a>)</center></div></td></tr>
                 
@@ -918,9 +918,9 @@ text/javascript"></script>
 	<tr class="rgRow" id="SeasonSplits1_dgSeason1_ctl00__0">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">159.0</td><td class="grid_line_regular" align="right">3.06</td><td class="grid_line_regular" align="right">647</td><td class="grid_line_regular" align="right">136</td><td class="grid_line_regular" align="right">27</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">57</td><td class="grid_line_regular" align="right">54</td><td class="grid_line_regular" align="right">16</td><td class="grid_line_regular" align="right">42</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">9</td><td class="grid_line_regular" align="right">132</td><td class="grid_line_regular" align="right">.228</td><td class="grid_line_regular" align="right">.291</td><td class="grid_line_regular" align="right">.361</td><td class="grid_line_regular" align="right">.285</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason1_ctl00__1">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">60.0</td><td class="grid_line_regular" align="right">2.55</td><td class="grid_line_regular" align="right">245</td><td class="grid_line_regular" align="right">51</td><td class="grid_line_regular" align="right">9</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">19</td><td class="grid_line_regular" align="right">17</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">14</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">50</td><td class="grid_line_regular" align="right">.225</td><td class="grid_line_regular" align="right">.282</td><td class="grid_line_regular" align="right">.320</td><td class="grid_line_regular" align="right">.266</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">68.0</td><td class="grid_line_regular" align="right">2.65</td><td class="grid_line_regular" align="right">277</td><td class="grid_line_regular" align="right">60</td><td class="grid_line_regular" align="right">9</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">22</td><td class="grid_line_regular" align="right">20</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">15</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">54</td><td class="grid_line_regular" align="right">.233</td><td class="grid_line_regular" align="right">.285</td><td class="grid_line_regular" align="right">.324</td><td class="grid_line_regular" align="right">.269</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason1_ctl00__2">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">219.0</td><td class="grid_line_regular" align="right">2.92</td><td class="grid_line_regular" align="right">892</td><td class="grid_line_regular" align="right">187</td><td class="grid_line_regular" align="right">36</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">76</td><td class="grid_line_regular" align="right">71</td><td class="grid_line_regular" align="right">20</td><td class="grid_line_regular" align="right">56</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">13</td><td class="grid_line_regular" align="right">182</td><td class="grid_line_regular" align="right">.227</td><td class="grid_line_regular" align="right">.288</td><td class="grid_line_regular" align="right">.350</td><td class="grid_line_regular" align="right">.280</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">227.0</td><td class="grid_line_regular" align="right">2.93</td><td class="grid_line_regular" align="right">924</td><td class="grid_line_regular" align="right">196</td><td class="grid_line_regular" align="right">36</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">79</td><td class="grid_line_regular" align="right">74</td><td class="grid_line_regular" align="right">20</td><td class="grid_line_regular" align="right">57</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">13</td><td class="grid_line_regular" align="right">186</td><td class="grid_line_regular" align="right">.230</td><td class="grid_line_regular" align="right">.289</td><td class="grid_line_regular" align="right">.350</td><td class="grid_line_regular" align="right">.280</td>
 	</tr>
 	</tbody>
 
@@ -957,9 +957,9 @@ text/javascript"></script>
 	<tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__0">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.47</td><td class="grid_line_regular" align="right">2.38</td><td class="grid_line_regular" align="right">3.14</td><td class="grid_line_regular" align="right">0.91</td><td class="grid_line_regular" align="right">20.4 %</td><td class="grid_line_regular" align="right">6.5 %</td><td class="grid_line_regular" align="right">13.9 %</td><td class="grid_line_regular" align="right">.228</td><td class="grid_line_regular" align="right">1.12</td><td class="grid_line_regular" align="right">.268</td><td class="grid_line_regular" align="right">79.0 %</td><td class="grid_line_regular" align="right">3.76</td><td class="grid_line_regular" align="right">3.95</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__1">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.50</td><td class="grid_line_regular" align="right">2.10</td><td class="grid_line_regular" align="right">3.57</td><td class="grid_line_regular" align="right">0.60</td><td class="grid_line_regular" align="right">20.4 %</td><td class="grid_line_regular" align="right">5.7 %</td><td class="grid_line_regular" align="right">14.7 %</td><td class="grid_line_regular" align="right">.225</td><td class="grid_line_regular" align="right">1.08</td><td class="grid_line_regular" align="right">.272</td><td class="grid_line_regular" align="right">78.9 %</td><td class="grid_line_regular" align="right">3.13</td><td class="grid_line_regular" align="right">3.78</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.15</td><td class="grid_line_regular" align="right">1.99</td><td class="grid_line_regular" align="right">3.60</td><td class="grid_line_regular" align="right">0.53</td><td class="grid_line_regular" align="right">19.5 %</td><td class="grid_line_regular" align="right">5.4 %</td><td class="grid_line_regular" align="right">14.1 %</td><td class="grid_line_regular" align="right">.233</td><td class="grid_line_regular" align="right">1.10</td><td class="grid_line_regular" align="right">.280</td><td class="grid_line_regular" align="right">77.7 %</td><td class="grid_line_regular" align="right">3.05</td><td class="grid_line_regular" align="right">3.88</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__2">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.48</td><td class="grid_line_regular" align="right">2.30</td><td class="grid_line_regular" align="right">3.25</td><td class="grid_line_regular" align="right">0.82</td><td class="grid_line_regular" align="right">20.4 %</td><td class="grid_line_regular" align="right">6.3 %</td><td class="grid_line_regular" align="right">14.1 %</td><td class="grid_line_regular" align="right">.227</td><td class="grid_line_regular" align="right">1.11</td><td class="grid_line_regular" align="right">.269</td><td class="grid_line_regular" align="right">79.0 %</td><td class="grid_line_regular" align="right">3.58</td><td class="grid_line_regular" align="right">3.90</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.37</td><td class="grid_line_regular" align="right">2.26</td><td class="grid_line_regular" align="right">3.26</td><td class="grid_line_regular" align="right">0.79</td><td class="grid_line_regular" align="right">20.1 %</td><td class="grid_line_regular" align="right">6.2 %</td><td class="grid_line_regular" align="right">14.0 %</td><td class="grid_line_regular" align="right">.230</td><td class="grid_line_regular" align="right">1.11</td><td class="grid_line_regular" align="right">.272</td><td class="grid_line_regular" align="right">78.6 %</td><td class="grid_line_regular" align="right">3.55</td><td class="grid_line_regular" align="right">3.93</td>
 	</tr>
 	</tbody>
 
@@ -999,9 +999,9 @@ text/javascript"></script>
 	<tr class="rgRow" id="SeasonSplits1_dgSeason3_ctl00__0">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.56</td><td class="grid_line_regular" align="right">19.4 %</td><td class="grid_line_regular" align="right">49.1 %</td><td class="grid_line_regular" align="right">31.5 %</td><td class="grid_line_regular" align="right">11.2 %</td><td class="grid_line_regular" align="right">11.2 %</td><td class="grid_line_regular" align="right">4.5 %</td><td class="grid_line_regular" align="right">50.0 %</td><td class="grid_line_break" align="right">45.9 %</td><td class="grid_line_regular" align="right">34.5 %</td><td class="grid_line_regular" align="right">19.6 %</td><td class="grid_line_break" align="right">19.2 %</td><td class="grid_line_regular" align="right">50.4 %</td><td class="grid_line_regular" align="right">30.4 %</td><td class="grid_line_break" align="right">2468</td><td class="grid_line_regular" align="right">890</td><td class="grid_line_regular" align="right">1578</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason3_ctl00__1">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.60</td><td class="grid_line_regular" align="right">21.6 %</td><td class="grid_line_regular" align="right">48.3 %</td><td class="grid_line_regular" align="right">30.1 %</td><td class="grid_line_regular" align="right">11.3 %</td><td class="grid_line_regular" align="right">7.5 %</td><td class="grid_line_regular" align="right">4.7 %</td><td class="grid_line_regular" align="right">100.0 %</td><td class="grid_line_break" align="right">39.6 %</td><td class="grid_line_regular" align="right">35.0 %</td><td class="grid_line_regular" align="right">25.4 %</td><td class="grid_line_break" align="right">17.0 %</td><td class="grid_line_regular" align="right">57.6 %</td><td class="grid_line_regular" align="right">25.4 %</td><td class="grid_line_break" align="right">931</td><td class="grid_line_regular" align="right">335</td><td class="grid_line_regular" align="right">596</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.56</td><td class="grid_line_regular" align="right">20.3 %</td><td class="grid_line_regular" align="right">48.5 %</td><td class="grid_line_regular" align="right">31.2 %</td><td class="grid_line_regular" align="right">11.1 %</td><td class="grid_line_regular" align="right">6.3 %</td><td class="grid_line_regular" align="right">5.1 %</td><td class="grid_line_regular" align="right">100.0 %</td><td class="grid_line_break" align="right">39.2 %</td><td class="grid_line_regular" align="right">34.3 %</td><td class="grid_line_regular" align="right">26.5 %</td><td class="grid_line_break" align="right">17.7 %</td><td class="grid_line_regular" align="right">58.8 %</td><td class="grid_line_regular" align="right">23.5 %</td><td class="grid_line_break" align="right">1027</td><td class="grid_line_regular" align="right">365</td><td class="grid_line_regular" align="right">662</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason3_ctl00__2">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.57</td><td class="grid_line_regular" align="right">20.0 %</td><td class="grid_line_regular" align="right">48.9 %</td><td class="grid_line_regular" align="right">31.1 %</td><td class="grid_line_regular" align="right">11.2 %</td><td class="grid_line_regular" align="right">10.2 %</td><td class="grid_line_regular" align="right">4.5 %</td><td class="grid_line_regular" align="right">54.5 %</td><td class="grid_line_break" align="right">44.2 %</td><td class="grid_line_regular" align="right">34.6 %</td><td class="grid_line_regular" align="right">21.2 %</td><td class="grid_line_break" align="right">18.6 %</td><td class="grid_line_regular" align="right">52.4 %</td><td class="grid_line_regular" align="right">29.0 %</td><td class="grid_line_break" align="right">3399</td><td class="grid_line_regular" align="right">1225</td><td class="grid_line_regular" align="right">2174</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.56</td><td class="grid_line_regular" align="right">19.7 %</td><td class="grid_line_regular" align="right">48.9 %</td><td class="grid_line_regular" align="right">31.4 %</td><td class="grid_line_regular" align="right">11.2 %</td><td class="grid_line_regular" align="right">9.7 %</td><td class="grid_line_regular" align="right">4.7 %</td><td class="grid_line_regular" align="right">58.3 %</td><td class="grid_line_break" align="right">43.9 %</td><td class="grid_line_regular" align="right">34.4 %</td><td class="grid_line_regular" align="right">21.7 %</td><td class="grid_line_break" align="right">18.7 %</td><td class="grid_line_regular" align="right">53.0 %</td><td class="grid_line_regular" align="right">28.3 %</td><td class="grid_line_break" align="right">3495</td><td class="grid_line_regular" align="right">1255</td><td class="grid_line_regular" align="right">2240</td>
 	</tr>
 	</tbody>
 
@@ -1018,18 +1018,29 @@ text/javascript"></script>
         width: 100%;
         height: 50px;
         background-color: beige;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
     }
 
     .footer-bar {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         position: relative;
         margin-top: 10px;
         line-height: 45px;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
         padding: 0 10px;
     }
 
@@ -1052,19 +1063,36 @@ text/javascript"></script>
     }
 
     .footer-credits {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         padding: 0 10px;
     }
 
     .footer-credits-item {
-        flex: 0 1 300px;
+        -webkit-box-flex: 0;
+            -ms-flex: 0 1 300px;
+                flex: 0 1 300px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 10px;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        /*margin: 10px;*/
+        padding: 10px;
     }
 
     .footer-credits-item-name {
@@ -1076,6 +1104,32 @@ text/javascript"></script>
     .footer-credits-item img {
         max-width: 300px;
     }
+    .footer-credits-item-text {
+        width: 100%;
+    }
+
+    .footer-credits {
+        display: block;
+    }
+    .footer-credits-item {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 30.333%;
+        text-align: center;
+    }
+
+    @media (max-width: 950px) {
+
+        .footer-credits-item {
+            width: 49%;
+        }   
+    }
+    @media (max-width: 600px) {
+        .footer-credits-item {
+            width: 100%;
+        }
+    }
+
 </style>
 
 <div id="Footer1_panROS">
@@ -1099,9 +1153,11 @@ text/javascript"></script>
 </div>
 
 <div class="footer-bar">
-    <div class="footer-bar-background"></div>
+    <div class="footer-bar-background"><div class="footer-bar-item">
+        
+    </div></div>
     <div class="footer-bar-item">
-        Updated: Friday, May 26, 2017 4:37 AM ET
+        <span class="mobile-hide">Updated: Thursday, June 1, 2017 4:50 AM ET</span><span class="mobile-show">Updated: 6/1/2017 4:50 AM ET</span>
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
@@ -1112,32 +1168,32 @@ text/javascript"></script>
     <div class="footer-credits-item">
         <a href="http://www.baseballinfosolutions.com" class="footer-credits-item-name">
             <img src="/images/bis-logo-white.png" alt="bis logo" /></a>
-        All major league baseball data including pitch type, velocity, batted ball location,
-        and play-by-play data provided by Baseball Info Solutions.
+        <div class="footer-credits-item-text">All major league baseball data including pitch type, velocity, batted ball location,
+        and play-by-play data provided by Baseball Info Solutions.</div>
     </div>
     <div class="footer-credits-item">
         <a href="http://www.foxsports.com/" class="footer-credits-item-name">
             <img src="/images/badge_300.gif" /></a>
-        FOX Sports Engage Network Partner
+        <div class="footer-credits-item-text">FOX Sports Engage Network Partner</div>
     </div>
     <div class="footer-credits-item">
         <a href="http://www.stats.com" class="footer-credits-item-name">
             <img src="/images/statslogo_new.png" alt="statslogo" style="width: 100px;" /></a>
-        All minor league baseball data provided by Major League Baseball Advanced Media
-        as distributed by STATS.
+        <div class="footer-credits-item-text">All minor league baseball data provided by Major League Baseball Advanced Media
+        as distributed by STATS.</div>
     </div>
     <div class="footer-credits-item">
         <div class="footer-credits-item-name">Mitchel Lichtman</div>
-        All UZR (ultimate zone rating) calculations are provided courtesy of Mitchel Lichtman.
+        <div class="footer-credits-item-text">All UZR (ultimate zone rating) calculations are provided courtesy of Mitchel Lichtman.</div>
     </div>
     <div class="footer-credits-item">
         <a href="http://www.tangotiger.com" class="footer-credits-item-name">TangoTiger.com</a>
-        All Win Expectancy, Leverage Index, Run Expectancy, and Fans Scouting Report data licenced from TangoTiger.com
+       <div class="footer-credits-item-text"> All Win Expectancy, Leverage Index, Run Expectancy, and Fans Scouting Report data licenced from TangoTiger.com</div>
     </div>
     <div class="footer-credits-item">
         <a href="http://www.retrosheet.org" class="footer-credits-item-name">Retrosheet.org</a>
-        Play-by-play data prior to 2002 was obtained free of charge from and is copyrighted
-        by Retrosheet.
+        <div class="footer-credits-item-text">Play-by-play data prior to 2002 was obtained free of charge from and is copyrighted
+        by Retrosheet.</div>
     </div>
 </div>
 

@@ -1,0 +1,7 @@
+20170508;23;New York Yankees;Cincinnati Reds;-133;+116;
+20170508;23;St.Louis Cardinals;Miami Marlins;-116;+100;
+20170508;23;New York Mets;San Francisco Giants;-154;+134;
+20170508;23;Kansas City Royals;Tampa Bay Rays;+124;-143;
+20170508;23;Toronto Blue Jays;Cleveland Indians;-118;+102;
+20170508;23;Baltimore Orioles;Washington Nationals;-120;+104;
+20170507;00;New York Yankees;Chicago Cubs;+114;-133;

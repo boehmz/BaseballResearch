@@ -1,0 +1,12 @@
+20170420;23;Washington Nationals;Atlanta Braves;-164;+141;
+20170420;23;Baltimore Orioles;Cincinnati Reds;-118;+100;
+20170420;23;Philadelphia Phillies;New York Mets;+160;-185;
+20170420;18;Houston Astros;Los Angeles Angels;-167;+145;
+20170420;17;Cleveland Indians;Minnesota Twins;-110;-104;
+20170420;17;Tampa Bay Rays;Detroit Tigers;-125;+110;
+20170420;16;Boston Red Sox;Toronto Blue Jays;-175;+152;
+20170419;02;Los Angeles Dodgers;Colorado Rockies;-250;+215;
+20170419;02;San Diego Padres;Arizona Diamondbacks;+112;-130;
+20170419;00;Kansas City Royals;San Francisco Giants;+114;-132;
+20170419;00;Houston Astros;Los Angeles Angels;-182;+156;
+20170419;00;19 Apr;Minnesota Twins;+124;Minnesota Twins - Cleveland Indians;

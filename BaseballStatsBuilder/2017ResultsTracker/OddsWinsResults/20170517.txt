@@ -1,0 +1,17 @@
+20170517;23;Atlanta Braves;Toronto Blue Jays;-115;-101;
+20170517;23;Detroit Tigers;Baltimore Orioles;-147;+129;
+20170517;23;Pittsburgh Pirates;Washington Nationals;-133;+116;
+20170517;19;Los Angeles Dodgers;San Francisco Giants;-182;+158;
+20170517;19;Arizona Diamondbacks;New York Mets;-127;+110;
+20170517;16;Tampa Bay Rays;Cleveland Indians;+147;-167;
+20170517;16;Houston Astros;Miami Marlins;-159;+138;
+20170516;02;San Francisco Giants;Los Angeles Dodgers;+137;-156;
+20170516;02;Milwaukee Brewers;San Diego Padres;+106;-122;
+20170516;02;Oakland Athletics;Seattle Mariners;-105;-109;
+20170516;02;Los Angeles Angels;Chicago White Sox;-182;+159;
+20170516;01;Arizona Diamondbacks;New York Mets;-169;+147;
+20170516;00;New York Yankees;Kansas City Royals;-118;+100;
+20170516;00;Boston Red Sox;St.Louis Cardinals;-104;-111;
+20170516;00;Colorado Rockies;Minnesota Twins;+102;-119;
+20170516;00;Chicago Cubs;Cincinnati Reds;-200;+173;
+20170516;00;Texas Rangers;Philadelphia Phillies;-182;+158;

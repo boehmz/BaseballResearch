@@ -1,0 +1,17 @@
+20170604;23;Chicago Cubs;St.Louis Cardinals;-175;+152;
+20170604;20;Colorado Rockies;San Diego Padres;-145;+127;
+20170604;20;Seattle Mariners;Tampa Bay Rays;-135;+117;
+20170604;20;Washington Nationals;Oakland Athletics;-112;-103;
+20170604;19;Minnesota Twins;Los Angeles Angels;-132;+114;
+20170604;19;Houston Astros;Texas Rangers;-141;+124;
+20170604;18;Cleveland Indians;Kansas City Royals;-139;+120;
+20170604;18;Milwaukee Brewers;Los Angeles Dodgers;+125;-143;
+20170604;17;Boston Red Sox;Baltimore Orioles;-189;+164;
+20170604;17;Philadelphia Phillies;San Francisco Giants;-103;-111;
+20170604;17;Atlanta Braves;Cincinnati Reds;+100;-116;
+20170604;17;Detroit Tigers;Chicago White Sox;-256;+217;
+20170604;17;Miami Marlins;Arizona Diamondbacks;-141;+123;
+20170604;17;Pittsburgh Pirates;New York Mets;+108;-123;
+20170604;17;Toronto Blue Jays;New York Yankees;-116;+100;
+20170603;02;Seattle Mariners;Tampa Bay Rays;-109;-106;
+20170603;02;Los Angeles Angels;Minnesota Twins;-105;-110;

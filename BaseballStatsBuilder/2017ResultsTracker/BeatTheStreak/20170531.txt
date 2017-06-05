@@ -1,0 +1,4 @@
+Matt Kemp;1.42308;0.333;0.428571;
+Adam Duvall;1.19231;0.4;-1;
+Whit Merrifield;1.125;0.5;0.75;
+Dee Gordon;1.04;0.353;0.333333;

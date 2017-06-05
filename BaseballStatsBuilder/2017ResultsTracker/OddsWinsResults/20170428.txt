@@ -1,0 +1,9 @@
+20170428;23;Boston Red Sox;Chicago Cubs;-109;-106;
+20170428;23;Seattle Mariners;Cleveland Indians;+170;-196;
+20170428;23;Chicago White Sox;Detroit Tigers;+110;-128;
+20170428;23;Pittsburgh Pirates;Miami Marlins;+106;-122;
+20170428;23;Tampa Bay Rays;Toronto Blue Jays;+114;-132;
+20170428;23;New York Yankees;Baltimore Orioles;-109;-105;
+20170428;23;New York Mets;Washington Nationals;+124;-143;
+20170427;02;Los Angeles Angels;Oakland Athletics;-122;+106;
+20170427;01;Arizona Diamondbacks;San Diego Padres;-196;+171;

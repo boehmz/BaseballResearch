@@ -1,4 +1,4 @@
-20170527/ZachDateMetaData
+20170601/ZachDateMetaData
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -228,7 +228,7 @@
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-26">Probable Pitchers</a>
+                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-31">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -543,11 +543,11 @@
                             <strong style="font-size:15pt;">CC Sabathia</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 7/21/1980 (36 y, 10 m, 6 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-6/300 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=404&position=P#draft" style="text-decoration:none;">1998 June Amateur Draft - Round: 1, Pick: 20, Overall: 20, Team: Cleveland Indians</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=404&position=P#contract" style="text-decoration:none;">$122M / 5 Years (2012 - 2016) + 1 Option Years</a>
+                            <strong>Birthdate:</strong> 7/21/1980 (36 y, 10 m, 11 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-6/300 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=404&position=P#draft" style="text-decoration:none;">1998 June Amateur Draft - Round: 1, Pick: 20, Overall: 20, Team: Cleveland Indians</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=404&position=P#contract" style="text-decoration:none;">$122M / 5 Years (2012 - 2016) + 1 Option Years</a>
                         </div>
                     </td>
                     
-                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=6400" style="text-decoration:none;">RotoWire News</a>:</b> Sabathia (4-2) allowed two runs -- one earned -- on four hits and a walk while striking out six batters over five innings during Sunday's win over Tampa Bay. (5/22/2017)</div></td></tr>
+                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=6400" style="text-decoration:none;">RotoWire News</a>:</b> Sabathia (5-2) allowed two runs on six hits and three walks while striking out nine over 6.1 innings to earn the win Saturday against the Athletics. (5/27/2017)</div></td></tr>
 
                 </tr>
                 <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">5/23/2017</span> - <a href="http://www.fangraphs.com/blogs/grading-the-pitches-2016-mlb-sinkers-al-sliders/">Grading the Pitches: 2016 MLB Sinkers, AL Sliders</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=65940">Tony Blengino (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/grading-the-pitches-2016-mlb-sinkers-al-sliders/#comments"><img src="images/commentslink.gif" border="0px" />5</a></span><br /><span class="m_date">5/2/2017</span> - <a href="http://www.fangraphs.com/blogs/grading-the-pitches-2016-al-starters-four-seamers/">Grading the Pitches: 2016 AL Starters' Four-Seamer&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=65940">Tony Blengino (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/grading-the-pitches-2016-al-starters-four-seamers/#comments"><img src="images/commentslink.gif" border="0px" />2</a></span><br /><span class="m_date">1/6/2017</span> - <a href="http://www.fangraphs.com/blogs/active-starting-pitchers-have-virtually-no-shot-at-hall/">Active Starting Pitchers Have Virtually No Shot at&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=13690">Craig Edwards (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/active-starting-pitchers-have-virtually-no-shot-at-hall/#comments"><img src="images/commentslink.gif" border="0px" />92</a></span><br /><span class="m_date">11/8/2016</span> - <a href="http://www.fangraphs.com/blogs/2016-al-starting-pitcher-contact-management/">2016 AL Starting-Pitcher Contact Management</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=65940">Tony Blengino (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/2016-al-starting-pitcher-contact-management/#comments"><img src="images/commentslink.gif" border="0px" />8</a></span><br /><span class="m_date">7/22/2016</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-368-eno-pauls-last-podcast/">The Sleeper and the Bust Episode: 368 – Eno & Paul&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-368-eno-pauls-last-podcast/#comments"><img src="images/commentslink.gif" border="0px" />2</a></span><br /></div></td></tr>
@@ -1203,7 +1203,7 @@
 <div class="footer-bar">
     <div class="footer-bar-background"></div>
     <div class="footer-bar-item">
-        Updated: Friday, May 26, 2017 4:37 AM ET
+        Updated: Wednesday, May 31, 2017 4:54 AM ET
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>

@@ -1,0 +1,7 @@
+20170522;23;Atlanta Braves;Pittsburgh Pirates;+112;-128;
+20170522;23;Cincinnati Reds;Cleveland Indians;+110;-127;
+20170522;23;Los Angeles Angels;Tampa Bay Rays;+102;-118;
+20170522;23;Minnesota Twins;Baltimore Orioles;+114;-132;
+20170522;23;New York Yankees;Kansas City Royals;-196;+167;
+20170522;23;Colorado Rockies;Philadelphia Phillies;-102;-114;
+20170521;00;Texas Rangers;Detroit Tigers;-130;+112;

@@ -1,4 +1,4 @@
-20170528/ZachDateMetaData
+20170602/ZachDateMetaData
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -228,7 +228,7 @@
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-05-27">Probable Pitchers</a>
+                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-06-01">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -543,14 +543,14 @@
                             <strong style="font-size:15pt;">Clayton Kershaw</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 3/19/1988 (29 y, 2 m, 9 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-4/225 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=2036&position=P#draft" style="text-decoration:none;">2006 June Amateur Draft - Round: 1, Pick: 7, Overall: 7, Team: Los Angeles Dodgers</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=2036&position=P#contract" style="text-decoration:none;">$215M / 7 Years (2014 - 2020)</a>
+                            <strong>Birthdate:</strong> 3/19/1988 (29 y, 2 m, 14 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-4/225 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=2036&position=P#draft" style="text-decoration:none;">2006 June Amateur Draft - Round: 1, Pick: 7, Overall: 7, Team: Los Angeles Dodgers</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=2036&position=P#contract" style="text-decoration:none;">$215M / 7 Years (2014 - 2020)</a>
                         </div>
                     </td>
                     
-                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=9276" style="text-decoration:none;">RotoWire News</a>:</b> Kershaw will start Sunday against the Cubs, David Vassegg of AM 570 LA Sports reports. (5/25/2017)</div></td></tr>
+                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=9276" style="text-decoration:none;">RotoWire News</a>:</b> Kershaw was hit around by the Cubs on Sunday, giving up four runs on 11 hits (three home runs) over 4.1 innings. He walked two and struck out six in a game where the Dodgers would eventually prevail 9-4. (5/28/2017)</div></td></tr>
 
                 </tr>
-                <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">5/12/2017</span> - <a href="http://www.fangraphs.com/blogs/how-good-can-jordan-montgomery-be/">How Good Can Jordan Montgomery Be?</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=22">Eno Sarris (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/how-good-can-jordan-montgomery-be/#comments"><img src="images/commentslink.gif" border="0px" />16</a></span><br /><span class="m_date">4/14/2017</span> - <a href="http://www.fangraphs.com/blogs/which-pitcher-stats-have-relevance-this-early-with-a-note-on-clayton-kershaw/">Which Pitcher Stats Have Relevance This Early (Wit&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=22">Eno Sarris (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/which-pitcher-stats-have-relevance-this-early-with-a-note-on-clayton-kershaw/#comments"><img src="images/commentslink.gif" border="0px" />26</a></span><br /><span class="m_date">4/4/2017</span> - <a href="http://www.fangraphs.com/blogs/about-clayton-kershaws-changeups/">About Clayton Kershaw's Changeups</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=22">Eno Sarris (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/about-clayton-kershaws-changeups/#comments"><img src="images/commentslink.gif" border="0px" />20</a></span><br /><span class="m_date">3/20/2017</span> - <a href="http://www.fangraphs.com/blogs/the-results-of-clayton-kershaws-experiment/">The Results of Clayton Kershaw's Experiment</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=7030">Jeff Sullivan (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/the-results-of-clayton-kershaws-experiment/#comments"><img src="images/commentslink.gif" border="0px" />8</a></span><br /><span class="m_date">3/2/2017</span> - <a href="http://www.fangraphs.com/blogs/what-if-clayton-kershaw-werent-so-predictable/">What If Clayton Kershaw Weren't So Predictable?</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=155296">Travis Sawchik (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/what-if-clayton-kershaw-werent-so-predictable/#comments"><img src="images/commentslink.gif" border="0px" />33</a></span><br /></div></td></tr>
+                <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">5/30/2017</span> - <a href="http://www.fangraphs.com/blogs/grading-the-pitches-clayton-kershaw-2016/">Grading the Pitches: Clayton Kershaw, 2016</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=65940">Tony Blengino (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/grading-the-pitches-clayton-kershaw-2016/#comments"><img src="images/commentslink.gif" border="0px" />6</a></span><br /><span class="m_date">5/12/2017</span> - <a href="http://www.fangraphs.com/blogs/how-good-can-jordan-montgomery-be/">How Good Can Jordan Montgomery Be?</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=22">Eno Sarris (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/how-good-can-jordan-montgomery-be/#comments"><img src="images/commentslink.gif" border="0px" />16</a></span><br /><span class="m_date">4/14/2017</span> - <a href="http://www.fangraphs.com/blogs/which-pitcher-stats-have-relevance-this-early-with-a-note-on-clayton-kershaw/">Which Pitcher Stats Have Relevance This Early (Wit&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=22">Eno Sarris (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/which-pitcher-stats-have-relevance-this-early-with-a-note-on-clayton-kershaw/#comments"><img src="images/commentslink.gif" border="0px" />26</a></span><br /><span class="m_date">4/4/2017</span> - <a href="http://www.fangraphs.com/blogs/about-clayton-kershaws-changeups/">About Clayton Kershaw's Changeups</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=22">Eno Sarris (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/about-clayton-kershaws-changeups/#comments"><img src="images/commentslink.gif" border="0px" />20</a></span><br /><span class="m_date">3/20/2017</span> - <a href="http://www.fangraphs.com/blogs/the-results-of-clayton-kershaws-experiment/">The Results of Clayton Kershaw's Experiment</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=7030">Jeff Sullivan (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/the-results-of-clayton-kershaws-experiment/#comments"><img src="images/commentslink.gif" border="0px" />8</a></span><br /></div></td></tr>
 
                 <tr id="so1" style="background-color: #FFF;"><td colspan="5" style="border-top:2px solid #D3D3D3; padding:3px; text-align:justify;"><div class="m_stories" style="width:100%; font-size:10pt"><center>Profiles:&nbsp;&nbsp;<a id="soa2" href="javascript:showMoreSO();">2010</a>&nbsp;&nbsp;<a id="soa3" href="javascript:showMoreSO2011();">2011</a>&nbsp;&nbsp;<a id="soa4" href="javascript:showMoreSO2012();">2012</a>&nbsp;&nbsp;<a id="soa5" href="javascript:showMoreSO2013();">2013</a>&nbsp;&nbsp;<a id="soa6" href="javascript:showMoreSO2014();">2014</a>&nbsp;&nbsp;<a id="soa7" href="javascript:showMoreSO2015();">2015</a>&nbsp;&nbsp;<a id="soa8" href="javascript:showMoreSO2016();">2016</a>&nbsp;&nbsp;<a id="soa9"  href="javascript:showMoreSO2017();">2017</a>&nbsp;&nbsp;(Click Year to Expand / <a href="javascript:hideSO('so1');">Close</a>)</center></div></td></tr>
                 <tr id="so2" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Year in Review: </b>The 21-year-old finished with a .500 record, but Kershaw was dominant in virtually every other category.  His fastball averaged nearly 94 mph and trailed only Chris Carpenter’s with a 1.48 wFB/C.  His curveball was even more effective, with a 1.54 wCB/C.  And if that was not enough, in June he added a slider to his repertoire.  Not merely a different look for hitters, Kershaw’s slider is another outstanding offering, with a 1.36 wSL/C.  By the end of the season, Kershaw was throwing his slider (16%) more often than his curve (11%).  It all gave him plenty of weapons to attack hitters, and resulted in a 9.64 K/9, the sixth-best mark in the Majors among starters.  After being an extreme ground-ball pitcher in 2008 (1.54 GB/FB), Kershaw allowed more flies than grounders last year.  But he tied Carpenter for the fewest homers allowed (seven) among qualified starters.<br /><br /><b>The Year Ahead: </b>Due in part to his 4.79 BB/9 rate, Kershaw’s FIP (3.08) was higher than his ERA (2.79) last year.  Add in that he had a 77.4 LOB% and his HR/FB rate was an unsustainable 4.1% and Kershaw will likely see his ERA rise.  But there are so many variables to consider, it makes projecting him a difficult task.  Is he a ground-ball or fly-ball pitcher?  Can he continue to throw nasty pitches with both a curve and slider?   Will Kershaw approach the 2.79 BB/9 rate he had at Double-A in 2008?  But while his ERA may be up in the air, it is likely that Kershaw will top last year’s victory total.  The other nine starters in 2009 to top 9.0 K/9 averaged 14.6 W last year.  The Dodgers club was very careful with Kershaw’s work load, as he threw 171 innings in 31 starts.  Even with a minimal increase in innings pitched, Kershaw should approach 200 strikeouts next year. (Brian Joura)</td></tr></table></center></div></td></tr>
@@ -952,9 +952,9 @@
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason1_ctl00__8">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">40.2</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">141</td><td class="grid_line_regular" align="right">19</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">52</td><td class="grid_line_regular" align="right">.137</td><td class="grid_line_regular" align="right">.150</td><td class="grid_line_regular" align="right">.159</td><td class="grid_line_regular" align="right">.137</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason1_ctl00__9">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">12.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">51</td><td class="grid_line_regular" align="right">13</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">12</td><td class="grid_line_regular" align="right">.260</td><td class="grid_line_regular" align="right">.275</td><td class="grid_line_regular" align="right">.540</td><td class="grid_line_regular" align="right">.338</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">14.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">60</td><td class="grid_line_regular" align="right">16</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">6</td><td class="grid_line_regular" align="right">6</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">13</td><td class="grid_line_regular" align="right">.271</td><td class="grid_line_regular" align="right">.293</td><td class="grid_line_regular" align="right">.579</td><td class="grid_line_regular" align="right">.363</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason1_ctl00__10">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">383.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1463</td><td class="grid_line_regular" align="right">252</td><td class="grid_line_regular" align="right">55</td><td class="grid_line_regular" align="right">6</td><td class="grid_line_regular" align="right">110</td><td class="grid_line_regular" align="right">104</td><td class="grid_line_regular" align="right">29</td><td class="grid_line_regular" align="right">89</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">9</td><td class="grid_line_regular" align="right">539</td><td class="grid_line_regular" align="right">.185</td><td class="grid_line_regular" align="right">.242</td><td class="grid_line_regular" align="right">.301</td><td class="grid_line_regular" align="right">.242</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">385.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1472</td><td class="grid_line_regular" align="right">255</td><td class="grid_line_regular" align="right">55</td><td class="grid_line_regular" align="right">6</td><td class="grid_line_regular" align="right">112</td><td class="grid_line_regular" align="right">106</td><td class="grid_line_regular" align="right">30</td><td class="grid_line_regular" align="right">89</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">9</td><td class="grid_line_regular" align="right">540</td><td class="grid_line_regular" align="right">.186</td><td class="grid_line_regular" align="right">.242</td><td class="grid_line_regular" align="right">.304</td><td class="grid_line_regular" align="right">.243</td>
 	</tr>
 	</tbody>
 
@@ -1007,9 +1007,9 @@
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__8">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">11.51</td><td class="grid_line_regular" align="right">0.44</td><td class="grid_line_regular" align="right">26.00</td><td class="grid_line_regular" align="right">0.00</td><td class="grid_line_regular" align="right">36.9 %</td><td class="grid_line_regular" align="right">1.4 %</td><td class="grid_line_regular" align="right">35.5 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">0.52</td><td class="grid_line_regular" align="right">.218</td><td class="grid_line_regular" align="right">81.0 %</td><td class="grid_line_regular" align="right">0.74</td><td class="grid_line_regular" align="right">1.72</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__9">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">8.76</td><td class="grid_line_regular" align="right">0.73</td><td class="grid_line_regular" align="right">12.00</td><td class="grid_line_regular" align="right">2.19</td><td class="grid_line_regular" align="right">23.5 %</td><td class="grid_line_regular" align="right">2.0 %</td><td class="grid_line_regular" align="right">21.6 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.14</td><td class="grid_line_regular" align="right">.286</td><td class="grid_line_regular" align="right">100.0 %</td><td class="grid_line_regular" align="right">4.48</td><td class="grid_line_regular" align="right">3.27</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">8.16</td><td class="grid_line_regular" align="right">0.63</td><td class="grid_line_regular" align="right">13.00</td><td class="grid_line_regular" align="right">2.51</td><td class="grid_line_regular" align="right">21.7 %</td><td class="grid_line_regular" align="right">1.7 %</td><td class="grid_line_regular" align="right">20.0 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.19</td><td class="grid_line_regular" align="right">.286</td><td class="grid_line_regular" align="right">96.5 %</td><td class="grid_line_regular" align="right">5.06</td><td class="grid_line_regular" align="right">3.47</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__10">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">12.65</td><td class="grid_line_regular" align="right">2.09</td><td class="grid_line_regular" align="right">6.06</td><td class="grid_line_regular" align="right">0.68</td><td class="grid_line_regular" align="right">36.8 %</td><td class="grid_line_regular" align="right">6.1 %</td><td class="grid_line_regular" align="right">30.8 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">0.89</td><td class="grid_line_regular" align="right">.280</td><td class="grid_line_regular" align="right">77.6 %</td><td class="grid_line_regular" align="right">2.03</td><td class="grid_line_regular" align="right">2.07</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">12.61</td><td class="grid_line_regular" align="right">2.08</td><td class="grid_line_regular" align="right">6.07</td><td class="grid_line_regular" align="right">0.70</td><td class="grid_line_regular" align="right">36.7 %</td><td class="grid_line_regular" align="right">6.1 %</td><td class="grid_line_regular" align="right">30.6 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">0.89</td><td class="grid_line_regular" align="right">.280</td><td class="grid_line_regular" align="right">77.5 %</td><td class="grid_line_regular" align="right">2.07</td><td class="grid_line_regular" align="right">2.09</td>
 	</tr>
 	</tbody>
 
@@ -1065,9 +1065,9 @@
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason3_ctl00__8">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">1.75</td><td class="grid_line_regular" align="right">20.5 %</td><td class="grid_line_regular" align="right">50.6 %</td><td class="grid_line_regular" align="right">28.9 %</td><td class="grid_line_regular" align="right">20.8 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">11.9 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">32.2 %</td><td class="grid_line_regular" align="right">42.5 %</td><td class="grid_line_regular" align="right">25.3 %</td><td class="grid_line_break" align="right">25.3 %</td><td class="grid_line_regular" align="right">50.6 %</td><td class="grid_line_regular" align="right">24.1 %</td><td class="grid_line_break" align="right">554</td><td class="grid_line_regular" align="right">170</td><td class="grid_line_regular" align="right">384</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason3_ctl00__9">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">1.36</td><td class="grid_line_regular" align="right">10.8 %</td><td class="grid_line_regular" align="right">51.4 %</td><td class="grid_line_regular" align="right">37.8 %</td><td class="grid_line_regular" align="right">21.4 %</td><td class="grid_line_regular" align="right">21.4 %</td><td class="grid_line_regular" align="right">5.3 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">31.6 %</td><td class="grid_line_regular" align="right">34.2 %</td><td class="grid_line_regular" align="right">34.2 %</td><td class="grid_line_break" align="right">29.0 %</td><td class="grid_line_regular" align="right">42.1 %</td><td class="grid_line_regular" align="right">29.0 %</td><td class="grid_line_break" align="right">190</td><td class="grid_line_regular" align="right">60</td><td class="grid_line_regular" align="right">130</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">1.18</td><td class="grid_line_regular" align="right">14.0 %</td><td class="grid_line_regular" align="right">46.5 %</td><td class="grid_line_regular" align="right">39.5 %</td><td class="grid_line_regular" align="right">23.5 %</td><td class="grid_line_regular" align="right">23.5 %</td><td class="grid_line_regular" align="right">5.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">32.6 %</td><td class="grid_line_regular" align="right">34.8 %</td><td class="grid_line_regular" align="right">32.6 %</td><td class="grid_line_break" align="right">30.4 %</td><td class="grid_line_regular" align="right">41.3 %</td><td class="grid_line_regular" align="right">28.3 %</td><td class="grid_line_break" align="right">221</td><td class="grid_line_regular" align="right">70</td><td class="grid_line_regular" align="right">151</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason3_ctl00__10">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">1.20</td><td class="grid_line_regular" align="right">20.8 %</td><td class="grid_line_regular" align="right">43.3 %</td><td class="grid_line_regular" align="right">36.0 %</td><td class="grid_line_regular" align="right">9.4 %</td><td class="grid_line_regular" align="right">10.1 %</td><td class="grid_line_regular" align="right">6.1 %</td><td class="grid_line_regular" align="right">6.5 %</td><td class="grid_line_break" align="right">29.5 %</td><td class="grid_line_regular" align="right">39.1 %</td><td class="grid_line_regular" align="right">31.4 %</td><td class="grid_line_break" align="right">19.5 %</td><td class="grid_line_regular" align="right">52.5 %</td><td class="grid_line_regular" align="right">28.0 %</td><td class="grid_line_break" align="right">6069</td><td class="grid_line_regular" align="right">1977</td><td class="grid_line_regular" align="right">4092</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">1.19</td><td class="grid_line_regular" align="right">20.8 %</td><td class="grid_line_regular" align="right">43.1 %</td><td class="grid_line_regular" align="right">36.1 %</td><td class="grid_line_regular" align="right">9.7 %</td><td class="grid_line_regular" align="right">10.4 %</td><td class="grid_line_regular" align="right">6.1 %</td><td class="grid_line_regular" align="right">6.1 %</td><td class="grid_line_break" align="right">29.6 %</td><td class="grid_line_regular" align="right">39.1 %</td><td class="grid_line_regular" align="right">31.3 %</td><td class="grid_line_break" align="right">19.7 %</td><td class="grid_line_regular" align="right">52.4 %</td><td class="grid_line_regular" align="right">27.9 %</td><td class="grid_line_break" align="right">6100</td><td class="grid_line_regular" align="right">1987</td><td class="grid_line_regular" align="right">4113</td>
 	</tr>
 	</tbody>
 
@@ -1084,18 +1084,29 @@
         width: 100%;
         height: 50px;
         background-color: beige;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
     }
 
     .footer-bar {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         position: relative;
         margin-top: 10px;
         line-height: 45px;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
         padding: 0 10px;
     }
 
@@ -1118,19 +1129,36 @@
     }
 
     .footer-credits {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         padding: 0 10px;
     }
 
     .footer-credits-item {
-        flex: 0 1 300px;
+        -webkit-box-flex: 0;
+            -ms-flex: 0 1 300px;
+                flex: 0 1 300px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 10px;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        /*margin: 10px;*/
+        padding: 10px;
     }
 
     .footer-credits-item-name {
@@ -1142,6 +1170,32 @@
     .footer-credits-item img {
         max-width: 300px;
     }
+    .footer-credits-item-text {
+        width: 100%;
+    }
+
+    .footer-credits {
+        display: block;
+    }
+    .footer-credits-item {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 30.333%;
+        text-align: center;
+    }
+
+    @media (max-width: 950px) {
+
+        .footer-credits-item {
+            width: 49%;
+        }   
+    }
+    @media (max-width: 600px) {
+        .footer-credits-item {
+            width: 100%;
+        }
+    }
+
 </style>
 
 <div id="Footer1_panROS">
@@ -1165,9 +1219,11 @@
 </div>
 
 <div class="footer-bar">
-    <div class="footer-bar-background"></div>
+    <div class="footer-bar-background"><div class="footer-bar-item">
+        
+    </div></div>
     <div class="footer-bar-item">
-        Updated: Saturday, May 27, 2017 4:35 AM ET
+        <span class="mobile-hide">Updated: Thursday, June 1, 2017 4:50 AM ET</span><span class="mobile-show">Updated: 6/1/2017 4:50 AM ET</span>
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
@@ -1178,32 +1234,32 @@
     <div class="footer-credits-item">
         <a href="http://www.baseballinfosolutions.com" class="footer-credits-item-name">
             <img src="/images/bis-logo-white.png" alt="bis logo" /></a>
-        All major league baseball data including pitch type, velocity, batted ball location,
-        and play-by-play data provided by Baseball Info Solutions.
+        <div class="footer-credits-item-text">All major league baseball data including pitch type, velocity, batted ball location,
+        and play-by-play data provided by Baseball Info Solutions.</div>
     </div>
     <div class="footer-credits-item">
         <a href="http://www.foxsports.com/" class="footer-credits-item-name">
             <img src="/images/badge_300.gif" /></a>
-        FOX Sports Engage Network Partner
+        <div class="footer-credits-item-text">FOX Sports Engage Network Partner</div>
     </div>
     <div class="footer-credits-item">
         <a href="http://www.stats.com" class="footer-credits-item-name">
             <img src="/images/statslogo_new.png" alt="statslogo" style="width: 100px;" /></a>
-        All minor league baseball data provided by Major League Baseball Advanced Media
-        as distributed by STATS.
+        <div class="footer-credits-item-text">All minor league baseball data provided by Major League Baseball Advanced Media
+        as distributed by STATS.</div>
     </div>
     <div class="footer-credits-item">
         <div class="footer-credits-item-name">Mitchel Lichtman</div>
-        All UZR (ultimate zone rating) calculations are provided courtesy of Mitchel Lichtman.
+        <div class="footer-credits-item-text">All UZR (ultimate zone rating) calculations are provided courtesy of Mitchel Lichtman.</div>
     </div>
     <div class="footer-credits-item">
         <a href="http://www.tangotiger.com" class="footer-credits-item-name">TangoTiger.com</a>
-        All Win Expectancy, Leverage Index, Run Expectancy, and Fans Scouting Report data licenced from TangoTiger.com
+       <div class="footer-credits-item-text"> All Win Expectancy, Leverage Index, Run Expectancy, and Fans Scouting Report data licenced from TangoTiger.com</div>
     </div>
     <div class="footer-credits-item">
         <a href="http://www.retrosheet.org" class="footer-credits-item-name">Retrosheet.org</a>
-        Play-by-play data prior to 2002 was obtained free of charge from and is copyrighted
-        by Retrosheet.
+        <div class="footer-credits-item-text">Play-by-play data prior to 2002 was obtained free of charge from and is copyrighted
+        by Retrosheet.</div>
     </div>
 </div>
 
@@ -1235,56 +1291,6 @@ var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
 
 </div>
 
-<!-- Google Analytics Tag -->
-
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-230086-1', 'auto');
-
-    ga('require', 'eventTracker');
-    ga('require', 'maxScrollTracker');
-
-    ga('require', 'impressionTracker', {
-      elements: [
-        {
-          id: 'index-01-featured',
-          threshold: 0.5
-        },
-        {
-          id: 'index-02-fg',
-          threshold: 0.5
-        },
-        {
-          id: 'index-03-rg',
-          threshold: 0.5
-        },
-        {
-          id: 'index-04-tht',
-          threshold: 0.5
-        },
-        {
-          id: 'index-05-com',
-          threshold: 0.5
-        },
-        {
-          id: 'index-06-mc',
-          threshold: 0.5
-        },
-        {
-          id: 'index-07-tools',
-          threshold: 0.5
-        }
-      ]
-    });
-
-    ga('send', 'pageview');
-</script>
 
 <!-- Chartbeat Tag -->
 
@@ -1451,6 +1457,64 @@ var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
      });
 
  });
+</script>
+<!-- Google Analytics Tag -->
+
+<script>    
+    var userType = 'Public';
+                    if (!document.getElementById('VvwgsaxHSkuQ')) {
+                        userType = 'Ad Block';
+                    }
+    console.log('');
+
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-230086-1', 'auto');
+
+    ga('require', 'eventTracker');
+    ga('require', 'maxScrollTracker');
+    ga('set', 'dimension2', userType);
+
+
+    ga('require', 'impressionTracker', {
+      elements: [
+        {
+          id: 'index-01-featured',
+          threshold: 0.5
+        },
+        {
+          id: 'index-02-fg',
+          threshold: 0.5
+        },
+        {
+          id: 'index-03-rg',
+          threshold: 0.5
+        },
+        {
+          id: 'index-04-tht',
+          threshold: 0.5
+        },
+        {
+          id: 'index-05-com',
+          threshold: 0.5
+        },
+        {
+          id: 'index-06-mc',
+          threshold: 0.5
+        },
+        {
+          id: 'index-07-tools',
+          threshold: 0.5
+        }
+      ]
+    });
+
+    ga('send', 'pageview');
 </script>
 
         </div>

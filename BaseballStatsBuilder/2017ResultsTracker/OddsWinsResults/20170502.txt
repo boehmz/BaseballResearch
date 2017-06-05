@@ -1,0 +1,12 @@
+20170502;23;Atlanta Braves;New York Mets;-101;-115;
+20170502;23;Boston Red Sox;Baltimore Orioles;-233;+199;
+20170502;23;Pittsburgh Pirates;Cincinnati Reds;+127;-149;
+20170502;23;Detroit Tigers;Cleveland Indians;+110;-128;
+20170502;23;Tampa Bay Rays;Miami Marlins;+104;-122;
+20170502;23;New York Yankees;Toronto Blue Jays;-192;+168;
+20170502;23;Arizona Diamondbacks;Washington Nationals;+125;-145;
+20170501;02;San Francisco Giants;Los Angeles Dodgers;+208;-244;
+20170501;00;Kansas City Royals;Chicago White Sox;-189;+163;
+20170501;00;Milwaukee Brewers;St.Louis Cardinals;+141;-161;
+20170501;00;Houston Astros;Texas Rangers;-227;+191;
+20170501;00;Philadelphia Phillies;Chicago Cubs;+149;-172;

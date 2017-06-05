@@ -1,0 +1,15 @@
+20170416;20;Arizona Diamondbacks;Los Angeles Dodgers;+169;-196;
+20170416;20;Chicago White Sox;Minnesota Twins;+129;-149;
+20170416;20;Seattle Mariners;Texas Rangers;-104;-110;
+20170416;20;Colorado Rockies;San Francisco Giants;+116;-133;
+20170416;18;Pittsburgh Pirates;Chicago Cubs;+148;-169;
+20170416;18;Kansas City Royals;Los Angeles Angels;-111;-103;
+20170416;17;Atlanta Braves;San Diego Padres;-125;+108;
+20170416;17;Boston Red Sox;Tampa Bay Rays;-179;+154;
+20170416;17;Washington Nationals;Philadelphia Phillies;-175;+152;
+20170416;17;Milwaukee Brewers;Cincinnati Reds;-102;-112;
+20170416;17;Detroit Tigers;Cleveland Indians;+191;-227;
+20170416;17;Miami Marlins;New York Mets;-101;-114;
+20170416;17;Baltimore Orioles;Toronto Blue Jays;-105;-109;
+20170415;01;Los Angeles Dodgers;Arizona Diamondbacks;-175;+152;
+20170415;01;Seattle Mariners;Texas Rangers;-172;+150;

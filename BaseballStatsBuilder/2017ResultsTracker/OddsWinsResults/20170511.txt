@@ -1,0 +1,9 @@
+20170511;23;Toronto Blue Jays;Seattle Mariners;-152;+134;
+20170511;23;Houston Astros;New York Yankees;+110;-127;
+20170511;23;<td class=";Washington Nationals;-116;Washington Nationals - Baltimore Orioles;
+20170511;17;Boston Red Sox;Milwaukee Brewers;-149;+129;
+20170511;17;Kansas City Royals;Tampa Bay Rays;+108;-123;
+20170510;02;Los Angeles Dodgers;Pittsburgh Pirates;-222;+188;
+20170510;01;Arizona Diamondbacks;Detroit Tigers;-139;+121;
+20170510;00;Milwaukee Brewers;Boston Red Sox;-120;+104;
+20170510;00;Texas Rangers;San Diego Padres;-200;+171;

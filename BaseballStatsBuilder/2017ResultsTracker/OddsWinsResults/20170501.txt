@@ -1,0 +1,7 @@
+20170501;23;New York Mets;Atlanta Braves;-105;-110;
+20170501;23;Baltimore Orioles;Boston Red Sox;+122;-139;
+20170501;23;Cincinnati Reds;Pittsburgh Pirates;-103;-111;
+20170501;23;Detroit Tigers;Cleveland Indians;+119;-137;
+20170501;23;Tampa Bay Rays;Miami Marlins;+127;-147;
+20170501;23;Toronto Blue Jays;New York Yankees;+156;-182;
+20170430;00;Boston Red Sox;Chicago Cubs;-115;+100;
