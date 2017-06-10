@@ -1,4 +1,4 @@
-20170424;23;Milwaukee Brewers;Cincinnati Reds;-103;-112;
-20170424;23;Baltimore Orioles;Tampa Bay Rays;+106;-122;
-20170424;23;Chicago Cubs;Pittsburgh Pirates;-145;+125;
-20170423;00;Washington Nationals;New York Mets;-159;+138;
+20170424;Milwaukee Brewers;Cincinnati Reds;H;-103;-112;
+20170424;Baltimore Orioles;Tampa Bay Rays;H;+106;-122;
+20170424;Chicago Cubs;Pittsburgh Pirates;A;-145;+125;
+20170423;Washington Nationals;New York Mets;A;-159;+138;

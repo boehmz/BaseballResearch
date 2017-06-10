@@ -1,9 +1,8 @@
-20170511;23;Toronto Blue Jays;Seattle Mariners;-152;+134;
-20170511;23;Houston Astros;New York Yankees;+110;-127;
-20170511;23;<td class=";Washington Nationals;-116;Washington Nationals - Baltimore Orioles;
-20170511;17;Boston Red Sox;Milwaukee Brewers;-149;+129;
-20170511;17;Kansas City Royals;Tampa Bay Rays;+108;-123;
-20170510;02;Los Angeles Dodgers;Pittsburgh Pirates;-222;+188;
-20170510;01;Arizona Diamondbacks;Detroit Tigers;-139;+121;
-20170510;00;Milwaukee Brewers;Boston Red Sox;-120;+104;
-20170510;00;Texas Rangers;San Diego Padres;-200;+171;
+20170511;Toronto Blue Jays;Seattle Mariners;H;-152;+134;
+20170511;Houston Astros;New York Yankees;A;+110;-127;
+20170511;Boston Red Sox;Milwaukee Brewers;A;-149;+129;
+20170511;Kansas City Royals;Tampa Bay Rays;A;+108;-123;
+20170510;Los Angeles Dodgers;Pittsburgh Pirates;H;-222;+188;
+20170510;Arizona Diamondbacks;Detroit Tigers;H;-139;+121;
+20170510;Milwaukee Brewers;Boston Red Sox;H;-120;+104;
+20170510;Texas Rangers;San Diego Padres;H;-200;+171;

@@ -1,9 +1,9 @@
-20170602;23;Cincinnati Reds;Atlanta Braves;-119;+102;
-20170602;23;Detroit Tigers;Chicago White Sox;-192;+167;
-20170602;23;Miami Marlins;Arizona Diamondbacks;-115;+100;
-20170602;23;Pittsburgh Pirates;New York Mets;-101;-114;
-20170602;23;Toronto Blue Jays;New York Yankees;+108;-125;
-20170602;23;Baltimore Orioles;Boston Red Sox;+114;-132;
-20170602;23;San Francisco Giants;Philadelphia Phillies;+108;-125;
-20170602;18;Chicago Cubs;St.Louis Cardinals;-185;+159;
-20170601;02;Minnesota Twins;Los Angeles Angels;+100;-118;
+20170602;Cincinnati Reds;Atlanta Braves;H;-119;+102;
+20170602;Detroit Tigers;Chicago White Sox;H;-192;+167;
+20170602;Miami Marlins;Arizona Diamondbacks;H;-115;+100;
+20170602;Pittsburgh Pirates;New York Mets;A;-101;-114;
+20170602;Toronto Blue Jays;New York Yankees;H;+108;-125;
+20170602;Baltimore Orioles;Boston Red Sox;H;+114;-132;
+20170602;San Francisco Giants;Philadelphia Phillies;A;+108;-125;
+20170602;Chicago Cubs;St.Louis Cardinals;H;-185;+159;
+20170601;Minnesota Twins;Los Angeles Angels;A;+100;-118;

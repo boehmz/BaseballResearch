@@ -1,0 +1,52 @@
+20170610/ZachDateMetaData
+<HTML><HEAD><TITLE>Cordoba, Allen</TITLE><meta name="keywords" content="sports, baseball, strategy, smallworld, statistics, stragety, sprots, rotisserie, roto, investment, invest, game">
+<link rel="shortcut icon" href="http://rotoguru.net/images/ricony.ico" />
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script src="http://tags.crwdcntrl.net/c/10935/cc_af.js"></script>
+
+<script>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+googletag.cmd.push(function() {
+googletag.defineSlot('/67970281/DISPLAY_THIRDPARTY_US_SNx/Daily_Baseball_Data/Fantasy/Top_Banner', [728, 90], 'div-gpt-ad-1474386197574-0').addService(googletag.pubads());
+ googletag.defineSlot('/67970281/DISPLAY_THIRDPARTY_US_SNx/Daily_Baseball_Data/Fantasy/Top_MPU', [300, 250], 'div-gpt-ad-1474386370013-0').addService(googletag.pubads());
+googletag.defineSlot('/67970281/DISPLAY_THIRDPARTY_US_SNx/Daily_Baseball_Data/Fantasy/Bottom_Banner', [728, 90], 'div-gpt-ad-1474386594603-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+ });
+</script>
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#FFFFFF">
+<br><center>
+
+
+<a href="http://rotoguru2.com/"><IMG SRC="http://rotoguru1.com/images/gfs2.gif" BORDER=0 WIDTH=316 HEIGHT=66 alt="[Rotoguru logo]"></a><br>
+<IMG SRC="http://rotoguru1.com/images/gfssubtitle.gif" WIDTH=316 HEIGHT=29 alt="[RotoGuru subtitle]"></center>
+<center><font face="Times New Roman" size=5><b>2017 Individual Baseball Player Stats<br></b><font size=3>
+<hr>
+<!-- /67970281/DISPLAY_THIRDPARTY_US_SNx/Daily_Baseball_Data/Fantasy/Top_Banner -->
+<div id='div-gpt-ad-1474386197574-0' style='height:90px; width:728px;'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1474386197574-0'); });
+</script>
+</div>
+
+
+<hr>
+<font size=3>
+
+
+
+
+<table border=0 align=center><tr><td align=right><table align=right border=0 width=250><tr><td valign=center align=center nowrap>Name: <font size=+1><B>Cordoba, Allen</b></font><br><font size=+0>Team: <b>San Diego Padres
+</b><br>Bats: <b>Right</b><br>Links: &nbsp; &nbsp; <a href="http://sports.espn.go.com/mlb/players/profile?playerId=36085" target="_blank">ESPN</a> &nbsp; &nbsp; <a href="http://mlb.mlb.com/team/player.jsp?player_id=642707" target="_blank">MLB.com</a> &nbsp; &nbsp; <a href="http://sports.yahoo.com/mlbpa/players/10670/" target="_blank">Yahoo</a><br><a href="http://www.rotowire.com/baseball/search.htm?lastname=Cordoba" target="_blank">RotoWire</a> &nbsp; &nbsp; <a href="http://www.rotoworld.com/content/playersearch.aspx?searchname=Cordoba, Allen&sport=MLB" target="_blank">RotoWorld</a> &nbsp; &nbsp; 
+<a href="http://razzball.com/player/642707/Allen+Cordoba/" target="_blank">Razzball</a> &nbsp; &nbsp; <a href="http://www.rotoballer.com/mlb/player/642707/Allen+Cordoba" target="_blank">RotoBaller</a><br>
+<a href="http://www.baseball-reference.com/pl/player_search.cgi?search=Cordoba, Allen" target="_blank" >Baseball-Reference</a> &nbsp; &nbsp; <a href="http://www.fangraphs.com/players.aspx?letter=Cordoba" target="_blank" >Fangraphs</a><br></b><br>FanDuel position: <B>SS</b><br>Yahoo DFS position: <B>SS</b><br>DraftKings position: <B>OF</b><br>DraftDay position: <B>NA</b><br></P><P><a href="#playerlist">Select another player</a></P></td></tr></table></td>
+<td align=center><table border=0 bgcolor=#999999><tr><td><table border=0 cellpadding=1><tr bgcolor=#000066><th align=center nowrap colspan=5><font color=#FFFFFF>2-Week Schedule Look-Ahead</font></th></tr><tr><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Sat, 6-10</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;Kan   </td><td width=10 rowspan=7 bgcolor=#999999>&nbsp;</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Sat, 6-17</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;@Mil  </td></tr><tr><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Sun, 6-11</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;Kan   </td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Sun, 6-18</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;@Mil  </td></tr><tr><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Mon, 6-12</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;Cin   </td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Mon, 6-19</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;@ChC  </td></tr><tr><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Tue, 6-13</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;Cin   </td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Tue, 6-20</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;@ChC  </td></tr><tr><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Wed, 6-14</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;Cin   </td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Wed, 6-21</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;@ChC  </td></tr><tr><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Thu, 6-15</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;      </td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Thu, 6-22</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;      </td></tr><tr><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Fri, 6-16</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;@Mil  </td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>Fri, 6-23</td><td align=center bgcolor=#FFCC99 nowrap><font size=-1>&nbsp;Det   </td></tr></table></td></tr></table></td></tr><tr><td colspan=2 align=center><P><table bgcolor=#999999><tr><td><table border=0 cellpadding=2 bgcolor=#999999><tr bgcolor=#000066><th colspan=12 align=center nowrap ><font color=#FFFFFF>Game-by-Game History of Prices and Points</th></tr><tr bgcolor=#000066><th align=center nowrap colspan=4><font color=#FFFFFF>Schedule</font></th><!---<th colspan=2><font color=#FFFFFF size=+0>Draft$treet</th>----><th colspan=2><font color=#FFFFFF size=+0>FanDuel</th><th colspan=2><font color=#FFFFFF size=+0>Yahoo DFS</th><!---<th colspan=2><font color=#FFFFFF size=+0>FanThrowdown</th>----><th colspan=2><font color=#FFFFFF size=+0>DraftDay</th><th colspan=2><font color=#FFFFFF size=+0>DraftKings</th></tr><tr bgcolor=#CCCCCC><th align=center rowspan=2>Date</th><th align=center rowspan=2>Oppt.</th><th align=center rowspan=2 nowrap>Position<br><font size=-1>^ = starter<br><sup>#</sup>=bat order</font></th><th align=center rowspan=2>Opp.<br>SP</th><!----<th align=center rowspan=2>DSP</th><th align=center rowspan=2>DS Price</th>----><!---<th align=center rowspan=2>Weekly<br>Price</th>----><th align=center rowspan=2>FDP</th><th align=center rowspan=2>FD Price</th><th align=center rowspan=2>YHP</th><th align=center rowspan=2>YH Price</th><!----<th align=center rowspan=2>FTP</th><th align=center rowspan=2>FT Price</th>----><th align=center rowspan=2>DDP</th><th align=center rowspan=2>DD Price</th><th align=center rowspan=2>DKP</th><th align=center rowspan=2>DK Price</th></tr><tr><tr><td colspan=4 align=center bgcolor=FFCC99>full season averages: 47 GP<br>24 started: 22 vs R, 2 vs L</font></td><td align=center bgcolor=CCFFFF nowrap colspan=2>  5.0 (all GP)<br><font size=-1>  6.5 (starting)<br>  6.8(R)   3.1(L)<!---,  3(h)----></font></td><td align=center bgcolor=99FF00 nowrap colspan=2>  1.4 (all games)<br><font size=-1>  1.7 (starting) <br>  1.8(R)   0.1(L)<!---,  1(h)----></font></td><td align=center bgcolor=F9C3C3 nowrap colspan=2>  6.2 (all games)<br><font size=-1>  7.8 (starting) <br>  8.2(R)   2.5(L)<!---,  5(h) ----></font></td><td align=center bgcolor=FFFF99 nowrap colspan=2>  4.0 (all games)<br><font size=-1>  5.5 (starting) <br>  5.7(R)   2.5(L)<!---,  3(h) ----></font></td></tr>
+<tr><td colspan=4 align=center bgcolor=FFCC99>30 day averages: 23 GP<br>17 started: 17 vs R, 0 vs L</font></td><td align=center bgcolor=CCFFFF nowrap colspan=2>  6.4 (all GP)<br><font size=-1>  7.9 (starting)<br>  7.9(R)   0.0(L)<!---,  2(h)----></font></td><td align=center bgcolor=99FF00 nowrap colspan=2>  1.9 (all games)<br><font size=-1>  2.2 (starting) <br>  2.2(R)   0.0(L)<!---,  1(h)----></font></td><td align=center bgcolor=F9C3C3 nowrap colspan=2>  8.0 (all games)<br><font size=-1>  9.9 (starting) <br>  9.9(R)   0.0(L)<!---,  2(h) ----></font></td><td align=center bgcolor=FFFF99 nowrap colspan=2>  5.3 (all games)<br><font size=-1>  6.6 (starting) <br>  6.6(R)   0.0(L)<!---,  2(h) ----></font></td></tr>
+<tr><td colspan=4 align=center bgcolor=FFCC99>15 day averages: 12 GP<br>10 started: 10 vs R, 0 vs L</font></td><td align=center bgcolor=CCFFFF nowrap colspan=2>  5.1 (all GP)<br><font size=-1>  6.2 (starting)<br>  6.2(R)   0.0(L)<!---,  0(h)----></font></td><td align=center bgcolor=99FF00 nowrap colspan=2>  1.4 (all games)<br><font size=-1>  1.6 (starting) <br>  1.6(R)   0.0(L)<!---,  0(h)----></font></td><td align=center bgcolor=F9C3C3 nowrap colspan=2>  5.6 (all games)<br><font size=-1>  6.9 (starting) <br>  6.9(R)   0.0(L)<!---,  0(h) ----></font></td><td align=center bgcolor=FFFF99 nowrap colspan=2>  4.3 (all games)<br><font size=-1>  5.2 (starting) <br>  5.2(R)   0.0(L)<!---,  0(h) ----></font></td></tr>
+<tr><td colspan=4 align=center bgcolor=FFCC99>7 day averages: 6 GP<br>4 started: 4 vs R, 0 vs L</font></td><td align=center bgcolor=CCFFFF nowrap colspan=2>  5.7 (all GP)<br><font size=-1>  8.6 (starting)<br>  8.6(R)   0.0(L)<!---,  0(h)----></font></td><td align=center bgcolor=99FF00 nowrap colspan=2>  1.8 (all games)<br><font size=-1>  2.7 (starting) <br>  2.7(R)   0.0(L)<!---,  0(h)----></font></td><td align=center bgcolor=F9C3C3 nowrap colspan=2>  6.8 (all games)<br><font size=-1> 10.8 (starting) <br> 10.8(R)   0.0(L)<!---,  0(h) ----></font></td><td align=center bgcolor=FFFF99 nowrap colspan=2>  4.5 (all games)<br><font size=-1>  6.8 (starting) <br>  6.8(R)   0.0(L)<!---,  0(h) ----></font></td></tr>
+<tr bgcolor=CCCCCC><td colspan=12 align=center ><B>

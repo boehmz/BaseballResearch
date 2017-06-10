@@ -1,7 +1,7 @@
-20170508;23;New York Yankees;Cincinnati Reds;-133;+116;
-20170508;23;St.Louis Cardinals;Miami Marlins;-116;+100;
-20170508;23;New York Mets;San Francisco Giants;-154;+134;
-20170508;23;Kansas City Royals;Tampa Bay Rays;+124;-143;
-20170508;23;Toronto Blue Jays;Cleveland Indians;-118;+102;
-20170508;23;Baltimore Orioles;Washington Nationals;-120;+104;
-20170507;00;New York Yankees;Chicago Cubs;+114;-133;
+20170508;New York Yankees;Cincinnati Reds;A;-133;+116;
+20170508;St.Louis Cardinals;Miami Marlins;A;-116;+100;
+20170508;New York Mets;San Francisco Giants;H;-154;+134;
+20170508;Kansas City Royals;Tampa Bay Rays;A;+124;-143;
+20170508;Toronto Blue Jays;Cleveland Indians;H;-118;+102;
+20170508;Baltimore Orioles;Washington Nationals;H;-120;+104;
+20170507;New York Yankees;Chicago Cubs;A;+114;-133;

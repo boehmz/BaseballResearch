@@ -99,3 +99,25 @@ noHitMax	{playerName="" hitsPerGameLast30Days=1.53846002 averageLast7Days=0.5000
 		opposingPitcherWhip	1.95000005	float
 		opposingPitcherAverageAgainstHandedness	0.381999999	float
 +		batterHandedness	""	std::basic_string<char,std::char_traits<char>,std::allocator<char> >
+
+
+
+noHitAvg
+		hitsPerGameLast30Days	0.971904457	float
+		averageLast7Days	0.261573285	float
+		averageVsPitcherFacing	0.259211153	float
+		opposingPitcherEra	4.14691353	float
+		opposingPitcherStrikeOutsPer9	8.05383015	float
+		opposingPitcherWhip	1.30357969	float
+		opposingPitcherAverageAgainstHandedness	0.244621411	float
+
+
+
+yesHitAvg
+		hitsPerGameLast30Days	1.00891113	float
+		averageLast7Days	0.266401649	float
+		averageVsPitcherFacing	0.273417294	float
+		opposingPitcherEra	4.12832546	float
+		opposingPitcherStrikeOutsPer9	7.87371540	float
+		opposingPitcherWhip	1.30585659	float
+		opposingPitcherAverageAgainstHandedness	0.248773634	float

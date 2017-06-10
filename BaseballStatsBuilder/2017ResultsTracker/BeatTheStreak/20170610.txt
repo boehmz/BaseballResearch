@@ -1,0 +1,4 @@
+Daniel Murphy;1.31818;0.423;-1;
+Didi Gregorius;1.24;0.435;0.5;
+Trea Turner;1.23077;0.323;-1;
+Ryan Zimmerman;1.125;0.32;-1;

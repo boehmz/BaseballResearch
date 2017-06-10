@@ -1,5 +1,5 @@
-20170417;23;Atlanta Braves;San Diego Padres;-154;+134;
-20170417;23;New York Yankees;Chicago White Sox;-167;+145;
-20170417;23;St.Louis Cardinals;Pittsburgh Pirates;-118;+100;
-20170417;15;Boston Red Sox;Tampa Bay Rays;-130;+112;
-20170416;00;New York Yankees;St.Louis Cardinals;-147;+129;
+20170417;Atlanta Braves;San Diego Padres;H;-154;+134;
+20170417;New York Yankees;Chicago White Sox;H;-167;+145;
+20170417;St.Louis Cardinals;Pittsburgh Pirates;H;-118;+100;
+20170417;Boston Red Sox;Tampa Bay Rays;H;-130;+112;
+20170416;New York Yankees;St.Louis Cardinals;H;-147;+129;

@@ -1,7 +1,7 @@
-20170422/ZachDateMetaData
+20170610/ZachDateMetaData
 text/javascript"></script>
 
-<script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=TaIkRV1qiW8dvqgOqTF5edkGnUSerQILX6IcafrWysQ1"></script>
+<script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=yONnNeg0_tp3KoLSBL2DqY6gAKfm_dA7JxGUf1pSEcg1"></script>
 
 
 
@@ -43,6 +43,7 @@ text/javascript"></script>
     <div id="wrapper">
         <div id="top">
             
+
 <script type='text/javascript'>
     var googletag = googletag || {};
     googletag.cmd = googletag.cmd || [];
@@ -57,8 +58,6 @@ text/javascript"></script>
         node.parentNode.insertBefore(gads, node);
     })();
 </script>
-
-
 <script type='text/javascript'>
     googletag.cmd.push(function () {
         googletag.defineSlot('/1128006/Home_160x600', [160, 600], 'div-gpt-ad-1349421924281-0').setForceSafeFrame(true).addService(googletag.pubads());
@@ -95,23 +94,23 @@ text/javascript"></script>
     });
 </script>
 
-
 <div id="Header1_panBlogHead">
 	
-    <div id="top_logo">
-        <a href="http://www.fangraphs.com/" target="_top">
-        <img id="Header1_imgLogo" src="images/247_90_fangraphs.png" alt="FanGraphs Logo" height="90" width="247" /></a>
-    </div>
-    <div id="top_da">
-        <div class="catchall728" style='width:728px; overflow:hidden;'><!-- ROS_728x90 --> <div id ='div-gpt-ad-1349421924281-14' style='width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-14').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-14'); });}</script></div></div>
+    <div class="top-logo">
 
         
-    </div>
-    <div class="spacer_5">
+
+            <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
+        
+
+        <div id="top_da">
+            <div class="fg-ads-desktop" style='width:728px; overflow:hidden;'><!-- ROS_728x90 --> <div id ='div-gpt-ad-1349421924281-14' style='margin: auto; width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-14').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-14'); });}</script></div></div>
+
+            
+        </div>
     </div>
 
 </div>
-
 
 
 
@@ -210,7 +209,7 @@ text/javascript"></script>
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_Nav_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-04-22">Probable Pitchers</a>
+                            <a id="Header1_navBar_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-06-09">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -274,7 +273,7 @@ text/javascript"></script>
                         A: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=11&qual=y&type=0&season=2017">Midwest</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=14&qual=y&type=0&season=2017">South Atlantic</a><br />
                         A-: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=12&qual=y&type=0&season=2017">New York-Penn</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=13&qual=y&type=0&season=2017">Northwest</a><br />
                         R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=15&qual=y&type=0&season=2017">Appalachian</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=17&qual=y&type=0&season=2017">Gulf Coast</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=18&qual=y&type=0&season=2017">Pioneer</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=16&qual=y&type=0&season=2017">Arizona</a><br />
-                        R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=30&qual=y&type=0&season=2017">Dominican</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=32&qual=y&type=0&season=2017">Venezuelan</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=33&qual=y&type=0&season=2017">Arizona Fall</a>
+                        R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=30&qual=y&type=0&season=2017">Dominican</a>
                         <hr />
                         <div class="menu-sub-header">
                             WAR Tools
@@ -284,12 +283,12 @@ text/javascript"></script>
                         <div class="menu-sub-header">
                             Rookie Leaders
                         </div>
-                        <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=2">Batters 2016</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=2">Pitchers 2016</a>
+                        <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=2">Batters 2017</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=2">Pitchers 2017</a>
                         <div class="menu-sub-header">
                             Splits Leaders
                         </div>
-                        Batters: <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2016&month=13&season1=2016&ind=0">vs L</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2016&month=14&season1=2016&ind=0">vs R</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2016&month=15&season1=2016&ind=0">Home</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2016&month=16&season1=2016&ind=0">Away</a><br />
-                        Pitchers: <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2016&month=13&season1=2016&ind=0">vs L</a> , <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2016&month=14&season1=2016&ind=0">vs R</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2016&month=15&season1=2016&ind=0">Home</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2016&month=16&season1=2016&ind=0">Away</a>
+                        Batters: <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=13&season1=2017&ind=0">vs L</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=14&season1=2017&ind=0">vs R</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=15&season1=2017&ind=0">Home</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=16&season1=2017&ind=0">Away</a><br />
+                        Pitchers: <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=13&season1=2017&ind=0">vs L</a> , <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=14&season1=2017&ind=0">vs R</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=15&season1=2017&ind=0">Home</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=16&season1=2017&ind=0">Away</a>
                         <div class="menu-sub-header">
                             League Average Heatmaps
                         </div>
@@ -506,8 +505,14 @@ text/javascript"></script>
 
 
 
+<div id="Header1_panSpace">
+	
+    <div class="spacer_10"></div>
+
+</div>
 
 
+<!-- start - 0--><!-- control end - 0-->
 
 
         </div>
@@ -525,11 +530,11 @@ text/javascript"></script>
                             <strong style="font-size:15pt;">Steven Matz</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 5/29/1991 (25 y, 10 m, 24 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-2/200 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=13361&position=P#draft" style="text-decoration:none;">2009 June Amateur Draft - Round: 2, Pick: 23, Overall: 72, Team: New York Mets</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=13361&position=P#contract" style="text-decoration:none;">$0.5M / 1 Years (2016)</a>
+                            <strong>Birthdate:</strong> 5/29/1991 (26 y, 12 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-2/200 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=13361&position=P#draft" style="text-decoration:none;">2009 June Amateur Draft - Round: 2, Pick: 23, Overall: 72, Team: New York Mets</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=13361&position=P#contract" style="text-decoration:none;">$0.5M / 1 Years (2016)</a>
                         </div>
                     </td>
                     <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><span style="padding-left:0px;"><b>Reported</b>: 1/1/2015&nbsp;&nbsp;<b>Risk</b>: 3&nbsp;&nbsp;<b>ETA</b>: 2016&nbsp;&nbsp;<b>Team Rank</b>: NA&nbsp;&nbsp;<b>Positional Rank</b>: NA&nbsp;&nbsp;<b>Overall Rank</b>: NA</span><table class="depth_chart" cellspacing="0" cellpadding="2" style="margin-top:3px; width:90%; border:1px solid Gray; font-size:9pt; text-align:center;"><tr><td style="background-color:Gray; color:white;">Fastball</td><td style="background-color:Gray; color:white;">Curveball</td><td style="background-color:Gray; color:white;">Changeup</td><td style="background-color:Gray; color:white;">Command</td><td style="background-color:Gray; color:white;">Future Value</td></tr><tr class="depth_team"><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">55 / 60</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">40 / 50</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">50 / 55</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">40 / 50</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">50</td></tr></table></div></td></tr>
-                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=11012" style="text-decoration:none;">RotoWire News</a>:</b> Matz (elbow) continued his throwing program Thursday and felt good afterward, Kristie Ackert of the New York Daily News reports. (4/20/2017)<div class="spacer_5"></div><b>Injury:</b> Elbow, 10-Day DL</div></td></tr>
+                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=11012" style="text-decoration:none;">RotoWire News</a>:</b> Matz (elbow) has been named the starter for one of the Mets' games Saturday against the Braves, Matt Ehalt of The Record reports. (6/6/2017)<div class="spacer_5"></div><b>Injury:</b> Elbow, 10-Day DL</div></td></tr>
 
                 </tr>
                 <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">3/30/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-442-job-winners-injury-updates/">The Sleeper and the Bust Episode: 442 – Job Winner&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-442-job-winners-injury-updates/#comments"><img src="images/commentslink.gif" border="0px" />5</a></span><br /><span class="m_date">3/26/2017</span> - <a href="http://www.fangraphs.com/fantasy/roto-riteup-march-26-2017/">Roto Riteup March 26, 2017</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=148284">Jessica Kleinschmidt (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/roto-riteup-march-26-2017/#comments"><img src="images/commentslink.gif" border="0px" />8</a></span><br /><span class="m_date">3/22/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-440-starting-pitcher-extravaganza/">The Sleeper and the Bust Episode: 440 – Starting P&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-440-starting-pitcher-extravaganza/#comments"><img src="images/commentslink.gif" border="0px" />12</a></span><br /><span class="m_date">2/27/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-431-pitcher-battles-os-breakdown/">The Sleeper and the Bust Episode: 431 – Pitcher Ba&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-431-pitcher-battles-os-breakdown/#comments"><img src="images/commentslink.gif" border="0px" />5</a></span><br /><span class="m_date">1/26/2017</span> - <a href="http://www.fangraphs.com/fantasy/early-adp-thoughts-starting-pitcher-part-i/">Early ADP Thoughts – Starting Pitcher, Part I</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/early-adp-thoughts-starting-pitcher-part-i/#comments"><img src="images/commentslink.gif" border="0px" />23</a></span><br /></div></td></tr>
@@ -1012,8 +1017,127 @@ text/javascript"></script>
         </div>
         <div id="footer">
             
-<br />
-<div id="Footer1_panROS">
+
+<style>
+    .ad-temp-full {
+        width: 100%;
+        height: 50px;
+        background-color: beige;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+    }
+
+    .footer-bar {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        position: relative;
+        margin-top: 10px;
+        line-height: 45px;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        padding: 0 10px;
+    }
+
+    .footer-bar-background {
+        background-color: #cecece;
+        border-bottom: 2px solid gray;
+        width: 100%;
+        height: 45px;
+        position: absolute;
+        left: 0;
+    }
+    .footer-bar-item {
+        margin: 0 10px;
+        z-index: 1;
+        width: 100%;
+    }
+
+    .footer-bar-item a {
+        font-weight: 600;
+    }
+
+    .footer-credits {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        padding: 0 10px;
+    }
+
+    .footer-credits-item {
+        -webkit-box-flex: 0;
+            -ms-flex: 0 1 300px;
+                flex: 0 1 300px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        /*margin: 10px;*/
+        padding: 10px;
+    }
+
+    .footer-credits-item-name {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .footer-credits-item img {
+        max-width: 300px;
+    }
+    .footer-credits-item-text {
+        width: 100%;
+    }
+
+    .footer-credits {
+        display: block;
+    }
+    .footer-credits-item {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 32.333%;
+        text-align: center;
+    }
+
+    @media (max-width: 950px) {
+
+        .footer-credits-item {
+            width: 49%;
+        }   
+    }
+    @media (max-width: 650px) {
+        .footer-credits-item {
+            width: 100%;
+        }
+    }
+
+</style>
+
+<div id="Footer1_panROS" class="ad-wide box-ad ad-member-hide">
 	
     <center>
         <div class="catchall728" style='width:728px; overflow:hidden;'><!-- Stats-footer --> <div id ='div-gpt-ad-1349421924281-18' style='width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-18').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-18'); });}</script></div></div>
@@ -1033,77 +1157,49 @@ text/javascript"></script>
 
 </div>
 
-<div class="spacer_10">
-</div>
-<div id="footer_bar">
-    <div style="float: left;">
-        Updated: Saturday, April 22, 2017 6:06 AM ET
+<div class="footer-bar">
+    <div class="footer-bar-background"><div class="footer-bar-item">
+        
+    </div></div>
+    <div class="footer-bar-item">
+        <span class="mobile-hide">Updated: Friday, June 9, 2017 4:48 AM ET</span><span class="mobile-show">Updated: 6/9/2017 4:48 AM ET</span>
     </div>
-    <div style="float: right;">
-        <strong><a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
-            - <a href="http://www.fangraphs.com/tos.aspx">Terms of Service</a> - <a href="http://www.fangraphs.com/policy.aspx">Privacy Policy</a> </strong>
-    </div>
-</div>
-<br />
-<div style="width: 320px; float: left;">
-    <div style="width: 308px; float: left; background-color: transparent; border: 0px solid black; padding: 5px;">
-        <center>
-            <a href="http://www.baseballinfosolutions.com">
-                <img src="/images/bis-logo-white.png" alt="bis logo" border="0px" /></a></center>
-        <br />
-        All major league baseball data including pitch type, velocity, batted ball location,
-        and play-by-play data provided by Baseball Info Solutions.
-    </div>
-    <div class="spacer_10">
-    </div>
-    <div style="width: 308px; float: left; background-color: transparent; border: 0px solid black; padding: 5px;">
-        <center>
-            <strong>Mitchel Lichtman</strong></center>
-        <br />
-        All UZR (ultimate zone rating) calculations are provided courtesy of Mitchel Lichtman.
+    <div class="footer-bar-item" style="text-align: center; margin: auto;">
+        <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
+        - <a href="http://www.fangraphs.com/tos.aspx">Terms of Service</a> - <a href="http://www.fangraphs.com/policy.aspx">Privacy Policy</a>
     </div>
 </div>
-<div style="width: 320px; margin-left: 10px; float: left;">
-    <div style="width: 308px; background-color: transparent; border: 0px solid black; padding: 5px;">
-
-        <center>
-                    <a href="http://www.foxsports.com/">
-            <img border="0" width="300" src="/images/badge_300.gif" height="33" /></a></center>
-        <br />
-        <center>FOX Sports Engage Network Partner</center>
-        <br />
+<div class="footer-credits">
+    <div class="footer-credits-item">
+        <a href="http://www.baseballinfosolutions.com" class="footer-credits-item-name">
+            <img src="/images/bis-logo-white.png" alt="bis logo" /></a>
+        <div class="footer-credits-item-text">All major league baseball data including pitch type, velocity, batted ball location,
+        and play-by-play data provided by Baseball Info Solutions.</div>
     </div>
-    <div class="spacer_10">
+    <div class="footer-credits-item">
+        <a href="http://www.foxsports.com/" class="footer-credits-item-name">
+            <img src="/images/badge_300.gif" /></a>
+        <div class="footer-credits-item-text">FOX Sports Engage Network Partner</div>
     </div>
-    <div style="width: 308px; background-color: transparent; border: 0px solid black; padding: 5px;">
-
-        <center>
-            <strong><a href="http://www.tangotiger.com">TangoTiger.com</a></strong></center>
-        <br />
-        All Win Expectancy, Leverage Index, Run Expectancy, and Fans Scouting Report data licenced from TangoTiger.com
+    <div class="footer-credits-item">
+        <a href="http://www.stats.com" class="footer-credits-item-name">
+            <img src="/images/statslogo_new.png" alt="statslogo" style="width: 100px;" /></a>
+        <div class="footer-credits-item-text">All minor league baseball data provided by Major League Baseball Advanced Media
+        as distributed by STATS.</div>
     </div>
-</div>
-<div style="width: 320px; margin-left: 10px; float: left;">
-    <div style="width: 308px; background-color: transparent; border: 0px solid black; padding: 5px;">
-        <center>
-            <a href="http://www.stats.com">
-                <img src="/images/statslogo_new.png" alt="statslogo" border="0px" style="width:100px;" /></a></center>
-        <br />
-        All minor league baseball data provided by Major League Baseball Advanced Media
-        as distributed by STATS.
+    <div class="footer-credits-item">
+        <div class="footer-credits-item-name">Mitchel Lichtman</div>
+        <div class="footer-credits-item-text">All UZR (ultimate zone rating) calculations are provided courtesy of Mitchel Lichtman.</div>
     </div>
-    <div class="spacer_10">
+    <div class="footer-credits-item">
+        <a href="http://www.tangotiger.com" class="footer-credits-item-name">TangoTiger.com</a>
+       <div class="footer-credits-item-text"> All Win Expectancy, Leverage Index, Run Expectancy, and Fans Scouting Report data licenced from TangoTiger.com</div>
     </div>
-    <div style="width: 308px; background-color: transparent; border: 0px solid black; padding: 5px;">
-        <center>
-            <strong><a href="http://www.retrosheet.org">Retrosheet.org</a></strong></center>
-        <br />
-        Play-by-play data prior to 2002 was obtained free of charge from and is copyrighted
-        by Retrosheet.
+    <div class="footer-credits-item">
+        <a href="http://www.retrosheet.org" class="footer-credits-item-name">Retrosheet.org</a>
+        <div class="footer-credits-item-text">Play-by-play data prior to 2002 was obtained free of charge from and is copyrighted
+        by Retrosheet.</div>
     </div>
-</div>
-
-<div class="spacer_10">
 </div>
 
 <div class="catchall1" style='width:1px; '><!-- /1128006/Tynt_1x1_Fangraphs --> <div id ='div-gpt-ad-1349421924281-28' style='width:1px; height:1px; '><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-28').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-28'); });}</script></div></div>

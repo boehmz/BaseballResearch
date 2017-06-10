@@ -1,9 +1,9 @@
-20170415;23;Kansas City Royals;Los Angeles Angels;+104;-120;
-20170415;23;Atlanta Braves;San Diego Padres;-104;-111;
-20170415;23;Miami Marlins;New York Mets;+112;-128;
-20170415;20;Cleveland Indians;Detroit Tigers;-159;+139;
-20170415;20;Boston Red Sox;Tampa Bay Rays;-222;+190;
-20170415;20;Houston Astros;Oakland Athletics;-154;+135;
-20170415;20;Colorado Rockies;San Francisco Giants;+112;-130;
-20170415;18;Pittsburgh Pirates;Chicago Cubs;+219;-256;
-20170415;18;Minnesota Twins;Chicago White Sox;-118;+102;
+20170415;Kansas City Royals;Los Angeles Angels;H;+104;-120;
+20170415;Atlanta Braves;San Diego Padres;H;-104;-111;
+20170415;Miami Marlins;New York Mets;H;+112;-128;
+20170415;Cleveland Indians;Detroit Tigers;H;-159;+139;
+20170415;Boston Red Sox;Tampa Bay Rays;H;-222;+190;
+20170415;Houston Astros;Oakland Athletics;A;-154;+135;
+20170415;Colorado Rockies;San Francisco Giants;A;+112;-130;
+20170415;Pittsburgh Pirates;Chicago Cubs;A;+219;-256;
+20170415;Minnesota Twins;Chicago White Sox;H;-118;+102;

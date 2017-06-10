@@ -1,9 +1,9 @@
-20170505;23;St.Louis Cardinals;Atlanta Braves;+100;-116;
-20170505;23;New York Mets;Miami Marlins;-110;-105;
-20170505;23;Toronto Blue Jays;Tampa Bay Rays;+131;-152;
-20170505;23;Baltimore Orioles;Chicago White Sox;-182;+159;
-20170505;23;Washington Nationals;Philadelphia Phillies;-161;+141;
-20170505;23;Pittsburgh Pirates;Milwaukee Brewers;-132;+112;
-20170505;22;Cincinnati Reds;San Francisco Giants;-120;+104;
-20170505;18;New York Yankees;Chicago Cubs;+112;-128;
-20170504;02;Seattle Mariners;Los Angeles Angels;-152;+133;
+20170505;St.Louis Cardinals;Atlanta Braves;A;+100;-116;
+20170505;New York Mets;Miami Marlins;H;-110;-105;
+20170505;Toronto Blue Jays;Tampa Bay Rays;A;+131;-152;
+20170505;Baltimore Orioles;Chicago White Sox;H;-182;+159;
+20170505;Washington Nationals;Philadelphia Phillies;A;-161;+141;
+20170505;Pittsburgh Pirates;Milwaukee Brewers;H;-132;+112;
+20170505;Cincinnati Reds;San Francisco Giants;H;-120;+104;
+20170505;New York Yankees;Chicago Cubs;A;+112;-128;
+20170504;Seattle Mariners;Los Angeles Angels;H;-152;+133;
