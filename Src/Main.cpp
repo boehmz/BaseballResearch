@@ -18,10 +18,10 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170602";
+std::string todaysDate = "20170610";
 int reviewDateStart = 515;
-int reviewDateEnd = 531;
-float percentOf2017SeasonPassed = 55.0f / 162.0f;
+int reviewDateEnd = 609;
+float percentOf2017SeasonPassed = 63.0f / 162.0f;
 
 int dayToDayInjuredPlayersNum = 1;
 string dayToDayInjuredPlayers[] = { "Polanco, Gregory" };
@@ -113,6 +113,9 @@ void RefineAlgorithm()
 		float inputCoefficients[2] = { 0.0f, 1.0f };
 		vector< float > outputValues;
 
+		vector<float> pitcherInputValues;
+		vector<float> pitcherOutputValues;
+
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
 			if (d - ((d / 100) * 100) > 31)
@@ -188,6 +191,32 @@ void RefineAlgorithm()
 				}
 			}
 			resultsTrackerFile.close();
+
+			ifstream pitcherResultsTrackerFile;
+			string pitcherResultsTrackerFileName = "2017ResultsTracker\\Pitchers\\2017";
+			if (d < 1000)
+				pitcherResultsTrackerFileName += "0";
+			pitcherResultsTrackerFileName += thisDate + ".txt";
+			pitcherResultsTrackerFile.open(pitcherResultsTrackerFileName);
+
+			while (getline(pitcherResultsTrackerFile, resultsLine))
+			{
+				vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
+				string thisPlayerId = lineValues[0];
+
+				size_t playerIdIndex = actualResults.find(";" + thisPlayerId + ";", 0);
+				if (playerIdIndex != string::npos)
+				{
+					for (int i = 0; i < 6; ++i)
+					{
+						playerIdIndex = actualResults.find(";", playerIdIndex + 1);
+					}
+					size_t nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
+					pitcherInputValues.push_back(stof(lineValues[2]));
+					pitcherOutputValues.push_back(stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str()));
+				}
+			}
+			pitcherResultsTrackerFile.close();
 		}
 
 		float fCoefficientStep = 0.01f;
@@ -228,6 +257,7 @@ void RefineAlgorithm()
 
 		float expectedPointsRSquared = CalculateRSquared(expectedPointsInputVariables, outputValues);
 		
+		float pitcherRSquared = CalculateRSquared(pitcherInputValues, pitcherOutputValues);
 		float seasonOpsRSquared = CalculateRSquared(seasonOpsInputVariables, validOutputValues);
 		float last30OpsRSquared = CalculateRSquared(last30DaysOpsInputVariables, validOutputValues);
 		float last7OpsRSquared = CalculateRSquared(last7DaysOpsInputVariables, validOutputValues);
@@ -249,6 +279,8 @@ void RefineAlgorithmForBeatTheStreak()
 	{
 		vector<BeatTheStreakPlayerProfile> playersYesHit;
 		vector<BeatTheStreakPlayerProfile> playersNoHit;
+		int numEligiblePlayersTotal = 0;
+		int eligiblePlayersThatGotHit = 0;
 
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
@@ -268,6 +300,24 @@ void RefineAlgorithmForBeatTheStreak()
 			curl_easy_perform(curl);
 			curl_easy_reset(curl);
 
+			ifstream eligiblePlayersTrackerFile;
+			string eligiblePlayersFileName = "2017ResultsTracker\\BeatTheStreak\\2017";
+			if (d < 1000)
+				eligiblePlayersFileName += "0";
+			eligiblePlayersFileName += thisDate + ".txt";
+			eligiblePlayersTrackerFile.open(eligiblePlayersFileName);
+			string eligiblePlayerName;
+			vector<string> eligiblePlayerNames;
+			while (getline(eligiblePlayersTrackerFile, eligiblePlayerName))
+			{
+				// 0   ;1                    ;2           ;3          ;4          ;5         ;6           ;7
+				// Name;HitsPerGameLast30Days;AvgLast7Days;AvgVPitcher;PitcherWhip;PitcherEra;PitcherKPer9;PitcherAvgAgainst;
+				vector<string> lineValues = SplitStringIntoMultiple(eligiblePlayerName, ";");
+				eligiblePlayerNames.push_back(lineValues[0]);
+			}
+			eligiblePlayersTrackerFile.close();
+			numEligiblePlayersTotal += eligiblePlayerNames.size();
+
 			ifstream resultsTrackerFile;
 			string resultsTrackerFileName = "2017ResultsTracker\\BeatTheStreak\\AllPlayersDaily\\2017";
 			if (d < 1000)
@@ -277,6 +327,31 @@ void RefineAlgorithmForBeatTheStreak()
 
 			string resultsLine;
 
+			for (unsigned int p = 0; p < eligiblePlayerNames.size(); ++p)
+			{
+				// 0   ;1                    ;2           ;3          ;4          ;5         ;6           ;7
+				// Name;HitsPerGameLast30Days;AvgLast7Days;AvgVPitcher;PitcherWhip;PitcherEra;PitcherKPer9;PitcherAvgAgainst;
+				size_t playerIdIndex = actualResults.find(eligiblePlayerNames[p], 0);
+				if (playerIdIndex != string::npos)
+				{
+					for (int i = 0; i < 7; ++i)
+					{
+						playerIdIndex = actualResults.find("</td>", playerIdIndex + 1);
+					}
+					size_t prevPlayerIdIndex = actualResults.rfind(">", playerIdIndex - 1);
+					prevPlayerIdIndex = actualResults.find("/", prevPlayerIdIndex + 1);
+					if (prevPlayerIdIndex < playerIdIndex)
+					{
+						playerIdIndex = prevPlayerIdIndex;
+						prevPlayerIdIndex = actualResults.rfind(" ", prevPlayerIdIndex);
+						int numHits = atoi(actualResults.substr(prevPlayerIdIndex + 1, playerIdIndex - prevPlayerIdIndex - 1).c_str());
+
+						if (numHits > 0)
+							eligiblePlayersThatGotHit++;
+					}
+				}
+			}
+
 			while (getline(resultsTrackerFile, resultsLine))
 			{
 				// 0   ;1                    ;2           ;3          ;4          ;5         ;6           ;7
@@ -285,7 +360,6 @@ void RefineAlgorithmForBeatTheStreak()
 				BeatTheStreakPlayerProfile thisPlayer;
 				thisPlayer.playerName = lineValues[0];
 				
-
 				size_t playerIdIndex = actualResults.find(thisPlayer.playerName, 0);
 				if (playerIdIndex != string::npos)
 				{
@@ -313,6 +387,8 @@ void RefineAlgorithmForBeatTheStreak()
 							playersYesHit.push_back(thisPlayer);
 						else
 							playersNoHit.push_back(thisPlayer);
+						if (thisPlayer.playerName.find("Anderson") != string::npos)
+							int x = 0;
 					}
 				}
 
@@ -447,7 +523,7 @@ void ChooseAPitcher(CURL *curl)
 		curl_easy_perform(curl);
 		curl_easy_reset(curl);
 		string team2017RunsPerGameData;
-		curl_easy_setopt(curl, CURLOPT_URL, "https://www.teamrankings.com/mlb/stat/runs-per-game");
+		curl_easy_setopt(curl, CURLOPT_URL, "https://www.teamrankings.com/mlb/stat/on-base-plus-slugging-pct");
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &team2017RunsPerGameData);
 		curl_easy_perform(curl);
@@ -607,14 +683,15 @@ void ChooseAPitcher(CURL *curl)
 				opponentTeamIndex = team2017RunsPerGameData.find("data-sort=", opponentTeamIndex + 1);
 				opponentTeamIndex = team2017RunsPerGameData.find(">", opponentTeamIndex + 1);
 				size_t opponentTeamNextIndex = team2017RunsPerGameData.find("<", opponentTeamIndex + 1);
-				float temp = stof(team2017RunsPerGameData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
-				opponentRunsPerGame += stof(team2017RunsPerGameData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str()) * min(1.0f, percentOf2017SeasonPassed * 2.0f);
+				float ops = stof(team2017RunsPerGameData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+				// ops to runs per game is
+				// 13.349 * ops - 5.379
+				opponentRunsPerGame += (13.349f * ops - 5.379f) * min(1.0f, percentOf2017SeasonPassed * 2.0f);
 
 				opponentTeamIndex = team2017StrikeoutData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
 				opponentTeamIndex = team2017StrikeoutData.find("data-sort=", opponentTeamIndex + 1);
 				opponentTeamIndex = team2017StrikeoutData.find(">", opponentTeamIndex + 1);
 				opponentTeamNextIndex = team2017StrikeoutData.find("<", opponentTeamIndex + 1);
-				temp = stof(team2017StrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 				opponentStrikeoutsPerGame += stof(team2017StrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str()) * min(1.0f, percentOf2017SeasonPassed * 2.0f);
 			
 				// ballpark factors
@@ -625,6 +702,7 @@ void ChooseAPitcher(CURL *curl)
 				parkRunsFactor = (pitcherBallparkRunsRateVsLefty + pitcherBallparkRunsRateVsRighty) * 0.5f;
 				parkHomerFactor = (pitcherBallparkHomerRateVsLefty + pitcherBallparkHomerRateVsRighty) * 0.5f;
 			}
+			
 
 			pitcherStats.era *= parkRunsFactor;
 			pitcherStats.fip *= parkHomerFactor;
@@ -1827,24 +1905,24 @@ void AnalyzeTeamWinFactors()
 		if (lineValues[4].find(" - ") != string::npos || lineValues[5].find(" - ") != string::npos)
 			continue;
 		
-		string winningTeamRankingsName = ConvertOddsPortalNameToTeamRankingsName(lineValues[2]);
-		string losingTeamRankingsName = ConvertOddsPortalNameToTeamRankingsName(lineValues[3]);
-		size_t teamOpsEnd = currentDateOpsStats.find(">" + winningTeamRankingsName + "<");
-		for (int i = 0; i < 2; ++i)
-		{
-			teamOpsEnd = currentDateOpsStats.find("</td>", teamOpsEnd + 1);
-		}
-		size_t teamOpsBegin = currentDateOpsStats.rfind(">", teamOpsEnd - 1);
-		float winningTeamOps = stof(currentDateOpsStats.substr(teamOpsBegin + 1, teamOpsEnd - teamOpsBegin - 1));
-
-		teamOpsEnd = currentDateOpsStats.find(">" + losingTeamRankingsName + "<");
-		for (int i = 0; i < 2; ++i)
-		{
-			teamOpsEnd = currentDateOpsStats.find("</td>", teamOpsEnd + 1);
-		}
-		teamOpsBegin = currentDateOpsStats.rfind(">", teamOpsEnd - 1);
-		float losingTeamOps = stof(currentDateOpsStats.substr(teamOpsBegin + 1, teamOpsEnd - teamOpsBegin - 1));
-		float opsDiff = winningTeamOps - losingTeamOps;
+		string winningTeamRankingsName = ConvertOddsPortalNameToTeamRankingsName(lineValues[1]);
+		string losingTeamRankingsName = ConvertOddsPortalNameToTeamRankingsName(lineValues[2]);
+		vector<string> winningTeamOpsColumns = GetRankingsRowColumns(winningTeamRankingsName, currentDateOpsStats, 6);
+		vector<string> losingTeamOpsColumns = GetRankingsRowColumns(losingTeamRankingsName, currentDateOpsStats, 6);
+		float opsDiff = stof(winningTeamOpsColumns[0]) - stof(losingTeamOpsColumns[0]);
+		float last3OpsDiff = stof(winningTeamOpsColumns[1]) - stof(losingTeamOpsColumns[1]);
+		float last1OpsDiff = stof(winningTeamOpsColumns[2]) - stof(losingTeamOpsColumns[2]);
+		float t2016OpsDiff = stof(winningTeamOpsColumns[5]) - stof(losingTeamOpsColumns[5]);
+		float haOpsDiff = 0;
+		if (lineValues[3] == "H")
+			haOpsDiff = stof(winningTeamOpsColumns[3]) - stof(losingTeamOpsColumns[4]);
+		else
+			haOpsDiff = stof(winningTeamOpsColumns[4]) - stof(losingTeamOpsColumns[3]);
+		float hOnlyOpsDiff = 0;
+		if (lineValues[3] == "H")
+			hOnlyOpsDiff = stof(winningTeamOpsColumns[3]) - stof(losingTeamOpsColumns[0]);
+		else
+			hOnlyOpsDiff = stof(winningTeamOpsColumns[0]) - stof(losingTeamOpsColumns[3]);
 
 		size_t teamRunsEnd = currentDateRunsStats.find(">" + winningTeamRankingsName + "<");
 		for (int i = 0; i < 2; ++i)
@@ -1866,14 +1944,14 @@ void AnalyzeTeamWinFactors()
 
 		int winningMoneyLine = atoi(lineValues[4].c_str());
 		int losingMoneyLine = atoi(lineValues[5].c_str());
-		if (winningMoneyLine <= -150 || losingMoneyLine <= -150)
+		//if (winningMoneyLine <= -150 || losingMoneyLine <= -150)
 		//if ((opsDiff >= 0 && winningMoneyLine > losingMoneyLine) ||
 		//	(opsDiff <= 0 && winningMoneyLine < losingMoneyLine))
 		{
 			gamesFactorsFile << lineValues[0] << ";";
 			gamesFactorsFile << winningMoneyLine << ";" << losingMoneyLine << ";";
 			
-			
+			/*
 			if (winningMoneyLine > losingMoneyLine)
 				gamesFactorsFile << losingMoneyLine << ";";
 			else
@@ -1891,7 +1969,9 @@ void AnalyzeTeamWinFactors()
 			{
 				gamesFactorsFile << "-10;";
 			}
+			*/
 			gamesFactorsFile << opsDiff << ";" << runsDiff << ";";
+			gamesFactorsFile << last3OpsDiff << ";" << last1OpsDiff << ";" << t2016OpsDiff << ";" << haOpsDiff << ";" << hOnlyOpsDiff << ";";
 			gamesFactorsFile << endl;
 		}
 	}
@@ -2011,11 +2091,16 @@ void GatherTeamWins()
 						losingTeamPayoutString = gameString.substr(payoutIndexPrev + 1, payoutIndex - payoutIndexPrev - 1);
 					}
 
-					if (winningTeamName.find("&") == string::npos && losingTeamName.find("&") == string::npos)
+					if (winningTeamName.find_first_of("&<=01234") == string::npos && losingTeamName.find("&<=01234") == string::npos)
 					{
 						string yearMonthDate = IntToDateYMD(atoi(timeString.c_str()) <= 7 ? d - 1 : d);
-						winResultsOutputFile << yearMonthDate << ";" << timeString << ";";
-						winResultsOutputFile << winningTeamName << ";" << losingTeamName << ";" << payoutString << ";" << losingTeamPayoutString << ";";
+						winResultsOutputFile << yearMonthDate << ";";
+						winResultsOutputFile << winningTeamName << ";" << losingTeamName << ";";
+						if (winningTeamNameIndex < losingTeamNameIndex)
+							winResultsOutputFile << "H;";
+						else
+							winResultsOutputFile << "A;";
+						winResultsOutputFile << payoutString << ";" << losingTeamPayoutString << ";";
 						winResultsOutputFile << endl;
 					}
 				}
@@ -2037,6 +2122,21 @@ void GatherTeamWins()
 		allGamesFile << GetEntireFileContents(winResultsFileName);
 	}
 	allGamesFile.close();
+}
+
+std::vector<string> GetRankingsRowColumns(std::string teamName, std::string allData, int numColumns)
+{
+	vector<string> allColumns;
+	size_t teamColumnEnd = allData.find(">" + teamName + "<");
+	teamColumnEnd = allData.find("</td>", teamColumnEnd + 1);
+	while (numColumns > 0)
+	{
+		teamColumnEnd = allData.find("</td>", teamColumnEnd + 1);
+		size_t teamColumnBegin = allData.rfind(">", teamColumnEnd - 1);
+		allColumns.push_back(allData.substr(teamColumnBegin + 1, teamColumnEnd - teamColumnBegin - 1));
+		numColumns--;
+	}
+	return allColumns;
 }
 
 void Analyze2016Stats()
@@ -2542,7 +2642,7 @@ void GetBeatTheStreakCandidates(CURL *curl)
 				int numHitsGot = atoi(last30DaysStats.substr(playerPositionPrevIndex + 1, playerPositionIndex - playerPositionPrevIndex - 1).c_str());
 
 				playerProfile.hitsPerGameLast30Days = (float)numHitsGot / (float)numGamesPlayed;
-				if (playerProfile.hitsPerGameLast30Days > 1.0f)
+				if (playerProfile.hitsPerGameLast30Days > 1.05f)
 					eligiblePlayers.push_back(playerProfile);
 				allPlayers.push_back(playerProfile);
 				playerPositionIndex = last30DaysStats.find("LeaderBoard1_dg1_ctl00__", playerPositionIndex + 1);
@@ -2767,9 +2867,8 @@ void GetBeatTheStreakCandidates(CURL *curl)
 				
 				//FullSeasonStatsAdvanced pitcherVBatter2017Stats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
 				FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats(pitcherGID, "2017", curl);
-				// era above 4
-				// whip above 1.25
-				if ( pitcher2017Stats.strikeOutsPer9 < 9.01f && pitcher2017Stats.era >= 4.01f && pitcher2017Stats.whip >= 1.26f)
+				
+				if ( pitcher2017Stats.strikeOutsPer9 < 7.69f && pitcher2017Stats.era >= 4.15f && pitcher2017Stats.whip >= 1.308f)
 				{
 					for (int i = 0; i < 19; ++i)
 					{
@@ -2788,7 +2887,7 @@ void GetBeatTheStreakCandidates(CURL *curl)
 					else if (eligiblePlayers[i].batterHandedness == "R")
 						eligiblePlayers[i].opposingPitcherAverageAgainstHandedness = pitcher2017AdvancedStats.averageVersusRighty;
 
-					if (eligiblePlayers[i].opposingPitcherAverageAgainstHandedness >= 0.275f)
+					if (eligiblePlayers[i].opposingPitcherAverageAgainstHandedness >= 0.280f)
 						bKeep = true;
 				}
 			}

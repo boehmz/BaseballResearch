@@ -163,6 +163,7 @@ void PopulateProbableRainoutGames(CURL* curl);
 void Analyze2016Stats();
 void AnalyzeTeamWinFactors();
 void GatherTeamWins();
+std::vector<std::string> GetRankingsRowColumns(std::string teamName, std::string allData, int numColumns);
 
 void UnitTestAllStatCollectionFunctions();
 
