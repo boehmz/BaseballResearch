@@ -171,70 +171,51 @@ FullSeasonStats GetBatterStats(string playerId, string yearString, CURL *curl)
 	return playerStats;
 }
 
+std::vector<string> GetFangraphsRowColumns(std::string yearRow, std::string allData, int numColumns, std::string section, std::string nextSection)
+{
+	vector<string> allColumns;
+	size_t fangraphsCurrentIndex = allData.find(section, 0);
+	size_t fangraphsNextCategoryIndex = allData.find(nextSection, 0);
+	if (fangraphsCurrentIndex != string::npos)
+	{
+		fangraphsCurrentIndex = allData.find(yearRow, fangraphsCurrentIndex + 1);
+		
+		if (fangraphsCurrentIndex != string::npos && fangraphsCurrentIndex < fangraphsNextCategoryIndex)
+		{
+			fangraphsCurrentIndex = allData.find("</td>", fangraphsCurrentIndex + 1);
+			while (numColumns > 0)
+			{
+				fangraphsCurrentIndex = allData.find("</td>", fangraphsCurrentIndex + 1);
+				size_t fangraphsPrevIndex = allData.rfind(">", fangraphsCurrentIndex);
+				allColumns.push_back(allData.substr(fangraphsPrevIndex + 1, fangraphsCurrentIndex - fangraphsPrevIndex - 1));
+				numColumns--;
+			}
+		}
+	}
+	return allColumns;
+}
+
 FullSeasonPitcherStats GetPitcherStats(string playerId, string yearString, CURL *curl)
 {
 	FullSeasonPitcherStats pitcherStats;
 
 	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != "2017", AdvancedStatsPitchingStarterStatsOnly);
-	size_t fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"standard\"", 0);
-	size_t fangraphsNextCategoryIndex = fangraphsPlayerData.find("name=\"advanced\"", 0);
-	if (fangraphsCurrentIndex != string::npos)
-	{
-		fangraphsCurrentIndex = fangraphsPlayerData.find(yearString, fangraphsCurrentIndex + 1);
-		if (fangraphsCurrentIndex != string::npos && fangraphsCurrentIndex < fangraphsNextCategoryIndex)
-		{
-			for (int i = 0; i < 3; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			size_t fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherStats.numInnings = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-			pitcherStats.numInnings = floor(pitcherStats.numInnings) + ((pitcherStats.numInnings - floor(pitcherStats.numInnings)) * 3.4f);
+	vector<string> fangraphsStandardRows = GetFangraphsRowColumns(yearString, fangraphsPlayerData, 18, "name=\"standard\"", "name=\"advanced\"");
+	if (fangraphsStandardRows.size() == 0)
+		return pitcherStats;
+	pitcherStats.numInnings = stof(fangraphsStandardRows[1].c_str());
+	pitcherStats.numInnings = floor(pitcherStats.numInnings) + ((pitcherStats.numInnings - floor(pitcherStats.numInnings)) * 3.4f);
+	pitcherStats.era = stof(fangraphsStandardRows[2].c_str());
+	pitcherStats.opsAllowed = stof(fangraphsStandardRows[15].c_str());
+	pitcherStats.opsAllowed += stof(fangraphsStandardRows[16].c_str());
+	pitcherStats.wobaAllowed = stof(fangraphsStandardRows[17].c_str());
 
-			for (int i = 0; i < 2; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherStats.era = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-		}
-	}
+	vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(yearString, fangraphsPlayerData, 14, "name=\"advanced\"", "name=\"battedball\"");
+	pitcherStats.strikeOutsPer9 = stof(fangraphsAdvancedRows[1].c_str());
+	pitcherStats.whip = stof(fangraphsAdvancedRows[9].c_str());
+	pitcherStats.fip = stof(fangraphsAdvancedRows[12].c_str());
+	pitcherStats.xfip = stof(fangraphsAdvancedRows[13].c_str());
 
-	fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"advanced\"", 0);
-	fangraphsNextCategoryIndex = fangraphsPlayerData.find("name=\"battedball\"", 0);
-	if (fangraphsCurrentIndex != string::npos)
-	{
-		fangraphsCurrentIndex = fangraphsPlayerData.find(yearString, fangraphsCurrentIndex + 1);
-
-		if (fangraphsCurrentIndex != string::npos && fangraphsCurrentIndex < fangraphsNextCategoryIndex)
-		{
-			for (int i = 0; i < 3; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			size_t fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherStats.strikeOutsPer9 = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-
-			for (int i = 0; i < 9; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherStats.whip = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-
-			for (int i = 0; i < 4; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherStats.fip = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-		}
-	}
 	return pitcherStats;
 }
 
@@ -576,17 +557,29 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 	return fangraphsData;
 }
 
+string FullSeasonPitcherStats::ToString()
+{
+	//era; fip; xfip; strikeOutsPer9; numInnings; whip; wobaAllowed; opsAllowed;
+	return to_string(era) + ";" + to_string(fip) + ";" + to_string(xfip) + ";" + to_string(strikeOutsPer9) + ";" + to_string(numInnings) + ";" + to_string(whip) + ";" + to_string(wobaAllowed) + ";" + to_string(opsAllowed) + ";";
+}
+
 bool FullSeasonPitcherStats::operator==(const FullSeasonPitcherStats& rhs)
 {
 	if (abs(rhs.era - era) > 0.0015f)
 		return false;
 	if (abs(rhs.fip - fip) > 0.0015f)
 		return false;
+	if (abs(rhs.xfip - xfip) > 0.0015f)
+		return false;
 	if (abs(rhs.numInnings - numInnings) > 0.015f)
 		return false;
 	if (abs(rhs.strikeOutsPer9 - strikeOutsPer9) > 0.015f)
 		return false;
 	if (abs(rhs.whip - whip) > 0.015f)
+		return false;
+	if (abs(rhs.opsAllowed - opsAllowed) > 0.0015f)
+		return false;
+	if (abs(rhs.wobaAllowed - wobaAllowed) > 0.0015f)
 		return false;
 	return true;
 }

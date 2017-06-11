@@ -18,10 +18,10 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170610";
+std::string todaysDate = "20170611";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOf2017SeasonPassed = 63.0f / 162.0f;
+float percentOf2017SeasonPassed = 64.0f / 162.0f;
 
 int dayToDayInjuredPlayersNum = 1;
 string dayToDayInjuredPlayers[] = { "Polanco, Gregory" };
@@ -39,7 +39,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::AnalyzeTeamWins;
+	ProcessType processType = ProcessType::GenerateLineup;
 
 	switch (processType)
 	{
@@ -68,7 +68,7 @@ int main(void)
 		}
 		else
 		{
-			AssembleBatterSplits(curl);
+		//	AssembleBatterSplits(curl);
 			ChooseAPitcher(curl);
 			GenerateNewLineup(curl);
 		}
@@ -530,6 +530,10 @@ void ChooseAPitcher(CURL *curl)
 		curl_easy_reset(curl);
 
 	
+		ofstream pitcherStatsArchiveFile;
+		string pitcherStatsArchiveFileName = "2017ResultsTracker\\TeamWinResults\\PitcherData\\" + todaysDate + ".txt";
+		pitcherStatsArchiveFile.open(pitcherStatsArchiveFileName);
+
 		vector<PlayerData> positionalPlayerData;
 
 		size_t placeHolderIndex = readBuffer.find("GID;", 0);
@@ -754,7 +758,11 @@ void ChooseAPitcher(CURL *curl)
 					myTeam->second.pitcherEstimatedPpg = singlePlayerData.playerPointsPerGame;
 				}
 			}
-			
+			if (newPitcherStats.xfip > -0.1f)
+			{
+				pitcherStatsArchiveFile << singlePlayerData.teamCode << ";" << singlePlayerData.playerId << ";" << singlePlayerData.playerName << ";" << newPitcherStats.ToString();
+				pitcherStatsArchiveFile << endl;
+			}
 			// throw this guy out if his game will most likely be rained out
 			if (pitcherStats.strikeOutsPer9 >= 0 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
 				positionalPlayerData.push_back(singlePlayerData);
@@ -763,6 +771,7 @@ void ChooseAPitcher(CURL *curl)
 			else
 				placeHolderIndex = readBuffer.find("\n", placeHolderIndex + 1);
 		}
+		pitcherStatsArchiveFile.close();
 
 		sort(positionalPlayerData.begin(), positionalPlayerData.end(), comparePlayerByPointsPerGame);
 
@@ -1769,6 +1778,9 @@ void UnitTestAllStatCollectionFunctions()
 		expectedPitcher2016Stats.numInnings = 158.6666666f;
 		expectedPitcher2016Stats.strikeOutsPer9 = 7.6f;
 		expectedPitcher2016Stats.whip = 1.27f;
+		expectedPitcher2016Stats.xfip = 3.98f;
+		expectedPitcher2016Stats.wobaAllowed = 0.319f;
+		expectedPitcher2016Stats.opsAllowed = 0.750f;
 		FullSeasonStatsAdvanced expectedPitcherAdvanced2016Stats;
 		expectedPitcherAdvanced2016Stats.averageVersusLefty = 0.251f;
 		expectedPitcherAdvanced2016Stats.isoVersusLefty = 0.2f;
@@ -1866,6 +1878,20 @@ void AnalyzeTeamWinFactors()
 {
 	CURL* curl = NULL;
 	//GatherTeamWins();
+	string pitcherPage1Data;
+	CurlGetSiteContents(curl, "http://www.fangraphs.com/leaderssplits.aspx?splitArr=42&strgroup=season&statgroup=2&startDate=2017-03-01&endDate=2017-11-01&filter=&position=P&statType=player&autoPt=false&sort=17,-1&pg=0", pitcherPage1Data);
+	size_t noahIndex = pitcherPage1Data.find(">Noah Syndergaard<");
+	ofstream noahInfo("NoahInfo");
+	noahInfo << pitcherPage1Data;
+	if (noahIndex != string::npos)
+	{
+		for (int i = 0; i < 7; ++i)
+			noahIndex = pitcherPage1Data.find("</td>", noahIndex + 1);
+		size_t prevIndex = pitcherPage1Data.rfind(">", noahIndex - 1);
+		float kbb = stof(pitcherPage1Data.substr(prevIndex + 1, noahIndex - prevIndex - 1));
+		kbb = kbb;
+	}
+	return;
 	fstream allGamesFile;
 	allGamesFile.open("2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt");
 	ofstream gamesFactorsFile;

@@ -31,6 +31,7 @@ const int AdvancedStatsPitchingSplitsVersusRightHand = 4;
 const int AdvancedStatsPitchingSplitsVersusLeftHand = 8;
 const int AdvancedStatsPitchingStarterStatsOnly = 16;
 std::string GetPlayerFangraphsPageData(std::string playerId, CURL *curl, bool bCachedOk, int advancedStatsFlags);
+std::vector<std::string> GetFangraphsRowColumns(std::string yearRow, std::string allData, int numColumns, std::string section, std::string nextSection);
 
 struct FullSeasonStats
 {
@@ -81,15 +82,23 @@ struct FullSeasonPitcherStats
 	float strikeOutsPer9;
 	float numInnings;
 	float whip;
+	float xfip;
+	float wobaAllowed;
+	float opsAllowed;
 
-	FullSeasonPitcherStats()
+	FullSeasonPitcherStats() : era(-99),
+		fip(-999),
+		strikeOutsPer9(-999),
+		numInnings(-999),
+		whip(-999),
+		xfip(-999),
+		wobaAllowed(-999),
+		opsAllowed(-999)
+
 	{
-		era = -999;
-		fip = -999;
-		strikeOutsPer9 = -999;
-		numInnings = -1;
 	}
 	bool operator==(const FullSeasonPitcherStats& rhs);
+	std::string ToString();
 };
 FullSeasonPitcherStats GetPitcherStats(std::string playerId, std::string yearString, CURL *curl);
 
