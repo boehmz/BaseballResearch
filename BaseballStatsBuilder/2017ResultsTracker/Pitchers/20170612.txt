@@ -1,0 +1,17 @@
+100m;Strasburg, Stephen;53.2602
+121n;deGrom, Jacob;51.4093
+110a;Darvish, Yu;51.2114
+129w;Meyer, Alex;48.3614
+1457;Porcello, Rick;46.8076
+108j;Miley, Wade;46.3986
+134v;Taillon, Jameson;46.3453
+121w;Tanaka, Masahiro;45.8436
+1327;Lackey, John;45.6177
+133l;Musgrove, Joe;45.4802
+1897;Arroyo, Bronson;45.1135
+135k;Mejia, Adalberto;44.414
+125g;Foltynewicz, Mike;43.8276
+1026;Gallardo, Yovani;42.7513
+1581;Pelfrey, Mike;42.3961
+131e;Eickhoff, Jerad;42.0916
+134z;Perdomo, Luis;41.7628
