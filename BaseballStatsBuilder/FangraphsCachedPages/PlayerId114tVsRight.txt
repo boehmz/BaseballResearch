@@ -1,4 +1,4 @@
-20170613/ZachDateMetaData
+20170614/ZachDateMetaData
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -548,7 +548,7 @@
                             <strong style="font-size:15pt;">Jake Odorizzi</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 3/27/1990 (27 y, 2 m, 17 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-2/190 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=6397&position=P#draft" style="text-decoration:none;">2008 June Amateur Draft - Round: 1s, Pick: 2, Overall: 32, Team: Milwaukee Brewers</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=6397&position=P#contract" style="text-decoration:none;">$4.1M / 1 Years (2017)</a>
+                            <strong>Birthdate:</strong> 3/27/1990 (27 y, 2 m, 18 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-2/190 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=6397&position=P#draft" style="text-decoration:none;">2008 June Amateur Draft - Round: 1s, Pick: 2, Overall: 32, Team: Milwaukee Brewers</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=6397&position=P#contract" style="text-decoration:none;">$4.1M / 1 Years (2017)</a>
                         </div>
                     </td>
                     
@@ -1204,7 +1204,7 @@
         
     </div></div>
     <div class="footer-bar-item">
-        <span class="mobile-hide">Updated: Tuesday, June 13, 2017 5:27 AM ET</span><span class="mobile-show">Updated: 6/13/2017 5:27 AM ET</span>
+        <span class="mobile-hide">Updated: Tuesday, June 13, 2017 5:28 AM ET</span><span class="mobile-show">Updated: 6/13/2017 5:28 AM ET</span>
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
