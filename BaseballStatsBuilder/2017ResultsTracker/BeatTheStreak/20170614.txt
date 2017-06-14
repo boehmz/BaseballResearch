@@ -1,0 +1,2 @@
+Charlie Blackmon;1.60714;0.407;-1;
+Eduardo Nunez;1.52;0.385;0.333333;
