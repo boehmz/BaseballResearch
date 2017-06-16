@@ -1,4 +1,4 @@
-20170610/ZachDateMetaData
+20170615/ZachDateMetaData
 text/javascript"></script>
 
 <script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=yONnNeg0_tp3KoLSBL2DqY6gAKfm_dA7JxGUf1pSEcg1"></script>
@@ -194,7 +194,7 @@ text/javascript"></script>
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_navBar_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-06-09">Probable Pitchers</a>
+                            <a id="Header1_navBar_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-06-14">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -648,7 +648,7 @@ text/javascript"></script>
         
     </div></div>
     <div class="footer-bar-item">
-        <span class="mobile-hide">Updated: Friday, June 9, 2017 4:48 AM ET</span><span class="mobile-show">Updated: 6/9/2017 4:48 AM ET</span>
+        <span class="mobile-hide">Updated: Wednesday, June 14, 2017 6:38 AM ET</span><span class="mobile-show">Updated: 6/14/2017 6:38 AM ET</span>
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>

@@ -12,7 +12,7 @@ text/javascript"></script>
 
 </head>
 <body>
-    <form method="post" action="./generalerror.aspx?aspxerrorpath=%2fstatsplits.aspx&amp;season=0&amp;split=8.1" id="form1">
+    <form method="post" action="./generalerror.aspx?aspxerrorpath=%2fstatsplits.aspx" id="form1">
 <input type="hidden" name="RadScriptManager1_TSM" id="RadScriptManager1_TSM" value="" />
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTQ4NDU5NzMyNg9kFgICAw9kFgICBQ8WAh4EVGV4dAXPAjxkaXYgc3R5bGU9ImZvbnQ6IDEycHggdmVyZGFuYSwgZ2VuZXZhLCBsdWNpZGEsICdsdWNpZGEgZ3JhbmRlJywgYXJpYWwsIGhlbHZldGljYSwgc2Fucy1zZXJpZjsgd29yZC13cmFwOiBicmVhay13b3JkOyI+PHN0cm9uZz5Zb3UgaGF2ZSBlbmNvdW50ZXJlZCBhbiB1bmV4cGVjdGVkIGVycm9yLiAgSWYgdGhlIHByb2JsZW0gcGVyc2lzdHMsIHBsZWFzZSBmaWxsIG91dCBhIDxhIGhyZWY9Imh0dHA6Ly93d3cuZmFuZ3JhcGhzLmNvbS9ibG9ncy9jb250YWN0LyI+Y29udGFjdCBmb3JtPC9hPi48YnIgLz48YnIgLz5UaGFuayB5b3UgZm9yIHlvdXIgcGF0aWVuY2UuPC9zdHJvbmc+PC9kaXY+ZGReDoF3NEsiphOtr2CxaBLb/e4HXw==" />
 
@@ -463,7 +463,7 @@ text/javascript"></script>
     </div>
     <div id="Header1_LoginBlog1_navLogin" class="nav-login">
 	
-        <div class="nav-login-text"><a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fgeneralerror.aspx%3faspxerrorpath%3d%2fstatsplits.aspx%26season%3d0%26split%3d8.1">Log In</a> &nbsp;|&nbsp; <a href="http://www.fangraphs.com/blogs/wp-login.php?action=register">Register</a></div>
+        <div class="nav-login-text"><a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fgeneralerror.aspx%3faspxerrorpath%3d%2fstatsplits.aspx">Log In</a> &nbsp;|&nbsp; <a href="http://www.fangraphs.com/blogs/wp-login.php?action=register">Register</a></div>
     
 </div>
     
@@ -483,7 +483,7 @@ text/javascript"></script>
     <a class="my_popup_close popup-button" style="background-color: #000; color: #fff;">No Thanks
     </a>
     </div>
-    <div class="popup-login">Already a member? <a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fgeneralerror.aspx%3faspxerrorpath%3d%2fstatsplits.aspx%26season%3d0%26split%3d8.1">Log In</a></div>
+    <div class="popup-login">Already a member? <a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fgeneralerror.aspx%3faspxerrorpath%3d%2fstatsplits.aspx">Log In</a></div>
 </div>
 
 <script src="/javascript/nav/nav-login.js"></script>
