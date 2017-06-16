@@ -18,10 +18,10 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170611";
+std::string todaysDate = "20170616";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOf2017SeasonPassed = 64.0f / 162.0f;
+float percentOf2017SeasonPassed = 69.0f / 162.0f;
 
 int dayToDayInjuredPlayersNum = 1;
 string dayToDayInjuredPlayers[] = { "Polanco, Gregory" };
@@ -39,7 +39,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::AnalyzeTeamWins;
 
 	switch (processType)
 	{
@@ -1878,19 +1878,7 @@ void AnalyzeTeamWinFactors()
 {
 	CURL* curl = NULL;
 	//GatherTeamWins();
-	string pitcherPage1Data;
-	CurlGetSiteContents(curl, "http://www.fangraphs.com/leaderssplits.aspx?splitArr=42&strgroup=season&statgroup=2&startDate=2017-03-01&endDate=2017-11-01&filter=&position=P&statType=player&autoPt=false&sort=17,-1&pg=0", pitcherPage1Data);
-	size_t noahIndex = pitcherPage1Data.find(">Noah Syndergaard<");
-	ofstream noahInfo("NoahInfo");
-	noahInfo << pitcherPage1Data;
-	if (noahIndex != string::npos)
-	{
-		for (int i = 0; i < 7; ++i)
-			noahIndex = pitcherPage1Data.find("</td>", noahIndex + 1);
-		size_t prevIndex = pitcherPage1Data.rfind(">", noahIndex - 1);
-		float kbb = stof(pitcherPage1Data.substr(prevIndex + 1, noahIndex - prevIndex - 1));
-		kbb = kbb;
-	}
+	GatherPitcherCumulativeData();
 	return;
 	fstream allGamesFile;
 	allGamesFile.open("2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt");
@@ -2005,6 +1993,24 @@ void AnalyzeTeamWinFactors()
 	allGamesFile.close();
 }
 
+void GatherPitcherCumulativeData()
+{
+	CURL* curl = NULL;
+	string pitcherPage1Data;
+	CurlGetSiteContents(curl, "http://www.fangraphs.com/statsd.aspx?playerid=3990&position=P&type=0&gds=2017-04-03&gde=2017-04-13&season=", pitcherPage1Data);
+	size_t totalIndex = pitcherPage1Data.find(">Total<");
+	if (totalIndex != string::npos)
+	{
+		for (int i = 0; i < 9; ++i)
+			totalIndex = pitcherPage1Data.find("</td>", totalIndex + 1);
+		size_t prevIndex = pitcherPage1Data.rfind(">", totalIndex);
+		string a = pitcherPage1Data.substr(prevIndex + 1, totalIndex - prevIndex - 1);
+		totalIndex = pitcherPage1Data.find("</td>", totalIndex + 1);
+		prevIndex = pitcherPage1Data.rfind(">", totalIndex);
+		string b = pitcherPage1Data.substr(prevIndex + 1, totalIndex - prevIndex - 1);
+		string c = b;
+	}
+}
 void GatherTeamWins()
 {
 	CURL* curl = NULL;
