@@ -1,4 +1,4 @@
-20170615/ZachDateMetaData
+20170616/ZachDateMetaData
 text/javascript"></script>
 
 <script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=yONnNeg0_tp3KoLSBL2DqY6gAKfm_dA7JxGUf1pSEcg1"></script>
@@ -209,7 +209,7 @@ text/javascript"></script>
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_navBar_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-06-14">Probable Pitchers</a>
+                            <a id="Header1_navBar_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-06-15">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -530,7 +530,7 @@ text/javascript"></script>
                             <strong style="font-size:15pt;">Steven Matz</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 5/29/1991 (26 y, 17 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-2/200 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=13361&position=P#draft" style="text-decoration:none;">2009 June Amateur Draft - Round: 2, Pick: 23, Overall: 72, Team: New York Mets</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=13361&position=P#contract" style="text-decoration:none;">$0.5M / 1 Years (2016)</a>
+                            <strong>Birthdate:</strong> 5/29/1991 (26 y, 18 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-2/200 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=13361&position=P#draft" style="text-decoration:none;">2009 June Amateur Draft - Round: 2, Pick: 23, Overall: 72, Team: New York Mets</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=13361&position=P#contract" style="text-decoration:none;">$0.5M / 1 Years (2016)</a>
                         </div>
                     </td>
                     <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><span style="padding-left:0px;"><b>Reported</b>: 1/1/2015&nbsp;&nbsp;<b>Risk</b>: 3&nbsp;&nbsp;<b>ETA</b>: 2016&nbsp;&nbsp;<b>Team Rank</b>: NA&nbsp;&nbsp;<b>Positional Rank</b>: NA&nbsp;&nbsp;<b>Overall Rank</b>: NA</span><table class="depth_chart" cellspacing="0" cellpadding="2" style="margin-top:3px; width:90%; border:1px solid Gray; font-size:9pt; text-align:center;"><tr><td style="background-color:Gray; color:white;">Fastball</td><td style="background-color:Gray; color:white;">Curveball</td><td style="background-color:Gray; color:white;">Changeup</td><td style="background-color:Gray; color:white;">Command</td><td style="background-color:Gray; color:white;">Future Value</td></tr><tr class="depth_team"><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">55 / 60</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">40 / 50</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">50 / 55</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">40 / 50</td><td style="border-right: 1px solid #DCDCDC; border-bottom:1px solid #DCDCDC;">50</td></tr></table></div></td></tr>
@@ -966,7 +966,7 @@ text/javascript"></script>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__1">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">8.77</td><td class="grid_line_regular" align="right">2.11</td><td class="grid_line_regular" align="right">4.16</td><td class="grid_line_regular" align="right">0.95</td><td class="grid_line_regular" align="right">23.6 %</td><td class="grid_line_regular" align="right">5.7 %</td><td class="grid_line_regular" align="right">17.9 %</td><td class="grid_line_regular" align="right">.252</td><td class="grid_line_regular" align="right">1.21</td><td class="grid_line_regular" align="right">.313</td><td class="grid_line_regular" align="right">77.0 %</td><td class="grid_line_regular" align="right">3.39</td><td class="grid_line_regular" align="right">3.30</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__2">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">2.57</td><td class="grid_line_regular" align="right">1.29</td><td class="grid_line_regular" align="right">2.00</td><td class="grid_line_regular" align="right">0.00</td><td class="grid_line_regular" align="right">7.4 %</td><td class="grid_line_regular" align="right">3.7 %</td><td class="grid_line_regular" align="right">3.7 %</td><td class="grid_line_regular" align="right">.192</td><td class="grid_line_regular" align="right">0.86</td><td class="grid_line_regular" align="right">.208</td><td class="grid_line_regular" align="right">83.3 %</td><td class="grid_line_regular" align="right">2.97</td><td class="grid_line_regular" align="right">5.73</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">2.57</td><td class="grid_line_regular" align="right">1.29</td><td class="grid_line_regular" align="right">2.00</td><td class="grid_line_regular" align="right">0.00</td><td class="grid_line_regular" align="right">7.4 %</td><td class="grid_line_regular" align="right">3.7 %</td><td class="grid_line_regular" align="right">3.7 %</td><td class="grid_line_regular" align="right">.192</td><td class="grid_line_regular" align="right">0.86</td><td class="grid_line_regular" align="right">.208</td><td class="grid_line_regular" align="right">83.3 %</td><td class="grid_line_regular" align="right">2.98</td><td class="grid_line_regular" align="right">5.75</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__3">
 		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">8.49</td><td class="grid_line_regular" align="right">2.16</td><td class="grid_line_regular" align="right">3.93</td><td class="grid_line_regular" align="right">0.93</td><td class="grid_line_regular" align="right">22.8 %</td><td class="grid_line_regular" align="right">5.8 %</td><td class="grid_line_regular" align="right">17.0 %</td><td class="grid_line_regular" align="right">.249</td><td class="grid_line_regular" align="right">1.20</td><td class="grid_line_regular" align="right">.305</td><td class="grid_line_regular" align="right">80.2 %</td><td class="grid_line_regular" align="right">3.42</td><td class="grid_line_regular" align="right">3.45</td>
 	</tr>
@@ -1168,7 +1168,7 @@ text/javascript"></script>
         
     </div></div>
     <div class="footer-bar-item">
-        <span class="mobile-hide">Updated: Wednesday, June 14, 2017 6:38 AM ET</span><span class="mobile-show">Updated: 6/14/2017 6:38 AM ET</span>
+        <span class="mobile-hide">Updated: Thursday, June 15, 2017 4:56 AM ET</span><span class="mobile-show">Updated: 6/15/2017 4:56 AM ET</span>
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
