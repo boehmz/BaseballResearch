@@ -1,0 +1,44 @@
+20170616/ZachDateMetaData
+<HTML><HEAD><TITLE>Baseball Player Lookup</TITLE><meta name="keywords" content="sports, baseball, strategy, smallworld, statistics, stragety, sprots, rotisserie, roto, investment, invest, game">
+<link rel="shortcut icon" href="http://rotoguru.net/images/ricony.ico" />
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script src="http://tags.crwdcntrl.net/c/10935/cc_af.js"></script>
+
+<script>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+googletag.cmd.push(function() {
+googletag.defineSlot('/67970281/DISPLAY_THIRDPARTY_US_SNx/Daily_Baseball_Data/Fantasy/Top_Banner', [728, 90], 'div-gpt-ad-1474386197574-0').addService(googletag.pubads());
+ googletag.defineSlot('/67970281/DISPLAY_THIRDPARTY_US_SNx/Daily_Baseball_Data/Fantasy/Top_MPU', [300, 250], 'div-gpt-ad-1474386370013-0').addService(googletag.pubads());
+googletag.defineSlot('/67970281/DISPLAY_THIRDPARTY_US_SNx/Daily_Baseball_Data/Fantasy/Bottom_Banner', [728, 90], 'div-gpt-ad-1474386594603-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+ });
+</script>
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#FFFFFF">
+<br><center>
+
+
+<a href="http://rotoguru2.com/"><IMG SRC="http://rotoguru1.com/images/gfs2.gif" BORDER=0 WIDTH=316 HEIGHT=66 alt="[Rotoguru logo]"></a><br>
+<IMG SRC="http://rotoguru1.com/images/gfssubtitle.gif" WIDTH=316 HEIGHT=29 alt="[RotoGuru subtitle]"></center>
+<center><font face="Times New Roman" size=5><b>2017 Individual Baseball Player Stats<br></b><font size=3>
+<hr>
+<!-- /67970281/DISPLAY_THIRDPARTY_US_SNx/Daily_Baseball_Data/Fantasy/Top_Banner -->
+<div id='div-gpt-ad-1474386197574-0' style='height:90px; width:728px;'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1474386197574-0'); });
+</script>
+</div>
+
+
+<hr>
+<font size=3>
+
+
+
+
+<center>
