@@ -1996,20 +1996,8 @@ void AnalyzeTeamWinFactors()
 void GatherPitcherCumulativeData()
 {
 	CURL* curl = NULL;
-	string pitcherPage1Data;
-	CurlGetSiteContents(curl, "http://www.fangraphs.com/statsd.aspx?playerid=3990&position=P&type=0&gds=2017-04-03&gde=2017-04-13&season=", pitcherPage1Data);
-	size_t totalIndex = pitcherPage1Data.find(">Total<");
-	if (totalIndex != string::npos)
-	{
-		for (int i = 0; i < 9; ++i)
-			totalIndex = pitcherPage1Data.find("</td>", totalIndex + 1);
-		size_t prevIndex = pitcherPage1Data.rfind(">", totalIndex);
-		string a = pitcherPage1Data.substr(prevIndex + 1, totalIndex - prevIndex - 1);
-		totalIndex = pitcherPage1Data.find("</td>", totalIndex + 1);
-		prevIndex = pitcherPage1Data.rfind(">", totalIndex);
-		string b = pitcherPage1Data.substr(prevIndex + 1, totalIndex - prevIndex - 1);
-		string c = b;
-	}
+	FullSeasonPitcherStats cumulativeStats = GetPitcherCumulativeStatsUpTo("1580", curl, "2017-05-15");
+	cumulativeStats.opsAllowed = 0;
 }
 void GatherTeamWins()
 {
