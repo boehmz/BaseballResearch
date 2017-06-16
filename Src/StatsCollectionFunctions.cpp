@@ -176,6 +176,8 @@ std::vector<string> GetFangraphsRowColumns(std::string yearRow, std::string allD
 	vector<string> allColumns;
 	size_t fangraphsCurrentIndex = allData.find(section, 0);
 	size_t fangraphsNextCategoryIndex = allData.find(nextSection, 0);
+	if (nextSection == "")
+		fangraphsNextCategoryIndex = string::npos;
 	if (fangraphsCurrentIndex != string::npos)
 	{
 		fangraphsCurrentIndex = allData.find(yearRow, fangraphsCurrentIndex + 1);
@@ -215,6 +217,32 @@ FullSeasonPitcherStats GetPitcherStats(string playerId, string yearString, CURL 
 	pitcherStats.whip = stof(fangraphsAdvancedRows[9].c_str());
 	pitcherStats.fip = stof(fangraphsAdvancedRows[12].c_str());
 	pitcherStats.xfip = stof(fangraphsAdvancedRows[13].c_str());
+
+	return pitcherStats;
+}
+
+FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(string playerId, CURL *curl, string dateUpTo)
+{
+	FullSeasonPitcherStats pitcherStats;
+
+	string fangraphsPlayerData = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, false);
+	string fangraphsPlayerDataAdvanced = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, true);
+
+	vector<string> fangraphsStandardRows = GetFangraphsRowColumns(">Total<", fangraphsPlayerData, 26, "id=\"DailyStats", "");
+	if (fangraphsStandardRows.size() == 0)
+		return pitcherStats;
+	pitcherStats.numInnings = stof(fangraphsStandardRows[7].c_str());
+	pitcherStats.numInnings = floor(pitcherStats.numInnings) + ((pitcherStats.numInnings - floor(pitcherStats.numInnings)) * 3.4f);
+	pitcherStats.era = stof(fangraphsStandardRows[22].c_str());
+	pitcherStats.fip = stof(fangraphsStandardRows[23].c_str());
+	pitcherStats.xfip = stof(fangraphsStandardRows[24].c_str());
+	pitcherStats.strikeOutsPer9 = stof(fangraphsStandardRows[15].c_str());
+
+
+	vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(">Total<", fangraphsPlayerDataAdvanced, 17, "id=\"DailyStats", "");
+	if (fangraphsAdvancedRows.size() == 0)
+		return pitcherStats;
+	pitcherStats.whip = stof(fangraphsAdvancedRows[11].c_str());
 
 	return pitcherStats;
 }
@@ -551,6 +579,71 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 			writeToFile << fangraphsData;
 		else
 			writeToFile << fangraphsData.substr(writeToFileIndexBegin, writeToFileLength);
+		writeToFile.close();
+	}
+
+	return fangraphsData;
+}
+
+string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, string dateUpTo, bool advancedPage)
+{
+	string fangraphsData = "";
+	string cachedFileName = "FangraphsCachedPages\\CumulativeUpTo\\PlayerId" + playerId + "UpTo" + dateUpTo;
+	if (advancedPage)
+		cachedFileName += "Advanced";
+	cachedFileName += ".txt";
+	fangraphsData = GetEntireFileContents(cachedFileName);
+
+	if (fangraphsData == "")
+	{
+		if (curl == NULL)
+			curl = curl_easy_init();
+
+		string playerRotoGuruData = GetPlayerStatsRawString(playerId, "any", curl);
+
+		size_t fangraphsURLIndexStart = playerRotoGuruData.find("www.fangraphs.com", 0);
+		fangraphsURLIndexStart = playerRotoGuruData.rfind("\"", fangraphsURLIndexStart);
+		size_t fangraphsURLIndexEnd = playerRotoGuruData.find("\" ", fangraphsURLIndexStart + 1);
+		string fangraphsURL = playerRotoGuruData.substr(fangraphsURLIndexStart + 1, fangraphsURLIndexEnd - fangraphsURLIndexStart - 1);
+		fangraphsURL = ReplaceURLWhiteSpaces(fangraphsURL);
+		curl_easy_setopt(curl, CURLOPT_URL, fangraphsURL.c_str());
+		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, NULL);
+		
+		curl_easy_perform(curl);
+		char* finalFangraphsUrlCStr;
+		curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &finalFangraphsUrlCStr);
+		string finalFangraphsURL = finalFangraphsUrlCStr;
+		curl_easy_reset(curl);
+
+
+		size_t statsIndex = finalFangraphsURL.find("statss.aspx", 0);
+		finalFangraphsURL.erase(statsIndex + 5, 1);
+		finalFangraphsURL.insert(statsIndex + 5, "d");
+		finalFangraphsURL += "&type=";
+		if (advancedPage)
+			finalFangraphsURL += "2";
+		else
+			finalFangraphsURL += "0";
+		finalFangraphsURL += "&gds=2017-04-00&gde=" + dateUpTo;
+		curl_easy_setopt(curl, CURLOPT_URL, finalFangraphsURL.c_str());
+		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &fangraphsData);
+		curl_easy_perform(curl);
+		curl_easy_reset(curl);
+
+		size_t writeToFileIndexBegin = fangraphsData.find("id=\"DailyStats", 0);
+		if (writeToFileIndexBegin == string::npos)
+			writeToFileIndexBegin = 0;
+		size_t writeToFileLength = fangraphsData.find("id=\"footer\"", writeToFileIndexBegin);
+		if (writeToFileLength != string::npos)
+			writeToFileLength -= writeToFileIndexBegin;
+
+		ofstream writeToFile;
+		writeToFile.open(cachedFileName);
+		writeToFile << fangraphsData.substr(writeToFileIndexBegin, writeToFileLength);
 		writeToFile.close();
 	}
 
