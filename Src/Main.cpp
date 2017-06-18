@@ -18,10 +18,10 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170616";
+std::string todaysDate = "20170618";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOf2017SeasonPassed = 69.0f / 162.0f;
+float percentOf2017SeasonPassed = 71.0f / 162.0f;
 
 int dayToDayInjuredPlayersNum = 1;
 string dayToDayInjuredPlayers[] = { "Polanco, Gregory" };
@@ -1996,8 +1996,57 @@ void AnalyzeTeamWinFactors()
 void GatherPitcherCumulativeData()
 {
 	CURL* curl = NULL;
-	FullSeasonPitcherStats cumulativeStats = GetPitcherCumulativeStatsUpTo("1580", curl, "2017-05-15");
-	cumulativeStats.opsAllowed = 0;
+	for (int d = 415; d <= 930; ++d)
+	{
+		int monthInteger = (d / 100) * 100;
+		int isolatedDay = d - (monthInteger);
+		if (isolatedDay > 31)
+		{
+			d = monthInteger + 100;
+			continue;
+		}
+		char thisDateCStr[5];
+		_itoa_s(d, thisDateCStr, 10);
+		string thisDate = thisDateCStr;
+		string thisDateWithYear = IntToDateYMD(d);
+		thisDateWithYear.replace(3, 1, "6");
+		string prevDateWithYear = IntToDateYMD(d - 1);
+		prevDateWithYear.replace(3, 1, "6");
+		string prevDateWithYearDashes = prevDateWithYear.substr(0, 4) + "-" + prevDateWithYear.substr(4, 2) + "-" + prevDateWithYear.substr(6, 2);
+
+		string daysPitcherStats = "";
+		string dayStatsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=";
+		dayStatsURL += thisDate;
+		dayStatsURL += "&game=fd&year=2016&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
+		CurlGetSiteContents(curl, dayStatsURL, daysPitcherStats);
+		size_t lineEndIndex = daysPitcherStats.find(thisDateWithYear);
+		size_t linePrevIndex = lineEndIndex;
+		lineEndIndex = daysPitcherStats.find("\n", linePrevIndex);
+
+		ofstream pitcherStatsArchiveFile;
+		string pitcherStatsArchiveFileName = "2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\" + thisDateWithYear + ".txt";
+		pitcherStatsArchiveFile.open(pitcherStatsArchiveFileName);
+
+		while (lineEndIndex != string::npos)
+		{
+			string currentLine = daysPitcherStats.substr(linePrevIndex, lineEndIndex - linePrevIndex);
+			vector<string> lineValues = SplitStringIntoMultiple(currentLine, ";");
+			if (lineValues.size() != 14)
+				break;
+			if (lineValues[6] != "1" && lineValues[6] != "")
+				break;
+			if (lineValues[4] == "1")
+			{
+				FullSeasonPitcherStats cumulativeStats = GetPitcherCumulativeStatsUpTo(lineValues[1], curl, prevDateWithYearDashes);
+				std::transform(lineValues[9].begin(), lineValues[9].end(), lineValues[9].begin(), ::tolower);
+				pitcherStatsArchiveFile << lineValues[9]  << ";" << lineValues[1] << ";" << lineValues[3] << ";" << cumulativeStats.ToString();
+				pitcherStatsArchiveFile << endl;
+			}
+			linePrevIndex = lineEndIndex;
+			lineEndIndex = daysPitcherStats.find("\n", lineEndIndex + 1);
+		}
+		pitcherStatsArchiveFile.close();
+	}
 }
 void GatherTeamWins()
 {
@@ -2978,15 +3027,16 @@ void GetBallparkFactors(string ballparkName, string statName, float& outFactorLe
 std::vector<string> SplitStringIntoMultiple(std::string wholeString, std::string tokens)
 {
 	vector<string> stringArray;
-	std::vector<char> writableWholeString(wholeString.begin(), wholeString.end());
-	writableWholeString.push_back('\0');
-	char * pch;
-	pch = strtok(&writableWholeString[0], tokens.c_str());
-	while (pch != NULL)
+	string singleString;
+	size_t cur_token = 0, next_token;
+	do
 	{
-		stringArray.push_back(pch);
-		pch = strtok(NULL, tokens.c_str());
-	}
+		next_token = wholeString.find_first_of(tokens, cur_token);
+		stringArray.push_back( wholeString.substr(cur_token, next_token - cur_token) );
+		if (next_token != string::npos)
+			cur_token = next_token + 1;
+	} while (next_token != string::npos);
+
 	return stringArray;
 }
 

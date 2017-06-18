@@ -626,7 +626,7 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
 			finalFangraphsURL += "2";
 		else
 			finalFangraphsURL += "0";
-		finalFangraphsURL += "&gds=2017-04-00&gde=" + dateUpTo;
+		finalFangraphsURL += "&gds=2016-04-00&gde=" + dateUpTo;
 		curl_easy_setopt(curl, CURLOPT_URL, finalFangraphsURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
