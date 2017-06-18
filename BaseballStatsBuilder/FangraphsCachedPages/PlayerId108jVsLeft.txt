@@ -1,11 +1,11 @@
-20170612/ZachDateMetaData
+20170617/ZachDateMetaData
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1"><title>
 	Wade Miley &raquo; Splits &raquo; vs L &raquo; Pitching | FanGraphs Baseball
 </title><meta name='description' content='Wade Miley vs L pitching splits for Major League baseball' />
-<meta name='keywords' content='wade miley, wade miley splits' /><link href="//cdn.fangraphs.com/css/fg?v=qRmUNAcJDdfFNBGQXdPWJ85SGIy0TcribLYLh30eEk81" rel="stylesheet">
+<meta name='keywords' content='wade miley, wade miley splits' /><link href="//cdn.fangraphs.com/css/fg?v=e05gPmAxNzx63Do5tYrvaVX3EhOcd2Ku9HSBlzqWtcc1" rel="stylesheet">
 
 <link href="//cdn.fangraphs.com/css/telerik?v=7kp8vZ-2gyqQIN75Z0UB_Vbc6sYJCM3fVOkK0XkRN401" rel="stylesheet">
 
@@ -227,7 +227,7 @@
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_navBar_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-06-11">Probable Pitchers</a>
+                            <a id="Header1_navBar_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-06-16">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -525,14 +525,22 @@
 
 <div id="Header1_panSpace">
 	
-    <div class="spacer_10"></div>
+    
 
 </div>
+
+<div class="header-chat-alert"><a class="header-chat-alert-text"></a></div>
+ <div class="spacer_10"></div>
 
 
 <!-- start - 0--><!-- control end - 0-->
 
-
+<script>
+    $.get('/api/chatheader', function (d) {
+            d.chatBoolean ? $('.header-chat-alert').show() : $('.header-chat-alert').hide()
+            $('.header-chat-alert-text').attr('href', d.chatLink).text(d.chatText)
+    })
+</script>
         </div>
         <div id="content">
             
@@ -548,11 +556,11 @@
                             <strong style="font-size:15pt;">Wade Miley</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 11/13/1986 (30 y, 6 m, 30 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-0/220 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=8779&position=P#draft" style="text-decoration:none;">2008 June Amateur Draft - Round: 1s, Pick: 13, Overall: 43, Team: Arizona Diamondbacks</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=8779&position=P#contract" style="text-decoration:none;">$19.7M / 3 Years (2015 - 2017) + 1 Option Years</a>
+                            <strong>Birthdate:</strong> 11/13/1986 (30 y, 7 m, 4 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-0/220 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=8779&position=P#draft" style="text-decoration:none;">2008 June Amateur Draft - Round: 1s, Pick: 13, Overall: 43, Team: Arizona Diamondbacks</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=8779&position=P#contract" style="text-decoration:none;">$19.7M / 3 Years (2015 - 2017) + 1 Option Years</a>
                         </div>
                     </td>
                     
-                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=10501" style="text-decoration:none;">RotoWire News</a>:</b> Miley (2-3) gave up four runs on eight hits and two walks while striking out four over 2.2 innings but escaped with a no-decision in Wednesday's 9-6 win over the Pirates. (6/8/2017)</div></td></tr>
+                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=10501" style="text-decoration:none;">RotoWire News</a>:</b> Miley (2-4) allowed six runs on six hits and two walks over 2.1 innings in a loss to the White Sox on Monday. He did not record a strikeout. (6/12/2017)</div></td></tr>
 
                 </tr>
                 <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">4/24/2017</span> - <a href="http://www.fangraphs.com/fantasy/ssns-vargas-bautista-miley-gausman/">SSNS: Vargas, Bautista, Miley, Gausman</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=88864">Alex Chamberlain (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/ssns-vargas-bautista-miley-gausman/#comments"><img src="images/commentslink.gif" border="0px" />6</a></span><br /><span class="m_date">4/22/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-449-replacing-miggy-marte/">The Sleeper and the Bust Episode: 449 – Replacing &raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-449-replacing-miggy-marte/#comments"><img src="images/commentslink.gif" border="0px" />12</a></span><br /><span class="m_date">7/31/2016</span> - <a href="http://www.fangraphs.com/blogs/orioles-acquire-unexciting-generic-innings-sponge/">Orioles Acquire Unexciting, Generic Innings Sponge</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=7030">Jeff Sullivan (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/orioles-acquire-unexciting-generic-innings-sponge/#comments"><img src="images/commentslink.gif" border="0px" />23</a></span><br /><span class="m_date">5/10/2016</span> - <a href="http://www.fangraphs.com/fantasy/the-change-the-bad-fastball-bucket/">The Change: The Bad Fastball Bucket</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=22">Eno Sarris (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-change-the-bad-fastball-bucket/#comments"><img src="images/commentslink.gif" border="0px" />5</a></span><br /><span class="m_date">3/23/2016</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-322-spring-training-standouts/">The Sleeper and the Bust Episode: 322 – Spring Tra&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-322-spring-training-standouts/#comments"><img src="images/commentslink.gif" border="0px" />5</a></span><br /></div></td></tr>
@@ -1000,7 +1008,7 @@
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__5">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">6.94</td><td class="grid_line_regular" align="right">2.97</td><td class="grid_line_regular" align="right">2.33</td><td class="grid_line_regular" align="right">0.74</td><td class="grid_line_regular" align="right">19.3 %</td><td class="grid_line_regular" align="right">8.3 %</td><td class="grid_line_regular" align="right">11.0 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.16</td><td class="grid_line_regular" align="right">.270</td><td class="grid_line_regular" align="right">72.9 %</td><td class="grid_line_regular" align="right">3.83</td><td class="grid_line_regular" align="right">4.14</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__6">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">9.28</td><td class="grid_line_regular" align="right">4.22</td><td class="grid_line_regular" align="right">2.20</td><td class="grid_line_regular" align="right">0.84</td><td class="grid_line_regular" align="right">26.8 %</td><td class="grid_line_regular" align="right">12.2 %</td><td class="grid_line_regular" align="right">14.6 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.03</td><td class="grid_line_regular" align="right">.208</td><td class="grid_line_regular" align="right">93.8 %</td><td class="grid_line_regular" align="right">3.65</td><td class="grid_line_regular" align="right">3.41</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">9.28</td><td class="grid_line_regular" align="right">4.22</td><td class="grid_line_regular" align="right">2.20</td><td class="grid_line_regular" align="right">0.84</td><td class="grid_line_regular" align="right">26.8 %</td><td class="grid_line_regular" align="right">12.2 %</td><td class="grid_line_regular" align="right">14.6 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.03</td><td class="grid_line_regular" align="right">.208</td><td class="grid_line_regular" align="right">93.8 %</td><td class="grid_line_regular" align="right">3.70</td><td class="grid_line_regular" align="right">3.47</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__7">
 		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">6.74</td><td class="grid_line_regular" align="right">2.26</td><td class="grid_line_regular" align="right">2.98</td><td class="grid_line_regular" align="right">0.63</td><td class="grid_line_regular" align="right">18.5 %</td><td class="grid_line_regular" align="right">6.2 %</td><td class="grid_line_regular" align="right">12.3 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.16</td><td class="grid_line_regular" align="right">.284</td><td class="grid_line_regular" align="right">73.0 %</td><td class="grid_line_regular" align="right">3.41</td><td class="grid_line_regular" align="right">3.45</td>
 	</tr>
@@ -1210,7 +1218,7 @@
         
     </div></div>
     <div class="footer-bar-item">
-        <span class="mobile-hide">Updated: Sunday, June 11, 2017 5:05 AM ET</span><span class="mobile-show">Updated: 6/11/2017 5:05 AM ET</span>
+        <span class="mobile-hide">Updated: Friday, June 16, 2017 6:25 AM ET</span><span class="mobile-show">Updated: 6/16/2017 6:25 AM ET</span>
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
