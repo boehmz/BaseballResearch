@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include "StatsCollectionFunctions.h"
 #include "SharedGlobals.h"
+#include "StringUtils.h"
 using namespace std;
 
 size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
@@ -648,6 +649,11 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
 	}
 
 	return fangraphsData;
+}
+
+FullSeasonPitcherStats::FullSeasonPitcherStats(std::string inString)
+{
+
 }
 
 string FullSeasonPitcherStats::ToString()

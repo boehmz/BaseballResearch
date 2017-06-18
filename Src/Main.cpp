@@ -10,6 +10,7 @@
 #include <assert.h>
 #include "SharedGlobals.h"
 #include "StatsCollectionFunctions.h"
+#include "StringUtils.h"
 #include "Main.h"
 using namespace std;
 
@@ -1996,7 +1997,7 @@ void AnalyzeTeamWinFactors()
 void GatherPitcherCumulativeData()
 {
 	CURL* curl = NULL;
-	for (int d = 415; d <= 930; ++d)
+	for (int d = 910; d <= 930; ++d)
 	{
 		int monthInteger = (d / 100) * 100;
 		int isolatedDay = d - (monthInteger);
@@ -3024,21 +3025,7 @@ void GetBallparkFactors(string ballparkName, string statName, float& outFactorLe
 	}
 }
 
-std::vector<string> SplitStringIntoMultiple(std::string wholeString, std::string tokens)
-{
-	vector<string> stringArray;
-	string singleString;
-	size_t cur_token = 0, next_token;
-	do
-	{
-		next_token = wholeString.find_first_of(tokens, cur_token);
-		stringArray.push_back( wholeString.substr(cur_token, next_token - cur_token) );
-		if (next_token != string::npos)
-			cur_token = next_token + 1;
-	} while (next_token != string::npos);
 
-	return stringArray;
-}
 
 string BeatTheStreakPlayerProfile::ToString()
 {
@@ -3139,82 +3126,7 @@ void AssembleBatterSplits(CURL *curl)
 	}
 }
 
-std::string ConvertFLNameToLFName(std::string firstLast)
-{
-	string convertedName = firstLast;
-	size_t spaceIndex = firstLast.find(" ", 0);
-	if (spaceIndex != string::npos)
-	{
-		convertedName = firstLast.substr(spaceIndex + 1);
-		convertedName += ", ";
-		convertedName += firstLast.substr(0, spaceIndex);
-	}
-	return convertedName;
-}
-std::string ConvertLFNameToFLName(std::string lastFirst)
-{
-	string convertedName = lastFirst;
-	size_t commaIndex = lastFirst.find(", ", 0);
-	if (commaIndex != string::npos)
-	{
-		convertedName = lastFirst.substr(commaIndex + 2);
-		convertedName += " ";
-		convertedName += lastFirst.substr(0, commaIndex);
-	}
-	return convertedName;
-}
-std::string IntToDateYMD(int date, bool roundUp)
-{
-	int monthInteger = (date / 100);
-	int isolatedDay = date - (monthInteger * 100);
-	if (isolatedDay == 0)
-	{
-		monthInteger--;
-		date -= 100;
-		switch (monthInteger)
-		{
-		case 4:
-		case 6:
-		case 9:
-			isolatedDay = 30;
-			break;
-		default:
-		case 3:
-		case 5:
-		case 7:
-		case 8:
-		case 10:
-			isolatedDay = 31;
-			break;
-		}
-		date = monthInteger * 100 + isolatedDay;
-	}
-	
-	char thisDateCStr[5];
-	_itoa_s(date, thisDateCStr, 10);
-	string thisDate = thisDateCStr;
 
-	string dateFormatted = "2017";
-	if (date < 1000)
-		dateFormatted += "0";
-	dateFormatted += thisDate;
-	return dateFormatted;
-}
-
-void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuffer)
-{
-	if (curl == NULL)
-		curl = curl_easy_init();
-
-	if (curl)
-	{
-		curl_easy_setopt(curl, CURLOPT_URL, readURL.c_str());
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &writeBuffer);
-		curl_easy_perform(curl);
-		curl_easy_reset(curl);
-	}
-}
 
 /*
 http://rotoguru1.com/cgi-bin/stats.cgi?pos=6&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=1&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941

@@ -47,29 +47,18 @@ FullSeasonStats GetBatterStats(std::string playerId, std::string yearString, CUR
 
 struct FullSeasonStatsAdvanced
 {
-	float averageVersusLefty;
-	float averageVersusRighty;
-	float sluggingVersusLefty;
-	float sluggingVersusRighty;
-	float opsVersusLefty;
-	float opsVersusRighty;
-	float wobaVersusLefty;
-	float wobaVersusRighty;
-	float isoVersusLefty;
-	float isoVersusRighty;
+	float averageVersusLefty = -1;
+	float averageVersusRighty = -1;
+	float sluggingVersusLefty = -1;
+	float sluggingVersusRighty = -1;
+	float opsVersusLefty = -1;
+	float opsVersusRighty = -1;
+	float wobaVersusLefty = -1;
+	float wobaVersusRighty = -1;
+	float isoVersusLefty = -1;
+	float isoVersusRighty = -1;
 
-	FullSeasonStatsAdvanced() : sluggingVersusLefty(-1),
-		sluggingVersusRighty(-1),
-		opsVersusLefty(-1),
-		opsVersusRighty(-1),
-		wobaVersusLefty(-1),
-		wobaVersusRighty(-1),
-		isoVersusLefty(-1),
-		isoVersusRighty(-1),
-		averageVersusRighty(-1),
-		averageVersusLefty(-1)
-	{
-	}
+	FullSeasonStatsAdvanced() {}
 
 	bool operator==(const FullSeasonStatsAdvanced& rhs);
 };
@@ -78,26 +67,17 @@ FullSeasonStatsAdvanced GetPitcherAdvancedStats(std::string playerId, std::strin
 
 struct FullSeasonPitcherStats
 {
-	float era;
-	float fip;
-	float strikeOutsPer9;
-	float numInnings;
-	float whip;
-	float xfip;
-	float wobaAllowed;
-	float opsAllowed;
+	float era = -99;
+	float fip = -999;
+	float strikeOutsPer9 = -999;
+	float numInnings = -999;
+	float whip = -999;
+	float xfip = -999;
+	float wobaAllowed = -999;
+	float opsAllowed = -999;
 
-	FullSeasonPitcherStats() : era(-99),
-		fip(-999),
-		strikeOutsPer9(-999),
-		numInnings(-999),
-		whip(-999),
-		xfip(-999),
-		wobaAllowed(-999),
-		opsAllowed(-999)
-
-	{
-	}
+	FullSeasonPitcherStats() {}
+	FullSeasonPitcherStats(std::string inString);
 	bool operator==(const FullSeasonPitcherStats& rhs);
 	std::string ToString();
 };

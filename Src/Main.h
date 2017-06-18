@@ -23,34 +23,20 @@ void Analyze2016Stats();
 
 struct BeatTheStreakPlayerProfile
 {
-	std::string playerName;
-	float hitsPerGameLast30Days;
-	float averageLast7Days;
-	float averageVsPitcherFacing;
-	std::string opposingPitcherName;
-	float opposingPitcherEra;
-	float opposingPitcherStrikeOutsPer9;
-	float opposingPitcherWhip;
-	float opposingPitcherAverageAgainstHandedness;
-	std::string batterHandedness;
+	std::string playerName =  "";
+	float hitsPerGameLast30Days = -1;
+	float averageLast7Days = -1;
+	float averageVsPitcherFacing = -1;
+	std::string opposingPitcherName = "";
+	float opposingPitcherEra = -1;
+	float opposingPitcherStrikeOutsPer9 = -1;
+	float opposingPitcherWhip = -1;
+	float opposingPitcherAverageAgainstHandedness = -1;
+	std::string batterHandedness = "";
 
-	BeatTheStreakPlayerProfile() : playerName(""),
-	hitsPerGameLast30Days(-1),
-	 averageLast7Days(-1),
-	 averageVsPitcherFacing(-1),
-	 opposingPitcherName(""),
-	 opposingPitcherEra(-1),
-	 opposingPitcherStrikeOutsPer9(-1),
-	 opposingPitcherWhip(-1),
-	 opposingPitcherAverageAgainstHandedness(-1),
-	 batterHandedness("")
-	{
+	BeatTheStreakPlayerProfile() {}
 
-	}
-
-	BeatTheStreakPlayerProfile(int minMaxInitializer) : playerName(""),		
-		opposingPitcherName(""),
-		batterHandedness("")
+	BeatTheStreakPlayerProfile(int minMaxInitializer)
 	{
 		if (minMaxInitializer == 0)
 		{
@@ -118,43 +104,28 @@ void DetermineProbableStarters(CURL* curl);
 
 struct BatterSplitsData
 {
-	float opsSeason;
-	float opsLast30Days;
-	float opsLast7Days;
+	float opsSeason = -1;
+	float opsLast30Days = -1;
+	float opsLast7Days = -1;
 
-	float opsVersusLeftySeason;
-	float opsVersusRightySeason;
-	float opsVersusLeftyLast30Days;
-	float opsVersusRightyLast30Days;
+	float opsVersusLeftySeason = -1;
+	float opsVersusRightySeason = -1;
+	float opsVersusLeftyLast30Days = -1;
+	float opsVersusRightyLast30Days = -1;
 
 
-	float ppgSeason;
-	float ppgLast30Days;
-	float ppgLast7Days;
+	float ppgSeason = -1;
+	float ppgLast30Days = -1;
+	float ppgLast7Days = -1;
 
-	float ppgHandednessSeason;
-	float ppgHandednessLast30Days;
+	float ppgHandednessSeason = -1;
+	float ppgHandednessLast30Days = -1;
 
-	BatterSplitsData() : opsSeason(-1),
-		opsLast30Days(-1),
-		opsLast7Days(-1),
-		opsVersusLeftySeason(-1),
-		opsVersusRightySeason(-1),
-		opsVersusLeftyLast30Days(-1),
-		opsVersusRightyLast30Days(-1),
-		ppgSeason(-1),
-		ppgLast30Days(-1),
-		ppgLast7Days(-1),
-		ppgHandednessSeason(-1),
-		ppgHandednessLast30Days(-1)
-		{
-		}
+	BatterSplitsData() {}
 };
 std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 void AssembleBatterSplits(CURL *curl);
-std::string ConvertFLNameToLFName(std::string firstLast);
-std::string ConvertLFNameToFLName(std::string lastFirst);
-std::string IntToDateYMD(int date, bool roundup = false);
+
 
 std::vector<PlayerData> OptimizeLineupToFitBudget();
 
@@ -172,6 +143,4 @@ void GetBallparkFactors(std::string ballparkName, std::string statName, float& o
 
 void GetBeatTheStreakCandidates(CURL *curl);
 
-std::vector<std::string> SplitStringIntoMultiple(std::string wholeString, std::string tokens);
 
-void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuffer);
