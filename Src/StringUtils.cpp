@@ -37,7 +37,7 @@ std::string ConvertLFNameToFLName(std::string lastFirst)
 	return convertedName;
 }
 
-std::string IntToDateYMD(int date, bool roundUp)
+std::string IntToDateYMD(int date, bool roundUp, string yearString)
 {
 	int monthInteger = (date / 100);
 	int isolatedDay = date - (monthInteger * 100);
@@ -68,7 +68,7 @@ std::string IntToDateYMD(int date, bool roundUp)
 	_itoa_s(date, thisDateCStr, 10);
 	string thisDate = thisDateCStr;
 
-	string dateFormatted = "2017";
+	string dateFormatted = yearString;
 	if (date < 1000)
 		dateFormatted += "0";
 	dateFormatted += thisDate;

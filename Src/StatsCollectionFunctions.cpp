@@ -627,7 +627,7 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
 			finalFangraphsURL += "2";
 		else
 			finalFangraphsURL += "0";
-		finalFangraphsURL += "&gds=2016-04-00&gde=" + dateUpTo;
+		finalFangraphsURL += "&gds=" + dateUpTo.substr(0,4) + "-04-00&gde=" + dateUpTo;
 		curl_easy_setopt(curl, CURLOPT_URL, finalFangraphsURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -653,7 +653,18 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
 
 FullSeasonPitcherStats::FullSeasonPitcherStats(std::string inString)
 {
-
+	vector<string> statLines = SplitStringIntoMultiple(inString, ";");
+	if (statLines.size() == 8 || (statLines.size() == 9 && statLines[8] == ""))
+	{
+		era = stof(statLines[0]);
+		fip = stof(statLines[1]);
+		xfip = stof(statLines[2]);
+		strikeOutsPer9 = stof(statLines[3]);
+		numInnings = stof(statLines[4]);
+		whip = stof(statLines[5]);
+		wobaAllowed = stof(statLines[6]);
+		opsAllowed = stof(statLines[7]);
+	}
 }
 
 string FullSeasonPitcherStats::ToString()

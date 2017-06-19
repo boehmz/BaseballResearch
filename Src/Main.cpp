@@ -19,10 +19,10 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170618";
+std::string todaysDate = "20170619";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOf2017SeasonPassed = 71.0f / 162.0f;
+float percentOf2017SeasonPassed = 72.0f / 162.0f;
 
 int dayToDayInjuredPlayersNum = 1;
 string dayToDayInjuredPlayers[] = { "Polanco, Gregory" };
@@ -40,7 +40,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::AnalyzeTeamWins;
+	ProcessType processType = ProcessType::GenerateLineup;
 
 	switch (processType)
 	{
@@ -679,6 +679,7 @@ void ChooseAPitcher(CURL *curl)
 
 			float parkHomerFactor = 1;
 			float parkRunsFactor = 1;
+			float opponentOps = 0;
 			if (opponentsInfo != opponentMap.end())
 			{
 				opponentRunsPerGame *= max(0.0f, 1.0f - (percentOf2017SeasonPassed * 2.0f));
@@ -688,10 +689,10 @@ void ChooseAPitcher(CURL *curl)
 				opponentTeamIndex = team2017RunsPerGameData.find("data-sort=", opponentTeamIndex + 1);
 				opponentTeamIndex = team2017RunsPerGameData.find(">", opponentTeamIndex + 1);
 				size_t opponentTeamNextIndex = team2017RunsPerGameData.find("<", opponentTeamIndex + 1);
-				float ops = stof(team2017RunsPerGameData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+				opponentOps = stof(team2017RunsPerGameData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 				// ops to runs per game is
 				// 13.349 * ops - 5.379
-				opponentRunsPerGame += (13.349f * ops - 5.379f) * min(1.0f, percentOf2017SeasonPassed * 2.0f);
+				opponentRunsPerGame += (13.349f * opponentOps - 5.379f) * min(1.0f, percentOf2017SeasonPassed * 2.0f);
 
 				opponentTeamIndex = team2017StrikeoutData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
 				opponentTeamIndex = team2017StrikeoutData.find("data-sort=", opponentTeamIndex + 1);
@@ -757,6 +758,10 @@ void ChooseAPitcher(CURL *curl)
 				if (myTeam != opponentMap.end())
 				{
 					myTeam->second.pitcherEstimatedPpg = singlePlayerData.playerPointsPerGame;
+					myTeam->second.teamWinEstimatedScore = 0;
+					myTeam->second.teamWinEstimatedScore -= newPitcherStats.fip * 0.1f;
+					myTeam->second.teamWinEstimatedScore -= newPitcherStats.whip * 0.7f;
+					myTeam->second.teamWinEstimatedScore -= opponentOps * 0.9f;
 				}
 			}
 			if (newPitcherStats.xfip > -0.1f)
@@ -794,6 +799,11 @@ void ChooseAPitcher(CURL *curl)
 					if (positionalPlayerData[i].playerPointsPerGame > 0 && opponentsInfo->second.pitcherEstimatedPpg > 0)
 					{
 						teamWinTrackerFile << positionalPlayerData[i].teamCode << ";" << positionalPlayerData[i].playerPointsPerGame << ";" << opponentsInfo->second.teamCodeRotoGuru << ";" << opponentsInfo->second.pitcherEstimatedPpg << ";";
+						auto myTeamInfo = opponentMap.find(opponentsInfo->second.teamCodeRotoGuru);
+						if (myTeamInfo != opponentMap.end())
+						{
+							teamWinTrackerFile << myTeamInfo->second.teamWinEstimatedScore - opponentsInfo->second.teamWinEstimatedScore << ";";
+						}
 						teamWinTrackerFile << endl;
 					}
 				}
@@ -1874,12 +1884,23 @@ string ConvertOddsPortalNameToTeamRankingsName(string oddsportalTeamName)
 	size_t teamNameEndIndex = teamCodesData.find(";", teamNameIndex + 1);
 	return teamCodesData.substr(teamNameIndex + 1, teamNameEndIndex - teamNameIndex - 1);
 }
+string ConvertTeamCodeToTeamRankingsName(string teamCode)
+{
+	string teamCodesData = GetEntireFileContents("TeamCodes.txt");
+	size_t teamNameIndex = teamCodesData.find(";" + teamCode + ";", 0);	
+	size_t teamNamePrevIndex = teamCodesData.rfind(";", teamNameIndex - 1);
+
+	return teamCodesData.substr(teamNamePrevIndex + 1, teamNameIndex - teamNamePrevIndex - 1);
+}
 
 void AnalyzeTeamWinFactors()
 {
 	CURL* curl = NULL;
 	//GatherTeamWins();
-	GatherPitcherCumulativeData();
+	//GatherPitcherCumulativeData();
+	//Analyze2016TeamWins();
+	//Analyze2016TeamWinFactors();
+	Refine2016TeamWinFactors();
 	return;
 	fstream allGamesFile;
 	allGamesFile.open("2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt");
@@ -1994,10 +2015,173 @@ void AnalyzeTeamWinFactors()
 	allGamesFile.close();
 }
 
-void GatherPitcherCumulativeData()
+void Analyze2016TeamWinFactors()
+{
+	CURL *curl = NULL;
+	fstream all2016GamesFile;
+	all2016GamesFile.open("2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\2016Totals.txt");
+	ofstream gamesFactorsFile;
+	gamesFactorsFile.open("2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\2016TotalsWithOps.txt");
+	string resultsLine;
+	string currentDate = "";
+	string currentDateOpsStats = "";
+	string currentDateRunsStats = "";
+	while (getline(all2016GamesFile, resultsLine))
+	{
+		vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
+		string dateWithDashes = lineValues[0].substr(0, 4) + "-" + lineValues[0].substr(4, 2) + "-" + lineValues[0].substr(6, 2);
+		if (dateWithDashes != currentDate)
+		{
+			currentDate = dateWithDashes;
+			string opsFileName = "2017ResultsTracker\\OddsWinsResults\\TeamOpsCachedData\\2016\\" + currentDate + ".txt";
+			currentDateOpsStats = GetEntireFileContents(opsFileName);
+			if (currentDateOpsStats == "")
+			{
+				CurlGetSiteContents(curl, "https://www.teamrankings.com/mlb/stat/on-base-plus-slugging-pct?date=" + currentDate, currentDateOpsStats);
+				ofstream opsOutputFile;
+				opsOutputFile.open(opsFileName);
+				opsOutputFile << currentDateOpsStats;
+				opsOutputFile.close();
+			}
+		}
+
+		string winningTeamRankingsName = ConvertTeamCodeToTeamRankingsName(lineValues[1]);
+		string losingTeamRankingsName = ConvertTeamCodeToTeamRankingsName(lineValues[2]);
+		vector<string> winningTeamOpsColumns = GetRankingsRowColumns(winningTeamRankingsName, currentDateOpsStats, 6);
+		vector<string> losingTeamOpsColumns = GetRankingsRowColumns(losingTeamRankingsName, currentDateOpsStats, 6);
+		float opsDiff = stof(winningTeamOpsColumns[0]) - stof(losingTeamOpsColumns[0]);
+
+		gamesFactorsFile << resultsLine << opsDiff << ";";
+		gamesFactorsFile << endl;
+		
+	}
+	gamesFactorsFile.close();
+	all2016GamesFile.close();
+}
+
+void Refine2016TeamWinFactors()
+{
+	CURL *curl = NULL;
+	ifstream gamesFactorsFile;
+	gamesFactorsFile.open("2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\2016TotalsWithOps.txt");
+	ofstream guessFile;
+	guessFile.open("2016TestGuesses.txt");
+	string resultsLine;
+	string currentDate = "";
+	string currentDateOpsStats = "";
+	string currentDateRunsStats = "";
+	struct GameProfile
+	{
+		float eraDiff;
+		float fipDiff;
+		float xfipDiff;
+		float k9Diff;
+		float whipDiff;
+		float opsDiff;
+	};
+	vector<GameProfile> allGameProfiles;
+	while (getline(gamesFactorsFile, resultsLine))
+	{
+		vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
+		GameProfile thisGame;
+		thisGame.eraDiff = stof(lineValues[3]);
+		thisGame.fipDiff = stof(lineValues[4]);
+		thisGame.xfipDiff = stof(lineValues[5]);
+		thisGame.k9Diff = stof(lineValues[6]);
+		thisGame.whipDiff = stof(lineValues[7]);
+		thisGame.opsDiff = stof(lineValues[10]);
+		if (stof(lineValues[8]) > 20 && stof(lineValues[9]) > 20)
+			allGameProfiles.push_back(thisGame);
+	}
+	gamesFactorsFile.close();
+
+
+	for (unsigned int i = 0; i < allGameProfiles.size(); ++i)
+	{
+		float expectedValue = 0;
+		//expectedValue -= allGameProfiles[i].eraDiff * inputCoefficients[0];
+		expectedValue -= allGameProfiles[i].fipDiff * 0.1f;
+		//expectedValue -= allGameProfiles[i].xfipDiff * inputCoefficients[2];
+		//expectedValue += allGameProfiles[i].k9Diff * inputCoefficients[3];
+		expectedValue -= allGameProfiles[i].whipDiff * 0.7f;
+		expectedValue += allGameProfiles[i].opsDiff * 0.9f;
+		guessFile << expectedValue;
+		guessFile << endl;
+	}
+	//return;
+
+	float fCoefficientStep = 0.1f;
+	float inputCoefficients[3] = { 0.0f, 0.0f, 0.0f };// , 0.0f, 0.0f, 0.0f};
+	float mostAccurateCoefficients[3] = { 0.0f, 0.0f, 0.0f };// , 0.0f, 0.0f, 0.0f};
+	int bestNumberCorrect = -1;
+	inputCoefficients[0] = 0;
+	while (inputCoefficients[0] <= 2.0f + fCoefficientStep * 0.5f)
+	{
+		inputCoefficients[1] = 0;
+		while (inputCoefficients[1] <= 2.0f + fCoefficientStep * 0.5f)
+		{
+			inputCoefficients[2] = 0;
+			while (inputCoefficients[2] <= 2.0f + fCoefficientStep * 0.5f)
+			{
+			/*	inputCoefficients[3] = 0;
+				while (inputCoefficients[3] <= 1.0f + fCoefficientStep * 0.5f)
+				{
+					inputCoefficients[4] = 0;
+					while (inputCoefficients[4] <= 1.0f + fCoefficientStep * 0.5f)
+					{
+						inputCoefficients[5] = 0;
+						while (inputCoefficients[5] <= 1.0f + fCoefficientStep * 0.5f)
+						{
+						*/
+							int numCorrect = 0;
+							int numTies = 0;
+							for (unsigned int i = 0; i < allGameProfiles.size(); ++i)
+							{
+								float expectedValue = 0;
+								//expectedValue -= allGameProfiles[i].eraDiff * inputCoefficients[0];
+								expectedValue -= allGameProfiles[i].fipDiff * inputCoefficients[0];
+								//expectedValue -= allGameProfiles[i].xfipDiff * inputCoefficients[2];
+								//expectedValue += allGameProfiles[i].k9Diff * inputCoefficients[3];
+								expectedValue -= allGameProfiles[i].whipDiff * inputCoefficients[1];
+								expectedValue += allGameProfiles[i].opsDiff * inputCoefficients[2];
+								if (expectedValue > 0)
+									numCorrect++;
+								else if (expectedValue == 0)
+									numTies++;
+							}
+							if (numCorrect > bestNumberCorrect)
+							{
+								bestNumberCorrect = numCorrect;
+								for (int a = 0; a < 6; ++a)
+								{
+									mostAccurateCoefficients[a] = inputCoefficients[a];
+								}
+							}
+						/*	inputCoefficients[5] += fCoefficientStep;
+						}
+						inputCoefficients[4] += fCoefficientStep;
+					}
+					inputCoefficients[3] += fCoefficientStep;
+					
+				}
+				*/
+				inputCoefficients[2] += fCoefficientStep;
+			}
+			inputCoefficients[1] += fCoefficientStep;
+		}
+		inputCoefficients[0] += fCoefficientStep;
+	}
+
+	int best = bestNumberCorrect;
+}
+
+void Analyze2016TeamWins()
 {
 	CURL* curl = NULL;
-	for (int d = 910; d <= 930; ++d)
+	string totalsFileName = "2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\2016Totals.txt";
+	ofstream totalsFile;
+	totalsFile.open(totalsFileName);
+	for (int d = 415; d <= 930; ++d)
 	{
 		int monthInteger = (d / 100) * 100;
 		int isolatedDay = d - (monthInteger);
@@ -2009,10 +2193,91 @@ void GatherPitcherCumulativeData()
 		char thisDateCStr[5];
 		_itoa_s(d, thisDateCStr, 10);
 		string thisDate = thisDateCStr;
-		string thisDateWithYear = IntToDateYMD(d);
-		thisDateWithYear.replace(3, 1, "6");
-		string prevDateWithYear = IntToDateYMD(d - 1);
-		prevDateWithYear.replace(3, 1, "6");
+		string thisDateWithYear = IntToDateYMD(d, false, "2016");
+
+		string daysPitcherStats = "";
+		string dayStatsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=";
+		dayStatsURL += thisDate;
+		dayStatsURL += "&game=fd&year=2016&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
+		CurlGetSiteContents(curl, dayStatsURL, daysPitcherStats);
+		size_t lineEndIndex = daysPitcherStats.find(thisDateWithYear);
+		size_t linePrevIndex = lineEndIndex;
+		lineEndIndex = daysPitcherStats.find("\n", linePrevIndex);
+
+		string todaysPitcherStats = GetEntireFileContents("2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\" + thisDateWithYear + ".txt");
+		
+		while (lineEndIndex != string::npos)
+		{
+			string currentLine = daysPitcherStats.substr(linePrevIndex, lineEndIndex - linePrevIndex);
+			vector<string> lineValues = SplitStringIntoMultiple(currentLine, ";");
+			if (lineValues.size() != 14)
+				break;
+			if (lineValues[6] != "1" && lineValues[6] != "")
+				break;
+			if (lineValues[4] == "1")
+			{
+				string teamCode = lineValues[9];
+				std::transform(teamCode.begin(), teamCode.end(), teamCode.begin(), ::tolower);
+
+				string opposingTeamCode = lineValues[10].substr(lineValues[10].length() - 3, 3);
+				int teamRuns = atoi(lineValues[12].c_str());
+				int opposingTeamRuns = atoi(lineValues[13].c_str());
+				if (teamRuns > opposingTeamRuns)
+				{
+					size_t teamPitcherIndex = todaysPitcherStats.find(teamCode + ";");
+					size_t teamPitcherEndIndex = todaysPitcherStats.find("\n", teamPitcherIndex);
+					for (int skip = 0; skip < 3; ++skip)
+					{
+						teamPitcherIndex = todaysPitcherStats.find(";", teamPitcherIndex + 1);
+					}
+					FullSeasonPitcherStats teamPitcherStats(todaysPitcherStats.substr(teamPitcherIndex + 1, teamPitcherEndIndex - teamPitcherIndex - 1));
+
+					teamPitcherIndex = todaysPitcherStats.find(opposingTeamCode + ";");
+					teamPitcherEndIndex = todaysPitcherStats.find("\n", teamPitcherIndex);
+					for (int skip = 0; skip < 3; ++skip)
+					{
+						teamPitcherIndex = todaysPitcherStats.find(";", teamPitcherIndex + 1);
+					}
+					FullSeasonPitcherStats opposingTeamPitcherStats(todaysPitcherStats.substr(teamPitcherIndex + 1, teamPitcherEndIndex - teamPitcherIndex - 1));
+
+					if (teamPitcherStats.era > -1 && opposingTeamPitcherStats.era > -1)
+					{
+						totalsFile << thisDateWithYear << ";";
+						totalsFile << teamCode << ";" << opposingTeamCode << ";";
+						totalsFile << teamPitcherStats.era - opposingTeamPitcherStats.era << ";";
+						totalsFile << teamPitcherStats.fip - opposingTeamPitcherStats.fip << ";";
+						totalsFile << teamPitcherStats.xfip - opposingTeamPitcherStats.xfip << ";";
+						totalsFile << teamPitcherStats.strikeOutsPer9 - opposingTeamPitcherStats.strikeOutsPer9 << ";";
+						totalsFile << teamPitcherStats.whip - opposingTeamPitcherStats.whip << ";";
+						totalsFile << teamPitcherStats.numInnings << ";" << opposingTeamPitcherStats.numInnings << ";";
+						totalsFile << endl;
+					}
+				}
+			}
+			linePrevIndex = lineEndIndex;
+			lineEndIndex = daysPitcherStats.find("\n", lineEndIndex + 1);
+		}
+	}
+	totalsFile.close();
+}
+
+void GatherPitcherCumulativeData()
+{
+	CURL* curl = NULL;
+	for (int d = 415; d <= 930; ++d)
+	{
+		int monthInteger = (d / 100) * 100;
+		int isolatedDay = d - (monthInteger);
+		if (isolatedDay > 31)
+		{
+			d = monthInteger + 100;
+			continue;
+		}
+		char thisDateCStr[5];
+		_itoa_s(d, thisDateCStr, 10);
+		string thisDate = thisDateCStr;
+		string thisDateWithYear = IntToDateYMD(d, false, "2016");
+		string prevDateWithYear = IntToDateYMD(d - 1, false, "2016");
 		string prevDateWithYearDashes = prevDateWithYear.substr(0, 4) + "-" + prevDateWithYear.substr(4, 2) + "-" + prevDateWithYear.substr(6, 2);
 
 		string daysPitcherStats = "";

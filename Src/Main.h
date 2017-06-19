@@ -91,6 +91,7 @@ struct OpponentInformation
 
 	FullSeasonStatsAdvanced pitcherAdvancedStats;
 	float pitcherEstimatedPpg;
+	float teamWinEstimatedScore;
 };
 
 void RefineAlgorithm();
@@ -135,6 +136,9 @@ void Analyze2016Stats();
 void AnalyzeTeamWinFactors();
 void GatherTeamWins();
 void GatherPitcherCumulativeData();
+void Analyze2016TeamWins();
+void Analyze2016TeamWinFactors();
+void Refine2016TeamWinFactors();
 std::vector<std::string> GetRankingsRowColumns(std::string teamName, std::string allData, int numColumns);
 
 void UnitTestAllStatCollectionFunctions();
@@ -142,5 +146,6 @@ void UnitTestAllStatCollectionFunctions();
 void GetBallparkFactors(std::string ballparkName, std::string statName, float& outFactorLeftyBatter, float& outFactorRightyBatter);
 
 void GetBeatTheStreakCandidates(CURL *curl);
-
+std::string ConvertOddsPortalNameToTeamRankingsName(std::string oddsportalTeamName);
+std::string ConvertTeamCodeToTeamRankingsName(std::string teamCode);
 
