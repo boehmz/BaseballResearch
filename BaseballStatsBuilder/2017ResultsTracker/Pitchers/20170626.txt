@@ -1,0 +1,8 @@
+103s;Sale, Chris;53.5739
+125u;Finnegan, Brandon;51.9392
+1580;Greinke, Zack;50.3392
+1477;Hill, Rich;50.1119
+133b;Marquez, German;49.2947
+116r;Wacha, Michael;44.8612
+1847;Hamels, Cole;41.571
+124j;Butler, Eddie;37.2165

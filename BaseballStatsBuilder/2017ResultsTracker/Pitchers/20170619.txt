@@ -1,0 +1,14 @@
+1495;Kershaw, Clayton;58.836
+1506;Lester, Jon;54.2824
+109o;Peacock, Brad;53.2656
+1811;Estrada, Marco;47.717
+110h;Wheeler, Zack;47.4808
+118k;Roark, Tanner;46.776
+110g;Cole, Gerrit;45.818
+114t;Odorizzi, Jake;45.6323
+1719;Richard, Clayton;44.5533
+1630;Feldman, Scott;44.5357
+1675;Volquez, Edinson;43.8322
+1654;Garza, Matt;42.8642
+1050;Hammel, Jason;41.8346
+1931;Zimmermann, Jordan;41.2118
