@@ -148,4 +148,5 @@ void GetBallparkFactors(std::string ballparkName, std::string statName, float& o
 void GetBeatTheStreakCandidates(CURL *curl);
 std::string ConvertOddsPortalNameToTeamRankingsName(std::string oddsportalTeamName);
 std::string ConvertTeamCodeToTeamRankingsName(std::string teamCode);
+std::string ConvertOddsPortalNameToTeamCodeName(std::string oddsportalTeamName);
 

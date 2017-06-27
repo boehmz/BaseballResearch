@@ -19,13 +19,13 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170619";
+std::string todaysDate = "20170626";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOf2017SeasonPassed = 72.0f / 162.0f;
+float percentOf2017SeasonPassed = 80.0f / 162.0f;
 
-int dayToDayInjuredPlayersNum = 1;
-string dayToDayInjuredPlayers[] = { "Polanco, Gregory" };
+int dayToDayInjuredPlayersNum = 0;
+string dayToDayInjuredPlayers[] = { "" };
 
 string pitcherOpponentTeamCode = "";
 
@@ -69,7 +69,7 @@ int main(void)
 		}
 		else
 		{
-		//	AssembleBatterSplits(curl);
+			AssembleBatterSplits(curl);
 			ChooseAPitcher(curl);
 			GenerateNewLineup(curl);
 		}
@@ -1892,6 +1892,22 @@ string ConvertTeamCodeToTeamRankingsName(string teamCode)
 
 	return teamCodesData.substr(teamNamePrevIndex + 1, teamNameIndex - teamNamePrevIndex - 1);
 }
+std::string ConvertOddsPortalNameToTeamCodeName(std::string oddsportalTeamName)
+{
+	string teamCodesData = GetEntireFileContents("TeamCodes.txt");
+
+	size_t teamNameIndex = teamCodesData.find(oddsportalTeamName, 0);
+	if (teamNameIndex == string::npos && oddsportalTeamName.find("Cardinals") != string::npos)
+	{
+		teamNameIndex = teamCodesData.find("Cardinals");
+	}
+	for (int i = 0; i < 3; ++i)
+	{
+		teamNameIndex = teamCodesData.find(";", teamNameIndex + 1);
+	}
+	size_t teamNameEndIndex = teamCodesData.find(";", teamNameIndex + 1);
+	return teamCodesData.substr(teamNameIndex + 1, teamNameEndIndex - teamNameIndex - 1);
+}
 
 void AnalyzeTeamWinFactors()
 {
@@ -1900,8 +1916,8 @@ void AnalyzeTeamWinFactors()
 	//GatherPitcherCumulativeData();
 	//Analyze2016TeamWins();
 	//Analyze2016TeamWinFactors();
-	Refine2016TeamWinFactors();
-	return;
+	//Refine2016TeamWinFactors();
+	//return;
 	fstream allGamesFile;
 	allGamesFile.open("2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt");
 	ofstream gamesFactorsFile;
@@ -1910,6 +1926,7 @@ void AnalyzeTeamWinFactors()
 	string currentDate = "";
 	string currentDateOpsStats = "";
 	string currentDateRunsStats = "";
+	string currentDatePitcherStats = "";
 	while (getline(allGamesFile, resultsLine))
 	{
 		vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
@@ -1937,10 +1954,19 @@ void AnalyzeTeamWinFactors()
 				runsOutputFile << currentDateRunsStats;
 				runsOutputFile.close();
 			}
+
+			string pitcherFileName = "2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\";
+			pitcherFileName += lineValues[0] + ".txt";
+			currentDatePitcherStats = "";
+			currentDatePitcherStats = GetEntireFileContents(pitcherFileName);
+			if (currentDatePitcherStats == "")
+				cout << "No pitcher data for the date of " << dateWithDashes << endl;
 		}
 		if (lineValues[4].find(" - ") != string::npos || lineValues[5].find(" - ") != string::npos)
 			continue;
 		
+		string winningTeamCode = ConvertOddsPortalNameToTeamCodeName(lineValues[1]);
+		string losingTeamCode = ConvertOddsPortalNameToTeamCodeName(lineValues[2]);
 		string winningTeamRankingsName = ConvertOddsPortalNameToTeamRankingsName(lineValues[1]);
 		string losingTeamRankingsName = ConvertOddsPortalNameToTeamRankingsName(lineValues[2]);
 		vector<string> winningTeamOpsColumns = GetRankingsRowColumns(winningTeamRankingsName, currentDateOpsStats, 6);
@@ -1959,6 +1985,23 @@ void AnalyzeTeamWinFactors()
 			hOnlyOpsDiff = stof(winningTeamOpsColumns[3]) - stof(losingTeamOpsColumns[0]);
 		else
 			hOnlyOpsDiff = stof(winningTeamOpsColumns[0]) - stof(losingTeamOpsColumns[3]);
+
+		size_t teamPitchingBegin = currentDatePitcherStats.find(winningTeamCode);
+		size_t teamPitchingEnd = currentDatePitcherStats.find("\n", teamPitchingBegin);
+		for (int skip = 0; skip < 3; ++skip)
+		{
+			teamPitchingBegin = currentDatePitcherStats.find(";", teamPitchingBegin + 1);
+		}
+		FullSeasonPitcherStats winningTeamPitchingStats(currentDatePitcherStats.substr(teamPitchingBegin + 1, teamPitchingEnd - teamPitchingBegin - 1));
+
+		teamPitchingBegin = currentDatePitcherStats.find(losingTeamCode);
+		teamPitchingEnd = currentDatePitcherStats.find("\n", teamPitchingBegin);
+		for (int skip = 0; skip < 3; ++skip)
+		{
+			teamPitchingBegin = currentDatePitcherStats.find(";", teamPitchingBegin + 1);
+		}
+		FullSeasonPitcherStats losingTeamPitchingStats(currentDatePitcherStats.substr(teamPitchingBegin + 1, teamPitchingEnd - teamPitchingBegin - 1));
+
 
 		size_t teamRunsEnd = currentDateRunsStats.find(">" + winningTeamRankingsName + "<");
 		for (int i = 0; i < 2; ++i)
@@ -1984,7 +2027,7 @@ void AnalyzeTeamWinFactors()
 		//if ((opsDiff >= 0 && winningMoneyLine > losingMoneyLine) ||
 		//	(opsDiff <= 0 && winningMoneyLine < losingMoneyLine))
 		{
-			gamesFactorsFile << lineValues[0] << ";";
+			gamesFactorsFile << lineValues[0] << ";" << lineValues[1] << ";" << lineValues[2] << ";";
 			gamesFactorsFile << winningMoneyLine << ";" << losingMoneyLine << ";";
 			
 			/*
@@ -2007,7 +2050,26 @@ void AnalyzeTeamWinFactors()
 			}
 			*/
 			gamesFactorsFile << opsDiff << ";" << runsDiff << ";";
-			gamesFactorsFile << last3OpsDiff << ";" << last1OpsDiff << ";" << t2016OpsDiff << ";" << haOpsDiff << ";" << hOnlyOpsDiff << ";";
+			if (winningTeamPitchingStats.whip > -1 && losingTeamPitchingStats.whip > -1)
+			{
+				float expectedValue = 0;
+				expectedValue += opsDiff * 1.7f;
+				if (lineValues[3] == "H")
+					expectedValue += 0.4f;
+				else
+					expectedValue -= 0.4f;
+				expectedValue -= (winningTeamPitchingStats.whip - losingTeamPitchingStats.whip) * 0.2f;
+				gamesFactorsFile << expectedValue << ";";
+			}
+			if (winningTeamPitchingStats.whip > -1 && losingTeamPitchingStats.whip > -1)
+			{
+				float expectedValue = 0;
+				expectedValue += opsDiff * 0.9f;
+				expectedValue -= (winningTeamPitchingStats.fip - losingTeamPitchingStats.fip) * 0.1f;
+				expectedValue -= (winningTeamPitchingStats.whip - losingTeamPitchingStats.whip) * 0.7f;
+				gamesFactorsFile << expectedValue << ";";
+			}
+			//gamesFactorsFile << last3OpsDiff << ";" << last1OpsDiff << ";" << t2016OpsDiff << ";" << haOpsDiff << ";" << hOnlyOpsDiff << ";";
 			gamesFactorsFile << endl;
 		}
 	}
@@ -2078,6 +2140,7 @@ void Refine2016TeamWinFactors()
 		float k9Diff;
 		float whipDiff;
 		float opsDiff;
+		int homeValue;
 	};
 	vector<GameProfile> allGameProfiles;
 	while (getline(gamesFactorsFile, resultsLine))
@@ -2089,8 +2152,9 @@ void Refine2016TeamWinFactors()
 		thisGame.xfipDiff = stof(lineValues[5]);
 		thisGame.k9Diff = stof(lineValues[6]);
 		thisGame.whipDiff = stof(lineValues[7]);
-		thisGame.opsDiff = stof(lineValues[10]);
-		if (stof(lineValues[8]) > 20 && stof(lineValues[9]) > 20)
+		thisGame.opsDiff = stof(lineValues[11]);
+		thisGame.homeValue = atoi(lineValues[10].c_str());
+	//	if (stof(lineValues[8]) > 20 && stof(lineValues[9]) > 20)
 			allGameProfiles.push_back(thisGame);
 	}
 	gamesFactorsFile.close();
@@ -2111,8 +2175,8 @@ void Refine2016TeamWinFactors()
 	//return;
 
 	float fCoefficientStep = 0.1f;
-	float inputCoefficients[3] = { 0.0f, 0.0f, 0.0f };// , 0.0f, 0.0f, 0.0f};
-	float mostAccurateCoefficients[3] = { 0.0f, 0.0f, 0.0f };// , 0.0f, 0.0f, 0.0f};
+	float inputCoefficients[4] = { 0.0f, 0.0f, 0.0f, 0.0f };// , 0.0f, 0.0f, 0.0f};
+	float mostAccurateCoefficients[4] = { 0.0f, 0.0f, 0.0f, 0.0f };// , 0.0f, 0.0f, 0.0f};
 	int bestNumberCorrect = -1;
 	inputCoefficients[0] = 0;
 	while (inputCoefficients[0] <= 2.0f + fCoefficientStep * 0.5f)
@@ -2123,10 +2187,10 @@ void Refine2016TeamWinFactors()
 			inputCoefficients[2] = 0;
 			while (inputCoefficients[2] <= 2.0f + fCoefficientStep * 0.5f)
 			{
-			/*	inputCoefficients[3] = 0;
-				while (inputCoefficients[3] <= 1.0f + fCoefficientStep * 0.5f)
+				inputCoefficients[3] = 0;
+				while (inputCoefficients[3] <= 2.0f + fCoefficientStep * 0.5f)
 				{
-					inputCoefficients[4] = 0;
+				/*	inputCoefficients[4] = 0;
 					while (inputCoefficients[4] <= 1.0f + fCoefficientStep * 0.5f)
 					{
 						inputCoefficients[5] = 0;
@@ -2144,6 +2208,7 @@ void Refine2016TeamWinFactors()
 								//expectedValue += allGameProfiles[i].k9Diff * inputCoefficients[3];
 								expectedValue -= allGameProfiles[i].whipDiff * inputCoefficients[1];
 								expectedValue += allGameProfiles[i].opsDiff * inputCoefficients[2];
+								expectedValue += allGameProfiles[i].homeValue * inputCoefficients[3];
 								if (expectedValue > 0)
 									numCorrect++;
 								else if (expectedValue == 0)
@@ -2152,7 +2217,7 @@ void Refine2016TeamWinFactors()
 							if (numCorrect > bestNumberCorrect)
 							{
 								bestNumberCorrect = numCorrect;
-								for (int a = 0; a < 6; ++a)
+								for (int a = 0; a < 4; ++a)
 								{
 									mostAccurateCoefficients[a] = inputCoefficients[a];
 								}
@@ -2161,10 +2226,9 @@ void Refine2016TeamWinFactors()
 						}
 						inputCoefficients[4] += fCoefficientStep;
 					}
+					*/
 					inputCoefficients[3] += fCoefficientStep;
-					
 				}
-				*/
 				inputCoefficients[2] += fCoefficientStep;
 			}
 			inputCoefficients[1] += fCoefficientStep;
@@ -2220,6 +2284,7 @@ void Analyze2016TeamWins()
 				std::transform(teamCode.begin(), teamCode.end(), teamCode.begin(), ::tolower);
 
 				string opposingTeamCode = lineValues[10].substr(lineValues[10].length() - 3, 3);
+				bool bIsHomeTeam = lineValues[10].find("@") == string::npos;
 				int teamRuns = atoi(lineValues[12].c_str());
 				int opposingTeamRuns = atoi(lineValues[13].c_str());
 				if (teamRuns > opposingTeamRuns)
@@ -2250,6 +2315,10 @@ void Analyze2016TeamWins()
 						totalsFile << teamPitcherStats.strikeOutsPer9 - opposingTeamPitcherStats.strikeOutsPer9 << ";";
 						totalsFile << teamPitcherStats.whip - opposingTeamPitcherStats.whip << ";";
 						totalsFile << teamPitcherStats.numInnings << ";" << opposingTeamPitcherStats.numInnings << ";";
+						if (bIsHomeTeam)
+							totalsFile << "1;";
+						else
+							totalsFile << "-1;";
 						totalsFile << endl;
 					}
 				}
@@ -2332,6 +2401,11 @@ void GatherTeamWins()
 	{
 		int monthInteger = (d / 100) * 100;
 		int isolatedDay = d - (monthInteger);
+		if (isolatedDay > 31)
+		{
+			d = ((d / 100) + 1) * 100;
+			continue;
+		}
 		char thisDayCStr[3];
 		_itoa_s(isolatedDay, thisDayCStr, 10);
 		string thisDay = thisDayCStr;
