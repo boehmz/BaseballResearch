@@ -1,4 +1,4 @@
-20170617/ZachDateMetaData
+20170629/ZachDateMetaData
 text/javascript"></script>
 
 <script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=yONnNeg0_tp3KoLSBL2DqY6gAKfm_dA7JxGUf1pSEcg1"></script>
@@ -83,10 +83,8 @@ text/javascript"></script>
 	
     <div class="top-logo">
 
-        
+        <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
 
-            <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
-        
 
         <div id="top_da">
             <div class="fg-ads-desktop" style='width:728px; overflow:hidden;'><!-- ROS_728x90 --> <div id ='div-gpt-ad-1349421924281-14' style='margin: auto; width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-14').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-14'); });}</script></div></div>
@@ -194,7 +192,7 @@ text/javascript"></script>
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_navBar_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-06-16">Probable Pitchers</a>
+                            <a id="Header1_navBar_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-06-28">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -490,24 +488,19 @@ text/javascript"></script>
 
 
 
-<div id="Header1_panSpace">
-	
-    
-
-</div>
-
 <div class="header-chat-alert"><a class="header-chat-alert-text"></a></div>
- <div class="spacer_10"></div>
+<div class="spacer_10"></div>
 
 
 <!-- start - 0--><!-- control end - 0-->
 
 <script>
     $.get('/api/chatheader', function (d) {
-            d.chatBoolean ? $('.header-chat-alert').show() : $('.header-chat-alert').hide()
-            $('.header-chat-alert-text').attr('href', d.chatLink).text(d.chatText)
+        d.chatBoolean ? $('.header-chat-alert').show() : $('.header-chat-alert').hide()
+        $('.header-chat-alert-text').attr('href', d.chatLink).text(d.chatText)
     })
 </script>
+
         </div>
         <div id="content">
             <br />
@@ -656,7 +649,7 @@ text/javascript"></script>
         
     </div></div>
     <div class="footer-bar-item">
-        <span class="mobile-hide">Updated: Friday, June 16, 2017 6:25 AM ET</span><span class="mobile-show">Updated: 6/16/2017 6:25 AM ET</span>
+        <span class="mobile-hide">Updated: Wednesday, June 28, 2017 11:16 AM ET</span><span class="mobile-show">Updated: 6/28/2017 11:16 AM ET</span>
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
