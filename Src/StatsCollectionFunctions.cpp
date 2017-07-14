@@ -172,7 +172,7 @@ FullSeasonStats GetBatterStats(string playerId, string yearString, CURL *curl)
 	return playerStats;
 }
 
-std::vector<string> GetFangraphsRowColumns(std::string yearRow, std::string allData, int numColumns, std::string section, std::string nextSection)
+std::vector<string> GetFangraphsRowColumns(std::string yearRow, std::string allData, int numColumns, std::string section, std::string nextSection, bool watchOutForProjections)
 {
 	vector<string> allColumns;
 	size_t fangraphsCurrentIndex = allData.find(section, 0);
@@ -182,7 +182,24 @@ std::vector<string> GetFangraphsRowColumns(std::string yearRow, std::string allD
 	if (fangraphsCurrentIndex != string::npos)
 	{
 		fangraphsCurrentIndex = allData.find(yearRow, fangraphsCurrentIndex + 1);
-		
+		if (watchOutForProjections)
+		{
+			while (true)
+			{
+				size_t prevTr = allData.rfind("<tr", fangraphsCurrentIndex);
+				size_t prevProjections = allData.rfind("projections", fangraphsCurrentIndex);
+				size_t prevMinors = allData.rfind("minors", fangraphsCurrentIndex);
+				if ((prevProjections != string::npos && prevProjections > prevTr) ||
+					(prevMinors != string::npos && prevMinors > prevTr))
+				{
+					fangraphsCurrentIndex = allData.find(yearRow, fangraphsCurrentIndex + 1);
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
 		if (fangraphsCurrentIndex != string::npos && fangraphsCurrentIndex < fangraphsNextCategoryIndex)
 		{
 			fangraphsCurrentIndex = allData.find("</td>", fangraphsCurrentIndex + 1);
@@ -203,22 +220,48 @@ FullSeasonPitcherStats GetPitcherStats(string playerId, string yearString, CURL 
 	FullSeasonPitcherStats pitcherStats;
 
 	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != "2017", AdvancedStatsPitchingStarterStatsOnly);
-	vector<string> fangraphsStandardRows = GetFangraphsRowColumns(yearString, fangraphsPlayerData, 18, "name=\"standard\"", "name=\"advanced\"");
+	if (fangraphsPlayerData == "")
+	{
+		fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != "2017", 0);
+	}
+	bool bStarterOnlyNotAvailable = fangraphsPlayerData.find("As Starter") == string::npos;
+
+	vector<string> fangraphsStandardRows = GetFangraphsRowColumns(yearString, fangraphsPlayerData, 18, "name=\"standard\"", "name=\"advanced\"", bStarterOnlyNotAvailable);
 	if (fangraphsStandardRows.size() == 0)
 		return pitcherStats;
-	pitcherStats.numInnings = stof(fangraphsStandardRows[1].c_str());
-	pitcherStats.numInnings = floor(pitcherStats.numInnings) + ((pitcherStats.numInnings - floor(pitcherStats.numInnings)) * 3.4f);
-	pitcherStats.era = stof(fangraphsStandardRows[2].c_str());
-	pitcherStats.opsAllowed = stof(fangraphsStandardRows[15].c_str());
-	pitcherStats.opsAllowed += stof(fangraphsStandardRows[16].c_str());
-	pitcherStats.wobaAllowed = stof(fangraphsStandardRows[17].c_str());
+	if (bStarterOnlyNotAvailable)
+	{
+		pitcherStats.era = stof(fangraphsStandardRows[3].c_str());
+		pitcherStats.numInnings = stof(fangraphsStandardRows[11].c_str());
+		pitcherStats.numInnings = floor(pitcherStats.numInnings) + ((pitcherStats.numInnings - floor(pitcherStats.numInnings)) * 3.4f);
+	}
+	else
+	{
+		pitcherStats.numInnings = stof(fangraphsStandardRows[1].c_str());
+		pitcherStats.numInnings = floor(pitcherStats.numInnings) + ((pitcherStats.numInnings - floor(pitcherStats.numInnings)) * 3.4f);
+		pitcherStats.era = stof(fangraphsStandardRows[2].c_str());
+		pitcherStats.opsAllowed = stof(fangraphsStandardRows[15].c_str());
+		pitcherStats.opsAllowed += stof(fangraphsStandardRows[16].c_str());
+		pitcherStats.wobaAllowed = stof(fangraphsStandardRows[17].c_str());
+	}
 
-	vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(yearString, fangraphsPlayerData, 14, "name=\"advanced\"", "name=\"battedball\"");
-	pitcherStats.strikeOutsPer9 = stof(fangraphsAdvancedRows[1].c_str());
+	vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(yearString, fangraphsPlayerData, 14, "name=\"advanced\"", "name=\"battedball\"", bStarterOnlyNotAvailable);
 	pitcherStats.whip = stof(fangraphsAdvancedRows[9].c_str());
-	pitcherStats.fip = stof(fangraphsAdvancedRows[12].c_str());
-	pitcherStats.xfip = stof(fangraphsAdvancedRows[13].c_str());
+	if (bStarterOnlyNotAvailable)
+	{
+		vector<string> fangraphsDashboardRows = GetFangraphsRowColumns(yearString, fangraphsPlayerData, 17, "name=\"dashboard\"", "name=\"standard\"", bStarterOnlyNotAvailable);
+		pitcherStats.strikeOutsPer9 = stof(fangraphsDashboardRows[7].c_str());
+		pitcherStats.fip = stof(fangraphsDashboardRows[15].c_str());
+		pitcherStats.xfip = stof(fangraphsDashboardRows[16].c_str());
 
+	}
+	else
+	{
+		pitcherStats.strikeOutsPer9 = stof(fangraphsAdvancedRows[1].c_str());
+		pitcherStats.whip = stof(fangraphsAdvancedRows[9].c_str());
+		pitcherStats.fip = stof(fangraphsAdvancedRows[12].c_str());
+		pitcherStats.xfip = stof(fangraphsAdvancedRows[13].c_str());
+	}
 	return pitcherStats;
 }
 
@@ -229,7 +272,7 @@ FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(string playerId, CURL *curl
 	string fangraphsPlayerData = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, false);
 	string fangraphsPlayerDataAdvanced = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, true);
 
-	vector<string> fangraphsStandardRows = GetFangraphsRowColumns(">Total<", fangraphsPlayerData, 26, "id=\"DailyStats", "");
+	vector<string> fangraphsStandardRows = GetFangraphsRowColumns(">Total<", fangraphsPlayerData, 26, "id=\"DailyStats", "", false);
 	if (fangraphsStandardRows.size() == 0)
 		return pitcherStats;
 	pitcherStats.numInnings = stof(fangraphsStandardRows[7].c_str());
@@ -240,7 +283,7 @@ FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(string playerId, CURL *curl
 	pitcherStats.strikeOutsPer9 = stof(fangraphsStandardRows[15].c_str());
 
 
-	vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(">Total<", fangraphsPlayerDataAdvanced, 17, "id=\"DailyStats", "");
+	vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(">Total<", fangraphsPlayerDataAdvanced, 17, "id=\"DailyStats", "", false);
 	if (fangraphsAdvancedRows.size() == 0)
 		return pitcherStats;
 	pitcherStats.whip = stof(fangraphsAdvancedRows[11].c_str());
@@ -563,24 +606,31 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 			}
 		}
 
-		size_t writeToFileIndexBegin = fangraphsData.find("text/javascript", 0);
-		if (writeToFileIndexBegin == string::npos)
-			writeToFileIndexBegin = 0;
-		size_t writeToFileLength = fangraphsData.find("BEGIN FIRSTIMPRESSION TAG", writeToFileIndexBegin);
-		if (writeToFileLength != string::npos)
-			writeToFileLength -= writeToFileIndexBegin;
-		ofstream writeToFile;
-		writeToFile.open(cachedFileName);
-		writeToFile << todaysDate << "/ZachDateMetaData" << endl;
-		if ((advancedStatsFlags & AdvancedStatsBattingSplitsVersusLeftHand) ||
-			(advancedStatsFlags & AdvancedStatsPitchingSplitsVersusLeftHand))
-			writeToFile << fangraphsData;
-		else if ((advancedStatsFlags & AdvancedStatsBattingSplitsVersusRightHand) ||
-			(advancedStatsFlags & AdvancedStatsPitchingSplitsVersusRightHand))
-			writeToFile << fangraphsData;
+		if (fangraphsData.find("You have encountered an unexpected error.  If the problem persists, please fill out a") == string::npos)
+		{
+			size_t writeToFileIndexBegin = fangraphsData.find("text/javascript", 0);
+			if (writeToFileIndexBegin == string::npos)
+				writeToFileIndexBegin = 0;
+			size_t writeToFileLength = fangraphsData.find("BEGIN FIRSTIMPRESSION TAG", writeToFileIndexBegin);
+			if (writeToFileLength != string::npos)
+				writeToFileLength -= writeToFileIndexBegin;
+			ofstream writeToFile;
+			writeToFile.open(cachedFileName);
+			writeToFile << todaysDate << "/ZachDateMetaData" << endl;
+			if ((advancedStatsFlags & AdvancedStatsBattingSplitsVersusLeftHand) ||
+				(advancedStatsFlags & AdvancedStatsPitchingSplitsVersusLeftHand))
+				writeToFile << fangraphsData;
+			else if ((advancedStatsFlags & AdvancedStatsBattingSplitsVersusRightHand) ||
+				(advancedStatsFlags & AdvancedStatsPitchingSplitsVersusRightHand))
+				writeToFile << fangraphsData;
+			else
+				writeToFile << fangraphsData.substr(writeToFileIndexBegin, writeToFileLength);
+			writeToFile.close();
+		}
 		else
-			writeToFile << fangraphsData.substr(writeToFileIndexBegin, writeToFileLength);
-		writeToFile.close();
+		{
+			fangraphsData = "";
+		}
 	}
 
 	return fangraphsData;

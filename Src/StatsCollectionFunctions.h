@@ -32,7 +32,7 @@ const int AdvancedStatsPitchingSplitsVersusLeftHand = 8;
 const int AdvancedStatsPitchingStarterStatsOnly = 16;
 std::string GetPlayerFangraphsPageData(std::string playerId, CURL *curl, bool bCachedOk, int advancedStatsFlags);
 std::string GetPlayerFangraphsPageDataCumulativeUpTo(std::string playerId, CURL *curl, std::string dateUpTo, bool advancedPage);
-std::vector<std::string> GetFangraphsRowColumns(std::string yearRow, std::string allData, int numColumns, std::string section, std::string nextSection);
+std::vector<std::string> GetFangraphsRowColumns(std::string yearRow, std::string allData, int numColumns, std::string section, std::string nextSection, bool watchOutForProjections);
 
 struct FullSeasonStats
 {
