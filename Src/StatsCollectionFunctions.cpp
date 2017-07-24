@@ -176,6 +176,7 @@ std::vector<string> GetFangraphsRowColumns(std::string yearRow, std::string allD
 {
 	vector<string> allColumns;
 	size_t fangraphsCurrentIndex = allData.find(section, 0);
+	size_t fangraphsThisCategoryIndex = fangraphsCurrentIndex;
 	size_t fangraphsNextCategoryIndex = allData.find(nextSection, 0);
 	if (nextSection == "")
 		fangraphsNextCategoryIndex = string::npos;
@@ -198,6 +199,9 @@ std::vector<string> GetFangraphsRowColumns(std::string yearRow, std::string allD
 				{
 					break;
 				}
+				// none exist, it was all playoffs/minors
+				if (fangraphsCurrentIndex < fangraphsThisCategoryIndex)
+					return allColumns;
 			}
 		}
 		if (fangraphsCurrentIndex != string::npos && fangraphsCurrentIndex < fangraphsNextCategoryIndex)
