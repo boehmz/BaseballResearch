@@ -19,10 +19,10 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170626";
+std::string todaysDate = "20170906";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOf2017SeasonPassed = 80.0f / 162.0f;
+float percentOf2017SeasonPassed = 136.0f / 162.0f;
 
 int dayToDayInjuredPlayersNum = 0;
 string dayToDayInjuredPlayers[] = { "" };
@@ -69,9 +69,10 @@ int main(void)
 		}
 		else
 		{
-			AssembleBatterSplits(curl);
+			//AssembleBatterSplits(curl);
 			ChooseAPitcher(curl);
-			GenerateNewLineup(curl);
+			//GenerateNewLineup(curl);
+			GenerateNewLineupFromSabrPredictor(curl);
 		}
 		break;
 	}
@@ -96,6 +97,14 @@ bool comparePlayersBySalary(PlayerData i, PlayerData j)
 
 void RefineAlgorithm()
 {
+	bool bRefineForPitchers = false;
+	bool bRefineForBatters = true;
+	bool bRefineForGames = false;
+
+	fstream gamesRecordOverallFile;
+	if (bRefineForGames) {
+		gamesRecordOverallFile.open("2017ResultsTracker\\TeamWinResults\\AllGames.txt");
+	}
 	CURL *curl;  
 
 	curl = curl_easy_init();
@@ -111,17 +120,25 @@ void RefineAlgorithm()
 		vector<float> last7DaysOpsAdjustedInputVariables;
 		vector<float> pitcherFactorInputVariables;
 		vector<float> validOutputValues;
+		vector<float> sabrPredictorValues;
+		vector<float> sabrPredictorOutputValues;
 		float inputCoefficients[2] = { 0.0f, 1.0f };
 		vector< float > outputValues;
 
+		vector<float> chosenLineups;
+		vector<float> chosenLineupsTwoThruFive;
+
 		vector<float> pitcherInputValues;
 		vector<float> pitcherOutputValues;
-
+		vector<float> sabrPredictorPitcherInputValues;
+		vector<float> sabrPredictorPitcherOutputValues;
+		reviewDateStart = 806;
+		reviewDateEnd = 905;
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
 			if (d - ((d / 100) * 100) > 31)
 			{
-				d = ((d / 100)+1) * 100;
+				d = ((d / 100) + 1) * 100;
 				continue;
 			}
 			char thisDateCStr[5];
@@ -135,138 +152,358 @@ void RefineAlgorithm()
 			curl_easy_perform(curl);
 			curl_easy_reset(curl);
 
-			ifstream resultsTrackerFile;
-			string resultsTrackerFileName = "2017ResultsTracker\\2017";
-			if (d < 1000)
-				resultsTrackerFileName += "0";
-			resultsTrackerFileName += thisDate + ".txt";
-			resultsTrackerFile.open(resultsTrackerFileName);
-
 			string resultsLine;
 
-			while (getline(resultsTrackerFile, resultsLine))
-			{
-				vector<float> thisInputVariables;
-				thisInputVariables.push_back(0);
-				thisInputVariables.push_back(0);
-				vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
-				string thisPlayerId = lineValues[0];
+			if (bRefineForBatters) {
+				ifstream resultsTrackerFile;
+				string resultsTrackerFileName = "2017ResultsTracker\\2017";
+				if (d < 1000)
+					resultsTrackerFileName += "0";
+				resultsTrackerFileName += thisDate + ".txt";
+				resultsTrackerFile.open(resultsTrackerFileName);
+				string sabrPredictorFileName = "FangraphsSABRPredictions\\Batters\\2017";
+				if (d < 1000)
+					sabrPredictorFileName += "0";
+				sabrPredictorFileName += thisDate + ".csv";
+				string sabrPredictorText = GetEntireFileContents(sabrPredictorFileName);
 
-
-				FullSeasonStats player2016Stats = GetBatterStats(thisPlayerId, "2017", curl);
-				if (lineValues[2] == "L")
-					thisInputVariables[1] = player2016Stats.averagePpgVsLefty;
-				else
-					thisInputVariables[1] = player2016Stats.averagePpgVsRighty;
-				thisInputVariables[0] = player2016Stats.averagePpg;
-
-
-				size_t playerIdIndex = actualResults.find(";" + thisPlayerId + ";", 0);
-				if (playerIdIndex != string::npos && thisInputVariables[1] > 0)
-				{
-					inputVariables.push_back(thisInputVariables);
-					for (int i = 0; i < 6; ++i)
-					{
-						playerIdIndex = actualResults.find(";", playerIdIndex + 1);
+				if (sabrPredictorText != "") {
+					allPlayers.clear();
+					for (int i = 0; i < 6; ++i) {
+						vector<PlayerData> positionalPlayerData;
+						allPlayers.push_back(positionalPlayerData);
 					}
-					size_t nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
-					expectedPointsInputVariables.push_back(stof(lineValues[3].c_str()));
-					outputValues.push_back(stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str()));
+					vector< vector<PlayerData> > allPlayersTwoThruFive;
+					for (int i = 0; i < 6; ++i) {
+						vector<PlayerData> positionalPlayerData;
+						allPlayersTwoThruFive.push_back(positionalPlayerData);
+					}
+					size_t currentIndex = actualResults.find("</script>", 0);
+					currentIndex = actualResults.find("\n", currentIndex + 1);
+					size_t nextIndex = actualResults.find("\n", currentIndex + 1);
 
-					float seasonOps = stof(lineValues[4].c_str());
-					float last30DaysOps = stof(lineValues[5].c_str());
-					float last7DaysOps = stof(lineValues[6].c_str());
-					if (seasonOps >= 0 && last30DaysOps >= 0 && last7DaysOps >= 0)
+					while (nextIndex != string::npos) {
+						vector<string> thisLineActualResults = SplitStringIntoMultiple(actualResults.substr(currentIndex, nextIndex - currentIndex), ";");
+						if (thisLineActualResults.size() < 10)
+							continue;
+						if (thisLineActualResults[4] == "1") {
+							PlayerData singlePlayerData;
+							int playerPosition = atoi(thisLineActualResults[6].c_str());
+							playerPosition -= 2;
+							if (playerPosition >= 0) {
+								singlePlayerData.playerId = thisLineActualResults[1];
+								singlePlayerData.playerName = thisLineActualResults[3];
+								singlePlayerData.playerSalary = atoi(thisLineActualResults[8].c_str());
+								singlePlayerData.playerPointsPerGame = -1;
+								size_t playerNameIndex = sabrPredictorText.find(ConvertLFNameToFLName(singlePlayerData.playerName));
+								if (playerNameIndex != string::npos) {
+									size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
+									vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",");
+									float expectedFdPoints = stof(thisSabrLine[17].substr(1, thisSabrLine[17].length() - 2));
+									singlePlayerData.playerPointsPerGame = expectedFdPoints;
+								}
+								allPlayers[playerPosition].push_back(singlePlayerData);
+								int battingOrder = atoi(thisLineActualResults[5].c_str());
+								if (battingOrder >= 2 && battingOrder <= 5)
+									allPlayersTwoThruFive[playerPosition].push_back(singlePlayerData);
+							}
+						}
+						if (nextIndex == string::npos)
+							break;
+						currentIndex = nextIndex + 1;
+						nextIndex = actualResults.find("\n", currentIndex + 1);
+					}
+					for (int a = 0; a < 6; ++a) {
+						sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+					}
+					maxTotalBudget = 25000;
+					vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
+					float totalPoints = 0;
+					for (unsigned int cp = 0; cp < chosenLineup.size(); ++cp) {
+						size_t playerIdIndex = actualResults.find(";" + chosenLineup[cp].playerId + ";", 0);
+						if (playerIdIndex != string::npos)
+						{
+							for (int i = 0; i < 6; ++i) {
+								playerIdIndex = actualResults.find(";", playerIdIndex + 1);
+							}
+							size_t nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
+							totalPoints += stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str());
+						}
+					}
+					chosenLineups.push_back(totalPoints);
+
+					allPlayers.clear();
+					allPlayers = allPlayersTwoThruFive;
+					for (int a = 0; a < 6; ++a) {
+						sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+					}
+					maxTotalBudget = 25000;
+					chosenLineup.clear();
+					chosenLineup = OptimizeLineupToFitBudget();
+					totalPoints = 0;
+					for (unsigned int cp = 0; cp < chosenLineup.size(); ++cp) {
+						size_t playerIdIndex = actualResults.find(";" + chosenLineup[cp].playerId + ";", 0);
+						if (playerIdIndex != string::npos)
+						{
+							for (int i = 0; i < 6; ++i) {
+								playerIdIndex = actualResults.find(";", playerIdIndex + 1);
+							}
+							size_t nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
+							totalPoints += stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str());
+						}
+					}
+					chosenLineupsTwoThruFive.push_back(totalPoints);
+				}
+				while (getline(resultsTrackerFile, resultsLine))
+				{
+					vector<float> thisInputVariables;
+					thisInputVariables.push_back(0);
+					thisInputVariables.push_back(0);
+					vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
+					string thisPlayerId = lineValues[0];
+
+					/*		FullSeasonStats player2016Stats = GetBatterStats(thisPlayerId, "2017", curl);
+							if (lineValues[2] == "L")
+								thisInputVariables[1] = player2016Stats.averagePpgVsLefty;
+							else
+								thisInputVariables[1] = player2016Stats.averagePpgVsRighty;
+							thisInputVariables[0] = player2016Stats.averagePpg;
+					*/
+
+					size_t playerIdIndex = actualResults.find(";" + thisPlayerId + ";", 0);
+					if (playerIdIndex != string::npos)// && thisInputVariables[1] > 0)
 					{
-						float adjustmentFactor = stof(lineValues[7].c_str());// *stof(lineValues[8].c_str());
-						seasonOpsInputVariables.push_back(seasonOps);
-						last30DaysOpsInputVariables.push_back(last30DaysOps);
-						last7DaysOpsInputVariables.push_back(last7DaysOps);
-						seasonOpsAdjustedInputVariables.push_back(seasonOps * adjustmentFactor);
-						last30DayAdjustedsOpsInputVariables.push_back(last30DaysOps * adjustmentFactor);
-						last7DaysOpsAdjustedInputVariables.push_back(last7DaysOps * adjustmentFactor);
-						pitcherFactorInputVariables.push_back(stof(lineValues[7].c_str()));
-						validOutputValues.push_back(outputValues[outputValues.size() - 1]);
+						inputVariables.push_back(thisInputVariables);
+						for (int i = 0; i < 2; ++i)
+						{
+							playerIdIndex = actualResults.find(";", playerIdIndex + 1);
+						}
+						size_t nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
+						string playerName = actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1);
+						playerName = ConvertLFNameToFLName(playerName);
+						for (int i = 0; i < 4; ++i)
+						{
+							playerIdIndex = actualResults.find(";", playerIdIndex + 1);
+						}
+						nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
+						expectedPointsInputVariables.push_back(stof(lineValues[3].c_str()));
+						outputValues.push_back(stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str()));
 
+						float seasonOps = stof(lineValues[4].c_str());
+						float last30DaysOps = stof(lineValues[5].c_str());
+						float last7DaysOps = stof(lineValues[6].c_str());
+						if (seasonOps >= 0 && last30DaysOps >= 0 && last7DaysOps >= 0)
+						{
+							float adjustmentFactor = stof(lineValues[7].c_str());// *stof(lineValues[8].c_str());
+							seasonOpsInputVariables.push_back(seasonOps);
+							last30DaysOpsInputVariables.push_back(last30DaysOps);
+							last7DaysOpsInputVariables.push_back(last7DaysOps);
+							seasonOpsAdjustedInputVariables.push_back(seasonOps * adjustmentFactor);
+							last30DayAdjustedsOpsInputVariables.push_back(last30DaysOps * adjustmentFactor);
+							last7DaysOpsAdjustedInputVariables.push_back(last7DaysOps * adjustmentFactor);
+							pitcherFactorInputVariables.push_back(stof(lineValues[7].c_str()));
+							validOutputValues.push_back(outputValues[outputValues.size() - 1]);
+						}
+						if (sabrPredictorText != "") {
+							size_t playerNameIndex = sabrPredictorText.find(playerName);
+							if (playerNameIndex != string::npos) {
+								size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
+								vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",");
+								float expectedFdPoints = stof(thisSabrLine[17].substr(1, thisSabrLine[17].length() - 2));
+								sabrPredictorValues.push_back(expectedFdPoints);
+								sabrPredictorOutputValues.push_back(outputValues[outputValues.size() - 1]);
+							}
+						}
+					}
+				}
+				resultsTrackerFile.close();
+			}
+
+			if (bRefineForPitchers) {
+				ifstream pitcherResultsTrackerFile;
+				string pitcherResultsTrackerFileName = "2017ResultsTracker\\Pitchers\\2017";
+				if (d < 1000)
+					pitcherResultsTrackerFileName += "0";
+				pitcherResultsTrackerFileName += thisDate + ".txt";
+				pitcherResultsTrackerFile.open(pitcherResultsTrackerFileName);
+				string sabrPredictorFileName = "FangraphsSABRPredictions\\Pitchers\\2017";
+				if (d < 1000)
+					sabrPredictorFileName += "0";
+				sabrPredictorFileName += thisDate + ".csv";
+				string sabrPredictorText = GetEntireFileContents(sabrPredictorFileName);
+
+				while (getline(pitcherResultsTrackerFile, resultsLine))
+				{
+					vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
+					string thisPlayerId = lineValues[0];
+
+					size_t playerIdIndex = actualResults.find(";" + thisPlayerId + ";", 0);
+					if (playerIdIndex != string::npos)
+					{
+						for (int i = 0; i < 2; ++i)
+						{
+							playerIdIndex = actualResults.find(";", playerIdIndex + 1);
+						}
+						size_t nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
+						string playerName = actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1);
+						playerName = ConvertLFNameToFLName(playerName);
+						for (int i = 0; i < 4; ++i)
+						{
+							playerIdIndex = actualResults.find(";", playerIdIndex + 1);
+						}
+						nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
+						pitcherInputValues.push_back(stof(lineValues[2]));
+						pitcherOutputValues.push_back(stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str()));
+						if (sabrPredictorText != "") {
+							size_t playerNameIndex = sabrPredictorText.find(playerName);
+							if (playerNameIndex != string::npos) {
+								size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
+								vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",");
+								float expectedFdPoints = stof(thisSabrLine[14].substr(1, thisSabrLine[14].length() - 2));
+								sabrPredictorPitcherInputValues.push_back(expectedFdPoints);
+								sabrPredictorPitcherOutputValues.push_back(pitcherOutputValues[pitcherOutputValues.size() - 1]);
+							}
+						}
+					}
+				}
+				pitcherResultsTrackerFile.close();
+			}
+
+			if (bRefineForGames) {
+				string actualGamesResults = GetEntireFileContents("2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt");
+				ifstream gamesPredictorFile;
+				string gamesPredictorFileName = "2017ResultsTracker\\TeamWinResults\\";
+				string thisDateWithYear = "2017";
+				if (d < 1000)
+					thisDateWithYear += "0";
+				thisDateWithYear += thisDate;
+				gamesPredictorFileName += thisDateWithYear + ".txt";
+				gamesPredictorFile.open(gamesPredictorFileName);
+
+				while (getline(gamesPredictorFile, resultsLine)) {
+					vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
+					size_t curentActualGamesIndex = actualGamesResults.find(thisDateWithYear);
+					vector<string> oddsResultsValues;
+					while (curentActualGamesIndex < string::npos) {
+						size_t nextActualGamesIndex = actualGamesResults.find("\n", curentActualGamesIndex + 1);
+						size_t teamNameIndex = actualGamesResults.find(ConvertTeamCodeToOddsPortalName(lineValues[0], false), curentActualGamesIndex);
+						if (teamNameIndex < nextActualGamesIndex) {
+							oddsResultsValues = SplitStringIntoMultiple(actualGamesResults.substr(curentActualGamesIndex, nextActualGamesIndex - curentActualGamesIndex), ";");
+						}
+						curentActualGamesIndex = actualGamesResults.find(thisDateWithYear, curentActualGamesIndex + 1);
+					}
+					if (oddsResultsValues.size() > 0) {
+						string correctPrediction = "0";
+						if (oddsResultsValues[1] == ConvertTeamCodeToOddsPortalName(lineValues[0], false))
+							correctPrediction = "1";
+						else if (oddsResultsValues[2] == ConvertTeamCodeToOddsPortalName(lineValues[0], false))
+							correctPrediction = "-1";
+						else {
+							cout << "something went wrong with a game on " << thisDateWithYear << " expecting " << lineValues[0] << " and " << lineValues[2] << endl;
+							continue;
+						}
+						gamesRecordOverallFile << thisDateWithYear << ";";
+						gamesRecordOverallFile << resultsLine << correctPrediction << ";";
+						if (correctPrediction == "1")
+							gamesRecordOverallFile << oddsResultsValues[4] << ";" << oddsResultsValues[5];
+						else if (correctPrediction == "-1")
+							gamesRecordOverallFile << oddsResultsValues[5] << ";" << oddsResultsValues[4];
+						gamesRecordOverallFile << endl;
 					}
 				}
 			}
-			resultsTrackerFile.close();
+		}
 
-			ifstream pitcherResultsTrackerFile;
-			string pitcherResultsTrackerFileName = "2017ResultsTracker\\Pitchers\\2017";
-			if (d < 1000)
-				pitcherResultsTrackerFileName += "0";
-			pitcherResultsTrackerFileName += thisDate + ".txt";
-			pitcherResultsTrackerFile.open(pitcherResultsTrackerFileName);
+		if (bRefineForBatters) {
+			float totalLineupPoints = 0;
+			for (unsigned int i = 0; i < chosenLineups.size(); ++i) {
+				totalLineupPoints += chosenLineups[i];
+			}
+			float totalLineupPointsTwoThruFive = 0;
+			for (unsigned int i = 0; i < chosenLineupsTwoThruFive.size(); ++i) {
+				totalLineupPointsTwoThruFive += chosenLineupsTwoThruFive[i];
+			}
 
-			while (getline(pitcherResultsTrackerFile, resultsLine))
+			float fCoefficientStep = 0.05f;
+			float mostAccurateCoefficients[2] = { 0,0 };
+			float mostAccurateWrongAmount = INFINITY;
+			float mostAccurateRSquaredCoefficients[2] = { 0,0 };
+			float bestRSquared = 0;
+			while (inputCoefficients[0] <= 1.0f + fCoefficientStep * 0.5f)
 			{
-				vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
-				string thisPlayerId = lineValues[0];
-
-				size_t playerIdIndex = actualResults.find(";" + thisPlayerId + ";", 0);
-				if (playerIdIndex != string::npos)
+				float wrongAmount = 0.0f;
+				for (unsigned int i = 0; i < inputVariables.size(); ++i)
 				{
-					for (int i = 0; i < 6; ++i)
-					{
-						playerIdIndex = actualResults.find(";", playerIdIndex + 1);
-					}
-					size_t nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
-					pitcherInputValues.push_back(stof(lineValues[2]));
-					pitcherOutputValues.push_back(stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str()));
+					wrongAmount += (outputValues[i] - (inputCoefficients[0] * inputVariables[i][0] + inputCoefficients[1] * inputVariables[i][1])) * (outputValues[i] - (inputCoefficients[0] * inputVariables[i][0] + inputCoefficients[1] * inputVariables[i][1]));
+					//wrongAmount -= (outputValues[i] - (inputCoefficients[0] * inputVariables[i][0] + inputCoefficients[1] * inputVariables[i][1]));
 				}
+				if (wrongAmount < mostAccurateWrongAmount)
+				{
+					mostAccurateWrongAmount = wrongAmount;
+					mostAccurateCoefficients[0] = inputCoefficients[0];
+					mostAccurateCoefficients[1] = inputCoefficients[1];
+				}
+
+				vector< float > finalInputs;
+				for (unsigned int i = 0; i < inputVariables.size(); ++i)
+				{
+					finalInputs.push_back((inputCoefficients[0] * inputVariables[i][0] + inputCoefficients[1] * inputVariables[i][1]));
+				}
+				float thisRSquared = CalculateRSquared(finalInputs, outputValues);
+				if (thisRSquared > bestRSquared)
+				{
+					bestRSquared = thisRSquared;
+					mostAccurateRSquaredCoefficients[0] = inputCoefficients[0];
+					mostAccurateRSquaredCoefficients[1] = inputCoefficients[1];
+				}
+				inputCoefficients[0] += fCoefficientStep;
+				inputCoefficients[1] -= fCoefficientStep;
 			}
-			pitcherResultsTrackerFile.close();
+
+			float expectedPointsRSquared = CalculateRSquared(expectedPointsInputVariables, outputValues);
+
+			inputCoefficients[0] = 0.0f;
+			inputCoefficients[1] = 0.0f;
+			float bestRSquaredMultiplied = -1;
+			while (inputCoefficients[0] < 1.0f + fCoefficientStep * 0.5f)
+			{
+				inputCoefficients[1] = 0.0f;
+				while (inputCoefficients[1] < 1.0f + fCoefficientStep * 0.5f)
+				{
+					vector<float> adjustedInputValues;
+					for (unsigned int i = 0; i < last30DaysOpsInputVariables.size(); ++i)
+					{
+						adjustedInputValues.push_back(last30DaysOpsInputVariables[i] * inputCoefficients[0] + pitcherFactorInputVariables[i] * leagueAverageOps * inputCoefficients[1]);
+					}
+					float thisRSquared = CalculateRSquared(adjustedInputValues, validOutputValues);
+					if (thisRSquared > bestRSquaredMultiplied)
+					{
+						bestRSquaredMultiplied = thisRSquared;
+						mostAccurateRSquaredCoefficients[0] = inputCoefficients[0];
+						mostAccurateRSquaredCoefficients[1] = inputCoefficients[1];
+					}
+					inputCoefficients[1] += fCoefficientStep;
+				}
+				inputCoefficients[0] += fCoefficientStep;
+			}
 		}
 
-		float fCoefficientStep = 0.01f;
-		float mostAccurateCoefficients[2] = { 0,0 };
-		float mostAccurateWrongAmount = INFINITY;
-		float mostAccurateRSquaredCoefficients[2] = { 0,0 };
-		float bestRSquared = 0;
-		while (inputCoefficients[0] <= 1.0f + fCoefficientStep * 0.5f)
-		{
-			float wrongAmount = 0.0f;
-			for (unsigned int i = 0; i < inputVariables.size(); ++i)
-			{
-				wrongAmount += (outputValues[i] - (inputCoefficients[0] * inputVariables[i][0] + inputCoefficients[1] * inputVariables[i][1])) * (outputValues[i] - (inputCoefficients[0] * inputVariables[i][0] + inputCoefficients[1] * inputVariables[i][1]));
-				//wrongAmount -= (outputValues[i] - (inputCoefficients[0] * inputVariables[i][0] + inputCoefficients[1] * inputVariables[i][1]));
-			}
-			if (wrongAmount < mostAccurateWrongAmount)
-			{
-				mostAccurateWrongAmount = wrongAmount;
-				mostAccurateCoefficients[0] = inputCoefficients[0];
-				mostAccurateCoefficients[1] = inputCoefficients[1];
-			}
-
-			vector< float > finalInputs;
-			for (unsigned int i = 0; i < inputVariables.size(); ++i)
-			{
-				finalInputs.push_back((inputCoefficients[0] * inputVariables[i][0] + inputCoefficients[1] * inputVariables[i][1]));
-			}
-			float thisRSquared = CalculateRSquared(finalInputs, outputValues);
-			if (thisRSquared > bestRSquared)
-			{
-				bestRSquared = thisRSquared;
-				mostAccurateRSquaredCoefficients[0] = inputCoefficients[0];
-				mostAccurateRSquaredCoefficients[1] = inputCoefficients[1];
-			}
-			inputCoefficients[0] += fCoefficientStep;
-			inputCoefficients[1] -= fCoefficientStep;
+		if (bRefineForPitchers) {
+			float pitcherRSquared = CalculateRSquared(pitcherInputValues, pitcherOutputValues);
+			float sabrPitcherRSquared = CalculateRSquared(sabrPredictorPitcherInputValues, sabrPredictorPitcherOutputValues);
+			int breakpoint = 0;
 		}
-
-		float expectedPointsRSquared = CalculateRSquared(expectedPointsInputVariables, outputValues);
-		
-		float pitcherRSquared = CalculateRSquared(pitcherInputValues, pitcherOutputValues);
-		float seasonOpsRSquared = CalculateRSquared(seasonOpsInputVariables, validOutputValues);
-		float last30OpsRSquared = CalculateRSquared(last30DaysOpsInputVariables, validOutputValues);
-		float last7OpsRSquared = CalculateRSquared(last7DaysOpsInputVariables, validOutputValues);
-		float seasonOpsAdjustedRSquared = CalculateRSquared(seasonOpsAdjustedInputVariables, validOutputValues);
-		float last30OpsAdjustedRSquared = CalculateRSquared(last30DayAdjustedsOpsInputVariables, validOutputValues);
-		float last7OpsAdjustedRSquared = CalculateRSquared(last7DaysOpsAdjustedInputVariables, validOutputValues);
-		float pitcherFactorRSquared = CalculateRSquared(pitcherFactorInputVariables, validOutputValues);
-		inputCoefficients[0] = inputCoefficients[0];
+		if (bRefineForBatters) {
+			float seasonOpsRSquared = CalculateRSquared(seasonOpsInputVariables, validOutputValues);
+			float last30OpsRSquared = CalculateRSquared(last30DaysOpsInputVariables, validOutputValues);
+			float last7OpsRSquared = CalculateRSquared(last7DaysOpsInputVariables, validOutputValues);
+			float seasonOpsAdjustedRSquared = CalculateRSquared(seasonOpsAdjustedInputVariables, validOutputValues);
+			float last30OpsAdjustedRSquared = CalculateRSquared(last30DayAdjustedsOpsInputVariables, validOutputValues);
+			float last7OpsAdjustedRSquared = CalculateRSquared(last7DaysOpsAdjustedInputVariables, validOutputValues);
+			float pitcherFactorRSquared = CalculateRSquared(pitcherFactorInputVariables, validOutputValues);
+			float sabrBatterRSquared = CalculateRSquared(sabrPredictorValues, sabrPredictorOutputValues);
+			inputCoefficients[0] = inputCoefficients[0];
+		}
 
 	}
 }
@@ -570,7 +807,7 @@ void ChooseAPitcher(CURL *curl)
 			placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
 			nextIndex = readBuffer.find(";", placeHolderIndex + 1);
 			singlePlayerData.playerSalary = atoi(readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1).c_str());
-
+			
 			// game name
 			for (int i = 0; i < 19; ++i)
 			{
@@ -660,7 +897,8 @@ void ChooseAPitcher(CURL *curl)
 			}
 			else if (pitcherCareerStats.strikeOutsPer9 >= 0)
 			{
-				pitcherStats = pitcherCareerStats;
+				// no rookies sorry
+				//pitcherStats = pitcherCareerStats;
 			}
 
 			if (pitcherStats.strikeOutsPer9 >= 0)
@@ -1128,46 +1366,256 @@ void GenerateNewLineup(CURL *curl)
   }
   resultsTrackerFile.close();
 
-  for (unsigned int ap = 0; ap < allPlayers.size(); ++ap)
-  {
-	  for (int i = allPlayers[ap].size() - 1; i > 0; --i)
-	  {
-		  bool bDeleteThisPlayer = false;
-		  int numBetterValuePlayers = 0;
-		  for (int x = i - 1; x >= 0; --x)
-		  {
-			  if (allPlayers[ap][i].playerSalary >= allPlayers[ap][x].playerSalary)
-			  {
-				  numBetterValuePlayers++;
-				  if (ap != 5 || numBetterValuePlayers >= 3)
-				  {
-					  bDeleteThisPlayer = true;
-					  break;
-				  }
-			  }
-		  }
-
-		  if (bDeleteThisPlayer)
-		  {
-			  allPlayers[ap].erase(allPlayers[ap].begin() + i);
-		  }
-	  }
-  }
-  for (unsigned int i = 0; i < allPlayers.size(); ++i)
-  {
-	  if (allPlayers[i].size() == 0)
-	  {
-		  cout << "Position " << i << " has no available players." << endl;
-		  return;
-	  }
-  }
+  
   vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
   
+}
+
+void GenerateNewLineupFromSabrPredictor(CURL *curl)
+{
+	string sabrPredictorFileName = "FangraphsSABRPredictions\\Batters\\";
+	sabrPredictorFileName += todaysDate + ".csv";
+	string sabrPredictorText = GetEntireFileContents(sabrPredictorFileName);
+	if (sabrPredictorText == "")
+		return;
+
+	if (curl == NULL)
+		curl = curl_easy_init();
+
+	if (curl)
+	{
+		// previous days results, to get the likely batting order
+		int numDaysPreviousResults = 5;
+		vector<string> previousDayResults;
+		for (int i = 1; i <= numDaysPreviousResults; ++i) {
+			string previousResults;
+			string thisDayAbbreviated = todaysDate.substr(4);
+			int thisDayAbbreviatedInt = atoi(thisDayAbbreviated.c_str());
+			thisDayAbbreviatedInt -= i;
+			int thisDayAbbreviatedIntWithoutMonth = thisDayAbbreviatedInt - (thisDayAbbreviatedInt / 100) * 100;
+			if (thisDayAbbreviatedIntWithoutMonth == 0 || thisDayAbbreviatedIntWithoutMonth > 30)
+				thisDayAbbreviatedInt -= 70;
+
+			char prevDayCStr[5];
+			_itoa_s(thisDayAbbreviatedInt, prevDayCStr, 10);
+			string prevDay = prevDayCStr;
+			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + prevDay + "&game=fd&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
+			curl_easy_setopt(curl, CURLOPT_URL, resultsURL.c_str());
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &previousResults);
+			curl_easy_perform(curl);
+			curl_easy_reset(curl);
+			previousDayResults.push_back(previousResults);
+		}
+
+		for (int p = 2; p <= 7; ++p)
+		{
+			// first basemen
+			std::string readBuffer;
+			char pAsString[5];
+			_itoa_s(p, pAsString, 10);
+			string pAsStringString(pAsString);
+			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941";
+
+			curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+			curl_easy_perform(curl);
+			curl_easy_reset(curl);
+
+			vector<PlayerData> positionalPlayerData;
+
+			size_t placeHolderIndex = readBuffer.find("GID;", 0);
+			size_t endOfPlayerDataIndex = readBuffer.find("Statistical data provided", placeHolderIndex);
+
+			for (int i = 0; i < 23; ++i)
+			{
+				placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+			}
+			placeHolderIndex = readBuffer.find("\n", placeHolderIndex + 1);
+			while (placeHolderIndex != string::npos && readBuffer.find(";", placeHolderIndex + 1) < endOfPlayerDataIndex - 1)
+			{
+				PlayerData singlePlayerData;
+
+				// player id
+				size_t nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.playerId = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+
+				// player name
+				for (int i = 0; i < 2; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.playerName = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+
+				// team name code
+				for (int i = 0; i < 1; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.teamCode = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+
+				// player salary
+				for (int i = 0; i < 1; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.playerSalary = atoi(readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1).c_str());
+
+				// number of games started this season
+				for (int i = 0; i < 19; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				
+				singlePlayerData.playerPointsPerGame = -1;
+
+				size_t playerNameIndex = sabrPredictorText.find(ConvertLFNameToFLName(singlePlayerData.playerName));
+				if (playerNameIndex != string::npos) {
+					size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
+					vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",");
+					float expectedFdPoints = stof(thisSabrLine[17].substr(1, thisSabrLine[17].length() - 2));
+					singlePlayerData.playerPointsPerGame = expectedFdPoints;
+				}
+				int gameStartTime = 24;
+				size_t colonIndex = readBuffer.find(":", placeHolderIndex + 1);
+				size_t nextSemiColonIndex = readBuffer.find("\n", placeHolderIndex + 1);
+				if (colonIndex != string::npos && colonIndex < nextSemiColonIndex)
+				{
+					size_t spaceIndex = readBuffer.rfind(" ", colonIndex);
+					gameStartTime = atoi(readBuffer.substr(spaceIndex + 1, colonIndex - spaceIndex - 1).c_str());
+					size_t pmIndex = readBuffer.find("PM", spaceIndex);
+					size_t edtIndex = readBuffer.find("EDT", spaceIndex);
+					if (pmIndex != string::npos && pmIndex < edtIndex)
+					{
+						gameStartTime += 12;
+					}
+				}
+				else if (readBuffer.find("Final", placeHolderIndex + 1) != string::npos && readBuffer.find("Final", placeHolderIndex + 1) < nextSemiColonIndex)
+				{
+					// game has gone final
+					gameStartTime = 999;
+				}
+				else if (readBuffer.find("Mid", placeHolderIndex + 1) != string::npos && readBuffer.find("Mid", placeHolderIndex + 1) < nextSemiColonIndex)
+				{
+					// game is in progress
+					gameStartTime = 999;
+				}
+				else if (readBuffer.find("Top", placeHolderIndex + 1) != string::npos && readBuffer.find("Top", placeHolderIndex + 1) < nextSemiColonIndex)
+				{
+					// game is in progress
+					gameStartTime = 999;
+				}
+				else if (readBuffer.find("Bot", placeHolderIndex + 1) != string::npos && readBuffer.find("Bot", placeHolderIndex + 1) < nextSemiColonIndex)
+				{
+					// game is in progress
+					gameStartTime = 999;
+				}
+
+				// go to next player
+				size_t closestRainOutPark = string::npos;
+				for (unsigned int i = 0; i < probableRainoutGames.size(); ++i)
+				{
+					size_t thisRainoutPark = readBuffer.find(probableRainoutGames[i], placeHolderIndex);
+					if (thisRainoutPark < closestRainOutPark)
+						closestRainOutPark = thisRainoutPark;
+				}
+				bool bRainedOut = closestRainOutPark != string::npos && closestRainOutPark < readBuffer.find("\n", placeHolderIndex + 1);
+				for (int inj = 0; inj < dayToDayInjuredPlayersNum; ++inj)
+				{
+					if (singlePlayerData.playerName.find(dayToDayInjuredPlayers[inj]) != string::npos)
+					{
+						bRainedOut = true;
+						break;
+					}
+				}
+				bool bFacingChosenPitcher = singlePlayerData.teamCode == pitcherOpponentTeamCode;
+				int bestBattingOrder = -1;
+				for (unsigned int i = 1; i <= previousDayResults.size(); ++i) {
+					size_t playerIdIndex = previousDayResults[i].find(";" + singlePlayerData.playerId + ";", 0);
+					if (playerIdIndex != string::npos)
+					{
+						for (int i = 0; i < 4; ++i) {
+							playerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
+						}
+						size_t nextPlayerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
+						int prevBattingOrder = atoi(previousDayResults[i].substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str());
+						if (prevBattingOrder > 1 && prevBattingOrder < bestBattingOrder)
+							bestBattingOrder = prevBattingOrder;
+					}
+				}
+				int minBattingOrder = 2;
+				int maxBattingOrder = 5;
+				// catchers usually bat later anyway
+				if (p == 2)
+					maxBattingOrder = 6;
+				// throw this guy out if he's not a starter or his game will most likely be rained out
+				if (bestBattingOrder >= minBattingOrder && bestBattingOrder <= maxBattingOrder 
+					&& !bFacingChosenPitcher 
+					&& gameStartTime <= latestGameTime 
+					&& gameStartTime >= earliestGameTime 
+					&& !bRainedOut)
+					positionalPlayerData.push_back(singlePlayerData);
+
+				if (placeHolderIndex == string::npos)
+					break;
+				else
+					placeHolderIndex = readBuffer.find("\n", placeHolderIndex + 1);
+			}
+
+			sort(positionalPlayerData.begin(), positionalPlayerData.end(), comparePlayerByPointsPerGame);
+
+			allPlayers.push_back(positionalPlayerData);
+		}
+		curl_easy_cleanup(curl);
+	}
+	vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
+	int breakpoint = 0;
 }
 
 vector<PlayerData> OptimizeLineupToFitBudget()
 {
 	vector<unsigned int> idealPlayerPerPosition;
+
+	for (unsigned int ap = 0; ap < allPlayers.size(); ++ap)
+	{
+		for (int i = allPlayers[ap].size() - 1; i > 0; --i)
+		{
+			bool bDeleteThisPlayer = false;
+			int numBetterValuePlayers = 0;
+			for (int x = i - 1; x >= 0; --x)
+			{
+				if (allPlayers[ap][i].playerSalary >= allPlayers[ap][x].playerSalary)
+				{
+					numBetterValuePlayers++;
+					if (ap != 5 || numBetterValuePlayers >= 3)
+					{
+						bDeleteThisPlayer = true;
+						break;
+					}
+				}
+			}
+
+			if (bDeleteThisPlayer)
+			{
+				allPlayers[ap].erase(allPlayers[ap].begin() + i);
+			}
+		}
+	}
+	for (unsigned int i = 0; i < allPlayers.size(); ++i)
+	{
+		if (allPlayers[i].size() == 0)
+		{
+			cout << "Position " << i << " has no available players." << endl;
+			vector<PlayerData> playersToReturn;
+			return playersToReturn;
+		}
+	}
+
+	
 	for (unsigned int i = 0; i < allPlayers.size(); ++i)
 	{
 		idealPlayerPerPosition.push_back(0);
@@ -1843,7 +2291,9 @@ void UnitTestAllStatCollectionFunctions()
 	// Eric Hosmer
 	// http://rotoguru1.com/cgi-bin/player16.cgi?3215x
 	
-		
+	assert(ConvertTeamCodeToOddsPortalName("stl", false) == "St.Louis Cardinals");
+	assert(ConvertTeamCodeToOddsPortalName("kan", false) == "Kansas City Royals");
+
 	float fenwayHomeRunFactorLeftyBatter;
 	float fenwayHomeRunFactorRightyBatter;
 	float petcoSluggingFactorLeftyBatter;
@@ -1892,7 +2342,24 @@ string ConvertTeamCodeToTeamRankingsName(string teamCode)
 
 	return teamCodesData.substr(teamNamePrevIndex + 1, teamNameIndex - teamNamePrevIndex - 1);
 }
-std::string ConvertOddsPortalNameToTeamCodeName(std::string oddsportalTeamName)
+std::string ConvertTeamCodeToOddsPortalName(std::string teamCode, bool standardTeamCode = true) {
+	string teamCodesData = GetEntireFileContents("TeamCodes.txt");
+	if (!standardTeamCode)
+		teamCode = ConvertRotoGuruTeamCodeToStandardTeamCode(teamCode);
+	size_t teamCodeIndex = teamCodesData.find(";" + teamCode + ";", 0);
+	if (teamCodeIndex == string::npos)
+		assert(false);
+	teamCodeIndex = teamCodesData.rfind("\n", teamCodeIndex);
+	teamCodeIndex++;
+	size_t oddsportalNameEndIndex = teamCodesData.find(";", teamCodeIndex);
+	string oddsportalTeamName = teamCodesData.substr(teamCodeIndex, oddsportalNameEndIndex - teamCodeIndex);
+	if ( oddsportalTeamName.find("Cardinals") != string::npos)
+	{
+		oddsportalTeamName = "St.Louis Cardinals";
+	}
+	return oddsportalTeamName;
+}
+std::string ConvertOddsPortalNameToTeamCodeName(std::string oddsportalTeamName, bool standardTeamCode = true)
 {
 	string teamCodesData = GetEntireFileContents("TeamCodes.txt");
 
@@ -1906,13 +2373,37 @@ std::string ConvertOddsPortalNameToTeamCodeName(std::string oddsportalTeamName)
 		teamNameIndex = teamCodesData.find(";", teamNameIndex + 1);
 	}
 	size_t teamNameEndIndex = teamCodesData.find(";", teamNameIndex + 1);
-	return teamCodesData.substr(teamNameIndex + 1, teamNameEndIndex - teamNameIndex - 1);
+	string teamCode = teamCodesData.substr(teamNameIndex + 1, teamNameEndIndex - teamNameIndex - 1);
+	if (!standardTeamCode)
+		teamCode = ConvertRotoGuruTeamCodeToStandardTeamCode(teamCode);
+	return teamCode;
+}
+std::string ConvertStandardTeamCodeToRotoGuruTeamCode(std::string standardCode) {
+	// rotogur1.com uses different team codes than standard...
+	if (standardCode == "laa")
+		standardCode = "ana";
+	if (standardCode == "lad")
+		standardCode = "los";
+	if (standardCode == "mia")
+		standardCode = "fla";
+	return standardCode;
+}
+std::string ConvertRotoGuruTeamCodeToStandardTeamCode(std::string rotoGuruCode) {
+	// rotogur1.com uses different team codes than standard...
+	if (rotoGuruCode == "ana")
+		rotoGuruCode = "laa";
+	if (rotoGuruCode == "los")
+		rotoGuruCode = "lad";
+	if (rotoGuruCode == "fla")
+		rotoGuruCode = "mia";
+	return rotoGuruCode;
 }
 
 void AnalyzeTeamWinFactors()
 {
 	CURL* curl = NULL;
-	//GatherTeamWins();
+	GatherTeamWins();
+	return;
 	//GatherPitcherCumulativeData();
 	//Analyze2016TeamWins();
 	//Analyze2016TeamWinFactors();
@@ -2387,7 +2878,7 @@ void GatherTeamWins()
 {
 	CURL* curl = NULL;
 	string pageData = "";
-	for (int i = -1; i <= 12; ++i)
+	for (int i = -12; i <= -2; ++i)
 	{
 		char iCStr[4];
 		_itoa_s(i, iCStr, 10);
@@ -2397,7 +2888,7 @@ void GatherTeamWins()
 	fstream allGamesFile;
 	allGamesFile.open("2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt");
 
-	for (int d = 415; d <= 604; ++d)
+	for (int d = 706; d <= 816; ++d)
 	{
 		int monthInteger = (d / 100) * 100;
 		int isolatedDay = d - (monthInteger);
@@ -2451,6 +2942,9 @@ void GatherTeamWins()
 
 		string dateSearchString = thisDay + " " + thisMonth + " 2017";
 		size_t dateIndex = pageData.find(dateSearchString);
+		if (dateIndex == string::npos) {
+			dateIndex = pageData.find(", " + thisDay + " " + thisMonth);
+		}
 		while (dateIndex != string::npos)
 		{
 			size_t nextDateIndex = pageData.find(" 2017", dateIndex + 9);
@@ -3378,13 +3872,13 @@ void AssembleBatterSplits(CURL *curl)
 		curl = curl_easy_init();
 	if (curl)
 	{
-		for (int page = 0; page < 6; ++page)
+		for (int page = 0; page < 8; ++page)
 		{
 			std::string seasonStats;
 			char pageCStr[3];
 			_itoa_s(page + 1, pageCStr, 10);
 			string pageStr = pageCStr;
-			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=80&type=1&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
+			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=120&type=1&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
 			CurlGetSiteContents(curl, readURL, seasonStats);
 
 			size_t playerPositionIndex = seasonStats.find("LeaderBoard1_dg1_ctl00__", 0);

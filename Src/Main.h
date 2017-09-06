@@ -18,6 +18,7 @@ bool comparePlayersBySalary(PlayerData i, PlayerData j);
 void RefineAlgorithm();
 void RefineAlgorithmForBeatTheStreak();
 void GenerateNewLineup(CURL *curl);
+void GenerateNewLineupFromSabrPredictor(CURL *curl);
 void ChooseAPitcher(CURL *curl);
 void Analyze2016Stats();
 
@@ -96,10 +97,6 @@ struct OpponentInformation
 
 void RefineAlgorithm();
 
-void ChooseAPitcher();
-
-void GenerateNewLineup();
-
 std::unordered_map<std::string, bool> probableStarters;
 void DetermineProbableStarters(CURL* curl);
 
@@ -148,5 +145,8 @@ void GetBallparkFactors(std::string ballparkName, std::string statName, float& o
 void GetBeatTheStreakCandidates(CURL *curl);
 std::string ConvertOddsPortalNameToTeamRankingsName(std::string oddsportalTeamName);
 std::string ConvertTeamCodeToTeamRankingsName(std::string teamCode);
-std::string ConvertOddsPortalNameToTeamCodeName(std::string oddsportalTeamName);
+std::string ConvertOddsPortalNameToTeamCodeName(std::string oddsportalTeamName, bool standardTeamCode);
+std::string ConvertTeamCodeToOddsPortalName(std::string teamCode, bool standardTeamCode);
+std::string ConvertStandardTeamCodeToRotoGuruTeamCode(std::string standardCode);
+std::string ConvertRotoGuruTeamCodeToStandardTeamCode(std::string rotoGuruCode);
 
