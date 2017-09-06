@@ -1533,27 +1533,30 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl)
 					}
 				}
 				bool bFacingChosenPitcher = singlePlayerData.teamCode == pitcherOpponentTeamCode;
-				int bestBattingOrder = -1;
-				for (unsigned int i = 1; i <= previousDayResults.size(); ++i) {
-					size_t playerIdIndex = previousDayResults[i].find(";" + singlePlayerData.playerId + ";", 0);
-					if (playerIdIndex != string::npos)
-					{
-						for (int i = 0; i < 4; ++i) {
-							playerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
-						}
-						size_t nextPlayerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
-						int prevBattingOrder = atoi(previousDayResults[i].substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str());
-						if (prevBattingOrder > 1 && prevBattingOrder < bestBattingOrder)
-							bestBattingOrder = prevBattingOrder;
-					}
-				}
+				bool bAcceptableBattingOrder = false;
 				int minBattingOrder = 2;
 				int maxBattingOrder = 5;
 				// catchers usually bat later anyway
 				if (p == 2)
 					maxBattingOrder = 6;
+				for (unsigned int i = 0; i < previousDayResults.size(); ++i) {
+					size_t playerIdIndex = previousDayResults[i].find(";" + singlePlayerData.playerId + ";", 0);
+					if (playerIdIndex != string::npos)
+					{
+						for (int m = 0; m < 4; ++m) {
+							playerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
+						}
+						size_t nextPlayerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
+						int prevBattingOrder = atoi(previousDayResults[i].substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str());
+						if (prevBattingOrder >= minBattingOrder && prevBattingOrder <= maxBattingOrder) {
+							bAcceptableBattingOrder = true;
+							break;
+						}
+					}
+				}
+				
 				// throw this guy out if he's not a starter or his game will most likely be rained out
-				if (bestBattingOrder >= minBattingOrder && bestBattingOrder <= maxBattingOrder 
+				if (bAcceptableBattingOrder 
 					&& !bFacingChosenPitcher 
 					&& gameStartTime <= latestGameTime 
 					&& gameStartTime >= earliestGameTime 
