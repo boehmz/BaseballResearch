@@ -1,0 +1,7 @@
+20170724;Cleveland Indians;Cincinnati Reds;H;-192;+165;
+20170724;Kansas City Royals;Detroit Tigers;A;+124;-143;
+20170724;Baltimore Orioles;Tampa Bay Rays;A;-106;-110;
+20170724;Toronto Blue Jays;Oakland Athletics;H;-164;+143;
+20170724;Houston Astros;Philadelphia Phillies;A;-156;+137;
+20170724;Chicago White Sox;Chicago Cubs;A;+231;-278;
+20170723;Chicago Cubs;St.Louis Cardinals;H;-167;+147;

@@ -1,0 +1,5 @@
+20170814;Miami Marlins;San Francisco Giants;H;-154;+134;
+20170814;Toronto Blue Jays;Tampa Bay Rays;H;-108;-108;
+20170814;New York Yankees;New York Mets;H;-185;+160;
+20170814;Cleveland Indians;Boston Red Sox;A;-116;+100;
+20170813;Boston Red Sox;New York Yankees;A;-159;+138;

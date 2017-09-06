@@ -1,0 +1,4 @@
+20170816;Colorado Rockies;Atlanta Braves;H;-185;+162;
+20170816;Houston Astros;Arizona Diamondbacks;H;-167;+146;
+20170816;Chicago Cubs;Cincinnati Reds;H;-233;+197;
+20170816;Texas Rangers;Detroit Tigers;H;-182;+159;

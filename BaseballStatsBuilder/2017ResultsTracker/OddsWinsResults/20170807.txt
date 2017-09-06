@@ -1,0 +1,4 @@
+20170807;Cincinnati Reds;San Diego Padres;H;-132;+114;
+20170807;Pittsburgh Pirates;Detroit Tigers;H;-175;+152;
+20170807;Washington Nationals;Miami Marlins;H;-323;+268;
+20170806;Los Angeles Dodgers;New York Mets;A;-161;+141;

@@ -1,0 +1,12 @@
+20170715;Seattle Mariners;Chicago White Sox;A;-145;+125;
+20170715;Chicago Cubs;Baltimore Orioles;A;-128;+110;
+20170715;St.Louis Cardinals;Pittsburgh Pirates;A;+110;-128;
+20170715;Detroit Tigers;Toronto Blue Jays;H;-149;+127;
+20170715;New York Yankees;Boston Red Sox;A;+147;-169;
+20170714;San Francisco Giants;San Diego Padres;A;-114;-101;
+20170714;Tampa Bay Rays;Los Angeles Angels;A;+102;-118;
+20170714;Oakland Athletics;Cleveland Indians;H;+124;-143;
+20170714;Texas Rangers;Kansas City Royals;A;+106;-123;
+20170714;Seattle Mariners;Chicago White Sox;A;-192;+166;
+20170714;Houston Astros;Minnesota Twins;H;-164;+142;
+20170714;Milwaukee Brewers;Philadelphia Phillies;H;-169;+147;

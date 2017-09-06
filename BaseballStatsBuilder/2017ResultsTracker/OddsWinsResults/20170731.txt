@@ -1,0 +1,6 @@
+20170731;Boston Red Sox;Cleveland Indians;H;+110;-128;
+20170731;Washington Nationals;Miami Marlins;A;-132;+114;
+20170731;Baltimore Orioles;Kansas City Royals;H;-106;-109;
+20170731;New York Yankees;Detroit Tigers;H;-233;+197;
+20170731;Philadelphia Phillies;Atlanta Braves;H;-106;-109;
+20170730;Los Angeles Dodgers;San Francisco Giants;H;-159;+140;

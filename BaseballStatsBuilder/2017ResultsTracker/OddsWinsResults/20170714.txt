@@ -1,0 +1,8 @@
+20170714;Atlanta Braves;Arizona Diamondbacks;H;-110;-104;
+20170714;Boston Red Sox;New York Yankees;H;-137;+120;
+20170714;Washington Nationals;Cincinnati Reds;A;-122;+106;
+20170714;Toronto Blue Jays;Detroit Tigers;A;+104;-120;
+20170714;Los Angeles Dodgers;Miami Marlins;A;-115;-101;
+20170714;New York Mets;Colorado Rockies;H;-161;+140;
+20170714;Chicago Cubs;Baltimore Orioles;A;-108;-106;
+20170714;Pittsburgh Pirates;St.Louis Cardinals;H;-128;+110;

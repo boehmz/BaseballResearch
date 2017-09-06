@@ -1,0 +1,8 @@
+20170720;Baltimore Orioles;Texas Rangers;H;-114;-102;
+20170720;Toronto Blue Jays;Boston Red Sox;A;+100;-114;
+20170720;Arizona Diamondbacks;Cincinnati Reds;A;+117;-133;
+20170720;Pittsburgh Pirates;Milwaukee Brewers;H;-127;+110;
+20170720;New York Mets;St.Louis Cardinals;H;-120;+104;
+20170719;Los Angeles Angels;Washington Nationals;H;-118;+102;
+20170719;Kansas City Royals;Detroit Tigers;H;-105;-110;
+20170719;Los Angeles Dodgers;Chicago White Sox;A;19 Jul;-196;

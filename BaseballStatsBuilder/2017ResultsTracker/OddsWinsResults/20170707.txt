@@ -1,0 +1,10 @@
+20170707;Cleveland Indians;Detroit Tigers;H;-244;+209;
+20170707;Boston Red Sox;Tampa Bay Rays;A;-139;+121;
+20170707;Houston Astros;Toronto Blue Jays;A;-103;-112;
+20170707;Milwaukee Brewers;New York Yankees;A;+188;-222;
+20170707;Washington Nationals;Atlanta Braves;H;-270;+227;
+20170707;San Diego Padres;Philadelphia Phillies;A;+104;-122;
+20170707;Chicago Cubs;Pittsburgh Pirates;H;-152;+131;
+20170706;Los Angeles Dodgers;Arizona Diamondbacks;H;-147;+129;
+20170706;Oakland Athletics;Seattle Mariners;A;+127;-145;
+20170706;Minnesota Twins;Baltimore Orioles;H;-147;+127;

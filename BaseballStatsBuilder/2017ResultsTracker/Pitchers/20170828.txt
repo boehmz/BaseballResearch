@@ -1,0 +1,15 @@
+1310;Scherzer, Max;58.0165
+108v;Kluber, Corey;56.3036
+1729;Samardzija, Jeff;50.6737
+109r;Pomeranz, Drew;50.1978
+130m;Nola, Aaron;48.5595
+130s;Severino, Luis;48.0142
+1856;Chacin, Jhoulys;46.4225
+110q;Montgomery, Mike;46.1632
+1193;Kennedy, Ian;45.6048
+123u;Stroman, Marcus;45.4286
+124o;Heaney, Andrew;42.7209
+139j;Williams, Trevor;41.9186
+120t;Urena, Jose;41.2913
+1994;Tillman, Chris;38.4261
+1931;Zimmermann, Jordan;37.2438

@@ -1,11 +1,11 @@
-20170801/ZachDateMetaData
+20170903/ZachDateMetaData
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1"><title>
 	Ian Kennedy &raquo; Splits &raquo; vs L &raquo; Pitching | FanGraphs Baseball
 </title><meta name='description' content='Ian Kennedy vs L pitching splits for Major League baseball' />
-<meta name='keywords' content='ian kennedy, ian kennedy splits' /><link href="//cdn.fangraphs.com/css/fg?v=nAvWGRJi3rMtGqHR6T1DfSrEjQygrsLSc2_sqSJzAsA1" rel="stylesheet">
+<meta name='keywords' content='ian kennedy, ian kennedy splits' /><link href="//cdn.fangraphs.com/css/fg?v=vKmuSFqgd2-cF7nwElVfls2OKVcTMW_5j1YKvG6I6HM1" rel="stylesheet">
 
 <link href="//cdn.fangraphs.com/css/telerik?v=7kp8vZ-2gyqQIN75Z0UB_Vbc6sYJCM3fVOkK0XkRN401" rel="stylesheet">
 
@@ -19,7 +19,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
 
-<script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=yONnNeg0_tp3KoLSBL2DqY6gAKfm_dA7JxGUf1pSEcg1"></script>
+<script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=6cIdLlGVg6ByGGXLWI8Sx27VvLnSHCjwJWE6FbvG_zQ1"></script>
 
 
 
@@ -28,10 +28,10 @@
 <link rel="search" type="application/opensearchdescription+xml" href="//cdn.fangraphs.com/opensearch.xml" title="FanGraphs Search" />
 <link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet" />
 
-<meta property="og:image" content="http://cdn.fangraphs.com/blogs/wp-content/uploads/2016/04/flat_fg_green.png" />
+<meta property="og:image" content="//cdn.fangraphs.com/blogs/wp-content/uploads/2016/04/flat_fg_green.png" />
 
 
-<link href="/WebResource.axd?d=4eFj2ghicsUvR4-jzn-y5qljBL4LM8D_52KGPCKA_0Xrtrry5DxJsUoLHytEMkaBKAzibyQ3TCK3urr2XIpkSjqFQbHILRAhDM4anA_249w8WfBBihjP6qqmR4ZNzCRCohQrhFOEXDdvbEyY7tQvDg3GTjY1&amp;t=636021859103606561" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=mwtUK2fFCfI9PIy9leufp4PsJOiDSnChR0AElThtZ1zmQV2TqogHE7tPBg6KGSWsS9cU8rUvS6Sc-JQH11HRWJGqfaiId5HCQU2guU3GBAiszNd2v9czvdhqbUqhdippXORU9odWfJgTRQlB1S0nIRaEbtQ1&amp;t=636021859103606561" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=vyGwVOpDBkG0uXr0j-cum2_sVH1cpEbGbXWTc3SNBgXB1z5PODv1nirzv_tWKIyJnZmugW1iwy81ct5y-9fQmNhaW7mLfqDT1ufneVLQwrI5xxpC9tVF9rJunaETJBP4-6yBOj8-g978ZupiXoWAHUZAPMk1&amp;t=636021859103606561" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=apUTkvkq_aLiJTCAYExnXgaMBysrZftWI83mGKeHEOBSF5PIMsaAUP0ct8iqqdYzzwGTdVQfKHd0nsu1j2VUO1CuVN1URz8DperJmgNoxc3RmF9eBpzuFsKH-IlmyZbY0vJRklv4ETNhN7r5EsNITJFgMDA1&amp;t=636021859103606561" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=A02NNKC_b5BcC1yDjQZjFkdb4gUSvzrdkCtAkgZ8AExChxlYEMgcSqTHWu2MVcFlJT-mje0kcnR2-JBKnlb30pvv29rsUn6lHFWcYS5gWLNfAUx2jpQIC10Me0swXAVf17eZAIO5F4ZzP3vJp8DxyAyguYw1&amp;t=636021859103606561" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=GQpBOiIPRRVOqnbzRTk6AeAexawlxHPpLFJL4VowleC0eY695IHY5vNyuZv-mJQQ-70jzcmZYDCTt1a5Trcq25lnAN7zlqeB1aaYeKoxl6ObyItvLvkCbLWA2GiJUfAxtmKZ4syVhmUgxaCMWURkddLotII1&amp;t=636021859103606561" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /></head>
+<link href="/WebResource.axd?d=4eFj2ghicsUvR4-jzn-y5qljBL4LM8D_52KGPCKA_0Xrtrry5DxJsUoLHytEMkaBKAzibyQ3TCK3urr2XIpkSjqFQbHILRAhDM4anA_249w8WfBBihjP6qqmR4ZNzCRCohQrhFOEXDdvbEyY7tQvDg3GTjY1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=mwtUK2fFCfI9PIy9leufp4PsJOiDSnChR0AElThtZ1zmQV2TqogHE7tPBg6KGSWsS9cU8rUvS6Sc-JQH11HRWJGqfaiId5HCQU2guU3GBAiszNd2v9czvdhqbUqhdippXORU9odWfJgTRQlB1S0nIRaEbtQ1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=vyGwVOpDBkG0uXr0j-cum2_sVH1cpEbGbXWTc3SNBgXB1z5PODv1nirzv_tWKIyJnZmugW1iwy81ct5y-9fQmNhaW7mLfqDT1ufneVLQwrI5xxpC9tVF9rJunaETJBP4-6yBOj8-g978ZupiXoWAHUZAPMk1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=apUTkvkq_aLiJTCAYExnXgaMBysrZftWI83mGKeHEOBSF5PIMsaAUP0ct8iqqdYzzwGTdVQfKHd0nsu1j2VUO1CuVN1URz8DperJmgNoxc3RmF9eBpzuFsKH-IlmyZbY0vJRklv4ETNhN7r5EsNITJFgMDA1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=A02NNKC_b5BcC1yDjQZjFkdb4gUSvzrdkCtAkgZ8AExChxlYEMgcSqTHWu2MVcFlJT-mje0kcnR2-JBKnlb30pvv29rsUn6lHFWcYS5gWLNfAUx2jpQIC10Me0swXAVf17eZAIO5F4ZzP3vJp8DxyAyguYw1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=GQpBOiIPRRVOqnbzRTk6AeAexawlxHPpLFJL4VowleC0eY695IHY5vNyuZv-mJQQ-70jzcmZYDCTt1a5Trcq25lnAN7zlqeB1aaYeKoxl6ObyItvLvkCbLWA2GiJUfAxtmKZ4syVhmUgxaCMWURkddLotII1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /></head>
 <body>
     <form method="post" action="./statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=0.1" id="form1">
 <input type="hidden" name="RadScriptManager1_TSM" id="RadScriptManager1_TSM" value="" />
@@ -115,31 +115,41 @@
     });
 </script>
 
-<div id="Header1_panBlogHead">
-	
-    <div class="top-logo">
+<div class="header-chat-alert" style="visibility: hidden"><a class="header-chat-alert-text"></a></div>
 
-        <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
+<div class="header-container">
+    <header>
+        <div class="top-logo">
+            <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
+            <div id="top_da">
+                <div class="fg-ra-desktop catchall728" style='width:728px; overflow:hidden;'><!-- ROS_728x90 --> <div id ='div-gpt-ad-1349421924281-14' style='margin: auto; width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-14').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-14'); });}</script></div></div>
 
-
-        <div id="top_da">
-            <div class="fg-ra-desktop catchall728" style='width:728px; overflow:hidden;'><!-- ROS_728x90 --> <div id ='div-gpt-ad-1349421924281-14' style='margin: auto; width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-14').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-14'); });}</script></div></div>
-
-            
+                
+            </div>
         </div>
-    </div>
+        <div class="top-logo sticky" style="display: none;">
+            <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
+        </div>
+        
 
-</div>
 
-
-
-<nav class="nav-main">
+<nav id="navBar" class="nav-main fg">
     <div class="nav-mobile-bar">
         <div class="nav-mobile-button"></div>
         <div class="nav-search">
             <input type="text" id="psbox" onkeypress="KeyIt(event);" onkeydown="BackKey(event);" autocomplete="off" placeholder="Player & Blog Search" />
             <div class="nav-search-mobile-x"></div>
         </div>
+        <div class="nav-mobile-fill"></div>
+         <div class="nav-mobile-login" data-full="true">
+                <a id="linkAccountMobile" href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d6986%26position%3dP%26season%3d0%26split%3d0.1">
+                    <div class="menu-item-label">
+                        <div class="label-account">Sign In</div><div class="icon-account signed-out"></div>
+                    </div>
+                </a>
+                
+
+            </div>
     </div>
     <div class="nav-search-players"></div>
     
@@ -164,6 +174,12 @@
                     <div class="menu-sub-link">
                         <a href="http://www.fangraphs.com/thegame/">The Game: Baseball</a>
                     </div>
+                    <div class="menu-sub-link">
+                        <a href="http://ottoneu.fangraphs.com/">Ottoneu Fantasy Baseball</a>
+                    </div>
+                    <a href="http://ottoneu.fangraphs.com/">Signup</a>, 
+                    <a href="http://ottoneu.fangraphs.com/support">FAQ</a>, 
+                    <a href="http://www.fangraphs.com/fantasy/category/ottoneu/">Blog Posts</a>
                 </div>
             </li>
             <li class="menu-item" data-sub="blogs" data-full="true">
@@ -210,17 +226,7 @@
                     </div>
                 </div>
             </li>
-            <li class="menu-item" data-sub="ottoneu">
-                <div class="menu-item-label">Ottoneu</div>
-                <div class="menu-sub">
-                    <div class="menu-sub-link">
-                        <a href="http://ottoneu.fangraphs.com/">Ottoneu Fantasy Baseball</a>
-                    </div>
-                    <a href="http://ottoneu.fangraphs.com/">Signup</a>, 
-                    <a href="http://ottoneu.fangraphs.com/support">FAQ</a>, 
-                    <a href="http://www.fangraphs.com/fantasy/category/ottoneu/">Blog Posts</a>
-                </div>
-            </li>
+           
             <li class="menu-item" data-sub="scores" data-full="true">
                 <div class="menu-item-label">Scores</div>
                 <div class="menu-sub">
@@ -228,7 +234,7 @@
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_navBar_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-07-31">Probable Pitchers</a>
+                            <a id="linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2017&amp;month=0&amp;season1=2017&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-09-02">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -408,20 +414,7 @@
                     </div>
                 </div>
             </li>
-            <li class="menu-item" data-sub="events" data-full="true">
-                <div class="menu-item-label">Events</div>
-                <div class="menu-sub">
-                    <div class="menusub-mid">
-
-                        <div class="menu-sub-header">
-                        Meetups
-                        </div>
-                        <a href="http://www.fangraphs.com/blogs/fangraphs-boston-meetup-saber-seminar-eve-8-4-17/"><strong>Boston - Saber Seminar Eve</strong> &nbsp;&nbsp;Aug. 4, 2017</a>
-
-                     
-                    </div>
-                </div>
-            </li>
+           
             <li class="menu-item" data-sub="glossary" data-full="true">
                 <div class="menu-item-label">Glossary</div>
                 <div class="menu-sub">
@@ -462,45 +455,20 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-fill">
+
+            </li>
+            <li class="menu-item" data-sub="login" data-full="true">
+                <a id="linkAccount" href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d6986%26position%3dP%26season%3d0%26split%3d0.1">
+                    <div class="menu-item-label">
+                        <div class="label-account">Sign In</div><div class="icon-account signed-out"></div>
+                    </div>
+                </a>
+                
+               
+            </li>
         </ul>
     </div>
-</nav>
-
-
-
-
-<p id="login" style="display: none;">
-    
-</p>
-
-<nav class="nav-secondary fg">
-    <div class="sm-button-group mobile-hide">
-        <div>Follow Us:</div>
-        <a href="https://twitter.com/fangraphs">
-            <div id="sm-tw" class="sm-button"></div>
-        </a>
-        <a href="https://www.facebook.com/fangraphs">
-            <div id="sm-fb" class="sm-button"></div>
-        </a>
-        <a href="https://www.instagram.com/fangraphs/">
-            <div id="sm-ig" class="sm-button"></div>
-        </a>
-        <a href="https://www.youtube.com/user/FanGraphs">
-            <div id="sm-yt" class="sm-button"></div>
-        </a>
-        <a href="https://www.snapchat.com/add/fangraphs">
-            <div id="sm-sc" class="sm-button"></div>
-        </a>
-        <a href="http://us7.campaign-archive2.com/home/?u=72096bce9a69ba4cbdebbf487&id=0c7da3c69f">
-            <div id="sm-email" class="sm-button"></div>
-        </a>
-    </div>
-    <div id="Header1_LoginBlog1_navLogin" class="nav-login">
-	
-        <div class="nav-login-text"><a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d6986%26position%3dP%26season%3d0%26split%3d0.1">Log In</a> &nbsp;|&nbsp; <a href="http://www.fangraphs.com/blogs/wp-login.php?action=register">Register</a></div>
-    
-</div>
-    
 </nav>
 
 <div id="my_popup">
@@ -517,25 +485,220 @@
     <a class="my_popup_close popup-button" style="background-color: #000; color: #fff;">No Thanks
     </a>
     </div>
-    <div class="popup-login">Already a member? <a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d6986%26position%3dP%26season%3d0%26split%3d0.1">Log In</a></div>
+    <div class="popup-login">Already a member? <a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d6986%26position%3dP%26season%3d0%26split%3d0.1">Sign In</a></div>
 </div>
 
-<script src="/javascript/nav/nav-login.js"></script>
-
-
-
-<div class="header-chat-alert"><a class="header-chat-alert-text"></a></div>
-<div class="spacer_10"></div>
-
+        <div id="divHeaderChat" class="header-chat-alert"><a class="header-chat-alert-text"></a></div>
+    </header>
+</div>
 
 <!-- start - 0--><!-- control end - 0-->
 
 <script>
+
+    //header alert function
     $.get('/api/chatheader/getvalues', function (d) {
-        d.chatBoolean ? $('.header-chat-alert').show() : $('.header-chat-alert').hide()
+        d.chatBoolean ? $('.header-chat-alert').addClass('chatShow') : $('.header-chat-alert').removeClass('chatShow')
         $('.header-chat-alert-text').attr('href', d.chatLink).text(d.chatText)
     })
+
+
+    //scroll functionality
+
+    var $header = $('.header-container')
+    var debounceFunction = null
+    var scrollStart = $(window).scrollTop()
+
+    var debounce = function () {
+        if (debounceFunction != null && Math.abs($(window).scrollTop() - scrollStart) < 100) {
+            clearTimeout(debounceFunction)
+        }
+        debounceFunction = setTimeout(scrollHandler, 100)
+    }
+
+    var scrollHandler = function () {
+
+        screenStart = $(window).scrollTop()
+
+        if ($(window).scrollTop() > 60) {
+            $('.header-chat-alert').addClass('sticky')
+        }
+        else if ($(window).scrollTop() < 30) {
+            $('.header-chat-alert').removeClass('sticky')
+        }
+
+        if ($(window).scrollTop() > 99) {
+            $header.addClass('sticky')
+            $('.top-logo:not(".sticky")').hide()
+            $('.top-logo.sticky').show()
+        }
+        else {
+            $header.removeClass('sticky')
+            $('.top-logo:not(".sticky")').show()
+            $('.top-logo.sticky').hide()
+        }
+    }
+
+    //initial check, no debounce
+    $(document).ready(function () {
+        if ($(window).scrollTop() > 99) {
+            $header.removeClass('sticky')
+            $('.top-logo:not(".sticky")').show()
+            $('.top-logo.sticky').hide()
+        }
+    })
+
+    $(window).scroll(debounce)
+
+    
+    //from https://stackoverflow.com/questions/17534661/make-anchor-link-go-some-pixels-above-where-its-linked-to
+   function offsetAnchor() {
+       if (location.hash.length !== 0) {
+           window.scrollTo(window.scrollX, window.scrollY - 100);
+       }
+   }
+   $(document).on('click', 'a[href*="#"]', function (event) {
+       window.setTimeout(function () {
+           offsetAnchor();
+       }, 0);
+   });
+
+   window.setTimeout(offsetAnchor, 0);
 </script>
+
+<style>
+
+    /*for mobile only*/
+    /*ul.menu-top {
+        position: absolute;
+        z-index: -10;
+    }*/
+
+    #wrapper {
+        padding: 0 !important;
+    }
+
+    #wrapper.blog-wrapper {
+        padding-top: 130px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    #content {
+        padding: 0 15px;
+        padding-top: 150px;
+    }
+
+    .header-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10000;
+        text-align: center;
+    }
+
+    header {
+        max-width: 1000px;
+        margin: auto;
+        background-color: #fff;
+    }
+
+    #top_da-new {
+        display: none;
+    }
+
+    .top-logo-new {
+        height: 60px;
+        margin-bottom: 0;
+    }
+
+    .top-logo {
+        margin-bottom: 0;
+        display: block;
+        /*transition: height .2s;*/
+    }
+
+    .top-logo-bkgd {
+        /*transition: width .2s;*/
+        width: 267px;
+        display: inline-block;
+        float: left;
+    }
+
+    .top-logo.sticky {
+        height: 50px;
+    }
+
+    .sticky .top-logo-bkgd {
+        width: 100%;
+    }
+
+    #top_da.sticky {
+        display: none;
+    }
+
+    .sticky .top-logo-img {
+        /*background-size: 300px;
+    background-position-x: -10px;*/
+        background-size: 275px;
+        background-position-x: -10px;
+    }
+
+    .top-logo-img-container {
+        transition: height, width .2s;
+        height: 100%;
+        width: 350px;
+    }
+
+    .sticky .top-logo-img-container {
+    }
+
+    .top-logo-img-tag {
+        width: 200px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    }
+
+
+
+    .header-chat-alert.sticky {
+        display: none;
+    }
+
+    .trans {
+        transition: width, height .2s;
+    }
+
+    .chatShow {
+        display: block;
+    }
+
+    .top-logo-img-new {
+        background-position: initial;
+    }
+
+    .top-logo-img {
+        background-position: -20px;
+    }
+
+    nav .menu-item {
+        border-top: 2px solid #000;
+    }
+</style>
+
+<style>header {width: 1000px;}   
+            #wrapper { width: 1000px; }
+                @media screen and (max-width: 1020px) {    
+                    .header-container.sticky, .header-container {
+                        position: static;
+                    }
+
+                    #content {padding-top: 20px;}
+                }</style>
+
 
         </div>
         <div id="content">
@@ -552,11 +715,11 @@
                             <strong style="font-size:15pt;">Ian Kennedy</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 12/19/1984 (32 y, 7 m, 13 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-0/200 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=6986&position=P#draft" style="text-decoration:none;">2006 June Amateur Draft - Round: 1, Pick: 21, Overall: 21, Team: New York Yankees</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=6986&position=P#contract" style="text-decoration:none;">$70M / 5 Years (2016 - 2020)</a>
+                            <strong>Birthdate:</strong> 12/19/1984 (32 y, 8 m, 15 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-0/200 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=6986&position=P#draft" style="text-decoration:none;">2006 June Amateur Draft - Round: 1, Pick: 21, Overall: 21, Team: New York Yankees</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=6986&position=P#contract" style="text-decoration:none;">$70M / 5 Years (2016 - 2020)</a>
                         </div>
                     </td>
                     
-                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=9309" style="text-decoration:none;">RotoWire News</a>:</b> Kennedy (4-6) allowed only one run on three hits and two walks over six innings while striking out four in Wednesday's 16-2 rout of the Tigers. (7/26/2017)</div></td></tr>
+                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="https://www.rotowire.com/users/ad_jump.asp?id=688&playerid=9309" style="text-decoration:none;">RotoWire News</a>:</b> Kennedy (4-10) lasted just 2.2 innings in a loss Monday against the Rays, allowing seven runs on six hits and two walks with just one strikeout. (8/28/2017)</div></td></tr>
 
                 </tr>
                 <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">7/29/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-483-whits-too-legit-to-sit/">The Sleeper and the Bust Episode: 483 – Whit's Too&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-483-whits-too-legit-to-sit/#comments"><img src="images/commentslink.gif" border="0px" />1</a></span><br /><span class="m_date">5/24/2017</span> - <a href="http://www.fangraphs.com/fantasy/velocity-decliners-bundy-triggs-kennedy/">Velocity Decliners: Bundy, Triggs, & Kennedy</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=7554">Jeff Zimmerman (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/velocity-decliners-bundy-triggs-kennedy/#comments"><img src="images/commentslink.gif" border="0px" />4</a></span><br /><span class="m_date">1/31/2017</span> - <a href="http://www.fangraphs.com/fantasy/early-adp-thoughts-starting-pitcher-part-ii/">Early ADP Thoughts – Starting Pitcher, Part II</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/early-adp-thoughts-starting-pitcher-part-ii/#comments"><img src="images/commentslink.gif" border="0px" />21</a></span><br /><span class="m_date">9/1/2016</span> - <a href="http://www.fangraphs.com/blogs/ian-kennedy-is-doing-a-fabulous-impression-of-an-ace/">Ian Kennedy Is Doing a Fabulous Impression of an A&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=112583">Corinne Landrey (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/ian-kennedy-is-doing-a-fabulous-impression-of-an-ace/#comments"><img src="images/commentslink.gif" border="0px" />6</a></span><br /><span class="m_date">6/23/2016</span> - <a href="http://www.fangraphs.com/fantasy/scfip/">Statcast FIP: Estimate The Home Runs</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=132626">Andrew Perpetua (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/scfip/#comments"><img src="images/commentslink.gif" border="0px" />8</a></span><br /></div></td></tr>
@@ -904,6 +1067,10 @@
 			<ul class="rmVertical rmGroup rmLevel1">
 				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=7.1">Through 3 - 0</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=7.2">Through 3 - 1</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=7.3">Through 3 - 2</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=7.4">Through 2 - 0</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=7.5">Through 1 - 0</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=7.6">Through 2 - 1</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=7.7">Through 1 - 1</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=7.8">Through 0 - 1</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=7.9">Through 2 - 2</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=7.10">Through 1 - 2</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=7.11">Through 0 - 2</a></li>
 			</ul>
+		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">SP / RP</font></span><div class="rmSlide">
+			<ul class="rmVertical rmGroup rmLevel1">
+				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=8.1">As Starter</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=8.2">As Reliever</a></li>
+			</ul>
 		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Shifts</font></span><div class="rmSlide">
 			<ul class="rmVertical rmGroup rmLevel1">
 				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=9.1">No Shift</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=9.2">Shift - All</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=9.3">Shift - Traditional</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=6986&amp;position=P&amp;season=0&amp;split=9.4">Shift - Non Traditional</a></li>
@@ -967,9 +1134,9 @@
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason1_ctl00__9">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">101.2</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">427</td><td class="grid_line_regular" align="right">85</td><td class="grid_line_regular" align="right">21</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">44</td><td class="grid_line_regular" align="right">43</td><td class="grid_line_regular" align="right">16</td><td class="grid_line_regular" align="right">35</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">9</td><td class="grid_line_regular" align="right">89</td><td class="grid_line_regular" align="right">.222</td><td class="grid_line_regular" align="right">.303</td><td class="grid_line_regular" align="right">.406</td><td class="grid_line_regular" align="right">.307</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason1_ctl00__10">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">47.2</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">202</td><td class="grid_line_regular" align="right">40</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">29</td><td class="grid_line_regular" align="right">27</td><td class="grid_line_regular" align="right">10</td><td class="grid_line_regular" align="right">21</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">40</td><td class="grid_line_regular" align="right">.224</td><td class="grid_line_regular" align="right">.312</td><td class="grid_line_regular" align="right">.430</td><td class="grid_line_regular" align="right">.319</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">59.2</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">261</td><td class="grid_line_regular" align="right">55</td><td class="grid_line_regular" align="right">9</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">46</td><td class="grid_line_regular" align="right">43</td><td class="grid_line_regular" align="right">15</td><td class="grid_line_regular" align="right">28</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">51</td><td class="grid_line_regular" align="right">.239</td><td class="grid_line_regular" align="right">.330</td><td class="grid_line_regular" align="right">.496</td><td class="grid_line_regular" align="right">.348</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason1_ctl00__11">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">762.2</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">3219</td><td class="grid_line_regular" align="right">693</td><td class="grid_line_regular" align="right">153</td><td class="grid_line_regular" align="right">23</td><td class="grid_line_regular" align="right">391</td><td class="grid_line_regular" align="right">364</td><td class="grid_line_regular" align="right">112</td><td class="grid_line_regular" align="right">261</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">33</td><td class="grid_line_regular" align="right">730</td><td class="grid_line_regular" align="right">.237</td><td class="grid_line_regular" align="right">.309</td><td class="grid_line_regular" align="right">.427</td><td class="grid_line_regular" align="right">.320</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">774.2</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">3278</td><td class="grid_line_regular" align="right">708</td><td class="grid_line_regular" align="right">157</td><td class="grid_line_regular" align="right">24</td><td class="grid_line_regular" align="right">408</td><td class="grid_line_regular" align="right">380</td><td class="grid_line_regular" align="right">117</td><td class="grid_line_regular" align="right">268</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">34</td><td class="grid_line_regular" align="right">741</td><td class="grid_line_regular" align="right">.238</td><td class="grid_line_regular" align="right">.310</td><td class="grid_line_regular" align="right">.432</td><td class="grid_line_regular" align="right">.322</td>
 	</tr>
 	</tbody>
 
@@ -1024,9 +1191,9 @@
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__9">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">7.88</td><td class="grid_line_regular" align="right">3.10</td><td class="grid_line_regular" align="right">2.54</td><td class="grid_line_regular" align="right">1.42</td><td class="grid_line_regular" align="right">20.8 %</td><td class="grid_line_regular" align="right">8.2 %</td><td class="grid_line_regular" align="right">12.6 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.18</td><td class="grid_line_regular" align="right">.248</td><td class="grid_line_regular" align="right">79.7 %</td><td class="grid_line_regular" align="right">4.74</td><td class="grid_line_regular" align="right">5.10</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__10">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">7.55</td><td class="grid_line_regular" align="right">3.97</td><td class="grid_line_regular" align="right">1.90</td><td class="grid_line_regular" align="right">1.89</td><td class="grid_line_regular" align="right">19.8 %</td><td class="grid_line_regular" align="right">10.4 %</td><td class="grid_line_regular" align="right">9.4 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.28</td><td class="grid_line_regular" align="right">.233</td><td class="grid_line_regular" align="right">69.4 %</td><td class="grid_line_regular" align="right">5.65</td><td class="grid_line_regular" align="right">5.50</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">7.69</td><td class="grid_line_regular" align="right">4.22</td><td class="grid_line_regular" align="right">1.82</td><td class="grid_line_regular" align="right">2.26</td><td class="grid_line_regular" align="right">19.5 %</td><td class="grid_line_regular" align="right">10.7 %</td><td class="grid_line_regular" align="right">8.8 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.39</td><td class="grid_line_regular" align="right">.244</td><td class="grid_line_regular" align="right">61.5 %</td><td class="grid_line_regular" align="right">6.25</td><td class="grid_line_regular" align="right">5.80</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__11">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">8.61</td><td class="grid_line_regular" align="right">3.08</td><td class="grid_line_regular" align="right">2.80</td><td class="grid_line_regular" align="right">1.32</td><td class="grid_line_regular" align="right">22.7 %</td><td class="grid_line_regular" align="right">8.1 %</td><td class="grid_line_regular" align="right">14.6 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.25</td><td class="grid_line_regular" align="right">.279</td><td class="grid_line_regular" align="right">71.8 %</td><td class="grid_line_regular" align="right">4.25</td><td class="grid_line_regular" align="right">4.15</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">8.61</td><td class="grid_line_regular" align="right">3.11</td><td class="grid_line_regular" align="right">2.76</td><td class="grid_line_regular" align="right">1.36</td><td class="grid_line_regular" align="right">22.6 %</td><td class="grid_line_regular" align="right">8.2 %</td><td class="grid_line_regular" align="right">14.4 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.26</td><td class="grid_line_regular" align="right">.279</td><td class="grid_line_regular" align="right">71.1 %</td><td class="grid_line_regular" align="right">4.32</td><td class="grid_line_regular" align="right">4.19</td>
 	</tr>
 	</tbody>
 
@@ -1084,9 +1251,9 @@
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason3_ctl00__9">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">0.56</td><td class="grid_line_regular" align="right">19.9 %</td><td class="grid_line_regular" align="right">28.9 %</td><td class="grid_line_regular" align="right">51.2 %</td><td class="grid_line_regular" align="right">12.2 %</td><td class="grid_line_regular" align="right">10.9 %</td><td class="grid_line_regular" align="right">4.8 %</td><td class="grid_line_regular" align="right">28.6 %</td><td class="grid_line_break" align="right">42.5 %</td><td class="grid_line_regular" align="right">27.6 %</td><td class="grid_line_regular" align="right">29.9 %</td><td class="grid_line_break" align="right">17.7 %</td><td class="grid_line_regular" align="right">46.6 %</td><td class="grid_line_regular" align="right">35.7 %</td><td class="grid_line_break" align="right">1748</td><td class="grid_line_regular" align="right">621</td><td class="grid_line_regular" align="right">1127</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason3_ctl00__10">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">0.74</td><td class="grid_line_regular" align="right">13.7 %</td><td class="grid_line_regular" align="right">36.7 %</td><td class="grid_line_regular" align="right">49.6 %</td><td class="grid_line_regular" align="right">8.7 %</td><td class="grid_line_regular" align="right">14.5 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">43.9 %</td><td class="grid_line_regular" align="right">33.8 %</td><td class="grid_line_regular" align="right">22.3 %</td><td class="grid_line_break" align="right">15.1 %</td><td class="grid_line_regular" align="right">39.6 %</td><td class="grid_line_regular" align="right">45.3 %</td><td class="grid_line_break" align="right">876</td><td class="grid_line_regular" align="right">339</td><td class="grid_line_regular" align="right">537</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">0.64</td><td class="grid_line_regular" align="right">14.0 %</td><td class="grid_line_regular" align="right">33.5 %</td><td class="grid_line_regular" align="right">52.5 %</td><td class="grid_line_regular" align="right">6.4 %</td><td class="grid_line_regular" align="right">16.0 %</td><td class="grid_line_regular" align="right">1.7 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">43.6 %</td><td class="grid_line_regular" align="right">34.1 %</td><td class="grid_line_regular" align="right">22.4 %</td><td class="grid_line_break" align="right">12.9 %</td><td class="grid_line_regular" align="right">41.3 %</td><td class="grid_line_regular" align="right">45.8 %</td><td class="grid_line_break" align="right">1099</td><td class="grid_line_regular" align="right">419</td><td class="grid_line_regular" align="right">680</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason3_ctl00__11">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">0.74</td><td class="grid_line_regular" align="right">21.2 %</td><td class="grid_line_regular" align="right">33.4 %</td><td class="grid_line_regular" align="right">45.4 %</td><td class="grid_line_regular" align="right">10.2 %</td><td class="grid_line_regular" align="right">11.5 %</td><td class="grid_line_regular" align="right">3.6 %</td><td class="grid_line_regular" align="right">26.8 %</td><td class="grid_line_break" align="right">38.8 %</td><td class="grid_line_regular" align="right">33.6 %</td><td class="grid_line_regular" align="right">27.6 %</td><td class="grid_line_break" align="right">16.2 %</td><td class="grid_line_regular" align="right">49.4 %</td><td class="grid_line_regular" align="right">34.4 %</td><td class="grid_line_break" align="right">13003</td><td class="grid_line_regular" align="right">4636</td><td class="grid_line_regular" align="right">8367</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs L</td><td class="grid_line_regular" align="right">0.73</td><td class="grid_line_regular" align="right">21.1 %</td><td class="grid_line_regular" align="right">33.2 %</td><td class="grid_line_regular" align="right">45.7 %</td><td class="grid_line_regular" align="right">9.9 %</td><td class="grid_line_regular" align="right">11.7 %</td><td class="grid_line_regular" align="right">3.7 %</td><td class="grid_line_regular" align="right">26.8 %</td><td class="grid_line_break" align="right">38.9 %</td><td class="grid_line_regular" align="right">33.6 %</td><td class="grid_line_regular" align="right">27.5 %</td><td class="grid_line_break" align="right">16.0 %</td><td class="grid_line_regular" align="right">49.4 %</td><td class="grid_line_regular" align="right">34.6 %</td><td class="grid_line_break" align="right">13226</td><td class="grid_line_regular" align="right">4716</td><td class="grid_line_regular" align="right">8510</td>
 	</tr>
 	</tbody>
 
@@ -1242,7 +1409,7 @@
         
     </div></div>
     <div class="footer-bar-item">
-        <span class="mobile-hide">Updated: Monday, July 31, 2017 10:31 AM ET</span><span class="mobile-show">Updated: 7/31/2017 10:31 AM ET</span>
+        <span class="mobile-hide">Updated: Saturday, September 2, 2017 10:22 AM ET</span><span class="mobile-show">Updated: 9/2/2017 10:22 AM ET</span>
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
@@ -1552,7 +1719,7 @@ Sys.Application.add_init(function() {
     $create(Telerik.Web.UI.RadTabStrip, {"_align":3,"_selectedIndex":0,"_skin":"FanGraphs","clickSelectedTab":true,"clientStateFieldID":"SeasonSplits1_tsLog_ClientState","selectedIndexes":["0"],"tabData":[{},{},{},{},{},{},{},{},{},{},{},{}]}, null, null, $get("SeasonSplits1_tsLog"));
 });
 Sys.Application.add_init(function() {
-    $create(Telerik.Web.UI.RadMenu, {"_childListElementCssClass":null,"_renderMode":2,"_skin":"DepthChart","clientStateFieldID":"SeasonSplits1_rdSplit_ClientState","collapseAnimation":"{\"type\":0,\"duration\":450}","collapseDelay":0,"expandAnimation":"{\"type\":0,\"duration\":450}","itemData":[{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=0.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=0.2"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=1.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=1.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=1.3"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=1.4"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=1.5"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=1.6"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.3"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.4"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.5"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.6"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.7"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.8"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=5.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=5.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=5.3"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=6.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=6.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=6.3"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.3"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.4"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.5"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.6"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.7"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.8"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.9"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.10"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.11"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=9.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=9.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=9.3"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=9.4"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=10.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=10.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=10.3"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=10.4"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=10.6"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=10.7"}]}]}, null, null, $get("SeasonSplits1_rdSplit"));
+    $create(Telerik.Web.UI.RadMenu, {"_childListElementCssClass":null,"_renderMode":2,"_skin":"DepthChart","clientStateFieldID":"SeasonSplits1_rdSplit_ClientState","collapseAnimation":"{\"type\":0,\"duration\":450}","collapseDelay":0,"expandAnimation":"{\"type\":0,\"duration\":450}","itemData":[{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=0.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=0.2"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=1.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=1.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=1.3"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=1.4"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=1.5"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=1.6"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.3"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.4"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.5"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.6"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.7"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=2.8"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=5.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=5.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=5.3"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=6.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=6.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=6.3"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.3"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.4"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.5"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.6"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.7"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.8"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.9"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.10"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=7.11"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=8.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=8.2"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=9.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=9.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=9.3"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=9.4"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=10.1"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=10.2"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=10.3"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=10.4"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=10.6"},{"navigateUrl":"statsplits.aspx?playerid=6986\u0026position=P\u0026season=0\u0026split=10.7"}]}]}, null, null, $get("SeasonSplits1_rdSplit"));
 });
 Sys.Application.add_init(function() {
     $create(Telerik.Web.UI.RadGrid, {"ClientID":"SeasonSplits1_dgSeason1","ClientSettings":{"AllowAutoScrollOnDragDrop":true,"ShouldCreateRows":true,"DataBinding":{},"Selecting":{"CellSelectionMode":0},"Scrolling":{},"Resizing":{},"ClientMessages":{},"KeyboardNavigationSettings":{"AllowActiveRowCycle":false,"EnableKeyboardShortcuts":true,"FocusKey":89,"InitInsertKey":73,"RebindKey":82,"ExitEditInsertModeKey":27,"UpdateInsertItemKey":13,"DeleteActiveRow":127,"ExpandDetailTableKey":39,"CollapseDetailTableKey":37,"MoveDownKey":40,"MoveUpKey":38,"SaveChangesKey":85,"CancelChangesKey":81},"Animation":{},"Virtualization":{}},"Skin":"FanGraphs","UniqueID":"SeasonSplits1$dgSeason1","_activeRowIndex":"","_controlToFocus":"","_currentPageIndex":0,"_defaultDateTimeFormat":"M/d/yyyy h:mm:ss tt","_editIndexes":"[]","_embeddedSkin":false,"_freezeText":"Freeze","_gridTableViewsData":"[{\"ClientID\":\"SeasonSplits1_dgSeason1_ctl00\",\"UniqueID\":\"SeasonSplits1$dgSeason1$ctl00\",\"PageSize\":10,\"PageCount\":1,\"EditMode\":\"EditForms\",\"AllowPaging\":false,\"CurrentPageIndex\":0,\"VirtualItemCount\":100000,\"AllowMultiColumnSorting\":false,\"AllowNaturalSort\":true,\"AllowFilteringByColumn\":false,\"PageButtonCount\":10,\"HasDetailTables\":false,\"HasMultiHeaders\":false,\"CheckListWebServicePath\":\"\",\"GroupLoadMode\":\"Server\",\"PagerAlwaysVisible\":false,\"IsItemInserted\":false,\"clientDataKeyNames\":[],\"hasDetailItemTemplate\":false,\"_dataBindTemplates\":false,\"_selectedItemStyle\":\"\",\"_selectedItemStyleClass\":\"rgSelectedRow\",\"_columnsData\":[{\"UniqueName\":\"Season\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"Season\",\"Display\":true},{\"UniqueName\":\"Split\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"Split\",\"Display\":true},{\"UniqueName\":\"IP\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"IP\",\"DataFormatString\":\"{0:0.0}\",\"Display\":true},{\"UniqueName\":\"ERA\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"ERA\",\"DataFormatString\":\"{0:0.00}\",\"Display\":true},{\"UniqueName\":\"TBF\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"TBF\",\"Display\":true},{\"UniqueName\":\"H\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"H\",\"Display\":true},{\"UniqueName\":\"2B\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"2B\",\"Display\":true},{\"UniqueName\":\"3B\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"3B\",\"Display\":true},{\"UniqueName\":\"R\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"R\",\"Display\":true},{\"UniqueName\":\"ER\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"ER\",\"Display\":true},{\"UniqueName\":\"HR\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"HR\",\"Display\":true},{\"UniqueName\":\"BB\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"BB\",\"Display\":true},{\"UniqueName\":\"IBB\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"IBB\",\"Display\":true},{\"UniqueName\":\"HBP\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"HBP\",\"Display\":true},{\"UniqueName\":\"SO\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"SO\",\"Display\":true},{\"UniqueName\":\"AVG\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"AVG\",\"DataFormatString\":\"{0:.000}\",\"Display\":true},{\"UniqueName\":\"OBP\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"OBP\",\"DataFormatString\":\"{0:.000}\",\"Display\":true},{\"UniqueName\":\"SLG\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"SLG\",\"DataFormatString\":\"{0:.000}\",\"Display\":true},{\"UniqueName\":\"wOBA\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"wOBA\",\"DataFormatString\":\"{0:.000}\",\"Display\":true}]}]","_masterClientID":"SeasonSplits1_dgSeason1_ctl00","_shouldFocusOnPage":false,"_unfreezeText":"Unfreeze","allowMultiRowSelection":false,"clientStateFieldID":"SeasonSplits1_dgSeason1_ClientState","expandItems":{},"renderMode":2}, null, null, $get("SeasonSplits1_dgSeason1"));

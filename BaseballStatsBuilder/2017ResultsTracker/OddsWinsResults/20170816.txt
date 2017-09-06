@@ -1,0 +1,17 @@
+20170816;Boston Red Sox;St.Louis Cardinals;H;-161;+141;
+20170816;New York Yankees;New York Mets;A;-159;+140;
+20170816;Toronto Blue Jays;Tampa Bay Rays;H;-135;+117;
+20170816;San Diego Padres;Philadelphia Phillies;H;-145;+127;
+20170816;Seattle Mariners;Baltimore Orioles;H;-120;+104;
+20170816;Kansas City Royals;Oakland Athletics;A;-123;+108;
+20170816;Milwaukee Brewers;Pittsburgh Pirates;H;-128;+110;
+20170816;Miami Marlins;San Francisco Giants;H;-185;+162;
+20170816;Los Angeles Angels;Washington Nationals;A;+116;-133;
+20170815;Los Angeles Dodgers;Chicago White Sox;H;-370;+303;
+20170815;San Diego Padres;Philadelphia Phillies;H;-167;+146;
+20170815;Seattle Mariners;Baltimore Orioles;H;-111;-103;
+20170815;Oakland Athletics;Kansas City Royals;H;+108;-125;
+20170815;Atlanta Braves;Colorado Rockies;A;+163;-189;
+20170815;Cleveland Indians;Minnesota Twins;A;-161;+142;
+20170815;Cincinnati Reds;Chicago Cubs;A;+141;-164;
+20170815;Texas Rangers;Detroit Tigers;H;-108;-108;

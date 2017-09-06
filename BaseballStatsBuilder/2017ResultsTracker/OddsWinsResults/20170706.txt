@@ -1,0 +1,15 @@
+20170706;Cleveland Indians;San Diego Padres;H;-208;+179;
+20170706;Tampa Bay Rays;Boston Red Sox;H;+165;-192;
+20170706;Toronto Blue Jays;Houston Astros;H;+138;-161;
+20170706;Atlanta Braves;Washington Nationals;A;+152;-175;
+20170706;Pittsburgh Pirates;Philadelphia Phillies;A;-110;-104;
+20170706;Cincinnati Reds;Colorado Rockies;A;+140;-161;
+20170706;St.Louis Cardinals;Miami Marlins;H;-189;+164;
+20170706;Milwaukee Brewers;Chicago Cubs;A;+147;-167;
+20170706;Detroit Tigers;San Francisco Giants;H;-145;+127;
+20170705;Los Angeles Dodgers;Arizona Diamondbacks;H;-233;+202;
+20170705;Kansas City Royals;Seattle Mariners;A;+114;-132;
+20170705;Colorado Rockies;Cincinnati Reds;H;-154;+133;
+20170705;Miami Marlins;St.Louis Cardinals;A;+119;-137;
+20170705;Los Angeles Angels;Minnesota Twins;A;+145;-167;
+20170705;Texas Rangers;Boston Red Sox;H;+102;-119;

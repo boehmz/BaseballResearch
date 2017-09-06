@@ -1,0 +1,12 @@
+1310;Scherzer, Max;57.61
+100x;Arrieta, Jake;51.742
+115z;Martinez, Carlos;49.7296
+1396;Santana, Ervin;47.4323
+138t;Suter, Brent;46.0451
+110u;Bundy, Dylan;45.7843
+1193;Kennedy, Ian;44.9725
+109t;Moore, Matt;44.8602
+130z;Stephenson, Robert;43.3079
+1856;Chacin, Jhoulys;43.0484
+1931;Zimmermann, Jordan;41.1883
+139j;Williams, Trevor;40.3028

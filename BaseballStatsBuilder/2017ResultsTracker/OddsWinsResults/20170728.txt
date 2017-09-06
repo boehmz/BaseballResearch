@@ -1,0 +1,8 @@
+20170728;Kansas City Royals;Boston Red Sox;A;+137;-156;
+20170728;Houston Astros;Detroit Tigers;A;-161;+138;
+20170728;Miami Marlins;Cincinnati Reds;H;-120;+104;
+20170728;Los Angeles Angels;Toronto Blue Jays;A;+129;-149;
+20170728;New York Yankees;Tampa Bay Rays;H;-196;+169;
+20170728;Philadelphia Phillies;Atlanta Braves;H;+123;-141;
+20170727;San Diego Padres;New York Mets;H;+102;-119;
+20170727;Chicago Cubs;Chicago White Sox;A;-263;+222;

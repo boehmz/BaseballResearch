@@ -1,11 +1,11 @@
-20170803/ZachDateMetaData
+20170906/ZachDateMetaData
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1"><title>
 	Blake Snell &raquo; Splits &raquo; vs R &raquo; Pitching | FanGraphs Baseball
 </title><meta name='description' content='Blake Snell vs R pitching splits for Major League baseball' />
-<meta name='keywords' content='blake snell, blake snell splits' /><link href="//cdn.fangraphs.com/css/fg?v=kmRpqxLUwKvFrMJlcHHQrve1ufN1cZkHrDxE8hWcDP01" rel="stylesheet">
+<meta name='keywords' content='blake snell, blake snell splits' /><link href="//cdn.fangraphs.com/css/fg?v=k0kWhwFCBKTp4QTt1D025Y-bG22tFNBsBKzKydUPKwA1" rel="stylesheet">
 
 <link href="//cdn.fangraphs.com/css/telerik?v=7kp8vZ-2gyqQIN75Z0UB_Vbc6sYJCM3fVOkK0XkRN401" rel="stylesheet">
 
@@ -19,7 +19,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
 
-<script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=yONnNeg0_tp3KoLSBL2DqY6gAKfm_dA7JxGUf1pSEcg1"></script>
+<script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=6cIdLlGVg6ByGGXLWI8Sx27VvLnSHCjwJWE6FbvG_zQ1"></script>
 
 
 
@@ -28,10 +28,10 @@
 <link rel="search" type="application/opensearchdescription+xml" href="//cdn.fangraphs.com/opensearch.xml" title="FanGraphs Search" />
 <link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet" />
 
-<meta property="og:image" content="http://cdn.fangraphs.com/blogs/wp-content/uploads/2016/04/flat_fg_green.png" />
+<meta property="og:image" content="//cdn.fangraphs.com/blogs/wp-content/uploads/2016/04/flat_fg_green.png" />
 
 
-<link href="/WebResource.axd?d=4eFj2ghicsUvR4-jzn-y5qljBL4LM8D_52KGPCKA_0Xrtrry5DxJsUoLHytEMkaBKAzibyQ3TCK3urr2XIpkSjqFQbHILRAhDM4anA_249w8WfBBihjP6qqmR4ZNzCRCohQrhFOEXDdvbEyY7tQvDg3GTjY1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=mwtUK2fFCfI9PIy9leufp4PsJOiDSnChR0AElThtZ1zmQV2TqogHE7tPBg6KGSWsS9cU8rUvS6Sc-JQH11HRWJGqfaiId5HCQU2guU3GBAiszNd2v9czvdhqbUqhdippXORU9odWfJgTRQlB1S0nIRaEbtQ1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=vyGwVOpDBkG0uXr0j-cum2_sVH1cpEbGbXWTc3SNBgXB1z5PODv1nirzv_tWKIyJnZmugW1iwy81ct5y-9fQmNhaW7mLfqDT1ufneVLQwrI5xxpC9tVF9rJunaETJBP4-6yBOj8-g978ZupiXoWAHUZAPMk1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=apUTkvkq_aLiJTCAYExnXgaMBysrZftWI83mGKeHEOBSF5PIMsaAUP0ct8iqqdYzzwGTdVQfKHd0nsu1j2VUO1CuVN1URz8DperJmgNoxc3RmF9eBpzuFsKH-IlmyZbY0vJRklv4ETNhN7r5EsNITJFgMDA1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=A02NNKC_b5BcC1yDjQZjFkdb4gUSvzrdkCtAkgZ8AExChxlYEMgcSqTHWu2MVcFlJT-mje0kcnR2-JBKnlb30pvv29rsUn6lHFWcYS5gWLNfAUx2jpQIC10Me0swXAVf17eZAIO5F4ZzP3vJp8DxyAyguYw1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=GQpBOiIPRRVOqnbzRTk6AeAexawlxHPpLFJL4VowleC0eY695IHY5vNyuZv-mJQQ-70jzcmZYDCTt1a5Trcq25lnAN7zlqeB1aaYeKoxl6ObyItvLvkCbLWA2GiJUfAxtmKZ4syVhmUgxaCMWURkddLotII1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /></head>
+<link href="/WebResource.axd?d=4eFj2ghicsUvR4-jzn-y5qljBL4LM8D_52KGPCKA_0Xrtrry5DxJsUoLHytEMkaBKAzibyQ3TCK3urr2XIpkSjqFQbHILRAhDM4anA_249w8WfBBihjP6qqmR4ZNzCRCohQrhFOEXDdvbEyY7tQvDg3GTjY1&amp;t=636021859103606561" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=mwtUK2fFCfI9PIy9leufp4PsJOiDSnChR0AElThtZ1zmQV2TqogHE7tPBg6KGSWsS9cU8rUvS6Sc-JQH11HRWJGqfaiId5HCQU2guU3GBAiszNd2v9czvdhqbUqhdippXORU9odWfJgTRQlB1S0nIRaEbtQ1&amp;t=636021859103606561" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=vyGwVOpDBkG0uXr0j-cum2_sVH1cpEbGbXWTc3SNBgXB1z5PODv1nirzv_tWKIyJnZmugW1iwy81ct5y-9fQmNhaW7mLfqDT1ufneVLQwrI5xxpC9tVF9rJunaETJBP4-6yBOj8-g978ZupiXoWAHUZAPMk1&amp;t=636021859103606561" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=apUTkvkq_aLiJTCAYExnXgaMBysrZftWI83mGKeHEOBSF5PIMsaAUP0ct8iqqdYzzwGTdVQfKHd0nsu1j2VUO1CuVN1URz8DperJmgNoxc3RmF9eBpzuFsKH-IlmyZbY0vJRklv4ETNhN7r5EsNITJFgMDA1&amp;t=636021859103606561" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=A02NNKC_b5BcC1yDjQZjFkdb4gUSvzrdkCtAkgZ8AExChxlYEMgcSqTHWu2MVcFlJT-mje0kcnR2-JBKnlb30pvv29rsUn6lHFWcYS5gWLNfAUx2jpQIC10Me0swXAVf17eZAIO5F4ZzP3vJp8DxyAyguYw1&amp;t=636021859103606561" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=GQpBOiIPRRVOqnbzRTk6AeAexawlxHPpLFJL4VowleC0eY695IHY5vNyuZv-mJQQ-70jzcmZYDCTt1a5Trcq25lnAN7zlqeB1aaYeKoxl6ObyItvLvkCbLWA2GiJUfAxtmKZ4syVhmUgxaCMWURkddLotII1&amp;t=636021859103606561" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /></head>
 <body>
     <form method="post" action="./statsplits.aspx?playerid=13543&amp;position=P&amp;season=0&amp;split=0.2" id="form1">
 <input type="hidden" name="RadScriptManager1_TSM" id="RadScriptManager1_TSM" value="" />
@@ -115,31 +115,41 @@
     });
 </script>
 
-<div id="Header1_panBlogHead">
-	
-    <div class="top-logo">
+<div class="header-chat-alert" style="visibility: hidden"><a class="header-chat-alert-text"></a></div>
 
-        <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
+<div class="header-container">
+    <header>
+        <div class="top-logo">
+            <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
+            <div id="top_da">
+                <div class="fg-ra-desktop catchall728" style='width:728px; overflow:hidden;'><!-- ROS_728x90 --> <div id ='div-gpt-ad-1349421924281-14' style='margin: auto; width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-14').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-14'); });}</script></div></div>
 
-
-        <div id="top_da">
-            <div class="fg-ra-desktop catchall728" style='width:728px; overflow:hidden;'><!-- ROS_728x90 --> <div id ='div-gpt-ad-1349421924281-14' style='margin: auto; width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-14').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-14'); });}</script></div></div>
-
-            
+                
+            </div>
         </div>
-    </div>
+        <div class="top-logo sticky" style="display: none;">
+            <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
+        </div>
+        
 
-</div>
 
-
-
-<nav class="nav-main">
+<nav id="navBar" class="nav-main fg">
     <div class="nav-mobile-bar">
         <div class="nav-mobile-button"></div>
         <div class="nav-search">
             <input type="text" id="psbox" onkeypress="KeyIt(event);" onkeydown="BackKey(event);" autocomplete="off" placeholder="Player & Blog Search" />
             <div class="nav-search-mobile-x"></div>
         </div>
+        <div class="nav-mobile-fill"></div>
+         <div class="nav-mobile-login" data-full="true">
+                <a id="linkAccountMobile" href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d13543%26position%3dP%26season%3d0%26split%3d0.2">
+                    <div class="menu-item-label">
+                        <div class="label-account">Sign In</div><div class="icon-account signed-out"></div>
+                    </div>
+                </a>
+                
+
+            </div>
     </div>
     <div class="nav-search-players"></div>
     
@@ -164,6 +174,12 @@
                     <div class="menu-sub-link">
                         <a href="http://www.fangraphs.com/thegame/">The Game: Baseball</a>
                     </div>
+                    <div class="menu-sub-link">
+                        <a href="http://ottoneu.fangraphs.com/">Ottoneu Fantasy Baseball</a>
+                    </div>
+                    <a href="http://ottoneu.fangraphs.com/">Signup</a>, 
+                    <a href="http://ottoneu.fangraphs.com/support">FAQ</a>, 
+                    <a href="http://www.fangraphs.com/fantasy/category/ottoneu/">Blog Posts</a>
                 </div>
             </li>
             <li class="menu-item" data-sub="blogs" data-full="true">
@@ -210,17 +226,7 @@
                     </div>
                 </div>
             </li>
-            <li class="menu-item" data-sub="ottoneu">
-                <div class="menu-item-label">Ottoneu</div>
-                <div class="menu-sub">
-                    <div class="menu-sub-link">
-                        <a href="http://ottoneu.fangraphs.com/">Ottoneu Fantasy Baseball</a>
-                    </div>
-                    <a href="http://ottoneu.fangraphs.com/">Signup</a>, 
-                    <a href="http://ottoneu.fangraphs.com/support">FAQ</a>, 
-                    <a href="http://www.fangraphs.com/fantasy/category/ottoneu/">Blog Posts</a>
-                </div>
-            </li>
+           
             <li class="menu-item" data-sub="scores" data-full="true">
                 <div class="menu-item-label">Scores</div>
                 <div class="menu-sub">
@@ -228,7 +234,7 @@
                         <div class="menu-sub-header">
                             Today: 
                             <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="Header1_navBar_linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2016&amp;month=0&amp;season1=2016&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-08-02">Probable Pitchers</a>
+                            <a id="linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2017&amp;month=0&amp;season1=2017&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-09-05">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -299,6 +305,10 @@
                         </div>
                         <a href="http://www.fangraphs.com/warleaders.aspx">Combined WAR Leaderboards</a><br />
                         <a href="http://www.fangraphs.com/graphsw.aspx">WAR Graphs</a>, <a href="http://www.fangraphs.com/graphswd.aspx">WAR Grid</a>
+                        <div class="menu-sub-header">
+                            WPA Tools
+                        </div>
+                        <a href="http://www.fangraphs.com/wpainquirer.aspx">WPA Inquirer</a><br />
                         <div class="menu-sub-header">
                             Rookie Leaders
                         </div>
@@ -408,20 +418,7 @@
                     </div>
                 </div>
             </li>
-            <li class="menu-item" data-sub="events" data-full="true">
-                <div class="menu-item-label">Events</div>
-                <div class="menu-sub">
-                    <div class="menusub-mid">
-
-                        <div class="menu-sub-header">
-                        Meetups
-                        </div>
-                        <a href="http://www.fangraphs.com/blogs/fangraphs-boston-meetup-saber-seminar-eve-8-4-17/"><strong>Boston - Saber Seminar Eve</strong> &nbsp;&nbsp;Aug. 4, 2017</a>
-
-                     
-                    </div>
-                </div>
-            </li>
+           
             <li class="menu-item" data-sub="glossary" data-full="true">
                 <div class="menu-item-label">Glossary</div>
                 <div class="menu-sub">
@@ -462,45 +459,20 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-fill">
+
+            </li>
+            <li class="menu-item" data-sub="login" data-full="true">
+                <a id="linkAccount" href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d13543%26position%3dP%26season%3d0%26split%3d0.2">
+                    <div class="menu-item-label">
+                        <div class="label-account">Sign In</div><div class="icon-account signed-out"></div>
+                    </div>
+                </a>
+                
+               
+            </li>
         </ul>
     </div>
-</nav>
-
-
-
-
-<p id="login" style="display: none;">
-    
-</p>
-
-<nav class="nav-secondary fg">
-    <div class="sm-button-group mobile-hide">
-        <div>Follow Us:</div>
-        <a href="https://twitter.com/fangraphs">
-            <div id="sm-tw" class="sm-button"></div>
-        </a>
-        <a href="https://www.facebook.com/fangraphs">
-            <div id="sm-fb" class="sm-button"></div>
-        </a>
-        <a href="https://www.instagram.com/fangraphs/">
-            <div id="sm-ig" class="sm-button"></div>
-        </a>
-        <a href="https://www.youtube.com/user/FanGraphs">
-            <div id="sm-yt" class="sm-button"></div>
-        </a>
-        <a href="https://www.snapchat.com/add/fangraphs">
-            <div id="sm-sc" class="sm-button"></div>
-        </a>
-        <a href="http://us7.campaign-archive2.com/home/?u=72096bce9a69ba4cbdebbf487&id=0c7da3c69f">
-            <div id="sm-email" class="sm-button"></div>
-        </a>
-    </div>
-    <div id="Header1_LoginBlog1_navLogin" class="nav-login">
-	
-        <div class="nav-login-text"><a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d13543%26position%3dP%26season%3d0%26split%3d0.2">Log In</a> &nbsp;|&nbsp; <a href="http://www.fangraphs.com/blogs/wp-login.php?action=register">Register</a></div>
-    
-</div>
-    
 </nav>
 
 <div id="my_popup">
@@ -517,25 +489,220 @@
     <a class="my_popup_close popup-button" style="background-color: #000; color: #fff;">No Thanks
     </a>
     </div>
-    <div class="popup-login">Already a member? <a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d13543%26position%3dP%26season%3d0%26split%3d0.2">Log In</a></div>
+    <div class="popup-login">Already a member? <a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d13543%26position%3dP%26season%3d0%26split%3d0.2">Sign In</a></div>
 </div>
 
-<script src="/javascript/nav/nav-login.js"></script>
-
-
-
-<div class="header-chat-alert"><a class="header-chat-alert-text"></a></div>
-<div class="spacer_10"></div>
-
+        <div id="divHeaderChat" class="header-chat-alert"><a class="header-chat-alert-text"></a></div>
+    </header>
+</div>
 
 <!-- start - 0--><!-- control end - 0-->
 
 <script>
+
+    //header alert function
     $.get('/api/chatheader/getvalues', function (d) {
-        d.chatBoolean ? $('.header-chat-alert').show() : $('.header-chat-alert').hide()
+        d.chatBoolean ? $('.header-chat-alert').addClass('chatShow') : $('.header-chat-alert').removeClass('chatShow')
         $('.header-chat-alert-text').attr('href', d.chatLink).text(d.chatText)
     })
+
+
+    //scroll functionality
+
+    var $header = $('.header-container')
+    var debounceFunction = null
+    var scrollStart = $(window).scrollTop()
+
+    var debounce = function () {
+        if (debounceFunction != null && Math.abs($(window).scrollTop() - scrollStart) < 100) {
+            clearTimeout(debounceFunction)
+        }
+        debounceFunction = setTimeout(scrollHandler, 100)
+    }
+
+    var scrollHandler = function () {
+
+        screenStart = $(window).scrollTop()
+
+        if ($(window).scrollTop() > 60) {
+            $('.header-chat-alert').addClass('sticky')
+        }
+        else if ($(window).scrollTop() < 30) {
+            $('.header-chat-alert').removeClass('sticky')
+        }
+
+        if ($(window).scrollTop() > 99) {
+            $header.addClass('sticky')
+            $('.top-logo:not(".sticky")').hide()
+            $('.top-logo.sticky').show()
+        }
+        else {
+            $header.removeClass('sticky')
+            $('.top-logo:not(".sticky")').show()
+            $('.top-logo.sticky').hide()
+        }
+    }
+
+    //initial check, no debounce
+    $(document).ready(function () {
+        if ($(window).scrollTop() > 99) {
+            $header.removeClass('sticky')
+            $('.top-logo:not(".sticky")').show()
+            $('.top-logo.sticky').hide()
+        }
+    })
+
+    $(window).scroll(debounce)
+
+    
+    //from https://stackoverflow.com/questions/17534661/make-anchor-link-go-some-pixels-above-where-its-linked-to
+   function offsetAnchor() {
+       if (location.hash.length !== 0) {
+           window.scrollTo(window.scrollX, window.scrollY - 100);
+       }
+   }
+   $(document).on('click', 'a[href*="#"]', function (event) {
+       window.setTimeout(function () {
+           offsetAnchor();
+       }, 0);
+   });
+
+   window.setTimeout(offsetAnchor, 0);
 </script>
+
+<style>
+
+    /*for mobile only*/
+    /*ul.menu-top {
+        position: absolute;
+        z-index: -10;
+    }*/
+
+    #wrapper {
+        padding: 0 !important;
+    }
+
+    #wrapper.blog-wrapper {
+        padding-top: 130px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    #content {
+        padding: 0 15px;
+        padding-top: 150px;
+    }
+
+    .header-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10000;
+        text-align: center;
+    }
+
+    header {
+        max-width: 1000px;
+        margin: auto;
+        background-color: #fff;
+    }
+
+    #top_da-new {
+        display: none;
+    }
+
+    .top-logo-new {
+        height: 60px;
+        margin-bottom: 0;
+    }
+
+    .top-logo {
+        margin-bottom: 0;
+        display: block;
+        /*transition: height .2s;*/
+    }
+
+    .top-logo-bkgd {
+        /*transition: width .2s;*/
+        width: 267px;
+        display: inline-block;
+        float: left;
+    }
+
+    .top-logo.sticky {
+        height: 50px;
+    }
+
+    .sticky .top-logo-bkgd {
+        width: 100%;
+    }
+
+    #top_da.sticky {
+        display: none;
+    }
+
+    .sticky .top-logo-img {
+        /*background-size: 300px;
+    background-position-x: -10px;*/
+        background-size: 275px;
+        background-position-x: -10px;
+    }
+
+    .top-logo-img-container {
+        transition: height, width .2s;
+        height: 100%;
+        width: 350px;
+    }
+
+    .sticky .top-logo-img-container {
+    }
+
+    .top-logo-img-tag {
+        width: 200px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    }
+
+
+
+    .header-chat-alert.sticky {
+        display: none;
+    }
+
+    .trans {
+        transition: width, height .2s;
+    }
+
+    .chatShow {
+        display: block;
+    }
+
+    .top-logo-img-new {
+        background-position: initial;
+    }
+
+    .top-logo-img {
+        background-position: -20px;
+    }
+
+    nav .menu-item {
+        border-top: 2px solid #000;
+    }
+</style>
+
+<style>header {width: 1000px;}   
+            #wrapper { width: 1000px; }
+                @media screen and (max-width: 1020px) {    
+                    .header-container.sticky, .header-container {
+                        position: static;
+                    }
+
+                    #content {padding-top: 20px;}
+                }</style>
+
 
         </div>
         <div id="content">
@@ -552,14 +719,14 @@
                             <strong style="font-size:15pt;">Blake Snell</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 12/4/1992 (24 y, 7 m, 30 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-4/180 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=13543&position=P#draft" style="text-decoration:none;">2011 June Amateur Draft - Round: 1s, Pick: 19, Overall: 52, Team: Tampa Bay Rays</a><br /><strong>Contract:</strong> <a href="contractmake.aspx?playerid=13543" style="text-decoration:none;">Add New Contract</a>
+                            <strong>Birthdate:</strong> 12/4/1992 (24 y, 9 m, 2 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> L/L &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-4/180 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=13543&position=P#draft" style="text-decoration:none;">2011 June Amateur Draft - Round: 1s, Pick: 19, Overall: 52, Team: Tampa Bay Rays</a><br /><strong>Contract:</strong> <a href="contractmake.aspx?playerid=13543" style="text-decoration:none;">Add New Contract</a>
                         </div>
                     </td>
                     
-                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="http://www.rotowire.com/users/ad_jump.asp?id=688&playerid=12189" style="text-decoration:none;">RotoWire News</a>:</b> Snell allowed three earned runs over 5.1 innings in a no-decision Saturday against the Rays. He finished the day allowing six hits and two walks while notching four strikeouts. (7/29/2017)</div></td></tr>
+                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="https://www.rotowire.com/users/ad_jump.asp?id=688&playerid=12189" style="text-decoration:none;">RotoWire News</a>:</b> Snell, who allowed just one unearned run on six hits and a walk over 6.2 innings while picking up his third win Friday versus the White Sox, is 3-0 with a 1.91 ERA over 33 innings in his five starts since being recalled from Triple-A Durham on Aug. 8. (9/2/2017)</div></td></tr>
 
                 </tr>
-                <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">4/16/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-446-making-a-judgment-call/">The Sleeper and the Bust Episode: 446 – Making a J&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-446-making-a-judgment-call/#comments"><img src="images/commentslink.gif" border="0px" />12</a></span><br /><span class="m_date">3/22/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-440-starting-pitcher-extravaganza/">The Sleeper and the Bust Episode: 440 – Starting P&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-440-starting-pitcher-extravaganza/#comments"><img src="images/commentslink.gif" border="0px" />12</a></span><br /><span class="m_date">2/6/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-424-rays-corner-all-episode/">The Sleeper and the Bust Episode: 424 – Rays Corne&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-424-rays-corner-all-episode/#comments"><img src="images/commentslink.gif" border="0px" />6</a></span><br /><span class="m_date">9/27/2016</span> - <a href="http://www.fangraphs.com/fantasy/the-change-the-final-streams/">The Change: The Final Streams</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=22">Eno Sarris (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-change-the-final-streams/#comments"><img src="images/commentslink.gif" border="0px" />10</a></span><br /><span class="m_date">9/23/2016</span> - <a href="http://www.fangraphs.com/fantasy/mixing-fantasy-reality-snell-reyes/">Mixing Fantasy & Reality: Snell & Reyes</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=7554">Jeff Zimmerman (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/mixing-fantasy-reality-snell-reyes/#comments"><img src="images/commentslink.gif" border="0px" />4</a></span><br /></div></td></tr>
+                <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">8/22/2017</span> - <a href="http://www.fangraphs.com/fantasy/pitcher-spotlight-has-blake-snell-turned-a-corner/">Pitcher Spotlight: Has Blake Snell Turned A Corner&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=156642">Nick Pollack (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/pitcher-spotlight-has-blake-snell-turned-a-corner/#comments"><img src="images/commentslink.gif" border="0px" />7</a></span><br /><span class="m_date">4/16/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-446-making-a-judgment-call/">The Sleeper and the Bust Episode: 446 – Making a J&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-446-making-a-judgment-call/#comments"><img src="images/commentslink.gif" border="0px" />12</a></span><br /><span class="m_date">3/22/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-440-starting-pitcher-extravaganza/">The Sleeper and the Bust Episode: 440 – Starting P&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-440-starting-pitcher-extravaganza/#comments"><img src="images/commentslink.gif" border="0px" />12</a></span><br /><span class="m_date">2/6/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-424-rays-corner-all-episode/">The Sleeper and the Bust Episode: 424 – Rays Corne&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-424-rays-corner-all-episode/#comments"><img src="images/commentslink.gif" border="0px" />6</a></span><br /><span class="m_date">9/27/2016</span> - <a href="http://www.fangraphs.com/fantasy/the-change-the-final-streams/">The Change: The Final Streams</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=22">Eno Sarris (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-change-the-final-streams/#comments"><img src="images/commentslink.gif" border="0px" />10</a></span><br /></div></td></tr>
 
                 <tr id="so1" style="background-color: #FFF;"><td colspan="5" style="border-top:2px solid #D3D3D3; padding:3px; text-align:justify;"><div class="m_stories" style="width:100%; font-size:10pt"><center>Profiles:&nbsp;&nbsp;<a id="soa9"  href="javascript:showMoreSO2017();">2017</a>&nbsp;&nbsp;(Click Year to Expand / <a href="javascript:hideSO('so1');">Close</a>)</center></div></td></tr>
                 
@@ -953,9 +1120,9 @@
 	<tr class="rgRow" id="SeasonSplits1_dgSeason1_ctl00__0">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">69.2</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">314</td><td class="grid_line_regular" align="right">74</td><td class="grid_line_regular" align="right">15</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">37</td><td class="grid_line_regular" align="right">30</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">39</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">75</td><td class="grid_line_regular" align="right">.269</td><td class="grid_line_regular" align="right">.360</td><td class="grid_line_regular" align="right">.387</td><td class="grid_line_regular" align="right">.330</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason1_ctl00__1">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">57.2</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">259</td><td class="grid_line_regular" align="right">59</td><td class="grid_line_regular" align="right">12</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">39</td><td class="grid_line_regular" align="right">35</td><td class="grid_line_regular" align="right">10</td><td class="grid_line_regular" align="right">35</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">47</td><td class="grid_line_regular" align="right">.263</td><td class="grid_line_regular" align="right">.366</td><td class="grid_line_regular" align="right">.455</td><td class="grid_line_regular" align="right">.354</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">90.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">387</td><td class="grid_line_regular" align="right">86</td><td class="grid_line_regular" align="right">21</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">50</td><td class="grid_line_regular" align="right">45</td><td class="grid_line_regular" align="right">12</td><td class="grid_line_regular" align="right">42</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">72</td><td class="grid_line_regular" align="right">.249</td><td class="grid_line_regular" align="right">.334</td><td class="grid_line_regular" align="right">.431</td><td class="grid_line_regular" align="right">.329</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason1_ctl00__2">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">127.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">573</td><td class="grid_line_regular" align="right">133</td><td class="grid_line_regular" align="right">27</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">76</td><td class="grid_line_regular" align="right">65</td><td class="grid_line_regular" align="right">15</td><td class="grid_line_regular" align="right">74</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">122</td><td class="grid_line_regular" align="right">.267</td><td class="grid_line_regular" align="right">.363</td><td class="grid_line_regular" align="right">.417</td><td class="grid_line_regular" align="right">.341</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">160.0</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">701</td><td class="grid_line_regular" align="right">160</td><td class="grid_line_regular" align="right">36</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">87</td><td class="grid_line_regular" align="right">75</td><td class="grid_line_regular" align="right">17</td><td class="grid_line_regular" align="right">81</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">147</td><td class="grid_line_regular" align="right">.258</td><td class="grid_line_regular" align="right">.346</td><td class="grid_line_regular" align="right">.411</td><td class="grid_line_regular" align="right">.330</td>
 	</tr>
 	</tbody>
 
@@ -992,9 +1159,9 @@
 	<tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__0">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">9.69</td><td class="grid_line_regular" align="right">5.04</td><td class="grid_line_regular" align="right">1.92</td><td class="grid_line_regular" align="right">0.65</td><td class="grid_line_regular" align="right">23.9 %</td><td class="grid_line_regular" align="right">12.4 %</td><td class="grid_line_regular" align="right">11.5 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.62</td><td class="grid_line_regular" align="right">.354</td><td class="grid_line_regular" align="right">71.7 %</td><td class="grid_line_regular" align="right">3.61</td><td class="grid_line_regular" align="right">4.51</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__1">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">7.34</td><td class="grid_line_regular" align="right">5.46</td><td class="grid_line_regular" align="right">1.34</td><td class="grid_line_regular" align="right">1.56</td><td class="grid_line_regular" align="right">18.2 %</td><td class="grid_line_regular" align="right">13.5 %</td><td class="grid_line_regular" align="right">4.6 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.63</td><td class="grid_line_regular" align="right">.293</td><td class="grid_line_regular" align="right">68.8 %</td><td class="grid_line_regular" align="right">5.60</td><td class="grid_line_regular" align="right">5.57</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">7.17</td><td class="grid_line_regular" align="right">4.18</td><td class="grid_line_regular" align="right">1.71</td><td class="grid_line_regular" align="right">1.20</td><td class="grid_line_regular" align="right">18.6 %</td><td class="grid_line_regular" align="right">10.9 %</td><td class="grid_line_regular" align="right">7.8 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.42</td><td class="grid_line_regular" align="right">.284</td><td class="grid_line_regular" align="right">70.1 %</td><td class="grid_line_regular" align="right">4.66</td><td class="grid_line_regular" align="right">5.00</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__2">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">8.62</td><td class="grid_line_regular" align="right">5.23</td><td class="grid_line_regular" align="right">1.65</td><td class="grid_line_regular" align="right">1.06</td><td class="grid_line_regular" align="right">21.3 %</td><td class="grid_line_regular" align="right">12.9 %</td><td class="grid_line_regular" align="right">8.4 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.63</td><td class="grid_line_regular" align="right">.326</td><td class="grid_line_regular" align="right">70.4 %</td><td class="grid_line_regular" align="right">4.51</td><td class="grid_line_regular" align="right">4.99</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">8.27</td><td class="grid_line_regular" align="right">4.56</td><td class="grid_line_regular" align="right">1.81</td><td class="grid_line_regular" align="right">0.96</td><td class="grid_line_regular" align="right">21.0 %</td><td class="grid_line_regular" align="right">11.6 %</td><td class="grid_line_regular" align="right">9.4 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.51</td><td class="grid_line_regular" align="right">.314</td><td class="grid_line_regular" align="right">70.9 %</td><td class="grid_line_regular" align="right">4.20</td><td class="grid_line_regular" align="right">4.79</td>
 	</tr>
 	</tbody>
 
@@ -1034,9 +1201,9 @@
 	<tr class="rgRow" id="SeasonSplits1_dgSeason3_ctl00__0">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">0.87</td><td class="grid_line_regular" align="right">27.6 %</td><td class="grid_line_regular" align="right">33.7 %</td><td class="grid_line_regular" align="right">38.7 %</td><td class="grid_line_regular" align="right">7.8 %</td><td class="grid_line_regular" align="right">6.5 %</td><td class="grid_line_regular" align="right">9.0 %</td><td class="grid_line_regular" align="right">100.0 %</td><td class="grid_line_break" align="right">31.0 %</td><td class="grid_line_regular" align="right">37.5 %</td><td class="grid_line_regular" align="right">31.5 %</td><td class="grid_line_break" align="right">23.0 %</td><td class="grid_line_regular" align="right">46.0 %</td><td class="grid_line_regular" align="right">31.0 %</td><td class="grid_line_break" align="right">1313</td><td class="grid_line_regular" align="right">519</td><td class="grid_line_regular" align="right">794</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason3_ctl00__1">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">0.89</td><td class="grid_line_regular" align="right">20.5 %</td><td class="grid_line_regular" align="right">37.4 %</td><td class="grid_line_regular" align="right">42.1 %</td><td class="grid_line_regular" align="right">13.9 %</td><td class="grid_line_regular" align="right">13.9 %</td><td class="grid_line_regular" align="right">1.6 %</td><td class="grid_line_regular" align="right">50.0 %</td><td class="grid_line_break" align="right">34.5 %</td><td class="grid_line_regular" align="right">33.9 %</td><td class="grid_line_regular" align="right">31.6 %</td><td class="grid_line_break" align="right">20.9 %</td><td class="grid_line_regular" align="right">45.2 %</td><td class="grid_line_regular" align="right">33.9 %</td><td class="grid_line_break" align="right">1068</td><td class="grid_line_regular" align="right">452</td><td class="grid_line_regular" align="right">616</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">1.12</td><td class="grid_line_regular" align="right">17.0 %</td><td class="grid_line_regular" align="right">43.8 %</td><td class="grid_line_regular" align="right">39.2 %</td><td class="grid_line_regular" align="right">14.4 %</td><td class="grid_line_regular" align="right">11.5 %</td><td class="grid_line_regular" align="right">3.4 %</td><td class="grid_line_regular" align="right">42.9 %</td><td class="grid_line_break" align="right">37.5 %</td><td class="grid_line_regular" align="right">32.0 %</td><td class="grid_line_regular" align="right">30.5 %</td><td class="grid_line_break" align="right">20.6 %</td><td class="grid_line_regular" align="right">47.8 %</td><td class="grid_line_regular" align="right">31.6 %</td><td class="grid_line_break" align="right">1563</td><td class="grid_line_regular" align="right">645</td><td class="grid_line_regular" align="right">918</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason3_ctl00__2">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">0.88</td><td class="grid_line_regular" align="right">24.3 %</td><td class="grid_line_regular" align="right">35.4 %</td><td class="grid_line_regular" align="right">40.3 %</td><td class="grid_line_regular" align="right">10.7 %</td><td class="grid_line_regular" align="right">10.1 %</td><td class="grid_line_regular" align="right">5.3 %</td><td class="grid_line_regular" align="right">57.1 %</td><td class="grid_line_break" align="right">32.6 %</td><td class="grid_line_regular" align="right">35.8 %</td><td class="grid_line_regular" align="right">31.6 %</td><td class="grid_line_break" align="right">22.0 %</td><td class="grid_line_regular" align="right">45.6 %</td><td class="grid_line_regular" align="right">32.4 %</td><td class="grid_line_break" align="right">2381</td><td class="grid_line_regular" align="right">971</td><td class="grid_line_regular" align="right">1410</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">1.01</td><td class="grid_line_regular" align="right">21.6 %</td><td class="grid_line_regular" align="right">39.4 %</td><td class="grid_line_regular" align="right">39.0 %</td><td class="grid_line_regular" align="right">11.6 %</td><td class="grid_line_regular" align="right">9.4 %</td><td class="grid_line_regular" align="right">5.5 %</td><td class="grid_line_regular" align="right">50.0 %</td><td class="grid_line_break" align="right">34.8 %</td><td class="grid_line_regular" align="right">34.3 %</td><td class="grid_line_regular" align="right">30.9 %</td><td class="grid_line_break" align="right">21.6 %</td><td class="grid_line_regular" align="right">47.0 %</td><td class="grid_line_regular" align="right">31.4 %</td><td class="grid_line_break" align="right">2876</td><td class="grid_line_regular" align="right">1164</td><td class="grid_line_regular" align="right">1712</td>
 	</tr>
 	</tbody>
 
@@ -1192,7 +1359,7 @@
         
     </div></div>
     <div class="footer-bar-item">
-        <span class="mobile-hide">Updated: Wednesday, August 2, 2017 10:31 AM ET</span><span class="mobile-show">Updated: 8/2/2017 10:31 AM ET</span>
+        <span class="mobile-hide">Updated: Tuesday, September 5, 2017 10:34 AM ET</span><span class="mobile-show">Updated: 9/5/2017 10:34 AM ET</span>
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
