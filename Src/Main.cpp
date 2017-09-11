@@ -19,10 +19,10 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170906";
+std::string todaysDate = "20170910";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOf2017SeasonPassed = 136.0f / 162.0f;
+float percentOf2017SeasonPassed = 140.0f / 162.0f;
 
 int dayToDayInjuredPlayersNum = 0;
 string dayToDayInjuredPlayers[] = { "" };
@@ -40,7 +40,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 
 	switch (processType)
 	{
@@ -95,9 +95,29 @@ bool comparePlayersBySalary(PlayerData i, PlayerData j)
 	return i.playerSalary < j.playerSalary;
 }
 
+float tallyLineupTotals(vector<PlayerData> chosenLineup, string actualResults, string day) {
+	float totalPoints = 0;
+	for (unsigned int cp = 0; cp < chosenLineup.size(); ++cp) {
+		size_t playerIdIndex = actualResults.find(day + ";" + chosenLineup[cp].playerId + ";", 0);
+		if (playerIdIndex != string::npos)
+		{
+			for (int n = 0; n < 7; ++n) {
+				playerIdIndex = actualResults.find(";", playerIdIndex + 1);
+			}
+			size_t nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
+			string actualPointsString = actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1);
+			float actualPoints = stof(actualPointsString.c_str());
+			totalPoints += actualPoints;
+			if (actualPoints > 100)
+				cout << "likely error" << std::endl;
+		}
+	}
+	return totalPoints;
+}
+
 void RefineAlgorithm()
 {
-	bool bRefineForPitchers = false;
+	bool bRefineForPitchers = true;
 	bool bRefineForBatters = true;
 	bool bRefineForGames = false;
 
@@ -125,15 +145,15 @@ void RefineAlgorithm()
 		float inputCoefficients[2] = { 0.0f, 1.0f };
 		vector< float > outputValues;
 
-		vector<float> chosenLineups;
-		vector<float> chosenLineupsTwoThruFive;
+		vector<float> chosenLineupsSabr;
+		vector<float> chosenLineupsSabrTwoThruFive;
 
 		vector<float> pitcherInputValues;
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
 		reviewDateStart = 806;
-		reviewDateEnd = 905;
+		reviewDateEnd = 909;
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
 			if (d - ((d / 100) * 100) > 31)
@@ -218,19 +238,8 @@ void RefineAlgorithm()
 					}
 					maxTotalBudget = 25000;
 					vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
-					float totalPoints = 0;
-					for (unsigned int cp = 0; cp < chosenLineup.size(); ++cp) {
-						size_t playerIdIndex = actualResults.find(";" + chosenLineup[cp].playerId + ";", 0);
-						if (playerIdIndex != string::npos)
-						{
-							for (int i = 0; i < 6; ++i) {
-								playerIdIndex = actualResults.find(";", playerIdIndex + 1);
-							}
-							size_t nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
-							totalPoints += stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str());
-						}
-					}
-					chosenLineups.push_back(totalPoints);
+					float totalPoints = tallyLineupTotals(chosenLineup, actualResults, thisDate);
+					chosenLineupsSabr.push_back(totalPoints);
 
 					allPlayers.clear();
 					allPlayers = allPlayersTwoThruFive;
@@ -240,19 +249,8 @@ void RefineAlgorithm()
 					maxTotalBudget = 25000;
 					chosenLineup.clear();
 					chosenLineup = OptimizeLineupToFitBudget();
-					totalPoints = 0;
-					for (unsigned int cp = 0; cp < chosenLineup.size(); ++cp) {
-						size_t playerIdIndex = actualResults.find(";" + chosenLineup[cp].playerId + ";", 0);
-						if (playerIdIndex != string::npos)
-						{
-							for (int i = 0; i < 6; ++i) {
-								playerIdIndex = actualResults.find(";", playerIdIndex + 1);
-							}
-							size_t nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
-							totalPoints += stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str());
-						}
-					}
-					chosenLineupsTwoThruFive.push_back(totalPoints);
+					totalPoints = tallyLineupTotals(chosenLineup, actualResults, thisDate);
+					chosenLineupsSabrTwoThruFive.push_back(totalPoints);
 				}
 				while (getline(resultsTrackerFile, resultsLine))
 				{
@@ -270,11 +268,11 @@ void RefineAlgorithm()
 							thisInputVariables[0] = player2016Stats.averagePpg;
 					*/
 
-					size_t playerIdIndex = actualResults.find(";" + thisPlayerId + ";", 0);
+					size_t playerIdIndex = actualResults.find(thisDate + ";" + thisPlayerId + ";", 0);
 					if (playerIdIndex != string::npos)// && thisInputVariables[1] > 0)
 					{
 						inputVariables.push_back(thisInputVariables);
-						for (int i = 0; i < 2; ++i)
+						for (int i = 0; i < 3; ++i)
 						{
 							playerIdIndex = actualResults.find(";", playerIdIndex + 1);
 						}
@@ -337,10 +335,10 @@ void RefineAlgorithm()
 					vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
 					string thisPlayerId = lineValues[0];
 
-					size_t playerIdIndex = actualResults.find(";" + thisPlayerId + ";", 0);
+					size_t playerIdIndex = actualResults.find(thisDate + ";" + thisPlayerId + ";", 0);
 					if (playerIdIndex != string::npos)
 					{
-						for (int i = 0; i < 2; ++i)
+						for (int i = 0; i < 3; ++i)
 						{
 							playerIdIndex = actualResults.find(";", playerIdIndex + 1);
 						}
@@ -416,12 +414,12 @@ void RefineAlgorithm()
 
 		if (bRefineForBatters) {
 			float totalLineupPoints = 0;
-			for (unsigned int i = 0; i < chosenLineups.size(); ++i) {
-				totalLineupPoints += chosenLineups[i];
+			for (unsigned int i = 0; i < chosenLineupsSabr.size(); ++i) {
+				totalLineupPoints += chosenLineupsSabr[i];
 			}
 			float totalLineupPointsTwoThruFive = 0;
-			for (unsigned int i = 0; i < chosenLineupsTwoThruFive.size(); ++i) {
-				totalLineupPointsTwoThruFive += chosenLineupsTwoThruFive[i];
+			for (unsigned int i = 0; i < chosenLineupsSabrTwoThruFive.size(); ++i) {
+				totalLineupPointsTwoThruFive += chosenLineupsSabrTwoThruFive[i];
 			}
 
 			float fCoefficientStep = 0.05f;
@@ -486,14 +484,7 @@ void RefineAlgorithm()
 				}
 				inputCoefficients[0] += fCoefficientStep;
 			}
-		}
 
-		if (bRefineForPitchers) {
-			float pitcherRSquared = CalculateRSquared(pitcherInputValues, pitcherOutputValues);
-			float sabrPitcherRSquared = CalculateRSquared(sabrPredictorPitcherInputValues, sabrPredictorPitcherOutputValues);
-			int breakpoint = 0;
-		}
-		if (bRefineForBatters) {
 			float seasonOpsRSquared = CalculateRSquared(seasonOpsInputVariables, validOutputValues);
 			float last30OpsRSquared = CalculateRSquared(last30DaysOpsInputVariables, validOutputValues);
 			float last7OpsRSquared = CalculateRSquared(last7DaysOpsInputVariables, validOutputValues);
@@ -505,6 +496,11 @@ void RefineAlgorithm()
 			inputCoefficients[0] = inputCoefficients[0];
 		}
 
+		if (bRefineForPitchers) {
+			float pitcherRSquared = CalculateRSquared(pitcherInputValues, pitcherOutputValues);
+			float sabrPitcherRSquared = CalculateRSquared(sabrPredictorPitcherInputValues, sabrPredictorPitcherOutputValues);
+			int breakpoint = 0;
+		}
 	}
 }
 
@@ -1405,6 +1401,7 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl)
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &previousResults);
 			curl_easy_perform(curl);
 			curl_easy_reset(curl);
+			previousResults = prevDay + "\n" + previousResults;
 			previousDayResults.push_back(previousResults);
 		}
 
@@ -1540,10 +1537,10 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl)
 				if (p == 2)
 					maxBattingOrder = 6;
 				for (unsigned int i = 0; i < previousDayResults.size(); ++i) {
-					size_t playerIdIndex = previousDayResults[i].find(";" + singlePlayerData.playerId + ";", 0);
+					size_t playerIdIndex = previousDayResults[i].find(previousDayResults[i].substr(0,3) + ";" + singlePlayerData.playerId + ";", 0);
 					if (playerIdIndex != string::npos)
 					{
-						for (int m = 0; m < 4; ++m) {
+						for (int m = 0; m < 5; ++m) {
 							playerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
 						}
 						size_t nextPlayerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
