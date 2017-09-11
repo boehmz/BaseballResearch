@@ -19,10 +19,10 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 25;
 int earliestGameTime = -1;
-std::string todaysDate = "20170910";
+std::string todaysDate = "20170911";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOf2017SeasonPassed = 140.0f / 162.0f;
+float percentOf2017SeasonPassed = 141.0f / 162.0f;
 
 int dayToDayInjuredPlayersNum = 0;
 string dayToDayInjuredPlayers[] = { "" };
@@ -40,7 +40,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 
 	switch (processType)
 	{
@@ -115,6 +115,23 @@ float tallyLineupTotals(vector<PlayerData> chosenLineup, string actualResults, s
 	return totalPoints;
 }
 
+string getSabrPredictorFileContents(string date, bool bPitchers) {
+	string sabrPredictorFileName = "FangraphsSABRPredictions\\";
+	if (bPitchers)
+		sabrPredictorFileName += "Pitchers\\";
+	else
+		sabrPredictorFileName += "Batters\\";
+	if (date.length() < 4)
+		sabrPredictorFileName += "20170" + date;
+	else if (date.length() == 4)
+		sabrPredictorFileName += "2017" + date;
+	else if (date.length() == 8)
+		sabrPredictorFileName += date;
+	sabrPredictorFileName += ".csv";
+	string sabrPredictorText = GetEntireFileContents(sabrPredictorFileName);
+	return sabrPredictorText;
+}
+
 void RefineAlgorithm()
 {
 	bool bRefineForPitchers = true;
@@ -145,7 +162,7 @@ void RefineAlgorithm()
 		float inputCoefficients[2] = { 0.0f, 1.0f };
 		vector< float > outputValues;
 
-		vector< vector<float>> chosenLineupsList(3);
+		vector< vector<float>> chosenLineupsList(5);
 
 		vector<float> pitcherInputValues;
 		vector<float> pitcherOutputValues;
@@ -180,11 +197,9 @@ void RefineAlgorithm()
 					resultsTrackerFileName += "0";
 				resultsTrackerFileName += thisDate + ".txt";
 				resultsTrackerFile.open(resultsTrackerFileName);
-				string sabrPredictorFileName = "FangraphsSABRPredictions\\Batters\\2017";
-				if (d < 1000)
-					sabrPredictorFileName += "0";
-				sabrPredictorFileName += thisDate + ".csv";
-				string sabrPredictorText = GetEntireFileContents(sabrPredictorFileName);
+				string sabrPredictorText = getSabrPredictorFileContents(thisDate, false);
+
+				string sabrPredictorTextPitchers = getSabrPredictorFileContents(thisDate, true);
 
 				if (sabrPredictorText != "") {
 					allPlayers.clear();
@@ -194,7 +209,9 @@ void RefineAlgorithm()
 					}
 					vector< vector<PlayerData> > allPlayersTwoThruFive(6);
 					vector< vector<PlayerData> > allPlayers24(6);
-					
+					vector< vector<PlayerData> > allPlayers25AvoidPitchers30(6);
+					vector< vector<PlayerData> > allPlayers25AvoidPitchers40(6);
+
 					size_t currentIndex = actualResults.find("</script>", 0);
 					currentIndex = actualResults.find("\n", currentIndex + 1);
 					size_t nextIndex = actualResults.find("\n", currentIndex + 1);
@@ -218,13 +235,42 @@ void RefineAlgorithm()
 									vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",");
 									float expectedFdPoints = stof(thisSabrLine[17].substr(1, thisSabrLine[17].length() - 2));
 									singlePlayerData.playerPointsPerGame = expectedFdPoints;
+
+									allPlayers[playerPosition].push_back(singlePlayerData);
+									int battingOrder = atoi(thisLineActualResults[5].c_str());
+									if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5)))
+										allPlayersTwoThruFive[playerPosition].push_back(singlePlayerData);
+									if (battingOrder >= 2 && (battingOrder <= 4 || (playerPosition == 0 && battingOrder <= 5)))
+										allPlayers24[playerPosition].push_back(singlePlayerData);
+
+									if (sabrPredictorTextPitchers != "") {
+										string playerTeamName = thisSabrLine[1];
+										string playerGameName = thisSabrLine[2];
+										size_t gameNameIndex = sabrPredictorTextPitchers.find(playerGameName);
+										if (gameNameIndex != string::npos) {
+											size_t prevNewLinePitchers = sabrPredictorTextPitchers.rfind("\n", gameNameIndex);
+											size_t nextNewLinePitchers = sabrPredictorTextPitchers.find("\n", gameNameIndex);
+											vector<string> thisSabrLinePitchers = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(prevNewLinePitchers, nextNewLinePitchers - prevNewLinePitchers), ",");
+											if (thisSabrLinePitchers[1] == playerTeamName) {
+												gameNameIndex = sabrPredictorTextPitchers.find(playerGameName, nextNewLinePitchers);
+												if (gameNameIndex != string::npos) {
+													prevNewLinePitchers = sabrPredictorTextPitchers.rfind("\n", gameNameIndex);
+													nextNewLinePitchers = sabrPredictorTextPitchers.find("\n", gameNameIndex);
+													thisSabrLinePitchers.clear();
+													thisSabrLinePitchers = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(prevNewLinePitchers, nextNewLinePitchers - prevNewLinePitchers), ",");
+												}
+											}
+											float expectedFdPoints = stof(thisSabrLinePitchers[14].substr(1, thisSabrLinePitchers[14].length() - 2));
+											if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5))
+												&& expectedFdPoints < 30)
+												allPlayers25AvoidPitchers30[playerPosition].push_back(singlePlayerData);
+											if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5))
+												&& expectedFdPoints < 40)
+												allPlayers25AvoidPitchers40[playerPosition].push_back(singlePlayerData);
+										}
+									}
+									
 								}
-								allPlayers[playerPosition].push_back(singlePlayerData);
-								int battingOrder = atoi(thisLineActualResults[5].c_str());
-								if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5)))
-									allPlayersTwoThruFive[playerPosition].push_back(singlePlayerData);
-								if (battingOrder >= 2 && (battingOrder <= 4 || (playerPosition == 0 && battingOrder <= 5)))
-									allPlayers24[playerPosition].push_back(singlePlayerData);
 							}
 						}
 						if (nextIndex == string::npos)
@@ -233,7 +279,7 @@ void RefineAlgorithm()
 						nextIndex = actualResults.find("\n", currentIndex + 1);
 					}
 
-					for (int line = 0; line < 3; ++line) {
+					for (unsigned int line = 0; line < chosenLineupsList.size(); ++line) {
 						if (line > 0)
 							allPlayers.clear();
 						switch (line) {
@@ -245,11 +291,25 @@ void RefineAlgorithm()
 						case 2:
 							allPlayers = allPlayers24;
 							break;
+						case 3:
+							allPlayers = allPlayers25AvoidPitchers30;
+							break;
+						case 4:
+							allPlayers = allPlayers25AvoidPitchers40;
+							break;
 						default:
 							cout << "Too many lineups attempted" << endl;
 							break;
 						}
-						
+						bool bValidLineup = true;
+						for (unsigned int a = 0; a < allPlayers.size(); ++a) {
+							if (allPlayers[a].size() == 0) {
+								bValidLineup = false;
+								break;
+							}
+						}
+						if (!bValidLineup)
+							continue;
 						for (int a = 0; a < 6; ++a) {
 							sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
 						}
@@ -331,11 +391,7 @@ void RefineAlgorithm()
 					pitcherResultsTrackerFileName += "0";
 				pitcherResultsTrackerFileName += thisDate + ".txt";
 				pitcherResultsTrackerFile.open(pitcherResultsTrackerFileName);
-				string sabrPredictorFileName = "FangraphsSABRPredictions\\Pitchers\\2017";
-				if (d < 1000)
-					sabrPredictorFileName += "0";
-				sabrPredictorFileName += thisDate + ".csv";
-				string sabrPredictorText = GetEntireFileContents(sabrPredictorFileName);
+				string sabrPredictorText = getSabrPredictorFileContents(thisDate, true);
 
 				while (getline(pitcherResultsTrackerFile, resultsLine))
 				{
@@ -1376,9 +1432,7 @@ void GenerateNewLineup(CURL *curl)
 
 void GenerateNewLineupFromSabrPredictor(CURL *curl)
 {
-	string sabrPredictorFileName = "FangraphsSABRPredictions\\Batters\\";
-	sabrPredictorFileName += todaysDate + ".csv";
-	string sabrPredictorText = GetEntireFileContents(sabrPredictorFileName);
+	string sabrPredictorText = getSabrPredictorFileContents(todaysDate, false);
 	if (sabrPredictorText == "")
 		return;
 
