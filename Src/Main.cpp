@@ -145,8 +145,7 @@ void RefineAlgorithm()
 		float inputCoefficients[2] = { 0.0f, 1.0f };
 		vector< float > outputValues;
 
-		vector<float> chosenLineupsSabr;
-		vector<float> chosenLineupsSabrTwoThruFive;
+		vector< vector<float>> chosenLineupsList(3);
 
 		vector<float> pitcherInputValues;
 		vector<float> pitcherOutputValues;
@@ -193,11 +192,9 @@ void RefineAlgorithm()
 						vector<PlayerData> positionalPlayerData;
 						allPlayers.push_back(positionalPlayerData);
 					}
-					vector< vector<PlayerData> > allPlayersTwoThruFive;
-					for (int i = 0; i < 6; ++i) {
-						vector<PlayerData> positionalPlayerData;
-						allPlayersTwoThruFive.push_back(positionalPlayerData);
-					}
+					vector< vector<PlayerData> > allPlayersTwoThruFive(6);
+					vector< vector<PlayerData> > allPlayers24(6);
+					
 					size_t currentIndex = actualResults.find("</script>", 0);
 					currentIndex = actualResults.find("\n", currentIndex + 1);
 					size_t nextIndex = actualResults.find("\n", currentIndex + 1);
@@ -224,8 +221,10 @@ void RefineAlgorithm()
 								}
 								allPlayers[playerPosition].push_back(singlePlayerData);
 								int battingOrder = atoi(thisLineActualResults[5].c_str());
-								if (battingOrder >= 2 && battingOrder <= 5)
+								if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5)))
 									allPlayersTwoThruFive[playerPosition].push_back(singlePlayerData);
+								if (battingOrder >= 2 && (battingOrder <= 4 || (playerPosition == 0 && battingOrder <= 5)))
+									allPlayers24[playerPosition].push_back(singlePlayerData);
 							}
 						}
 						if (nextIndex == string::npos)
@@ -233,24 +232,32 @@ void RefineAlgorithm()
 						currentIndex = nextIndex + 1;
 						nextIndex = actualResults.find("\n", currentIndex + 1);
 					}
-					for (int a = 0; a < 6; ++a) {
-						sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
-					}
-					maxTotalBudget = 25000;
-					vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
-					float totalPoints = tallyLineupTotals(chosenLineup, actualResults, thisDate);
-					chosenLineupsSabr.push_back(totalPoints);
 
-					allPlayers.clear();
-					allPlayers = allPlayersTwoThruFive;
-					for (int a = 0; a < 6; ++a) {
-						sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+					for (int line = 0; line < 3; ++line) {
+						if (line > 0)
+							allPlayers.clear();
+						switch (line) {
+						case 0:
+							break;
+						case 1:
+							allPlayers = allPlayersTwoThruFive;
+							break;
+						case 2:
+							allPlayers = allPlayers24;
+							break;
+						default:
+							cout << "Too many lineups attempted" << endl;
+							break;
+						}
+						
+						for (int a = 0; a < 6; ++a) {
+							sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+						}
+						maxTotalBudget = 25000;
+						vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
+						float totalPoints = tallyLineupTotals(chosenLineup, actualResults, thisDate);
+						chosenLineupsList[line].push_back(totalPoints);
 					}
-					maxTotalBudget = 25000;
-					chosenLineup.clear();
-					chosenLineup = OptimizeLineupToFitBudget();
-					totalPoints = tallyLineupTotals(chosenLineup, actualResults, thisDate);
-					chosenLineupsSabrTwoThruFive.push_back(totalPoints);
 				}
 				while (getline(resultsTrackerFile, resultsLine))
 				{
@@ -413,13 +420,13 @@ void RefineAlgorithm()
 		}
 
 		if (bRefineForBatters) {
-			float totalLineupPoints = 0;
-			for (unsigned int i = 0; i < chosenLineupsSabr.size(); ++i) {
-				totalLineupPoints += chosenLineupsSabr[i];
-			}
-			float totalLineupPointsTwoThruFive = 0;
-			for (unsigned int i = 0; i < chosenLineupsSabrTwoThruFive.size(); ++i) {
-				totalLineupPointsTwoThruFive += chosenLineupsSabrTwoThruFive[i];
+			vector<float> lineupsTotalPoints;
+			for (unsigned int i = 0; i < chosenLineupsList.size(); ++i) {
+				float totalLineupPoints = 0;
+				for (unsigned int line = 0; line < chosenLineupsList[i].size(); ++line) {
+					totalLineupPoints += chosenLineupsList[i][line];
+				}
+				lineupsTotalPoints.push_back(totalLineupPoints);
 			}
 
 			float fCoefficientStep = 0.05f;
