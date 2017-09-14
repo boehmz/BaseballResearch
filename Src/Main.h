@@ -22,6 +22,12 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl);
 void ChooseAPitcher(CURL *curl);
 void Analyze2016Stats();
 
+struct TeamStackTracker {
+	std::string teamCode;
+	float teamTotalExpectedPoints;
+	int numPlayersAdded;
+};
+
 struct BeatTheStreakPlayerProfile
 {
 	std::string playerName =  "";
