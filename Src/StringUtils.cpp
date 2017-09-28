@@ -90,7 +90,7 @@ void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuff
 	}
 }
 
-std::vector<string> SplitStringIntoMultiple(std::string wholeString, std::string tokens)
+std::vector<string> SplitStringIntoMultiple(std::string wholeString, std::string tokens, std::string removeFromIndividual)
 {
 	vector<string> stringArray;
 	string singleString;
@@ -98,7 +98,15 @@ std::vector<string> SplitStringIntoMultiple(std::string wholeString, std::string
 	do
 	{
 		next_token = wholeString.find_first_of(tokens, cur_token);
-		stringArray.push_back(wholeString.substr(cur_token, next_token - cur_token));
+		string individualString = wholeString.substr(cur_token, next_token - cur_token);
+		if (removeFromIndividual != "") {
+			size_t individualIndex = individualString.find(removeFromIndividual);
+			while (individualIndex != string::npos) {
+				individualString.erase(individualIndex, removeFromIndividual.length());
+				individualIndex = individualString.find(removeFromIndividual);
+			}
+		}
+		stringArray.push_back(individualString);
 		if (next_token != string::npos)
 			cur_token = next_token + 1;
 	} while (next_token != string::npos);
