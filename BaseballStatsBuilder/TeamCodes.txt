@@ -29,7 +29,7 @@ Detroit Tigers;Comerica Park;Detroit;det;
 Colorado Rockies;Coors Field;Colorado;col;
 Washington Nationals;Nationals Park;Washington;was;
 
-weather data name; stadium name; .teamrankings.com name; 3 letter code
+weather data name; stadium name; .teamrankings.com name; standard 3 letter code
 // still need to confirm:
 // Giants stadium name
 // Indians stadium name
