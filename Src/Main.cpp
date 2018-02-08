@@ -14,6 +14,7 @@
 #include "Main.h"
 using namespace std;
 
+// BeatTheStreak not supported past 2017, RIP
 GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
@@ -22,7 +23,7 @@ int earliestGameTime = -1;
 std::string todaysDate = "20171001";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOf2017SeasonPassed = 161.0f / 162.0f;
+float percentOfSeasonPassed = 161.0f / 162.0f;
 // tournament is:
 // any batting order
 // applies team stacks
@@ -1130,37 +1131,37 @@ void ChooseAPitcher(CURL *curl)
 				placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
 			}
 
-			FullSeasonStatsAdvanced pitcherVBatter2017Stats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
-			FullSeasonStatsAdvanced pitcherVBatter2016Stats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2016", curl);
+			FullSeasonStatsAdvanced pitcherVBatterThisYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2018", curl);
+			FullSeasonStatsAdvanced pitcherVBatterLastYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
 			FullSeasonStatsAdvanced pitcherVBatterCareerStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "Total", curl);
 			
-			if (pitcherVBatter2016Stats.opsVersusLefty >= 0)
+			if (pitcherVBatterLastYearStats.opsVersusLefty >= 0)
 			{
-				pitcherVBatterCareerStats.opsVersusLefty = 0.5f * pitcherVBatterCareerStats.opsVersusLefty + 0.5f * pitcherVBatter2016Stats.opsVersusLefty;
-				pitcherVBatterCareerStats.isoVersusLefty = 0.5f * pitcherVBatterCareerStats.isoVersusLefty + 0.5f * pitcherVBatter2016Stats.isoVersusLefty;
-				pitcherVBatterCareerStats.wobaVersusLefty = 0.5f * pitcherVBatterCareerStats.wobaVersusLefty + 0.5f * pitcherVBatter2016Stats.wobaVersusLefty;
-				pitcherVBatterCareerStats.sluggingVersusLefty = 0.5f * pitcherVBatterCareerStats.sluggingVersusLefty + 0.5f * pitcherVBatter2016Stats.sluggingVersusLefty;
+				pitcherVBatterCareerStats.opsVersusLefty = 0.5f * pitcherVBatterCareerStats.opsVersusLefty + 0.5f * pitcherVBatterLastYearStats.opsVersusLefty;
+				pitcherVBatterCareerStats.isoVersusLefty = 0.5f * pitcherVBatterCareerStats.isoVersusLefty + 0.5f * pitcherVBatterLastYearStats.isoVersusLefty;
+				pitcherVBatterCareerStats.wobaVersusLefty = 0.5f * pitcherVBatterCareerStats.wobaVersusLefty + 0.5f * pitcherVBatterLastYearStats.wobaVersusLefty;
+				pitcherVBatterCareerStats.sluggingVersusLefty = 0.5f * pitcherVBatterCareerStats.sluggingVersusLefty + 0.5f * pitcherVBatterLastYearStats.sluggingVersusLefty;
 			}
-			if (pitcherVBatter2016Stats.opsVersusRighty >= 0)
+			if (pitcherVBatterLastYearStats.opsVersusRighty >= 0)
 			{
-				pitcherVBatterCareerStats.opsVersusRighty = 0.5f * pitcherVBatterCareerStats.opsVersusRighty + 0.5f * pitcherVBatter2016Stats.opsVersusRighty;
-				pitcherVBatterCareerStats.isoVersusRighty = 0.5f * pitcherVBatterCareerStats.isoVersusRighty + 0.5f * pitcherVBatter2016Stats.isoVersusRighty;
-				pitcherVBatterCareerStats.wobaVersusRighty = 0.5f * pitcherVBatterCareerStats.wobaVersusRighty + 0.5f * pitcherVBatter2016Stats.wobaVersusRighty;
-				pitcherVBatterCareerStats.sluggingVersusRighty = 0.5f * pitcherVBatterCareerStats.sluggingVersusRighty + 0.5f * pitcherVBatter2016Stats.sluggingVersusRighty;
+				pitcherVBatterCareerStats.opsVersusRighty = 0.5f * pitcherVBatterCareerStats.opsVersusRighty + 0.5f * pitcherVBatterLastYearStats.opsVersusRighty;
+				pitcherVBatterCareerStats.isoVersusRighty = 0.5f * pitcherVBatterCareerStats.isoVersusRighty + 0.5f * pitcherVBatterLastYearStats.isoVersusRighty;
+				pitcherVBatterCareerStats.wobaVersusRighty = 0.5f * pitcherVBatterCareerStats.wobaVersusRighty + 0.5f * pitcherVBatterLastYearStats.wobaVersusRighty;
+				pitcherVBatterCareerStats.sluggingVersusRighty = 0.5f * pitcherVBatterCareerStats.sluggingVersusRighty + 0.5f * pitcherVBatterLastYearStats.sluggingVersusRighty;
 			}
-			if (pitcherVBatter2017Stats.opsVersusLefty >= 0)
+			if (pitcherVBatterThisYearStats.opsVersusLefty >= 0)
 			{
-				pitcherVBatterCareerStats.opsVersusLefty = (1.0f - percentOf2017SeasonPassed) * pitcherVBatterCareerStats.opsVersusLefty + percentOf2017SeasonPassed * pitcherVBatter2017Stats.opsVersusLefty;
-				pitcherVBatterCareerStats.isoVersusLefty = (1.0f - percentOf2017SeasonPassed) * pitcherVBatterCareerStats.isoVersusLefty + percentOf2017SeasonPassed * pitcherVBatter2017Stats.isoVersusLefty;
-				pitcherVBatterCareerStats.wobaVersusLefty = (1.0f - percentOf2017SeasonPassed) * pitcherVBatterCareerStats.wobaVersusLefty + percentOf2017SeasonPassed * pitcherVBatter2017Stats.wobaVersusLefty;
-				pitcherVBatterCareerStats.sluggingVersusLefty = (1.0f - percentOf2017SeasonPassed) * pitcherVBatterCareerStats.sluggingVersusLefty + percentOf2017SeasonPassed * pitcherVBatter2017Stats.sluggingVersusLefty;
+				pitcherVBatterCareerStats.opsVersusLefty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.opsVersusLefty + percentOfSeasonPassed * pitcherVBatterThisYearStats.opsVersusLefty;
+				pitcherVBatterCareerStats.isoVersusLefty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.isoVersusLefty + percentOfSeasonPassed * pitcherVBatterThisYearStats.isoVersusLefty;
+				pitcherVBatterCareerStats.wobaVersusLefty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.wobaVersusLefty + percentOfSeasonPassed * pitcherVBatterThisYearStats.wobaVersusLefty;
+				pitcherVBatterCareerStats.sluggingVersusLefty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.sluggingVersusLefty + percentOfSeasonPassed * pitcherVBatterThisYearStats.sluggingVersusLefty;
 			}
-			if (pitcherVBatter2017Stats.opsVersusRighty >= 0)
+			if (pitcherVBatterThisYearStats.opsVersusRighty >= 0)
 			{
-				pitcherVBatterCareerStats.opsVersusRighty = (1.0f - percentOf2017SeasonPassed) * pitcherVBatterCareerStats.opsVersusRighty + percentOf2017SeasonPassed * pitcherVBatter2017Stats.opsVersusRighty;
-				pitcherVBatterCareerStats.isoVersusRighty = (1.0f - percentOf2017SeasonPassed) * pitcherVBatterCareerStats.isoVersusRighty + percentOf2017SeasonPassed * pitcherVBatter2017Stats.isoVersusRighty;
-				pitcherVBatterCareerStats.wobaVersusRighty = (1.0f - percentOf2017SeasonPassed) * pitcherVBatterCareerStats.wobaVersusRighty + percentOf2017SeasonPassed * pitcherVBatter2017Stats.wobaVersusRighty;
-				pitcherVBatterCareerStats.sluggingVersusRighty = (1.0f - percentOf2017SeasonPassed) * pitcherVBatterCareerStats.sluggingVersusRighty + percentOf2017SeasonPassed * pitcherVBatter2017Stats.sluggingVersusRighty;
+				pitcherVBatterCareerStats.opsVersusRighty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.opsVersusRighty + percentOfSeasonPassed * pitcherVBatterThisYearStats.opsVersusRighty;
+				pitcherVBatterCareerStats.isoVersusRighty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.isoVersusRighty + percentOfSeasonPassed * pitcherVBatterThisYearStats.isoVersusRighty;
+				pitcherVBatterCareerStats.wobaVersusRighty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.wobaVersusRighty + percentOfSeasonPassed * pitcherVBatterThisYearStats.wobaVersusRighty;
+				pitcherVBatterCareerStats.sluggingVersusRighty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.sluggingVersusRighty + percentOfSeasonPassed * pitcherVBatterThisYearStats.sluggingVersusRighty;
 			}
 			string opponentTeamCode = "";
 			auto opponent = opponentMap.find(singlePlayerData.teamCode);
@@ -1221,13 +1222,13 @@ void ChooseAPitcher(CURL *curl)
 			{
 				if (thisYearPitcherStats.strikeOutsPer9 >= 0)
 				{
-					lastYearPitcherStats.era *= 1.0f - percentOf2017SeasonPassed;
-					lastYearPitcherStats.fip *= 1.0f - percentOf2017SeasonPassed;
-					lastYearPitcherStats.strikeOutsPer9 *= 1.0f - percentOf2017SeasonPassed;
+					lastYearPitcherStats.era *= 1.0f - percentOfSeasonPassed;
+					lastYearPitcherStats.fip *= 1.0f - percentOfSeasonPassed;
+					lastYearPitcherStats.strikeOutsPer9 *= 1.0f - percentOfSeasonPassed;
 
-					lastYearPitcherStats.era += thisYearPitcherStats.era * percentOf2017SeasonPassed;
-					lastYearPitcherStats.fip += thisYearPitcherStats.fip * percentOf2017SeasonPassed;
-					lastYearPitcherStats.strikeOutsPer9 += thisYearPitcherStats.strikeOutsPer9 * percentOf2017SeasonPassed;
+					lastYearPitcherStats.era += thisYearPitcherStats.era * percentOfSeasonPassed;
+					lastYearPitcherStats.fip += thisYearPitcherStats.fip * percentOfSeasonPassed;
+					lastYearPitcherStats.strikeOutsPer9 += thisYearPitcherStats.strikeOutsPer9 * percentOfSeasonPassed;
 				}
 			}
 
@@ -1236,8 +1237,8 @@ void ChooseAPitcher(CURL *curl)
 			float opponentOps = 0;
 			if (opponentsInfo != opponentMap.end())
 			{
-				opponentRunsPerGame *= max(0.0f, 1.0f - (percentOf2017SeasonPassed * 2.0f));
-				opponentStrikeoutsPerGame *= max(0.0f, 1.0f - (percentOf2017SeasonPassed * 2.0f));
+				opponentRunsPerGame *= max(0.0f, 1.0f - (percentOfSeasonPassed * 2.0f));
+				opponentStrikeoutsPerGame *= max(0.0f, 1.0f - (percentOfSeasonPassed * 2.0f));
 
 				size_t opponentTeamIndex = team2017RunsPerGameData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
 				opponentTeamIndex = team2017RunsPerGameData.find("data-sort=", opponentTeamIndex + 1);
@@ -1246,13 +1247,13 @@ void ChooseAPitcher(CURL *curl)
 				opponentOps = stof(team2017RunsPerGameData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 				// ops to runs per game is
 				// 13.349 * ops - 5.379
-				opponentRunsPerGame += (13.349f * opponentOps - 5.379f) * min(1.0f, percentOf2017SeasonPassed * 2.0f);
+				opponentRunsPerGame += (13.349f * opponentOps - 5.379f) * min(1.0f, percentOfSeasonPassed * 2.0f);
 
 				opponentTeamIndex = team2017StrikeoutData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
 				opponentTeamIndex = team2017StrikeoutData.find("data-sort=", opponentTeamIndex + 1);
 				opponentTeamIndex = team2017StrikeoutData.find(">", opponentTeamIndex + 1);
 				opponentTeamNextIndex = team2017StrikeoutData.find("<", opponentTeamIndex + 1);
-				opponentStrikeoutsPerGame += stof(team2017StrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str()) * min(1.0f, percentOf2017SeasonPassed * 2.0f);
+				opponentStrikeoutsPerGame += stof(team2017StrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str()) * min(1.0f, percentOfSeasonPassed * 2.0f);
 			
 				// ballpark factors
 				float pitcherBallparkHomerRateVsRighty, pitcherBallparkHomerRateVsLefty;
@@ -4321,7 +4322,7 @@ void GetBeatTheStreakCandidates(CURL *curl)
 			{
 				string pitcherGID = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
 
-				//FullSeasonStatsAdvanced pitcherVBatter2017Stats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
+				//FullSeasonStatsAdvanced pitcherVBatterThisYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
 				FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats(pitcherGID, "2017", curl);
 				for (int i = 0; i < 19; ++i)
 				{
@@ -4359,7 +4360,7 @@ void GetBeatTheStreakCandidates(CURL *curl)
 			{
 				string pitcherGID = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
 				
-				//FullSeasonStatsAdvanced pitcherVBatter2017Stats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
+				//FullSeasonStatsAdvanced pitcherVBatterThisYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
 				FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats(pitcherGID, "2017", curl);
 				
 				if ( pitcher2017Stats.strikeOutsPer9 < 7.69f && pitcher2017Stats.era >= 4.15f && pitcher2017Stats.whip >= 1.308f)
