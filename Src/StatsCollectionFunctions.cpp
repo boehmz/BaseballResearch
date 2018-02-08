@@ -97,7 +97,7 @@ string GetPlayerStatsRawString(string playerId, string yearString, CURL *curl)
 	else 
 		playerStatsLookupBuffer = GetEntireFileContents("Player2017DataCached\\PlayerId" + playerId + ".txt");
 	
-	if (yearString == "2017")
+	if (yearString == CURRENT_YEAR)
 	{
 		size_t dateMetaDataIndex = playerStatsLookupBuffer.find("/ZachDateMetaData", 0);
 		if (dateMetaDataIndex == string::npos || playerStatsLookupBuffer.substr(0, dateMetaDataIndex) < todaysDate)
@@ -223,10 +223,10 @@ FullSeasonPitcherStats GetPitcherStats(string playerId, string yearString, CURL 
 {
 	FullSeasonPitcherStats pitcherStats;
 
-	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != "2017", AdvancedStatsPitchingStarterStatsOnly);
+	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, AdvancedStatsPitchingStarterStatsOnly);
 	if (fangraphsPlayerData == "")
 	{
-		fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != "2017", 0);
+		fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, 0);
 	}
 	bool bStarterOnlyNotAvailable = fangraphsPlayerData.find("As Starter") == string::npos;
 
@@ -299,7 +299,7 @@ FullSeasonStatsAdvanced GetPitcherAdvancedStats(string playerId, string yearStri
 {
 	FullSeasonStatsAdvanced pitcherAdvancedStats;
 
-	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != "2017", AdvancedStatsPitchingSplitsVersusLeftHand);
+	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, AdvancedStatsPitchingSplitsVersusLeftHand);
 	size_t fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"standard\"", 0);
 	if (fangraphsCurrentIndex != string::npos)
 	{
@@ -346,7 +346,7 @@ FullSeasonStatsAdvanced GetPitcherAdvancedStats(string playerId, string yearStri
 		}
 	}
 
-	fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != "2017", AdvancedStatsPitchingSplitsVersusRightHand);
+	fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, AdvancedStatsPitchingSplitsVersusRightHand);
 	fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"standard\"", 0);
 	if (fangraphsCurrentIndex != string::npos)
 	{
@@ -400,7 +400,7 @@ FullSeasonStatsAdvanced GetBatterAdvancedStats(string playerId, string yearStrin
 {
 	FullSeasonStatsAdvanced batterAdvancedStats;
 
-	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != "2017", AdvancedStatsBattingSplitsVersusLeftHand);
+	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, AdvancedStatsBattingSplitsVersusLeftHand);
 	size_t fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"standard\"", 0);
 	if (fangraphsCurrentIndex != string::npos)
 	{
@@ -452,7 +452,7 @@ FullSeasonStatsAdvanced GetBatterAdvancedStats(string playerId, string yearStrin
 		}
 	}
 
-	fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != "2017", AdvancedStatsBattingSplitsVersusRightHand);
+	fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, AdvancedStatsBattingSplitsVersusRightHand);
 	fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"standard\"", 0);
 	if (fangraphsCurrentIndex != string::npos)
 	{

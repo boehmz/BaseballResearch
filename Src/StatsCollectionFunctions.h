@@ -18,6 +18,12 @@ struct PlayerData
 	float parkFactor;
 };
 
+struct greaterSortingFunction
+{
+	template<class T>
+	bool operator()(T const &a, T const &b) const { return a > b; }
+};
+
 size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
 std::string GetEntireFileContents(std::string fileName);
 std::string ReplaceURLWhiteSpaces(std::string originalURL);

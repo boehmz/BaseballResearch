@@ -50,7 +50,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::UnitTest;
 
 	switch (processType)
 	{
@@ -133,17 +133,20 @@ float tallyLineupTotals(vector<PlayerData> chosenLineup, string actualResults, s
 }
 
 string getSabrPredictorFileContents(string date, bool bPitchers) {
+	int dateInt = atoi(date.c_str());
+	if (dateInt < 19410101) {
+		cout << "Incorrect date passed into getSabrPredictorFileContents, assuming 2017" << endl;
+		dateInt += 20170000;
+		char thisDateCStr[9];
+		_itoa_s(dateInt, thisDateCStr, 10);
+		date = thisDateCStr;
+	}
 	string sabrPredictorFileName = "FangraphsSABRPredictions\\";
 	if (bPitchers)
 		sabrPredictorFileName += "Pitchers\\";
 	else
 		sabrPredictorFileName += "Batters\\";
-	if (date.length() < 4)
-		sabrPredictorFileName += "20170" + date;
-	else if (date.length() == 4)
-		sabrPredictorFileName += "2017" + date;
-	else if (date.length() == 8)
-		sabrPredictorFileName += date;
+	sabrPredictorFileName += date;
 	sabrPredictorFileName += ".csv";
 	string sabrPredictorText = GetEntireFileContents(sabrPredictorFileName);
 	return sabrPredictorText;
@@ -185,20 +188,31 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 806;
-		reviewDateEnd = 927;
+		reviewDateStart = 20170806;
+		reviewDateEnd = 20171001;
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
-			if (d - ((d / 100) * 100) > 31)
-			{
-				d = ((d / 100) + 1) * 100;
+			int yearInt = d / 10000;
+			int monthInt = (d - yearInt * 10000) / 100;
+			int dayInt = (d - yearInt * 10000 - monthInt * 100);
+			if (dayInt > 31) {
+				d = yearInt * 10000 + (monthInt + 1) * 100;
 				continue;
 			}
-			char thisDateCStr[5];
+			if (monthInt > 10) {
+				d = (yearInt + 1) * 10000 + 315;
+				continue;
+			}
+			
+			char thisDateCStr[9];
 			_itoa_s(d, thisDateCStr, 10);
 			string thisDate = thisDateCStr;
+			string thisDateWithoutYear = thisDate.substr(4);
+			if (thisDateWithoutYear.at(0) == '0') {
+				thisDateWithoutYear = thisDateWithoutYear.substr(1);
+			}
 			string actualResults;
-			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + thisDate + "&game=fd&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
+			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + thisDateWithoutYear + "&game=fd&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
 			curl_easy_setopt(curl, CURLOPT_URL, resultsURL.c_str());
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &actualResults);
@@ -209,9 +223,7 @@ void RefineAlgorithm()
 
 			if (bRefineForBatters) {
 				ifstream resultsTrackerFile;
-				string resultsTrackerFileName = "2017ResultsTracker\\2017";
-				if (d < 1000)
-					resultsTrackerFileName += "0";
+				string resultsTrackerFileName = "2017ResultsTracker\\";
 				resultsTrackerFileName += thisDate + ".txt";
 				resultsTrackerFile.open(resultsTrackerFileName);
 				string sabrPredictorText = getSabrPredictorFileContents(thisDate, false);
@@ -357,15 +369,7 @@ void RefineAlgorithm()
 					vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
 					string thisPlayerId = lineValues[0];
 
-					/*		FullSeasonStats player2016Stats = GetBatterStats(thisPlayerId, "2017", curl);
-							if (lineValues[2] == "L")
-								thisInputVariables[1] = player2016Stats.averagePpgVsLefty;
-							else
-								thisInputVariables[1] = player2016Stats.averagePpgVsRighty;
-							thisInputVariables[0] = player2016Stats.averagePpg;
-					*/
-
-					size_t playerIdIndex = actualResults.find(thisDate + ";" + thisPlayerId + ";", 0);
+					size_t playerIdIndex = actualResults.find(thisDateWithoutYear + ";" + thisPlayerId + ";", 0);
 					if (playerIdIndex != string::npos)// && thisInputVariables[1] > 0)
 					{
 						inputVariables.push_back(thisInputVariables);
@@ -574,7 +578,7 @@ void RefineAlgorithm()
 					maxTotalBudget = 25000;
 					vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
 					if (chosenLineup.size() > 0) {
-						float totalPoints = tallyLineupTotals(chosenLineup, actualResults, thisDate);
+						float totalPoints = tallyLineupTotals(chosenLineup, actualResults, thisDateWithoutYear);
 						chosenLineupsList[line].push_back(totalPoints);
 					}
 				}
@@ -583,9 +587,7 @@ void RefineAlgorithm()
 
 			if (bRefineForPitchers) {
 				ifstream pitcherResultsTrackerFile;
-				string pitcherResultsTrackerFileName = "2017ResultsTracker\\Pitchers\\2017";
-				if (d < 1000)
-					pitcherResultsTrackerFileName += "0";
+				string pitcherResultsTrackerFileName = "2017ResultsTracker\\Pitchers\\";
 				pitcherResultsTrackerFileName += thisDate + ".txt";
 				pitcherResultsTrackerFile.open(pitcherResultsTrackerFileName);
 				string sabrPredictorText = getSabrPredictorFileContents(thisDate, true);
@@ -595,7 +597,7 @@ void RefineAlgorithm()
 					vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
 					string thisPlayerId = lineValues[0];
 
-					size_t playerIdIndex = actualResults.find(thisDate + ";" + thisPlayerId + ";", 0);
+					size_t playerIdIndex = actualResults.find(thisDateWithoutYear + ";" + thisPlayerId + ";", 0);
 					if (playerIdIndex != string::npos)
 					{
 						for (int i = 0; i < 3; ++i)
@@ -631,16 +633,12 @@ void RefineAlgorithm()
 				string actualGamesResults = GetEntireFileContents("2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt");
 				ifstream gamesPredictorFile;
 				string gamesPredictorFileName = "2017ResultsTracker\\TeamWinResults\\";
-				string thisDateWithYear = "2017";
-				if (d < 1000)
-					thisDateWithYear += "0";
-				thisDateWithYear += thisDate;
-				gamesPredictorFileName += thisDateWithYear + ".txt";
+				gamesPredictorFileName += thisDate + ".txt";
 				gamesPredictorFile.open(gamesPredictorFileName);
 
 				while (getline(gamesPredictorFile, resultsLine)) {
 					vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
-					size_t curentActualGamesIndex = actualGamesResults.find(thisDateWithYear);
+					size_t curentActualGamesIndex = actualGamesResults.find(thisDate);
 					vector<string> oddsResultsValues;
 					while (curentActualGamesIndex < string::npos) {
 						size_t nextActualGamesIndex = actualGamesResults.find("\n", curentActualGamesIndex + 1);
@@ -648,7 +646,7 @@ void RefineAlgorithm()
 						if (teamNameIndex < nextActualGamesIndex) {
 							oddsResultsValues = SplitStringIntoMultiple(actualGamesResults.substr(curentActualGamesIndex, nextActualGamesIndex - curentActualGamesIndex), ";");
 						}
-						curentActualGamesIndex = actualGamesResults.find(thisDateWithYear, curentActualGamesIndex + 1);
+						curentActualGamesIndex = actualGamesResults.find(thisDateWithoutYear, curentActualGamesIndex + 1);
 					}
 					if (oddsResultsValues.size() > 0) {
 						string correctPrediction = "0";
@@ -657,10 +655,10 @@ void RefineAlgorithm()
 						else if (oddsResultsValues[2] == ConvertTeamCodeToOddsPortalName(lineValues[0], false))
 							correctPrediction = "-1";
 						else {
-							cout << "something went wrong with a game on " << thisDateWithYear << " expecting " << lineValues[0] << " and " << lineValues[2] << endl;
+							cout << "something went wrong with a game on " << thisDate << " expecting " << lineValues[0] << " and " << lineValues[2] << endl;
 							continue;
 						}
-						gamesRecordOverallFile << thisDateWithYear << ";";
+						gamesRecordOverallFile << thisDateWithoutYear << ";";
 						gamesRecordOverallFile << resultsLine << correctPrediction << ";";
 						if (correctPrediction == "1")
 							gamesRecordOverallFile << oddsResultsValues[4] << ";" << oddsResultsValues[5];
@@ -680,6 +678,7 @@ void RefineAlgorithm()
 					totalLineupPoints += chosenLineupsList[i][line];
 				}
 				lineupsTotalPointsPer.push_back(totalLineupPoints / (float)chosenLineupsList[i].size());
+				sort(chosenLineupsList[i].begin(), chosenLineupsList[i].end(), greaterSortingFunction());
 			}
 
 			float fCoefficientStep = 0.05f;
@@ -780,7 +779,7 @@ void RefineAlgorithmForBeatTheStreak()
 		int numPredictedOneHitOrMoreAwayTop3 = 0;
 		int actualOneHitOrMoreAwayTop3 = 0;
 		reviewDateStart = 806;
-		reviewDateEnd = 914;
+		reviewDateEnd = 1001;
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
 			if (d - ((d / 100) * 100) > 31)
@@ -1181,8 +1180,8 @@ void ChooseAPitcher(CURL *curl)
 
 			// now look up 2016 points per game
 			singlePlayerData.playerPointsPerGame = 0;
-			FullSeasonPitcherStats newPitcherStats = GetPitcherStats(singlePlayerData.playerId, "2017", curl);
-			FullSeasonPitcherStats pitcherStats = GetPitcherStats(singlePlayerData.playerId, "2016", curl);
+			FullSeasonPitcherStats thisYearPitcherStats = GetPitcherStats(singlePlayerData.playerId, "2017", curl);
+			FullSeasonPitcherStats lastYearPitcherStats = GetPitcherStats(singlePlayerData.playerId, "2016", curl);
 			FullSeasonPitcherStats pitcherCareerStats = GetPitcherStats(singlePlayerData.playerId, "Total", curl);
 			// default to average
 			float opponentRunsPerGame = 4.4f;
@@ -1206,29 +1205,29 @@ void ChooseAPitcher(CURL *curl)
 				assert("No opponent information for pitcher found" == "");
 			}
 
-			if (pitcherStats.strikeOutsPer9 >= 0 && pitcherCareerStats.strikeOutsPer9 >= 0)
+			if (lastYearPitcherStats.strikeOutsPer9 >= 0 && pitcherCareerStats.strikeOutsPer9 >= 0)
 			{
-				pitcherStats.era = 0.5f * pitcherStats.era + 0.5f * pitcherCareerStats.era;
-				pitcherStats.fip = 0.5f * pitcherStats.fip + 0.5f * pitcherCareerStats.fip;
-				pitcherStats.strikeOutsPer9 = 0.5f * pitcherStats.strikeOutsPer9 + 0.5f * pitcherCareerStats.strikeOutsPer9;
+				lastYearPitcherStats.era = 0.5f * lastYearPitcherStats.era + 0.5f * pitcherCareerStats.era;
+				lastYearPitcherStats.fip = 0.5f * lastYearPitcherStats.fip + 0.5f * pitcherCareerStats.fip;
+				lastYearPitcherStats.strikeOutsPer9 = 0.5f * lastYearPitcherStats.strikeOutsPer9 + 0.5f * pitcherCareerStats.strikeOutsPer9;
 			}
 			else if (pitcherCareerStats.strikeOutsPer9 >= 0)
 			{
 				// no rookies sorry
-				//pitcherStats = pitcherCareerStats;
+				//lastYearPitcherStats = pitcherCareerStats;
 			}
 
-			if (pitcherStats.strikeOutsPer9 >= 0)
+			if (lastYearPitcherStats.strikeOutsPer9 >= 0)
 			{
-				if (newPitcherStats.strikeOutsPer9 >= 0)
+				if (thisYearPitcherStats.strikeOutsPer9 >= 0)
 				{
-					pitcherStats.era *= 1.0f - percentOf2017SeasonPassed;
-					pitcherStats.fip *= 1.0f - percentOf2017SeasonPassed;
-					pitcherStats.strikeOutsPer9 *= 1.0f - percentOf2017SeasonPassed;
+					lastYearPitcherStats.era *= 1.0f - percentOf2017SeasonPassed;
+					lastYearPitcherStats.fip *= 1.0f - percentOf2017SeasonPassed;
+					lastYearPitcherStats.strikeOutsPer9 *= 1.0f - percentOf2017SeasonPassed;
 
-					pitcherStats.era += newPitcherStats.era * percentOf2017SeasonPassed;
-					pitcherStats.fip += newPitcherStats.fip * percentOf2017SeasonPassed;
-					pitcherStats.strikeOutsPer9 += newPitcherStats.strikeOutsPer9 * percentOf2017SeasonPassed;
+					lastYearPitcherStats.era += thisYearPitcherStats.era * percentOf2017SeasonPassed;
+					lastYearPitcherStats.fip += thisYearPitcherStats.fip * percentOf2017SeasonPassed;
+					lastYearPitcherStats.strikeOutsPer9 += thisYearPitcherStats.strikeOutsPer9 * percentOf2017SeasonPassed;
 				}
 			}
 
@@ -1265,8 +1264,8 @@ void ChooseAPitcher(CURL *curl)
 			}
 			
 
-			pitcherStats.era *= parkRunsFactor;
-			pitcherStats.fip *= parkHomerFactor;
+			lastYearPitcherStats.era *= parkRunsFactor;
+			lastYearPitcherStats.fip *= parkHomerFactor;
 
 			//fip,			era,			kper9,	oppRunsPerGame,	oppKPer9
 			//0.200000003, 0.600000024, 0.500000000, 1.00000012, 0.500000000
@@ -1274,9 +1273,9 @@ void ChooseAPitcher(CURL *curl)
 			//0.300000012, 0.600000024, 0.500000000, 1.00000012, 0.400000006
 			float pitcherInputCoefficients[5] = { 0.2f, 0.6f, 0.5f, 1.0f, 0.4f };
 			float pitcherInputStats[5] = { 0,0,0,0,0 };
-			pitcherInputStats[0] = 9.0f / max(pitcherStats.fip, 1.0f);
-			pitcherInputStats[1] = 9.0f / max(pitcherStats.era, 1.0f);
-			pitcherInputStats[2] = pitcherStats.strikeOutsPer9 / 9.0f;
+			pitcherInputStats[0] = 9.0f / max(lastYearPitcherStats.fip, 1.0f);
+			pitcherInputStats[1] = 9.0f / max(lastYearPitcherStats.era, 1.0f);
+			pitcherInputStats[2] = lastYearPitcherStats.strikeOutsPer9 / 9.0f;
 			pitcherInputStats[3] = 9.0f / max(opponentRunsPerGame, 1.0f);
 			pitcherInputStats[4] = opponentStrikeoutsPerGame / 9.0f;
 
@@ -1314,18 +1313,18 @@ void ChooseAPitcher(CURL *curl)
 				{
 					myTeam->second.pitcherEstimatedPpg = singlePlayerData.playerPointsPerGame;
 					myTeam->second.teamWinEstimatedScore = 0;
-					myTeam->second.teamWinEstimatedScore -= newPitcherStats.fip * 0.1f;
-					myTeam->second.teamWinEstimatedScore -= newPitcherStats.whip * 0.7f;
+					myTeam->second.teamWinEstimatedScore -= thisYearPitcherStats.fip * 0.1f;
+					myTeam->second.teamWinEstimatedScore -= thisYearPitcherStats.whip * 0.7f;
 					myTeam->second.teamWinEstimatedScore -= opponentOps * 0.9f;
 				}
 			}
-			if (newPitcherStats.xfip > -0.1f)
+			if (thisYearPitcherStats.xfip > -0.1f)
 			{
-				pitcherStatsArchiveFile << singlePlayerData.teamCode << ";" << singlePlayerData.playerId << ";" << singlePlayerData.playerName << ";" << newPitcherStats.ToString();
+				pitcherStatsArchiveFile << singlePlayerData.teamCode << ";" << singlePlayerData.playerId << ";" << singlePlayerData.playerName << ";" << thisYearPitcherStats.ToString();
 				pitcherStatsArchiveFile << endl;
 			}
 			// throw this guy out if his game will most likely be rained out
-			if (pitcherStats.strikeOutsPer9 >= 0 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
+			if (lastYearPitcherStats.strikeOutsPer9 >= 0 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
 				positionalPlayerData.push_back(singlePlayerData);
 			if (placeHolderIndex == string::npos)
 				break;

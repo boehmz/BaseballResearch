@@ -3,6 +3,8 @@
 
 #include <string>
 
+#define CURRENT_YEAR "2017"
+
 enum GameType { Fanduel, DraftKings, BeatTheStreak };
 
 extern GameType gameType;
