@@ -1,7 +1,7 @@
-20170902/ZachDateMetaData
+20170930/ZachDateMetaData
 text/javascript"></script>
 
-<script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=6cIdLlGVg6ByGGXLWI8Sx27VvLnSHCjwJWE6FbvG_zQ1"></script>
+<script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=W-KSu4mMHKiFJM8fJcjb8YxnqNt7CCTKfH7f7RpWjxY1"></script>
 
 
 
@@ -46,6 +46,7 @@ text/javascript"></script>
     <div id="wrapper">
         <div id="top">
             
+
 
 <script type='text/javascript'>
     var googletag = googletag || {};
@@ -97,7 +98,7 @@ text/javascript"></script>
     });
 </script>
 
-<div class="header-chat-alert" style="visibility: hidden"><a class="header-chat-alert-text"></a></div>
+<div class="header-chat-alert-spacer" style="visibility: hidden"><a class="header-chat-alert-text"></a></div>
 
 <div class="header-container">
     <header>
@@ -142,10 +143,10 @@ text/javascript"></script>
                 <div class="menu-sub">
                     <div class="menusub_mid">
                         <div class="menu-sub-link">
-                            <a href="http://www.fangraphs.com/plus/product/fangraphs-membership/">FanGraphs Membership</a>
+                            <a href="//www.fangraphs.com/plus/product/fangraphs-membership/">FanGraphs Membership</a>
                         </div>
                         <div class="menu-sub-link">
-                            <a href="http://www.fangraphs.com/plus/shop/">FanGraphs T-Shirts</a>
+                            <a href="//www.fangraphs.com/plus/shop/">FanGraphs T-Shirts</a>
                         </div>
                     </div>
                 </div>
@@ -154,21 +155,21 @@ text/javascript"></script>
                 <div class="menu-item-label">Games</div>
                 <div class="menu-sub">
                     <div class="menu-sub-link">
-                        <a href="http://www.fangraphs.com/thegame/">The Game: Baseball</a>
+                        <a href="//www.fangraphs.com/thegame/">The Game: Baseball</a>
                     </div>
                     <div class="menu-sub-link">
-                        <a href="http://ottoneu.fangraphs.com/">Ottoneu Fantasy Baseball</a>
+                        <a href="//ottoneu.fangraphs.com/">Ottoneu Fantasy Baseball</a>
                     </div>
-                    <a href="http://ottoneu.fangraphs.com/">Signup</a>, 
-                    <a href="http://ottoneu.fangraphs.com/support">FAQ</a>, 
-                    <a href="http://www.fangraphs.com/fantasy/category/ottoneu/">Blog Posts</a>
+                    <a href="//ottoneu.fangraphs.com/">Signup</a>, 
+                    <a href="//ottoneu.fangraphs.com/support">FAQ</a>, 
+                    <a href="//www.fangraphs.com/fantasy/category/ottoneu/">Blog Posts</a>
                 </div>
             </li>
             <li class="menu-item" data-sub="blogs" data-full="true">
                 <div class="menu-item-label">Blogs</div>
                 <div class="menu-sub">
                     <div class="menu-sub-link">
-                        <a href="http://www.fangraphs.com/blogroll.aspx">Blog Roll</a>
+                        <a href="//www.fangraphs.com/blogroll.aspx">Blog Roll</a>
                     </div>
                     <div class="menu-sub-ajax">
                         
@@ -183,28 +184,28 @@ text/javascript"></script>
                             2017 Pre-Season Projections
                         </div>
                     </div>
-                    <a href="http://www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=fan">FANS</a>,
-                    <a href="http://www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=zips">ZiPS</a>,
-                    <a href="http://www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamer">Steamer</a>,
-                    <a href="http://www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=fangraphsdc">Depth Charts</a>,
-                    <a href="http://www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=atc">ATC</a>
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=fan">FANS</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=zips">ZiPS</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamer">Steamer</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=fangraphsdc">Depth Charts</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=atc">ATC</a>
                     <div class="menu-sub-header">
                         2017 600 PA / 200 IP Projections
                     </div>
-                    <a href="http://www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamer600">Steamer600</a>
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamer600">Steamer600</a>
                     <div class="menu-sub-header">
                         2017 Updated In-Season Projections
                     </div>
-                    <a href="http://www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=rzips">ZiPS (RoS)</a>,
-                    <a href="http://www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=uzips">ZiPS (Update)</a><br />
-                    <a href="http://www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamerr">Steamer (RoS)</a>, 
-                    <a href="http://www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steameru">Steamer (Update)</a>
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=rzips">ZiPS (RoS)</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=uzips">ZiPS (Update)</a><br />
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamerr">Steamer (RoS)</a>, 
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steameru">Steamer (Update)</a>
                     <div class="menu-sub-header">
                         DFS Projections
                     </div>
-                    <a href="http://www.fangraphs.com/dailyprojections.aspx?pos=all&stats=bat&type=sabersim">SaberSim</a>
+                    <a href="//www.fangraphs.com/dailyprojections.aspx?pos=all&stats=bat&type=sabersim">SaberSim</a>
                     <div class="menu-sub-link">
-                        <a href="http://www.fangraphs.com/auctiontool.aspx">Auction Calculator</a>
+                        <a href="//www.fangraphs.com/auctiontool.aspx">Auction Calculator</a>
                     </div>
                 </div>
             </li>
@@ -215,15 +216,15 @@ text/javascript"></script>
                     <div class="menusub_mid">
                         <div class="menu-sub-header">
                             Today: 
-                            <a href="http://www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2017&amp;month=0&amp;season1=2017&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-09-02">Probable Pitchers</a>
+                            <a href="//www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
+                            <a id="linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2017&amp;month=0&amp;season1=2017&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-09-30">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
                         </div>
-                        <a href="http://www.fangraphs.com/scoreboard.aspx">2017</a>,
-                        <a href="http://www.fangraphs.com/scoreboard.aspx?date=2016-11-02">2016</a>, 
-                        <a href="http://www.fangraphs.com/scoreboard.aspx?date=2015-11-01">2015</a>...
+                        <a href="//www.fangraphs.com/scoreboard.aspx">2017</a>,
+                        <a href="//www.fangraphs.com/scoreboard.aspx?date=2016-11-02">2016</a>, 
+                        <a href="//www.fangraphs.com/scoreboard.aspx?date=2015-11-01">2015</a>...
                                 
                         
                     </div>
@@ -234,10 +235,10 @@ text/javascript"></script>
                 <div class="menu-sub">
                     <div class="menusub_mid">
                         <div class="menu-sub-link">
-                            <a href="http://www.fangraphs.com/depthcharts.aspx?position=Standings">2017 Projected Standings</a>
+                            <a href="//www.fangraphs.com/depthcharts.aspx?position=Standings">2017 Projected Standings</a>
                         </div>
                         <div class="menu-sub-link">
-                            <a href="http://www.fangraphs.com/coolstandings.aspx">2017 Playoff Odds</a>, <a href="http://www.fangraphs.com/coolgraphs.aspx">Playoff Odds Graphs</a>
+                            <a href="//www.fangraphs.com/coolstandings.aspx">2017 Playoff Odds</a>, <a href="//www.fangraphs.com/coolgraphs.aspx">Playoff Odds Graphs</a>
                         </div>
                         <div id="menuteams">
                             
@@ -251,59 +252,63 @@ text/javascript"></script>
                     <div class="menusub_mid">
                         <div class="menu-sub-header">
                             Batting Leaders
-                            <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0">2017</a>, 
-                            <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=0">2016</a>, 
-                            <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2015&month=0&season1=2015&ind=0">2015</a>, 
-                            <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=1871&ind=0&team=0&rost=0&players=0">Career</a>
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0">2017</a>, 
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=0">2016</a>, 
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2015&month=0&season1=2015&ind=0">2015</a>, 
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=1871&ind=0&team=0&rost=0&players=0">Career</a>
                         </div>
                         <div class="menu-sub-header">
                             Pitching Leaders:    
-                            <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0">2017</a>,                      
-                            <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=0">2016</a>, 
-                            <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2015&month=0&season1=2015&ind=0">2015</a>,  
-                            <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=1871&ind=0&team=0&rost=0&players=0">Career</a>
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0">2017</a>,                      
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=0">2016</a>, 
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2015&month=0&season1=2015&ind=0">2015</a>,  
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=1871&ind=0&team=0&rost=0&players=0">Career</a>
                         </div>
                         <div class="menu-sub-link">
-                            <b><a href="http://www.fangraphs.com/leaderssplits.aspx">Splits Leaderboards</a></b>
+                            <b><a href="//www.fangraphs.com/leaderssplits.aspx">Splits Leaderboards</a></b>
                         </div>
                         <hr />
                         <div class="menu-sub-link">
-                            <a href="http://www.fangraphs.com/freeagents.aspx?sign=all&pos=all&nteam=all&oteam=all">2017 Free Agent Tracker!</a>
+                            <a href="//www.fangraphs.com/freeagents.aspx?sign=all&pos=all&nteam=all&oteam=all">2017 Free Agent Tracker!</a>
                         </div>
                         <hr />
                         <div class="menu-sub-header">
                             Minor League Leaders
                         </div>
-                        AAA: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=2&qual=y&type=0&season=2017">International</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=4&qual=y&type=0&season=2017">Pacific Coast</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=31&qual=y&type=0&season=2017">Mexican</a><br />
-                        AA: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=5&qual=y&type=0&season=2017">Eastern</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=6&qual=y&type=0&season=2017">Southern</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=7&qual=y&type=0&season=2017">Texas</a><br />
-                        A+: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=8&qual=y&type=0&season=2017">California</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=9&qual=y&type=0&season=2017">Carolina</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=10&qual=y&type=0&season=2017">Florida State</a><br />
-                        A: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=11&qual=y&type=0&season=2017">Midwest</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=14&qual=y&type=0&season=2017">South Atlantic</a><br />
-                        A-: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=12&qual=y&type=0&season=2017">New York-Penn</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=13&qual=y&type=0&season=2017">Northwest</a><br />
-                        R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=15&qual=y&type=0&season=2017">Appalachian</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=17&qual=y&type=0&season=2017">Gulf Coast</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=18&qual=y&type=0&season=2017">Pioneer</a>, <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=16&qual=y&type=0&season=2017">Arizona</a><br />
-                        R: <a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=30&qual=y&type=0&season=2017">Dominican</a>
+                        AAA: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=2&qual=y&type=0&season=2017">International</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=4&qual=y&type=0&season=2017">Pacific Coast</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=31&qual=y&type=0&season=2017">Mexican</a><br />
+                        AA: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=5&qual=y&type=0&season=2017">Eastern</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=6&qual=y&type=0&season=2017">Southern</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=7&qual=y&type=0&season=2017">Texas</a><br />
+                        A+: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=8&qual=y&type=0&season=2017">California</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=9&qual=y&type=0&season=2017">Carolina</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=10&qual=y&type=0&season=2017">Florida State</a><br />
+                        A: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=11&qual=y&type=0&season=2017">Midwest</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=14&qual=y&type=0&season=2017">South Atlantic</a><br />
+                        A-: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=12&qual=y&type=0&season=2017">New York-Penn</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=13&qual=y&type=0&season=2017">Northwest</a><br />
+                        R: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=15&qual=y&type=0&season=2017">Appalachian</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=17&qual=y&type=0&season=2017">Gulf Coast</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=18&qual=y&type=0&season=2017">Pioneer</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=16&qual=y&type=0&season=2017">Arizona</a><br />
+                        R: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=30&qual=y&type=0&season=2017">Dominican</a>
                         <hr />
                         <div class="menu-sub-header">
                             WAR Tools
                         </div>
-                        <a href="http://www.fangraphs.com/warleaders.aspx">Combined WAR Leaderboards</a><br />
-                        <a href="http://www.fangraphs.com/graphsw.aspx">WAR Graphs</a>, <a href="http://www.fangraphs.com/graphswd.aspx">WAR Grid</a>
+                        <a href="//www.fangraphs.com/warleaders.aspx">Combined WAR Leaderboards</a><br />
+                        <a href="//www.fangraphs.com/graphsw.aspx">WAR Graphs</a>, <a href="//www.fangraphs.com/graphswd.aspx">WAR Grid</a>
+                        <div class="menu-sub-header">
+                            WPA Tools
+                        </div>
+                        <a href="//www.fangraphs.com/wpainquirer.aspx">WPA Inquirer</a><br />
                         <div class="menu-sub-header">
                             Rookie Leaders
                         </div>
-                        <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=2">Batters 2017</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=2">Pitchers 2017</a>
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=2">Batters 2017</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=2">Pitchers 2017</a>
                         <div class="menu-sub-header">
                             Splits Leaders
                         </div>
-                        Batters: <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=13&season1=2017&ind=0">vs L</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=14&season1=2017&ind=0">vs R</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=15&season1=2017&ind=0">Home</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=16&season1=2017&ind=0">Away</a><br />
-                        Pitchers: <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=13&season1=2017&ind=0">vs L</a> , <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=14&season1=2017&ind=0">vs R</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=15&season1=2017&ind=0">Home</a>, <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=16&season1=2017&ind=0">Away</a>
+                        Batters: <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=13&season1=2017&ind=0">vs L</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=14&season1=2017&ind=0">vs R</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=15&season1=2017&ind=0">Home</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=16&season1=2017&ind=0">Away</a><br />
+                        Pitchers: <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=13&season1=2017&ind=0">vs L</a> , <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=14&season1=2017&ind=0">vs R</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=15&season1=2017&ind=0">Home</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=16&season1=2017&ind=0">Away</a>
                         <div class="menu-sub-header">
                             League Average Heatmaps
                         </div>
-                        <a href="http://www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2017&se=2017&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2017</a>, 
-                        <a href="http://www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2016&se=2016&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2016</a>, 
-                        <a href="http://www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2015&se=2015&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2015</a>, 
-                        <a href="http://www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2014&se=2014&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2014</a>, 
-                        <a href="http://www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2013&se=2013&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2013</a>
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2017&se=2017&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2017</a>, 
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2016&se=2016&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2016</a>, 
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2015&se=2015&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2015</a>, 
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2014&se=2014&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2014</a>, 
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2013&se=2013&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2013</a>
                     </div>
                 </div>
             </li>
@@ -314,85 +319,85 @@ text/javascript"></script>
                         <div class="menu-sub-header">
                             Team Batting Stats
                         </div>
-                        <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=0,ts&rost=&age=&filter=&players=0">2017</a>, 
-                        <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2016&month=0&season1=2016&ind=0&team=0,ts&rost=&age=&filter=&players=0">2016</a>, 
-                        <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2015&month=0&season1=2015&ind=0&team=0,ts&rost=&age=&filter=&players=0">2015</a>...
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=0,ts&rost=&age=&filter=&players=0">2017</a>, 
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2016&month=0&season1=2016&ind=0&team=0,ts&rost=&age=&filter=&players=0">2016</a>, 
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2015&month=0&season1=2015&ind=0&team=0,ts&rost=&age=&filter=&players=0">2015</a>...
                         <div class="menu-sub-header">
                             Team Pitching Stats
                         </div>
-                        <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=0,ts&rost=0&age=0&filter=&players=0">2017</a>, 
-                        <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2016&month=0&season1=2016&ind=0&team=0,ts&rost=0&age=0&filter=&players=0">2016</a>, 
-                        <a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2015&month=0&season1=2015&ind=0&team=0,ts&rost=0&age=0&filter=&players=0">2015</a>...
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=0,ts&rost=0&age=0&filter=&players=0">2017</a>, 
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2016&month=0&season1=2016&ind=0&team=0,ts&rost=0&age=0&filter=&players=0">2016</a>, 
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2015&month=0&season1=2015&ind=0&team=0,ts&rost=0&age=0&filter=&players=0">2015</a>...
 
                             <div class="menu-sub-link">
-                                <a href="http://www.fangraphs.com/depthcharts.aspx?position=Team">Team WAR Totals (RoS)</a>
+                                <a href="//www.fangraphs.com/depthcharts.aspx?position=Team">Team WAR Totals (RoS)</a>
                             </div>
                         
                         <table class="menu-team-table">
                             <tr>
                                 <td>
                                     <div class="menu-sub-header">AL East</div>
-                                    <a href="/teams/bluejays">Blue Jays</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=14">DC</a><br />
-                                    <a href="/teams/orioles">Orioles</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=2">DC</a><br />
-                                    <a href="/teams/rays">Rays</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=12">DC</a><br />
-                                    <a href="/teams/redsox">Red Sox</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=3">DC</a><br />
-                                    <a href="/teams/yankees">Yankees</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=9">DC</a><br />
+                                    <a href="/teams/bluejays">Blue Jays</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=14">DC</a><br />
+                                    <a href="/teams/orioles">Orioles</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=2">DC</a><br />
+                                    <a href="/teams/rays">Rays</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=12">DC</a><br />
+                                    <a href="/teams/redsox">Red Sox</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=3">DC</a><br />
+                                    <a href="/teams/yankees">Yankees</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=9">DC</a><br />
                                 </td>
                                 <td>
                                     <div class="menu-sub-header">AL Central</div>
-                                    <a href="/teams/indians">Indians</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=5">DC</a><br />
-                                    <a href="/teams/royals">Royals</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=7">DC</a><br />
-                                    <a href="/teams/tigers">Tigers</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=6">DC</a><br />
-                                    <a href="/teams/twins">Twins</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=8">DC</a><br />
-                                    <a href="/teams/whitesox">White Sox</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=4">DC</a><br />
+                                    <a href="/teams/indians">Indians</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=5">DC</a><br />
+                                    <a href="/teams/royals">Royals</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=7">DC</a><br />
+                                    <a href="/teams/tigers">Tigers</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=6">DC</a><br />
+                                    <a href="/teams/twins">Twins</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=8">DC</a><br />
+                                    <a href="/teams/whitesox">White Sox</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=4">DC</a><br />
                                 </td>
                                 <td>
                                     <div class="menu-sub-header">AL West</div>
-                                    <a href="/teams/angels">Angels</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=1">DC</a><br />
-                                    <a href="/teams/astros">Astros</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=21">DC</a><br />
-                                    <a href="/teams/athletics">Athletics</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=10">DC</a><br />
-                                    <a href="/teams/mariners">Mariners</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=11">DC</a><br />
-                                    <a href="/teams/rangers">Rangers</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=13">DC</a><br />
+                                    <a href="/teams/angels">Angels</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=1">DC</a><br />
+                                    <a href="/teams/astros">Astros</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=21">DC</a><br />
+                                    <a href="/teams/athletics">Athletics</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=10">DC</a><br />
+                                    <a href="/teams/mariners">Mariners</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=11">DC</a><br />
+                                    <a href="/teams/rangers">Rangers</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=13">DC</a><br />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="menu-sub-header">NL East</div>
-                                    <a href="/teams/braves">Braves</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=16">DC</a><br />
-                                    <a href="/teams/marlins">Marlins</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=20">DC</a><br />
-                                    <a href="/teams/mets">Mets</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=25">DC</a><br />
-                                    <a href="/teams/nationals">Nationals</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=24">DC</a><br />
-                                    <a href="/teams/phillies">Phillies</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=26">DC</a></td>
+                                    <a href="/teams/braves">Braves</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=16">DC</a><br />
+                                    <a href="/teams/marlins">Marlins</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=20">DC</a><br />
+                                    <a href="/teams/mets">Mets</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=25">DC</a><br />
+                                    <a href="/teams/nationals">Nationals</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=24">DC</a><br />
+                                    <a href="/teams/phillies">Phillies</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=26">DC</a></td>
                                 <td>
                                     <div class="menu-sub-header">NL Central</div>
-                                    <a href="/teams/brewers">Brewers</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=23">DC</a><br />
-                                    <a href="/teams/cardinals">Cardinals</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=28">DC</a><br />
-                                    <a href="/teams/cubs">Cubs</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=17">DC</a><br />
-                                    <a href="/teams/pirates">Pirates</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=27">DC</a><br />
-                                    <a href="/teams/reds">Reds</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=18">DC</a></td>
+                                    <a href="/teams/brewers">Brewers</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=23">DC</a><br />
+                                    <a href="/teams/cardinals">Cardinals</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=28">DC</a><br />
+                                    <a href="/teams/cubs">Cubs</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=17">DC</a><br />
+                                    <a href="/teams/pirates">Pirates</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=27">DC</a><br />
+                                    <a href="/teams/reds">Reds</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=18">DC</a></td>
                                 <td>
                                     <div class="menu-sub-header">NL West</div>
-                                    <a href="/teams/diamondbacks">D-backs</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=15">DC</a><br />
-                                    <a href="/teams/dodgers">Dodgers</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=22">DC</a><br />
-                                    <a href="/teams/giants">Giants</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=30">DC</a><br />
-                                    <a href="/teams/padres">Padres</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=29">DC</a><br />
-                                    <a href="/teams/rockies">Rockies</a>&nbsp; | &nbsp;<a href="http://www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=19">DC</a></td>
+                                    <a href="/teams/diamondbacks">D-backs</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=15">DC</a><br />
+                                    <a href="/teams/dodgers">Dodgers</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=22">DC</a><br />
+                                    <a href="/teams/giants">Giants</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=30">DC</a><br />
+                                    <a href="/teams/padres">Padres</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=29">DC</a><br />
+                                    <a href="/teams/rockies">Rockies</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=19">DC</a></td>
                             </tr>
                         </table>
                         <div class="menu-sub-header">
                             Positional Depth Charts
                         </div>
-                        Batters: <a href="http://www.fangraphs.com/depthcharts.aspx?position=C">C</a>,
-                        <a href="http://www.fangraphs.com/depthcharts.aspx?position=1B">1B</a>,
-                        <a href="http://www.fangraphs.com/depthcharts.aspx?position=2B">2B</a>,
-                        <a href="http://www.fangraphs.com/depthcharts.aspx?position=SS">SS</a>,
-                        <a href="http://www.fangraphs.com/depthcharts.aspx?position=3B">3B</a>,
-                        <a href="http://www.fangraphs.com/depthcharts.aspx?position=LF">LF</a>,
-                        <a href="http://www.fangraphs.com/depthcharts.aspx?position=CF">CF</a>,
-                        <a href="http://www.fangraphs.com/depthcharts.aspx?position=RF">RF</a>,
-                        <a href="http://www.fangraphs.com/depthcharts.aspx?position=DH">DH</a><br />
-                        Pitchers: <a href="http://www.fangraphs.com/depthcharts.aspx?position=SP">SP</a>,
-                        <a href="http://www.fangraphs.com/depthcharts.aspx?position=RP">RP</a>
+                        Batters: <a href="//www.fangraphs.com/depthcharts.aspx?position=C">C</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=1B">1B</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=2B">2B</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=SS">SS</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=3B">3B</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=LF">LF</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=CF">CF</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=RF">RF</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=DH">DH</a><br />
+                        Pitchers: <a href="//www.fangraphs.com/depthcharts.aspx?position=SP">SP</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=RP">RP</a>
                     </div>
                 </div>
             </li>
@@ -402,37 +407,37 @@ text/javascript"></script>
                 <div class="menu-sub">
                     <div class="menusub_mid">
                         <div class="menu-sub-link">
-                            <a href="http://www.fangraphs.com/library/">Library</a>
+                            <a href="//www.fangraphs.com/library/">Library</a>
                         </div>
                         <div class="menu-sub-header">
                             Batting Stats
                         </div>
-                        <a href="http://www.fangraphs.com/library/offense/woba/">wOBA</a>, <a href="http://www.fangraphs.com/library/offense/wrc/">wRC+</a>, <a href="http://www.fangraphs.com/library/offense/iso/">ISO</a>,
-                        <a href="http://www.fangraphs.com/library/offense/rate-stats/">K% & BB%</a>,
-                        <a href="http://www.fangraphs.com/library/offense/">more...</a>
+                        <a href="//www.fangraphs.com/library/offense/woba/">wOBA</a>, <a href="//www.fangraphs.com/library/offense/wrc/">wRC+</a>, <a href="//www.fangraphs.com/library/offense/iso/">ISO</a>,
+                        <a href="//www.fangraphs.com/library/offense/rate-stats/">K% & BB%</a>,
+                        <a href="//www.fangraphs.com/library/offense/">more...</a>
                         <div class="menu-sub-header">
                             Pitching Stats
                         </div>
-                        <a href="http://www.fangraphs.com/library/pitching/fip/">FIP</a>, <a href="http://www.fangraphs.com/library/pitching/xfip/">xFIP</a>, <a href="http://www.fangraphs.com/library/pitching/babip/">BABIP</a>,
-                        <a href="http://www.fangraphs.com/library/pitching/rate-stats/">K/9 & BB/9</a>,
-                        <a href="http://www.fangraphs.com/library/pitching/">more...</a>
+                        <a href="//www.fangraphs.com/library/pitching/fip/">FIP</a>, <a href="//www.fangraphs.com/library/pitching/xfip/">xFIP</a>, <a href="//www.fangraphs.com/library/pitching/babip/">BABIP</a>,
+                        <a href="//www.fangraphs.com/library/pitching/rate-stats/">K/9 & BB/9</a>,
+                        <a href="//www.fangraphs.com/library/pitching/">more...</a>
                         <div class="menu-sub-header">
                             Defensive Stats
                         </div>
-                        <a href="http://www.fangraphs.com/blogs/the-fangraphs-uzr-primer/">UZR Primer</a>,
-                        <a href="http://www.fangraphs.com/library/defense/drs/">DRS</a>, <a href="http://www.fangraphs.com/library/defense/fsr/">FSR</a>, <a href="http://www.fangraphs.com/library/defense/tz-tzl/">TZ & TZL</a>,
-                        <a href="http://www.fangraphs.com/library/defense/">more...</a>
+                        <a href="//www.fangraphs.com/blogs/the-fangraphs-uzr-primer/">UZR Primer</a>,
+                        <a href="//www.fangraphs.com/library/defense/drs/">DRS</a>, <a href="//www.fangraphs.com/library/defense/fsr/">FSR</a>, <a href="//www.fangraphs.com/library/defense/tz-tzl/">TZ & TZL</a>,
+                        <a href="//www.fangraphs.com/library/defense/">more...</a>
                         <div class="menu-sub-header">
                             More
                         </div>
-                        <a href="http://www.fangraphs.com/library/misc/war/">WAR</a>, <a href="http://www.fangraphs.com/blogs/ultimate-base-running-primer/">UBR Primer</a>, <a href="http://www.fangraphs.com/library/misc/wpa/">WPA</a>,
-                        <a href="http://www.fangraphs.com/library/misc/li/">LI</a>, <a href="http://www.fangraphs.com/library/misc/clutch/">Clutch</a>
+                        <a href="//www.fangraphs.com/library/misc/war/">WAR</a>, <a href="//www.fangraphs.com/blogs/ultimate-base-running-primer/">UBR Primer</a>, <a href="//www.fangraphs.com/library/misc/wpa/">WPA</a>,
+                        <a href="//www.fangraphs.com/library/misc/li/">LI</a>, <a href="//www.fangraphs.com/library/misc/clutch/">Clutch</a>
                         <div class="menu-sub-header">
                             Guts!
                         </div>
-                        <a href="http://www.fangraphs.com/guts.aspx?type=cn">Seasonal Constants</a><br />
-                        <a href="http://www.fangraphs.com/guts.aspx?type=pf&teamid=0&season=2015">Park Factors</a><br />
-                        <a href="http://www.fangraphs.com/guts.aspx?type=pfh&teamid=0&season=2015">Park Factors
+                        <a href="//www.fangraphs.com/guts.aspx?type=cn">Seasonal Constants</a><br />
+                        <a href="//www.fangraphs.com/guts.aspx?type=pf&teamid=0&season=2015">Park Factors</a><br />
+                        <a href="//www.fangraphs.com/guts.aspx?type=pfh&teamid=0&season=2015">Park Factors
                             by Handedness</a>
                     </div>
                 </div>
@@ -474,14 +479,20 @@ text/javascript"></script>
     </header>
 </div>
 
-<!-- start - 0--><!-- control end - 0-->
+
 
 <script>
 
     //header alert function
     $.get('/api/chatheader/getvalues', function (d) {
+
         d.chatBoolean ? $('.header-chat-alert').addClass('chatShow') : $('.header-chat-alert').removeClass('chatShow')
         $('.header-chat-alert-text').attr('href', d.chatLink).text(d.chatText)
+
+        if (!d.chatBoolean && d.defaultText.length) {
+            $('.header-chat-alert').addClass('chatShow')
+            $('.header-chat-alert-text').attr('href', d.defaultLink).text(d.defaultText)
+        }
     })
 
 
@@ -550,125 +561,7 @@ text/javascript"></script>
 
 <style>
 
-    /*for mobile only*/
-    /*ul.menu-top {
-        position: absolute;
-        z-index: -10;
-    }*/
-
-    #wrapper {
-        padding: 0 !important;
-    }
-
-    #wrapper.blog-wrapper {
-        padding-top: 130px !important;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-    }
-
-    #content {
-        padding: 0 15px;
-        padding-top: 150px;
-    }
-
-    .header-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 10000;
-        text-align: center;
-    }
-
-    header {
-        max-width: 1000px;
-        margin: auto;
-        background-color: #fff;
-    }
-
-    #top_da-new {
-        display: none;
-    }
-
-    .top-logo-new {
-        height: 60px;
-        margin-bottom: 0;
-    }
-
-    .top-logo {
-        margin-bottom: 0;
-        display: block;
-        /*transition: height .2s;*/
-    }
-
-    .top-logo-bkgd {
-        /*transition: width .2s;*/
-        width: 267px;
-        display: inline-block;
-        float: left;
-    }
-
-    .top-logo.sticky {
-        height: 50px;
-    }
-
-    .sticky .top-logo-bkgd {
-        width: 100%;
-    }
-
-    #top_da.sticky {
-        display: none;
-    }
-
-    .sticky .top-logo-img {
-        /*background-size: 300px;
-    background-position-x: -10px;*/
-        background-size: 275px;
-        background-position-x: -10px;
-    }
-
-    .top-logo-img-container {
-        transition: height, width .2s;
-        height: 100%;
-        width: 350px;
-    }
-
-    .sticky .top-logo-img-container {
-    }
-
-    .top-logo-img-tag {
-        width: 200px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -o-user-select: none;
-        user-select: none;
-    }
-
-
-
-    .header-chat-alert.sticky {
-        display: none;
-    }
-
-    .trans {
-        transition: width, height .2s;
-    }
-
-    .chatShow {
-        display: block;
-    }
-
-    .top-logo-img-new {
-        background-position: initial;
-    }
-
-    .top-logo-img {
-        background-position: -20px;
-    }
-
-    nav .menu-item {
-        border-top: 2px solid #000;
-    }
+   
 </style>
 
 <style>header {width: 1000px;}   
@@ -680,7 +573,6 @@ text/javascript"></script>
 
                     #content {padding-top: 20px;}
                 }</style>
-
 
         </div>
         <div id="content">
@@ -697,14 +589,14 @@ text/javascript"></script>
                             <strong style="font-size:15pt;">Chris Archer</strong></span>
                         <div class="spacer_10"></div>
                         <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 9/26/1988 (28 y, 11 m, 7 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-3/190 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=6345&position=P#draft" style="text-decoration:none;">2006 June Amateur Draft - Round: 5, Pick: 25, Overall: 161, Team: Cleveland Indians</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=6345&position=P#contract" style="text-decoration:none;">$25.5M / 6 Years (2014 - 2019) + 2 Option Years</a>
+                            <strong>Birthdate:</strong> 9/26/1988 (29 y, 4 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-2/195 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=6345&position=P#draft" style="text-decoration:none;">2006 June Amateur Draft - Round: 5, Pick: 25, Overall: 161, Team: Cleveland Indians</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=6345&position=P#contract" style="text-decoration:none;">$25.5M / 6 Years (2014 - 2019) + 2 Option Years</a>
                         </div>
                     </td>
                     
-                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="https://www.rotowire.com/users/ad_jump.asp?id=688&playerid=9400" style="text-decoration:none;">RotoWire News</a>:</b> Archer didn't factor into the decision Sunday despite holding the Cardinals to one run on five hits with one walk and eight strikeouts over seven strong innings. (8/27/2017)</div></td></tr>
+                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="https://www.rotowire.com/users/ad_jump.asp?id=688&playerid=9400" style="text-decoration:none;">RotoWire News</a>:</b> Archer (9-12) allowed six runs -- five earned -- on eight hits and a walk while striking out two batters through just 3.2 innings to take the loss against Baltimore on Sunday. (9/24/2017)</div></td></tr>
 
                 </tr>
-                <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">7/25/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-481-gearing-up-for-the-stretch-run/">The Sleeper and the Bust Episode: 481 – Gearing Up&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-481-gearing-up-for-the-stretch-run/#comments"><img src="images/commentslink.gif" border="0px" />3</a></span><br /><span class="m_date">4/6/2017</span> - <a href="http://www.fangraphs.com/blogs/is-chris-archers-changeup-taking-the-david-price-path/">Is Chris Archer's Changeup Taking the David Price &raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=155296">Travis Sawchik (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/is-chris-archers-changeup-taking-the-david-price-path/#comments"><img src="images/commentslink.gif" border="0px" />0</a></span><br /><span class="m_date">4/2/2017</span> - <a href="http://www.fangraphs.com/blogs/sunday-notes-meadows-sox-surprise-mackanin-gems-twins-d-backs-more/">Sunday Notes: Meadows, Sox Surprise, Mackanin Gems&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=25048">David Laurila (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/sunday-notes-meadows-sox-surprise-mackanin-gems-twins-d-backs-more/#comments"><img src="images/commentslink.gif" border="0px" />24</a></span><br /><span class="m_date">2/6/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-424-rays-corner-all-episode/">The Sleeper and the Bust Episode: 424 – Rays Corne&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-424-rays-corner-all-episode/#comments"><img src="images/commentslink.gif" border="0px" />6</a></span><br /><span class="m_date">12/7/2016</span> - <a href="http://www.fangraphs.com/blogs/the-time-to-trade-chris-archer-has-arrived/">The Time to Trade Chris Archer Has Arrived</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=112583">Corinne Landrey (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/the-time-to-trade-chris-archer-has-arrived/#comments"><img src="images/commentslink.gif" border="0px" />19</a></span><br /></div></td></tr>
+                <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">9/28/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-499-did-i-put-my-cup-on/">The Sleeper and the Bust Episode: 499 – ”Did I put&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-499-did-i-put-my-cup-on/#comments"><img src="images/commentslink.gif" border="0px" />0</a></span><br /><span class="m_date">9/11/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-495-abolish-pitchers-hitting/">The Sleeper and the Bust Episode: 495 – Abolish Pi&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-495-abolish-pitchers-hitting/#comments"><img src="images/commentslink.gif" border="0px" />0</a></span><br /><span class="m_date">7/25/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-481-gearing-up-for-the-stretch-run/">The Sleeper and the Bust Episode: 481 – Gearing Up&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-481-gearing-up-for-the-stretch-run/#comments"><img src="images/commentslink.gif" border="0px" />3</a></span><br /><span class="m_date">4/6/2017</span> - <a href="http://www.fangraphs.com/blogs/is-chris-archers-changeup-taking-the-david-price-path/">Is Chris Archer's Changeup Taking the David Price &raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=155296">Travis Sawchik (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/is-chris-archers-changeup-taking-the-david-price-path/#comments"><img src="images/commentslink.gif" border="0px" />0</a></span><br /><span class="m_date">4/2/2017</span> - <a href="http://www.fangraphs.com/blogs/sunday-notes-meadows-sox-surprise-mackanin-gems-twins-d-backs-more/">Sunday Notes: Meadows, Sox Surprise, Mackanin Gems&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=25048">David Laurila (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/sunday-notes-meadows-sox-surprise-mackanin-gems-twins-d-backs-more/#comments"><img src="images/commentslink.gif" border="0px" />24</a></span><br /></div></td></tr>
 
                 <tr id="so1" style="background-color: #FFF;"><td colspan="5" style="border-top:2px solid #D3D3D3; padding:3px; text-align:justify;"><div class="m_stories" style="width:100%; font-size:10pt"><center>Profiles:&nbsp;&nbsp;<a id="soa5" href="javascript:showMoreSO2013();">2013</a>&nbsp;&nbsp;<a id="soa6" href="javascript:showMoreSO2014();">2014</a>&nbsp;&nbsp;<a id="soa7" href="javascript:showMoreSO2015();">2015</a>&nbsp;&nbsp;<a id="soa8" href="javascript:showMoreSO2016();">2016</a>&nbsp;&nbsp;<a id="soa9"  href="javascript:showMoreSO2017();">2017</a>&nbsp;&nbsp;(Click Year to Expand / <a href="javascript:hideSO('so1');">Close</a>)</center></div></td></tr>
                 
@@ -1106,9 +998,9 @@ text/javascript"></script>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason1_ctl00__4">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">201.1</td><td class="grid_line_regular" align="right">4.02</td><td class="grid_line_regular" align="right">850</td><td class="grid_line_regular" align="right">183</td><td class="grid_line_regular" align="right">33</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">100</td><td class="grid_line_regular" align="right">90</td><td class="grid_line_regular" align="right">30</td><td class="grid_line_regular" align="right">67</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">233</td><td class="grid_line_regular" align="right">.235</td><td class="grid_line_regular" align="right">.300</td><td class="grid_line_regular" align="right">.403</td><td class="grid_line_regular" align="right">.304</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason1_ctl00__5">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">179.1</td><td class="grid_line_regular" align="right">3.66</td><td class="grid_line_regular" align="right">747</td><td class="grid_line_regular" align="right">162</td><td class="grid_line_regular" align="right">31</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">80</td><td class="grid_line_regular" align="right">73</td><td class="grid_line_regular" align="right">22</td><td class="grid_line_regular" align="right">52</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">225</td><td class="grid_line_regular" align="right">.235</td><td class="grid_line_regular" align="right">.294</td><td class="grid_line_regular" align="right">.389</td><td class="grid_line_regular" align="right">.294</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">196.0</td><td class="grid_line_regular" align="right">4.18</td><td class="grid_line_regular" align="right">833</td><td class="grid_line_regular" align="right">191</td><td class="grid_line_regular" align="right">36</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">101</td><td class="grid_line_regular" align="right">91</td><td class="grid_line_regular" align="right">27</td><td class="grid_line_regular" align="right">58</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">243</td><td class="grid_line_regular" align="right">.248</td><td class="grid_line_regular" align="right">.305</td><td class="grid_line_regular" align="right">.412</td><td class="grid_line_regular" align="right">.308</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason1_ctl00__6">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">939.2</td><td class="grid_line_regular" align="right">3.52</td><td class="grid_line_regular" align="right">3905</td><td class="grid_line_regular" align="right">821</td><td class="grid_line_regular" align="right">141</td><td class="grid_line_regular" align="right">11</td><td class="grid_line_regular" align="right">411</td><td class="grid_line_regular" align="right">367</td><td class="grid_line_regular" align="right">100</td><td class="grid_line_regular" align="right">303</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">28</td><td class="grid_line_regular" align="right">1015</td><td class="grid_line_regular" align="right">.230</td><td class="grid_line_regular" align="right">.296</td><td class="grid_line_regular" align="right">.363</td><td class="grid_line_regular" align="right">.290</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">956.1</td><td class="grid_line_regular" align="right">3.62</td><td class="grid_line_regular" align="right">3991</td><td class="grid_line_regular" align="right">850</td><td class="grid_line_regular" align="right">146</td><td class="grid_line_regular" align="right">11</td><td class="grid_line_regular" align="right">432</td><td class="grid_line_regular" align="right">385</td><td class="grid_line_regular" align="right">105</td><td class="grid_line_regular" align="right">309</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">28</td><td class="grid_line_regular" align="right">1033</td><td class="grid_line_regular" align="right">.233</td><td class="grid_line_regular" align="right">.299</td><td class="grid_line_regular" align="right">.369</td><td class="grid_line_regular" align="right">.293</td>
 	</tr>
 	</tbody>
 
@@ -1153,9 +1045,9 @@ text/javascript"></script>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__4">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">10.42</td><td class="grid_line_regular" align="right">3.00</td><td class="grid_line_regular" align="right">3.48</td><td class="grid_line_regular" align="right">1.34</td><td class="grid_line_regular" align="right">27.4 %</td><td class="grid_line_regular" align="right">7.9 %</td><td class="grid_line_regular" align="right">19.5 %</td><td class="grid_line_regular" align="right">.235</td><td class="grid_line_regular" align="right">1.24</td><td class="grid_line_regular" align="right">.296</td><td class="grid_line_regular" align="right">72.5 %</td><td class="grid_line_regular" align="right">3.81</td><td class="grid_line_regular" align="right">3.41</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__5">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">11.29</td><td class="grid_line_regular" align="right">2.61</td><td class="grid_line_regular" align="right">4.33</td><td class="grid_line_regular" align="right">1.10</td><td class="grid_line_regular" align="right">30.1 %</td><td class="grid_line_regular" align="right">7.0 %</td><td class="grid_line_regular" align="right">23.2 %</td><td class="grid_line_regular" align="right">.235</td><td class="grid_line_regular" align="right">1.19</td><td class="grid_line_regular" align="right">.316</td><td class="grid_line_regular" align="right">73.9 %</td><td class="grid_line_regular" align="right">3.17</td><td class="grid_line_regular" align="right">3.27</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">11.16</td><td class="grid_line_regular" align="right">2.66</td><td class="grid_line_regular" align="right">4.19</td><td class="grid_line_regular" align="right">1.24</td><td class="grid_line_regular" align="right">29.2 %</td><td class="grid_line_regular" align="right">7.0 %</td><td class="grid_line_regular" align="right">22.2 %</td><td class="grid_line_regular" align="right">.248</td><td class="grid_line_regular" align="right">1.27</td><td class="grid_line_regular" align="right">.328</td><td class="grid_line_regular" align="right">70.8 %</td><td class="grid_line_regular" align="right">3.43</td><td class="grid_line_regular" align="right">3.32</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__6">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">9.72</td><td class="grid_line_regular" align="right">2.90</td><td class="grid_line_regular" align="right">3.35</td><td class="grid_line_regular" align="right">0.96</td><td class="grid_line_regular" align="right">26.0 %</td><td class="grid_line_regular" align="right">7.8 %</td><td class="grid_line_regular" align="right">18.2 %</td><td class="grid_line_regular" align="right">.230</td><td class="grid_line_regular" align="right">1.20</td><td class="grid_line_regular" align="right">.293</td><td class="grid_line_regular" align="right">73.2 %</td><td class="grid_line_regular" align="right">3.40</td><td class="grid_line_regular" align="right">3.40</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">9.72</td><td class="grid_line_regular" align="right">2.91</td><td class="grid_line_regular" align="right">3.34</td><td class="grid_line_regular" align="right">0.99</td><td class="grid_line_regular" align="right">25.9 %</td><td class="grid_line_regular" align="right">7.7 %</td><td class="grid_line_regular" align="right">18.1 %</td><td class="grid_line_regular" align="right">.233</td><td class="grid_line_regular" align="right">1.21</td><td class="grid_line_regular" align="right">.296</td><td class="grid_line_regular" align="right">72.6 %</td><td class="grid_line_regular" align="right">3.45</td><td class="grid_line_regular" align="right">3.41</td>
 	</tr>
 	</tbody>
 
@@ -1203,9 +1095,9 @@ text/javascript"></script>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason3_ctl00__4">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.38</td><td class="grid_line_regular" align="right">17.7 %</td><td class="grid_line_regular" align="right">47.8 %</td><td class="grid_line_regular" align="right">34.5 %</td><td class="grid_line_regular" align="right">7.6 %</td><td class="grid_line_regular" align="right">16.2 %</td><td class="grid_line_regular" align="right">4.7 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">37.4 %</td><td class="grid_line_regular" align="right">34.3 %</td><td class="grid_line_regular" align="right">28.4 %</td><td class="grid_line_break" align="right">18.0 %</td><td class="grid_line_regular" align="right">49.3 %</td><td class="grid_line_regular" align="right">32.8 %</td><td class="grid_line_break" align="right">3402</td><td class="grid_line_regular" align="right">1260</td><td class="grid_line_regular" align="right">2142</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason3_ctl00__5">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.09</td><td class="grid_line_regular" align="right">22.6 %</td><td class="grid_line_regular" align="right">40.4 %</td><td class="grid_line_regular" align="right">37.0 %</td><td class="grid_line_regular" align="right">9.4 %</td><td class="grid_line_regular" align="right">12.9 %</td><td class="grid_line_regular" align="right">4.3 %</td><td class="grid_line_regular" align="right">60.0 %</td><td class="grid_line_break" align="right">34.6 %</td><td class="grid_line_regular" align="right">35.5 %</td><td class="grid_line_regular" align="right">29.9 %</td><td class="grid_line_break" align="right">14.2 %</td><td class="grid_line_regular" align="right">46.5 %</td><td class="grid_line_regular" align="right">39.4 %</td><td class="grid_line_break" align="right">2966</td><td class="grid_line_regular" align="right">1060</td><td class="grid_line_regular" align="right">1906</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.19</td><td class="grid_line_regular" align="right">22.2 %</td><td class="grid_line_regular" align="right">42.3 %</td><td class="grid_line_regular" align="right">35.4 %</td><td class="grid_line_regular" align="right">8.6 %</td><td class="grid_line_regular" align="right">14.6 %</td><td class="grid_line_regular" align="right">4.5 %</td><td class="grid_line_regular" align="right">60.0 %</td><td class="grid_line_break" align="right">35.9 %</td><td class="grid_line_regular" align="right">34.5 %</td><td class="grid_line_regular" align="right">29.6 %</td><td class="grid_line_break" align="right">12.9 %</td><td class="grid_line_regular" align="right">47.6 %</td><td class="grid_line_regular" align="right">39.5 %</td><td class="grid_line_break" align="right">3320</td><td class="grid_line_regular" align="right">1185</td><td class="grid_line_regular" align="right">2135</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason3_ctl00__6">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.34</td><td class="grid_line_regular" align="right">20.4 %</td><td class="grid_line_regular" align="right">45.6 %</td><td class="grid_line_regular" align="right">34.0 %</td><td class="grid_line_regular" align="right">9.4 %</td><td class="grid_line_regular" align="right">11.6 %</td><td class="grid_line_regular" align="right">6.6 %</td><td class="grid_line_regular" align="right">26.7 %</td><td class="grid_line_break" align="right">36.2 %</td><td class="grid_line_regular" align="right">35.6 %</td><td class="grid_line_regular" align="right">28.3 %</td><td class="grid_line_break" align="right">16.8 %</td><td class="grid_line_regular" align="right">50.2 %</td><td class="grid_line_regular" align="right">33.0 %</td><td class="grid_line_break" align="right">15432</td><td class="grid_line_regular" align="right">5603</td><td class="grid_line_regular" align="right">9829</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.36</td><td class="grid_line_regular" align="right">20.4 %</td><td class="grid_line_regular" align="right">45.8 %</td><td class="grid_line_regular" align="right">33.8 %</td><td class="grid_line_regular" align="right">9.3 %</td><td class="grid_line_regular" align="right">12.0 %</td><td class="grid_line_regular" align="right">6.6 %</td><td class="grid_line_regular" align="right">26.7 %</td><td class="grid_line_break" align="right">36.4 %</td><td class="grid_line_regular" align="right">35.4 %</td><td class="grid_line_regular" align="right">28.2 %</td><td class="grid_line_break" align="right">16.5 %</td><td class="grid_line_regular" align="right">50.4 %</td><td class="grid_line_regular" align="right">33.1 %</td><td class="grid_line_break" align="right">15786</td><td class="grid_line_regular" align="right">5728</td><td class="grid_line_regular" align="right">10058</td>
 	</tr>
 	</tbody>
 
@@ -1361,7 +1253,7 @@ text/javascript"></script>
         
     </div></div>
     <div class="footer-bar-item">
-        <span class="mobile-hide">Updated: Saturday, September 2, 2017 4:57 AM ET</span><span class="mobile-show">Updated: 9/2/2017 4:57 AM ET</span>
+        <span class="mobile-hide">Updated: Saturday, September 30, 2017 5:04 AM ET</span><span class="mobile-show">Updated: 9/30/2017 5:04 AM ET</span>
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>

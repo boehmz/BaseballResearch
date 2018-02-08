@@ -1,0 +1,11 @@
+1940;Norris, Bud;55.778
+109o;Peacock, Brad;51.9307
+117v;Gray, Sonny;50.0869
+125a;Hendricks, Kyle;48.4249
+106n;Duffy, Danny;46.9958
+124d;Manaea, Sean;44.9427
+106h;Teheran, Julio;44.5126
+137x;Brault, Steven;44.1824
+128v;Rodriguez, Eduardo;43.5174
+126c;Norris, Daniel;43.1163
+1530;Jackson, Edwin;42.4879
