@@ -21,11 +21,23 @@ size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
 
 string GetEntireFileContents(string fileName)
 {
-	ifstream readFromFile(fileName);
-	if (!readFromFile.good())
-		return "";
+#if PLATFORM_OSX
+    fileName = "/Users/boehmz/zb/BaseballResearch/BaseballStatsBuilder/" + fileName;
+    size_t folderPathIndex = fileName.find("\\");
+    while (folderPathIndex != string::npos) {
+        fileName = fileName.replace(folderPathIndex, 1, "/");
+        folderPathIndex = fileName.find("\\");
+    }
+#endif
+    ifstream readFromFile(fileName);
+    if (!readFromFile.good()) {
+        cerr << "Error: " << strerror(errno);
+        readFromFile.close();
+        return "";
+    }
 	stringstream sstr;
 	sstr << readFromFile.rdbuf();
+    readFromFile.close();
 	return sstr.str();
 }
 
