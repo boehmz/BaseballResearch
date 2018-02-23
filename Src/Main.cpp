@@ -139,7 +139,7 @@ string getSabrPredictorFileContents(string date, bool bPitchers) {
 		cout << "Incorrect date passed into getSabrPredictorFileContents, assuming 2017" << endl;
 		dateInt += 20170000;
 		char thisDateCStr[9];
-		_itoa_s(dateInt, thisDateCStr, 10);
+		itoa(dateInt, thisDateCStr, 10);
 		date = thisDateCStr;
 	}
 	string sabrPredictorFileName = "FangraphsSABRPredictions\\";
@@ -206,7 +206,7 @@ void RefineAlgorithm()
 			}
 			
 			char thisDateCStr[9];
-			_itoa_s(d, thisDateCStr, 10);
+			itoa(d, thisDateCStr, 10);
 			string thisDate = thisDateCStr;
 			string thisDateWithoutYear = thisDate.substr(4);
 			if (thisDateWithoutYear.at(0) == '0') {
@@ -789,7 +789,7 @@ void RefineAlgorithmForBeatTheStreak()
 				continue;
 			}
 			char thisDateCStr[5];
-			_itoa_s(d, thisDateCStr, 10);
+			itoa(d, thisDateCStr, 10);
 			string thisDate = thisDateCStr;
 			string actualResults;
 			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + thisDate + "&game=fd&user=GoldenExcalibur&key=G5970032941";
@@ -1407,7 +1407,7 @@ void GenerateNewLineup(CURL *curl)
 		  // first basemen
 		  std::string readBuffer;
 		  char pAsString[5];
-		  _itoa_s(p, pAsString, 10);
+		  itoa(p, pAsString, 10);
 		  string pAsStringString(pAsString);
 		  string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941";
 
@@ -1713,7 +1713,7 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl)
 				thisDayAbbreviatedInt -= 70;
 
 			char prevDayCStr[5];
-			_itoa_s(thisDayAbbreviatedInt, prevDayCStr, 10);
+			itoa(thisDayAbbreviatedInt, prevDayCStr, 10);
 			string prevDay = prevDayCStr;
 			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + prevDay + "&game=fd&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
 			curl_easy_setopt(curl, CURLOPT_URL, resultsURL.c_str());
@@ -1730,7 +1730,7 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl)
 			// first basemen
 			std::string readBuffer;
 			char pAsString[5];
-			_itoa_s(p, pAsString, 10);
+			itoa(p, pAsString, 10);
 			string pAsStringString(pAsString);
 			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941";
 
@@ -2557,7 +2557,7 @@ void DetermineProbableStarters(CURL* curl)
 			// first basemen
 			std::string readBuffer;
 			char pAsString[5];
-			_itoa_s(p, pAsString, 10);
+			itoa(p, pAsString, 10);
 			string pAsStringString(pAsString);
 			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=4&game=d&colA=0&daypt=1&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941";
 
@@ -2725,7 +2725,7 @@ void PopulateProbableRainoutGames(CURL *curl)
 			}
 
 
-			size_t dashIndex = weatherData.rfind(" – ", timeIndex);
+			size_t dashIndex = weatherData.rfind(" <96> ", timeIndex);
 			
 			size_t colonIndex = weatherData.find(":", dashIndex);
 			int gameStartTime = atoi(weatherData.substr(dashIndex + 3, colonIndex - dashIndex - 3).c_str());
@@ -3338,7 +3338,7 @@ void Analyze2016TeamWins()
 			continue;
 		}
 		char thisDateCStr[5];
-		_itoa_s(d, thisDateCStr, 10);
+		itoa(d, thisDateCStr, 10);
 		string thisDate = thisDateCStr;
 		string thisDateWithYear = IntToDateYMD(d, false, "2016");
 
@@ -3426,7 +3426,7 @@ void GatherPitcherCumulativeData()
 			continue;
 		}
 		char thisDateCStr[5];
-		_itoa_s(d, thisDateCStr, 10);
+		itoa(d, thisDateCStr, 10);
 		string thisDate = thisDateCStr;
 		string thisDateWithYear = IntToDateYMD(d, false, "2016");
 		string prevDateWithYear = IntToDateYMD(d - 1, false, "2016");
@@ -3473,7 +3473,7 @@ void GatherTeamWins()
 	for (int i = -12; i <= -2; ++i)
 	{
 		char iCStr[4];
-		_itoa_s(i, iCStr, 10);
+		itoa(i, iCStr, 10);
 		string iStr = iCStr;
 		pageData += GetEntireFileContents("2017ResultsTracker\\OddsWinsResults\\CachedPage" + iStr + ".txt");
 	}
@@ -3490,7 +3490,7 @@ void GatherTeamWins()
 			continue;
 		}
 		char thisDayCStr[3];
-		_itoa_s(isolatedDay, thisDayCStr, 10);
+		itoa(isolatedDay, thisDayCStr, 10);
 		string thisDay = thisDayCStr;
 		if (isolatedDay < 10)
 			thisDay = "0" + thisDay;
@@ -4100,7 +4100,7 @@ void GetBeatTheStreakCandidates(CURL *curl)
 		{
 			std::string last30DaysStats;
 			char pageCStr[3];
-			_itoa_s(page + 1, pageCStr, 10);
+			itoa(page + 1, pageCStr, 10);
 			string pageStr = pageCStr;
 			readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=0&season=2017&month=3&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=6,d&page=" + pageStr + "_50";
 			curl_easy_setopt(curl, CURLOPT_URL, readURL.c_str());
@@ -4149,7 +4149,7 @@ void GetBeatTheStreakCandidates(CURL *curl)
 		{
 			std::string last30DaysStats;
 			char pageCStr[3];
-			_itoa_s(page + 1, pageCStr, 10);
+			itoa(page + 1, pageCStr, 10);
 			string pageStr = pageCStr;
 			readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=10&type=0&season=2017&month=1&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=22,d&page=" + pageStr + "_50";
 			curl_easy_setopt(curl, CURLOPT_URL, readURL.c_str());
@@ -4468,7 +4468,7 @@ void AssembleBatterSplits(CURL *curl)
 		{
 			std::string seasonStats;
 			char pageCStr[3];
-			_itoa_s(page + 1, pageCStr, 10);
+			itoa(page + 1, pageCStr, 10);
 			string pageStr = pageCStr;
 			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=120&type=1&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
 			CurlGetSiteContents(curl, readURL, seasonStats);
@@ -4504,7 +4504,7 @@ void AssembleBatterSplits(CURL *curl)
 		for (int page = 0; page < 6; ++page)
 		{
 			char pageCStr[3];
-			_itoa_s(page + 1, pageCStr, 10);
+			itoa(page + 1, pageCStr, 10);
 			string pageStr = pageCStr;
 			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=60&type=1&season=2017&month=3&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
 			CurlGetSiteContents(curl, readURL, last30DaysStats);
@@ -4529,7 +4529,7 @@ void AssembleBatterSplits(CURL *curl)
 		for (int page = 0; page < 6; ++page)
 		{
 			char pageCStr[3];
-			_itoa_s(page + 1, pageCStr, 10);
+			itoa(page + 1, pageCStr, 10);
 			string pageStr = pageCStr;
 			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=10&type=1&season=2017&month=1&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
 			CurlGetSiteContents(curl, readURL, last7DaysStats);
