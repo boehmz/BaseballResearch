@@ -51,7 +51,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::UnitTest;
 	switch (processType)
 	{
 	case UnitTest:
@@ -194,7 +194,7 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20170410;
+		reviewDateStart = 20170810;
 		reviewDateEnd = 20171001;
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
@@ -407,8 +407,8 @@ void RefineAlgorithm()
 									}
 								}
 							}
-							if (true || sabrPredictorTextPitchers == "") {
-								if (batterStats.average > 0.21f) {
+							if (sabrPredictorTextPitchers == "") {
+								if (batterStats.average > 0.21f && battingOrder >= 2 && battingOrder <= 5) {
 									auto opponentPitcher = opponentPitcherScoreMap.find(singlePlayerData.teamCode);
 									if (opponentPitcher != opponentPitcherScoreMap.end()) {
 										singlePlayerData.playerPointsPerGame = batterStats.ops * 100.0f * (640.0f / opponentPitcher->second);
@@ -3015,8 +3015,32 @@ void UnitTestAllStatCollectionFunctions()
 		expectedBatter2016AdvancedStats.wobaVersusRighty = 0.348f;
 
 		assert(expectedPitcher2016Stats == pitcher2016Stats);
+		pitcher2016Stats *= 0.345f;
+		assert(expectedPitcher2016Stats * 0.345f == pitcher2016Stats);
+		expectedPitcher2016Stats.era = 4.37f * 0.345f;
+		expectedPitcher2016Stats.fip = 4.12f * 0.345f;
+		expectedPitcher2016Stats.numInnings = 158.6666666f * 0.345f;
+		expectedPitcher2016Stats.strikeOutsPer9 = 7.6f * 0.345f;
+		expectedPitcher2016Stats.whip = 1.27f * 0.345f;
+		expectedPitcher2016Stats.xfip = 3.98f * 0.345f;
+		expectedPitcher2016Stats.wobaAllowed = 0.319f * 0.345f;
+		expectedPitcher2016Stats.opsAllowed = 0.750f * 0.345f;
+		assert(expectedPitcher2016Stats == pitcher2016Stats);
 		assert(expectedPitcherAdvanced2016Stats == pitcherAdvanced2016Stats);
 		assert(expectedBatterStats == batterStats);
+		assert(expectedBatter2016AdvancedStats == batter2016AdvancedStats);
+		batter2016AdvancedStats *= 0.5f;
+		assert(batter2016AdvancedStats == (expectedBatter2016AdvancedStats * 0.5f));
+		expectedBatter2016AdvancedStats.averageVersusLefty = 0.233f * 0.5f;;
+		expectedBatter2016AdvancedStats.sluggingVersusLefty = 0.381f * 0.5f;;
+		expectedBatter2016AdvancedStats.isoVersusLefty = 0.148f * 0.5f;;
+		expectedBatter2016AdvancedStats.opsVersusLefty = 0.656f * 0.5f;;
+		expectedBatter2016AdvancedStats.wobaVersusLefty = 0.280f * 0.5f;;
+		expectedBatter2016AdvancedStats.averageVersusRighty = 0.283f * 0.5f;;
+		expectedBatter2016AdvancedStats.sluggingVersusRighty = 0.459f * 0.5f;;
+		expectedBatter2016AdvancedStats.opsVersusRighty = 0.813f * 0.5f;
+		expectedBatter2016AdvancedStats.isoVersusRighty = 0.176f * 0.5f;;
+		expectedBatter2016AdvancedStats.wobaVersusRighty = 0.348f * 0.5f;;
 		assert(expectedBatter2016AdvancedStats == batter2016AdvancedStats);
 
 		int iBreakpoint = 0;

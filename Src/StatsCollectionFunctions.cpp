@@ -793,6 +793,27 @@ bool FullSeasonPitcherStats::operator==(const FullSeasonPitcherStats& rhs)
 		return false;
 	return true;
 }
+void FullSeasonPitcherStats::operator*=(float rhs)
+{
+	if (strikeOutsPer9 >= 0) {
+		era *= rhs;
+		fip *= rhs;
+		strikeOutsPer9 *= rhs;
+		numInnings *= rhs;
+		whip *= rhs;
+		xfip *= rhs;
+		wobaAllowed *= rhs;
+		opsAllowed *= rhs;
+	}
+}
+FullSeasonPitcherStats operator*(float floatFactor, const FullSeasonPitcherStats& stats) {
+	FullSeasonPitcherStats newStats(stats);
+	newStats *= floatFactor;
+	return newStats;
+}
+FullSeasonPitcherStats operator*(const FullSeasonPitcherStats& stats, float floatFactor) {
+	return floatFactor * stats;
+}
 
 bool FullSeasonStatsAdvanced::operator==(const FullSeasonStatsAdvanced& rhs)
 {
@@ -817,6 +838,32 @@ bool FullSeasonStatsAdvanced::operator==(const FullSeasonStatsAdvanced& rhs)
 	if (abs(rhs.wobaVersusRighty - wobaVersusRighty) > 0.0015f)
 		return false;
 	return true;
+}
+
+void FullSeasonStatsAdvanced::operator*=(float rhs)
+{
+	if (opsVersusLefty >= 0) {
+		opsVersusLefty *= rhs;
+		isoVersusLefty *= rhs;
+		averageVersusLefty *= rhs;
+		sluggingVersusLefty *= rhs;
+		wobaVersusLefty *= rhs;
+	}
+	if (opsVersusRighty >= 0) {
+		opsVersusRighty *= rhs;
+		isoVersusRighty *= rhs;
+		averageVersusRighty *= rhs;
+		sluggingVersusRighty *= rhs;
+		wobaVersusRighty *= rhs;
+	}
+}
+FullSeasonStatsAdvanced operator*(float floatFactor, const FullSeasonStatsAdvanced& stats) {
+	FullSeasonStatsAdvanced newStats(stats);
+	newStats *= floatFactor;
+	return newStats;
+}
+FullSeasonStatsAdvanced operator*(const FullSeasonStatsAdvanced& stats, float floatFactor) {
+	return floatFactor * stats;
 }
 
 bool FullSeasonStats::operator==(const FullSeasonStats& rhs)
