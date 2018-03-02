@@ -1311,20 +1311,8 @@ void ChooseAPitcher(CURL *curl)
 			FullSeasonStatsAdvanced pitcherVBatterLastYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
 			FullSeasonStatsAdvanced pitcherVBatterCareerStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "Total", curl);
 			
-			if (pitcherVBatterLastYearStats.opsVersusLefty >= 0)
-			{
-				pitcherVBatterCareerStats.opsVersusLefty = 0.5f * pitcherVBatterCareerStats.opsVersusLefty + 0.5f * pitcherVBatterLastYearStats.opsVersusLefty;
-				pitcherVBatterCareerStats.isoVersusLefty = 0.5f * pitcherVBatterCareerStats.isoVersusLefty + 0.5f * pitcherVBatterLastYearStats.isoVersusLefty;
-				pitcherVBatterCareerStats.wobaVersusLefty = 0.5f * pitcherVBatterCareerStats.wobaVersusLefty + 0.5f * pitcherVBatterLastYearStats.wobaVersusLefty;
-				pitcherVBatterCareerStats.sluggingVersusLefty = 0.5f * pitcherVBatterCareerStats.sluggingVersusLefty + 0.5f * pitcherVBatterLastYearStats.sluggingVersusLefty;
-			}
-			if (pitcherVBatterLastYearStats.opsVersusRighty >= 0)
-			{
-				pitcherVBatterCareerStats.opsVersusRighty = 0.5f * pitcherVBatterCareerStats.opsVersusRighty + 0.5f * pitcherVBatterLastYearStats.opsVersusRighty;
-				pitcherVBatterCareerStats.isoVersusRighty = 0.5f * pitcherVBatterCareerStats.isoVersusRighty + 0.5f * pitcherVBatterLastYearStats.isoVersusRighty;
-				pitcherVBatterCareerStats.wobaVersusRighty = 0.5f * pitcherVBatterCareerStats.wobaVersusRighty + 0.5f * pitcherVBatterLastYearStats.wobaVersusRighty;
-				pitcherVBatterCareerStats.sluggingVersusRighty = 0.5f * pitcherVBatterCareerStats.sluggingVersusRighty + 0.5f * pitcherVBatterLastYearStats.sluggingVersusRighty;
-			}
+			pitcherVBatterCareerStats = 0.5f * pitcherVBatterCareerStats + 0.5f * pitcherVBatterLastYearStats;
+			
 			if (pitcherVBatterThisYearStats.opsVersusLefty >= 0)
 			{
 				pitcherVBatterCareerStats.opsVersusLefty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.opsVersusLefty + percentOfSeasonPassed * pitcherVBatterThisYearStats.opsVersusLefty;
@@ -3026,6 +3014,8 @@ void UnitTestAllStatCollectionFunctions()
 		expectedPitcher2016Stats.wobaAllowed = 0.319f * 0.345f;
 		expectedPitcher2016Stats.opsAllowed = 0.750f * 0.345f;
 		assert(expectedPitcher2016Stats == pitcher2016Stats);
+		expectedPitcher2016Stats += pitcher2016Stats;
+		assert(expectedPitcher2016Stats == pitcher2016Stats * 2.0f);
 		assert(expectedPitcherAdvanced2016Stats == pitcherAdvanced2016Stats);
 		assert(expectedBatterStats == batterStats);
 		assert(expectedBatter2016AdvancedStats == batter2016AdvancedStats);
@@ -3042,7 +3032,7 @@ void UnitTestAllStatCollectionFunctions()
 		expectedBatter2016AdvancedStats.isoVersusRighty = 0.176f * 0.5f;;
 		expectedBatter2016AdvancedStats.wobaVersusRighty = 0.348f * 0.5f;;
 		assert(expectedBatter2016AdvancedStats == batter2016AdvancedStats);
-
+		assert(expectedBatter2016AdvancedStats + batter2016AdvancedStats == batter2016AdvancedStats * 2.0f);
 		int iBreakpoint = 0;
 		iBreakpoint = iBreakpoint;
 	}

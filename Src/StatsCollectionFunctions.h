@@ -85,9 +85,11 @@ struct FullSeasonStatsAdvanced
 
 	bool operator==(const FullSeasonStatsAdvanced& rhs);
 	void operator*=(float rhs);
+	void operator+=(const FullSeasonStatsAdvanced& other);
 };
 FullSeasonStatsAdvanced operator*(float floatFactor, const FullSeasonStatsAdvanced& stats);
 FullSeasonStatsAdvanced operator*(const FullSeasonStatsAdvanced& stats, float floatFactor);
+FullSeasonStatsAdvanced operator+(const FullSeasonStatsAdvanced& lhs, const FullSeasonStatsAdvanced& rhs);
 
 FullSeasonStatsAdvanced GetBatterAdvancedStats(std::string playerId, std::string yearString, CURL *curl);
 FullSeasonStatsAdvanced GetPitcherAdvancedStats(std::string playerId, std::string yearString, CURL *curl);
@@ -108,9 +110,11 @@ struct FullSeasonPitcherStats
 	bool operator==(const FullSeasonPitcherStats& rhs);
 	std::string ToString();
 	void operator*=(float rhs);
+	void operator+=(const FullSeasonPitcherStats& other);
 };
 FullSeasonPitcherStats operator*(float floatFactor, const FullSeasonPitcherStats& stats);
 FullSeasonPitcherStats operator*(const FullSeasonPitcherStats& stats, float floatFactor);
+FullSeasonPitcherStats operator+(const FullSeasonPitcherStats& lhs, const FullSeasonPitcherStats& rhs);
 
 FullSeasonPitcherStats GetPitcherStats(std::string playerId, std::string yearString, CURL *curl);
 FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo);
