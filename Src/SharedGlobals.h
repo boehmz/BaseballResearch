@@ -15,6 +15,5 @@ extern int earliestGameTime;
 extern std::string todaysDate;
 extern int reviewDateStart;
 extern int reviewDateEnd;
-extern float percentOf2017SeasonPassed;
 
 #endif
