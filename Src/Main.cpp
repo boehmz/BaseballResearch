@@ -1311,22 +1311,14 @@ void ChooseAPitcher(CURL *curl)
 			FullSeasonStatsAdvanced pitcherVBatterLastYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
 			FullSeasonStatsAdvanced pitcherVBatterCareerStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "Total", curl);
 			
-			pitcherVBatterCareerStats = 0.5f * pitcherVBatterCareerStats + 0.5f * pitcherVBatterLastYearStats;
+			if (pitcherVBatterLastYearStats.opsVersusLefty >= 0 && pitcherVBatterLastYearStats.opsVersusRighty >= 0) {
+				pitcherVBatterCareerStats = 0.5f * pitcherVBatterCareerStats + 0.5f * pitcherVBatterLastYearStats;
+			}
 			
-			if (pitcherVBatterThisYearStats.opsVersusLefty >= 0)
-			{
-				pitcherVBatterCareerStats.opsVersusLefty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.opsVersusLefty + percentOfSeasonPassed * pitcherVBatterThisYearStats.opsVersusLefty;
-				pitcherVBatterCareerStats.isoVersusLefty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.isoVersusLefty + percentOfSeasonPassed * pitcherVBatterThisYearStats.isoVersusLefty;
-				pitcherVBatterCareerStats.wobaVersusLefty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.wobaVersusLefty + percentOfSeasonPassed * pitcherVBatterThisYearStats.wobaVersusLefty;
-				pitcherVBatterCareerStats.sluggingVersusLefty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.sluggingVersusLefty + percentOfSeasonPassed * pitcherVBatterThisYearStats.sluggingVersusLefty;
+			if (pitcherVBatterThisYearStats.opsVersusLefty >= 0 && pitcherVBatterThisYearStats.opsVersusRighty >= 0) {
+				pitcherVBatterCareerStats = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats + percentOfSeasonPassed * pitcherVBatterThisYearStats;
 			}
-			if (pitcherVBatterThisYearStats.opsVersusRighty >= 0)
-			{
-				pitcherVBatterCareerStats.opsVersusRighty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.opsVersusRighty + percentOfSeasonPassed * pitcherVBatterThisYearStats.opsVersusRighty;
-				pitcherVBatterCareerStats.isoVersusRighty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.isoVersusRighty + percentOfSeasonPassed * pitcherVBatterThisYearStats.isoVersusRighty;
-				pitcherVBatterCareerStats.wobaVersusRighty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.wobaVersusRighty + percentOfSeasonPassed * pitcherVBatterThisYearStats.wobaVersusRighty;
-				pitcherVBatterCareerStats.sluggingVersusRighty = (1.0f - percentOfSeasonPassed) * pitcherVBatterCareerStats.sluggingVersusRighty + percentOfSeasonPassed * pitcherVBatterThisYearStats.sluggingVersusRighty;
-			}
+			
 			string opponentTeamCode = "";
 			auto opponent = opponentMap.find(singlePlayerData.teamCode);
 			if (opponent != opponentMap.end())
@@ -1370,30 +1362,17 @@ void ChooseAPitcher(CURL *curl)
 				assert("No opponent information for pitcher found" == "");
 			}
 
-			if (lastYearPitcherStats.strikeOutsPer9 >= 0 && pitcherCareerStats.strikeOutsPer9 >= 0)
-			{
-				lastYearPitcherStats.era = 0.5f * lastYearPitcherStats.era + 0.5f * pitcherCareerStats.era;
-				lastYearPitcherStats.fip = 0.5f * lastYearPitcherStats.fip + 0.5f * pitcherCareerStats.fip;
-				lastYearPitcherStats.strikeOutsPer9 = 0.5f * lastYearPitcherStats.strikeOutsPer9 + 0.5f * pitcherCareerStats.strikeOutsPer9;
+			FullSeasonPitcherStats combinedPitcherStats(lastYearPitcherStats);
+			if (lastYearPitcherStats.strikeOutsPer9 >= 0 && pitcherCareerStats.strikeOutsPer9 >= 0) {
+				combinedPitcherStats = 0.5f * lastYearPitcherStats + 0.5f * pitcherCareerStats;
 			}
-			else if (pitcherCareerStats.strikeOutsPer9 >= 0)
-			{
+			else if (pitcherCareerStats.strikeOutsPer9 >= 0) {
 				// no rookies sorry
-				//lastYearPitcherStats = pitcherCareerStats;
+				//combinedPitcherStats = pitcherCareerStats;
 			}
 
-			if (lastYearPitcherStats.strikeOutsPer9 >= 0)
-			{
-				if (thisYearPitcherStats.strikeOutsPer9 >= 0)
-				{
-					lastYearPitcherStats.era *= 1.0f - percentOfSeasonPassed;
-					lastYearPitcherStats.fip *= 1.0f - percentOfSeasonPassed;
-					lastYearPitcherStats.strikeOutsPer9 *= 1.0f - percentOfSeasonPassed;
-
-					lastYearPitcherStats.era += thisYearPitcherStats.era * percentOfSeasonPassed;
-					lastYearPitcherStats.fip += thisYearPitcherStats.fip * percentOfSeasonPassed;
-					lastYearPitcherStats.strikeOutsPer9 += thisYearPitcherStats.strikeOutsPer9 * percentOfSeasonPassed;
-				}
+			if (combinedPitcherStats.strikeOutsPer9 >= 0 && thisYearPitcherStats.strikeOutsPer9 >= 0) {
+				combinedPitcherStats = combinedPitcherStats * (1.0f - percentOfSeasonPassed) + thisYearPitcherStats * percentOfSeasonPassed;
 			}
 
 			float parkHomerFactor = 1;
@@ -1429,10 +1408,10 @@ void ChooseAPitcher(CURL *curl)
 			}
 			
 
-			lastYearPitcherStats.era *= parkRunsFactor;
-			lastYearPitcherStats.fip *= parkHomerFactor;
+			combinedPitcherStats.era *= parkRunsFactor;
+			combinedPitcherStats.fip *= parkHomerFactor;
 
-			singlePlayerData.playerPointsPerGame = GetExpectedFanduelPointsFromPitcherStats(lastYearPitcherStats, opponentRunsPerGame, opponentStrikeoutsPerGame);
+			singlePlayerData.playerPointsPerGame = GetExpectedFanduelPointsFromPitcherStats(combinedPitcherStats, opponentRunsPerGame, opponentStrikeoutsPerGame);
 			
 			bool bRainedOut = false;
 			int gameStartTime = 99;
@@ -1466,7 +1445,7 @@ void ChooseAPitcher(CURL *curl)
 				pitcherStatsArchiveFile << endl;
 			}
 			// throw this guy out if his game will most likely be rained out
-			if (lastYearPitcherStats.strikeOutsPer9 >= 0 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
+			if (combinedPitcherStats.strikeOutsPer9 >= 0 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
 				positionalPlayerData.push_back(singlePlayerData);
 			if (placeHolderIndex == string::npos)
 				break;
