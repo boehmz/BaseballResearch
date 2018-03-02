@@ -51,7 +51,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::UnitTest;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -194,8 +194,9 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20170810;
+		reviewDateStart = 20170410;
 		reviewDateEnd = 20171001;
+		percentOfSeasonPassed = 10.0f / 160.0f;
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
 			int yearInt = d / 10000;
@@ -209,7 +210,9 @@ void RefineAlgorithm()
 				d = (yearInt + 1) * 10000 + 315;
 				continue;
 			}
-			
+			percentOfSeasonPassed += 1.0f / 162.0f;
+			if (percentOfSeasonPassed > 1)
+				percentOfSeasonPassed = 1;
 			char thisDateCStr[9];
 			itoa(d, thisDateCStr, 10);
 			string thisDate = thisDateCStr;
@@ -433,9 +436,21 @@ void RefineAlgorithm()
 							allPlayersActualScores[playerPosition].push_back(singlePlayerData);
 						} else if (playerPosition == -1) {
 							if (bRefineForPitchers) {
-								FullSeasonPitcherStats pitcherStats = GetPitcherCumulativeStatsUpTo(thisLineActualResults[1], curl, thisDateOnePrevious);
-								if (pitcherStats.numInnings > 0) {
-									float pitcherPoints = GetExpectedFanduelPointsFromPitcherStats(pitcherStats);
+								FullSeasonPitcherStats careerPitcherStats = GetPitcherCumulativeStatsUpTo(thisLineActualResults[1], curl, thisDateOnePrevious, true);
+								FullSeasonPitcherStats lastYearPitcherStats = GetPitcherStats(thisLineActualResults[1], "2016", curl);
+								FullSeasonPitcherStats pitcherStatsThisYearSoFar = GetPitcherCumulativeStatsUpTo(thisLineActualResults[1], curl, thisDateOnePrevious);
+								FullSeasonPitcherStats combinedPitcherStats(lastYearPitcherStats);
+								if (lastYearPitcherStats.numInnings > 0) {
+									combinedPitcherStats = careerPitcherStats * 0.5f + lastYearPitcherStats * 0.5f;
+									if (pitcherStatsThisYearSoFar.numInnings > 0) {
+										combinedPitcherStats = combinedPitcherStats * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * pitcherStatsThisYearSoFar;
+									}
+								}
+								else {
+									combinedPitcherStats = pitcherStatsThisYearSoFar;
+								}
+								if (combinedPitcherStats.numInnings > 0) {
+									float pitcherPoints = GetExpectedFanduelPointsFromPitcherStats(combinedPitcherStats);
 									string opponentTeamCode = thisLineActualResults[10].substr(thisLineActualResults[10].size() - 3);
 									opponentPitcherScoreMap.insert({ opponentTeamCode,pitcherPoints });
 									pitcherInputValues.push_back(pitcherPoints);
