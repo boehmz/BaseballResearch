@@ -31,7 +31,7 @@ string GetEntireFileContents(string fileName)
 #endif
     ifstream readFromFile(fileName);
     if (!readFromFile.good()) {
-        cerr << "Error: " << strerror(errno);
+     //   cerr << "Error: " << strerror(errno);
         readFromFile.close();
         return "";
     }
@@ -281,6 +281,28 @@ FullSeasonPitcherStats GetPitcherStats(string playerId, string yearString, CURL 
 	return pitcherStats;
 }
 
+FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo) {
+	FullSeasonStatsAdvancedNoHandedness batterStats;
+
+	string fangraphsPlayerData = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, false);
+
+	vector<string> fangraphsStandardRows = GetFangraphsRowColumns(">Total<", fangraphsPlayerData, 22, "id=\"DailyStats", "", false);
+	if (fangraphsStandardRows.size() == 0)
+		return batterStats;
+
+	batterStats.average = stof(fangraphsStandardRows[17]);
+	batterStats.onBaseAverage = stof(fangraphsStandardRows[18]);
+	batterStats.slugging = stof(fangraphsStandardRows[19]);
+	batterStats.ops = batterStats.onBaseAverage + batterStats.slugging;
+	batterStats.iso = stof(fangraphsStandardRows[15]);
+	batterStats.woba = stof(fangraphsStandardRows[20]);
+	if (batterStats.average > 0) {
+		batterStats.wrcPlus = stof(fangraphsStandardRows[21]);
+	}
+	return batterStats;
+}
+//rotogrinder playerId
+// dateUpTo = "2017-08-08"
 FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(string playerId, CURL *curl, string dateUpTo)
 {
 	FullSeasonPitcherStats pitcherStats;
@@ -291,19 +313,20 @@ FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(string playerId, CURL *curl
 	vector<string> fangraphsStandardRows = GetFangraphsRowColumns(">Total<", fangraphsPlayerData, 26, "id=\"DailyStats", "", false);
 	if (fangraphsStandardRows.size() == 0)
 		return pitcherStats;
+	
 	pitcherStats.numInnings = stof(fangraphsStandardRows[7].c_str());
 	pitcherStats.numInnings = floor(pitcherStats.numInnings) + ((pitcherStats.numInnings - floor(pitcherStats.numInnings)) * 3.4f);
-	pitcherStats.era = stof(fangraphsStandardRows[22].c_str());
-	pitcherStats.fip = stof(fangraphsStandardRows[23].c_str());
-	pitcherStats.xfip = stof(fangraphsStandardRows[24].c_str());
-	pitcherStats.strikeOutsPer9 = stof(fangraphsStandardRows[15].c_str());
+	if (pitcherStats.numInnings > 0) {
+		pitcherStats.era = stof(fangraphsStandardRows[22].c_str());
+		pitcherStats.fip = stof(fangraphsStandardRows[23].c_str());
+		pitcherStats.xfip = stof(fangraphsStandardRows[24].c_str());
+		pitcherStats.strikeOutsPer9 = stof(fangraphsStandardRows[15].c_str());
 
-
-	vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(">Total<", fangraphsPlayerDataAdvanced, 17, "id=\"DailyStats", "", false);
-	if (fangraphsAdvancedRows.size() == 0)
-		return pitcherStats;
-	pitcherStats.whip = stof(fangraphsAdvancedRows[11].c_str());
-
+		vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(">Total<", fangraphsPlayerDataAdvanced, 17, "id=\"DailyStats", "", false);
+		if (fangraphsAdvancedRows.size() == 0)
+			return pitcherStats;
+		pitcherStats.whip = stof(fangraphsAdvancedRows[11].c_str());
+	}
 	return pitcherStats;
 }
 
@@ -652,14 +675,25 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 	return fangraphsData;
 }
 
+// playerId = rotogrinders player id
+// dateUpTo = "2017-08-08"
 string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, string dateUpTo, bool advancedPage)
 {
+	dateUpTo = DateToDateWithDashes(dateUpTo);
+
 	string fangraphsData = "";
 	string cachedFileName = "FangraphsCachedPages\\CumulativeUpTo\\PlayerId" + playerId + "UpTo" + dateUpTo;
 	if (advancedPage)
 		cachedFileName += "Advanced";
 	cachedFileName += ".txt";
 	fangraphsData = GetEntireFileContents(cachedFileName);
+	if (fangraphsData == "") {
+		if (FILE *file = fopen(cachedFileName.c_str(), "r")) {
+			fclose(file);
+			// if file exists, it might just be empty. Don't try to get it again with curl
+			fangraphsData = " ";
+		}
+	}
 
 	if (fangraphsData == "")
 	{

@@ -60,41 +60,81 @@ void _itoa_osx(int value, char* result, int base) {
     }
 }
 
-std::string IntToDateYMD(int date, bool roundUp, string yearString)
-{
-	int monthInteger = (date / 100);
-	int isolatedDay = date - (monthInteger * 100);
-	if (isolatedDay == 0)
+// date = "0808" or "20170808"
+// output = "2017-08-08"
+std::string DateToDateWithDashes(std::string date) {
+	if (date.length() == 4) {
+		date = "-" + date.substr(0, 2) + "-" + date.substr(2);
+		date = CURRENT_YEAR + date;
+	}
+	else if (date.length() == 8) {
+		date = date.substr(0, 4) + "-" + date.substr(4, 2) + "-" + date.substr(6, 2);
+	}
+	else if (date.length() != 10) {
+		cout << "ERROR: Trying to format date with dashes, invalid input " << date << endl;
+	}
+	return date;
+}
+
+int GetNumDaysInMonth(int monthInteger) {
+	switch (monthInteger)
 	{
-		monthInteger--;
-		date -= 100;
-		switch (monthInteger)
-		{
-		case 4:
-		case 6:
-		case 9:
-			isolatedDay = 30;
-			break;
-		default:
-		case 3:
-		case 5:
-		case 7:
-		case 8:
-		case 10:
-			isolatedDay = 31;
-			break;
-		}
-		date = monthInteger * 100 + isolatedDay;
+	case 2:
+		cout << "Asking how many days in February" << endl;
+		return 28;
+	case 11:
+		cout << "Asking how many days in November" << endl;
+	case 4:
+	case 6:
+	case 9:
+		return 30;
+	case 12:
+	case 1:
+		cout << "Asking how many days in Jan or Dec" << endl;
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+		return 31;
+	}
+	cout << "ERROR: Invalid month" << monthInteger << "asked how many days are in" << endl;
+	return -1;
+}
+
+std::string IntToDateYMD(int date, string yearString, bool roundUp)
+{
+	int yearInteger = date / 10000;
+	int monthInteger = (date - yearInteger * 10000) / 100;
+	int dayInteger = date - (yearInteger * 10000) - (monthInteger * 100);
+	if (!roundUp && dayInteger > GetNumDaysInMonth(monthInteger)) {
+		monthInteger++;
+		dayInteger = -100 + dayInteger;
 	}
 
-	char thisDateCStr[5];
+	while (dayInteger <= 0)
+	{
+		monthInteger--;
+		dayInteger = GetNumDaysInMonth(monthInteger) + dayInteger;
+	}
+	while (dayInteger > GetNumDaysInMonth(monthInteger)) {
+		dayInteger -= GetNumDaysInMonth(monthInteger);
+		monthInteger++;
+		
+	}
+
+	date = yearInteger * 10000 + monthInteger * 100 + dayInteger;
+
+	char thisDateCStr[9];
 	itoa(date, thisDateCStr, 10);
-	string thisDate = thisDateCStr;
+
+	if (yearInteger > 1900)
+		return thisDateCStr;
 
 	string dateFormatted = yearString;
 	if (date < 1000)
 		dateFormatted += "0";
-	dateFormatted += thisDate;
+	dateFormatted += thisDateCStr;
 	return dateFormatted;
 }
 

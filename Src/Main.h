@@ -144,6 +144,7 @@ void Analyze2016TeamWinFactors();
 void Refine2016TeamWinFactors();
 std::vector<std::string> GetRankingsRowColumns(std::string teamName, std::string allData, int numColumns);
 
+float GetExpectedFanduelPointsFromPitcherStats(FullSeasonPitcherStats pitcherStats, float opponentRunsPerGame = 4.4f, float opponentStrikeoutsPerGame = 8.1f);
 void UnitTestAllStatCollectionFunctions();
 
 void GetBallparkFactors(std::string ballparkName, std::string statName, float& outFactorLeftyBatter, float& outFactorRightyBatter);

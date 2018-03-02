@@ -51,6 +51,23 @@ struct FullSeasonStats
 };
 FullSeasonStats GetBatterStats(std::string playerId, std::string yearString, CURL *curl);
 
+struct FullSeasonStatsAdvancedNoHandedness
+{
+	float average = -1;
+	float onBaseAverage = -1;
+	float slugging = -1;
+	float ops = -1;
+	float woba = -1;
+	float iso = -1;
+	float wrcPlus = -1;
+	float walkPercent = -1;
+	float strikeoutPercent = -1;
+
+	FullSeasonStatsAdvancedNoHandedness() {}
+
+};
+FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo);
+
 struct FullSeasonStatsAdvanced
 {
 	float averageVersusLefty = -1;

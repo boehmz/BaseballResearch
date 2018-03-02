@@ -188,13 +188,13 @@ void RefineAlgorithm()
 		float inputCoefficients[2] = { 0.0f, 1.0f };
 		vector< float > outputValues;
 
-		vector< vector<float>> chosenLineupsList(21);
+		vector< vector<float>> chosenLineupsList(23);
 
 		vector<float> pitcherInputValues;
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20170824;
+		reviewDateStart = 20170410;
 		reviewDateEnd = 20171001;
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
@@ -217,6 +217,7 @@ void RefineAlgorithm()
 			if (thisDateWithoutYear.at(0) == '0') {
 				thisDateWithoutYear = thisDateWithoutYear.substr(1);
 			}
+			string thisDateOnePrevious = IntToDateYMD(d - 1);
 			string actualResults;
 			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + thisDateWithoutYear + "&game=fd&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
 			curl_easy_setopt(curl, CURLOPT_URL, resultsURL.c_str());
@@ -254,140 +255,208 @@ void RefineAlgorithm()
 				vector< vector<PlayerData> > allPlayers25PitcherMultiplyStackTeams(6);
 				vector< vector<PlayerData> > allPlayersActualScores(6);
 
+				vector< vector<PlayerData> > allPlayers25SeasonOps(6);
+				vector< vector<PlayerData> > allPlayers25SeasonOpsPitcherMultiply(6);
+				vector< vector<PlayerData> > allPlayers25SeasonIso(6);
+				vector< vector<PlayerData> > allPlayers25SeasonIsoPitcherMultiply(6);
+				vector< vector<PlayerData> > allPlayers25SeasonWrc(6);
+				vector< vector<PlayerData> > allPlayers25SeasonWrcPitcherMultiply(6);
+
 				vector<TeamStackTracker> teamStackList;
-				if (sabrPredictorText != "") {
-					
-					size_t currentIndex = actualResults.find("</script>", 0);
-					currentIndex = actualResults.find("\n", currentIndex + 1);
-					size_t nextIndex = actualResults.find("\n", currentIndex + 1);
 
-					while (nextIndex != string::npos) {
-						vector<string> thisLineActualResults = SplitStringIntoMultiple(actualResults.substr(currentIndex, nextIndex - currentIndex), ";");
-						if (thisLineActualResults.size() < 10)
-							continue;
-						if (thisLineActualResults[4] == "1") {
-							PlayerData singlePlayerData;
-							int playerPosition = atoi(thisLineActualResults[6].c_str());
-							playerPosition -= 2;
-							if (playerPosition >= 0) {
-								singlePlayerData.playerId = thisLineActualResults[1];
-								singlePlayerData.playerName = thisLineActualResults[3];
-								singlePlayerData.playerSalary = atoi(thisLineActualResults[8].c_str());
-								singlePlayerData.teamCode = thisLineActualResults[9];
-								singlePlayerData.playerPointsPerGame = -1;
-								size_t playerNameIndex = sabrPredictorText.find(ConvertLFNameToFLName(singlePlayerData.playerName));
-								if (playerNameIndex != string::npos) {
-									size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
-									vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
-									float expectedFdPoints = stof(thisSabrLine[17]);
-									singlePlayerData.playerPointsPerGame = expectedFdPoints;
-									bool teamStackTrackerExists = false;
-									for (unsigned int texp = 0; texp < teamStackList.size(); ++texp) {
-										if (teamStackList[texp].teamCode == singlePlayerData.teamCode) {
-											teamStackList[texp].numPlayersAdded++;
-											teamStackList[texp].teamTotalExpectedPoints += singlePlayerData.playerPointsPerGame;
-											teamStackTrackerExists = true;
-											break;
-										}
-									}
-									if (!teamStackTrackerExists) {
-										TeamStackTracker tst;
-										tst.numPlayersAdded = 1;
-										tst.teamCode = singlePlayerData.teamCode;
-										tst.teamTotalExpectedPoints = singlePlayerData.playerPointsPerGame;
-										teamStackList.push_back(tst);
-									}
+				size_t currentIndex = actualResults.find("</script>", 0);
+				currentIndex = actualResults.find("\n", currentIndex + 1);
+				size_t nextIndex = actualResults.find("\n", currentIndex + 1);
 
-									allPlayersAll[playerPosition].push_back(singlePlayerData);
-									allPlayersStackingTeams[playerPosition].push_back(singlePlayerData);
-									int battingOrder = atoi(thisLineActualResults[5].c_str());
-									if (battingOrder >= 2 && (battingOrder <= 7 || (playerPosition == 0 && battingOrder <= 7))) {
-										allPlayers27StackingTeams[playerPosition].push_back(singlePlayerData);
-									}
-									if (battingOrder >= 2 && (battingOrder <= 6 || (playerPosition == 0 && battingOrder <= 6))) {
-										allPlayers26StackingTeams[playerPosition].push_back(singlePlayerData);
-									}
-									if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 6))) {
-										allPlayers25StackingTeams[playerPosition].push_back(singlePlayerData);
-									}
-									if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5))) {
-										allPlayersTwoThruFive[playerPosition].push_back(singlePlayerData);
-									}
-									if (battingOrder >= 2 && (battingOrder <= 4 || (playerPosition == 0 && battingOrder <= 5)))
-										allPlayers24[playerPosition].push_back(singlePlayerData);
-									if (battingOrder >= 3 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5)))
-										allPlayers35[playerPosition].push_back(singlePlayerData);
+				unordered_map<std::string, float> opponentPitcherScoreMap;
 
-									float playerPointsCached = singlePlayerData.playerPointsPerGame;
-									singlePlayerData.playerPointsPerGame = stof(thisSabrLine[9]);
-									singlePlayerData.playerPointsPerGame *= 100.0f;
-									allPlayersHomeRuns[playerPosition].push_back(singlePlayerData);
-									singlePlayerData.playerPointsPerGame = playerPointsCached;
+				while (nextIndex != string::npos) {
+					vector<string> thisLineActualResults = SplitStringIntoMultiple(actualResults.substr(currentIndex, nextIndex - currentIndex), ";");
+					if (thisLineActualResults.size() < 10)
+						continue;
+					if (thisLineActualResults[4] == "1") {
+						PlayerData singlePlayerData;
+						singlePlayerData.playerId = thisLineActualResults[1];
+						singlePlayerData.playerName = thisLineActualResults[3];
+						singlePlayerData.playerSalary = atoi(thisLineActualResults[8].c_str());
+						singlePlayerData.teamCode = thisLineActualResults[9];
+						std::transform(singlePlayerData.teamCode.begin(), singlePlayerData.teamCode.end(), singlePlayerData.teamCode.begin(), ::tolower);
+						singlePlayerData.playerPointsPerGame = -1;
 
-									if (sabrPredictorTextPitchers != "") {
-										string playerTeamName = thisSabrLine[1];
-										string playerGameName = thisSabrLine[2];
-										size_t gameNameIndex = sabrPredictorTextPitchers.find(playerGameName);
-										if (gameNameIndex != string::npos) {
-											size_t prevNewLinePitchers = sabrPredictorTextPitchers.rfind("\n", gameNameIndex);
-											size_t nextNewLinePitchers = sabrPredictorTextPitchers.find("\n", gameNameIndex);
-											vector<string> thisSabrLinePitchers = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(prevNewLinePitchers, nextNewLinePitchers - prevNewLinePitchers), ",", "\"");
-											if (thisSabrLinePitchers[1] == playerTeamName) {
-												gameNameIndex = sabrPredictorTextPitchers.find(playerGameName, nextNewLinePitchers);
-												if (gameNameIndex != string::npos) {
-													prevNewLinePitchers = sabrPredictorTextPitchers.rfind("\n", gameNameIndex);
-													nextNewLinePitchers = sabrPredictorTextPitchers.find("\n", gameNameIndex);
-													thisSabrLinePitchers.clear();
-													thisSabrLinePitchers = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(prevNewLinePitchers, nextNewLinePitchers - prevNewLinePitchers), ",", "\"");
-												}
+						int playerPosition = atoi(thisLineActualResults[6].c_str());
+						playerPosition -= 2;
+						if (playerPosition >= 0) {
+							int battingOrder = atoi(thisLineActualResults[5].c_str());
+							FullSeasonStatsAdvancedNoHandedness batterStats = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious);
+							if (battingOrder >= 2 && battingOrder <= 5 && batterStats.average > 0.21f) {
+								singlePlayerData.playerPointsPerGame = batterStats.ops * 100.0f;
+								allPlayers25SeasonOps[playerPosition].push_back(singlePlayerData);
+								singlePlayerData.playerPointsPerGame = batterStats.iso * 100.0f;
+								allPlayers25SeasonIso[playerPosition].push_back(singlePlayerData);
+								singlePlayerData.playerPointsPerGame = batterStats.wrcPlus;
+								allPlayers25SeasonWrc[playerPosition].push_back(singlePlayerData);
+							}
+
+							size_t playerNameIndex = sabrPredictorText.find(ConvertLFNameToFLName(singlePlayerData.playerName));
+							if (playerNameIndex != string::npos) {
+								size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
+								vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
+								float expectedFdPoints = stof(thisSabrLine[17]);
+								singlePlayerData.playerPointsPerGame = expectedFdPoints;
+								bool teamStackTrackerExists = false;
+								for (unsigned int texp = 0; texp < teamStackList.size(); ++texp) {
+									if (teamStackList[texp].teamCode == singlePlayerData.teamCode) {
+										teamStackList[texp].numPlayersAdded++;
+										teamStackList[texp].teamTotalExpectedPoints += singlePlayerData.playerPointsPerGame;
+										teamStackTrackerExists = true;
+										break;
+									}
+								}
+								if (!teamStackTrackerExists) {
+									TeamStackTracker tst;
+									tst.numPlayersAdded = 1;
+									tst.teamCode = singlePlayerData.teamCode;
+									tst.teamTotalExpectedPoints = singlePlayerData.playerPointsPerGame;
+									teamStackList.push_back(tst);
+								}
+
+								allPlayersAll[playerPosition].push_back(singlePlayerData);
+								allPlayersStackingTeams[playerPosition].push_back(singlePlayerData);
+								
+								if (battingOrder >= 2 && (battingOrder <= 7 || (playerPosition == 0 && battingOrder <= 7))) {
+									allPlayers27StackingTeams[playerPosition].push_back(singlePlayerData);
+								}
+								if (battingOrder >= 2 && (battingOrder <= 6 || (playerPosition == 0 && battingOrder <= 6))) {
+									allPlayers26StackingTeams[playerPosition].push_back(singlePlayerData);
+								}
+								if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 6))) {
+									allPlayers25StackingTeams[playerPosition].push_back(singlePlayerData);
+								}
+								if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5))) {
+									allPlayersTwoThruFive[playerPosition].push_back(singlePlayerData);
+								}
+								if (battingOrder >= 2 && (battingOrder <= 4 || (playerPosition == 0 && battingOrder <= 5)))
+									allPlayers24[playerPosition].push_back(singlePlayerData);
+								if (battingOrder >= 3 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5)))
+									allPlayers35[playerPosition].push_back(singlePlayerData);
+
+								float playerPointsCached = singlePlayerData.playerPointsPerGame;
+								singlePlayerData.playerPointsPerGame = stof(thisSabrLine[9]);
+								singlePlayerData.playerPointsPerGame *= 100.0f;
+								allPlayersHomeRuns[playerPosition].push_back(singlePlayerData);
+								singlePlayerData.playerPointsPerGame = playerPointsCached;
+
+								
+
+								if (sabrPredictorTextPitchers != "") {
+									string playerTeamName = thisSabrLine[1];
+									string playerGameName = thisSabrLine[2];
+									size_t gameNameIndex = sabrPredictorTextPitchers.find(playerGameName);
+									if (gameNameIndex != string::npos) {
+										size_t prevNewLinePitchers = sabrPredictorTextPitchers.rfind("\n", gameNameIndex);
+										size_t nextNewLinePitchers = sabrPredictorTextPitchers.find("\n", gameNameIndex);
+										vector<string> thisSabrLinePitchers = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(prevNewLinePitchers, nextNewLinePitchers - prevNewLinePitchers), ",", "\"");
+										if (thisSabrLinePitchers[1] == playerTeamName) {
+											gameNameIndex = sabrPredictorTextPitchers.find(playerGameName, nextNewLinePitchers);
+											if (gameNameIndex != string::npos) {
+												prevNewLinePitchers = sabrPredictorTextPitchers.rfind("\n", gameNameIndex);
+												nextNewLinePitchers = sabrPredictorTextPitchers.find("\n", gameNameIndex);
+												thisSabrLinePitchers.clear();
+												thisSabrLinePitchers = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(prevNewLinePitchers, nextNewLinePitchers - prevNewLinePitchers), ",", "\"");
 											}
-											float expectedFdPointsPitcher = stof(thisSabrLinePitchers[14]);
-											float expectedDkPointsPitcher = stof(thisSabrLinePitchers[13]);
-											float expectedYahooPointsPitcher = stof(thisSabrLinePitchers[12]);
-											float pitcherOnBaseAllowed = stof(thisSabrLinePitchers[6]) + stof(thisSabrLinePitchers[11]);
-											float pitcherBattersFaced = stof(thisSabrLinePitchers[5]);
-											float pitcherTotalBasesAllowed = stof(thisSabrLinePitchers[7]) + stof(thisSabrLinePitchers[8]) * 2 + stof(thisSabrLinePitchers[9]) * 3 + stof(thisSabrLinePitchers[10]) * 4;
-											float pitcherOpsAllowed = pitcherOnBaseAllowed / pitcherBattersFaced + pitcherTotalBasesAllowed / pitcherBattersFaced;
-											if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5))
-												&& expectedFdPointsPitcher < 30)
-												allPlayers25AvoidPitchers30[playerPosition].push_back(singlePlayerData);
-											if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5))
-												&& expectedFdPointsPitcher < 40)
-												allPlayers25AvoidPitchers40[playerPosition].push_back(singlePlayerData);
-											if (battingOrder >= 2 && battingOrder <= 5) {
-												float storedPoints = singlePlayerData.playerPointsPerGame;
-												singlePlayerData.playerPointsPerGame *= 160.0f / expectedFdPointsPitcher;
-												allPlayers25PitcherMultiply[playerPosition].push_back(singlePlayerData);
-												allPlayers25PitcherMultiplyStackTeams[playerPosition].push_back(singlePlayerData);
-												singlePlayerData.playerPointsPerGame = storedPoints * (60.0f / expectedDkPointsPitcher);
-												allPlayers25PitcherDkMultiply[playerPosition].push_back(singlePlayerData);
-												singlePlayerData.playerPointsPerGame = storedPoints * (120.0f / expectedYahooPointsPitcher);
-												allPlayers25PitcherYahooMultiply[playerPosition].push_back(singlePlayerData);
-												singlePlayerData.playerPointsPerGame = storedPoints * (1.7f * pitcherOpsAllowed / leagueAverageOps);
-												allPlayers25PitcherOpsMultiply[playerPosition].push_back(singlePlayerData);
-												singlePlayerData.playerPointsPerGame = storedPoints;
+										}
+										float expectedFdPointsPitcher = stof(thisSabrLinePitchers[14]);
+										float expectedDkPointsPitcher = stof(thisSabrLinePitchers[13]);
+										float expectedYahooPointsPitcher = stof(thisSabrLinePitchers[12]);
+										float pitcherOnBaseAllowed = stof(thisSabrLinePitchers[6]) + stof(thisSabrLinePitchers[11]);
+										float pitcherBattersFaced = stof(thisSabrLinePitchers[5]);
+										float pitcherTotalBasesAllowed = stof(thisSabrLinePitchers[7]) + stof(thisSabrLinePitchers[8]) * 2 + stof(thisSabrLinePitchers[9]) * 3 + stof(thisSabrLinePitchers[10]) * 4;
+										float pitcherOpsAllowed = pitcherOnBaseAllowed / pitcherBattersFaced + pitcherTotalBasesAllowed / pitcherBattersFaced;
+										if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5))
+											&& expectedFdPointsPitcher < 30)
+											allPlayers25AvoidPitchers30[playerPosition].push_back(singlePlayerData);
+										if (battingOrder >= 2 && (battingOrder <= 5 || (playerPosition == 0 && battingOrder <= 5))
+											&& expectedFdPointsPitcher < 40)
+											allPlayers25AvoidPitchers40[playerPosition].push_back(singlePlayerData);
+										if (battingOrder >= 2 && battingOrder <= 5) {
+											float storedPoints = singlePlayerData.playerPointsPerGame;
+											singlePlayerData.playerPointsPerGame *= 160.0f / expectedFdPointsPitcher;
+											allPlayers25PitcherMultiply[playerPosition].push_back(singlePlayerData);
+											allPlayers25PitcherMultiplyStackTeams[playerPosition].push_back(singlePlayerData);
+											singlePlayerData.playerPointsPerGame = storedPoints * (60.0f / expectedDkPointsPitcher);
+											allPlayers25PitcherDkMultiply[playerPosition].push_back(singlePlayerData);
+											singlePlayerData.playerPointsPerGame = storedPoints * (120.0f / expectedYahooPointsPitcher);
+											allPlayers25PitcherYahooMultiply[playerPosition].push_back(singlePlayerData);
+											singlePlayerData.playerPointsPerGame = storedPoints * (1.7f * pitcherOpsAllowed / leagueAverageOps);
+											allPlayers25PitcherOpsMultiply[playerPosition].push_back(singlePlayerData);
+												
+											if (batterStats.average > 0.21f) {
+												playerPointsCached = singlePlayerData.playerPointsPerGame;
+												singlePlayerData.playerPointsPerGame = batterStats.ops * 100.0f * (160.0f / expectedFdPointsPitcher);
+												allPlayers25SeasonOpsPitcherMultiply[playerPosition].push_back(singlePlayerData);
+												singlePlayerData.playerPointsPerGame = batterStats.iso * 100.0f * (160.0f / expectedFdPointsPitcher);
+												allPlayers25SeasonIsoPitcherMultiply[playerPosition].push_back(singlePlayerData);
+												singlePlayerData.playerPointsPerGame = batterStats.wrcPlus * (160.0f / expectedFdPointsPitcher);
+												allPlayers25SeasonWrcPitcherMultiply[playerPosition].push_back(singlePlayerData);
+												singlePlayerData.playerPointsPerGame = playerPointsCached;
 											}
 
+											singlePlayerData.playerPointsPerGame = storedPoints;
 										}
+
 									}
-									singlePlayerData.playerPointsPerGame = stof(thisLineActualResults[7]);
-									allPlayersActualScores[playerPosition].push_back(singlePlayerData);
+								}
+							}
+							if (true || sabrPredictorTextPitchers == "") {
+								if (batterStats.average > 0.21f) {
+									auto opponentPitcher = opponentPitcherScoreMap.find(singlePlayerData.teamCode);
+									if (opponentPitcher != opponentPitcherScoreMap.end()) {
+										singlePlayerData.playerPointsPerGame = batterStats.ops * 100.0f * (640.0f / opponentPitcher->second);
+										allPlayers25SeasonOpsPitcherMultiply[playerPosition].push_back(singlePlayerData);
+										singlePlayerData.playerPointsPerGame = batterStats.iso * 100.0f * (640.0f / opponentPitcher->second);
+										allPlayers25SeasonIsoPitcherMultiply[playerPosition].push_back(singlePlayerData);
+										singlePlayerData.playerPointsPerGame = batterStats.wrcPlus * (640.0f / opponentPitcher->second);
+										allPlayers25SeasonWrcPitcherMultiply[playerPosition].push_back(singlePlayerData);
+									}
+									else {
+										float standardMultiplier = 640.0f / 59.0f;
+										singlePlayerData.playerPointsPerGame = batterStats.ops * 100.0f * standardMultiplier;
+										allPlayers25SeasonOpsPitcherMultiply[playerPosition].push_back(singlePlayerData);
+										singlePlayerData.playerPointsPerGame = batterStats.iso * 100.0f * standardMultiplier;
+										allPlayers25SeasonIsoPitcherMultiply[playerPosition].push_back(singlePlayerData);
+										singlePlayerData.playerPointsPerGame = batterStats.wrcPlus * standardMultiplier;
+										allPlayers25SeasonWrcPitcherMultiply[playerPosition].push_back(singlePlayerData);
+									}
+								}
+							}
+							singlePlayerData.playerPointsPerGame = stof(thisLineActualResults[7]);
+							allPlayersActualScores[playerPosition].push_back(singlePlayerData);
+						} else if (playerPosition == -1) {
+							if (bRefineForPitchers) {
+								FullSeasonPitcherStats pitcherStats = GetPitcherCumulativeStatsUpTo(thisLineActualResults[1], curl, thisDateOnePrevious);
+								if (pitcherStats.numInnings > 0) {
+									float pitcherPoints = GetExpectedFanduelPointsFromPitcherStats(pitcherStats);
+									string opponentTeamCode = thisLineActualResults[10].substr(thisLineActualResults[10].size() - 3);
+									opponentPitcherScoreMap.insert({ opponentTeamCode,pitcherPoints });
+									pitcherInputValues.push_back(pitcherPoints);
+									pitcherOutputValues.push_back(stof(thisLineActualResults[7]));
 								}
 							}
 						}
-						if (nextIndex == string::npos)
-							break;
-						currentIndex = nextIndex + 1;
-						nextIndex = actualResults.find("\n", currentIndex + 1);
-					}
+					} 
+					if (nextIndex == string::npos)
+						break;
+					currentIndex = nextIndex + 1;
+					nextIndex = actualResults.find("\n", currentIndex + 1);
 				}
 				
+				/*
 				vector< vector<PlayerData> > allPlayers25SeasonOps(6);
 				vector< vector<PlayerData> > allPlayers25SeasonOpsAdjusted(6);
 				vector< vector<PlayerData> > allPlayers25Last30Ops(6);
 				vector< vector<PlayerData> > allPlayers25Last30OpsAdjusted(6);
-				
-				while (getline(resultsTrackerFile, resultsLine))
+				*/
+			/*	while (getline(resultsTrackerFile, resultsLine))
 				{
 					vector<float> thisInputVariables;
 					thisInputVariables.push_back(0);
@@ -462,6 +531,7 @@ void RefineAlgorithm()
 						}
 					}
 				}
+			*/
 				sort(teamStackList.begin(), teamStackList.end(), compareTeamsByAveragePlayerPointsPerGame);
 				
 				for (unsigned int pos = 0; pos < allPlayersStackingTeams.size(); ++pos) {
@@ -570,13 +640,13 @@ void RefineAlgorithm()
 						allPlayers = allPlayers25SeasonOps;
 						break;
 					case 9:
-						allPlayers = allPlayers25SeasonOpsAdjusted;
+						allPlayers = allPlayers25SeasonOpsPitcherMultiply;
 						break;
 					case 10:
-						allPlayers = allPlayers25Last30Ops;
+						allPlayers = allPlayers25SeasonIso;
 						break;
 					case 11:
-						allPlayers = allPlayers25Last30OpsAdjusted;
+						allPlayers = allPlayers25SeasonIsoPitcherMultiply;
 						break;
 					case 12:
 						allPlayers = allPlayersStackingTeams;
@@ -603,6 +673,12 @@ void RefineAlgorithm()
 						allPlayers = allPlayers25PitcherOpsMultiply;
 						break;
 					case 20:
+						allPlayers = allPlayers25SeasonWrc;
+						break;
+					case 21:
+						allPlayers = allPlayers25SeasonWrcPitcherMultiply;
+						break;
+					case 22:
 						allPlayers = allPlayersActualScores;
 						break;
 					default:
@@ -680,8 +756,8 @@ void RefineAlgorithm()
 							playerIdIndex = actualResults.find(";", playerIdIndex + 1);
 						}
 						nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
-						pitcherInputValues.push_back(stof(lineValues[2]));
-						pitcherOutputValues.push_back(stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str()));
+					//	pitcherInputValues.push_back(stof(lineValues[2]));
+					//	pitcherOutputValues.push_back(stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str()));
 						if (sabrPredictorText != "") {
 							size_t playerNameIndex = sabrPredictorText.find(playerName);
 							if (playerNameIndex != string::npos) {
@@ -751,7 +827,7 @@ void RefineAlgorithm()
 				}
 				lineupsOver80.push_back(numOver80);
 				lineupsTotalPointsPer.push_back(totalLineupPoints / (float)chosenLineupsList[i].size());
-			//	sort(chosenLineupsList[i].begin(), chosenLineupsList[i].end(), greaterSortingFunction());
+				sort(chosenLineupsList[i].begin(), chosenLineupsList[i].end(), greaterSortingFunction());
 			}
 
 			float fCoefficientStep = 0.05f;
@@ -1127,6 +1203,34 @@ void RefineAlgorithmForBeatTheStreak()
 	}
 }
 
+float GetExpectedFanduelPointsFromPitcherStats(FullSeasonPitcherStats pitcherStats, float opponentRunsPerGame, float opponentStrikeoutsPerGame) {
+	//fip,			era,			kper9,	oppRunsPerGame,	oppKPer9
+	//0.200000003, 0.600000024, 0.500000000, 1.00000012, 0.500000000
+	//0.200000033, 0.539999962, 0.479999930, 0.959999919, 0.429999977
+	//0.300000012, 0.600000024, 0.500000000, 1.00000012, 0.400000006
+	float pitcherInputCoefficients[5] = { 0.2f, 0.6f, 0.5f, 1.0f, 0.4f };
+	float pitcherInputStats[5] = { 0,0,0,0,0 };
+	pitcherInputStats[0] = 9.0f / max(pitcherStats.fip, 1.0f);
+	pitcherInputStats[1] = 9.0f / max(pitcherStats.era, 1.0f);
+	pitcherInputStats[2] = pitcherStats.strikeOutsPer9 / 9.0f;
+	pitcherInputStats[3] = 9.0f / max(opponentRunsPerGame, 1.0f);
+	pitcherInputStats[4] = opponentStrikeoutsPerGame / 9.0f;
+
+	// attempt to normalize variables to be average fantasy score of 16.5
+	pitcherInputStats[0] *= 6.4166667f;
+	pitcherInputStats[1] *= 6.4166667f;
+	pitcherInputStats[2] *= 27.0f;
+	pitcherInputStats[3] *= 6.4166667f;
+	pitcherInputStats[4] *= 27.0f;
+
+	float playerPointsPerGame = 0;
+	for (int i = 0; i < 5; ++i)
+	{
+		playerPointsPerGame += pitcherInputStats[i] * pitcherInputCoefficients[i];
+	}
+	return playerPointsPerGame;
+}
+
 void ChooseAPitcher(CURL *curl)
 {
 	if (curl == NULL)
@@ -1340,30 +1444,7 @@ void ChooseAPitcher(CURL *curl)
 			lastYearPitcherStats.era *= parkRunsFactor;
 			lastYearPitcherStats.fip *= parkHomerFactor;
 
-			//fip,			era,			kper9,	oppRunsPerGame,	oppKPer9
-			//0.200000003, 0.600000024, 0.500000000, 1.00000012, 0.500000000
-			//0.200000033, 0.539999962, 0.479999930, 0.959999919, 0.429999977
-			//0.300000012, 0.600000024, 0.500000000, 1.00000012, 0.400000006
-			float pitcherInputCoefficients[5] = { 0.2f, 0.6f, 0.5f, 1.0f, 0.4f };
-			float pitcherInputStats[5] = { 0,0,0,0,0 };
-			pitcherInputStats[0] = 9.0f / max(lastYearPitcherStats.fip, 1.0f);
-			pitcherInputStats[1] = 9.0f / max(lastYearPitcherStats.era, 1.0f);
-			pitcherInputStats[2] = lastYearPitcherStats.strikeOutsPer9 / 9.0f;
-			pitcherInputStats[3] = 9.0f / max(opponentRunsPerGame, 1.0f);
-			pitcherInputStats[4] = opponentStrikeoutsPerGame / 9.0f;
-
-			// attempt to normalize variables to be average fantasy score of 16.5
-			pitcherInputStats[0] *= 6.4166667f;
-			pitcherInputStats[1] *= 6.4166667f;
-			pitcherInputStats[2] *= 27.0f;
-			pitcherInputStats[3] *= 6.4166667f;
-			pitcherInputStats[4] *= 27.0f;
-
-			singlePlayerData.playerPointsPerGame = 0;
-			for (int i = 0; i < 5; ++i)
-			{
-				singlePlayerData.playerPointsPerGame += pitcherInputStats[i] * pitcherInputCoefficients[i];
-			}
+			singlePlayerData.playerPointsPerGame = GetExpectedFanduelPointsFromPitcherStats(lastYearPitcherStats, opponentRunsPerGame, opponentStrikeoutsPerGame);
 			
 			bool bRainedOut = false;
 			int gameStartTime = 99;
@@ -2980,6 +3061,13 @@ void UnitTestAllStatCollectionFunctions()
 	assert(abs(kauffmanAverageFactorRightyBatter - 1.03f) < 0.01f);
 	assert(abs(coorsRunsFactorLeftyBatter - 1.32f) < 0.01f);
 	assert(abs(coorsRunsFactorRightyBatter - 1.37f) < 0.01f);
+
+	// string functions
+	assert(IntToDateYMD(20170801 - 1) == "20170731");
+	assert(IntToDateYMD(801 - 1, "2017") == "20170731");
+	assert(IntToDateYMD(20170801 - 25) == "20170707");
+	assert(IntToDateYMD(801 - 30, "2017") == "20170702");
+	assert(IntToDateYMD(20170730 + 45, "2017", true) == "20170913");
 }
 
 string ConvertOddsPortalNameToTeamRankingsName(string oddsportalTeamName)
@@ -3412,7 +3500,7 @@ void Analyze2016TeamWins()
 		char thisDateCStr[5];
 		itoa(d, thisDateCStr, 10);
 		string thisDate = thisDateCStr;
-		string thisDateWithYear = IntToDateYMD(d, false, "2016");
+		string thisDateWithYear = IntToDateYMD(d, "2016");
 
 		string daysPitcherStats = "";
 		string dayStatsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=";
@@ -3500,9 +3588,8 @@ void GatherPitcherCumulativeData()
 		char thisDateCStr[5];
 		itoa(d, thisDateCStr, 10);
 		string thisDate = thisDateCStr;
-		string thisDateWithYear = IntToDateYMD(d, false, "2016");
-		string prevDateWithYear = IntToDateYMD(d - 1, false, "2016");
-		string prevDateWithYearDashes = prevDateWithYear.substr(0, 4) + "-" + prevDateWithYear.substr(4, 2) + "-" + prevDateWithYear.substr(6, 2);
+		string thisDateWithYear = IntToDateYMD(d, "2016");
+		string prevDateWithYear = IntToDateYMD(d - 1, "2016");
 
 		string daysPitcherStats = "";
 		string dayStatsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=";
@@ -3527,7 +3614,7 @@ void GatherPitcherCumulativeData()
 				break;
 			if (lineValues[4] == "1")
 			{
-				FullSeasonPitcherStats cumulativeStats = GetPitcherCumulativeStatsUpTo(lineValues[1], curl, prevDateWithYearDashes);
+				FullSeasonPitcherStats cumulativeStats = GetPitcherCumulativeStatsUpTo(lineValues[1], curl, prevDateWithYear);
 				std::transform(lineValues[9].begin(), lineValues[9].end(), lineValues[9].begin(), ::tolower);
 				pitcherStatsArchiveFile << lineValues[9]  << ";" << lineValues[1] << ";" << lineValues[3] << ";" << cumulativeStats.ToString();
 				pitcherStatsArchiveFile << endl;
@@ -3601,7 +3688,7 @@ void GatherTeamWins()
 
 		ofstream winResultsOutputFile;
 		string winResultsFileName = "2017ResultsTracker\\OddsWinsResults\\";
-		winResultsFileName += IntToDateYMD(d) +".txt";
+		winResultsFileName += IntToDateYMD(d, "2017") +".txt";
 		winResultsOutputFile.open(winResultsFileName);
 
 		string dateSearchString = thisDay + " " + thisMonth + " 2017";
@@ -3660,7 +3747,7 @@ void GatherTeamWins()
 
 					if (winningTeamName.find_first_of("&<=01234") == string::npos && losingTeamName.find("&<=01234") == string::npos)
 					{
-						string yearMonthDate = IntToDateYMD(atoi(timeString.c_str()) <= 7 ? d - 1 : d);
+						string yearMonthDate = IntToDateYMD(atoi(timeString.c_str()) <= 7 ? d - 1 : d, "2017");
 						winResultsOutputFile << yearMonthDate << ";";
 						winResultsOutputFile << winningTeamName << ";" << losingTeamName << ";";
 						if (winningTeamNameIndex < losingTeamNameIndex)
