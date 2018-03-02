@@ -281,10 +281,10 @@ FullSeasonPitcherStats GetPitcherStats(string playerId, string yearString, CURL 
 	return pitcherStats;
 }
 
-FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo) {
+FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo, bool entireCareer) {
 	FullSeasonStatsAdvancedNoHandedness batterStats;
 
-	string fangraphsPlayerData = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, false);
+	string fangraphsPlayerData = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, false, entireCareer);
 
 	vector<string> fangraphsStandardRows = GetFangraphsRowColumns(">Total<", fangraphsPlayerData, 22, "id=\"DailyStats", "", false);
 	if (fangraphsStandardRows.size() == 0)
@@ -303,12 +303,12 @@ FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string pla
 }
 //rotogrinder playerId
 // dateUpTo = "2017-08-08"
-FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(string playerId, CURL *curl, string dateUpTo)
+FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(string playerId, CURL *curl, string dateUpTo, bool entireCareer)
 {
 	FullSeasonPitcherStats pitcherStats;
 
-	string fangraphsPlayerData = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, false);
-	string fangraphsPlayerDataAdvanced = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, true);
+	string fangraphsPlayerData = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, false, entireCareer);
+	string fangraphsPlayerDataAdvanced = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, true, entireCareer);
 
 	vector<string> fangraphsStandardRows = GetFangraphsRowColumns(">Total<", fangraphsPlayerData, 26, "id=\"DailyStats", "", false);
 	if (fangraphsStandardRows.size() == 0)
@@ -677,12 +677,12 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 
 // playerId = rotogrinders player id
 // dateUpTo = "2017-08-08"
-string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, string dateUpTo, bool advancedPage)
+string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, string dateUpTo, bool advancedPage, bool entireCareer)
 {
 	dateUpTo = DateToDateWithDashes(dateUpTo);
 
 	string fangraphsData = "";
-	string cachedFileName = "FangraphsCachedPages\\CumulativeUpTo\\PlayerId" + playerId + "UpTo" + dateUpTo;
+	string cachedFileName = "FangraphsCachedPages\\CumulativeUpTo\\PlayerId" + playerId + (entireCareer ? "Career" : "") + "UpTo" + dateUpTo;
 	if (advancedPage)
 		cachedFileName += "Advanced";
 	cachedFileName += ".txt";
@@ -727,7 +727,11 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
 			finalFangraphsURL += "2";
 		else
 			finalFangraphsURL += "0";
-		finalFangraphsURL += "&gds=" + dateUpTo.substr(0,4) + "-04-00&gde=" + dateUpTo;
+		string beginningDateWithDashes = dateUpTo.substr(0, 4) + "-04-00";
+		if (entireCareer) {
+			beginningDateWithDashes = "2006-04-01";
+		}
+		finalFangraphsURL += "&gds=" + beginningDateWithDashes + "&gde=" + dateUpTo;
 		curl_easy_setopt(curl, CURLOPT_URL, finalFangraphsURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -738,10 +742,18 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
 		size_t writeToFileIndexBegin = fangraphsData.find("id=\"DailyStats", 0);
 		if (writeToFileIndexBegin == string::npos)
 			writeToFileIndexBegin = 0;
-		size_t writeToFileLength = fangraphsData.find("id=\"footer\"", writeToFileIndexBegin);
-		if (writeToFileLength != string::npos)
-			writeToFileLength -= writeToFileIndexBegin;
-
+		size_t writeToFileIndexEnd = string::npos;
+		size_t fileTotalsIndex = fangraphsData.find(">Total<", writeToFileIndexBegin);
+		if (fileTotalsIndex != string::npos) {
+			writeToFileIndexEnd = fangraphsData.find("id=\"DailyStats", fileTotalsIndex);
+		}
+		else {
+			writeToFileIndexEnd = fangraphsData.find("id=\"footer\"", writeToFileIndexBegin);
+		}
+		size_t writeToFileLength = string::npos;
+		if (writeToFileIndexEnd != string::npos) {
+			writeToFileLength = writeToFileIndexEnd - writeToFileIndexBegin;
+		}
 		ofstream writeToFile;
 		writeToFile.open(cachedFileName);
 		writeToFile << fangraphsData.substr(writeToFileIndexBegin, writeToFileLength);

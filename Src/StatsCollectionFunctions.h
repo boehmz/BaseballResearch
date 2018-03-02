@@ -37,7 +37,7 @@ const int AdvancedStatsPitchingSplitsVersusRightHand = 4;
 const int AdvancedStatsPitchingSplitsVersusLeftHand = 8;
 const int AdvancedStatsPitchingStarterStatsOnly = 16;
 std::string GetPlayerFangraphsPageData(std::string playerId, CURL *curl, bool bCachedOk, int advancedStatsFlags);
-std::string GetPlayerFangraphsPageDataCumulativeUpTo(std::string playerId, CURL *curl, std::string dateUpTo, bool advancedPage);
+std::string GetPlayerFangraphsPageDataCumulativeUpTo(std::string playerId, CURL *curl, std::string dateUpTo, bool advancedPage, bool entireCareer = false);
 std::vector<std::string> GetFangraphsRowColumns(std::string yearRow, std::string allData, int numColumns, std::string section, std::string nextSection, bool watchOutForProjections);
 
 struct FullSeasonStats
@@ -66,7 +66,7 @@ struct FullSeasonStatsAdvancedNoHandedness
 	FullSeasonStatsAdvancedNoHandedness() {}
 
 };
-FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo);
+FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo, bool entireCareer = false);
 
 struct FullSeasonStatsAdvanced
 {
@@ -117,7 +117,7 @@ FullSeasonPitcherStats operator*(const FullSeasonPitcherStats& stats, float floa
 FullSeasonPitcherStats operator+(const FullSeasonPitcherStats& lhs, const FullSeasonPitcherStats& rhs);
 
 FullSeasonPitcherStats GetPitcherStats(std::string playerId, std::string yearString, CURL *curl);
-FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo);
+FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo, bool entireCareer = false);
 
 
 #endif
