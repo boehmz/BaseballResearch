@@ -281,6 +281,23 @@ FullSeasonPitcherStats GetPitcherStats(string playerId, string yearString, CURL 
 	return pitcherStats;
 }
 
+FullSeasonStatsAdvancedNoHandedness GetBatterStatsSeason(std::string playerId, CURL *curl, std::string yearString) {
+	FullSeasonStatsAdvancedNoHandedness batterStats;
+
+	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, 0);
+	vector<string> fangraphsYearRows = GetFangraphsRowColumns(">" + yearString + "<", fangraphsPlayerData, 20, "name=\"dashboard\"", "", true);
+	if (fangraphsYearRows.size() > 19) {
+		batterStats.average = stof(fangraphsYearRows[11]);
+		batterStats.onBaseAverage = stof(fangraphsYearRows[12]);
+		batterStats.slugging = stof(fangraphsYearRows[13]);
+		batterStats.ops = batterStats.onBaseAverage + batterStats.slugging;
+		batterStats.woba = stof(fangraphsYearRows[14]);
+		batterStats.wrcPlus = stof(fangraphsYearRows[15]);
+		batterStats.iso = stof(fangraphsYearRows[9]);
+	}
+
+	return batterStats;
+}
 FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo, bool entireCareer) {
 	FullSeasonStatsAdvancedNoHandedness batterStats;
 
@@ -314,6 +331,31 @@ void FullSeasonStatsAdvancedNoHandedness::operator+=(const FullSeasonStatsAdvanc
 		wrcPlus += other.wrcPlus;
 	}
 }
+void FullSeasonStatsAdvancedNoHandedness::operator*=(float rhs) {
+	if (average >= 0) {
+		average *= rhs;
+		onBaseAverage *= rhs;
+		slugging *= rhs;
+		ops *= rhs;
+		iso *= rhs;
+		woba *= rhs;
+		if (average > 0) {
+			wrcPlus *= rhs;
+		}
+		strikeoutPercent *= rhs;
+		walkPercent *= rhs;
+	}
+}
+FullSeasonStatsAdvancedNoHandedness operator*(float floatFactor, const FullSeasonStatsAdvancedNoHandedness& stats) {
+	FullSeasonStatsAdvancedNoHandedness newStats(stats);
+	newStats *= floatFactor;
+	return newStats;
+}
+FullSeasonStatsAdvancedNoHandedness operator*(const FullSeasonStatsAdvancedNoHandedness& stats, float floatFactor) {
+	return floatFactor * stats;
+}
+
+
 //rotogrinder playerId
 // dateUpTo = "2017-08-08"
 FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(string playerId, CURL *curl, string dateUpTo, bool entireCareer)
