@@ -310,6 +310,7 @@ void RefineAlgorithm()
 						if (playerPosition >= 0) {
 							int battingOrder = atoi(thisLineActualResults[5].c_str());
 							FullSeasonStatsAdvancedNoHandedness batterStats = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious);
+							FullSeasonStatsAdvancedNoHandedness batterStats2016 = GetBatterStatsSeason(singlePlayerData.playerId, curl, "2016");
 							FullSeasonStatsAdvancedNoHandedness batterStatsCareer = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious, true);
 						//	FullSeasonStatsAdvancedNoHandedness combinedBatterStats = batterStatsCareer * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStatsCareer;
 							if (battingOrder >= 2 && battingOrder <= 5 && batterStats.average > 0.21f) {
