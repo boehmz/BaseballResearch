@@ -301,6 +301,19 @@ FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string pla
 	}
 	return batterStats;
 }
+void FullSeasonStatsAdvancedNoHandedness::operator+=(const FullSeasonStatsAdvancedNoHandedness& other) {
+	if (other.average >= 0 && average >= 0) {
+		average += other.average;
+		iso += other.iso;
+		onBaseAverage += other.onBaseAverage;
+		ops += other.ops;
+		slugging += other.slugging;
+		strikeoutPercent += other.strikeoutPercent;
+		walkPercent += other.walkPercent;
+		woba += other.woba;
+		wrcPlus += other.wrcPlus;
+	}
+}
 //rotogrinder playerId
 // dateUpTo = "2017-08-08"
 FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(string playerId, CURL *curl, string dateUpTo, bool entireCareer)

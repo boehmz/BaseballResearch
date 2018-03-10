@@ -65,8 +65,10 @@ struct FullSeasonStatsAdvancedNoHandedness
 
 	FullSeasonStatsAdvancedNoHandedness() {}
 
+	void operator+=(const FullSeasonStatsAdvancedNoHandedness& other);
 };
 FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo, bool entireCareer = false);
+FullSeasonStatsAdvancedNoHandedness GetBatterStatsSeason(std::string playerId, CURL *curl, std::string year);
 
 struct FullSeasonStatsAdvanced
 {
