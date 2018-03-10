@@ -325,11 +325,18 @@ void FullSeasonStatsAdvancedNoHandedness::operator+=(const FullSeasonStatsAdvanc
 		onBaseAverage += other.onBaseAverage;
 		ops += other.ops;
 		slugging += other.slugging;
-		strikeoutPercent += other.strikeoutPercent;
-		walkPercent += other.walkPercent;
+		if (other.strikeoutPercent >= 0 && strikeoutPercent >= 0)
+			strikeoutPercent += other.strikeoutPercent;
+		if (other.walkPercent >= 0 && walkPercent >= 0)
+			walkPercent += other.walkPercent;
 		woba += other.woba;
 		wrcPlus += other.wrcPlus;
 	}
+}
+FullSeasonStatsAdvancedNoHandedness operator+(const FullSeasonStatsAdvancedNoHandedness& lhs, const FullSeasonStatsAdvancedNoHandedness& rhs) {
+	FullSeasonStatsAdvancedNoHandedness newStats(rhs);
+	newStats += lhs;
+	return newStats;
 }
 void FullSeasonStatsAdvancedNoHandedness::operator*=(float rhs) {
 	if (average >= 0) {
@@ -342,8 +349,10 @@ void FullSeasonStatsAdvancedNoHandedness::operator*=(float rhs) {
 		if (average > 0) {
 			wrcPlus *= rhs;
 		}
-		strikeoutPercent *= rhs;
-		walkPercent *= rhs;
+		if (strikeoutPercent >= 0)
+			strikeoutPercent *= rhs;
+		if (walkPercent >= 0)
+			walkPercent *= rhs;
 	}
 }
 FullSeasonStatsAdvancedNoHandedness operator*(float floatFactor, const FullSeasonStatsAdvancedNoHandedness& stats) {
@@ -353,6 +362,27 @@ FullSeasonStatsAdvancedNoHandedness operator*(float floatFactor, const FullSeaso
 }
 FullSeasonStatsAdvancedNoHandedness operator*(const FullSeasonStatsAdvancedNoHandedness& stats, float floatFactor) {
 	return floatFactor * stats;
+}
+bool FullSeasonStatsAdvancedNoHandedness::operator==(const FullSeasonStatsAdvancedNoHandedness& rhs) {
+	if (abs(rhs.average - average) >= 0.0015f)
+		return false;
+	if (abs(rhs.onBaseAverage - onBaseAverage) >= 0.0015f)
+		return false;
+	if (abs(rhs.slugging - slugging) >= 0.0015f)
+		return false;
+	if (abs(rhs.ops - ops) >= 0.0015f)
+		return false;
+	if (abs(rhs.iso - iso) >= 0.0015f)
+		return false;
+	if (abs(rhs.woba - woba) >= 0.0015f)
+		return false;
+	if (abs(rhs.strikeoutPercent - strikeoutPercent) >= 0.15f)
+		return false;
+	if (abs(rhs.walkPercent - walkPercent) >= 0.15f)
+		return false;
+	if (abs(rhs.wrcPlus - wrcPlus) >= 0.5f)
+		return false;
+	return true;
 }
 
 

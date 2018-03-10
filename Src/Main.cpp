@@ -51,7 +51,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::UnitTest;
 	switch (processType)
 	{
 	case UnitTest:
@@ -3037,6 +3037,16 @@ void UnitTestAllStatCollectionFunctions()
 		//FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats("1580", "2017", curl);
 		FullSeasonPitcherStats pitcher2016Stats = GetPitcherStats("1580", "2016", curl);
 		
+		FullSeasonStatsAdvancedNoHandedness jeddGyorko2016Stats = GetBatterStatsSeason("5214", curl, "2016");
+		FullSeasonStatsAdvancedNoHandedness expectedJeddGyorko2016Stats;
+		expectedJeddGyorko2016Stats.average = 0.243f;
+		expectedJeddGyorko2016Stats.onBaseAverage = 0.306f;
+		expectedJeddGyorko2016Stats.slugging = 0.495f;
+		expectedJeddGyorko2016Stats.ops = 0.801f;
+		expectedJeddGyorko2016Stats.iso = 0.253f;
+		expectedJeddGyorko2016Stats.woba = 0.339f;
+		expectedJeddGyorko2016Stats.wrcPlus = 112;
+
 		// cache greinke 2016 stats for easier testing
 		FullSeasonPitcherStats expectedPitcher2016Stats;
 		expectedPitcher2016Stats.era = 4.37f;
@@ -3107,6 +3117,19 @@ void UnitTestAllStatCollectionFunctions()
 		expectedBatter2016AdvancedStats.wobaVersusRighty = 0.348f * 0.5f;;
 		assert(expectedBatter2016AdvancedStats == batter2016AdvancedStats);
 		assert(expectedBatter2016AdvancedStats + batter2016AdvancedStats == batter2016AdvancedStats * 2.0f);
+		
+		assert(expectedJeddGyorko2016Stats == jeddGyorko2016Stats);
+		jeddGyorko2016Stats *= 0.5f;
+		expectedJeddGyorko2016Stats.average = 0.243f * 0.5f;
+		expectedJeddGyorko2016Stats.onBaseAverage = 0.306f * 0.5f;
+		expectedJeddGyorko2016Stats.slugging = 0.495f * 0.5f;
+		expectedJeddGyorko2016Stats.ops = 0.801f * 0.5f;
+		expectedJeddGyorko2016Stats.iso = 0.253f * 0.5f;
+		expectedJeddGyorko2016Stats.woba = 0.339f * 0.5f;
+		expectedJeddGyorko2016Stats.wrcPlus = 112 * 0.5f;
+		assert(expectedJeddGyorko2016Stats == jeddGyorko2016Stats);
+		assert((expectedJeddGyorko2016Stats + expectedJeddGyorko2016Stats) == (jeddGyorko2016Stats * 2.0f));
+
 		int iBreakpoint = 0;
 		iBreakpoint = iBreakpoint;
 	}
