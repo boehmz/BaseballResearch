@@ -188,7 +188,7 @@ void RefineAlgorithm()
 		float inputCoefficients[2] = { 0.0f, 1.0f };
 		vector< float > outputValues;
 
-		vector< vector<float>> chosenLineupsList(27);
+		vector< vector<float>> chosenLineupsList(31);
 
 		vector<float> pitcherInputValues;
 		vector<float> pitcherOutputValues;
@@ -269,7 +269,6 @@ void RefineAlgorithm()
 				vector< vector<PlayerData> > allPlayers25PitcherDkMultiply(6);
 				vector< vector<PlayerData> > allPlayers25PitcherYahooMultiply(6);
 				vector< vector<PlayerData> > allPlayers25PitcherOpsMultiply(6);
-				vector< vector<PlayerData> > allPlayers25PitcherMultiplyStackTeams(6);
 				vector< vector<PlayerData> > allPlayers25MachineLearning(6);
 				vector< vector<PlayerData> > allPlayers25MachineLearningPitcherMultiply(6);
 				vector< vector<PlayerData> > allPlayersHighScoreThreshold(6);
@@ -280,6 +279,12 @@ void RefineAlgorithm()
 				vector< vector<PlayerData> > allPlayers25SeasonOpsPitcherMultiply(6);
 				vector< vector<PlayerData> > allPlayers25SeasonIso(6);
 				vector< vector<PlayerData> > allPlayers25SeasonIsoPitcherMultiply(6);
+				vector< vector<PlayerData> > allPlayers25SeasonIsoPitcherMultiplyEra(6);
+				vector< vector<PlayerData> > allPlayers25SeasonIsoPitcherMultiplyFip(6);
+				vector< vector<PlayerData> > allPlayers25SeasonIsoPitcherMultiplyXFip(6);
+				vector< vector<PlayerData> > allPlayers25SeasonIsoPitcherMultiplyKPer9(6);
+				vector< vector<PlayerData> > allPlayers25SeasonIsoPitcherMultiplyWhip(6);
+
 				vector< vector<PlayerData> > allPlayers25SeasonWrc(6);
 				vector< vector<PlayerData> > allPlayers25SeasonWrcPitcherMultiply(6);
 
@@ -418,7 +423,6 @@ void RefineAlgorithm()
 											float storedPoints = singlePlayerData.playerPointsPerGame;
 											singlePlayerData.playerPointsPerGame *= 160.0f / expectedFdPointsPitcher;
 											allPlayers25PitcherMultiply[playerPosition].push_back(singlePlayerData);
-											allPlayers25PitcherMultiplyStackTeams[playerPosition].push_back(singlePlayerData);
 											singlePlayerData.playerPointsPerGame = storedPoints * (60.0f / expectedDkPointsPitcher);
 											allPlayers25PitcherDkMultiply[playerPosition].push_back(singlePlayerData);
 											singlePlayerData.playerPointsPerGame = storedPoints * (120.0f / expectedYahooPointsPitcher);
@@ -448,35 +452,52 @@ void RefineAlgorithm()
 									auto opponentPitcher = opponentPitcherScoreMap.find(singlePlayerData.teamCode);
 									if (opponentPitcher != opponentPitcherScoreMap.end()) {
 										float pitcherPointsNumerator = 15.0f;
-									/*	singlePlayerData.playerPointsPerGame = combinedBatterStats.ops * 100.0f * ( opponentPitcher->second);
+										float pitcherPoints = opponentPitcher->second.era * -0.352834158133307318f + opponentPitcher->second.xfip * -1.50744966177988493f + opponentPitcher->second.strikeOutsPer9 * 1.44486530250260237f;
+										singlePlayerData.playerPointsPerGame = combinedBatterStats.ops * 100.0f * (pitcherPointsNumerator / pitcherPoints);
 										allPlayers25SeasonOpsPitcherMultiply[playerPosition].push_back(singlePlayerData);
-										singlePlayerData.playerPointsPerGame = combinedBatterStats.iso * 100.0f * ( opponentPitcher->second);
+										singlePlayerData.playerPointsPerGame = combinedBatterStats.iso * 100.0f * (pitcherPointsNumerator / pitcherPoints);
 										allPlayers25SeasonIsoPitcherMultiply[playerPosition].push_back(singlePlayerData);
-										singlePlayerData.playerPointsPerGame = combinedBatterStats.wrcPlus * ( opponentPitcher->second);
+										singlePlayerData.playerPointsPerGame = combinedBatterStats.wrcPlus * (pitcherPointsNumerator / pitcherPoints);
 										allPlayers25SeasonWrcPitcherMultiply[playerPosition].push_back(singlePlayerData);
 										singlePlayerData.playerPointsPerGame = combinedBatterStats.iso * 10.8216856682926313f + combinedBatterStats.wrcPlus * .00302694128934278411f;
-										singlePlayerData.playerPointsPerGame *=  opponentPitcher->second;
+										singlePlayerData.playerPointsPerGame *= (pitcherPointsNumerator / pitcherPoints);
 										allPlayers25MachineLearningPitcherMultiply[playerPosition].push_back(singlePlayerData);
-										*/
-										singlePlayerData.playerPointsPerGame = combinedBatterStats.iso * 14.0676013585639081f;
-										singlePlayerData.playerPointsPerGame += opponentPitcher->second.era * 0.0405585668255538101f + opponentPitcher->second.xfip * 0.535854100213696949f;
-										allPlayers25MachineLearningPitcherMultiply[playerPosition].push_back(singlePlayerData);
-										if (combinedBatterStats.onBaseAverage >= 0.35f && combinedBatterStats.slugging >= 0.49f && combinedBatterStats.wrcPlus >= 120 && opponentPitcher->second.era > 4.3f && opponentPitcher->second.fip > 4.4f) {
+										
+										singlePlayerData.playerPointsPerGame = combinedBatterStats.iso * 100.0f;
+										singlePlayerData.playerPointsPerGame *= opponentPitcher->second.era;
+										allPlayers25SeasonIsoPitcherMultiplyEra[playerPosition].push_back(singlePlayerData);
+										singlePlayerData.playerPointsPerGame = combinedBatterStats.iso * 100.0f;
+										singlePlayerData.playerPointsPerGame *= opponentPitcher->second.fip;
+										allPlayers25SeasonIsoPitcherMultiplyFip[playerPosition].push_back(singlePlayerData);
+										singlePlayerData.playerPointsPerGame = combinedBatterStats.iso * 100.0f;
+										singlePlayerData.playerPointsPerGame *= opponentPitcher->second.xfip;
+										allPlayers25SeasonIsoPitcherMultiplyXFip[playerPosition].push_back(singlePlayerData);
+										singlePlayerData.playerPointsPerGame = combinedBatterStats.iso * 100.0f;
+										singlePlayerData.playerPointsPerGame *= 1.0f / opponentPitcher->second.strikeOutsPer9;
+										allPlayers25SeasonIsoPitcherMultiplyKPer9[playerPosition].push_back(singlePlayerData);
+										singlePlayerData.playerPointsPerGame = combinedBatterStats.iso * 100.0f;
+										singlePlayerData.playerPointsPerGame *= opponentPitcher->second.whip;
+										allPlayers25SeasonIsoPitcherMultiplyWhip[playerPosition].push_back(singlePlayerData);
+
+									//	singlePlayerData.playerPointsPerGame = combinedBatterStats.iso * 14.0676013585639081f;
+									//	singlePlayerData.playerPointsPerGame += opponentPitcher->second.era * 0.0405585668255538101f + opponentPitcher->second.xfip * 0.535854100213696949f;
+									//	allPlayers25MachineLearningPitcherMultiply[playerPosition].push_back(singlePlayerData);
+									/*	if (combinedBatterStats.onBaseAverage >= 0.35f && combinedBatterStats.slugging >= 0.49f && combinedBatterStats.wrcPlus >= 120 && opponentPitcher->second.era > 4.3f && opponentPitcher->second.fip > 4.4f) {
 											singlePlayerData.playerPointsPerGame = combinedBatterStats.ops * 100.0f;
 											allPlayersHighScoreThreshold[playerPosition].push_back(singlePlayerData);
 											if (battingOrder >= 2 && battingOrder <= 5) {
 												allPlayersHighScoreThresholdOrder25[playerPosition].push_back(singlePlayerData);
 											}
-										}
+										}	*/
 										if (numBattersWithPitcherPutInTrainingFileToday < 30) {
-											top30BattersWithPitcherTrainingFile << combinedBatterStats.iso * 100.0f << "," << combinedBatterStats.wrcPlus;
-											top30BattersWithPitcherTrainingFile << "," << opponentPitcher->second.era << "," << opponentPitcher->second.xfip;
-											top30BattersWithPitcherTrainingFile  << "," << actualPlayerPoints << endl;
+										//	top30BattersWithPitcherTrainingFile << combinedBatterStats.iso * 100.0f << "," << combinedBatterStats.wrcPlus;
+										//	top30BattersWithPitcherTrainingFile << "," << opponentPitcher->second.era << "," << opponentPitcher->second.xfip;
+										//	top30BattersWithPitcherTrainingFile  << "," << actualPlayerPoints << endl;
 											numBattersWithPitcherPutInTrainingFileToday++;
 										}
 										if (actualPlayerPoints >= 25) {
 											playersOver25PointsSum += combinedBatterStats;
-											playersOver25PointsSumPitcher += opponentPitcher->second;
+										//	playersOver25PointsSumPitcher += opponentPitcher->second;
 											numPlayersOver25Points++;
 										}
 									} else {
@@ -667,24 +688,44 @@ void RefineAlgorithm()
 							}
 						}
 						if (teamStackRank < 10) {
-							allPlayers25StackingTeams[pos][player].playerPointsPerGame += (float)(10 - teamStackRank) * (float)(10 - teamStackRank);
+							allPlayers25StackingTeams[pos][player].playerPointsPerGame += (float)(10 - teamStackRank);
 						}
 					}
 				}
-				for (unsigned int pos = 0; pos < allPlayers25PitcherMultiplyStackTeams.size(); ++pos) {
-					for (unsigned int player = 0; player < allPlayers25PitcherMultiplyStackTeams[pos].size(); ++player) {
-						int teamStackRank = -1;
-						for (unsigned int team = 0; team < teamStackList.size(); ++team) {
-							if (teamStackList[team].teamCode == allPlayers25PitcherMultiplyStackTeams[pos][player].teamCode) {
-								teamStackRank = team;
-								break;
-							}
-						}
-						if (teamStackRank < 10) {
-							allPlayers25PitcherMultiplyStackTeams[pos][player].playerPointsPerGame += (float)(10 - teamStackRank);
-						}
-					}
-				}
+
+				vector< vector< vector<PlayerData> > > allPlayersLineupOrder;
+				allPlayersLineupOrder.push_back(allPlayersAll);
+				allPlayersLineupOrder.push_back(allPlayersAll);
+				allPlayersLineupOrder.push_back(allPlayersTwoThruFive);
+				allPlayersLineupOrder.push_back(allPlayers24);
+				allPlayersLineupOrder.push_back(allPlayers25AvoidPitchers30);
+				allPlayersLineupOrder.push_back(allPlayers25AvoidPitchers40);
+				allPlayersLineupOrder.push_back(allPlayers35);
+				allPlayersLineupOrder.push_back(allPlayers25PitcherMultiply);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonOps);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonOpsPitcherMultiply);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIso);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiply);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyEra);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyFip);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyXFip);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyKPer9);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyWhip);
+				allPlayersLineupOrder.push_back(allPlayersStackingTeams);
+				allPlayersLineupOrder.push_back(allPlayers27StackingTeams);
+				allPlayersLineupOrder.push_back(allPlayers26StackingTeams);
+				allPlayersLineupOrder.push_back(allPlayers25StackingTeams);
+				allPlayersLineupOrder.push_back(allPlayersHomeRuns);
+				allPlayersLineupOrder.push_back(allPlayers25PitcherDkMultiply);
+				allPlayersLineupOrder.push_back(allPlayers25PitcherYahooMultiply);
+				allPlayersLineupOrder.push_back(allPlayers25PitcherOpsMultiply);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonWrc);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonWrcPitcherMultiply);
+				allPlayersLineupOrder.push_back(allPlayers25MachineLearning);
+				allPlayersLineupOrder.push_back(allPlayers25MachineLearningPitcherMultiply);
+				allPlayersLineupOrder.push_back(allPlayersHighScoreThreshold);
+				allPlayersLineupOrder.push_back(allPlayersHighScoreThresholdOrder25);
+				allPlayersLineupOrder.push_back(allPlayersActualScores);
 				for (unsigned int line = 0; line < chosenLineupsList.size(); ++line) {
 					allPlayers.clear();
 					unsigned int lineIndex = line;
@@ -692,92 +733,7 @@ void RefineAlgorithm()
 					while (lineIndex > uniqueLines) {
 						lineIndex -= (uniqueLines + 1);
 					}
-					switch (lineIndex) {
-					case 0:
-						allPlayers = allPlayersAll;
-						break;
-					case 1:
-						allPlayers = allPlayersTwoThruFive;
-						break;
-					case 2:
-						allPlayers = allPlayers24;
-						break;
-					case 3:
-						allPlayers = allPlayers25AvoidPitchers30;
-						break;
-					case 4:
-						allPlayers = allPlayers25AvoidPitchers40;
-						break;
-					case 5:
-						allPlayers = allPlayers35;
-						break;
-					case 6:
-						allPlayers = allPlayers25PitcherMultiply;
-						break;
-					case 7:
-						allPlayers = allPlayers25PitcherMultiplyStackTeams;
-						break;
-					case 8:
-						allPlayers = allPlayers25SeasonOps;
-						break;
-					case 9:
-						allPlayers = allPlayers25SeasonOpsPitcherMultiply;
-						break;
-					case 10:
-						allPlayers = allPlayers25SeasonIso;
-						break;
-					case 11:
-						allPlayers = allPlayers25SeasonIsoPitcherMultiply;
-						break;
-					case 12:
-						allPlayers = allPlayersStackingTeams;
-						break;
-					case 13:
-						allPlayers = allPlayers27StackingTeams;
-						break;
-					case 14:
-						allPlayers = allPlayers26StackingTeams;
-						break;
-					case 15:
-						allPlayers = allPlayers25StackingTeams;
-						break;
-					case 16:
-						allPlayers = allPlayersHomeRuns;
-						break;
-					case 17:
-						allPlayers = allPlayers25PitcherDkMultiply;
-						break;
-					case 18:
-						allPlayers = allPlayers25PitcherYahooMultiply;
-						break;
-					case 19:
-						allPlayers = allPlayers25PitcherOpsMultiply;
-						break;
-					case 20:
-						allPlayers = allPlayers25SeasonWrc;
-						break;
-					case 21:
-						allPlayers = allPlayers25SeasonWrcPitcherMultiply;
-						break;
-					case 22:
-						allPlayers = allPlayers25MachineLearning;
-						break;
-					case 23:
-						allPlayers = allPlayers25MachineLearningPitcherMultiply;
-						break;
-					case 24:
-						allPlayers = allPlayersHighScoreThreshold;
-						break;
-					case 25:
-						allPlayers = allPlayersHighScoreThresholdOrder25;
-						break;
-					case 26:
-						allPlayers = allPlayersActualScores;
-						break;
-					default:
-						cout << "Too many lineups attempted" << endl;
-						break;
-					}
+					allPlayers = allPlayersLineupOrder[lineIndex];
 					bool bValidLineup = allPlayers.size() > 0;
 					for (unsigned int a = 0; a < allPlayers.size(); ++a) {
 						if (allPlayers[a].size() == 0) {
@@ -849,8 +805,6 @@ void RefineAlgorithm()
 							playerIdIndex = actualResults.find(";", playerIdIndex + 1);
 						}
 						nextPlayerIdIndex = actualResults.find(";", playerIdIndex + 1);
-					//	pitcherInputValues.push_back(stof(lineValues[2]));
-					//	pitcherOutputValues.push_back(stof(actualResults.substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str()));
 						if (sabrPredictorText != "") {
 							size_t playerNameIndex = sabrPredictorText.find(playerName);
 							if (playerNameIndex != string::npos) {
