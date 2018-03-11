@@ -1,0 +1,58 @@
+Every Day Formulas:
+"Formula 6 (sabr predictor times sabr predictor pitcehr"
+	expectedFdPoints * (160.0f / expectedSabrFdPointsPitcher))
+	battingOrder >= 2 && battingOrder <= 5
+"Formula 15 (sabr predictor with team stack)"
+	expectedFdPoints
+	
+	for (unsigned int texp = 0; texp < teamStackList.size(); ++texp) {
+		if (teamStackList[texp].teamCode == singlePlayerData.teamCode) {
+			teamStackList[texp].numPlayersAdded++;
+			teamStackList[texp].teamTotalExpectedPoints += singlePlayerData.playerPointsPerGame;
+			teamStackTrackerExists = true;
+			break;
+		}
+	}
+	if (!teamStackTrackerExists) {
+		TeamStackTracker tst;
+		tst.numPlayersAdded = 1;
+		tst.teamCode = singlePlayerData.teamCode;
+		tst.teamTotalExpectedPoints = singlePlayerData.playerPointsPerGame;
+		teamStackList.push_back(tst);
+	}
+	sort(teamStackList.begin(), teamStackList.end(), compareTeamsByAveragePlayerPointsPerGame);
+								
+	for (unsigned int pos = 0; pos < allPlayers25StackingTeams.size(); ++pos) {
+		for (unsigned int player = 0; player < allPlayers25StackingTeams[pos].size(); ++player) {
+			int teamStackRank = -1;
+			for (unsigned int team = 0; team < teamStackList.size(); ++team) {
+				if (teamStackList[team].teamCode == allPlayers25StackingTeams[pos][player].teamCode) {
+					teamStackRank = team;
+					break;
+				}
+			}
+			if (teamStackRank < 10) {
+				allPlayers25StackingTeams[pos][player].playerPointsPerGame += (float)(10 - teamStackRank);
+			}
+		}
+	}
+	battingOrder >= 2 && battingOrder <= 5
+	
+	
+	
+
+Moon Shots:
+"Combined Iso":
+	((career.iso * .5 + lastYear.iso * .5) * (1-percentOfSeason)) + (thisYear.iso * percentOfSeason)
+	battingOrder >= 2 && battingOrder <= 5
+	results in high scores of 227,202,187 over 136 tries
+"Machine Learning Times ML Pitcher":
+	(thisYear.iso * 10.8216856682926313f + thisYear.wrcPlus * .00302694128934278411f) * (15.0f / (combinedPitcherStats.era * -0.352834158133307318f + combinedPitcherStats.xfip * -1.50744966177988493f + combinedPitcherStats.strikeOutsPer9 * 1.44486530250260237f;))
+	battingOrder >= 2 && battingOrder <= 5
+	thisYear.battingAverage > .215
+	results in 223,213,195 high scores over 155 tries
+"Ops Times Sabr Pitcher Projections":
+	thisYear.ops * (160.0f / expectedSabrFdPointsPitcher)
+	battingOrder >= 2 && battingOrder <= 5
+	results in high scores 248, 169, 148 over 33 tries
+	
