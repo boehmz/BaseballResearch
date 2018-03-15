@@ -194,9 +194,9 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20170501;
+		reviewDateStart = 20170824;
 		reviewDateEnd = 20171001;
-		percentOfSeasonPassed = 30.0f / 160.0f;
+		percentOfSeasonPassed = 140.0f / 160.0f;
 		fstream top10PitchersTrainingFile("Top10PitchersTrainingFile.csv", std::ios::out);
 		fstream top25BattersTrainingFile("Top25Order25BattersTrainingFile.csv", std::ios::out);
 		fstream top30BattersWithPitcherTrainingFile("Top30Order25BattersWithPitcherTrainingFile.csv", std::ios::out);
@@ -312,11 +312,12 @@ void RefineAlgorithm()
 							FullSeasonStatsAdvancedNoHandedness batterStats = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious);
 							FullSeasonStatsAdvancedNoHandedness batterStats2016 = GetBatterStatsSeason(singlePlayerData.playerId, curl, "2016");
 							FullSeasonStatsAdvancedNoHandedness batterStatsCareer = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious, true);
-							FullSeasonStatsAdvancedNoHandedness combinedBatterStats = batterStatsCareer;
+							FullSeasonStatsAdvancedNoHandedness combinedBatterStats = batterStats;
 							if (batterStats2016.average >= 0) {
 								combinedBatterStats = batterStatsCareer * 0.5f + batterStats2016 * 0.5f;
 							}
 							combinedBatterStats = combinedBatterStats * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStats;
+                         
 							if (battingOrder >= 2 && battingOrder <= 5 && combinedBatterStats.average > 0.21f) {
 								singlePlayerData.playerPointsPerGame = combinedBatterStats.ops * 100.0f;
 								allPlayers25SeasonOps[playerPosition].push_back(singlePlayerData);
@@ -1402,8 +1403,8 @@ void ChooseAPitcher(CURL *curl)
 				placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
 			}
 
-			FullSeasonStatsAdvanced pitcherVBatterThisYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2018", curl);
-			FullSeasonStatsAdvanced pitcherVBatterLastYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
+			FullSeasonStatsAdvanced pitcherVBatterThisYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, CURRENT_YEAR, curl);
+			FullSeasonStatsAdvanced pitcherVBatterLastYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, LAST_YEAR, curl);
 			FullSeasonStatsAdvanced pitcherVBatterCareerStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "Total", curl);
 			
 			if (pitcherVBatterLastYearStats.opsVersusLefty >= 0 && pitcherVBatterLastYearStats.opsVersusRighty >= 0) {
@@ -1432,8 +1433,8 @@ void ChooseAPitcher(CURL *curl)
 
 			// now look up 2016 points per game
 			singlePlayerData.playerPointsPerGame = 0;
-			FullSeasonPitcherStats thisYearPitcherStats = GetPitcherStats(singlePlayerData.playerId, "2017", curl);
-			FullSeasonPitcherStats lastYearPitcherStats = GetPitcherStats(singlePlayerData.playerId, "2016", curl);
+			FullSeasonPitcherStats thisYearPitcherStats = GetPitcherStats(singlePlayerData.playerId, CURRENT_YEAR, curl);
+			FullSeasonPitcherStats lastYearPitcherStats = GetPitcherStats(singlePlayerData.playerId, LAST_YEAR, curl);
 			FullSeasonPitcherStats pitcherCareerStats = GetPitcherStats(singlePlayerData.playerId, "Total", curl);
 			// default to average
 			float opponentRunsPerGame = 4.4f;
@@ -3030,15 +3031,9 @@ void UnitTestAllStatCollectionFunctions()
 	if (curl)
 	{
 		FullSeasonStats batterStats = GetBatterStats("3215", "2016", curl);
-		FullSeasonStatsAdvanced batterCareerAdvancedStats = GetBatterAdvancedStats("3215", "Total", curl);
-		//FullSeasonStatsAdvanced batter2017AdvancedStats = GetBatterAdvancedStats("3215", "2017", curl);
 		FullSeasonStatsAdvanced batter2016AdvancedStats = GetBatterAdvancedStats("3215", "2016", curl);
 		
-		FullSeasonStatsAdvanced pitcherAdvancedCareerStats = GetPitcherAdvancedStats("1580", "Total", curl);
-		//FullSeasonStatsAdvanced pitcherAdvanced2017Stats = GetPitcherAdvancedStats("1580", "2017", curl);
 		FullSeasonStatsAdvanced pitcherAdvanced2016Stats = GetPitcherAdvancedStats("1580", "2016", curl);
-		FullSeasonPitcherStats pitcherCareerStats = GetPitcherStats("1580", "Total", curl);
-		//FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats("1580", "2017", curl);
 		FullSeasonPitcherStats pitcher2016Stats = GetPitcherStats("1580", "2016", curl);
 		
 		FullSeasonStatsAdvancedNoHandedness jeddGyorko2016Stats = GetBatterStatsSeason("5214", curl, "2016");
@@ -4596,24 +4591,23 @@ void GetBeatTheStreakCandidates(CURL *curl)
 			{
 				string pitcherGID = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
 
-				//FullSeasonStatsAdvanced pitcherVBatterThisYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
-				FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats(pitcherGID, "2017", curl);
+				FullSeasonPitcherStats pitcherCurrentYearStats = GetPitcherStats(pitcherGID, CURRENT_YEAR, curl);
 				for (int i = 0; i < 19; ++i)
 				{
 					pitcherIndex = startingPitcherData.find(";", pitcherIndex + 1);
 				}
 				prevPitcherIndex = startingPitcherData.rfind(";", pitcherIndex - 1);
 				string pitcherHandedness = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
-				FullSeasonStatsAdvanced pitcher2017AdvancedStats = GetPitcherAdvancedStats(pitcherGID, "2017", curl);
+				FullSeasonStatsAdvanced pitcherCurrentYearAdvancedStats = GetPitcherAdvancedStats(pitcherGID, CURRENT_YEAR, curl);
 
-				allPlayers[i].opposingPitcherEra = pitcher2017Stats.era;
-				allPlayers[i].opposingPitcherStrikeOutsPer9 = pitcher2017Stats.strikeOutsPer9;
-				allPlayers[i].opposingPitcherWhip = pitcher2017Stats.whip;
-				allPlayers[i].opposingPitcherAverageAgainstHandedness = (pitcher2017AdvancedStats.averageVersusLefty + pitcher2017AdvancedStats.averageVersusRighty) * 0.5f;
+				allPlayers[i].opposingPitcherEra = pitcherCurrentYearStats.era;
+				allPlayers[i].opposingPitcherStrikeOutsPer9 = pitcherCurrentYearStats.strikeOutsPer9;
+				allPlayers[i].opposingPitcherWhip = pitcherCurrentYearStats.whip;
+				allPlayers[i].opposingPitcherAverageAgainstHandedness = (pitcherCurrentYearAdvancedStats.averageVersusLefty + pitcherCurrentYearAdvancedStats.averageVersusRighty) * 0.5f;
 				if (allPlayers[i].batterHandedness == "L")
-					allPlayers[i].opposingPitcherAverageAgainstHandedness = pitcher2017AdvancedStats.averageVersusLefty;
+					allPlayers[i].opposingPitcherAverageAgainstHandedness = pitcherCurrentYearAdvancedStats.averageVersusLefty;
 				else if (allPlayers[i].batterHandedness == "R")
-					allPlayers[i].opposingPitcherAverageAgainstHandedness = pitcher2017AdvancedStats.averageVersusRighty;
+					allPlayers[i].opposingPitcherAverageAgainstHandedness = pitcherCurrentYearAdvancedStats.averageVersusRighty;
 
 				if (allPlayers[i].opposingPitcherEra < 0)
 					allPlayers.erase(allPlayers.begin() + i);
@@ -4634,10 +4628,9 @@ void GetBeatTheStreakCandidates(CURL *curl)
 			{
 				string pitcherGID = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
 				
-				//FullSeasonStatsAdvanced pitcherVBatterThisYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
-				FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats(pitcherGID, "2017", curl);
+				FullSeasonPitcherStats pitcherCurrentYearStats = GetPitcherStats(pitcherGID, CURRENT_YEAR, curl);
 				
-				if ( pitcher2017Stats.strikeOutsPer9 < 7.69f && pitcher2017Stats.era >= 4.15f && pitcher2017Stats.whip >= 1.308f)
+				if ( pitcherCurrentYearStats.strikeOutsPer9 < 7.69f && pitcherCurrentYearStats.era >= 4.15f && pitcherCurrentYearStats.whip >= 1.308f)
 				{
 					for (int i = 0; i < 19; ++i)
 					{
@@ -4645,11 +4638,11 @@ void GetBeatTheStreakCandidates(CURL *curl)
 					}
 					prevPitcherIndex = startingPitcherData.rfind(";", pitcherIndex - 1);
 					string pitcherHandedness = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
-					FullSeasonStatsAdvanced pitcher2017AdvancedStats = GetPitcherAdvancedStats(pitcherGID, "2017", curl);
+					FullSeasonStatsAdvanced pitcher2017AdvancedStats = GetPitcherAdvancedStats(pitcherGID, CURRENT_YEAR, curl);
 					
-					eligiblePlayers[i].opposingPitcherEra = pitcher2017Stats.era;
-					eligiblePlayers[i].opposingPitcherStrikeOutsPer9 = pitcher2017Stats.strikeOutsPer9;
-					eligiblePlayers[i].opposingPitcherWhip = pitcher2017Stats.whip;
+					eligiblePlayers[i].opposingPitcherEra = pitcherCurrentYearStats.era;
+					eligiblePlayers[i].opposingPitcherStrikeOutsPer9 = pitcherCurrentYearStats.strikeOutsPer9;
+					eligiblePlayers[i].opposingPitcherWhip = pitcherCurrentYearStats.whip;
 					eligiblePlayers[i].opposingPitcherAverageAgainstHandedness = (pitcher2017AdvancedStats.averageVersusLefty + pitcher2017AdvancedStats.averageVersusRighty) * 0.5f;
 					if (eligiblePlayers[i].batterHandedness == "L")
 						eligiblePlayers[i].opposingPitcherAverageAgainstHandedness = pitcher2017AdvancedStats.averageVersusLefty;
