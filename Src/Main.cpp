@@ -139,8 +139,8 @@ float tallyLineupTotals(vector<PlayerData> chosenLineup, string actualResults, s
 string getSabrPredictorFileContents(string date, bool bPitchers) {
 	int dateInt = atoi(date.c_str());
 	if (dateInt < 19410101) {
-		cout << "Incorrect date passed into getSabrPredictorFileContents, assuming 2017" << endl;
-		dateInt += 20170000;
+		cout << "Incorrect date passed into getSabrPredictorFileContents, assuming current year." << endl;
+		dateInt += CurrentYearAsInt() * 10000;
 		char thisDateCStr[9];
 		itoa(dateInt, thisDateCStr, 10);
 		date = thisDateCStr;
@@ -1343,22 +1343,23 @@ void ChooseAPitcher(CURL *curl)
 		curl_easy_reset(curl);
 
 		string team2016OffensiveData = GetEntireFileContents("Team2016DataCached\\TeamOffense.txt");
-		string team2017StrikeoutData;
+		string teamThisYearStrikeoutData;
 		curl_easy_setopt(curl, CURLOPT_URL, "https://www.teamrankings.com/mlb/stat/strikeouts-per-game");
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &team2017StrikeoutData);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &teamThisYearStrikeoutData);
 		curl_easy_perform(curl);
 		curl_easy_reset(curl);
-		string team2017RunsPerGameData;
+		string teamThisYearRunsPerGameData;
 		curl_easy_setopt(curl, CURLOPT_URL, "https://www.teamrankings.com/mlb/stat/on-base-plus-slugging-pct");
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &team2017RunsPerGameData);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &teamThisYearStrikeoutData);
 		curl_easy_perform(curl);
 		curl_easy_reset(curl);
 
 	
 		ofstream pitcherStatsArchiveFile;
-		string pitcherStatsArchiveFileName = "2017ResultsTracker\\TeamWinResults\\PitcherData\\" + todaysDate + ".txt";
+        string pitcherStatsArchiveFileName = CURRENT_YEAR;
+        pitcherStatsArchiveFileName += "ResultsTracker\\TeamWinResults\\PitcherData\\" + todaysDate + ".txt";
 		pitcherStatsArchiveFile.open(pitcherStatsArchiveFileName);
 
 		vector<PlayerData> positionalPlayerData;
@@ -1479,20 +1480,20 @@ void ChooseAPitcher(CURL *curl)
 				opponentRunsPerGame *= max(0.0f, 1.0f - (percentOfSeasonPassed * 2.0f));
 				opponentStrikeoutsPerGame *= max(0.0f, 1.0f - (percentOfSeasonPassed * 2.0f));
 
-				size_t opponentTeamIndex = team2017RunsPerGameData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
-				opponentTeamIndex = team2017RunsPerGameData.find("data-sort=", opponentTeamIndex + 1);
-				opponentTeamIndex = team2017RunsPerGameData.find(">", opponentTeamIndex + 1);
-				size_t opponentTeamNextIndex = team2017RunsPerGameData.find("<", opponentTeamIndex + 1);
-				opponentOps = stof(team2017RunsPerGameData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+				size_t opponentTeamIndex = teamThisYearStrikeoutData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
+				opponentTeamIndex = teamThisYearStrikeoutData.find("data-sort=", opponentTeamIndex + 1);
+				opponentTeamIndex = teamThisYearStrikeoutData.find(">", opponentTeamIndex + 1);
+				size_t opponentTeamNextIndex = teamThisYearStrikeoutData.find("<", opponentTeamIndex + 1);
+				opponentOps = stof(teamThisYearStrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 				// ops to runs per game is
 				// 13.349 * ops - 5.379
 				opponentRunsPerGame += (13.349f * opponentOps - 5.379f) * min(1.0f, percentOfSeasonPassed * 2.0f);
 
-				opponentTeamIndex = team2017StrikeoutData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
-				opponentTeamIndex = team2017StrikeoutData.find("data-sort=", opponentTeamIndex + 1);
-				opponentTeamIndex = team2017StrikeoutData.find(">", opponentTeamIndex + 1);
-				opponentTeamNextIndex = team2017StrikeoutData.find("<", opponentTeamIndex + 1);
-				opponentStrikeoutsPerGame += stof(team2017StrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str()) * min(1.0f, percentOfSeasonPassed * 2.0f);
+				opponentTeamIndex = teamThisYearStrikeoutData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
+				opponentTeamIndex = teamThisYearStrikeoutData.find("data-sort=", opponentTeamIndex + 1);
+				opponentTeamIndex = teamThisYearStrikeoutData.find(">", opponentTeamIndex + 1);
+				opponentTeamNextIndex = teamThisYearStrikeoutData.find("<", opponentTeamIndex + 1);
+				opponentStrikeoutsPerGame += stof(teamThisYearStrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str()) * min(1.0f, percentOfSeasonPassed * 2.0f);
 			
 				// ballpark factors
 				float pitcherBallparkHomerRateVsRighty, pitcherBallparkHomerRateVsLefty;
@@ -1553,11 +1554,13 @@ void ChooseAPitcher(CURL *curl)
 		sort(positionalPlayerData.begin(), positionalPlayerData.end(), comparePlayerByPointsPerGame);
 
 		ofstream playerResultsTrackerFile;
-		string playerResultsTrackerFileName = "2017ResultsTracker\\Pitchers\\" + todaysDate + ".txt";
+        string playerResultsTrackerFileName = CURRENT_YEAR;
+        playerResultsTrackerFileName += "ResultsTracker\\Pitchers\\" + todaysDate + ".txt";
 		playerResultsTrackerFile.open(playerResultsTrackerFileName);
 
 		ofstream teamWinTrackerFile;
-		string teamWinTrackerFileName = "2017ResultsTracker\\TeamWinResults\\" + todaysDate + ".txt";
+        string teamWinTrackerFileName = CURRENT_YEAR;
+        teamWinTrackerFileName += "ResultsTracker\\TeamWinResults\\" + todaysDate + ".txt";
 		teamWinTrackerFile.open(teamWinTrackerFileName);
 		for (unsigned int i = 0; i < positionalPlayerData.size(); ++i)
 		{
@@ -1873,7 +1876,8 @@ void GenerateNewLineup(CURL *curl)
   }
 
   ofstream resultsTrackerFile;
-  string resultsTrackerFileName = "2017ResultsTracker\\" + todaysDate + ".txt";
+  string resultsTrackerFileName = CURRENT_YEAR;
+  resultsTrackerFileName += "ResultsTracker\\" + todaysDate + ".txt";
   resultsTrackerFile.open(resultsTrackerFileName);
   for (unsigned int i = 0; i < allPlayers.size(); ++i)
   {
@@ -3264,9 +3268,9 @@ std::string ConvertRotoGuruTeamCodeToStandardTeamCode(std::string rotoGuruCode) 
 void AnalyzeTeamWinFactors()
 {
 	CURL* curl = NULL;
-	GatherTeamWins();
+	Gather2016TeamWins();
 	return;
-	//GatherPitcherCumulativeData();
+	//GatherPitcher2016CumulativeData();
 	//Analyze2016TeamWins();
 	//Analyze2016TeamWinFactors();
 	//Refine2016TeamWinFactors();
@@ -3683,7 +3687,7 @@ void Analyze2016TeamWins()
 	totalsFile.close();
 }
 
-void GatherPitcherCumulativeData()
+void GatherPitcher2016CumulativeData()
 {
 	CURL* curl = NULL;
 	for (int d = 415; d <= 930; ++d)
@@ -3735,7 +3739,7 @@ void GatherPitcherCumulativeData()
 		pitcherStatsArchiveFile.close();
 	}
 }
-void GatherTeamWins()
+void Gather2016TeamWins()
 {
 	CURL* curl = NULL;
 	string pageData = "";
@@ -4737,7 +4741,11 @@ void AssembleBatterSplits(CURL *curl)
 			char pageCStr[3];
 			itoa(page + 1, pageCStr, 10);
 			string pageStr = pageCStr;
-			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=120&type=1&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
+            string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=120&type=1&season=";
+            readURL += CURRENT_YEAR;
+            readURL += "&month=0&season1=";
+            readURL += CURRENT_YEAR;
+            readURL += "&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
 			CurlGetSiteContents(curl, readURL, seasonStats);
 
 			size_t playerPositionIndex = seasonStats.find("LeaderBoard1_dg1_ctl00__", 0);
@@ -4773,7 +4781,11 @@ void AssembleBatterSplits(CURL *curl)
 			char pageCStr[3];
 			itoa(page + 1, pageCStr, 10);
 			string pageStr = pageCStr;
-			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=60&type=1&season=2017&month=3&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
+            string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=60&type=1&season=";
+            readURL += CURRENT_YEAR;
+            readURL += "&month=3&season1=";
+            readURL += CURRENT_YEAR;
+            readURL += "&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
 			CurlGetSiteContents(curl, readURL, last30DaysStats);
 			
 		}
@@ -4798,7 +4810,11 @@ void AssembleBatterSplits(CURL *curl)
 			char pageCStr[3];
 			itoa(page + 1, pageCStr, 10);
 			string pageStr = pageCStr;
-			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=10&type=1&season=2017&month=1&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
+            string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=10&type=1&season=";
+            readURL += CURRENT_YEAR;
+            readURL += "&month=1&season1=";
+            readURL += CURRENT_YEAR;
+            readURL += "&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
 			CurlGetSiteContents(curl, readURL, last7DaysStats);
 		}
 		for (auto& it : allBattersSplits)

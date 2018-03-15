@@ -12,6 +12,9 @@
 
 using namespace std;
 
+int CurrentYearAsInt() {
+    return atoi(CURRENT_YEAR);
+}
 std::string ConvertFLNameToLFName(std::string firstLast)
 {
 	string convertedName = firstLast;
