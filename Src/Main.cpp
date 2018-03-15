@@ -41,7 +41,6 @@ string pitcherTeamCode = "";
 string pitcherOpponentTeamCode = "";
 
 const float leagueAverageOps = 0.72f;
-const int minGamesPlayed2016 = 99;
 
 
 vector< vector<PlayerData> > allPlayers;
@@ -1342,7 +1341,10 @@ void ChooseAPitcher(CURL *curl)
 		curl_easy_perform(curl);
 		curl_easy_reset(curl);
 
-		string team2016OffensiveData = GetEntireFileContents("Team2016DataCached\\TeamOffense.txt");
+        string lastYearOffenseCachedDataFileName = "Team";
+        lastYearOffenseCachedDataFileName += LAST_YEAR;
+        lastYearOffenseCachedDataFileName += "DataCached\\TeamOffense.txt";
+		string teamLastYearOffensiveData = GetEntireFileContents(lastYearOffenseCachedDataFileName);
 		string teamThisYearStrikeoutData;
 		curl_easy_setopt(curl, CURLOPT_URL, "https://www.teamrankings.com/mlb/stat/strikeouts-per-game");
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -1432,7 +1434,7 @@ void ChooseAPitcher(CURL *curl)
 				assert("No opponent information for pitcher found" == "");
 			}
 
-			// now look up 2016 points per game
+			// now look up last year points per game
 			singlePlayerData.playerPointsPerGame = 0;
 			FullSeasonPitcherStats thisYearPitcherStats = GetPitcherStats(singlePlayerData.playerId, CURRENT_YEAR, curl);
 			FullSeasonPitcherStats lastYearPitcherStats = GetPitcherStats(singlePlayerData.playerId, LAST_YEAR, curl);
@@ -1445,14 +1447,14 @@ void ChooseAPitcher(CURL *curl)
 
 			if (opponentsInfo != opponentMap.end())
 			{
-				size_t opponentTeamIndex = team2016OffensiveData.find(";" + opponentsInfo->second.teamCodeRankingsSite + ";", 0);
-				opponentTeamIndex = team2016OffensiveData.find(";", opponentTeamIndex + 1);
-				size_t opponentTeamNextIndex = team2016OffensiveData.find(";", opponentTeamIndex + 1);
-				opponentRunsPerGame = stof(team2016OffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+				size_t opponentTeamIndex = teamLastYearOffensiveData.find(";" + opponentsInfo->second.teamCodeRankingsSite + ";", 0);
+				opponentTeamIndex = teamLastYearOffensiveData.find(";", opponentTeamIndex + 1);
+				size_t opponentTeamNextIndex = teamLastYearOffensiveData.find(";", opponentTeamIndex + 1);
+				opponentRunsPerGame = stof(teamLastYearOffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 
-				opponentTeamIndex = team2016OffensiveData.find(";", opponentTeamIndex + 1);
-				opponentTeamNextIndex = team2016OffensiveData.find("\n", opponentTeamIndex + 1);
-				opponentStrikeoutsPerGame = stof(team2016OffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+				opponentTeamIndex = teamLastYearOffensiveData.find(";", opponentTeamIndex + 1);
+				opponentTeamNextIndex = teamLastYearOffensiveData.find("\n", opponentTeamIndex + 1);
+				opponentStrikeoutsPerGame = stof(teamLastYearOffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 			}
 			else
 			{
@@ -1743,13 +1745,13 @@ void GenerateNewLineup(CURL *curl)
 				placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
 			}
 
-			// now look up 2016 points per game
+			// now look up last year points per game
 			singlePlayerData.playerPointsPerGame *= thisSeasonPercent;
-			FullSeasonStats player2016Stats = GetBatterStats(singlePlayerData.playerId, "2016", curl);
+			FullSeasonStats playerLastYearStats = GetBatterStats(singlePlayerData.playerId, LAST_YEAR, curl);
 			if (singlePlayerData.isFacingLefthander)
-				singlePlayerData.playerPointsPerGame += player2016Stats.averagePpgVsLefty * (1.0f - thisSeasonPercent);
+				singlePlayerData.playerPointsPerGame += playerLastYearStats.averagePpgVsLefty * (1.0f - thisSeasonPercent);
 			else
-				singlePlayerData.playerPointsPerGame += player2016Stats.averagePpgVsRighty * (1.0f - thisSeasonPercent);
+				singlePlayerData.playerPointsPerGame += playerLastYearStats.averagePpgVsRighty * (1.0f - thisSeasonPercent);
 			
 			// now factor in opposing pitcher
 			float pitcherFactor = 1.0f;
@@ -1835,8 +1837,6 @@ void GenerateNewLineup(CURL *curl)
 				// game is in progress
 				gameStartTime = 999;
 			}
-
-			int numGamesPlayed2016 = player2016Stats.totalGamesStarted;
 				
 			// go to next player
 			size_t closestRainOutPark = string::npos;
@@ -1857,7 +1857,6 @@ void GenerateNewLineup(CURL *curl)
 			}
 			bool bFacingChosenPitcher = singlePlayerData.teamCode == pitcherOpponentTeamCode;
 			// throw this guy out if he's not a starter or his game will most likely be rained out
-			//if (!bFacingChosenPitcher && numGamesPlayed2016 >= minGamesPlayed2016 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
 			bool bIsProbableStarter = probableStarters.find(singlePlayerData.playerId) != probableStarters.end();
 			if (!bFacingChosenPitcher && bIsProbableStarter && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
 				positionalPlayerData.push_back(singlePlayerData);
