@@ -41,7 +41,6 @@ string pitcherTeamCode = "";
 string pitcherOpponentTeamCode = "";
 
 const float leagueAverageOps = 0.72f;
-const int minGamesPlayed2016 = 99;
 
 
 vector< vector<PlayerData> > allPlayers;
@@ -139,8 +138,8 @@ float tallyLineupTotals(vector<PlayerData> chosenLineup, string actualResults, s
 string getSabrPredictorFileContents(string date, bool bPitchers) {
 	int dateInt = atoi(date.c_str());
 	if (dateInt < 19410101) {
-		cout << "Incorrect date passed into getSabrPredictorFileContents, assuming 2017" << endl;
-		dateInt += 20170000;
+		cout << "Incorrect date passed into getSabrPredictorFileContents, assuming current year." << endl;
+		dateInt += CurrentYearAsInt() * 10000;
 		char thisDateCStr[9];
 		itoa(dateInt, thisDateCStr, 10);
 		date = thisDateCStr;
@@ -194,9 +193,9 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20170501;
+		reviewDateStart = 20170824;
 		reviewDateEnd = 20171001;
-		percentOfSeasonPassed = 30.0f / 160.0f;
+		percentOfSeasonPassed = 140.0f / 160.0f;
 		fstream top10PitchersTrainingFile("Top10PitchersTrainingFile.csv", std::ios::out);
 		fstream top25BattersTrainingFile("Top25Order25BattersTrainingFile.csv", std::ios::out);
 		fstream top30BattersWithPitcherTrainingFile("Top30Order25BattersWithPitcherTrainingFile.csv", std::ios::out);
@@ -319,11 +318,12 @@ void RefineAlgorithm()
 							FullSeasonStatsAdvancedNoHandedness batterStats = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious);
 							FullSeasonStatsAdvancedNoHandedness batterStats2016 = GetBatterStatsSeason(singlePlayerData.playerId, curl, "2016");
 							FullSeasonStatsAdvancedNoHandedness batterStatsCareer = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious, true);
-							FullSeasonStatsAdvancedNoHandedness combinedBatterStats = batterStatsCareer;
+							FullSeasonStatsAdvancedNoHandedness combinedBatterStats = batterStats;
 							if (batterStats2016.average >= 0) {
 								combinedBatterStats = batterStatsCareer * 0.5f + batterStats2016 * 0.5f;
 							}
 							combinedBatterStats = combinedBatterStats * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStats;
+                         
 							if (battingOrder >= 2 && battingOrder <= 5 && combinedBatterStats.average > 0.21f) {
 								singlePlayerData.playerPointsPerGame = combinedBatterStats.ops * 100.0f;
 								allPlayers25SeasonOps[playerPosition].push_back(singlePlayerData);
@@ -1302,23 +1302,27 @@ void ChooseAPitcher(CURL *curl)
 		curl_easy_perform(curl);
 		curl_easy_reset(curl);
 
-		string team2016OffensiveData = GetEntireFileContents("Team2016DataCached\\TeamOffense.txt");
-		string team2017StrikeoutData;
+        string lastYearOffenseCachedDataFileName = "Team";
+        lastYearOffenseCachedDataFileName += LAST_YEAR;
+        lastYearOffenseCachedDataFileName += "DataCached\\TeamOffense.txt";
+		string teamLastYearOffensiveData = GetEntireFileContents(lastYearOffenseCachedDataFileName);
+		string teamThisYearStrikeoutData;
 		curl_easy_setopt(curl, CURLOPT_URL, "https://www.teamrankings.com/mlb/stat/strikeouts-per-game");
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &team2017StrikeoutData);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &teamThisYearStrikeoutData);
 		curl_easy_perform(curl);
 		curl_easy_reset(curl);
-		string team2017RunsPerGameData;
+		string teamThisYearRunsPerGameData;
 		curl_easy_setopt(curl, CURLOPT_URL, "https://www.teamrankings.com/mlb/stat/on-base-plus-slugging-pct");
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &team2017RunsPerGameData);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &teamThisYearStrikeoutData);
 		curl_easy_perform(curl);
 		curl_easy_reset(curl);
 
 	
 		ofstream pitcherStatsArchiveFile;
-		string pitcherStatsArchiveFileName = "2017ResultsTracker\\TeamWinResults\\PitcherData\\" + todaysDate + ".txt";
+        string pitcherStatsArchiveFileName = CURRENT_YEAR;
+        pitcherStatsArchiveFileName += "ResultsTracker\\TeamWinResults\\PitcherData\\" + todaysDate + ".txt";
 		pitcherStatsArchiveFile.open(pitcherStatsArchiveFileName);
 
 		vector<PlayerData> positionalPlayerData;
@@ -1363,8 +1367,8 @@ void ChooseAPitcher(CURL *curl)
 				placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
 			}
 
-			FullSeasonStatsAdvanced pitcherVBatterThisYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2018", curl);
-			FullSeasonStatsAdvanced pitcherVBatterLastYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
+			FullSeasonStatsAdvanced pitcherVBatterThisYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, CURRENT_YEAR, curl);
+			FullSeasonStatsAdvanced pitcherVBatterLastYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, LAST_YEAR, curl);
 			FullSeasonStatsAdvanced pitcherVBatterCareerStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "Total", curl);
 			
 			if (pitcherVBatterLastYearStats.opsVersusLefty >= 0 && pitcherVBatterLastYearStats.opsVersusRighty >= 0) {
@@ -1391,10 +1395,10 @@ void ChooseAPitcher(CURL *curl)
 				assert("No opponent information for pitcher found" == "");
 			}
 
-			// now look up 2016 points per game
+			// now look up last year points per game
 			singlePlayerData.playerPointsPerGame = 0;
-			FullSeasonPitcherStats thisYearPitcherStats = GetPitcherStats(singlePlayerData.playerId, "2017", curl);
-			FullSeasonPitcherStats lastYearPitcherStats = GetPitcherStats(singlePlayerData.playerId, "2016", curl);
+			FullSeasonPitcherStats thisYearPitcherStats = GetPitcherStats(singlePlayerData.playerId, CURRENT_YEAR, curl);
+			FullSeasonPitcherStats lastYearPitcherStats = GetPitcherStats(singlePlayerData.playerId, LAST_YEAR, curl);
 			FullSeasonPitcherStats pitcherCareerStats = GetPitcherStats(singlePlayerData.playerId, "Total", curl);
 			// default to average
 			float opponentRunsPerGame = 4.4f;
@@ -1404,14 +1408,14 @@ void ChooseAPitcher(CURL *curl)
 
 			if (opponentsInfo != opponentMap.end())
 			{
-				size_t opponentTeamIndex = team2016OffensiveData.find(";" + opponentsInfo->second.teamCodeRankingsSite + ";", 0);
-				opponentTeamIndex = team2016OffensiveData.find(";", opponentTeamIndex + 1);
-				size_t opponentTeamNextIndex = team2016OffensiveData.find(";", opponentTeamIndex + 1);
-				opponentRunsPerGame = stof(team2016OffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+				size_t opponentTeamIndex = teamLastYearOffensiveData.find(";" + opponentsInfo->second.teamCodeRankingsSite + ";", 0);
+				opponentTeamIndex = teamLastYearOffensiveData.find(";", opponentTeamIndex + 1);
+				size_t opponentTeamNextIndex = teamLastYearOffensiveData.find(";", opponentTeamIndex + 1);
+				opponentRunsPerGame = stof(teamLastYearOffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 
-				opponentTeamIndex = team2016OffensiveData.find(";", opponentTeamIndex + 1);
-				opponentTeamNextIndex = team2016OffensiveData.find("\n", opponentTeamIndex + 1);
-				opponentStrikeoutsPerGame = stof(team2016OffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+				opponentTeamIndex = teamLastYearOffensiveData.find(";", opponentTeamIndex + 1);
+				opponentTeamNextIndex = teamLastYearOffensiveData.find("\n", opponentTeamIndex + 1);
+				opponentStrikeoutsPerGame = stof(teamLastYearOffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 			}
 			else
 			{
@@ -1439,20 +1443,20 @@ void ChooseAPitcher(CURL *curl)
 				opponentRunsPerGame *= max(0.0f, 1.0f - (percentOfSeasonPassed * 2.0f));
 				opponentStrikeoutsPerGame *= max(0.0f, 1.0f - (percentOfSeasonPassed * 2.0f));
 
-				size_t opponentTeamIndex = team2017RunsPerGameData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
-				opponentTeamIndex = team2017RunsPerGameData.find("data-sort=", opponentTeamIndex + 1);
-				opponentTeamIndex = team2017RunsPerGameData.find(">", opponentTeamIndex + 1);
-				size_t opponentTeamNextIndex = team2017RunsPerGameData.find("<", opponentTeamIndex + 1);
-				opponentOps = stof(team2017RunsPerGameData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+				size_t opponentTeamIndex = teamThisYearStrikeoutData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
+				opponentTeamIndex = teamThisYearStrikeoutData.find("data-sort=", opponentTeamIndex + 1);
+				opponentTeamIndex = teamThisYearStrikeoutData.find(">", opponentTeamIndex + 1);
+				size_t opponentTeamNextIndex = teamThisYearStrikeoutData.find("<", opponentTeamIndex + 1);
+				opponentOps = stof(teamThisYearStrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 				// ops to runs per game is
 				// 13.349 * ops - 5.379
 				opponentRunsPerGame += (13.349f * opponentOps - 5.379f) * min(1.0f, percentOfSeasonPassed * 2.0f);
 
-				opponentTeamIndex = team2017StrikeoutData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
-				opponentTeamIndex = team2017StrikeoutData.find("data-sort=", opponentTeamIndex + 1);
-				opponentTeamIndex = team2017StrikeoutData.find(">", opponentTeamIndex + 1);
-				opponentTeamNextIndex = team2017StrikeoutData.find("<", opponentTeamIndex + 1);
-				opponentStrikeoutsPerGame += stof(team2017StrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str()) * min(1.0f, percentOfSeasonPassed * 2.0f);
+				opponentTeamIndex = teamThisYearStrikeoutData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
+				opponentTeamIndex = teamThisYearStrikeoutData.find("data-sort=", opponentTeamIndex + 1);
+				opponentTeamIndex = teamThisYearStrikeoutData.find(">", opponentTeamIndex + 1);
+				opponentTeamNextIndex = teamThisYearStrikeoutData.find("<", opponentTeamIndex + 1);
+				opponentStrikeoutsPerGame += stof(teamThisYearStrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str()) * min(1.0f, percentOfSeasonPassed * 2.0f);
 			
 				// ballpark factors
 				float pitcherBallparkHomerRateVsRighty, pitcherBallparkHomerRateVsLefty;
@@ -1513,11 +1517,13 @@ void ChooseAPitcher(CURL *curl)
 		sort(positionalPlayerData.begin(), positionalPlayerData.end(), comparePlayerByPointsPerGame);
 
 		ofstream playerResultsTrackerFile;
-		string playerResultsTrackerFileName = "2017ResultsTracker\\Pitchers\\" + todaysDate + ".txt";
+        string playerResultsTrackerFileName = CURRENT_YEAR;
+        playerResultsTrackerFileName += "ResultsTracker\\Pitchers\\" + todaysDate + ".txt";
 		playerResultsTrackerFile.open(playerResultsTrackerFileName);
 
 		ofstream teamWinTrackerFile;
-		string teamWinTrackerFileName = "2017ResultsTracker\\TeamWinResults\\" + todaysDate + ".txt";
+        string teamWinTrackerFileName = CURRENT_YEAR;
+        teamWinTrackerFileName += "ResultsTracker\\TeamWinResults\\" + todaysDate + ".txt";
 		teamWinTrackerFile.open(teamWinTrackerFileName);
 		for (unsigned int i = 0; i < positionalPlayerData.size(); ++i)
 		{
@@ -1700,13 +1706,13 @@ void GenerateNewLineup(CURL *curl)
 				placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
 			}
 
-			// now look up 2016 points per game
+			// now look up last year points per game
 			singlePlayerData.playerPointsPerGame *= thisSeasonPercent;
-			FullSeasonStats player2016Stats = GetBatterStats(singlePlayerData.playerId, "2016", curl);
+			FullSeasonStats playerLastYearStats = GetBatterStats(singlePlayerData.playerId, LAST_YEAR, curl);
 			if (singlePlayerData.isFacingLefthander)
-				singlePlayerData.playerPointsPerGame += player2016Stats.averagePpgVsLefty * (1.0f - thisSeasonPercent);
+				singlePlayerData.playerPointsPerGame += playerLastYearStats.averagePpgVsLefty * (1.0f - thisSeasonPercent);
 			else
-				singlePlayerData.playerPointsPerGame += player2016Stats.averagePpgVsRighty * (1.0f - thisSeasonPercent);
+				singlePlayerData.playerPointsPerGame += playerLastYearStats.averagePpgVsRighty * (1.0f - thisSeasonPercent);
 			
 			// now factor in opposing pitcher
 			float pitcherFactor = 1.0f;
@@ -1792,8 +1798,6 @@ void GenerateNewLineup(CURL *curl)
 				// game is in progress
 				gameStartTime = 999;
 			}
-
-			int numGamesPlayed2016 = player2016Stats.totalGamesStarted;
 				
 			// go to next player
 			size_t closestRainOutPark = string::npos;
@@ -1814,7 +1818,6 @@ void GenerateNewLineup(CURL *curl)
 			}
 			bool bFacingChosenPitcher = singlePlayerData.teamCode == pitcherOpponentTeamCode;
 			// throw this guy out if he's not a starter or his game will most likely be rained out
-			//if (!bFacingChosenPitcher && numGamesPlayed2016 >= minGamesPlayed2016 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
 			bool bIsProbableStarter = probableStarters.find(singlePlayerData.playerId) != probableStarters.end();
 			if (!bFacingChosenPitcher && bIsProbableStarter && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
 				positionalPlayerData.push_back(singlePlayerData);
@@ -1833,7 +1836,8 @@ void GenerateNewLineup(CURL *curl)
   }
 
   ofstream resultsTrackerFile;
-  string resultsTrackerFileName = "2017ResultsTracker\\" + todaysDate + ".txt";
+  string resultsTrackerFileName = CURRENT_YEAR;
+  resultsTrackerFileName += "ResultsTracker\\" + todaysDate + ".txt";
   resultsTrackerFile.open(resultsTrackerFileName);
   for (unsigned int i = 0; i < allPlayers.size(); ++i)
   {
@@ -2991,15 +2995,9 @@ void UnitTestAllStatCollectionFunctions()
 	if (curl)
 	{
 		FullSeasonStats batterStats = GetBatterStats("3215", "2016", curl);
-		FullSeasonStatsAdvanced batterCareerAdvancedStats = GetBatterAdvancedStats("3215", "Total", curl);
-		//FullSeasonStatsAdvanced batter2017AdvancedStats = GetBatterAdvancedStats("3215", "2017", curl);
 		FullSeasonStatsAdvanced batter2016AdvancedStats = GetBatterAdvancedStats("3215", "2016", curl);
 		
-		FullSeasonStatsAdvanced pitcherAdvancedCareerStats = GetPitcherAdvancedStats("1580", "Total", curl);
-		//FullSeasonStatsAdvanced pitcherAdvanced2017Stats = GetPitcherAdvancedStats("1580", "2017", curl);
 		FullSeasonStatsAdvanced pitcherAdvanced2016Stats = GetPitcherAdvancedStats("1580", "2016", curl);
-		FullSeasonPitcherStats pitcherCareerStats = GetPitcherStats("1580", "Total", curl);
-		//FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats("1580", "2017", curl);
 		FullSeasonPitcherStats pitcher2016Stats = GetPitcherStats("1580", "2016", curl);
 		
 		FullSeasonStatsAdvancedNoHandedness jeddGyorko2016Stats = GetBatterStatsSeason("5214", curl, "2016");
@@ -3230,9 +3228,9 @@ std::string ConvertRotoGuruTeamCodeToStandardTeamCode(std::string rotoGuruCode) 
 void AnalyzeTeamWinFactors()
 {
 	CURL* curl = NULL;
-	GatherTeamWins();
+	Gather2016TeamWins();
 	return;
-	//GatherPitcherCumulativeData();
+	//GatherPitcher2016CumulativeData();
 	//Analyze2016TeamWins();
 	//Analyze2016TeamWinFactors();
 	//Refine2016TeamWinFactors();
@@ -3649,7 +3647,7 @@ void Analyze2016TeamWins()
 	totalsFile.close();
 }
 
-void GatherPitcherCumulativeData()
+void GatherPitcher2016CumulativeData()
 {
 	CURL* curl = NULL;
 	for (int d = 415; d <= 930; ++d)
@@ -3701,7 +3699,7 @@ void GatherPitcherCumulativeData()
 		pitcherStatsArchiveFile.close();
 	}
 }
-void GatherTeamWins()
+void Gather2016TeamWins()
 {
 	CURL* curl = NULL;
 	string pageData = "";
@@ -4557,24 +4555,23 @@ void GetBeatTheStreakCandidates(CURL *curl)
 			{
 				string pitcherGID = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
 
-				//FullSeasonStatsAdvanced pitcherVBatterThisYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
-				FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats(pitcherGID, "2017", curl);
+				FullSeasonPitcherStats pitcherCurrentYearStats = GetPitcherStats(pitcherGID, CURRENT_YEAR, curl);
 				for (int i = 0; i < 19; ++i)
 				{
 					pitcherIndex = startingPitcherData.find(";", pitcherIndex + 1);
 				}
 				prevPitcherIndex = startingPitcherData.rfind(";", pitcherIndex - 1);
 				string pitcherHandedness = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
-				FullSeasonStatsAdvanced pitcher2017AdvancedStats = GetPitcherAdvancedStats(pitcherGID, "2017", curl);
+				FullSeasonStatsAdvanced pitcherCurrentYearAdvancedStats = GetPitcherAdvancedStats(pitcherGID, CURRENT_YEAR, curl);
 
-				allPlayers[i].opposingPitcherEra = pitcher2017Stats.era;
-				allPlayers[i].opposingPitcherStrikeOutsPer9 = pitcher2017Stats.strikeOutsPer9;
-				allPlayers[i].opposingPitcherWhip = pitcher2017Stats.whip;
-				allPlayers[i].opposingPitcherAverageAgainstHandedness = (pitcher2017AdvancedStats.averageVersusLefty + pitcher2017AdvancedStats.averageVersusRighty) * 0.5f;
+				allPlayers[i].opposingPitcherEra = pitcherCurrentYearStats.era;
+				allPlayers[i].opposingPitcherStrikeOutsPer9 = pitcherCurrentYearStats.strikeOutsPer9;
+				allPlayers[i].opposingPitcherWhip = pitcherCurrentYearStats.whip;
+				allPlayers[i].opposingPitcherAverageAgainstHandedness = (pitcherCurrentYearAdvancedStats.averageVersusLefty + pitcherCurrentYearAdvancedStats.averageVersusRighty) * 0.5f;
 				if (allPlayers[i].batterHandedness == "L")
-					allPlayers[i].opposingPitcherAverageAgainstHandedness = pitcher2017AdvancedStats.averageVersusLefty;
+					allPlayers[i].opposingPitcherAverageAgainstHandedness = pitcherCurrentYearAdvancedStats.averageVersusLefty;
 				else if (allPlayers[i].batterHandedness == "R")
-					allPlayers[i].opposingPitcherAverageAgainstHandedness = pitcher2017AdvancedStats.averageVersusRighty;
+					allPlayers[i].opposingPitcherAverageAgainstHandedness = pitcherCurrentYearAdvancedStats.averageVersusRighty;
 
 				if (allPlayers[i].opposingPitcherEra < 0)
 					allPlayers.erase(allPlayers.begin() + i);
@@ -4595,10 +4592,9 @@ void GetBeatTheStreakCandidates(CURL *curl)
 			{
 				string pitcherGID = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
 				
-				//FullSeasonStatsAdvanced pitcherVBatterThisYearStats = GetPitcherAdvancedStats(singlePlayerData.playerId, "2017", curl);
-				FullSeasonPitcherStats pitcher2017Stats = GetPitcherStats(pitcherGID, "2017", curl);
+				FullSeasonPitcherStats pitcherCurrentYearStats = GetPitcherStats(pitcherGID, CURRENT_YEAR, curl);
 				
-				if ( pitcher2017Stats.strikeOutsPer9 < 7.69f && pitcher2017Stats.era >= 4.15f && pitcher2017Stats.whip >= 1.308f)
+				if ( pitcherCurrentYearStats.strikeOutsPer9 < 7.69f && pitcherCurrentYearStats.era >= 4.15f && pitcherCurrentYearStats.whip >= 1.308f)
 				{
 					for (int i = 0; i < 19; ++i)
 					{
@@ -4606,11 +4602,11 @@ void GetBeatTheStreakCandidates(CURL *curl)
 					}
 					prevPitcherIndex = startingPitcherData.rfind(";", pitcherIndex - 1);
 					string pitcherHandedness = startingPitcherData.substr(prevPitcherIndex + 1, pitcherIndex - prevPitcherIndex - 1);
-					FullSeasonStatsAdvanced pitcher2017AdvancedStats = GetPitcherAdvancedStats(pitcherGID, "2017", curl);
+					FullSeasonStatsAdvanced pitcher2017AdvancedStats = GetPitcherAdvancedStats(pitcherGID, CURRENT_YEAR, curl);
 					
-					eligiblePlayers[i].opposingPitcherEra = pitcher2017Stats.era;
-					eligiblePlayers[i].opposingPitcherStrikeOutsPer9 = pitcher2017Stats.strikeOutsPer9;
-					eligiblePlayers[i].opposingPitcherWhip = pitcher2017Stats.whip;
+					eligiblePlayers[i].opposingPitcherEra = pitcherCurrentYearStats.era;
+					eligiblePlayers[i].opposingPitcherStrikeOutsPer9 = pitcherCurrentYearStats.strikeOutsPer9;
+					eligiblePlayers[i].opposingPitcherWhip = pitcherCurrentYearStats.whip;
 					eligiblePlayers[i].opposingPitcherAverageAgainstHandedness = (pitcher2017AdvancedStats.averageVersusLefty + pitcher2017AdvancedStats.averageVersusRighty) * 0.5f;
 					if (eligiblePlayers[i].batterHandedness == "L")
 						eligiblePlayers[i].opposingPitcherAverageAgainstHandedness = pitcher2017AdvancedStats.averageVersusLefty;
@@ -4705,7 +4701,11 @@ void AssembleBatterSplits(CURL *curl)
 			char pageCStr[3];
 			itoa(page + 1, pageCStr, 10);
 			string pageStr = pageCStr;
-			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=120&type=1&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
+            string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=120&type=1&season=";
+            readURL += CURRENT_YEAR;
+            readURL += "&month=0&season1=";
+            readURL += CURRENT_YEAR;
+            readURL += "&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
 			CurlGetSiteContents(curl, readURL, seasonStats);
 
 			size_t playerPositionIndex = seasonStats.find("LeaderBoard1_dg1_ctl00__", 0);
@@ -4741,7 +4741,11 @@ void AssembleBatterSplits(CURL *curl)
 			char pageCStr[3];
 			itoa(page + 1, pageCStr, 10);
 			string pageStr = pageCStr;
-			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=60&type=1&season=2017&month=3&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
+            string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=60&type=1&season=";
+            readURL += CURRENT_YEAR;
+            readURL += "&month=3&season1=";
+            readURL += CURRENT_YEAR;
+            readURL += "&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
 			CurlGetSiteContents(curl, readURL, last30DaysStats);
 			
 		}
@@ -4766,7 +4770,11 @@ void AssembleBatterSplits(CURL *curl)
 			char pageCStr[3];
 			itoa(page + 1, pageCStr, 10);
 			string pageStr = pageCStr;
-			string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=10&type=1&season=2017&month=1&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
+            string readURL = "http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=10&type=1&season=";
+            readURL += CURRENT_YEAR;
+            readURL += "&month=1&season1=";
+            readURL += CURRENT_YEAR;
+            readURL += "&ind=0&team=0&rost=0&age=0&filter=&players=0&sort=10,d&page=" + pageStr + "_50";
 			CurlGetSiteContents(curl, readURL, last7DaysStats);
 		}
 		for (auto& it : allBattersSplits)

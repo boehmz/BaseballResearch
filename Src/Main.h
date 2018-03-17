@@ -137,8 +137,8 @@ void PopulateProbableRainoutGames(CURL* curl);
 
 void Analyze2016Stats();
 void AnalyzeTeamWinFactors();
-void GatherTeamWins();
-void GatherPitcherCumulativeData();
+void Gather2016TeamWins();
+void GatherPitcher2016CumulativeData();
 void Analyze2016TeamWins();
 void Analyze2016TeamWinFactors();
 void Refine2016TeamWinFactors();

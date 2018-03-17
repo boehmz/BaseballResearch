@@ -13,6 +13,7 @@
 
 void _itoa_osx(int value, char* result, int base);
 
+int CurrentYearAsInt();
 std::string ConvertFLNameToLFName(std::string firstLast);
 std::string ConvertLFNameToFLName(std::string lastFirst);
 std::string IntToDateYMD(int date, std::string yearString = CURRENT_YEAR, bool roundUp = false);

@@ -104,10 +104,13 @@ float CalculateRSquared(vector<float> finalInputs, vector<float> outputValues)
 string GetPlayerStatsRawString(string playerId, string yearString, CURL *curl)
 {
 	string playerStatsLookupBuffer = "";
-	if (yearString == "2016")
-		playerStatsLookupBuffer	= GetEntireFileContents("Player2016DataCached\\PlayerId" + playerId + ".txt");
-	else 
-		playerStatsLookupBuffer = GetEntireFileContents("Player2017DataCached\\PlayerId" + playerId + ".txt");
+    string playerStatsFileName = "Player";
+    if (yearString == "any")
+        playerStatsFileName += CURRENT_YEAR;
+    else
+        playerStatsFileName += yearString;
+    playerStatsFileName += "DataCached\\PlayerId" + playerId + ".txt";
+    playerStatsLookupBuffer    = GetEntireFileContents(playerStatsFileName);
 	
 	if (yearString == CURRENT_YEAR)
 	{
@@ -115,15 +118,22 @@ string GetPlayerStatsRawString(string playerId, string yearString, CURL *curl)
 		if (dateMetaDataIndex == string::npos || playerStatsLookupBuffer.substr(0, dateMetaDataIndex) < todaysDate)
 			playerStatsLookupBuffer = "";
 	}
+    // if this year cached file not found, try last year because looking for any
+    if (playerStatsLookupBuffer == "" && yearString == "any") {
+        string tempPlayerStatsFileName = "Player";
+        tempPlayerStatsFileName += LAST_YEAR;
+        tempPlayerStatsFileName += "DataCached\\PlayerId" + playerId + ".txt";
+        playerStatsLookupBuffer = GetEntireFileContents(tempPlayerStatsFileName);
+    }
 
 	if (playerStatsLookupBuffer == "")
 	{
 		if (curl == NULL)
 			curl = curl_easy_init();
-
-		string playerStatsLookupURL = "http://rotoguru1.com/cgi-bin/player.cgi?" + playerId + "x";
-		if (yearString == "2016")
-			playerStatsLookupURL = "http://rotoguru1.com/cgi-bin/player16.cgi?" + playerId + "x";
+        string playerStatsLookupURL = "http://rotoguru1.com/cgi-bin/player";
+        if (yearString != "any" && yearString != CURRENT_YEAR)
+            playerStatsLookupURL += yearString.substr(2);
+        playerStatsLookupURL += ".cgi?" + playerId + "x";
 
 		curl_easy_setopt(curl, CURLOPT_URL, playerStatsLookupURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -135,13 +145,9 @@ string GetPlayerStatsRawString(string playerId, string yearString, CURL *curl)
 		if (writeToFileIndex == string::npos)
 			writeToFileIndex = playerStatsLookupBuffer.find("No data found", 0);
 		ofstream writeToFile;
-		if (yearString == "2016")
-			writeToFile.open("Player2016DataCached\\PlayerId" + playerId + ".txt");
-		else
-		{
-			writeToFile.open("Player2017DataCached\\PlayerId" + playerId + ".txt");
-			writeToFile << todaysDate << "/ZachDateMetaData" << endl;
-		}
+        writeToFile.open(playerStatsFileName);
+        if (yearString == CURRENT_YEAR)
+            writeToFile << todaysDate << "/ZachDateMetaData" << endl;
 		writeToFile << playerStatsLookupBuffer.substr(0, writeToFileIndex);
 		writeToFile.close();
 		

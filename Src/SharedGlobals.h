@@ -4,6 +4,7 @@
 #include <string>
 
 #define CURRENT_YEAR "2017"
+#define LAST_YEAR "2016"
 
 enum GameType { Fanduel, DraftKings, BeatTheStreak };
 
