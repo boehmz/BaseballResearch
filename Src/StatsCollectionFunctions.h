@@ -13,6 +13,7 @@ struct PlayerData
 	bool batsLeftHanded;
 	bool isFacingLefthander;
 	float playerPointsPerGame;
+	int battingOrder;
 
 	float pitcherFactor;
 	float parkFactor;
