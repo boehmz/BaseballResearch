@@ -203,7 +203,7 @@ std::vector<string> GetFangraphsRowColumns(std::string yearRow, std::string allD
 		fangraphsCurrentIndex = allData.find(yearRow, fangraphsCurrentIndex + 1);
 		if (watchOutForProjections)
 		{
-			while (true)
+			while (true && fangraphsCurrentIndex != string::npos)
 			{
 				size_t prevTr = allData.rfind("<tr", fangraphsCurrentIndex);
 				size_t prevProjections = allData.rfind("projections", fangraphsCurrentIndex);
@@ -289,7 +289,6 @@ FullSeasonPitcherStats GetPitcherStats(string playerId, string yearString, CURL 
 
 FullSeasonStatsAdvancedNoHandedness GetBatterStatsSeason(std::string playerId, CURL *curl, std::string yearString) {
 	FullSeasonStatsAdvancedNoHandedness batterStats;
-
 	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, 0);
 	vector<string> fangraphsYearRows = GetFangraphsRowColumns(">" + yearString + "<", fangraphsPlayerData, 20, "name=\"dashboard\"", "", true);
 	if (fangraphsYearRows.size() > 19) {
@@ -775,7 +774,7 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 			fangraphsData = "";
 		}
 	} 
-#if 1
+#if 0
 	else {
 		size_t startIndex = fangraphsData.find("class=\"player-info-box\"");
 		if (startIndex == string::npos) {
