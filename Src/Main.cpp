@@ -187,15 +187,17 @@ void RefineAlgorithm()
 		float inputCoefficients[2] = { 0.0f, 1.0f };
 		vector< float > outputValues;
 
-		vector< vector<float>> chosenLineupsList(31);
+		vector< vector<float>> chosenLineupsList(39);
+		string batters2017SeasonProjections = GetEntireFileContents("ZiPSBatterProjections2017.txt");
+		string pitchers2017SeasonProjections = GetEntireFileContents("ZiPSPitcherProjections2017.txt");
 
 		vector<float> pitcherInputValues;
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20170824;
-		reviewDateEnd = 20171001;
-		percentOfSeasonPassed = 140.0f / 160.0f;
+		reviewDateStart = 20170410;
+		reviewDateEnd = 20170704;
+		percentOfSeasonPassed = 10.0f / 160.0f;
 		fstream top10PitchersTrainingFile("Top10PitchersTrainingFile.csv", std::ios::out);
 		fstream top25BattersTrainingFile("Top25Order25BattersTrainingFile.csv", std::ios::out);
 		fstream top30BattersWithPitcherTrainingFile("Top30Order25BattersWithPitcherTrainingFile.csv", std::ios::out);
@@ -250,7 +252,8 @@ void RefineAlgorithm()
 				resultsTrackerFileName += thisDate + ".txt";
 				resultsTrackerFile.open(resultsTrackerFileName);
 				string sabrPredictorText = getSabrPredictorFileContents(thisDate, false);
-
+				string batterVSpecificPitcherTextFileName = "2017ResultsTracker\\BatterVPitcherLogs\\" + thisDate + ".txt";
+				string batterVSpecificPitcherText = GetEntireFileContents(batterVSpecificPitcherTextFileName);
 				string sabrPredictorTextPitchers = getSabrPredictorFileContents(thisDate, true);
 
 				vector< vector<PlayerData> > allPlayersAll(6);
@@ -268,10 +271,17 @@ void RefineAlgorithm()
 				vector< vector<PlayerData> > allPlayers25PitcherDkMultiply(6);
 				vector< vector<PlayerData> > allPlayers25PitcherYahooMultiply(6);
 				vector< vector<PlayerData> > allPlayers25PitcherOpsMultiply(6);
+				vector< vector<PlayerData> > allPlayers25OpsBatterVSpecificPitcher(6);
 				vector< vector<PlayerData> > allPlayers25MachineLearning(6);
 				vector< vector<PlayerData> > allPlayers25MachineLearningPitcherMultiply(6);
 				vector< vector<PlayerData> > allPlayersHighScoreThreshold(6);
 				vector< vector<PlayerData> > allPlayersHighScoreThresholdOrder25(6);
+				vector< vector<PlayerData> > allPlayersProjectionsIso25(6);
+				vector< vector<PlayerData> > allPlayersProjectionsOps25(6);
+				vector< vector<PlayerData> > allPlayersProjectionsSlugging25(6);
+				vector< vector<PlayerData> > allPlayersProjectionsIso25PitcherMultiply(6);
+				vector< vector<PlayerData> > allPlayersProjectionsOps25PitcherMultiply(6);
+				vector< vector<PlayerData> > allPlayersProjectionsSlugging25PitcherMultiply(6);
 				vector< vector<PlayerData> > allPlayersActualScores(6);
 
 				vector< vector<PlayerData> > allPlayers25SeasonOps(6);
@@ -294,6 +304,7 @@ void RefineAlgorithm()
 				size_t nextIndex = actualResults.find("\n", currentIndex + 1);
 
 				unordered_map<std::string, FullSeasonPitcherStats> opponentPitcherScoreMap;
+				unordered_map<std::string, FullSeasonPitcherStats> opponentPitcherProjectionsMap;
 
 				while (nextIndex != string::npos) {
 					vector<string> thisLineActualResults = SplitStringIntoMultiple(actualResults.substr(currentIndex, nextIndex - currentIndex), ";");
@@ -449,6 +460,39 @@ void RefineAlgorithm()
 									}
 								}
 							}
+							size_t playerNameProjectionsIndex = batters2017SeasonProjections.find(ConvertLFNameToFLName(singlePlayerData.playerName));
+							if (playerNameProjectionsIndex != string::npos && battingOrder >= 2 && battingOrder <= 5) {
+								size_t prevLineIndex = batters2017SeasonProjections.rfind("\n", playerNameProjectionsIndex);
+								prevLineIndex++;
+								size_t nextLineIndex = batters2017SeasonProjections.find("\n", playerNameProjectionsIndex);
+								vector<string> batterProjectionsColumns = SplitStringIntoMultiple(batters2017SeasonProjections.substr(prevLineIndex, nextLineIndex - prevLineIndex), "\t");
+								if (batterProjectionsColumns.size() == 10) {
+									float projectedPlayerIso = stof(batterProjectionsColumns[4]);
+									float projectedPlayerOps = (stof(batterProjectionsColumns[7]) + stof(batterProjectionsColumns[8]));
+									float projectedPlayerSlugging = stof(batterProjectionsColumns[8]);
+									singlePlayerData.playerPointsPerGame = projectedPlayerIso * 100.0f;
+									allPlayersProjectionsIso25[playerPosition].push_back(singlePlayerData);
+									singlePlayerData.playerPointsPerGame = projectedPlayerOps * 100.0f;
+									allPlayersProjectionsOps25[playerPosition].push_back(singlePlayerData);
+									singlePlayerData.playerPointsPerGame = projectedPlayerSlugging * 100.0f;
+									allPlayersProjectionsSlugging25[playerPosition].push_back(singlePlayerData);
+									auto opponentPitcherProjected = opponentPitcherProjectionsMap.find(singlePlayerData.teamCode);
+									if (opponentPitcherProjected != opponentPitcherProjectionsMap.end()) {
+										singlePlayerData.playerPointsPerGame = projectedPlayerIso * 100.0f;
+										singlePlayerData.playerPointsPerGame *= opponentPitcherProjected->second.era;
+										allPlayersProjectionsIso25PitcherMultiply[playerPosition].push_back(singlePlayerData);
+										singlePlayerData.playerPointsPerGame = projectedPlayerOps * 100.0f;
+										singlePlayerData.playerPointsPerGame *= opponentPitcherProjected->second.era;
+										allPlayersProjectionsOps25PitcherMultiply[playerPosition].push_back(singlePlayerData);
+										singlePlayerData.playerPointsPerGame = projectedPlayerSlugging * 100.0f;
+										singlePlayerData.playerPointsPerGame *= opponentPitcherProjected->second.era;
+										allPlayersProjectionsSlugging25PitcherMultiply[playerPosition].push_back(singlePlayerData);
+									}
+								}
+								else {
+									int breakpoint = 0;
+								}
+							}
 							if (true || sabrPredictorTextPitchers == "") {
 								if (combinedBatterStats.average > 0.21f && battingOrder >= 2 && battingOrder <= 5) {
 									auto opponentPitcher = opponentPitcherScoreMap.find(singlePlayerData.teamCode);
@@ -511,18 +555,32 @@ void RefineAlgorithm()
 										singlePlayerData.playerPointsPerGame = combinedBatterStats.wrcPlus * standardMultiplier;
 										allPlayers25SeasonWrcPitcherMultiply[playerPosition].push_back(singlePlayerData);
 								*/	}
+									singlePlayerData.playerPointsPerGame = combinedBatterStats.ops * 100.0f;
+									size_t indexInVSpecificPitcherFile = batterVSpecificPitcherText.find(singlePlayerData.playerName);
+									if (indexInVSpecificPitcherFile != string::npos) {
+										size_t prevLineIndex = batterVSpecificPitcherText.rfind("\n", indexInVSpecificPitcherFile);
+										size_t nextLineIndex = batterVSpecificPitcherText.find("\n", indexInVSpecificPitcherFile);
+										vector<string> thisPlayerVSpecificPitcherLines = SplitStringIntoMultiple(batterVSpecificPitcherText.substr(prevLineIndex, nextLineIndex - prevLineIndex), ";");
+										if (thisPlayerVSpecificPitcherLines.size() > 47) {
+											int numPlateAppearances = atoi(thisPlayerVSpecificPitcherLines[17].c_str());
+											if (numPlateAppearances >= 5) {
+												singlePlayerData.playerPointsPerGame = stof(thisPlayerVSpecificPitcherLines[34]);
+											}
+										}
+									}
+									allPlayers25OpsBatterVSpecificPitcher[playerPosition].push_back(singlePlayerData);
 								}
 							}
 							singlePlayerData.playerPointsPerGame = actualPlayerPoints;
 							allPlayersActualScores[playerPosition].push_back(singlePlayerData);
 						} else if (playerPosition == -1) {
 							if (bRefineForPitchers) {
+								FullSeasonPitcherStats pitcherStatsThisYearSoFar = GetPitcherCumulativeStatsUpTo(thisLineActualResults[1], curl, thisDateOnePrevious);
 								string opponentTeamCode = thisLineActualResults[10].substr(thisLineActualResults[10].size() - 3);
 								auto opponentPitcher = opponentPitcherScoreMap.find(opponentTeamCode);
 								if (opponentPitcher == opponentPitcherScoreMap.end()) {
 									FullSeasonPitcherStats careerPitcherStats = GetPitcherCumulativeStatsUpTo(thisLineActualResults[1], curl, thisDateOnePrevious, true);
 									FullSeasonPitcherStats lastYearPitcherStats = GetPitcherStats(thisLineActualResults[1], "2016", curl);
-									FullSeasonPitcherStats pitcherStatsThisYearSoFar = GetPitcherCumulativeStatsUpTo(thisLineActualResults[1], curl, thisDateOnePrevious);
 									FullSeasonPitcherStats combinedPitcherStats(lastYearPitcherStats);
 									if (lastYearPitcherStats.numInnings > 0) {
 										combinedPitcherStats = careerPitcherStats * 0.5f + lastYearPitcherStats * 0.5f;
@@ -543,6 +601,23 @@ void RefineAlgorithm()
 											top10PitchersTrainingFile << combinedPitcherStats.era << "," << combinedPitcherStats.fip << "," << combinedPitcherStats.xfip << "," << combinedPitcherStats.strikeOutsPer9 << "," << actualPlayerPoints << endl;
 											numPitchersPutInTrainingFileToday++;
 										}
+									}
+								}
+								FullSeasonPitcherStats projectionsPitcherStats;
+								auto opponentPitcherProjected = opponentPitcherProjectionsMap.find(opponentTeamCode);
+								if (opponentPitcherProjected == opponentPitcherProjectionsMap.end()) {
+									size_t playerNameProjectionsIndex = pitchers2017SeasonProjections.find(ConvertLFNameToFLName(singlePlayerData.playerName));
+									if (playerNameProjectionsIndex != string::npos) {
+										size_t prevLineIndex = pitchers2017SeasonProjections.rfind("\n", playerNameProjectionsIndex);
+										prevLineIndex++;
+										size_t nextLineIndex = pitchers2017SeasonProjections.find("\n", playerNameProjectionsIndex);
+										vector<string> pitcherProjectionsColumns = SplitStringIntoMultiple(pitchers2017SeasonProjections.substr(prevLineIndex, nextLineIndex - prevLineIndex), "\t");
+										if (pitcherProjectionsColumns.size() == 10) {
+											projectionsPitcherStats.era = stof(pitcherProjectionsColumns[6]);
+											projectionsPitcherStats.fip = stof(pitcherProjectionsColumns[7]);
+											projectionsPitcherStats.numInnings = stof(pitcherProjectionsColumns[1]);
+										}
+										opponentPitcherProjectionsMap.insert({ opponentTeamCode, projectionsPitcherStats });
 									}
 								}
 							}
@@ -725,6 +800,13 @@ void RefineAlgorithm()
 				allPlayersLineupOrder.push_back(allPlayers25SeasonWrcPitcherMultiply);
 				allPlayersLineupOrder.push_back(allPlayers25MachineLearning);
 				allPlayersLineupOrder.push_back(allPlayers25MachineLearningPitcherMultiply);
+				allPlayersLineupOrder.push_back(allPlayers25OpsBatterVSpecificPitcher);
+				allPlayersLineupOrder.push_back(allPlayersProjectionsIso25); //30
+				allPlayersLineupOrder.push_back(allPlayersProjectionsSlugging25);
+				allPlayersLineupOrder.push_back(allPlayersProjectionsOps25);
+				allPlayersLineupOrder.push_back(allPlayersProjectionsIso25PitcherMultiply);
+				allPlayersLineupOrder.push_back(allPlayersProjectionsSlugging25PitcherMultiply);
+				allPlayersLineupOrder.push_back(allPlayersProjectionsOps25PitcherMultiply);	//35
 				allPlayersLineupOrder.push_back(allPlayersHighScoreThreshold);
 				allPlayersLineupOrder.push_back(allPlayersHighScoreThresholdOrder25);
 				allPlayersLineupOrder.push_back(allPlayersActualScores);
