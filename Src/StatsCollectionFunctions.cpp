@@ -747,21 +747,60 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 			ofstream writeToFile;
 			writeToFile.open(cachedFileName);
 			writeToFile << todaysDate << "/ZachDateMetaData" << endl;
+			string finalWriteString = "";
 			if ((advancedStatsFlags & AdvancedStatsBattingSplitsVersusLeftHand) ||
 				(advancedStatsFlags & AdvancedStatsPitchingSplitsVersusLeftHand))
-				writeToFile << fangraphsData;
+				finalWriteString = fangraphsData;
 			else if ((advancedStatsFlags & AdvancedStatsBattingSplitsVersusRightHand) ||
 				(advancedStatsFlags & AdvancedStatsPitchingSplitsVersusRightHand))
-				writeToFile << fangraphsData;
+				finalWriteString = fangraphsData;
 			else
-				writeToFile << fangraphsData.substr(writeToFileIndexBegin, writeToFileLength);
+				finalWriteString = fangraphsData.substr(writeToFileIndexBegin, writeToFileLength);
+			size_t startIndex = finalWriteString.find("class=\"player-info-box\"");
+			if (startIndex == string::npos) {
+				startIndex = finalWriteString.find("Birthdate:");
+				if (startIndex != string::npos && startIndex > 350)
+					startIndex -= 350;
+			}
+			if (startIndex == string::npos)
+				startIndex = 0;
+			size_t endIndex = finalWriteString.find("\"footer", startIndex);
+			finalWriteString.substr(startIndex, endIndex - startIndex);
+			RemoveJavaScriptBlocksFromFileText(finalWriteString);
+			writeToFile << finalWriteString;
 			writeToFile.close();
 		}
 		else
 		{
 			fangraphsData = "";
 		}
+	} 
+#if 1
+	else {
+		size_t startIndex = fangraphsData.find("class=\"player-info-box\"");
+		if (startIndex == string::npos) {
+			startIndex = fangraphsData.find("Birthdate:");
+			if (startIndex != string::npos && startIndex > 350)
+				startIndex -= 350;
+		}
+		if (startIndex == string::npos)
+			startIndex = 0;
+		size_t endIndex = fangraphsData.find("\"footer", startIndex);
+		size_t dateMetaDataIndex = fangraphsData.find("/ZachDateMetaData", 0);
+		if (dateMetaDataIndex != string::npos)
+			dateMetaDataIndex = fangraphsData.find("\n", dateMetaDataIndex);
+		string finalWriteString = "";
+		if (dateMetaDataIndex != string::npos)
+			finalWriteString += fangraphsData.substr(0, dateMetaDataIndex);
+		finalWriteString += "\n";
+		finalWriteString += fangraphsData.substr(startIndex, endIndex - startIndex);
+		RemoveJavaScriptBlocksFromFileText(finalWriteString);
+		ofstream writeToFile;
+		writeToFile.open(cachedFileName);
+		writeToFile << finalWriteString;
+		writeToFile.close();
 	}
+#endif
 
 	return fangraphsData;
 }

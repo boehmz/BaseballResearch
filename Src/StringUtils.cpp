@@ -63,6 +63,17 @@ void _itoa_osx(int value, char* result, int base) {
     }
 }
 
+void RemoveJavaScriptBlocksFromFileText(std::string& fileText) {
+	size_t javaScriptBlockIndexStart = fileText.find("script type=\"text/javascript\"");
+	while (javaScriptBlockIndexStart != string::npos) {
+		size_t javaScriptBlockIndexEnd = fileText.find("</script>", javaScriptBlockIndexStart);
+		if (javaScriptBlockIndexEnd == string::npos)
+			break;
+		fileText.erase(javaScriptBlockIndexStart, javaScriptBlockIndexEnd - javaScriptBlockIndexStart + 9);
+		javaScriptBlockIndexStart = fileText.find("script type=\"text/javascript\"");
+	}
+}
+
 // date = "0808" or "20170808"
 // output = "2017-08-08"
 std::string DateToDateWithDashes(std::string date) {

@@ -18,6 +18,7 @@ std::string ConvertFLNameToLFName(std::string firstLast);
 std::string ConvertLFNameToFLName(std::string lastFirst);
 std::string IntToDateYMD(int date, std::string yearString = CURRENT_YEAR, bool roundUp = false);
 std::string DateToDateWithDashes(std::string date);
+void RemoveJavaScriptBlocksFromFileText(std::string& fileText);
 
 std::vector<std::string> SplitStringIntoMultiple(std::string wholeString, std::string tokens, std::string removeFromIndividual = "");
 
