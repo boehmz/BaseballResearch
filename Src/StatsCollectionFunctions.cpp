@@ -22,12 +22,7 @@ size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
 string GetEntireFileContents(string fileName)
 {
 #if PLATFORM_OSX
-    fileName = "/Users/boehmz/zb/BaseballResearch/BaseballStatsBuilder/" + fileName;
-    size_t folderPathIndex = fileName.find("\\");
-    while (folderPathIndex != string::npos) {
-        fileName = fileName.replace(folderPathIndex, 1, "/");
-        folderPathIndex = fileName.find("\\");
-    }
+    fileName = GetPlatformCompatibleFileNameFromRelativePath(fileName);
 #endif
     ifstream readFromFile(fileName);
     if (!readFromFile.good()) {
@@ -110,8 +105,10 @@ string GetPlayerStatsRawString(string playerId, string yearString, CURL *curl)
     else
         playerStatsFileName += yearString;
     playerStatsFileName += "DataCached\\PlayerId" + playerId + ".txt";
-    playerStatsLookupBuffer    = GetEntireFileContents(playerStatsFileName);
-	
+    playerStatsLookupBuffer = GetEntireFileContents(playerStatsFileName);
+#if PLATFORM_OSX
+    playerStatsFileName = GetPlatformCompatibleFileNameFromRelativePath(playerStatsFileName);
+#endif
 	if (yearString == CURRENT_YEAR)
 	{
 		size_t dateMetaDataIndex = playerStatsLookupBuffer.find("/ZachDateMetaData", 0);
@@ -643,7 +640,10 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 		cachedFileName = "FangraphsCachedPages\\PlayerId" + playerId + "VsRight.txt";
 
 	fangraphsData = GetEntireFileContents(cachedFileName);
-
+#if PLATFORM_OSX
+    cachedFileName = GetPlatformCompatibleFileNameFromRelativePath(cachedFileName);
+#endif
+    
 	if (!bCachedOk)
 	{
 		size_t dateMetaDataIndex = fangraphsData.find("/ZachDateMetaData", 0);
@@ -816,13 +816,9 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
 		cachedFileName += "Advanced";
 	cachedFileName += ".txt";
 	fangraphsData = GetEntireFileContents(cachedFileName);
-	if (fangraphsData == "") {
-		if (FILE *file = fopen(cachedFileName.c_str(), "r")) {
-			fclose(file);
-			// if file exists, it might just be empty. Don't try to get it again with curl
-			fangraphsData = " ";
-		}
-	}
+#if PLATFORM_OSX
+    cachedFileName = GetPlatformCompatibleFileNameFromRelativePath(cachedFileName);
+#endif
 
 	if (fangraphsData == "")
 	{
@@ -885,7 +881,10 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
 		}
 		ofstream writeToFile;
 		writeToFile.open(cachedFileName);
-		writeToFile << fangraphsData.substr(writeToFileIndexBegin, writeToFileLength);
+        if (writeToFileIndexBegin < fangraphsData.size())
+            writeToFile << fangraphsData.substr(writeToFileIndexBegin, writeToFileLength);
+        else
+            writeToFile << "No Data";
 		writeToFile.close();
 	}
 

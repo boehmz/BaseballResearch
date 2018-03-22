@@ -11,6 +11,7 @@
 #define itoa _itoa_s
 #endif
 
+std::string GetPlatformCompatibleFileNameFromRelativePath(std::string relativeFileName);
 void _itoa_osx(int value, char* result, int base);
 
 int CurrentYearAsInt();

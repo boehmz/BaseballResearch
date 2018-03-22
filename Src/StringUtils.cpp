@@ -12,6 +12,17 @@
 
 using namespace std;
 
+std::string GetPlatformCompatibleFileNameFromRelativePath(std::string relativeFileName) {
+#if PLATFORM_OSX
+    relativeFileName = "/Users/boehmz/zb/BaseballResearch/BaseballStatsBuilder/" + relativeFileName;
+    size_t folderPathIndex = relativeFileName.find("\\");
+    while (folderPathIndex != string::npos) {
+        relativeFileName = relativeFileName.replace(folderPathIndex, 1, "/");
+        folderPathIndex = relativeFileName.find("\\");
+    }
+#endif
+    return relativeFileName;
+}
 int CurrentYearAsInt() {
     return atoi(CURRENT_YEAR);
 }

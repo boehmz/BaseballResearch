@@ -165,7 +165,11 @@ void RefineAlgorithm()
 
 	fstream gamesRecordOverallFile;
 	if (bRefineForGames) {
-		gamesRecordOverallFile.open("2017ResultsTracker\\TeamWinResults\\AllGames.txt");
+        string gamesRecordFileName = "2017ResultsTracker\\TeamWinResults\\AllGames.txt";
+#if PLATFORM_OSX
+        gamesRecordFileName = GetPlatformCompatibleFileNameFromRelativePath(gamesRecordFileName);
+#endif
+		gamesRecordOverallFile.open(gamesRecordFileName);
 	}
 	CURL *curl;  
 
@@ -198,9 +202,17 @@ void RefineAlgorithm()
 		reviewDateStart = 20170410;
 		reviewDateEnd = 20170704;
 		percentOfSeasonPassed = 10.0f / 160.0f;
-		fstream top10PitchersTrainingFile("Top10PitchersTrainingFile.csv", std::ios::out);
-		fstream top25BattersTrainingFile("Top25Order25BattersTrainingFile.csv", std::ios::out);
-		fstream top30BattersWithPitcherTrainingFile("Top30Order25BattersWithPitcherTrainingFile.csv", std::ios::out);
+        string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
+        string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
+        string top30BattersWithPitcherTrainingFileName = "Top30Order25BattersWithPitcherTrainingFile.csv";
+#if PLATFORM_OSX
+        top10PitchersTrainingFileName = GetPlatformCompatibleFileNameFromRelativePath(top10PitchersTrainingFileName);
+        top25BattersTrainingFileName = GetPlatformCompatibleFileNameFromRelativePath(top25BattersTrainingFileName);
+        top30BattersWithPitcherTrainingFileName = GetPlatformCompatibleFileNameFromRelativePath(top30BattersWithPitcherTrainingFileName);
+#endif
+		fstream top10PitchersTrainingFile(top10PitchersTrainingFileName, std::ios::out);
+		fstream top25BattersTrainingFile(top25BattersTrainingFileName, std::ios::out);
+		fstream top30BattersWithPitcherTrainingFile(top30BattersWithPitcherTrainingFileName, std::ios::out);
 		int numBattersPutInTrainingFileToday = 0;
 		int numPitchersPutInTrainingFileToday = 0;
 		int numBattersWithPitcherPutInTrainingFileToday = 0;
@@ -250,6 +262,9 @@ void RefineAlgorithm()
 				ifstream resultsTrackerFile;
 				string resultsTrackerFileName = "2017ResultsTracker\\";
 				resultsTrackerFileName += thisDate + ".txt";
+#if PLATFORM_OSX
+                resultsTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(resultsTrackerFileName);
+#endif
 				resultsTrackerFile.open(resultsTrackerFileName);
 				string sabrPredictorText = getSabrPredictorFileContents(thisDate, false);
 				string batterVSpecificPitcherTextFileName = "2017ResultsTracker\\BatterVPitcherLogs\\" + thisDate + ".txt";
@@ -470,24 +485,32 @@ void RefineAlgorithm()
 									float projectedPlayerIso = stof(batterProjectionsColumns[4]);
 									float projectedPlayerOps = (stof(batterProjectionsColumns[7]) + stof(batterProjectionsColumns[8]));
 									float projectedPlayerSlugging = stof(batterProjectionsColumns[8]);
-									singlePlayerData.playerPointsPerGame = projectedPlayerIso * 100.0f;
-									allPlayersProjectionsIso25[playerPosition].push_back(singlePlayerData);
-									singlePlayerData.playerPointsPerGame = projectedPlayerOps * 100.0f;
-									allPlayersProjectionsOps25[playerPosition].push_back(singlePlayerData);
-									singlePlayerData.playerPointsPerGame = projectedPlayerSlugging * 100.0f;
-									allPlayersProjectionsSlugging25[playerPosition].push_back(singlePlayerData);
-									auto opponentPitcherProjected = opponentPitcherProjectionsMap.find(singlePlayerData.teamCode);
-									if (opponentPitcherProjected != opponentPitcherProjectionsMap.end()) {
-										singlePlayerData.playerPointsPerGame = projectedPlayerIso * 100.0f;
-										singlePlayerData.playerPointsPerGame *= opponentPitcherProjected->second.era;
-										allPlayersProjectionsIso25PitcherMultiply[playerPosition].push_back(singlePlayerData);
-										singlePlayerData.playerPointsPerGame = projectedPlayerOps * 100.0f;
-										singlePlayerData.playerPointsPerGame *= opponentPitcherProjected->second.era;
-										allPlayersProjectionsOps25PitcherMultiply[playerPosition].push_back(singlePlayerData);
-										singlePlayerData.playerPointsPerGame = projectedPlayerSlugging * 100.0f;
-										singlePlayerData.playerPointsPerGame *= opponentPitcherProjected->second.era;
-										allPlayersProjectionsSlugging25PitcherMultiply[playerPosition].push_back(singlePlayerData);
-									}
+                                    float projectedPlayerOnBaseAverage = stof(batterProjectionsColumns[7]);
+                                    if (batterStats.iso >= 0) {
+                                        projectedPlayerIso = percentOfSeasonPassed * batterStats.iso + (1.0f - percentOfSeasonPassed) * projectedPlayerIso;
+                                        projectedPlayerSlugging = percentOfSeasonPassed * batterStats.slugging + (1.0f - percentOfSeasonPassed) * projectedPlayerSlugging;
+                                        projectedPlayerOps = percentOfSeasonPassed * batterStats.ops + (1.0f - percentOfSeasonPassed) * projectedPlayerOps;
+                                    }
+                                    if (projectedPlayerOnBaseAverage >= 0.31) {
+                                        singlePlayerData.playerPointsPerGame = projectedPlayerIso * 100.0f;
+                                        allPlayersProjectionsIso25[playerPosition].push_back(singlePlayerData);
+                                        singlePlayerData.playerPointsPerGame = projectedPlayerOps * 100.0f;
+                                        allPlayersProjectionsOps25[playerPosition].push_back(singlePlayerData);
+                                        singlePlayerData.playerPointsPerGame = projectedPlayerSlugging * 100.0f;
+                                        allPlayersProjectionsSlugging25[playerPosition].push_back(singlePlayerData);
+                                        auto opponentPitcherProjected = opponentPitcherProjectionsMap.find(singlePlayerData.teamCode);
+                                        if (opponentPitcherProjected != opponentPitcherProjectionsMap.end()) {
+                                            singlePlayerData.playerPointsPerGame = projectedPlayerIso * 100.0f;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherProjected->second.era;
+                                            allPlayersProjectionsIso25PitcherMultiply[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = projectedPlayerOps * 100.0f;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherProjected->second.era;
+                                            allPlayersProjectionsOps25PitcherMultiply[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = projectedPlayerSlugging * 100.0f;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherProjected->second.era;
+                                            allPlayersProjectionsSlugging25PitcherMultiply[playerPosition].push_back(singlePlayerData);
+                                        }
+                                    }
 								}
 								else {
 									int breakpoint = 0;
@@ -616,7 +639,11 @@ void RefineAlgorithm()
 											projectionsPitcherStats.era = stof(pitcherProjectionsColumns[6]);
 											projectionsPitcherStats.fip = stof(pitcherProjectionsColumns[7]);
 											projectionsPitcherStats.numInnings = stof(pitcherProjectionsColumns[1]);
+                                            projectionsPitcherStats.strikeOutsPer9 = 7;
 										}
+                                        if (pitcherStatsThisYearSoFar.numInnings > 0) {
+                                            projectionsPitcherStats = percentOfSeasonPassed * pitcherStatsThisYearSoFar + (1.0f - percentOfSeasonPassed) * projectionsPitcherStats;
+                                        }
 										opponentPitcherProjectionsMap.insert({ opponentTeamCode, projectionsPitcherStats });
 									}
 								}
@@ -853,6 +880,9 @@ void RefineAlgorithm()
 					vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
 					if (chosenLineup.size() > 0) {
 						float totalPoints = tallyLineupTotals(chosenLineup, actualResults, thisDateWithoutYear);
+                        if (totalPoints > 200 && line != (chosenLineupsList.size()-1)) {
+                            cout << "Got over 200 points on " << d << " with lineup formula " << line << endl;
+                        }
 						chosenLineupsList[line].push_back(totalPoints);
 					}
 				}
@@ -871,6 +901,9 @@ void RefineAlgorithm()
 				ifstream pitcherResultsTrackerFile;
 				string pitcherResultsTrackerFileName = "2017ResultsTracker\\Pitchers\\";
 				pitcherResultsTrackerFileName += thisDate + ".txt";
+#if PLATFORM_OSX
+                pitcherResultsTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(pitcherResultsTrackerFileName);
+#endif
 				pitcherResultsTrackerFile.open(pitcherResultsTrackerFileName);
 				string sabrPredictorText = getSabrPredictorFileContents(thisDate, true);
 
@@ -914,6 +947,9 @@ void RefineAlgorithm()
 				ifstream gamesPredictorFile;
 				string gamesPredictorFileName = "2017ResultsTracker\\TeamWinResults\\";
 				gamesPredictorFileName += thisDate + ".txt";
+#if PLATFORM_OSX
+                gamesPredictorFileName = GetPlatformCompatibleFileNameFromRelativePath(gamesPredictorFileName);
+#endif
 				gamesPredictorFile.open(gamesPredictorFileName);
 
 				while (getline(gamesPredictorFile, resultsLine)) {
@@ -1146,6 +1182,9 @@ void RefineAlgorithmForBeatTheStreak()
 			if (d < 1000)
 				eligiblePlayersFileName += "0";
 			eligiblePlayersFileName += thisDate + ".txt";
+#if PLATFORM_OSX
+            eligiblePlayersFileName = GetPlatformCompatibleFileNameFromRelativePath(eligiblePlayersFileName);
+#endif
 			eligiblePlayersTrackerFile.open(eligiblePlayersFileName);
 			string eligiblePlayerName;
 			vector<string> eligiblePlayerNames;
@@ -1164,6 +1203,9 @@ void RefineAlgorithmForBeatTheStreak()
 			if (d < 1000)
 				resultsTrackerFileName += "0";
 			resultsTrackerFileName += thisDate + ".txt";
+#if PLATFORM_OSX
+            resultsTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(resultsTrackerFileName);
+#endif
 			resultsTrackerFile.open(resultsTrackerFileName);
 
 			string resultsLine;
@@ -1324,6 +1366,9 @@ void RefineAlgorithmForBeatTheStreak()
 
 		ofstream yesHitTrackerFile;
 		string yesHitTrackerFileName = "2017ResultsTracker\\BeatTheStreak\\PlayersYesHit.txt";
+#if PLATFORM_OSX
+        yesHitTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(yesHitTrackerFileName);
+#endif
 		yesHitTrackerFile.open(yesHitTrackerFileName);
 		for (unsigned int y = 0; y < playersYesHit.size(); ++y)
 		{
@@ -1332,6 +1377,9 @@ void RefineAlgorithmForBeatTheStreak()
 		yesHitTrackerFile.close();
 		ofstream noHitTrackerFile;
 		string noHitTrackerFileName = "2017ResultsTracker\\BeatTheStreak\\PlayersNoHit.txt";
+#if PLATFORM_OSX
+        noHitTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(noHitTrackerFileName);
+#endif
 		noHitTrackerFile.open(noHitTrackerFileName);
 		for (unsigned int n = 0; n < playersNoHit.size(); ++n)
 		{
@@ -1405,7 +1453,10 @@ void ChooseAPitcher(CURL *curl)
 		ofstream pitcherStatsArchiveFile;
         string pitcherStatsArchiveFileName = CURRENT_YEAR;
         pitcherStatsArchiveFileName += "ResultsTracker\\TeamWinResults\\PitcherData\\" + todaysDate + ".txt";
-		pitcherStatsArchiveFile.open(pitcherStatsArchiveFileName);
+#if PLATFORM_OSX
+        pitcherStatsArchiveFileName = GetPlatformCompatibleFileNameFromRelativePath(pitcherStatsArchiveFileName);
+#endif
+        pitcherStatsArchiveFile.open(pitcherStatsArchiveFileName);
 
 		vector<PlayerData> positionalPlayerData;
 
@@ -1601,11 +1652,17 @@ void ChooseAPitcher(CURL *curl)
 		ofstream playerResultsTrackerFile;
         string playerResultsTrackerFileName = CURRENT_YEAR;
         playerResultsTrackerFileName += "ResultsTracker\\Pitchers\\" + todaysDate + ".txt";
+#if PLATFORM_OSX
+        playerResultsTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(playerResultsTrackerFileName);
+#endif
 		playerResultsTrackerFile.open(playerResultsTrackerFileName);
 
 		ofstream teamWinTrackerFile;
         string teamWinTrackerFileName = CURRENT_YEAR;
         teamWinTrackerFileName += "ResultsTracker\\TeamWinResults\\" + todaysDate + ".txt";
+#if PLATFORM_OSX
+        teamWinTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(teamWinTrackerFileName);
+#endif
 		teamWinTrackerFile.open(teamWinTrackerFileName);
 		for (unsigned int i = 0; i < positionalPlayerData.size(); ++i)
 		{
@@ -1920,6 +1977,9 @@ void GenerateNewLineup(CURL *curl)
   ofstream resultsTrackerFile;
   string resultsTrackerFileName = CURRENT_YEAR;
   resultsTrackerFileName += "ResultsTracker\\" + todaysDate + ".txt";
+#if PLATFORM_OSX
+    resultsTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(resultsTrackerFileName);
+#endif
   resultsTrackerFile.open(resultsTrackerFileName);
   for (unsigned int i = 0; i < allPlayers.size(); ++i)
   {
@@ -3318,9 +3378,17 @@ void AnalyzeTeamWinFactors()
 	//Refine2016TeamWinFactors();
 	//return;
 	fstream allGamesFile;
-	allGamesFile.open("2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt");
+    string allGamesFileName = "2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt";
+#if PLATFORM_OSX
+    allGamesFileName = GetPlatformCompatibleFileNameFromRelativePath(allGamesFileName);
+#endif
+	allGamesFile.open(allGamesFileName);
 	ofstream gamesFactorsFile;
-	gamesFactorsFile.open("2017ResultsTracker\\OddsWinsResults\\AllGamesFactors.txt");
+    string gamesFactorsFileName = "2017ResultsTracker\\OddsWinsResults\\AllGamesFactors.txt";
+#if PLATFORM_OSX
+    gamesFactorsFileName = GetPlatformCompatibleFileNameFromRelativePath(gamesFactorsFileName);
+#endif
+	gamesFactorsFile.open(gamesFactorsFileName);
 	string resultsLine;
 	string currentDate = "";
 	string currentDateOpsStats = "";
@@ -3339,6 +3407,9 @@ void AnalyzeTeamWinFactors()
 			{
 				CurlGetSiteContents(curl, "https://www.teamrankings.com/mlb/stat/on-base-plus-slugging-pct?date=" + currentDate, currentDateOpsStats);
 				ofstream opsOutputFile;
+#if PLATFORM_OSX
+                opsFileName = GetPlatformCompatibleFileNameFromRelativePath(opsFileName);
+#endif
 				opsOutputFile.open(opsFileName);
 				opsOutputFile << currentDateOpsStats;
 				opsOutputFile.close();
@@ -3349,6 +3420,9 @@ void AnalyzeTeamWinFactors()
 			{
 				CurlGetSiteContents(curl, "https://www.teamrankings.com/mlb/stat/runs-per-game?date=" + currentDate, currentDateRunsStats);
 				ofstream runsOutputFile;
+#if PLATFORM_OSX
+                runsFileName = GetPlatformCompatibleFileNameFromRelativePath(runsFileName);
+#endif
 				runsOutputFile.open(runsFileName);
 				runsOutputFile << currentDateRunsStats;
 				runsOutputFile.close();
@@ -3480,9 +3554,15 @@ void Analyze2016TeamWinFactors()
 {
 	CURL *curl = NULL;
 	fstream all2016GamesFile;
-	all2016GamesFile.open("2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\2016Totals.txt");
+    string allGamesFileName = "2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\2016Totals.txt";
+    string allGamesFactorsFileName = "2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\2016TotalsWithOps.txt";
+#if PLATFORM_OSX
+    allGamesFileName = GetPlatformCompatibleFileNameFromRelativePath(allGamesFileName);
+    allGamesFactorsFileName = GetPlatformCompatibleFileNameFromRelativePath(allGamesFactorsFileName);
+#endif
+	all2016GamesFile.open(allGamesFileName);
 	ofstream gamesFactorsFile;
-	gamesFactorsFile.open("2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\2016TotalsWithOps.txt");
+	gamesFactorsFile.open(allGamesFactorsFileName);
 	string resultsLine;
 	string currentDate = "";
 	string currentDateOpsStats = "";
@@ -3500,6 +3580,9 @@ void Analyze2016TeamWinFactors()
 			{
 				CurlGetSiteContents(curl, "https://www.teamrankings.com/mlb/stat/on-base-plus-slugging-pct?date=" + currentDate, currentDateOpsStats);
 				ofstream opsOutputFile;
+#if PLATFORM_OSX
+                opsFileName = GetPlatformCompatibleFileNameFromRelativePath(opsFileName);
+#endif
 				opsOutputFile.open(opsFileName);
 				opsOutputFile << currentDateOpsStats;
 				opsOutputFile.close();
@@ -3524,9 +3607,15 @@ void Refine2016TeamWinFactors()
 {
 	CURL *curl = NULL;
 	ifstream gamesFactorsFile;
-	gamesFactorsFile.open("2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\2016TotalsWithOps.txt");
+    string gamesFactorsFileName = "2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\2016TotalsWithOps.txt";
+    string guessFileName = "2016TestGuesses.txt";
+#if PLATFORM_OSX
+    gamesFactorsFileName = GetPlatformCompatibleFileNameFromRelativePath(gamesFactorsFileName);
+    guessFileName = GetPlatformCompatibleFileNameFromRelativePath(guessFileName);
+#endif
+	gamesFactorsFile.open(gamesFactorsFileName);
 	ofstream guessFile;
-	guessFile.open("2016TestGuesses.txt");
+	guessFile.open(guessFileName);
 	string resultsLine;
 	string currentDate = "";
 	string currentDateOpsStats = "";
@@ -3643,6 +3732,9 @@ void Analyze2016TeamWins()
 	CURL* curl = NULL;
 	string totalsFileName = "2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\2016Totals.txt";
 	ofstream totalsFile;
+#if PLATFORM_OSX
+    totalsFileName = GetPlatformCompatibleFileNameFromRelativePath(totalsFileName);
+#endif
 	totalsFile.open(totalsFileName);
 	for (int d = 415; d <= 930; ++d)
 	{
@@ -3758,6 +3850,9 @@ void GatherPitcher2016CumulativeData()
 
 		ofstream pitcherStatsArchiveFile;
 		string pitcherStatsArchiveFileName = "2017ResultsTracker\\TeamWinResults\\PitcherData\\Historical\\2016\\" + thisDateWithYear + ".txt";
+#if PLATFORM_OSX
+        pitcherStatsArchiveFileName = GetPlatformCompatibleFileNameFromRelativePath(pitcherStatsArchiveFileName);
+#endif
 		pitcherStatsArchiveFile.open(pitcherStatsArchiveFileName);
 
 		while (lineEndIndex != string::npos)
@@ -3793,7 +3888,11 @@ void Gather2016TeamWins()
 		pageData += GetEntireFileContents("2017ResultsTracker\\OddsWinsResults\\CachedPage" + iStr + ".txt");
 	}
 	fstream allGamesFile;
-	allGamesFile.open("2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt");
+    string allGamesFileName = "2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt";
+#if PLATFORM_OSX
+    allGamesFileName = GetPlatformCompatibleFileNameFromRelativePath(allGamesFileName);
+#endif
+	allGamesFile.open(allGamesFileName);
 
 	for (int d = 706; d <= 816; ++d)
 	{
@@ -3845,6 +3944,9 @@ void Gather2016TeamWins()
 		ofstream winResultsOutputFile;
 		string winResultsFileName = "2017ResultsTracker\\OddsWinsResults\\";
 		winResultsFileName += IntToDateYMD(d, "2017") +".txt";
+#if PLATFORM_OSX
+        winResultsFileName = GetPlatformCompatibleFileNameFromRelativePath(winResultsFileName);
+#endif
 		winResultsOutputFile.open(winResultsFileName);
 
 		string dateSearchString = thisDay + " " + thisMonth + " 2017";
@@ -3966,6 +4068,9 @@ void Analyze2016Stats()
 			{
 				ofstream pitchersDataFile;
 				string pitchersDataFileName = "Player2016AnalysisCached\\Pitchers.txt";
+#if PLATFORM_OSX
+                pitchersDataFileName = GetPlatformCompatibleFileNameFromRelativePath(pitchersDataFileName);
+#endif
 				pitchersDataFile.open(pitchersDataFileName);
 
 				string total2016Data;
@@ -4278,6 +4383,9 @@ void Analyze2016Stats()
 			{
 				ofstream battersDataFile;
 				string battersDataFileName = "Player2016AnalysisCached\\BattersOverall.txt";
+#if PLATFORM_OSX
+                battersDataFileName = GetPlatformCompatibleFileNameFromRelativePath(battersDataFileName);
+#endif
 				battersDataFile.open(battersDataFileName);
 
 				string total2016Data;
@@ -4717,6 +4825,9 @@ void GetBeatTheStreakCandidates(CURL *curl)
 
 		ofstream resultsTrackerFile;
 		string resultsTrackerFileName = "2017ResultsTracker\\BeatTheStreak\\" + todaysDate + ".txt";
+#if PLATFORM_OSX
+        resultsTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(resultsTrackerFileName);
+#endif
 		resultsTrackerFile.open(resultsTrackerFileName);
 		for (unsigned int i = 0; i < eligiblePlayers.size(); ++i)
 		{
@@ -4727,6 +4838,9 @@ void GetBeatTheStreakCandidates(CURL *curl)
 
 		ofstream allResultsTrackerFile;
 		string allResultsTrackerFileName = "2017ResultsTracker\\BeatTheStreak\\AllPlayersDaily\\" + todaysDate + ".txt";
+#if PLATFORM_OSX
+        allResultsTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(allResultsTrackerFileName);
+#endif
 		allResultsTrackerFile.open(allResultsTrackerFileName);
 
 		for (unsigned int i = 0; i < allPlayers.size(); ++i)
