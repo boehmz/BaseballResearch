@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <sstream>
 #include <unordered_map>
+#include <unordered_set>
 #include <assert.h>
 #include "SharedGlobals.h"
 #include "StatsCollectionFunctions.h"
@@ -199,8 +200,8 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20170410;
-		reviewDateEnd = 20170704;
+		reviewDateStart = 20170823;
+		reviewDateEnd = 20171001;
 		percentOfSeasonPassed = 10.0f / 160.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -837,7 +838,7 @@ void RefineAlgorithm()
 				allPlayersLineupOrder.push_back(allPlayersHighScoreThreshold);
 				allPlayersLineupOrder.push_back(allPlayersHighScoreThresholdOrder25);
 				allPlayersLineupOrder.push_back(allPlayersActualScores);
-				float battingOrderBonus = 10.0f;
+				float battingOrderBonus = 0.0f;
 				for (unsigned int line = 0; line < chosenLineupsList.size(); ++line) {
 					allPlayers.clear();
 					unsigned int lineIndex = line;
@@ -2292,6 +2293,10 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 	if (bTournamentLineup) {
 		maxPlayersPerTeam = 4;
 	}
+    // one utility player, combine 1B/C
+    std::unordered_set<std::string> playersUsedSoFar;
+    allPlayers[1].insert(allPlayers[1].end(), allPlayers[0].begin(), allPlayers[0].end());
+    sort(allPlayers[1].begin(), allPlayers[1].end(), comparePlayerByPointsPerGame);
 
 	for (unsigned int ap = 0; ap < allPlayers.size(); ++ap)
 	{
@@ -2318,6 +2323,11 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 			}
 		}
 	}
+    allPlayers[0].clear();
+    for (unsigned int i = 1; i < allPlayers.size(); ++i) {
+        allPlayers[0].insert(allPlayers[0].end(), allPlayers[i].begin(), allPlayers[i].end());
+    }
+    sort(allPlayers[0].begin(), allPlayers[0].end(), comparePlayerByPointsPerGame);
 	for (unsigned int i = 0; i < allPlayers.size(); ++i)
 	{
 		if (allPlayers[i].size() == 0) {
@@ -2502,7 +2512,27 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 		idealPlayerPerPosition[idealPlayerPerPosition.size() - 3] = temp;
 	}
 	// we might have freed some salary, see if we are now able to get a better player
-	unsigned int positionIndex = 1;
+	unsigned int positionIndex = 0;
+	for (unsigned int pl = 0; pl < idealPlayerPerPosition[positionIndex]; ++pl)
+	{
+		bool teamEligible = true;
+		auto team = numPlayersFromTeam.find(allPlayers[positionIndex][pl].teamCode);
+		if (team != numPlayersFromTeam.end() && team->second >= maxPlayersPerTeam) {
+			teamEligible = false;
+		}
+		if (teamEligible) {
+			int salaryIncrease = allPlayers[positionIndex][pl].playerSalary - allPlayers[positionIndex][idealPlayerPerPosition[positionIndex]].playerSalary;
+			if (salaryIncrease + totalSalary <= maxTotalBudget)
+			{
+				totalSalary += salaryIncrease;
+				removePlayerFromTeam(numPlayersFromTeam, allPlayers[positionIndex][idealPlayerPerPosition[positionIndex]].teamCode);
+				addPlayerToTeam(numPlayersFromTeam, allPlayers[positionIndex][pl].teamCode);
+				idealPlayerPerPosition[positionIndex] = pl;
+				break;
+			}
+		}
+	}
+	positionIndex = 1;
 	for (unsigned int pl = 0; pl < idealPlayerPerPosition[positionIndex]; ++pl)
 	{
 		bool teamEligible = true;
@@ -2543,26 +2573,6 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 		}
 	}
 	positionIndex = 2;
-	for (unsigned int pl = 0; pl < idealPlayerPerPosition[positionIndex]; ++pl)
-	{
-		bool teamEligible = true;
-		auto team = numPlayersFromTeam.find(allPlayers[positionIndex][pl].teamCode);
-		if (team != numPlayersFromTeam.end() && team->second >= maxPlayersPerTeam) {
-			teamEligible = false;
-		}
-		if (teamEligible) {
-			int salaryIncrease = allPlayers[positionIndex][pl].playerSalary - allPlayers[positionIndex][idealPlayerPerPosition[positionIndex]].playerSalary;
-			if (salaryIncrease + totalSalary <= maxTotalBudget)
-			{
-				totalSalary += salaryIncrease;
-				removePlayerFromTeam(numPlayersFromTeam, allPlayers[positionIndex][idealPlayerPerPosition[positionIndex]].teamCode);
-				addPlayerToTeam(numPlayersFromTeam, allPlayers[positionIndex][pl].teamCode);
-				idealPlayerPerPosition[positionIndex] = pl;
-				break;
-			}
-		}
-	}
-	positionIndex = 0;
 	for (unsigned int pl = 0; pl < idealPlayerPerPosition[positionIndex]; ++pl)
 	{
 		bool teamEligible = true;
@@ -2754,6 +2764,26 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 		idealPlayerPerPosition[idealPlayerPerPosition.size() - 3] = temp;
 	}
 	// we might have freed some salary, see if we are now able to get a better player
+	positionIndex = 0;
+	for (unsigned int pl = 0; pl < idealPlayerPerPosition[positionIndex]; ++pl)
+	{
+		bool teamEligible = true;
+		auto team = numPlayersFromTeam.find(allPlayers[positionIndex][pl].teamCode);
+		if (team != numPlayersFromTeam.end() && team->second >= maxPlayersPerTeam) {
+			teamEligible = false;
+		}
+		if (teamEligible) {
+			int salaryIncrease = allPlayers[positionIndex][pl].playerSalary - allPlayers[positionIndex][idealPlayerPerPosition[positionIndex]].playerSalary;
+			if (salaryIncrease + totalSalary <= maxTotalBudget)
+			{
+				totalSalary += salaryIncrease;
+				removePlayerFromTeam(numPlayersFromTeam, allPlayers[positionIndex][idealPlayerPerPosition[positionIndex]].teamCode);
+				addPlayerToTeam(numPlayersFromTeam, allPlayers[positionIndex][pl].teamCode);
+				idealPlayerPerPosition[positionIndex] = pl;
+				break;
+			}
+		}
+	}
 	positionIndex = 1;
 	for (unsigned int pl = 0; pl < idealPlayerPerPosition[positionIndex]; ++pl)
 	{
@@ -2795,26 +2825,6 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 		}
 	}
 	positionIndex = 2;
-	for (unsigned int pl = 0; pl < idealPlayerPerPosition[positionIndex]; ++pl)
-	{
-		bool teamEligible = true;
-		auto team = numPlayersFromTeam.find(allPlayers[positionIndex][pl].teamCode);
-		if (team != numPlayersFromTeam.end() && team->second >= maxPlayersPerTeam) {
-			teamEligible = false;
-		}
-		if (teamEligible) {
-			int salaryIncrease = allPlayers[positionIndex][pl].playerSalary - allPlayers[positionIndex][idealPlayerPerPosition[positionIndex]].playerSalary;
-			if (salaryIncrease + totalSalary <= maxTotalBudget)
-			{
-				totalSalary += salaryIncrease;
-				removePlayerFromTeam(numPlayersFromTeam, allPlayers[positionIndex][idealPlayerPerPosition[positionIndex]].teamCode);
-				addPlayerToTeam(numPlayersFromTeam, allPlayers[positionIndex][pl].teamCode);
-				idealPlayerPerPosition[positionIndex] = pl;
-				break;
-			}
-		}
-	}
-	positionIndex = 0;
 	for (unsigned int pl = 0; pl < idealPlayerPerPosition[positionIndex]; ++pl)
 	{
 		bool teamEligible = true;
