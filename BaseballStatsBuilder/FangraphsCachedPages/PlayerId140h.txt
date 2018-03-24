@@ -1,7 +1,23 @@
 20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
+20170629/ZachDateMetaData
 text/javascript"></script>
 
-<script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=yONnNeg0_tp3KoLSBL2DqY6gAKfm_dA7JxGUf1pSEcg1"></script>
+<
 
 
 
@@ -18,10 +34,7 @@ text/javascript"></script>
 
 
 <script src="http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjax.js" type="text/javascript"></script>
-<script type="text/javascript">
-//<![CDATA[
-(window.Sys && Sys._Application && Sys.Observer)||document.write('<script type="text/javascript" src="/ScriptResource.axd?d=p9mqTehpNnW4Ng4qP2akHL8YAQo3nBfFajEIsM_t4c3Wu3VOlQpV1KgkmRsJF3NiZHwk0dk4WOJFNRF7JL0xB0oPHK0Xgwgby7XjOfibqcrAlpw-a-VQK1bwvC8jQZSXW3uhH98nPWcL2_Bqvmx9I8y19DR1I8t5TXbjaNEFQ0Gbx6yQ0&t=ffffffffcc58dd65"><\/script>');//]]>
-</script>
+<
 
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="08A9DA7C" />
     
@@ -509,191 +522,4 @@ text/javascript"></script>
             <br />
             <br />
         </div>
-        <div id="footer">
-            
-
-<style>
-    .ad-temp-full {
-        width: 100%;
-        height: 50px;
-        background-color: beige;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-    }
-
-    .footer-bar {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        position: relative;
-        margin-top: 10px;
-        line-height: 45px;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-        -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-                justify-content: space-between;
-        padding: 0 10px;
-    }
-
-    .footer-bar-background {
-        background-color: #cecece;
-        border-bottom: 2px solid gray;
-        width: 100%;
-        height: 45px;
-        position: absolute;
-        left: 0;
-    }
-    .footer-bar-item {
-        margin: 0 10px;
-        z-index: 1;
-        width: 100%;
-    }
-
-    .footer-bar-item a {
-        font-weight: 600;
-    }
-
-    .footer-credits {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        padding: 0 10px;
-    }
-
-    .footer-credits-item {
-        -webkit-box-flex: 0;
-            -ms-flex: 0 1 300px;
-                flex: 0 1 300px;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-            -ms-flex-direction: column;
-                flex-direction: column;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        /*margin: 10px;*/
-        padding: 10px;
-    }
-
-    .footer-credits-item-name {
-        display: block;
-        font-weight: 600;
-        margin-bottom: 10px;
-    }
-
-    .footer-credits-item img {
-        max-width: 300px;
-    }
-    .footer-credits-item-text {
-        width: 100%;
-    }
-
-    .footer-credits {
-        display: block;
-    }
-    .footer-credits-item {
-        display: inline-block;
-        box-sizing: border-box;
-        width: 32.333%;
-        text-align: center;
-    }
-
-    @media (max-width: 950px) {
-
-        .footer-credits-item {
-            width: 49%;
-        }   
-    }
-    @media (max-width: 650px) {
-        .footer-credits-item {
-            width: 100%;
-        }
-    }
-
-</style>
-
-<div id="Footer1_panROS" class="ad-wide box-ad ad-member-hide">
-	
-    <center>
-        <div class="catchall728" style='width:728px; overflow:hidden;'><!-- Stats-footer --> <div id ='div-gpt-ad-1349421924281-18' style='width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-18').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-18'); });}</script></div></div>
-
-    </center>
-
-</div>
-
-<br />
-
-
-
-<div class="footer-bar">
-    <div class="footer-bar-background"><div class="footer-bar-item">
-        
-    </div></div>
-    <div class="footer-bar-item">
-        <span class="mobile-hide">Updated: Wednesday, June 28, 2017 11:16 AM ET</span><span class="mobile-show">Updated: 6/28/2017 11:16 AM ET</span>
-    </div>
-    <div class="footer-bar-item" style="text-align: center; margin: auto;">
-        <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
-        - <a href="http://www.fangraphs.com/tos.aspx">Terms of Service</a> - <a href="http://www.fangraphs.com/policy.aspx">Privacy Policy</a>
-    </div>
-</div>
-<div class="footer-credits">
-    <div class="footer-credits-item">
-        <a href="http://www.baseballinfosolutions.com" class="footer-credits-item-name">
-            <img src="/images/bis-logo-white.png" alt="bis logo" /></a>
-        <div class="footer-credits-item-text">All major league baseball data including pitch type, velocity, batted ball location,
-        and play-by-play data provided by Baseball Info Solutions.</div>
-    </div>
-    <div class="footer-credits-item">
-        <a href="http://www.foxsports.com/" class="footer-credits-item-name">
-            <img src="/images/badge_300.gif" /></a>
-        <div class="footer-credits-item-text">FOX Sports Engage Network Partner</div>
-    </div>
-    <div class="footer-credits-item">
-        <a href="http://www.stats.com" class="footer-credits-item-name">
-            <img src="/images/statslogo_new.png" alt="statslogo" style="width: 100px;" /></a>
-        <div class="footer-credits-item-text">All minor league baseball data provided by Major League Baseball Advanced Media
-        as distributed by STATS.</div>
-    </div>
-    <div class="footer-credits-item">
-        <div class="footer-credits-item-name">Mitchel Lichtman</div>
-        <div class="footer-credits-item-text">All UZR (ultimate zone rating) calculations are provided courtesy of Mitchel Lichtman.</div>
-    </div>
-    <div class="footer-credits-item">
-        <a href="http://www.tangotiger.com" class="footer-credits-item-name">TangoTiger.com</a>
-       <div class="footer-credits-item-text"> All Win Expectancy, Leverage Index, Run Expectancy, and Fans Scouting Report data licenced from TangoTiger.com</div>
-    </div>
-    <div class="footer-credits-item">
-        <a href="http://www.retrosheet.org" class="footer-credits-item-name">Retrosheet.org</a>
-        <div class="footer-credits-item-text">Play-by-play data prior to 2002 was obtained free of charge from and is copyrighted
-        by Retrosheet.</div>
-    </div>
-</div>
-
-<div class="catchall1" style='width:1px; '><!-- /1128006/Tynt_1x1_Fangraphs --> <div id ='div-gpt-ad-1349421924281-28' style='width:1px; height:1px; '><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-28').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-28'); });}</script></div></div>
-
-
-<div id="Footer1_panAdIO">
-	
-
-    
-    <!--
+        <div id=
