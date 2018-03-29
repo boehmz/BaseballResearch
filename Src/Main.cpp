@@ -50,7 +50,7 @@ vector<string> probableRainoutGames;
 std::unordered_map<std::string, bool> probableStarters;
 std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 
-int mainEntry(void)
+int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
 	ProcessType processType = ProcessType::GenerateLineup;
@@ -84,7 +84,8 @@ int mainEntry(void)
 			//AssembleBatterSplits(curl);
 			ChooseAPitcher(curl);
 			//GenerateNewLineup(curl);
-			GenerateNewLineupFromSabrPredictor(curl);
+			//GenerateNewLineupFromSabrPredictor(curl);
+			GenerateLineups(curl);
 		}
 		break;
 	}
@@ -1448,7 +1449,7 @@ void ChooseAPitcher(CURL *curl)
 		string teamThisYearRunsPerGameData;
 		curl_easy_setopt(curl, CURLOPT_URL, "https://www.teamrankings.com/mlb/stat/on-base-plus-slugging-pct");
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &teamThisYearStrikeoutData);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &teamThisYearRunsPerGameData);
 		curl_easy_perform(curl);
 		curl_easy_reset(curl);
 
@@ -1547,11 +1548,11 @@ void ChooseAPitcher(CURL *curl)
 				size_t opponentTeamIndex = teamLastYearOffensiveData.find(";" + opponentsInfo->second.teamCodeRankingsSite + ";", 0);
 				opponentTeamIndex = teamLastYearOffensiveData.find(";", opponentTeamIndex + 1);
 				size_t opponentTeamNextIndex = teamLastYearOffensiveData.find(";", opponentTeamIndex + 1);
-				opponentRunsPerGame = stof(teamLastYearOffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+			//	opponentRunsPerGame = stof(teamLastYearOffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 
 				opponentTeamIndex = teamLastYearOffensiveData.find(";", opponentTeamIndex + 1);
 				opponentTeamNextIndex = teamLastYearOffensiveData.find("\n", opponentTeamIndex + 1);
-				opponentStrikeoutsPerGame = stof(teamLastYearOffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+			//	opponentStrikeoutsPerGame = stof(teamLastYearOffensiveData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 			}
 			else
 			{
@@ -1579,11 +1580,11 @@ void ChooseAPitcher(CURL *curl)
 				opponentRunsPerGame *= max(0.0f, 1.0f - (percentOfSeasonPassed * 2.0f));
 				opponentStrikeoutsPerGame *= max(0.0f, 1.0f - (percentOfSeasonPassed * 2.0f));
 
-				size_t opponentTeamIndex = teamThisYearStrikeoutData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
-				opponentTeamIndex = teamThisYearStrikeoutData.find("data-sort=", opponentTeamIndex + 1);
-				opponentTeamIndex = teamThisYearStrikeoutData.find(">", opponentTeamIndex + 1);
-				size_t opponentTeamNextIndex = teamThisYearStrikeoutData.find("<", opponentTeamIndex + 1);
-				opponentOps = stof(teamThisYearStrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+				size_t opponentTeamIndex = teamThisYearRunsPerGameData.find(">" + opponentsInfo->second.rankingsSiteTeamName + "<", 0);
+				opponentTeamIndex = teamThisYearRunsPerGameData.find("data-sort=", opponentTeamIndex + 1);
+				opponentTeamIndex = teamThisYearRunsPerGameData.find(">", opponentTeamIndex + 1);
+				size_t opponentTeamNextIndex = teamThisYearRunsPerGameData.find("<", opponentTeamIndex + 1);
+				opponentOps = stof(teamThisYearRunsPerGameData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
 				// ops to runs per game is
 				// 13.349 * ops - 5.379
 				opponentRunsPerGame += (13.349f * opponentOps - 5.379f) * min(1.0f, percentOfSeasonPassed * 2.0f);
@@ -1606,14 +1607,17 @@ void ChooseAPitcher(CURL *curl)
 
 			combinedPitcherStats.era *= parkRunsFactor;
 			combinedPitcherStats.fip *= parkHomerFactor;
+			combinedPitcherStats.xfip *= parkHomerFactor;
 
-			singlePlayerData.playerPointsPerGame = GetExpectedFanduelPointsFromPitcherStats(combinedPitcherStats, opponentRunsPerGame, opponentStrikeoutsPerGame);
-			
+			//singlePlayerData.playerPointsPerGame = GetExpectedFanduelPointsFromPitcherStats(combinedPitcherStats, opponentRunsPerGame, opponentStrikeoutsPerGame);
+			combinedPitcherStats.strikeOutsPer9 = 0.5f * opponentStrikeoutsPerGame + 0.5f * combinedPitcherStats.strikeOutsPer9;
+			combinedPitcherStats.era = 0.5f * opponentRunsPerGame + 0.5f * combinedPitcherStats.era;
+			singlePlayerData.playerPointsPerGame = combinedPitcherStats.era * -0.352834158133307318f + combinedPitcherStats.xfip * -1.50744966177988493f + combinedPitcherStats.strikeOutsPer9 * 1.44486530250260237f;
+
 			bool bRainedOut = false;
 			int gameStartTime = 99;
 			if (opponentsInfo != opponentMap.end())
 			{
-				size_t closestRainOutPark = string::npos;
 				for (unsigned int i = 0; i < probableRainoutGames.size(); ++i)
 				{
 					if (opponentsInfo->second.ballParkPlayedIn == probableRainoutGames[i])
@@ -2057,7 +2061,7 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl)
 			char pAsString[5];
 			itoa(p, pAsString, 10);
 			string pAsStringString(pAsString);
-			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c";
+			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=0&numlist=c";
 
 			curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -2226,6 +2230,300 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl)
 					&& !bRainedOut)
 					positionalPlayerData.push_back(singlePlayerData);
 
+				if (placeHolderIndex == string::npos)
+					break;
+				else
+					placeHolderIndex = readBuffer.find("\n", placeHolderIndex + 1);
+			}
+
+			sort(positionalPlayerData.begin(), positionalPlayerData.end(), comparePlayerByPointsPerGame);
+
+			allPlayers.push_back(positionalPlayerData);
+		}
+		curl_easy_cleanup(curl);
+	}
+	sort(teamStackList.begin(), teamStackList.end(), compareTeamsByAveragePlayerPointsPerGame);
+	// always use stacks
+	if (true) {
+		for (unsigned int pos = 0; pos < allPlayers.size(); ++pos) {
+			for (unsigned int player = 0; player < allPlayers[pos].size(); ++player) {
+				int teamStackRank = -1;
+				for (unsigned int team = 0; team < teamStackList.size(); ++team) {
+					if (teamStackList[team].teamCode == allPlayers[pos][player].teamCode) {
+						teamStackRank = team;
+						break;
+					}
+				}
+				if (teamStackRank < 10 && teamStackRank >= 0) {
+					allPlayers[pos][player].playerPointsPerGame += (float)(10 - teamStackRank);
+				}
+			}
+			sort(allPlayers[pos].begin(), allPlayers[pos].end(), comparePlayerByPointsPerGame);
+		}
+	}
+	vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
+	int breakpoint = 0;
+}
+
+void GenerateLineups(CURL *curl)
+{
+	if (curl == NULL)
+		curl = curl_easy_init();
+	vector<TeamStackTracker> teamStackList;
+	vector< vector<PlayerData> > allPlayers25PitcherMultiply(6);	// use pitcher multiply for tournaments
+	vector< vector<PlayerData> > allPlayers25PitcherDKMultiply(6);	// use pitcher multiply DraftKings for tournaments (slightly different results)
+	vector< vector<PlayerData> > allPlayers25OpsBatterVSpecificPitcher(6);	// use batter v specific pitcher for tournaments
+	vector< vector<PlayerData> > allPlayers25Slugging(6);	// use slugging for tournaments ONLY
+	vector< vector<PlayerData> > allPlayers25PitcherYahooMultiply(6);	// use yahoo multiply for double up games
+	if (curl)
+	{
+		
+		// previous days results, to get the likely batting order
+		int numDaysPreviousResults = 5;
+		vector<string> previousDayResults;
+		for (int i = 1; i <= numDaysPreviousResults; ++i) {
+			string previousResults;
+			string thisDayAbbreviated = todaysDate.substr(4);
+			int thisDayAbbreviatedInt = atoi(thisDayAbbreviated.c_str());
+			string prevDay = IntToDateYMD(thisDayAbbreviatedInt - i, todaysDate.substr(0, 4));
+			
+			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + prevDay + "&game=fd&scsv=1&nowrap=1";
+			curl_easy_setopt(curl, CURLOPT_URL, resultsURL.c_str());
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &previousResults);
+			curl_easy_perform(curl);
+			curl_easy_reset(curl);
+			previousResults = prevDay + "\n" + previousResults;
+			previousDayResults.push_back(previousResults);
+		}
+
+		string sabrPredictorText = getSabrPredictorFileContents(todaysDate, false);
+		string sabrPredictorTextPitchers = getSabrPredictorFileContents(todaysDate, true);
+		string batterVSpecificPitcherTextFileName = "2018ResultsTracker\\BatterVPitcherLogs\\" + todaysDate + ".txt";
+		string batterVSpecificPitcherText = GetEntireFileContents(batterVSpecificPitcherTextFileName);
+
+		for (int p = 2; p <= 7; ++p)
+		{
+			// first basemen
+			std::string readBuffer;
+			char pAsString[5];
+			itoa(p, pAsString, 10);
+			string pAsStringString(pAsString);
+			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=0&numlist=c";
+
+			curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+			curl_easy_perform(curl);
+			curl_easy_reset(curl);
+
+			vector<PlayerData> positionalPlayerData;
+
+			size_t placeHolderIndex = readBuffer.find("GID;", 0);
+			size_t endOfPlayerDataIndex = readBuffer.find("Statistical data provided", placeHolderIndex);
+
+			for (int i = 0; i < 23; ++i)
+			{
+				placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+			}
+			placeHolderIndex = readBuffer.find("\n", placeHolderIndex + 1);
+			while (placeHolderIndex != string::npos && readBuffer.find(";", placeHolderIndex + 1) < endOfPlayerDataIndex - 1)
+			{
+				PlayerData singlePlayerData;
+
+				// player id
+				size_t nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.playerId = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+
+				// player name
+				for (int i = 0; i < 2; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.playerName = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+
+				// team name code
+				for (int i = 0; i < 1; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.teamCode = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+
+				// player salary
+				for (int i = 0; i < 1; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.playerSalary = atoi(readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1).c_str());
+
+				// number of games started this season
+				for (int i = 0; i < 19; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+
+				singlePlayerData.playerPointsPerGame = -1;
+
+				size_t playerNameIndex = sabrPredictorText.find(ConvertLFNameToFLName(singlePlayerData.playerName));
+				if (playerNameIndex != string::npos) {
+					size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
+					vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
+					float expectedFdPoints = stof(thisSabrLine[17]);
+					singlePlayerData.playerPointsPerGame = expectedFdPoints;
+
+					bool teamStackTrackerExists = false;
+					for (unsigned int texp = 0; texp < teamStackList.size(); ++texp) {
+						if (teamStackList[texp].teamCode == singlePlayerData.teamCode) {
+							teamStackList[texp].numPlayersAdded++;
+							teamStackList[texp].teamTotalExpectedPoints += singlePlayerData.playerPointsPerGame;
+							teamStackTrackerExists = true;
+							break;
+						}
+					}
+					if (!teamStackTrackerExists) {
+						TeamStackTracker tst;
+						tst.numPlayersAdded = 1;
+						tst.teamCode = singlePlayerData.teamCode;
+						tst.teamTotalExpectedPoints = singlePlayerData.playerPointsPerGame;
+						teamStackList.push_back(tst);
+					}
+
+					if (sabrPredictorTextPitchers != "") {
+						string playerTeamName = thisSabrLine[1];
+						string playerGameName = thisSabrLine[2];
+						size_t gameNameIndex = sabrPredictorTextPitchers.find(playerGameName);
+						if (gameNameIndex != string::npos) {
+							size_t prevNewLinePitchers = sabrPredictorTextPitchers.rfind("\n", gameNameIndex);
+							size_t nextNewLinePitchers = sabrPredictorTextPitchers.find("\n", gameNameIndex);
+							vector<string> thisSabrLinePitchers = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(prevNewLinePitchers, nextNewLinePitchers - prevNewLinePitchers), ",", "\"");
+							if (thisSabrLinePitchers[1] == playerTeamName) {
+								gameNameIndex = sabrPredictorTextPitchers.find(playerGameName, nextNewLinePitchers);
+								if (gameNameIndex != string::npos) {
+									prevNewLinePitchers = sabrPredictorTextPitchers.rfind("\n", gameNameIndex);
+									nextNewLinePitchers = sabrPredictorTextPitchers.find("\n", gameNameIndex);
+									thisSabrLinePitchers.clear();
+									thisSabrLinePitchers = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(prevNewLinePitchers, nextNewLinePitchers - prevNewLinePitchers), ",", "\"");
+								}
+							}
+							float expectedFdPointsPitcher = stof(thisSabrLinePitchers[14]);
+							float expectedDkPointsPitcher = stof(thisSabrLinePitchers[13]);
+							float expectedYahooPointsPitcher = stof(thisSabrLinePitchers[12]);
+						}
+					}
+				}
+				
+				FullSeasonStatsAdvancedNoHandedness batterStatsCurrentYear = GetBatterStatsSeason(singlePlayerData.playerId, curl, CURRENT_YEAR);
+				FullSeasonStatsAdvancedNoHandedness batterStatsLastYear = GetBatterStatsSeason(singlePlayerData.playerId, curl, LAST_YEAR);
+				FullSeasonStatsAdvancedNoHandedness batterStatsCareer = GetBatterStatsSeason(singlePlayerData.playerId, curl, "Total");
+				FullSeasonStatsAdvancedNoHandedness combinedBatterStats;
+				if (batterStatsLastYear.average >= 0) {
+					combinedBatterStats = batterStatsCareer * 0.5f + batterStatsLastYear * 0.5f;
+				}
+				if (batterStatsCurrentYear.average >= 0)
+					combinedBatterStats = combinedBatterStats * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStatsCurrentYear;
+
+				singlePlayerData.playerPointsPerGame = combinedBatterStats.ops * 100.0f;
+				allPlayers25Slugging[p].push_back(singlePlayerData);
+				size_t indexInVSpecificPitcherFile = batterVSpecificPitcherText.find(singlePlayerData.playerName);
+				if (indexInVSpecificPitcherFile != string::npos) {
+					size_t prevLineIndex = batterVSpecificPitcherText.rfind("\n", indexInVSpecificPitcherFile);
+					size_t nextLineIndex = batterVSpecificPitcherText.find("\n", indexInVSpecificPitcherFile);
+					vector<string> thisPlayerVSpecificPitcherLines = SplitStringIntoMultiple(batterVSpecificPitcherText.substr(prevLineIndex, nextLineIndex - prevLineIndex), ";");
+					if (thisPlayerVSpecificPitcherLines.size() > 47) {
+						int numPlateAppearances = atoi(thisPlayerVSpecificPitcherLines[17].c_str());
+						if (numPlateAppearances >= 5) {
+							singlePlayerData.playerPointsPerGame = stof(thisPlayerVSpecificPitcherLines[34]);
+						}
+					}
+				}
+				allPlayers25OpsBatterVSpecificPitcher[p].push_back(singlePlayerData);
+
+				int gameStartTime = 24;
+				size_t colonIndex = readBuffer.find(":", placeHolderIndex + 1);
+				size_t nextSemiColonIndex = readBuffer.find("\n", placeHolderIndex + 1);
+				if (colonIndex != string::npos && colonIndex < nextSemiColonIndex)
+				{
+					size_t spaceIndex = readBuffer.rfind(" ", colonIndex);
+					gameStartTime = atoi(readBuffer.substr(spaceIndex + 1, colonIndex - spaceIndex - 1).c_str());
+					size_t pmIndex = readBuffer.find("PM", spaceIndex);
+					size_t edtIndex = readBuffer.find("EDT", spaceIndex);
+					if (pmIndex != string::npos && pmIndex < edtIndex)
+					{
+						gameStartTime += 12;
+					}
+				}
+				else if (readBuffer.find("Final", placeHolderIndex + 1) != string::npos && readBuffer.find("Final", placeHolderIndex + 1) < nextSemiColonIndex)
+				{
+					// game has gone final
+					gameStartTime = 999;
+				}
+				else if (readBuffer.find("Mid", placeHolderIndex + 1) != string::npos && readBuffer.find("Mid", placeHolderIndex + 1) < nextSemiColonIndex)
+				{
+					// game is in progress
+					gameStartTime = 999;
+				}
+				else if (readBuffer.find("Top", placeHolderIndex + 1) != string::npos && readBuffer.find("Top", placeHolderIndex + 1) < nextSemiColonIndex)
+				{
+					// game is in progress
+					gameStartTime = 999;
+				}
+				else if (readBuffer.find("Bot", placeHolderIndex + 1) != string::npos && readBuffer.find("Bot", placeHolderIndex + 1) < nextSemiColonIndex)
+				{
+					// game is in progress
+					gameStartTime = 999;
+				}
+
+				size_t closestRainOutPark = string::npos;
+				for (unsigned int i = 0; i < probableRainoutGames.size(); ++i)
+				{
+					size_t thisRainoutPark = readBuffer.find(probableRainoutGames[i], placeHolderIndex);
+					if (thisRainoutPark < closestRainOutPark)
+						closestRainOutPark = thisRainoutPark;
+				}
+				bool bRainedOut = closestRainOutPark != string::npos && closestRainOutPark < readBuffer.find("\n", placeHolderIndex + 1);
+				for (int inj = 0; inj < dayToDayInjuredPlayersNum; ++inj)
+				{
+					if (singlePlayerData.playerName.find(dayToDayInjuredPlayers[inj]) != string::npos)
+					{
+						bRainedOut = true;
+						break;
+					}
+				}
+				bool bFacingChosenPitcher = singlePlayerData.teamCode == pitcherOpponentTeamCode;
+				bool bAcceptableBattingOrder = false;
+				int minBattingOrder = 2;
+				int maxBattingOrder = 5;
+				// catchers usually bat later anyway
+				if (p == 2)
+					maxBattingOrder = 6;
+				
+				for (unsigned int i = 0; i < previousDayResults.size(); ++i) {
+					size_t playerIdIndex = previousDayResults[i].find(previousDayResults[i].substr(0, 3) + ";" + singlePlayerData.playerId + ";", 0);
+					if (playerIdIndex != string::npos)
+					{
+						for (int m = 0; m < 5; ++m) {
+							playerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
+						}
+						size_t nextPlayerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
+						int prevBattingOrder = atoi(previousDayResults[i].substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str());
+						if (prevBattingOrder >= minBattingOrder && prevBattingOrder <= maxBattingOrder) {
+							bAcceptableBattingOrder = true;
+							break;
+						}
+					}
+				}
+
+				// throw this guy out if he's not a starter or his game will most likely be rained out
+				if (bAcceptableBattingOrder
+					&& !bFacingChosenPitcher
+					&& gameStartTime <= latestGameTime
+					&& gameStartTime >= earliestGameTime
+					&& !bRainedOut) {
+					positionalPlayerData.push_back(singlePlayerData);
+				}
 				if (placeHolderIndex == string::npos)
 					break;
 				else
@@ -3096,7 +3394,7 @@ void PopulateProbableRainoutGames(CURL *curl)
 			}
 
 
-			size_t dashIndex = weatherData.rfind(" - ", timeIndex);
+			size_t dashIndex = weatherData.rfind(" – ", timeIndex);
 			
 			size_t colonIndex = weatherData.find(":", dashIndex);
 			int gameStartTime = atoi(weatherData.substr(dashIndex + 3, colonIndex - dashIndex - 3).c_str());

@@ -23,6 +23,7 @@ void RefineAlgorithm();
 void RefineAlgorithmForBeatTheStreak();
 void GenerateNewLineup(CURL *curl);
 void GenerateNewLineupFromSabrPredictor(CURL *curl);
+void GenerateLineups(CURL *curl);
 void ChooseAPitcher(CURL *curl);
 void Analyze2016Stats();
 
