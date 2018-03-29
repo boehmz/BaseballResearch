@@ -1,3 +1,6 @@
+#ifndef MAIN_H_INCLUDED
+#define MAIN_H_INCLUDED
+
 #include <stdio.h>
 #include <curl/curl.h>
 #include <iostream>
@@ -14,6 +17,7 @@ std::vector<PlayerData> OptimizeLineupToFitBudget();
 bool comparePlayerByPointsPerGame(PlayerData i, PlayerData j);
 
 bool comparePlayersBySalary(PlayerData i, PlayerData j);
+int mainEntry(void);
 
 void RefineAlgorithm();
 void RefineAlgorithmForBeatTheStreak();
@@ -80,8 +84,6 @@ struct BeatTheStreakPlayerProfile
 	std::string ToString();
 };
 
-void PopulateProbableRainoutGames();
-
 struct OpponentInformation
 {
 	std::string ballParkPlayedIn;
@@ -103,7 +105,7 @@ struct OpponentInformation
 
 void RefineAlgorithm();
 
-std::unordered_map<std::string, bool> probableStarters;
+
 void DetermineProbableStarters(CURL* curl);
 
 struct BatterSplitsData
@@ -127,7 +129,6 @@ struct BatterSplitsData
 
 	BatterSplitsData() {}
 };
-std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 void AssembleBatterSplits(CURL *curl);
 
 
@@ -157,3 +158,4 @@ std::string ConvertTeamCodeToOddsPortalName(std::string teamCode, bool standardT
 std::string ConvertStandardTeamCodeToRotoGuruTeamCode(std::string standardCode);
 std::string ConvertRotoGuruTeamCodeToStandardTeamCode(std::string rotoGuruCode);
 
+#endif

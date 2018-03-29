@@ -47,8 +47,10 @@ const float leagueAverageOps = 0.72f;
 vector< vector<PlayerData> > allPlayers;
 unordered_map<std::string, OpponentInformation> opponentMap;
 vector<string> probableRainoutGames;
+std::unordered_map<std::string, bool> probableStarters;
+std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 
-int main(void)
+int mainEntry(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
 	ProcessType processType = ProcessType::Refine;
@@ -3061,7 +3063,7 @@ void PopulateProbableRainoutGames(CURL *curl)
 			}
 
 
-			size_t dashIndex = weatherData.rfind(" <96> ", timeIndex);
+			size_t dashIndex = weatherData.rfind(" - ", timeIndex);
 			
 			size_t colonIndex = weatherData.find(":", dashIndex);
 			int gameStartTime = atoi(weatherData.substr(dashIndex + 3, colonIndex - dashIndex - 3).c_str());
