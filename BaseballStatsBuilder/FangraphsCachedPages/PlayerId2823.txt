@@ -1,54 +1,5 @@
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-20171001/ZachDateMetaData
-text/javascript">window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"8c8459e5ba","applicationID":"2284934","transactionName":"ZlMHMEtVDUdTW0ZQC18ZJDdpGxNYU0FXSxcfVxYUQQ==","queueTime":0,"applicationTime":52,"agent":"","atts":""}</script><<title>
+20180329/ZachDateMetaData
+text/javascript">window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"8c8459e5ba","applicationID":"2284934","transactionName":"ZlMHMEtVDUdTW0ZQC18ZJDdpGxNYU0FXSxcfVxYUQQ==","queueTime":0,"applicationTime":49,"agent":"","atts":""}</script><<title>
 	Baseball Player Search | Fan Graphs
 </title><meta name="description" content="Search and listings for all Major League and Minor League baseball players" /><meta name="keywords" content="baseball players, baseball player statistics, baseball player search" /><link href="//cdn.fangraphs.com/css/fg?v=pxJFRhZvnKEN61YvxHWehNCXVBNx8FAzVBf_8-cPt_Q1" rel="stylesheet">
 
@@ -147,7 +98,7 @@ text/javascript">window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.ne
                                            placementId: '721852f036df57e9588348781776800b' }
                                    },{
                                       bidder: 'sovrn',
-                                      params: { tagid: '196541' }
+                                      params: { tagid: '560323' }
                                    },{
                                       bidder: 'brealtime',
                                       params: { placementId: '12660718' }
@@ -200,7 +151,7 @@ text/javascript">window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.ne
                                            placementId: '55097cbb2e7d10c13266447931ad394a' }
                                    },{
                                       bidder: 'sovrn',
-                                      params: { tagid: '279354' }
+                                      params: { tagid: '560321' }
                                    },{
                                       bidder: 'brealtime',
                                       params: { placementId: '12660716' }
@@ -488,7 +439,9 @@ googletag.defineSlot('/1128006/Tynt_1x1_Fangraphs', [1, 1], 'div-gpt-ad-13494219
                     <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=zips">ZiPS</a>,
                     <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamer">Steamer</a>,
                     <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=fangraphsdc">Depth Charts</a>,
-                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=atc">ATC</a>
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=atc">ATC</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=thebat">THE BAT</a>
+
                     <div class="menu-sub-header">
                         2018 600 PA / 200 IP Projections
                     </div>
@@ -517,7 +470,7 @@ googletag.defineSlot('/1128006/Tynt_1x1_Fangraphs', [1, 1], 'div-gpt-ad-13494219
                         <div class="menu-sub-header">
                             Today: 
                             <a href="//www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2017&amp;month=0&amp;season1=2017&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2018-03-09">Probable Pitchers</a>
+                            <a id="linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2017&amp;month=0&amp;season1=2017&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2018-03-28">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -538,7 +491,7 @@ googletag.defineSlot('/1128006/Tynt_1x1_Fangraphs', [1, 1], 'div-gpt-ad-13494219
                             <a href="//www.fangraphs.com/depthcharts.aspx?position=Standings">2018 Projected Standings</a>
                         </div>
                         <div class="menu-sub-link">
-                            <a href="/standings/playoff-odds">2017 Playoff Odds</a>, <a href="/standings/playoff-odds-graphs">Playoff Odds Graphs</a>
+                            <a href="/standings/playoff-odds">2018 Playoff Odds</a>, <a href="/standings/playoff-odds-graphs">Playoff Odds Graphs</a>
                         </div>
                         <table class="menu-standings-table">
                             <tbody>
@@ -881,4 +834,67 @@ googletag.defineSlot('/1128006/Tynt_1x1_Fangraphs', [1, 1], 'div-gpt-ad-13494219
 </table>
 
         </div>
-        <div id=
+        <div id="footer">
+            <div id="Footer1_panFooter" class="ra-wide box-ra ra-member-hide">
+	
+    <div>
+        <div class="catchall728" style='width:728px; overflow:hidden;'><!-- ROS-Footer --> <div id ='div-gpt-ad-1349421924281-10' style='width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-10').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-10'); });}</script></div></div>
+
+    </div>
+
+</div>
+
+<br />
+
+<div class="footer-bar">
+    <div class="footer-bar-background"><div class="footer-bar-item">
+        
+    </div></div>
+    <div class="footer-bar-item">
+        <span class="mobile-hide">Updated: Wednesday, March 28, 2018 3:25 AM ET</span><span class="mobile-show">Updated: 3/28/2018 3:25 AM ET</span>
+    </div>
+    <div class="footer-bar-item" style="text-align: center; margin: auto;">
+        <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
+        - <a href="/about/terms-of-service">Terms of Service</a> - <a href="/about/privacy-policy">Privacy Policy</a>
+    </div>
+</div>
+<div class="footer-credits">
+    <div class="footer-credits-item">
+        <a href="http://www.baseballinfosolutions.com" class="footer-credits-item-name">
+            <img src="/images/bis-logo-white.png" alt="bis logo" /></a>
+        <div class="footer-credits-item-text">All major league baseball data including pitch type, velocity, batted ball location,
+        and play-by-play data provided by Baseball Info Solutions.</div>
+    </div>
+    <div class="footer-credits-item">
+        <a href="http://www.foxsports.com/" class="footer-credits-item-name">
+            <img src="/images/badge_300.gif" /></a>
+        <div class="footer-credits-item-text">FOX Sports Engage Network Partner</div>
+    </div>
+    <div class="footer-credits-item">
+        <a href="http://www.stats.com" class="footer-credits-item-name">
+            <img src="/images/statslogo_sm.png" alt="statslogo" style="width: 100px;" /></a>
+        <div class="footer-credits-item-text">All minor league baseball data provided by Major League Baseball Advanced Media
+        as distributed by STATS.</div>
+    </div>
+    <div class="footer-credits-item">
+        <div class="footer-credits-item-name">Mitchel Lichtman</div>
+        <div class="footer-credits-item-text">All UZR (ultimate zone rating) calculations are provided courtesy of Mitchel Lichtman.</div>
+    </div>
+    <div class="footer-credits-item">
+        <a href="http://www.tangotiger.com" class="footer-credits-item-name">TangoTiger.com</a>
+       <div class="footer-credits-item-text"> All Win Expectancy, Leverage Index, Run Expectancy, and Fans Scouting Report data licenced from TangoTiger.com</div>
+    </div>
+    <div class="footer-credits-item">
+        <a href="http://www.retrosheet.org" class="footer-credits-item-name">Retrosheet.org</a>
+        <div class="footer-credits-item-text">Play-by-play data prior to 2002 was obtained free of charge from and is copyrighted
+        by Retrosheet.</div>
+    </div>
+</div>
+
+<div class="catchall1" style='width:1px; '><!-- /1128006/Tynt_1x1_Fangraphs --> <div id ='div-gpt-ad-1349421924281-28' style='width:1px; height:1px; '><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-28').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-28'); });}</script></div></div>
+
+
+<div id="Footer1_panAdIO">
+	
+
+    <!--

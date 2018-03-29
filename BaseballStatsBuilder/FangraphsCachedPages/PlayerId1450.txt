@@ -1,28 +1,832 @@
-20170925/ZachDateMetaData
-                 valign="top">
+20180329/ZachDateMetaData
+text/javascript">window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"8c8459e5ba","applicationID":"2284934","transactionName":"ZlMHMEtVDUdTW0ZQC18ZJDdpGxBAU0xBSQhYQhZKWEcTTA==","queueTime":0,"applicationTime":61,"agent":"","atts":""}</script><<title>
+	James Shields &raquo; Splits &raquo; As Starter &raquo; Pitching | FanGraphs Baseball
+</title><meta name='description' content='James Shields As Starter pitching splits for Major League baseball' />
+<meta name='keywords' content='james shields, james shields splits' /><link href="//cdn.fangraphs.com/css/fg?v=pxJFRhZvnKEN61YvxHWehNCXVBNx8FAzVBf_8-cPt_Q1" rel="stylesheet">
 
-                        <span style="padding-left: 5px;">
-                            <strong style="font-size:15pt;">James Shields</strong></span>
-                        <div class="spacer_10"></div>
-                        <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 12/20/1981 (35 y, 9 m, 5 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-3/215 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=7059&position=P#draft" style="text-decoration:none;">2000 June Amateur Draft - Round: 16, Pick: 6, Overall: 466, Team: Tampa Bay Devil Rays</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=7059&position=P#contract" style="text-decoration:none;">$75M / 4 Years (2015 - 2018) + 1 Option Years</a>
+<link href="//cdn.fangraphs.com/css/telerik?v=7kp8vZ-2gyqQIN75Z0UB_Vbc6sYJCM3fVOkK0XkRN401" rel="stylesheet">
+
+
+
+<link href="//cdn.fangraphs.com/css/desktop?v=RA0h6is2mfq9Yhqsxow5ABJu5OJPfy_vOYSNz0pHnjk1" rel="stylesheet">
+
+<meta name="viewport" content="width=1000">
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
+
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+
+
+<
+
+
+
+
+
+<link rel="shortcut icon" href="//cdn.fangraphs.com/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="//cdn.fangraphs.com/opensearch.xml" title="FanGraphs Search" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet" />
+
+<meta property="og:image" content="//cdn.fangraphs.com/blogs/wp-content/uploads/2016/04/flat_fg_green.png" />
+
+
+
+<!-- AMAZON ADS START -->
+
+<script type='text/javascript'>
+  !function(a9,a,p,s,t,A,g){if(a[a9])return;function q(c,r){a[a9]._Q.push([c,r])}a[a9]={init:function(){q("i",arguments)},fetchBids:function(){q("f",arguments)},setDisplayBids:function(){},targetingKeys:function(){return[]},_Q:[]};A=p.createElement(s);A.async=!0;A.src=t;g=p.getElementsByTagName(s)[0];g.parentNode.insertBefore(A,g)}("apstag",window,document,"script","//c.amazon-adsystem.com/aax2/apstag.js");
+
+ // initialize apstag and have apstag set bids on the googletag slots when they are returned to the page
+  apstag.init({
+    pubID: '54eeeb9c-d6c6-4712-bb2a-e2aed51c3eb7',
+    adServer: 'googletag',
+    bidTimeout: 800
+  });
+
+  // request the bids for the four googletag slots
+  apstag.fetchBids({
+    slots: [{
+                                          slotID: 'div-gpt-ad-1349421924281-10',
+                                          slotName: '/1128006/ROS-Footer',
+                                          sizes: [[728, 90]]
+                                         },{
+                                          slotID: 'div-gpt-ad-1349421924281-13',
+                                          slotName: '/1128006/RoS_300x250',
+                                          sizes: [[300, 250]]
+                                         },{
+                                          slotID: 'div-gpt-ad-1349421924281-14',
+                                          slotName: '/1128006/ROS_728x90',
+                                          sizes: [[728, 90]]
+                                         },{
+                                          slotID: 'div-gpt-ad-1349421924281-28',
+                                          slotName: '/1128006/Tynt_1x1_Fangraphs',
+                                          sizes: [[1, 1]]
+                                         }]
+  }, function(bids) {
+    // set apstag bids, then trigger the first request to DFP
+    googletag.cmd.push(function() {
+      apstag.setDisplayBids();
+      // googletag.pubads().refresh();    
+    });
+  });
+</script>
+
+<!-- AMAZON ADS END -->
+
+<!-- Prebid Config Section START -->
+<!-- Make sure this is inserted before your GPT tag -->
+<script> 
+    var PREBID_TIMEOUT = 800;
+
+    var adUnits = [{
+                                    code: 'div-gpt-ad-1349421924281-10',
+                                    sizes: [[728, 90]],
+                                    bids: [
+                                    {
+                                      bidder: 'appnexus',
+                                      params: { placementId: '12307741' }
+                                   },{
+                                      bidder: 'komoona',
+                                      params: {
+                                           hbid: 'ee37c793019a4b62a076b0f62f608697',
+                                           placementId: '721852f036df57e9588348781776800b' }
+                                   },{
+                                      bidder: 'sovrn',
+                                      params: { tagid: '560323' }
+                                   },{
+                                      bidder: 'brealtime',
+                                      params: { placementId: '12660718' }
+                                   },{
+                                      bidder: 'conversant',
+                                      params: { 
+                                            site_id: '116646',
+                                            secure: 1
+                                      }
+                                   },{
+                                      bidder: 'oftmedia',
+                                      params: { placementId: '12738344' }
+                                   },{
+                                      bidder: 'rhythmone',
+                                      params: { placementId: '74397' }
+                                   }
+                                    ]
+                                    },{
+                                    code: 'div-gpt-ad-1349421924281-13',
+                                    sizes: [[300, 250]],
+                                    bids: [
+                                    {
+                                      bidder: 'appnexus',
+                                      params: { placementId: '12316220' }
+                                   },{
+                                      bidder: 'komoona',
+                                      params: {
+                                           hbid: 'ee37c793019a4b62a076b0f62f608697',
+                                           placementId: '9077d0ad318744965a25849789cd07ba' }
+                                   },{
+                                      bidder: 'sovrn',
+                                      params: { tagid: '560319' }
+                                   },{
+                                      bidder: 'brealtime',
+                                      params: { placementId: '12660714' }
+                                   },{
+                                      bidder: 'conversant',
+                                      params: { 
+                                            site_id: '116642',
+                                            secure: 1
+                                      }
+                                   },{
+                                      bidder: 'oftmedia',
+                                      params: { placementId: '12738340' }
+                                   },{
+                                      bidder: 'rhythmone',
+                                      params: { placementId: '74397' }
+                                   }
+                                    ]
+                                    },{
+                                    code: 'div-gpt-ad-1349421924281-14',
+                                    sizes: [[728, 90]],
+                                    bids: [
+                                    {
+                                      bidder: 'appnexus',
+                                      params: { placementId: '12316456' }
+                                   },{
+                                      bidder: 'komoona',
+                                      params: {
+                                           hbid: 'ee37c793019a4b62a076b0f62f608697',
+                                           placementId: '55097cbb2e7d10c13266447931ad394a' }
+                                   },{
+                                      bidder: 'sovrn',
+                                      params: { tagid: '560321' }
+                                   },{
+                                      bidder: 'brealtime',
+                                      params: { placementId: '12660716' }
+                                   },{
+                                      bidder: 'conversant',
+                                      params: { 
+                                            site_id: '116644',
+                                            secure: 1
+                                      }
+                                   },{
+                                      bidder: 'oftmedia',
+                                      params: { placementId: '12738342' }
+                                   },{
+                                      bidder: 'rhythmone',
+                                      params: { placementId: '74397' }
+                                   }
+                                    ]
+                                    }
+    ];
+
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
+
+    pbjs.bidderSettings = {
+      brealtime: {
+        bidCpmAdjustment : function(bidCpm){
+          // adjust the bid in real time before the auction takes place
+          return bidCpm * 0.80;
+        }
+      },
+      oftmedia: {
+        bidCpmAdjustment : function(bidCpm){
+          // adjust the bid in real time before the auction takes place
+          return bidCpm * 0.90;
+        }
+      }
+    };
+
+    const customConfigObject = {
+  'buckets' : [{
+      'precision': 2,
+      'min' : 0,
+      'max' : 3,
+      'increment' : 0.01
+    },
+    {
+      'precision': 2,
+      'min' : 3,
+      'max' : 8,
+      'increment' : 0.05
+    },
+    {
+      'precision': 2,
+      'min' : 8,
+      'max' : 9.50,
+      'increment' : 0.10
+    },
+    {
+      'precision': 2,
+      'min' : 9.50,
+      'max' : 20,
+      'increment' : 0.50
+    },
+    {
+      'precision': 2,
+      'min' : 20,
+      'max' : 35,
+      'increment' : 1.00
+    }]
+};
+
+    pbjs.que.push(function () {
+        pbjs.setPriceGranularity(customConfigObject);
+    });
+
+</script>
+<!-- Prebid Config Section END -->
+
+<!-- Prebid Boilerplate Section START. No Need to Edit. -->
+<
+<script>
+      var googletag = googletag || {};
+      googletag.cmd = googletag.cmd || [];
+      googletag.cmd.push(function () {
+          googletag.pubads().disableInitialLoad();
+      });
+
+      pbjs.que.push(function () {
+          pbjs.addAdUnits(adUnits);
+          pbjs.enableAnalytics([{
+                provider: 'pubwise',
+                options: {
+                    site: 'd2a5ef67-8fed-4d00-9918-927ea7374a10',
+                    endpoint:'https://api.pubwise.io/api/v4/event/add/'
+                    }
+                }]
+          );
+          pbjs.requestBids({
+              bidsBackHandler: sendAdserverRequest
+          });
+      });
+
+      function sendAdserverRequest() {
+          if (pbjs.adserverRequestSent) return;
+          pbjs.adserverRequestSent = true;
+          googletag.cmd.push(function () {
+              pbjs.que.push(function () {
+                  pbjs.setTargetingForGPTAsync();
+                  googletag.pubads().refresh();
+              });
+          });
+      }
+
+      setTimeout(function () {
+          sendAdserverRequest();
+      }, PREBID_TIMEOUT);
+
+</script>
+<!-- Prebid Boilerplate Section END -->
+
+<script type='text/javascript'>
+      (function () {
+          var gads = document.createElement('script');
+          gads.async = true;
+          gads.type = 'text/javascript';
+          var useSSL = 'https:' == document.location.protocol;
+          gads.src = (useSSL ? 'https:' : 'http:') +
+              '//www.googletagservices.com/tag/js/gpt.js';
+          var node = document.getElementsByTagName('script')[0];
+          node.parentNode.insertBefore(gads, node);
+      })();
+</script>
+<script type='text/javascript'>
+    googletag.cmd.push(function () {
+googletag.defineSlot('/1128006/ROS-Footer', [728, 90], 'div-gpt-ad-1349421924281-10').addService(googletag.pubads());
+googletag.defineSlot('/1128006/RoS_300x250', [300, 250], 'div-gpt-ad-1349421924281-13').addService(googletag.pubads());
+googletag.defineSlot('/1128006/ROS_728x90', [728, 90], 'div-gpt-ad-1349421924281-14').addService(googletag.pubads());
+googletag.defineSlot('/1128006/Tynt_1x1_Fangraphs', [1, 1], 'div-gpt-ad-1349421924281-28').addService(googletag.pubads());
+
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+    });
+</script>
+
+
+
+
+<link href="/WebResource.axd?d=4eFj2ghicsUvR4-jzn-y5qljBL4LM8D_52KGPCKA_0Xrtrry5DxJsUoLHytEMkaBKAzibyQ3TCK3urr2XIpkSjqFQbHILRAhDM4anA_249w8WfBBihjP6qqmR4ZNzCRCohQrhFOEXDdvbEyY7tQvDg3GTjY1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=A02NNKC_b5BcC1yDjQZjFkdb4gUSvzrdkCtAkgZ8AExChxlYEMgcSqTHWu2MVcFlJT-mje0kcnR2-JBKnlb30pvv29rsUn6lHFWcYS5gWLNfAUx2jpQIC10Me0swXAVf17eZAIO5F4ZzP3vJp8DxyAyguYw1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=vyGwVOpDBkG0uXr0j-cum2_sVH1cpEbGbXWTc3SNBgXB1z5PODv1nirzv_tWKIyJnZmugW1iwy81ct5y-9fQmNhaW7mLfqDT1ufneVLQwrI5xxpC9tVF9rJunaETJBP4-6yBOj8-g978ZupiXoWAHUZAPMk1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=GQpBOiIPRRVOqnbzRTk6AeAexawlxHPpLFJL4VowleC0eY695IHY5vNyuZv-mJQQ-70jzcmZYDCTt1a5Trcq25lnAN7zlqeB1aaYeKoxl6ObyItvLvkCbLWA2GiJUfAxtmKZ4syVhmUgxaCMWURkddLotII1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=apUTkvkq_aLiJTCAYExnXgaMBysrZftWI83mGKeHEOBSF5PIMsaAUP0ct8iqqdYzzwGTdVQfKHd0nsu1j2VUO1CuVN1URz8DperJmgNoxc3RmF9eBpzuFsKH-IlmyZbY0vJRklv4ETNhN7r5EsNITJFgMDA1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /></head>
+<body>
+    <form method="post" action="./statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=8.1" id="form1">
+<input type="hidden" name="RadScriptManager1_TSM" id="RadScriptManager1_TSM" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE4NTYwMDE5OTBkGAcFHVNlYXNvblNwbGl0czEkZGdTZWFzb24yJGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudAINBQhfIVBDb3VudGQFBl8hRFNJQwINFgIeA19zZRYCHgJfY2ZkZAUdU2Vhc29uU3BsaXRzMSRkZ1NlYXNvbjEkY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50Ag0FCF8hUENvdW50ZAUGXyFEU0lDAg0WAh8AFgIfAWZkZAUXU2Vhc29uU3BsaXRzMSRkZ1NlYXNvbjMPFCsAAmQXAwULRWRpdEluZGV4ZXMWAAUPU2VsZWN0ZWRJbmRleGVzFgAFE1NlbGVjdGVkQ2VsbEluZGV4ZXMWAGQFF1NlYXNvblNwbGl0czEkZGdTZWFzb24yDxQrAAJkFwMFC0VkaXRJbmRleGVzFgAFD1NlbGVjdGVkSW5kZXhlcxYABRNTZWxlY3RlZENlbGxJbmRleGVzFgBkBRdTZWFzb25TcGxpdHMxJGRnU2Vhc29uMQ8UKwACZBcDBQtFZGl0SW5kZXhlcxYABQ9TZWxlY3RlZEluZGV4ZXMWAAUTU2VsZWN0ZWRDZWxsSW5kZXhlcxYAZAUdU2Vhc29uU3BsaXRzMSRkZ1NlYXNvbjMkY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50Ag0FCF8hUENvdW50ZAUGXyFEU0lDAg0WAh8AFgIfAWZkZAUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgYFFFBsYXllckluZm8xJHRzUGxheWVyBRRTZWFzb25TcGxpdHMxJHRzVHlwZQUTU2Vhc29uU3BsaXRzMSR0c0xvZwUXU2Vhc29uU3BsaXRzMSRkZ1NlYXNvbjEFF1NlYXNvblNwbGl0czEkZGdTZWFzb24yBRdTZWFzb25TcGxpdHMxJGRnU2Vhc29uM0FkEyB9CZsVikn1iDtTIaVuo2dj" />
+
+
+<script src="https://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjax.js" type="text/javascript"></script>
+<
+
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/Core.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/jQuery.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/jQueryPlugins.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/MaterialRipple/MaterialRippleScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/Scrolling/ScrollingScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/Navigation/OverlayScript.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/Navigation/NavigationScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/TabStrip/RadTabStripScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/TabStrip/Views/ClassicView.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Grid/RadGridScripts.js" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="7FC7DAE8" />
+    
+    <div id="wrapper">
+        <div id="top">
+            
+
+
+<div class="header-chat-alert-spacer" style="visibility: hidden"><a class="header-chat-alert-text"></a></div>
+
+<div class="header-container">
+    <header>
+        <div class="top-logo">
+            <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
+            <div id="top_da">
+                <div class="fg-ra-desktop catchall728" style='width:728px; overflow:hidden;'><!-- ROS_728x90 --> <div id ='div-gpt-ad-1349421924281-14' style='margin: auto; width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-14').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-14'); });}</script></div></div>
+
+            </div>
+        </div>
+        <div class="top-logo sticky" style="display: none;">
+            <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
+        </div>
+        
+
+
+<nav id="navBar" class="nav-main fg">
+    <div class="nav-mobile-bar">
+        <div class="nav-mobile-button"></div>
+        <div class="nav-search">
+            <input type="text" id="psbox" onkeypress="KeyIt(event);" onkeydown="BackKey(event);" autocomplete="off" placeholder="Player & Blog Search" />
+            <div class="nav-search-mobile-x"></div>
+        </div>
+        <div class="nav-mobile-fill"></div>
+        <div class="nav-mobile-login" data-full="true">
+            <a id="linkAccountMobile" href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=https%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d7059%26position%3dP%26season%3d0%26split%3d8.1">
+                <div class="menu-item-label">
+                    <div class="label-account">Sign In</div><div class="icon-account signed-out"></div>
+                </div>
+            </a>
+            
+            
+        </div>
+    </div>
+    <div class="nav-search-players"></div>
+    
+    <div class="nav-mobile-menu">
+        <ul class="menu-top">
+            <li class="menu-item" data-sub="home">
+                <div class="menu-item-label">Membership</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-link">
+                            <a href="//www.fangraphs.com/plus/product/fangraphs-membership/">FanGraphs Membership</a>
+                        </div>
+                        <div class="menu-sub-link">
+                            <a href="//www.fangraphs.com/plus/shop/">FanGraphs T-Shirts</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item" data-sub="games">
+                <div class="menu-item-label">Games</div>
+                <div class="menu-sub">
+                    <div class="menu-sub-link">
+                        <a href="//www.fangraphs.com/thegame/">The Game: Baseball</a>
+                    </div>
+                    <div class="menu-sub-link">
+                        <a href="//ottoneu.fangraphs.com/">Ottoneu Fantasy Baseball</a>
+                    </div>
+                    <a href="//ottoneu.fangraphs.com/">Signup</a>, 
+                    <a href="//ottoneu.fangraphs.com/support">FAQ</a>, 
+                    <a href="//www.fangraphs.com/fantasy/category/ottoneu/">Blog Posts</a>
+                </div>
+            </li>
+            <li class="menu-item" data-sub="blogs" data-full="true">
+                <div class="menu-item-label">Blogs</div>
+                <div class="menu-sub">
+                    <div class="menu-sub-link">
+                        <a href="//www.fangraphs.com/blogroll.aspx">Blog Roll</a>
+                    </div>
+                    <hr />
+                    <div class="menu-sub-ajax">
+                        <div class="menusub_mid">
+                            <div class="menu-blog fg">
+                                <div class="menu-blog-header"><a href="http://www.fangraphs.com/blogs/">FanGraphs</a></div>
+                                <div id="menu-blog-roll-fg"></div>
+                                <div class="menu-blog-podcast">
+                                    <span>Podcasts:</span> <a href="http://www.fangraphs.com/blogs/category/podcast/">FanGraphs Audio</a> | <a href="http://www.fangraphs.com/blogs/category/effectively-wild/">Effectively Wild</a>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="menu-blog rg">
+                                <div class="menu-blog-header"><a href="http://www.fangraphs.com/fantasy/">RotoGraphs</a></div>
+                                <div id="menu-blog-roll-rg"></div>
+                                <div class="menu-blog-podcast">
+                                    <span>Podcasts: </span><a href="http://www.fangraphs.com/fantasy/category/podcast/">The Sleeper and The Bust</a> | <a href="http://www.fangraphs.com/fantasy/category/field-of-streams/">Field of Streams</a>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="menu-blog tht">
+                                <div class="menu-blog-header"><a href="http://www.hardballtimes.com/">The Hardball Times</a></div>
+                                <div id="menu-blog-roll-tht"></div>
+                                <div class="menu-blog-podcast">
+                                    <span>Podcasts: </span><a href="/tht/tht-audio/">THT Audio</a>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="menu-blog com">
+                                <div class="menu-blog-header"><a href="http://www.fangraphs.com/community/">Community Research</a></div>
+                                <div id="menu-blog-roll-com"></div>
+                            </div>
+                            <hr />
+                            <div class="menu-blog-podcast"><span>Archived Blogs:</span> <a class="not" href="http://www.fangraphs.com/not/">NotGraphs</a> | <a class="tg" href="http://www.fangraphs.com/techgraphs/">TechGraphs</a> | <a class="fg" href="http://www.fangraphs.com/plus/">FanGraphs+</a></div>
+                            <div class="menu-blog-podcast"><span>Archived THT:</span> <a class="tht" href="/tht/tht-live/">THT Live</a> | <a class="tht" href="/tht/category/tht-dispatch/">Dispatch</a> | <a class="tht" href="tht/category/tht-fantasy/">Fantasy</a> | <a class="tht" href="/tht/category/shysterball/">ShysterBall</a></div>
+                            <div class="menu-blog-podcast"><span>Archived Podcasts:</span> <a class="tht" href="/tht/stealing-home/">Stealing Home</a> | <a class="tht" href="/tht/doing-it-for-bartolo/">Doing It For Bartolo</a> | <a class="rg" href="/fantasy/category/ottographs-podcast/">OttoGraphs</a></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item" data-sub="projections" data-full="true">
+                <div class="menu-item-label">Projections</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-header">
+                            2018 Pre-Season Projections
+                        </div>
+                    </div>
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=fan">FANS</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=zips">ZiPS</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamer">Steamer</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=fangraphsdc">Depth Charts</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=atc">ATC</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=thebat">THE BAT</a>
+
+                    <div class="menu-sub-header">
+                        2018 600 PA / 200 IP Projections
+                    </div>
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamer600">Steamer600</a>
+                    <div class="menu-sub-header">
+                        2018 Updated In-Season Projections
+                    </div>
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=rzips">ZiPS (RoS)</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=uzips">ZiPS (Update)</a><br />
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamerr">Steamer (RoS)</a>, 
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steameru">Steamer (Update)</a>
+                    <div class="menu-sub-header">
+                        DFS Projections
+                    </div>
+                    <a href="//www.fangraphs.com/dailyprojections.aspx?pos=all&stats=bat&type=sabersim">SaberSim</a>
+                    <div class="menu-sub-link">
+                        <a href="//www.fangraphs.com/auctiontool.aspx">Auction Calculator</a>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="menu-item" data-sub="scores" data-full="true">
+                <div class="menu-item-label">Scores</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-header">
+                            Today: 
+                            <a href="//www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
+                            <a id="linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2017&amp;month=0&amp;season1=2017&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2018-03-28">Probable Pitchers</a>
+                        </div>
+                        <div class="menu-sub-header">
+                            Win Probability & Box Scores
+                        </div>
+                        <a href="//www.fangraphs.com/scoreboard.aspx">2017</a>,
+                        <a href="//www.fangraphs.com/scoreboard.aspx?date=2016-11-02">2016</a>, 
+                        <a href="//www.fangraphs.com/scoreboard.aspx?date=2015-11-01">2015</a>...
+                                
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item" data-sub="standings" data-full="true">
+                <div class="menu-item-label">Standings</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-link">
+                            <a href="//www.fangraphs.com/depthcharts.aspx?position=Standings">2018 Projected Standings</a>
+                        </div>
+                        <div class="menu-sub-link">
+                            <a href="/standings/playoff-odds">2018 Playoff Odds</a>, <a href="/standings/playoff-odds-graphs">Playoff Odds Graphs</a>
+                        </div>
+                        <table class="menu-standings-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="menu-sub-header">AL East</div>
+                                        <div id="menu-standings-ale"></div>
+                                       
+                                        <div class="menu-sub-header">AL Central</div>
+                                        <div id="menu-standings-alc"></div>
+
+                                        <div class="menu-sub-header">AL West</div>
+                                        <div id="menu-standings-alw"></div>
+                                    </td>
+                                    <td class="menu-table-sep"></td>
+                                    <td>
+                                        <div class="menu-sub-header">NL East</div>
+                                        <div id="menu-standings-nle"></div>
+
+                                        <div class="menu-sub-header">NL Central</div>
+                                        <div id="menu-standings-nlc"></div>
+
+                                        <div class="menu-sub-header">NL West</div>
+                                        <div id="menu-standings-nlw"></div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item" data-sub="leaders" data-full="true">
+                <div class="menu-item-label">Leaders</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-header">
+                            Batting Leaders
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0">2017</a>, 
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=0">2016</a>, 
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2015&month=0&season1=2015&ind=0">2015</a>, 
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=1871&ind=0&team=0&rost=0&players=0">Career</a>
+                        </div>
+                        <div class="menu-sub-header">
+                            Pitching Leaders:    
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0">2017</a>,                      
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=0">2016</a>, 
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2015&month=0&season1=2015&ind=0">2015</a>,  
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=1871&ind=0&team=0&rost=0&players=0">Career</a>
+                        </div>
+                        <div class="menu-sub-link">
+                            <b><a href="//www.fangraphs.com/leaderssplits.aspx">Splits Leaderboards</a></b>
+                        </div>
+                        <hr />
+                        <div class="menu-sub-link">
+                            <a href="//www.fangraphs.com/tools/free-agent-tracker?sign=all&pos=all&nteam=all&oteam=all">2018 Free Agent Tracker!</a>
+                        </div>
+                        <hr />
+                        <div class="menu-sub-header">
+                            Minor League Leaders
+                        </div>
+                        AAA: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=2&qual=y&type=0&season=2017">International</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=4&qual=y&type=0&season=2017">Pacific Coast</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=31&qual=y&type=0&season=2017">Mexican</a><br />
+                        AA: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=5&qual=y&type=0&season=2017">Eastern</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=6&qual=y&type=0&season=2017">Southern</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=7&qual=y&type=0&season=2017">Texas</a><br />
+                        A+: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=8&qual=y&type=0&season=2017">California</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=9&qual=y&type=0&season=2017">Carolina</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=10&qual=y&type=0&season=2017">Florida State</a><br />
+                        A: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=11&qual=y&type=0&season=2017">Midwest</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=14&qual=y&type=0&season=2017">South Atlantic</a><br />
+                        A-: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=12&qual=y&type=0&season=2017">New York-Penn</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=13&qual=y&type=0&season=2017">Northwest</a><br />
+                        R: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=15&qual=y&type=0&season=2017">Appalachian</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=17&qual=y&type=0&season=2017">Gulf Coast</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=18&qual=y&type=0&season=2017">Pioneer</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=16&qual=y&type=0&season=2017">Arizona</a><br />
+                        R: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=30&qual=y&type=0&season=2017">Dominican</a>
+                        <hr />
+                        <div class="menu-sub-header">
+                            WAR Tools
+                        </div>
+                        <a href="//www.fangraphs.com/warleaders.aspx">Combined WAR Leaderboards</a><br />
+                        <a href="//www.fangraphs.com/graphsw.aspx">WAR Graphs</a>, <a href="//www.fangraphs.com/graphswd.aspx">WAR Grid</a>
+                        <div class="menu-sub-header">
+                            WPA Tools
+                        </div>
+                        <a href="//www.fangraphs.com/tools/wpa-inquirer">WPA Inquirer</a><br />
+                        <div class="menu-sub-header">
+                            Rookie Leaders
+                        </div>
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=2">Batters 2017</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=2">Pitchers 2017</a>
+                        <div class="menu-sub-header">
+                            Splits Leaders
+                        </div>
+                        Batters: <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=13&season1=2017&ind=0">vs L</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=14&season1=2017&ind=0">vs R</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=15&season1=2017&ind=0">Home</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=16&season1=2017&ind=0">Away</a><br />
+                        Pitchers: <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=13&season1=2017&ind=0">vs L</a> , <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=14&season1=2017&ind=0">vs R</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=15&season1=2017&ind=0">Home</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=16&season1=2017&ind=0">Away</a>
+                        <div class="menu-sub-header">
+                            League Average Heatmaps
+                        </div>
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2017&se=2017&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2017</a>, 
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2016&se=2016&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2016</a>, 
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2015&se=2015&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2015</a>, 
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2014&se=2014&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2014</a>, 
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2013&se=2013&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2013</a>
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item" data-sub="teams" data-full="true">
+                <div class="menu-item-label">Teams</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-header">
+                            Team Batting Stats
+                        </div>
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=0,ts&rost=&age=&filter=&players=0">2017</a>, 
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2016&month=0&season1=2016&ind=0&team=0,ts&rost=&age=&filter=&players=0">2016</a>, 
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2015&month=0&season1=2015&ind=0&team=0,ts&rost=&age=&filter=&players=0">2015</a>...
+                        <div class="menu-sub-header">
+                            Team Pitching Stats
+                        </div>
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=0,ts&rost=0&age=0&filter=&players=0">2017</a>, 
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2016&month=0&season1=2016&ind=0&team=0,ts&rost=0&age=0&filter=&players=0">2016</a>, 
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2015&month=0&season1=2015&ind=0&team=0,ts&rost=0&age=0&filter=&players=0">2015</a>...
+
+                            <div class="menu-sub-link">
+                                <a href="//www.fangraphs.com/depthcharts.aspx?position=Team">Team WAR Totals (RoS)</a>
+                            </div>
+                        
+                        <table class="menu-team-table">
+                            <tr>
+                                <td>
+                                    <div class="menu-sub-header">AL East</div>
+                                    <a href="/teams/bluejays">Blue Jays</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=14">DC</a><br />
+                                    <a href="/teams/orioles">Orioles</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=2">DC</a><br />
+                                    <a href="/teams/rays">Rays</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=12">DC</a><br />
+                                    <a href="/teams/redsox">Red Sox</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=3">DC</a><br />
+                                    <a href="/teams/yankees">Yankees</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=9">DC</a><br />
+                                </td>
+                                <td>
+                                    <div class="menu-sub-header">AL Central</div>
+                                    <a href="/teams/indians">Indians</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=5">DC</a><br />
+                                    <a href="/teams/royals">Royals</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=7">DC</a><br />
+                                    <a href="/teams/tigers">Tigers</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=6">DC</a><br />
+                                    <a href="/teams/twins">Twins</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=8">DC</a><br />
+                                    <a href="/teams/whitesox">White Sox</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=4">DC</a><br />
+                                </td>
+                                <td>
+                                    <div class="menu-sub-header">AL West</div>
+                                    <a href="/teams/angels">Angels</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=1">DC</a><br />
+                                    <a href="/teams/astros">Astros</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=21">DC</a><br />
+                                    <a href="/teams/athletics">Athletics</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=10">DC</a><br />
+                                    <a href="/teams/mariners">Mariners</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=11">DC</a><br />
+                                    <a href="/teams/rangers">Rangers</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=13">DC</a><br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="menu-sub-header">NL East</div>
+                                    <a href="/teams/braves">Braves</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=16">DC</a><br />
+                                    <a href="/teams/marlins">Marlins</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=20">DC</a><br />
+                                    <a href="/teams/mets">Mets</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=25">DC</a><br />
+                                    <a href="/teams/nationals">Nationals</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=24">DC</a><br />
+                                    <a href="/teams/phillies">Phillies</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=26">DC</a></td>
+                                <td>
+                                    <div class="menu-sub-header">NL Central</div>
+                                    <a href="/teams/brewers">Brewers</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=23">DC</a><br />
+                                    <a href="/teams/cardinals">Cardinals</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=28">DC</a><br />
+                                    <a href="/teams/cubs">Cubs</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=17">DC</a><br />
+                                    <a href="/teams/pirates">Pirates</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=27">DC</a><br />
+                                    <a href="/teams/reds">Reds</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=18">DC</a></td>
+                                <td>
+                                    <div class="menu-sub-header">NL West</div>
+                                    <a href="/teams/diamondbacks">D-backs</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=15">DC</a><br />
+                                    <a href="/teams/dodgers">Dodgers</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=22">DC</a><br />
+                                    <a href="/teams/giants">Giants</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=30">DC</a><br />
+                                    <a href="/teams/padres">Padres</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=29">DC</a><br />
+                                    <a href="/teams/rockies">Rockies</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=19">DC</a></td>
+                            </tr>
+                        </table>
+                        <div class="menu-sub-header">
+                            Positional Depth Charts
+                        </div>
+                        Batters: <a href="//www.fangraphs.com/depthcharts.aspx?position=C">C</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=1B">1B</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=2B">2B</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=SS">SS</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=3B">3B</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=LF">LF</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=CF">CF</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=RF">RF</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=DH">DH</a><br />
+                        Pitchers: <a href="//www.fangraphs.com/depthcharts.aspx?position=SP">SP</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=RP">RP</a>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="menu-item" data-sub="glossary" data-full="true">
+                <div class="menu-item-label">Glossary</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-link">
+                            <a href="//www.fangraphs.com/library/">Library</a>
+                        </div>
+                        <div class="menu-sub-header">
+                            Batting Stats
+                        </div>
+                        <a href="//www.fangraphs.com/library/offense/woba/">wOBA</a>, <a href="//www.fangraphs.com/library/offense/wrc/">wRC+</a>, <a href="//www.fangraphs.com/library/offense/iso/">ISO</a>,
+                        <a href="//www.fangraphs.com/library/offense/rate-stats/">K% & BB%</a>,
+                        <a href="//www.fangraphs.com/library/offense/">more...</a>
+                        <div class="menu-sub-header">
+                            Pitching Stats
+                        </div>
+                        <a href="//www.fangraphs.com/library/pitching/fip/">FIP</a>, <a href="//www.fangraphs.com/library/pitching/xfip/">xFIP</a>, <a href="//www.fangraphs.com/library/pitching/babip/">BABIP</a>,
+                        <a href="//www.fangraphs.com/library/pitching/rate-stats/">K/9 & BB/9</a>,
+                        <a href="//www.fangraphs.com/library/pitching/">more...</a>
+                        <div class="menu-sub-header">
+                            Defensive Stats
+                        </div>
+                        <a href="//www.fangraphs.com/blogs/the-fangraphs-uzr-primer/">UZR Primer</a>,
+                        <a href="//www.fangraphs.com/library/defense/drs/">DRS</a>, <a href="//www.fangraphs.com/library/defense/fsr/">FSR</a>, <a href="//www.fangraphs.com/library/defense/tz-tzl/">TZ & TZL</a>,
+                        <a href="//www.fangraphs.com/library/defense/">more...</a>
+                        <div class="menu-sub-header">
+                            More
+                        </div>
+                        <a href="//www.fangraphs.com/library/misc/war/">WAR</a>, <a href="//www.fangraphs.com/blogs/ultimate-base-running-primer/">UBR Primer</a>, <a href="//www.fangraphs.com/library/misc/wpa/">WPA</a>,
+                        <a href="//www.fangraphs.com/library/misc/li/">LI</a>, <a href="//www.fangraphs.com/library/misc/clutch/">Clutch</a>
+                        <div class="menu-sub-header">
+                            Guts!
+                        </div>
+                        <a href="//www.fangraphs.com/guts.aspx?type=cn">Seasonal Constants</a><br />
+                        <a href="//www.fangraphs.com/guts.aspx?type=pf&teamid=0&season=2017">Park Factors</a><br />
+                        <a href="//www.fangraphs.com/guts.aspx?type=pfh&teamid=0&season=2017">Park Factors
+                            by Handedness</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-fill"></li>
+            <li class="menu-item" data-sub="login" data-full="true">
+                <a id="linkAccount" href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=https%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d7059%26position%3dP%26season%3d0%26split%3d8.1">
+                    <div class="menu-item-label">
+                        <div class="label-account">Sign In</div><div class="icon-account signed-out"></div>
+                    </div>
+                </a>
+                
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="my_popup">
+
+    <div class="popup-title" style="">Help Support FanGraphs</div>
+
+    <div id="nudge_pop">
+    </div>
+    <br />
+    <br />
+    <div class="popup-button-container">
+    <a class="membership_button popup-button" href="http://www.fangraphs.com/plus/product/fangraphs-membership/" style="background-color: #50ae26; color: #fff;">Become a Member
+    </a>
+    <a class="my_popup_close popup-button" style="background-color: #000; color: #fff;">No Thanks
+    </a>
+    </div>
+    <div class="popup-login">Already a member? <a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=https%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d7059%26position%3dP%26season%3d0%26split%3d8.1">Sign In</a></div>
+</div>
+
+
+
+<
+
+
+        <div id="divHeaderChat" class="header-chat-alert"><a class="header-chat-alert-text"></a></div>
+        
+    </header>
+</div>
+
+
+
+<script>
+
+</script>
+
+<style>
+
+   
+</style>
+
+<style></style>
+
+
+        </div>
+        <div id="content">
+            
+
+<link href="styles/_render/player-pages.css" rel="stylesheet" />
+<table class="player-info">
+    <tr>
+        <td class="player-info-box">
+            <table>
+                <tr>
+                    <td>
+                            <div class="player-info-box-header team-whitesox"><div class="player-info-box-name"><h1>James Shields</h1><div class="player-info-box-name-team"><a href="/teams/whitesox">Chicago White Sox</a></div></div><div class="player-info-box-item">Age: 36</div><div class="player-info-box-item">Bats/Throws: R/R</div>
+        <div class="player-info-box-item">6' 3" / 215</div>
+        <div class="player-info-box-pos">P</div></div>
+                        <div class="player-info-bio">
+                            <strong>Birthdate: </strong>12/20/1981 (36 y, 3 m, 9 d)<br /><b>Drafted:</b> <a href="statss.aspx?playerid=7059&position=P#draft" style="text-decoration:none;">2000 June Amateur Draft - Round: 16, Pick: 6, Overall: 466, Team: Tampa Bay Devil Rays</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=7059&position=P#contract" >$75M / 4 Years (2015 - 2018) + 1 Option Years</a>
                         </div>
                     </td>
+
                     
-                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="https://www.rotowire.com/users/ad_jump.asp?id=688&playerid=8899" style="text-decoration:none;">RotoWire News</a>:</b> Shields (4-7) allowed three runs on six hits and four walks while striking out five in Wednesday's 4-3 loss to the Astros. (9/21/2017)</div></td></tr>
+                    <tr><td><hr class="player-page-info-sep"/><div class="player-page-rotowire"><strong><a href="https://www.rotowire.com/users/ad_jump.asp?id=688&playerid=8899">RotoWire News</a>:</strong> Shields allowed seven runs on eight hits and two walks while striking out four over 3.2 innings in Sunday's start against Oakland. (3/18/2018)</div></td></tr>
 
                 </tr>
-                <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">8/23/2017</span> - <a href="http://www.fangraphs.com/blogs/players-view-will-hitters-adjust-to-the-high-spin-high-heater/">Players' View: Will Hitters Adjust to the High-Spi&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=25048">David Laurila (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/players-view-will-hitters-adjust-to-the-high-spin-high-heater/#comments"><img src="images/commentslink.gif" border="0px" />7</a></span><br /><span class="m_date">10/27/2016</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-400-schwarber-in-the-outfield/">The Sleeper and the Bust Episode: 400 – Schwarber &raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-400-schwarber-in-the-outfield/#comments"><img src="images/commentslink.gif" border="0px" />0</a></span><br /><span class="m_date">9/7/2016</span> - <a href="http://www.fangraphs.com/blogs/wait-that-guy-isnt-a-lefty/">Wait, That Guy Isn't a Lefty?</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=22">Eno Sarris (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/wait-that-guy-isnt-a-lefty/#comments"><img src="images/commentslink.gif" border="0px" />28</a></span><br /><span class="m_date">6/20/2016</span> - <a href="http://www.fangraphs.com/blogs/james-shields-has-been-messed-up-for-a-while/">James Shields Has Been Messed Up for a While</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=7030">Jeff Sullivan (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/james-shields-has-been-messed-up-for-a-while/#comments"><img src="images/commentslink.gif" border="0px" />22</a></span><br /><span class="m_date">6/4/2016</span> - <a href="http://www.fangraphs.com/blogs/white-sox-add-james-shields-4-starter/">White Sox Add James Shields, #4 Starter</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=43631">August Fagerstrom (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/white-sox-add-james-shields-4-starter/#comments"><img src="images/commentslink.gif" border="0px" />31</a></span><br /></div></td></tr>
-
-                <tr id="so1" style="background-color: #FFF;"><td colspan="5" style="border-top:2px solid #D3D3D3; padding:3px; text-align:justify;"><div class="m_stories" style="width:100%; font-size:10pt"><center>Profiles:&nbsp;&nbsp;<a id="soa2" href="javascript:showMoreSO();">2010</a>&nbsp;&nbsp;<a id="soa3" href="javascript:showMoreSO2011();">2011</a>&nbsp;&nbsp;<a id="soa4" href="javascript:showMoreSO2012();">2012</a>&nbsp;&nbsp;<a id="soa5" href="javascript:showMoreSO2013();">2013</a>&nbsp;&nbsp;<a id="soa6" href="javascript:showMoreSO2014();">2014</a>&nbsp;&nbsp;<a id="soa7" href="javascript:showMoreSO2015();">2015</a>&nbsp;&nbsp;<a id="soa8" href="javascript:showMoreSO2016();">2016</a>&nbsp;&nbsp;<a id="soa9"  href="javascript:showMoreSO2017();">2017</a>&nbsp;&nbsp;(Click Year to Expand / <a href="javascript:hideSO('so1');">Close</a>)</center></div></td></tr>
-                <tr id="so2" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Year in Review: </b>Shields is nothing if not consistent. He topped the 215 inning mark for the third consecutive year, with a FIP of 4.02. That’s a tad bit higher than his previous two seasons, but part of the difference can be explained by a higher percentage of fly balls going for home runs. Shields encountered a high batting average on balls in play despite playing in front of a high-caliber defense. Shields threw his fastball fewer times than ever before and for good reason: the pitch had little success overall and bowed in repetitions to his outstanding change-up and sound curveball. Shields is as underrated as they come despite being locked into a grand contract and having a solid track record of success in the traditional metrics – minus wins and losses of course.<br /><br /><b>The Year Ahead: </b>Although he’s not an ace in the traditional sense of the word, Shields figures to get the opening-day start for the Rays for the third straight year. He’s extremely reliable and raises some Mike Mussina comparisons because of it. Expect some regression on his BABIP, ERA, and home-run rate. Shields will continue to get his seven-plus strikeouts per nine and walk a couple per game at most. Double-digit wins and a sub-4.00 ERA should be in order.   (R.J. Anderson)</td></tr></table></center></div></td></tr>
-                <tr id="so3" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>Shields has always been a bit homer prone, but in 2010 he was overly so. However, there is good reason to believe it won’t happen again, as his HR/FB ratio was higher than normal. To go along with some bad luck on home runs, Shields’ BABIP was also quite high, making 2010 a hellish season for one of Tampa Bay’s key rotational cogs. In the midst of these problems, Shields also posted a career-best strikeout rate, although it came with the lowest whiff rate of his career. Throughout his career, Shields has been the definition of durable, making 33 starts each of the past three seasons, and surpassing 200 innings pitched in each of the past four. If everything can even out for Shields, a year similar to 2009 could be in store: an ERA around 4.00, 200-plus innings, and 160 strikeouts from the Ray. Shields is a nice bounce-back candidate for 2011, but he’s not going to be an ace, so target him in the last third of your draft. (Zach Sanders)<br /><br /><b>The Quick Opinion: </b>Shields had quite a bit of bad luck in 2010, and he should be better in 2011. He's likely to be a solid starter, but not an Ace, so target him later in drafts.</td></tr></table></center></div></td></tr>
-                <tr id="so4" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>No single player had a bigger bounce-back season than Shields. While he was better than his ERA indicated in 2010, fantasy leagues don’t count FIP or xFIP as categories. The belief in Shields paid off in spades as he ran rough shod over the American League in 2011. He decreased the usage of his fastball by 10 percent and implemented his curveball eight percent more; helping him keep hitters off balance and going deeper into games, resulting in a league high 11 complete games. He’s not likely to duplicate that type of success but maintains a very good strikeout rate and is a workhorse, ranking sixth in total innings pitched over the past five years. That durability combined with his high number of whiffs places him just below the very top tier of fantasy pitchers. (Erik Hahmann)<br /><br /><b>The Quick Opinion: </b>He’s one of the more reliable arms in the game, and the amount of strikeouts he racks up helps offset the home runs he allows. He’s a safe bet for 200 innings, 200 strikeouts, and an ERA in the mid-threes.</td></tr></table></center></div></td></tr>
-                <tr id="so5" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>James Shields has 1454.2 IP in his career and a 3.89 ERA and 3.84 FIP duo that has made him one of the more reliable innings-eaters of the past five years. He enters his age-31 season with a streak of six straight seasons over 200 innings and is fresh off setting a new career high in strikeout rate (23.6%). But the appropriate adage here is perhaps: "Reliable pitchers are reliable until they aren't anymore." Or, in other words, James Shields' future is just as uncertain as any other pitcher on the Royals' staff. He will assume the ace role for them, and should easily be their top pitcher in 2013, but he could have a repeat of 2010 batting average on balls in play insanity that resulted in a 5.18 ERA, or the <a href="http://www.royalsreview.com/2012/12/10/3750080/james-shields-royals-ace">growing concerns</a> about his arm angle fluctuations and declining Zone% could portend a serious injury. He is also leaving a pitcher's park and a great defense for a relatively neutral park and a not-as-great defense, but some have suggested the impact on his numbers <a href="http://www.fangraphs.com/fantasy/index.php/james-shields-in-a-new-ballpark-and-divisio/">could be minimal</a> (parks affect different players in different ways, after all). All said, James Shields, given all the hubbub surrounding him the last two seasons, will draw a lot of interest in most fantasy drafts, and his stat sheet shows why. He has the potential for another 200 IP, 3.50 ERA season or even better. But do not pay more than you would for any other 31-year-old pitcher with a history of success and a few legitimate concerns. (<a href="https://twitter.com/BradleyWoodrum">Bradley Woodrum</a>)<br /><br /><b>The Quick Opinion: </b>James Shields had a productive six seasons as the workhorse of the Rays rotation, and now he will serve as the Royals' ace. There are some of the injury concerns about his flagging Zone% and inconsistent release points in 2012, so avoid overpaying for Shields. In a deep league, he can be many teams' ace, but keep in mind his age -- 31 years old -- and his unkind change in park and defense.</td></tr></table></center></div></td></tr>
-                <tr id="so6" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>James Shields showed up for another great season in 2013. He ended it with a 3.15 ERA which was lower than his all his ERA estimators (3.47 FIP, 3.72 xFIP and 3.85 SIERA). The difference doesn't really surprise me -- the Royals have the league's best defense and as a team they had a team ERA–FIP of -.38. If Shields' ERA regresses in 2014, it will probably be because the defense regresses. Both his strikeouts per nine (8.8 to 7.7) and walks per nine (2.3 to 2.7) got worse compared to his 2012 values. The strikeouts don't concern me too much, since 7.7 K/9 is his career average. Additionally, his swinging strike rate was only down from 10.2% to 9.8%. The value I didn't like was the walk rate jump. Shields gets most of his value from not walking batters. If he begins walking batters, his value will decline quickly. The only other issue I have with the 32-year-old is the mileage on the arm. He has thrown over 200 innings for seven straight seasons. Pitchers eventually break down and so will Shields at some point. He should produce double digit wins, 200 Ks and a 3.50 ERA... if he stays healthy again. (Jeff Zimmerman)<br /><br /><b>The Quick Opinion: </b>James Shields has been a steady performer over the past few seasons. I don't see the performance changing unless father time finally finds him.</td></tr></table></center></div></td></tr>
-                <tr id="so7" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>Shields's fantasy value will be determined by who he ends up signing with this offseason. But you can estimate his value independent of his home park, to an extent. The first area to look and the greatest of concern is his strikeout rate. It has been declining since 2012 going from 8.8 per nine to 7.7 K/9 to 7.1 K/9. With his ability to stay healthy and pitch a ton of innings, his strikeout total has still gone from 223 to 196 to 180. The reason for his decline is not a drop in fastball velocity (steady around 92 mph), but from using his change less (28% to 25% to 22%) and it being less effective (21% swinging strike rate to 19% SwStr% to 16% SwStr%). He has offset the decline in strikeouts by posting a low 1.7 walks per nine rate in 2014. Over the last couple of seasons, his ERA (~3.20) has been below his ERA estimators (~3.60) because of an above average Royals offense. Without knowing which team signs him, expect 14 wins, 170 K, 3.60 ERA, and a 1.25 WHIP. (Jeff Zimmerman)<br /><br /><b>The Quick Opinion: </b>James Shields is a predictable pitcher with the only wart being a declining strikeout rate. His value could change some depending on which team he finally signs with.</td></tr></table></center></div></td></tr>
-                <tr id="so8" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>Big Game James. What a wonky year, man. You know that, in the 2015 incarnation of Steamer's projections, James Shields's projection had the highest reliability score of any starting pitcher? Understandably, too, as the trend seemed pretty clear: several years of remarkable consistency, but heading into his mid-30s, with strikeouts starting to taper off and minor fluctuations elsewhere. Then BLAM! He pulls a swift one on ya and posts arguably his worst season. A few things stick out like a sore thumb: his home run per fly ball rate spiked despite trivial changes to his batted ball breakdown. It explains a lot of everything that went wrong, because if you assume HR/FB is more luck than skill -- that is, if you subscribe to xFIP rather than FIP -- then 2015 wasn't so different. Except it still was, what with all those extra strikeouts and walks. Shields avoided the zone like the plague and his contact rate soared. That doesn't mean hitters offered at pitches outside the zone more frequently, however. It's this conundrum -- the fewest-swings, least-contact, fewest-pitches-in-the-zone conundrum -- that helps explain this Shieldsian oddity. Your guess is as good as ours as to which Shields you'll see in 2016. Perhaps the Padres catalyzed a paradigm shift when Shields joined the team. Perhaps it was a personal choice. Or, perhaps, it was just good ol' statistical variance that occurs every now and then. Whatever happens in 2016, it probably won't get much worse than it did last year. Still, he's a risky top-40 starter. (Alex Chamberlain)<br /><br /><b>The Quick Opinion: </b>If you're scared of James Shields this year, we understand. There's room for him to rebound, but his newfound volatility makes him merely a top-40 consideration among starting pitchers.</td></tr></table></center></div></td></tr>
-                <tr id="so9" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>The White Sox must be just thrilled to have two years of James Shields left. Last year, he was very easily the worst qualified starter in the majors. In fact, only two pitchers threw enough innings to qualify and posted a negative wins above replacement: Jered Weaver (-0.2 WAR) and Shields (-0.9 WAR). Shields both struck out fewer batters (6.69 per nine) and walked more (4.06 per nine) than ever before, and he gave up an absolutely stunning 40 home runs in his 181.2 innings. James Shields is completely broken, and at 35 years old, he's not likely to become a decent pitcher again, not to mention a fantasy asset. (Scott Strandberg)<br /><br /><b>The Quick Opinion: </b>The warning signs were already there in 2015, but Shields' high strikeout rate assuaged doubts a bit. 2016 was an unmitigated disaster, and one that Shields seems unlikely to bounce back from.</td></tr></table></center></div></td></tr>
+                <tr><td><hr class="player-page-info-sep"/><table class="player-page-news"><tr>
+                    <td>11/12/2017</td><td class="td-badge"><div class="fg badge">FG</div></td><td><a href="http://www.fangraphs.com/blogs/sunday-notes-jon-perrin-wants-to-show-david-stearns-whos-boss/">Sunday Notes: Jon Perrin Wants to Show David Stear&#8230;</a><span class="m_author"> by <a href="http://www.fangraphs.com/blogs/index.php?author=25048">David Laurila</a></span></td></tr><tr>
+                    <td>9/26/2017</td><td class="td-badge"><div class="fg badge">FG</div></td><td><a href="http://www.fangraphs.com/blogs/the-on-the-fly-reinvention-of-james-shields/">The On-the-Fly Reinvention of James Shields</a><span class="m_author"> by <a href="http://www.fangraphs.com/blogs/index.php?author=7030">Jeff Sullivan</a></span></td></tr><tr>
+                    <td>8/23/2017</td><td class="td-badge"><div class="fg badge">FG</div></td><td><a href="http://www.fangraphs.com/blogs/players-view-will-hitters-adjust-to-the-high-spin-high-heater/">Players' View: Will Hitters Adjust to the High-Spi&#8230;</a><span class="m_author"> by <a href="http://www.fangraphs.com/blogs/index.php?author=25048">David Laurila</a></span></td></tr><tr>
+                    <td>10/27/2016</td><td class="td-badge"><div class="rg badge">RG</div></td><td><a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-400-schwarber-in-the-outfield/">The Sleeper and the Bust Episode: 400 – Schwarber &#8230;</a><span class="m_author"> by <a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer</a></span></td></tr><tr>
+                    <td>9/7/2016</td><td class="td-badge"><div class="fg badge">FG</div></td><td><a href="http://www.fangraphs.com/blogs/wait-that-guy-isnt-a-lefty/">Wait, That Guy Isn't a Lefty?</a><span class="m_author"> by <a href="http://www.fangraphs.com/blogs/index.php?author=22">Eno Sarris</a></span></td></tr></table></div></td></tr>
+            
             </table>
         </td>
         <td style="width: 302px; height: 250px; vertical-align: top;">
@@ -30,8 +834,20 @@
 
         </td>
     </tr>
+    <tr>
+        
+        <tr id="so2" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Year in Review: </b>Shields is nothing if not consistent. He topped the 215 inning mark for the third consecutive year, with a FIP of 4.02. That’s a tad bit higher than his previous two seasons, but part of the difference can be explained by a higher percentage of fly balls going for home runs. Shields encountered a high batting average on balls in play despite playing in front of a high-caliber defense. Shields threw his fastball fewer times than ever before and for good reason: the pitch had little success overall and bowed in repetitions to his outstanding change-up and sound curveball. Shields is as underrated as they come despite being locked into a grand contract and having a solid track record of success in the traditional metrics – minus wins and losses of course.<br /><br /><b>The Year Ahead: </b>Although he’s not an ace in the traditional sense of the word, Shields figures to get the opening-day start for the Rays for the third straight year. He’s extremely reliable and raises some Mike Mussina comparisons because of it. Expect some regression on his BABIP, ERA, and home-run rate. Shields will continue to get his seven-plus strikeouts per nine and walk a couple per game at most. Double-digit wins and a sub-4.00 ERA should be in order.   (R.J. Anderson)</td></tr></table></center></div></td></tr>
+        <tr id="so3" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>Shields has always been a bit homer prone, but in 2010 he was overly so. However, there is good reason to believe it won’t happen again, as his HR/FB ratio was higher than normal. To go along with some bad luck on home runs, Shields’ BABIP was also quite high, making 2010 a hellish season for one of Tampa Bay’s key rotational cogs. In the midst of these problems, Shields also posted a career-best strikeout rate, although it came with the lowest whiff rate of his career. Throughout his career, Shields has been the definition of durable, making 33 starts each of the past three seasons, and surpassing 200 innings pitched in each of the past four. If everything can even out for Shields, a year similar to 2009 could be in store: an ERA around 4.00, 200-plus innings, and 160 strikeouts from the Ray. Shields is a nice bounce-back candidate for 2011, but he’s not going to be an ace, so target him in the last third of your draft. (Zach Sanders)<br /><br /><b>The Quick Opinion: </b>Shields had quite a bit of bad luck in 2010, and he should be better in 2011. He's likely to be a solid starter, but not an Ace, so target him later in drafts.</td></tr></table></center></div></td></tr>
+        <tr id="so4" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>No single player had a bigger bounce-back season than Shields. While he was better than his ERA indicated in 2010, fantasy leagues don’t count FIP or xFIP as categories. The belief in Shields paid off in spades as he ran rough shod over the American League in 2011. He decreased the usage of his fastball by 10 percent and implemented his curveball eight percent more; helping him keep hitters off balance and going deeper into games, resulting in a league high 11 complete games. He’s not likely to duplicate that type of success but maintains a very good strikeout rate and is a workhorse, ranking sixth in total innings pitched over the past five years. That durability combined with his high number of whiffs places him just below the very top tier of fantasy pitchers. (Erik Hahmann)<br /><br /><b>The Quick Opinion: </b>He’s one of the more reliable arms in the game, and the amount of strikeouts he racks up helps offset the home runs he allows. He’s a safe bet for 200 innings, 200 strikeouts, and an ERA in the mid-threes.</td></tr></table></center></div></td></tr>
+        <tr id="so5" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>James Shields has 1454.2 IP in his career and a 3.89 ERA and 3.84 FIP duo that has made him one of the more reliable innings-eaters of the past five years. He enters his age-31 season with a streak of six straight seasons over 200 innings and is fresh off setting a new career high in strikeout rate (23.6%). But the appropriate adage here is perhaps: "Reliable pitchers are reliable until they aren't anymore." Or, in other words, James Shields' future is just as uncertain as any other pitcher on the Royals' staff. He will assume the ace role for them, and should easily be their top pitcher in 2013, but he could have a repeat of 2010 batting average on balls in play insanity that resulted in a 5.18 ERA, or the <a href="http://www.royalsreview.com/2012/12/10/3750080/james-shields-royals-ace">growing concerns</a> about his arm angle fluctuations and declining Zone% could portend a serious injury. He is also leaving a pitcher's park and a great defense for a relatively neutral park and a not-as-great defense, but some have suggested the impact on his numbers <a href="http://www.fangraphs.com/fantasy/index.php/james-shields-in-a-new-ballpark-and-divisio/">could be minimal</a> (parks affect different players in different ways, after all). All said, James Shields, given all the hubbub surrounding him the last two seasons, will draw a lot of interest in most fantasy drafts, and his stat sheet shows why. He has the potential for another 200 IP, 3.50 ERA season or even better. But do not pay more than you would for any other 31-year-old pitcher with a history of success and a few legitimate concerns. (<a href="https://twitter.com/BradleyWoodrum">Bradley Woodrum</a>)<br /><br /><b>The Quick Opinion: </b>James Shields had a productive six seasons as the workhorse of the Rays rotation, and now he will serve as the Royals' ace. There are some of the injury concerns about his flagging Zone% and inconsistent release points in 2012, so avoid overpaying for Shields. In a deep league, he can be many teams' ace, but keep in mind his age -- 31 years old -- and his unkind change in park and defense.</td></tr></table></center></div></td></tr>
+        <tr id="so6" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>James Shields showed up for another great season in 2013. He ended it with a 3.15 ERA which was lower than his all his ERA estimators (3.47 FIP, 3.72 xFIP and 3.85 SIERA). The difference doesn't really surprise me -- the Royals have the league's best defense and as a team they had a team ERA–FIP of -.38. If Shields' ERA regresses in 2014, it will probably be because the defense regresses. Both his strikeouts per nine (8.8 to 7.7) and walks per nine (2.3 to 2.7) got worse compared to his 2012 values. The strikeouts don't concern me too much, since 7.7 K/9 is his career average. Additionally, his swinging strike rate was only down from 10.2% to 9.8%. The value I didn't like was the walk rate jump. Shields gets most of his value from not walking batters. If he begins walking batters, his value will decline quickly. The only other issue I have with the 32-year-old is the mileage on the arm. He has thrown over 200 innings for seven straight seasons. Pitchers eventually break down and so will Shields at some point. He should produce double digit wins, 200 Ks and a 3.50 ERA... if he stays healthy again. (Jeff Zimmerman)<br /><br /><b>The Quick Opinion: </b>James Shields has been a steady performer over the past few seasons. I don't see the performance changing unless father time finally finds him.</td></tr></table></center></div></td></tr>
+        <tr id="so7" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>Shields's fantasy value will be determined by who he ends up signing with this offseason. But you can estimate his value independent of his home park, to an extent. The first area to look and the greatest of concern is his strikeout rate. It has been declining since 2012 going from 8.8 per nine to 7.7 K/9 to 7.1 K/9. With his ability to stay healthy and pitch a ton of innings, his strikeout total has still gone from 223 to 196 to 180. The reason for his decline is not a drop in fastball velocity (steady around 92 mph), but from using his change less (28% to 25% to 22%) and it being less effective (21% swinging strike rate to 19% SwStr% to 16% SwStr%). He has offset the decline in strikeouts by posting a low 1.7 walks per nine rate in 2014. Over the last couple of seasons, his ERA (~3.20) has been below his ERA estimators (~3.60) because of an above average Royals offense. Without knowing which team signs him, expect 14 wins, 170 K, 3.60 ERA, and a 1.25 WHIP. (Jeff Zimmerman)<br /><br /><b>The Quick Opinion: </b>James Shields is a predictable pitcher with the only wart being a declining strikeout rate. His value could change some depending on which team he finally signs with.</td></tr></table></center></div></td></tr>
+        <tr id="so8" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>Big Game James. What a wonky year, man. You know that, in the 2015 incarnation of Steamer's projections, James Shields's projection had the highest reliability score of any starting pitcher? Understandably, too, as the trend seemed pretty clear: several years of remarkable consistency, but heading into his mid-30s, with strikeouts starting to taper off and minor fluctuations elsewhere. Then BLAM! He pulls a swift one on ya and posts arguably his worst season. A few things stick out like a sore thumb: his home run per fly ball rate spiked despite trivial changes to his batted ball breakdown. It explains a lot of everything that went wrong, because if you assume HR/FB is more luck than skill -- that is, if you subscribe to xFIP rather than FIP -- then 2015 wasn't so different. Except it still was, what with all those extra strikeouts and walks. Shields avoided the zone like the plague and his contact rate soared. That doesn't mean hitters offered at pitches outside the zone more frequently, however. It's this conundrum -- the fewest-swings, least-contact, fewest-pitches-in-the-zone conundrum -- that helps explain this Shieldsian oddity. Your guess is as good as ours as to which Shields you'll see in 2016. Perhaps the Padres catalyzed a paradigm shift when Shields joined the team. Perhaps it was a personal choice. Or, perhaps, it was just good ol' statistical variance that occurs every now and then. Whatever happens in 2016, it probably won't get much worse than it did last year. Still, he's a risky top-40 starter. (Alex Chamberlain)<br /><br /><b>The Quick Opinion: </b>If you're scared of James Shields this year, we understand. There's room for him to rebound, but his newfound volatility makes him merely a top-40 consideration among starting pitchers.</td></tr></table></center></div></td></tr>
+        <tr id="so9" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>The White Sox must be just thrilled to have two years of James Shields left. Last year, he was very easily the worst qualified starter in the majors. In fact, only two pitchers threw enough innings to qualify and posted a negative wins above replacement: Jered Weaver (-0.2 WAR) and Shields (-0.9 WAR). Shields both struck out fewer batters (6.69 per nine) and walked more (4.06 per nine) than ever before, and he gave up an absolutely stunning 40 home runs in his 181.2 innings. James Shields is completely broken, and at 35 years old, he's not likely to become a decent pitcher again, not to mention a fantasy asset. (Scott Strandberg)<br /><br /><b>The Quick Opinion: </b>The warning signs were already there in 2015, but Shields' high strikeout rate assuaged doubts a bit. 2016 was an unmitigated disaster, and one that Shields seems unlikely to bounce back from.</td></tr></table></center></div></td></tr>
+    </tr>
 </table>
-
+<div id="player-pages-player-caps"></div>
+<br /><div class="player-info-fan-proj signed-out">If you would like to make a projection for this player, please <a href="javascript:top.location.href='http://www.fangraphs.com/blogs/wp-login.php?redirect_to='+escape(parent.location.href)" target="_top">Log In</a> or <a href="http://www.fangraphs.com/blogs/wp-login.php?action=register" target="_top">Register</a>.</div>
 <br />
 <div id="PlayerInfo1_tsPlayer" class="RadTabStrip RadTabStrip_FanGraphs RadTabStripTop_FanGraphs RadTabStripTop">
 	<!-- 2016.2.607.45 --><div class="rtsLevel rtsLevel1">
@@ -42,59 +858,50 @@
 <
 <
 
+<script src="/javascript/lib/purify.min.js"></script>
+<script>var customNoShow = false;</script><script>var dataPlayerCaps=[{"season": "2010",
+            "profile": "YEAR IN REVIEW: Shields is nothing if not consistent. He topped the 215 inning mark for the third consecutive year, with a FIP of 4.02. That’s a tad bit higher than his previous two seasons, but part of the difference can be explained by a higher percentage of fly balls going for home runs. Shields encountered a high batting average on balls in play despite playing in front of a high-caliber defense. Shields threw his fastball fewer times than ever before and for good reason: the pitch had little success overall and bowed in repetitions to his outstanding change-up and sound curveball. Shields is as underrated as they come despite being locked into a grand contract and having a solid track record of success in the traditional metrics – minus wins and losses of course.", 
+            "quickProfile": "THE YEAR AHEAD: Although he’s not an ace in the traditional sense of the word, Shields figures to get the opening-day start for the Rays for the third straight year. He’s extremely reliable and raises some Mike Mussina comparisons because of it. Expect some regression on his BABIP, ERA, and home-run rate. Shields will continue to get his seven-plus strikeouts per nine and walk a couple per game at most. Double-digit wins and a sub-4.00 ERA should be in order.   (R.J. Anderson)"},{"season": "2011",
+            "profile": "Shields has always been a bit homer prone, but in 2010 he was overly so. However, there is good reason to believe it won’t happen again, as his HR/FB ratio was higher than normal. To go along with some bad luck on home runs, Shields’ BABIP was also quite high, making 2010 a hellish season for one of Tampa Bay’s key rotational cogs. In the midst of these problems, Shields also posted a career-best strikeout rate, although it came with the lowest whiff rate of his career. Throughout his career, Shields has been the definition of durable, making 33 starts each of the past three seasons, and surpassing 200 innings pitched in each of the past four. If everything can even out for Shields, a year similar to 2009 could be in store: an ERA around 4.00, 200-plus innings, and 160 strikeouts from the Ray. Shields is a nice bounce-back candidate for 2011, but he’s not going to be an ace, so target him in the last third of your draft. (Zach Sanders)", 
+            "quickProfile": "Shields had quite a bit of bad luck in 2010, and he should be better in 2011. He's likely to be a solid starter, but not an Ace, so target him later in drafts."},{"season": "2012",
+            "profile": "No single player had a bigger bounce-back season than Shields. While he was better than his ERA indicated in 2010, fantasy leagues don’t count FIP or xFIP as categories. The belief in Shields paid off in spades as he ran rough shod over the American League in 2011. He decreased the usage of his fastball by 10 percent and implemented his curveball eight percent more; helping him keep hitters off balance and going deeper into games, resulting in a league high 11 complete games. He’s not likely to duplicate that type of success but maintains a very good strikeout rate and is a workhorse, ranking sixth in total innings pitched over the past five years. That durability combined with his high number of whiffs places him just below the very top tier of fantasy pitchers. (Erik Hahmann)", 
+            "quickProfile": "He’s one of the more reliable arms in the game, and the amount of strikeouts he racks up helps offset the home runs he allows. He’s a safe bet for 200 innings, 200 strikeouts, and an ERA in the mid-threes."},{"season": "2013",
+            "profile": "James Shields has 1454.2 IP in his career and a 3.89 ERA and 3.84 FIP duo that has made him one of the more reliable innings-eaters of the past five years. He enters his age-31 season with a streak of six straight seasons over 200 innings and is fresh off setting a new career high in strikeout rate (23.6%). But the appropriate adage here is perhaps: \"Reliable pitchers are reliable until they aren't anymore.\" Or, in other words, James Shields' future is just as uncertain as any other pitcher on the Royals' staff. He will assume the ace role for them, and should easily be their top pitcher in 2013, but he could have a repeat of 2010 batting average on balls in play insanity that resulted in a 5.18 ERA, or the <a href=\"http://www.royalsreview.com/2012/12/10/3750080/james-shields-royals-ace\">growing concerns</a> about his arm angle fluctuations and declining Zone% could portend a serious injury. He is also leaving a pitcher's park and a great defense for a relatively neutral park and a not-as-great defense, but some have suggested the impact on his numbers <a href=\"http://www.fangraphs.com/fantasy/index.php/james-shields-in-a-new-ballpark-and-divisio/\">could be minimal</a> (parks affect different players in different ways, after all). All said, James Shields, given all the hubbub surrounding him the last two seasons, will draw a lot of interest in most fantasy drafts, and his stat sheet shows why. He has the potential for another 200 IP, 3.50 ERA season or even better. But do not pay more than you would for any other 31-year-old pitcher with a history of success and a few legitimate concerns. (<a href=\"https://twitter.com/BradleyWoodrum\">Bradley Woodrum</a>)", 
+            "quickProfile": "James Shields had a productive six seasons as the workhorse of the Rays rotation, and now he will serve as the Royals' ace. There are some of the injury concerns about his flagging Zone% and inconsistent release points in 2012, so avoid overpaying for Shields. In a deep league, he can be many teams' ace, but keep in mind his age -- 31 years old -- and his unkind change in park and defense."},{"season": "2014",
+            "profile": "James Shields showed up for another great season in 2013. He ended it with a 3.15 ERA which was lower than his all his ERA estimators (3.47 FIP, 3.72 xFIP and 3.85 SIERA). The difference doesn't really surprise me -- the Royals have the league's best defense and as a team they had a team ERA–FIP of -.38. If Shields' ERA regresses in 2014, it will probably be because the defense regresses. Both his strikeouts per nine (8.8 to 7.7) and walks per nine (2.3 to 2.7) got worse compared to his 2012 values. The strikeouts don't concern me too much, since 7.7 K/9 is his career average. Additionally, his swinging strike rate was only down from 10.2% to 9.8%. The value I didn't like was the walk rate jump. Shields gets most of his value from not walking batters. If he begins walking batters, his value will decline quickly. The only other issue I have with the 32-year-old is the mileage on the arm. He has thrown over 200 innings for seven straight seasons. Pitchers eventually break down and so will Shields at some point. He should produce double digit wins, 200 Ks and a 3.50 ERA... if he stays healthy again. (Jeff Zimmerman)", 
+            "quickProfile": "James Shields has been a steady performer over the past few seasons. I don't see the performance changing unless father time finally finds him."},{"season": "2015",
+            "profile": "Shields's fantasy value will be determined by who he ends up signing with this offseason. But you can estimate his value independent of his home park, to an extent. The first area to look and the greatest of concern is his strikeout rate. It has been declining since 2012 going from 8.8 per nine to 7.7 K/9 to 7.1 K/9. With his ability to stay healthy and pitch a ton of innings, his strikeout total has still gone from 223 to 196 to 180. The reason for his decline is not a drop in fastball velocity (steady around 92 mph), but from using his change less (28% to 25% to 22%) and it being less effective (21% swinging strike rate to 19% SwStr% to 16% SwStr%). He has offset the decline in strikeouts by posting a low 1.7 walks per nine rate in 2014. Over the last couple of seasons, his ERA (~3.20) has been below his ERA estimators (~3.60) because of an above average Royals offense. Without knowing which team signs him, expect 14 wins, 170 K, 3.60 ERA, and a 1.25 WHIP. (Jeff Zimmerman)", 
+            "quickProfile": "James Shields is a predictable pitcher with the only wart being a declining strikeout rate. His value could change some depending on which team he finally signs with."},{"season": "2016",
+            "profile": "Big Game James. What a wonky year, man. You know that, in the 2015 incarnation of Steamer's projections, James Shields's projection had the highest reliability score of any starting pitcher? Understandably, too, as the trend seemed pretty clear: several years of remarkable consistency, but heading into his mid-30s, with strikeouts starting to taper off and minor fluctuations elsewhere. Then BLAM! He pulls a swift one on ya and posts arguably his worst season. A few things stick out like a sore thumb: his home run per fly ball rate spiked despite trivial changes to his batted ball breakdown. It explains a lot of everything that went wrong, because if you assume HR/FB is more luck than skill -- that is, if you subscribe to xFIP rather than FIP -- then 2015 wasn't so different. Except it still was, what with all those extra strikeouts and walks. Shields avoided the zone like the plague and his contact rate soared. That doesn't mean hitters offered at pitches outside the zone more frequently, however. It's this conundrum -- the fewest-swings, least-contact, fewest-pitches-in-the-zone conundrum -- that helps explain this Shieldsian oddity. Your guess is as good as ours as to which Shields you'll see in 2016. Perhaps the Padres catalyzed a paradigm shift when Shields joined the team. Perhaps it was a personal choice. Or, perhaps, it was just good ol' statistical variance that occurs every now and then. Whatever happens in 2016, it probably won't get much worse than it did last year. Still, he's a risky top-40 starter. (Alex Chamberlain)", 
+            "quickProfile": "If you're scared of James Shields this year, we understand. There's room for him to rebound, but his newfound volatility makes him merely a top-40 consideration among starting pitchers."},{"season": "2017",
+            "profile": "The White Sox must be just thrilled to have two years of James Shields left. Last year, he was very easily the worst qualified starter in the majors. In fact, only two pitchers threw enough innings to qualify and posted a negative wins above replacement: Jered Weaver (-0.2 WAR) and Shields (-0.9 WAR). Shields both struck out fewer batters (6.69 per nine) and walked more (4.06 per nine) than ever before, and he gave up an absolutely stunning 40 home runs in his 181.2 innings. James Shields is completely broken, and at 35 years old, he's not likely to become a decent pitcher again, not to mention a fantasy asset. (Scott Strandberg)", 
+            "quickProfile": "The warning signs were already there in 2015, but Shields' high strikeout rate assuaged doubts a bit. 2016 was an unmitigated disaster, and one that Shields seems unlikely to bounce back from."},{"season": "2018",
+            "profile": "Remember when James Shields was good at baseball? Me neither, but it actually wasn’t that long ago. From 2011 through 2015, Shields posted a 3.30 ERA and averaged 14 wins a season for the five-year stretch. Since then though, Shields' ERA over the last two seasons has been closer to six than it has been five (5.60 ERA), and has only contributed to an average of six wins per season. Shields' velocity on his four-seam has been declining for several seasons now. What was once a 93 to 94 mph fastball has now dropped to a 90.6 mph four-seam on average. For reference, Shields' teammate, Michael Kopech, has a changeup that is faster than that (90.78). Oddly enough, Shields has been utilizing his \"fastball\" more and more often as the years go on and he’s been worse and worse as a result. Here is his \"fastball\" usage combined with his slugging against from 2014 through 2017 (2015 – 28% <.557>, 2016 – 32% <.573>, 2017 – 33% <.600>). You don’t have to be good at math to figure out that if a pitch you throw more than any other pitch (33%) in your repertoire is getting hit for a slugging percentage at or around .600, it will be really tough to succeed at the major league level. (Keith Farnsworth)", 
+            "quickProfile": "Shields is this year’s Jared Weaver. \"Hard Pass\"."}]; </script>
+<script src="/jsx/playerPages/_render/playerCaps.js"></script>
             <div id="SeasonSplits1_tsType" class="RadTabStrip RadTabStrip_FanGraphs RadTabStripTop_FanGraphs RadTabStripTop">
 	<div class="rtsLevel rtsLevel1">
 		<ul class="rtsUL"><li class="rtsLI rtsFirst"><a class="rtsLink rtsSelected" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season="><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Standard Splits</span></span></span></a></li><li class="rtsLI rtsLast"><a class="rtsLink rtsAfter" href="pitchfx.aspx?playerid=7059&amp;position=P"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Pitch Type Splits</span></span></span></a></li></ul>
 	</div><<input id="SeasonSplits1_tsType_ClientState" name="SeasonSplits1_tsType_ClientState" type="hidden" />
 </div>
+
 <div class="spacer_10"></div>
+
+
 <div id="SeasonSplits1_tsLog" class="RadTabStrip RadTabStrip_FanGraphs RadTabStripTop_FanGraphs RadTabStripTop">
 	<div class="rtsLevel rtsLevel1">
 		<ul class="rtsUL"><li class="rtsLI rtsFirst"><a class="rtsLink rtsSelected" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Career</span></span></span></a></li><li class="rtsLI"><a class="rtsLink rtsAfter" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=2017"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2017</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=2016"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2016</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=2015"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2015</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=2014"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2014</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=2013"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2013</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=2012"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2012</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=2011"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2011</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=2010"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2010</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=2009"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2009</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=2008"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2008</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=2007"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2007</span></span></span></a></li><li class="rtsLI rtsLast"><a class="rtsLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=2006"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2006</span></span></span></a></li></ul>
 	</div><<input id="SeasonSplits1_tsLog_ClientState" name="SeasonSplits1_tsLog_ClientState" type="hidden" />
 </div>
 <div class="spacer_10"></div>
-<div tabindex="0" id="SeasonSplits1_rdSplit" class="RadMenu RadMenu_DepthChart rmSized">
-	<ul class="rmRootGroup rmHorizontal">
-		<li class="rmItem rmFirst"><span class="rmLink rmRootLink" tabindex="0"><font size="2">Handedness</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=0.1">vs L</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=0.2">vs R</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Home / Away</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=1.1">Home</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=1.2">Away</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=1.3">Home vs L</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=1.4">Home vs R</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=1.5">Away vs L</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=1.6">Away vs R</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Monthly</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=2.1">Mar/Apr</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=2.2">May</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=2.3">Jun</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=2.4">Jul</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=2.5">Aug</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=2.6">Sept/Oct</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=2.7">1st Half</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=2.8">2nd Half</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Leverage</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=5.1">Low Leverage</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=5.2">Medium Leverage</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=5.3">High Leverage</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Situational</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=6.1">Bases Empty</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=6.2">Men on Base</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=6.3">Men In Scoring</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Through Count</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=7.1">Through 3 - 0</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=7.2">Through 3 - 1</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=7.3">Through 3 - 2</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=7.4">Through 2 - 0</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=7.5">Through 1 - 0</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=7.6">Through 2 - 1</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=7.7">Through 1 - 1</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=7.8">Through 0 - 1</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=7.9">Through 2 - 2</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=7.10">Through 1 - 2</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=7.11">Through 0 - 2</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">SP / RP</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=8.1">As Starter</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=8.2">As Reliever</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Shifts</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=9.1">No Shift</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=9.2">Shift - All</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=9.3">Shift - Traditional</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=9.4">Shift - Non Traditional</a></li>
-			</ul>
-		</div></li><li class="rmItem rmLast"><span class="rmLink rmRootLink" tabindex="0"><font size="2">TTO</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=10.1">1st Through Order as SP</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=10.2">2nd Through Order as SP</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=10.3">3rd Through Order as SP</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=10.4">4th Through Order as SP</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=10.5">5th Through Order as SP</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=7059&amp;position=P&amp;season=0&amp;split=10.6">1st Through Order as RP</a></li>
-			</ul>
-		</div></li>
-	</ul><input id="SeasonSplits1_rdSplit_ClientState" name="SeasonSplits1_rdSplit_ClientState" type="hidden" />
-</div>
+
+<div id="menu-splits"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+<script>var subMenuArray=[{ header: 'Handedness', teams: [{ label: 'vs L', value: '0.1' },{ label: 'vs R', value: '0.2' }]},{ header: 'Home / Away', teams: [{ label: 'Home', value: '1.1' },{ label: 'Away', value: '1.2' },{ label: 'Home vs L', value: '1.3' },{ label: 'Home vs R', value: '1.4' },{ label: 'Away vs L', value: '1.5' },{ label: 'Away vs R', value: '1.6' }]},{ header: 'Monthly', teams: [{ label: 'Mar/Apr', value: '2.1' },{ label: 'May', value: '2.2' },{ label: 'Jun', value: '2.3' },{ label: 'Jul', value: '2.4' },{ label: 'Aug', value: '2.5' },{ label: 'Sept/Oct', value: '2.6' },{ label: '1st Half', value: '2.7' },{ label: '2nd Half', value: '2.8' }]},{ header: 'Leverage', teams: [{ label: 'Low Leverage', value: '5.1' },{ label: 'Medium Leverage', value: '5.2' },{ label: 'High Leverage', value: '5.3' }]},{ header: 'Situational', teams: [{ label: 'Bases Empty', value: '6.1' },{ label: 'Men on Base', value: '6.2' },{ label: 'Men In Scoring', value: '6.3' }]},{ header: 'Through Count', teams: [{ label: 'Through 3 - 0', value: '7.1' },{ label: 'Through 1 - 2', value: '7.10' },{ label: 'Through 0 - 2', value: '7.11' },{ label: 'Through 3 - 1', value: '7.2' },{ label: 'Through 3 - 2', value: '7.3' },{ label: 'Through 2 - 0', value: '7.4' },{ label: 'Through 1 - 0', value: '7.5' },{ label: 'Through 2 - 1', value: '7.6' },{ label: 'Through 1 - 1', value: '7.7' },{ label: 'Through 0 - 1', value: '7.8' },{ label: 'Through 2 - 2', value: '7.9' }]},{ header: 'SP / RP', teams: [{ label: 'As Starter', value: '8.1' },{ label: 'As Reliever', value: '8.2' }]},{ header: 'Shifts', teams: [{ label: 'No Shift', value: '9.1' },{ label: 'Shift - All', value: '9.2' },{ label: 'Shift - Traditional', value: '9.3' },{ label: 'Shift - Non Traditional', value: '9.4' }]},{ header: 'TTO', teams: [{ label: '1st Through Order as SP', value: '10.1' },{ label: '2nd Through Order as SP', value: '10.2' },{ label: '3rd Through Order as SP', value: '10.3' },{ label: '4th Through Order as SP', value: '10.4' },{ label: '5th Through Order as SP', value: '10.5' },{ label: '1st Through Order as RP', value: '10.6' }]}]; var splitsCoreURL = '/statsplits.aspx?playerid=7059&position=P&season=0&split=';</script>
+
+<
+
+
 
 <br /><div class="br_stitle"><a name="standard" href="#standard">Standard</a></div><div class="br_sbyl"></div>
 <div id="SeasonSplits1_dgSeason1" class="RadGrid RadGrid_FanGraphs" style="width:978px;">
@@ -149,9 +956,9 @@
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason1_ctl00__10">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">181.2</td><td class="grid_line_regular" align="right">5.85</td><td class="grid_line_regular" align="right">822</td><td class="grid_line_regular" align="right">208</td><td class="grid_line_regular" align="right">41</td><td class="grid_line_regular" align="right">6</td><td class="grid_line_regular" align="right">122</td><td class="grid_line_regular" align="right">118</td><td class="grid_line_regular" align="right">40</td><td class="grid_line_regular" align="right">82</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">135</td><td class="grid_line_regular" align="right">.284</td><td class="grid_line_regular" align="right">.364</td><td class="grid_line_regular" align="right">.527</td><td class="grid_line_regular" align="right">.377</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason1_ctl00__11">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">110.0</td><td class="grid_line_regular" align="right">5.40</td><td class="grid_line_regular" align="right">489</td><td class="grid_line_regular" align="right">112</td><td class="grid_line_regular" align="right">22</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">70</td><td class="grid_line_regular" align="right">66</td><td class="grid_line_regular" align="right">26</td><td class="grid_line_regular" align="right">51</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">95</td><td class="grid_line_regular" align="right">.258</td><td class="grid_line_regular" align="right">.340</td><td class="grid_line_regular" align="right">.502</td><td class="grid_line_regular" align="right">.355</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">117.0</td><td class="grid_line_regular" align="right">5.23</td><td class="grid_line_regular" align="right">516</td><td class="grid_line_regular" align="right">116</td><td class="grid_line_regular" align="right">22</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">72</td><td class="grid_line_regular" align="right">68</td><td class="grid_line_regular" align="right">27</td><td class="grid_line_regular" align="right">53</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">103</td><td class="grid_line_regular" align="right">.252</td><td class="grid_line_regular" align="right">.334</td><td class="grid_line_regular" align="right">.490</td><td class="grid_line_regular" align="right">.348</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason1_ctl00__12">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">2403.1</td><td class="grid_line_regular" align="right">3.98</td><td class="grid_line_regular" align="right">10091</td><td class="grid_line_regular" align="right">2387</td><td class="grid_line_regular" align="right">483</td><td class="grid_line_regular" align="right">56</td><td class="grid_line_regular" align="right">1150</td><td class="grid_line_regular" align="right">1062</td><td class="grid_line_regular" align="right">326</td><td class="grid_line_regular" align="right">665</td><td class="grid_line_regular" align="right">22</td><td class="grid_line_regular" align="right">88</td><td class="grid_line_regular" align="right">2072</td><td class="grid_line_regular" align="right">.256</td><td class="grid_line_regular" align="right">.313</td><td class="grid_line_regular" align="right">.428</td><td class="grid_line_regular" align="right">.322</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">2410.1</td><td class="grid_line_regular" align="right">3.97</td><td class="grid_line_regular" align="right">10118</td><td class="grid_line_regular" align="right">2391</td><td class="grid_line_regular" align="right">483</td><td class="grid_line_regular" align="right">56</td><td class="grid_line_regular" align="right">1152</td><td class="grid_line_regular" align="right">1064</td><td class="grid_line_regular" align="right">327</td><td class="grid_line_regular" align="right">667</td><td class="grid_line_regular" align="right">22</td><td class="grid_line_regular" align="right">88</td><td class="grid_line_regular" align="right">2080</td><td class="grid_line_regular" align="right">.255</td><td class="grid_line_regular" align="right">.313</td><td class="grid_line_regular" align="right">.428</td><td class="grid_line_regular" align="right">.322</td>
 	</tr>
 	</tbody>
 
@@ -208,9 +1015,9 @@
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__10">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">6.69</td><td class="grid_line_regular" align="right">4.06</td><td class="grid_line_regular" align="right">1.65</td><td class="grid_line_regular" align="right">1.98</td><td class="grid_line_regular" align="right">16.4 %</td><td class="grid_line_regular" align="right">10.0 %</td><td class="grid_line_regular" align="right">6.4 %</td><td class="grid_line_regular" align="right">.284</td><td class="grid_line_regular" align="right">1.60</td><td class="grid_line_regular" align="right">.302</td><td class="grid_line_regular" align="right">72.7 %</td><td class="grid_line_regular" align="right">6.01</td><td class="grid_line_regular" align="right">5.21</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__11">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.77</td><td class="grid_line_regular" align="right">4.17</td><td class="grid_line_regular" align="right">1.86</td><td class="grid_line_regular" align="right">2.13</td><td class="grid_line_regular" align="right">19.4 %</td><td class="grid_line_regular" align="right">10.4 %</td><td class="grid_line_regular" align="right">9.0 %</td><td class="grid_line_regular" align="right">.258</td><td class="grid_line_regular" align="right">1.48</td><td class="grid_line_regular" align="right">.274</td><td class="grid_line_regular" align="right">74.1 %</td><td class="grid_line_regular" align="right">5.97</td><td class="grid_line_regular" align="right">5.28</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.92</td><td class="grid_line_regular" align="right">4.08</td><td class="grid_line_regular" align="right">1.94</td><td class="grid_line_regular" align="right">2.08</td><td class="grid_line_regular" align="right">20.0 %</td><td class="grid_line_regular" align="right">10.3 %</td><td class="grid_line_regular" align="right">9.7 %</td><td class="grid_line_regular" align="right">.252</td><td class="grid_line_regular" align="right">1.44</td><td class="grid_line_regular" align="right">.270</td><td class="grid_line_regular" align="right">74.5 %</td><td class="grid_line_regular" align="right">5.83</td><td class="grid_line_regular" align="right">5.19</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__12">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.76</td><td class="grid_line_regular" align="right">2.49</td><td class="grid_line_regular" align="right">3.12</td><td class="grid_line_regular" align="right">1.22</td><td class="grid_line_regular" align="right">20.5 %</td><td class="grid_line_regular" align="right">6.6 %</td><td class="grid_line_regular" align="right">13.9 %</td><td class="grid_line_regular" align="right">.256</td><td class="grid_line_regular" align="right">1.27</td><td class="grid_line_regular" align="right">.297</td><td class="grid_line_regular" align="right">74.2 %</td><td class="grid_line_regular" align="right">4.09</td><td class="grid_line_regular" align="right">3.81</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">7.77</td><td class="grid_line_regular" align="right">2.49</td><td class="grid_line_regular" align="right">3.12</td><td class="grid_line_regular" align="right">1.22</td><td class="grid_line_regular" align="right">20.6 %</td><td class="grid_line_regular" align="right">6.6 %</td><td class="grid_line_regular" align="right">14.0 %</td><td class="grid_line_regular" align="right">.255</td><td class="grid_line_regular" align="right">1.27</td><td class="grid_line_regular" align="right">.297</td><td class="grid_line_regular" align="right">74.2 %</td><td class="grid_line_regular" align="right">4.09</td><td class="grid_line_regular" align="right">3.81</td>
 	</tr>
 	</tbody>
 
@@ -270,9 +1077,9 @@
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason3_ctl00__10">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.06</td><td class="grid_line_regular" align="right">21.4 %</td><td class="grid_line_regular" align="right">40.4 %</td><td class="grid_line_regular" align="right">38.2 %</td><td class="grid_line_regular" align="right">6.7 %</td><td class="grid_line_regular" align="right">17.8 %</td><td class="grid_line_regular" align="right">6.7 %</td><td class="grid_line_regular" align="right">33.3 %</td><td class="grid_line_break" align="right">42.9 %</td><td class="grid_line_regular" align="right">32.8 %</td><td class="grid_line_regular" align="right">24.4 %</td><td class="grid_line_break" align="right">15.3 %</td><td class="grid_line_regular" align="right">50.9 %</td><td class="grid_line_regular" align="right">33.8 %</td><td class="grid_line_break" align="right">3123</td><td class="grid_line_regular" align="right">1270</td><td class="grid_line_regular" align="right">1853</td>
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason3_ctl00__11">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">0.88</td><td class="grid_line_regular" align="right">18.6 %</td><td class="grid_line_regular" align="right">38.1 %</td><td class="grid_line_regular" align="right">43.4 %</td><td class="grid_line_regular" align="right">7.5 %</td><td class="grid_line_regular" align="right">17.7 %</td><td class="grid_line_regular" align="right">6.2 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">42.7 %</td><td class="grid_line_regular" align="right">37.1 %</td><td class="grid_line_regular" align="right">20.3 %</td><td class="grid_line_break" align="right">19.4 %</td><td class="grid_line_regular" align="right">47.7 %</td><td class="grid_line_regular" align="right">32.9 %</td><td class="grid_line_break" align="right">1922</td><td class="grid_line_regular" align="right">755</td><td class="grid_line_regular" align="right">1167</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">0.88</td><td class="grid_line_regular" align="right">18.3 %</td><td class="grid_line_regular" align="right">38.2 %</td><td class="grid_line_regular" align="right">43.5 %</td><td class="grid_line_regular" align="right">7.1 %</td><td class="grid_line_regular" align="right">17.4 %</td><td class="grid_line_regular" align="right">5.9 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">43.4 %</td><td class="grid_line_regular" align="right">36.7 %</td><td class="grid_line_regular" align="right">19.9 %</td><td class="grid_line_break" align="right">19.3 %</td><td class="grid_line_regular" align="right">47.3 %</td><td class="grid_line_regular" align="right">33.3 %</td><td class="grid_line_break" align="right">2025</td><td class="grid_line_regular" align="right">794</td><td class="grid_line_regular" align="right">1231</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason3_ctl00__12">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.22</td><td class="grid_line_regular" align="right">19.8 %</td><td class="grid_line_regular" align="right">44.0 %</td><td class="grid_line_regular" align="right">36.2 %</td><td class="grid_line_regular" align="right">8.6 %</td><td class="grid_line_regular" align="right">12.6 %</td><td class="grid_line_regular" align="right">5.8 %</td><td class="grid_line_regular" align="right">31.7 %</td><td class="grid_line_break" align="right">44.6 %</td><td class="grid_line_regular" align="right">33.2 %</td><td class="grid_line_regular" align="right">22.2 %</td><td class="grid_line_break" align="right">16.1 %</td><td class="grid_line_regular" align="right">53.9 %</td><td class="grid_line_regular" align="right">30.0 %</td><td class="grid_line_break" align="right">37776</td><td class="grid_line_regular" align="right">13754</td><td class="grid_line_regular" align="right">24022</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">As Starter</td><td class="grid_line_regular" align="right">1.21</td><td class="grid_line_regular" align="right">19.8 %</td><td class="grid_line_regular" align="right">44.0 %</td><td class="grid_line_regular" align="right">36.2 %</td><td class="grid_line_regular" align="right">8.6 %</td><td class="grid_line_regular" align="right">12.6 %</td><td class="grid_line_regular" align="right">5.8 %</td><td class="grid_line_regular" align="right">31.7 %</td><td class="grid_line_break" align="right">44.6 %</td><td class="grid_line_regular" align="right">33.2 %</td><td class="grid_line_regular" align="right">22.2 %</td><td class="grid_line_break" align="right">16.1 %</td><td class="grid_line_regular" align="right">53.9 %</td><td class="grid_line_regular" align="right">30.0 %</td><td class="grid_line_break" align="right">37879</td><td class="grid_line_regular" align="right">13793</td><td class="grid_line_regular" align="right">24086</td>
 	</tr>
 	</tbody>
 
@@ -281,4 +1088,67 @@
 </div><input id="SeasonSplits1_dgSeason3_ClientState" name="SeasonSplits1_dgSeason3_ClientState" type="hidden" />	</div>
 
         </div>
-        <div id=
+        <div id="footer">
+            <div id="Footer1_panFooter" class="ra-wide box-ra ra-member-hide">
+	
+    <div>
+        <div class="catchall728" style='width:728px; overflow:hidden;'><!-- ROS-Footer --> <div id ='div-gpt-ad-1349421924281-10' style='width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-10').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-10'); });}</script></div></div>
+
+    </div>
+
+</div>
+
+<br />
+
+<div class="footer-bar">
+    <div class="footer-bar-background"><div class="footer-bar-item">
+        
+    </div></div>
+    <div class="footer-bar-item">
+        <span class="mobile-hide">Updated: Wednesday, March 28, 2018 3:25 AM ET</span><span class="mobile-show">Updated: 3/28/2018 3:25 AM ET</span>
+    </div>
+    <div class="footer-bar-item" style="text-align: center; margin: auto;">
+        <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
+        - <a href="/about/terms-of-service">Terms of Service</a> - <a href="/about/privacy-policy">Privacy Policy</a>
+    </div>
+</div>
+<div class="footer-credits">
+    <div class="footer-credits-item">
+        <a href="http://www.baseballinfosolutions.com" class="footer-credits-item-name">
+            <img src="/images/bis-logo-white.png" alt="bis logo" /></a>
+        <div class="footer-credits-item-text">All major league baseball data including pitch type, velocity, batted ball location,
+        and play-by-play data provided by Baseball Info Solutions.</div>
+    </div>
+    <div class="footer-credits-item">
+        <a href="http://www.foxsports.com/" class="footer-credits-item-name">
+            <img src="/images/badge_300.gif" /></a>
+        <div class="footer-credits-item-text">FOX Sports Engage Network Partner</div>
+    </div>
+    <div class="footer-credits-item">
+        <a href="http://www.stats.com" class="footer-credits-item-name">
+            <img src="/images/statslogo_sm.png" alt="statslogo" style="width: 100px;" /></a>
+        <div class="footer-credits-item-text">All minor league baseball data provided by Major League Baseball Advanced Media
+        as distributed by STATS.</div>
+    </div>
+    <div class="footer-credits-item">
+        <div class="footer-credits-item-name">Mitchel Lichtman</div>
+        <div class="footer-credits-item-text">All UZR (ultimate zone rating) calculations are provided courtesy of Mitchel Lichtman.</div>
+    </div>
+    <div class="footer-credits-item">
+        <a href="http://www.tangotiger.com" class="footer-credits-item-name">TangoTiger.com</a>
+       <div class="footer-credits-item-text"> All Win Expectancy, Leverage Index, Run Expectancy, and Fans Scouting Report data licenced from TangoTiger.com</div>
+    </div>
+    <div class="footer-credits-item">
+        <a href="http://www.retrosheet.org" class="footer-credits-item-name">Retrosheet.org</a>
+        <div class="footer-credits-item-text">Play-by-play data prior to 2002 was obtained free of charge from and is copyrighted
+        by Retrosheet.</div>
+    </div>
+</div>
+
+<div class="catchall1" style='width:1px; '><!-- /1128006/Tynt_1x1_Fangraphs --> <div id ='div-gpt-ad-1349421924281-28' style='width:1px; height:1px; '><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-28').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-28'); });}</script></div></div>
+
+
+<div id="Footer1_panAdIO">
+	
+
+    <!--

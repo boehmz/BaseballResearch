@@ -1,5 +1,846 @@
-20171001/ZachDateMetaData
-class="player-info-box">
+20180329/ZachDateMetaData
+text/javascript">window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"8c8459e5ba","applicationID":"2284934","transactionName":"ZlMHMEtVDUdTW0ZQC18ZJDdpGxBAU0xBSkpQRRUc","queueTime":0,"applicationTime":150,"agent":"","atts":""}</script><<title>
+	Wilson Ramos &raquo; Statistics &raquo; Batting | FanGraphs Baseball
+</title><meta id="description" name="description" content="Wilson Ramos career batting statistics for Major League, Minor League, and postseason baseball" /><meta id="keywords" name="keywords" content="wilson ramos, wilson ramos statistics, wilson ramos projections, wilson ramos minor league, wilson ramos major league" /><link href="//cdn.fangraphs.com/css/fg?v=pxJFRhZvnKEN61YvxHWehNCXVBNx8FAzVBf_8-cPt_Q1" rel="stylesheet">
+
+<link href="//cdn.fangraphs.com/css/telerik?v=7kp8vZ-2gyqQIN75Z0UB_Vbc6sYJCM3fVOkK0XkRN401" rel="stylesheet">
+
+
+
+<link href="//cdn.fangraphs.com/css/desktop?v=RA0h6is2mfq9Yhqsxow5ABJu5OJPfy_vOYSNz0pHnjk1" rel="stylesheet">
+
+<meta name="viewport" content="width=1000">
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
+
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+
+
+<
+
+
+
+
+
+<link rel="shortcut icon" href="//cdn.fangraphs.com/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="//cdn.fangraphs.com/opensearch.xml" title="FanGraphs Search" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet" />
+
+<meta property="og:image" content="//cdn.fangraphs.com/blogs/wp-content/uploads/2016/04/flat_fg_green.png" />
+
+
+
+<!-- AMAZON ADS START -->
+
+<script type='text/javascript'>
+  !function(a9,a,p,s,t,A,g){if(a[a9])return;function q(c,r){a[a9]._Q.push([c,r])}a[a9]={init:function(){q("i",arguments)},fetchBids:function(){q("f",arguments)},setDisplayBids:function(){},targetingKeys:function(){return[]},_Q:[]};A=p.createElement(s);A.async=!0;A.src=t;g=p.getElementsByTagName(s)[0];g.parentNode.insertBefore(A,g)}("apstag",window,document,"script","//c.amazon-adsystem.com/aax2/apstag.js");
+
+ // initialize apstag and have apstag set bids on the googletag slots when they are returned to the page
+  apstag.init({
+    pubID: '54eeeb9c-d6c6-4712-bb2a-e2aed51c3eb7',
+    adServer: 'googletag',
+    bidTimeout: 800
+  });
+
+  // request the bids for the four googletag slots
+  apstag.fetchBids({
+    slots: [{
+                                          slotID: 'div-gpt-ad-1349421924281-9',
+                                          slotName: '/1128006/ROS-BTF-2',
+                                          sizes: [[300, 250]]
+                                         },{
+                                          slotID: 'div-gpt-ad-1349421924281-10',
+                                          slotName: '/1128006/ROS-Footer',
+                                          sizes: [[728, 90]]
+                                         },{
+                                          slotID: 'div-gpt-ad-1349421924281-13',
+                                          slotName: '/1128006/RoS_300x250',
+                                          sizes: [[300, 250]]
+                                         },{
+                                          slotID: 'div-gpt-ad-1349421924281-14',
+                                          slotName: '/1128006/ROS_728x90',
+                                          sizes: [[728, 90]]
+                                         },{
+                                          slotID: 'div-gpt-ad-1349421924281-28',
+                                          slotName: '/1128006/Tynt_1x1_Fangraphs',
+                                          sizes: [[1, 1]]
+                                         }]
+  }, function(bids) {
+    // set apstag bids, then trigger the first request to DFP
+    googletag.cmd.push(function() {
+      apstag.setDisplayBids();
+      // googletag.pubads().refresh();    
+    });
+  });
+</script>
+
+<!-- AMAZON ADS END -->
+
+<!-- Prebid Config Section START -->
+<!-- Make sure this is inserted before your GPT tag -->
+<script> 
+    var PREBID_TIMEOUT = 800;
+
+    var adUnits = [{
+                                    code: 'div-gpt-ad-1349421924281-9',
+                                    sizes: [[300, 250]],
+                                    bids: [
+                                    {
+                                      bidder: 'appnexus',
+                                      params: { placementId: '12316464' }
+                                   },{
+                                      bidder: 'komoona',
+                                      params: {
+                                           hbid: 'ee37c793019a4b62a076b0f62f608697',
+                                           placementId: '25588e56cd2a8330d4d1fb3d41332e4f' }
+                                   },{
+                                      bidder: 'sovrn',
+                                      params: { tagid: '560322' }
+                                   },{
+                                      bidder: 'brealtime',
+                                      params: { placementId: '12660717' }
+                                   },{
+                                      bidder: 'conversant',
+                                      params: { 
+                                            site_id: '116645',
+                                            secure: 1
+                                      }
+                                   },{
+                                      bidder: 'oftmedia',
+                                      params: { placementId: '12738343' }
+                                   },{
+                                      bidder: 'rhythmone',
+                                      params: { placementId: '74397' }
+                                   }
+                                    ]
+                                    },{
+                                    code: 'div-gpt-ad-1349421924281-10',
+                                    sizes: [[728, 90]],
+                                    bids: [
+                                    {
+                                      bidder: 'appnexus',
+                                      params: { placementId: '12307741' }
+                                   },{
+                                      bidder: 'komoona',
+                                      params: {
+                                           hbid: 'ee37c793019a4b62a076b0f62f608697',
+                                           placementId: '721852f036df57e9588348781776800b' }
+                                   },{
+                                      bidder: 'sovrn',
+                                      params: { tagid: '560323' }
+                                   },{
+                                      bidder: 'brealtime',
+                                      params: { placementId: '12660718' }
+                                   },{
+                                      bidder: 'conversant',
+                                      params: { 
+                                            site_id: '116646',
+                                            secure: 1
+                                      }
+                                   },{
+                                      bidder: 'oftmedia',
+                                      params: { placementId: '12738344' }
+                                   },{
+                                      bidder: 'rhythmone',
+                                      params: { placementId: '74397' }
+                                   }
+                                    ]
+                                    },{
+                                    code: 'div-gpt-ad-1349421924281-13',
+                                    sizes: [[300, 250]],
+                                    bids: [
+                                    {
+                                      bidder: 'appnexus',
+                                      params: { placementId: '12316220' }
+                                   },{
+                                      bidder: 'komoona',
+                                      params: {
+                                           hbid: 'ee37c793019a4b62a076b0f62f608697',
+                                           placementId: '9077d0ad318744965a25849789cd07ba' }
+                                   },{
+                                      bidder: 'sovrn',
+                                      params: { tagid: '560319' }
+                                   },{
+                                      bidder: 'brealtime',
+                                      params: { placementId: '12660714' }
+                                   },{
+                                      bidder: 'conversant',
+                                      params: { 
+                                            site_id: '116642',
+                                            secure: 1
+                                      }
+                                   },{
+                                      bidder: 'oftmedia',
+                                      params: { placementId: '12738340' }
+                                   },{
+                                      bidder: 'rhythmone',
+                                      params: { placementId: '74397' }
+                                   }
+                                    ]
+                                    },{
+                                    code: 'div-gpt-ad-1349421924281-14',
+                                    sizes: [[728, 90]],
+                                    bids: [
+                                    {
+                                      bidder: 'appnexus',
+                                      params: { placementId: '12316456' }
+                                   },{
+                                      bidder: 'komoona',
+                                      params: {
+                                           hbid: 'ee37c793019a4b62a076b0f62f608697',
+                                           placementId: '55097cbb2e7d10c13266447931ad394a' }
+                                   },{
+                                      bidder: 'sovrn',
+                                      params: { tagid: '560321' }
+                                   },{
+                                      bidder: 'brealtime',
+                                      params: { placementId: '12660716' }
+                                   },{
+                                      bidder: 'conversant',
+                                      params: { 
+                                            site_id: '116644',
+                                            secure: 1
+                                      }
+                                   },{
+                                      bidder: 'oftmedia',
+                                      params: { placementId: '12738342' }
+                                   },{
+                                      bidder: 'rhythmone',
+                                      params: { placementId: '74397' }
+                                   }
+                                    ]
+                                    }
+    ];
+
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
+
+    pbjs.bidderSettings = {
+      brealtime: {
+        bidCpmAdjustment : function(bidCpm){
+          // adjust the bid in real time before the auction takes place
+          return bidCpm * 0.80;
+        }
+      },
+      oftmedia: {
+        bidCpmAdjustment : function(bidCpm){
+          // adjust the bid in real time before the auction takes place
+          return bidCpm * 0.90;
+        }
+      }
+    };
+
+    const customConfigObject = {
+  'buckets' : [{
+      'precision': 2,
+      'min' : 0,
+      'max' : 3,
+      'increment' : 0.01
+    },
+    {
+      'precision': 2,
+      'min' : 3,
+      'max' : 8,
+      'increment' : 0.05
+    },
+    {
+      'precision': 2,
+      'min' : 8,
+      'max' : 9.50,
+      'increment' : 0.10
+    },
+    {
+      'precision': 2,
+      'min' : 9.50,
+      'max' : 20,
+      'increment' : 0.50
+    },
+    {
+      'precision': 2,
+      'min' : 20,
+      'max' : 35,
+      'increment' : 1.00
+    }]
+};
+
+    pbjs.que.push(function () {
+        pbjs.setPriceGranularity(customConfigObject);
+    });
+
+</script>
+<!-- Prebid Config Section END -->
+
+<!-- Prebid Boilerplate Section START. No Need to Edit. -->
+<
+<script>
+      var googletag = googletag || {};
+      googletag.cmd = googletag.cmd || [];
+      googletag.cmd.push(function () {
+          googletag.pubads().disableInitialLoad();
+      });
+
+      pbjs.que.push(function () {
+          pbjs.addAdUnits(adUnits);
+          pbjs.enableAnalytics([{
+                provider: 'pubwise',
+                options: {
+                    site: 'd2a5ef67-8fed-4d00-9918-927ea7374a10',
+                    endpoint:'https://api.pubwise.io/api/v4/event/add/'
+                    }
+                }]
+          );
+          pbjs.requestBids({
+              bidsBackHandler: sendAdserverRequest
+          });
+      });
+
+      function sendAdserverRequest() {
+          if (pbjs.adserverRequestSent) return;
+          pbjs.adserverRequestSent = true;
+          googletag.cmd.push(function () {
+              pbjs.que.push(function () {
+                  pbjs.setTargetingForGPTAsync();
+                  googletag.pubads().refresh();
+              });
+          });
+      }
+
+      setTimeout(function () {
+          sendAdserverRequest();
+      }, PREBID_TIMEOUT);
+
+</script>
+<!-- Prebid Boilerplate Section END -->
+
+<script type='text/javascript'>
+      (function () {
+          var gads = document.createElement('script');
+          gads.async = true;
+          gads.type = 'text/javascript';
+          var useSSL = 'https:' == document.location.protocol;
+          gads.src = (useSSL ? 'https:' : 'http:') +
+              '//www.googletagservices.com/tag/js/gpt.js';
+          var node = document.getElementsByTagName('script')[0];
+          node.parentNode.insertBefore(gads, node);
+      })();
+</script>
+<script type='text/javascript'>
+    googletag.cmd.push(function () {
+googletag.defineSlot('/1128006/ROS-BTF-2', [300, 250], 'div-gpt-ad-1349421924281-9').addService(googletag.pubads());
+googletag.defineSlot('/1128006/ROS-Footer', [728, 90], 'div-gpt-ad-1349421924281-10').addService(googletag.pubads());
+googletag.defineSlot('/1128006/RoS_300x250', [300, 250], 'div-gpt-ad-1349421924281-13').addService(googletag.pubads());
+googletag.defineSlot('/1128006/ROS_728x90', [728, 90], 'div-gpt-ad-1349421924281-14').addService(googletag.pubads());
+googletag.defineSlot('/1128006/Tynt_1x1_Fangraphs', [1, 1], 'div-gpt-ad-1349421924281-28').addService(googletag.pubads());
+
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+    });
+</script>
+
+
+
+
+<link href="/WebResource.axd?d=4eFj2ghicsUvR4-jzn-y5qljBL4LM8D_52KGPCKA_0Xrtrry5DxJsUoLHytEMkaBKAzibyQ3TCK3urr2XIpkSjqFQbHILRAhDM4anA_249w8WfBBihjP6qqmR4ZNzCRCohQrhFOEXDdvbEyY7tQvDg3GTjY1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=A02NNKC_b5BcC1yDjQZjFkdb4gUSvzrdkCtAkgZ8AExChxlYEMgcSqTHWu2MVcFlJT-mje0kcnR2-JBKnlb30pvv29rsUn6lHFWcYS5gWLNfAUx2jpQIC10Me0swXAVf17eZAIO5F4ZzP3vJp8DxyAyguYw1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=vyGwVOpDBkG0uXr0j-cum2_sVH1cpEbGbXWTc3SNBgXB1z5PODv1nirzv_tWKIyJnZmugW1iwy81ct5y-9fQmNhaW7mLfqDT1ufneVLQwrI5xxpC9tVF9rJunaETJBP4-6yBOj8-g978ZupiXoWAHUZAPMk1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=GQpBOiIPRRVOqnbzRTk6AeAexawlxHPpLFJL4VowleC0eY695IHY5vNyuZv-mJQQ-70jzcmZYDCTt1a5Trcq25lnAN7zlqeB1aaYeKoxl6ObyItvLvkCbLWA2GiJUfAxtmKZ4syVhmUgxaCMWURkddLotII1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=apUTkvkq_aLiJTCAYExnXgaMBysrZftWI83mGKeHEOBSF5PIMsaAUP0ct8iqqdYzzwGTdVQfKHd0nsu1j2VUO1CuVN1URz8DperJmgNoxc3RmF9eBpzuFsKH-IlmyZbY0vJRklv4ETNhN7r5EsNITJFgMDA1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /></head>
+<body>
+    <form method="post" action="./statss.aspx?playerid=1433&amp;position=C" id="form1">
+<input type="hidden" name="RadScriptManager1_TSM" id="RadScriptManager1_TSM" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTIwMjIyODUzODJkGDYFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjE1DxQrAAJkFwBkBRZTZWFzb25TdGF0czEkZGdTZWFzb240DxQrAAJkFwIFD1NlbGVjdGVkSW5kZXhlcxYABQtFZGl0SW5kZXhlcxYAZAUWU2Vhc29uU3RhdHMxJGRnU2Vhc29uNw8UKwACZBcCBQ9TZWxlY3RlZEluZGV4ZXMWAAULRWRpdEluZGV4ZXMWAGQFHVNlYXNvblN0YXRzMSRkZ1NlYXNvbjIyJGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudGYFCF8hUENvdW50ZAUGXyFEU0lDZhYCHgNfc2UWAh4CX2NmZGQFHFNlYXNvblN0YXRzMSRkZ1NlYXNvbjkkY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50ZgUIXyFQQ291bnRkBQZfIURTSUNmFgIfABYCHwFmZGQFHVNlYXNvblN0YXRzMSRkZ1NlYXNvbjIzJGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudGYFCF8hUENvdW50ZAUGXyFEU0lDZhYCHwAWAh8BZmRkBR1TZWFzb25TdGF0czEkZGdTZWFzb24yNSRjdGwwMA8UKwADFCsAAmQXAwULXyFJdGVtQ291bnRmBQhfIVBDb3VudGQFBl8hRFNJQ2YWAh8AFgIfAWZkZAUXU2Vhc29uU3RhdHMxJGRnU2Vhc29uMTIPFCsAAmQXAgUPU2VsZWN0ZWRJbmRleGVzFgAFC0VkaXRJbmRleGVzFgBkBRdTZWFzb25TdGF0czEkZGdTZWFzb24xMw8UKwACZBcBBQtFZGl0SW5kZXhlcxYAZAUWU2Vhc29uU3RhdHMxJGRnU2Vhc29uNg8UKwACZBcCBQ9TZWxlY3RlZEluZGV4ZXMWAAULRWRpdEluZGV4ZXMWAGQFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjExDxQrAAJkFwIFD1NlbGVjdGVkSW5kZXhlcxYABQtFZGl0SW5kZXhlcxYAZAUXU2Vhc29uU3RhdHMxJGRnU2Vhc29uMTYPFCsAAmQXAgUPU2VsZWN0ZWRJbmRleGVzFgAFC0VkaXRJbmRleGVzFgBkBRdTZWFzb25TdGF0czEkZGdTZWFzb24xNw8UKwACZBcCBQ9TZWxlY3RlZEluZGV4ZXMWAAULRWRpdEluZGV4ZXMWAGQFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjIyDxQrAAJkFwIFD1NlbGVjdGVkSW5kZXhlcxYABQtFZGl0SW5kZXhlcxYAZAUXU2Vhc29uU3RhdHMxJGRnU2Vhc29uMjMPFCsAAmQXAgUPU2VsZWN0ZWRJbmRleGVzFgAFC0VkaXRJbmRleGVzFgBkBRdTZWFzb25TdGF0czEkZGdTZWFzb24yMA8UKwACZBcCBQ9TZWxlY3RlZEluZGV4ZXMWAAULRWRpdEluZGV4ZXMWAGQFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjIxDxQrAAJkFwBkBRdTZWFzb25TdGF0czEkZGdTZWFzb24yNg8UKwACZBcCBQ9TZWxlY3RlZEluZGV4ZXMWAAULRWRpdEluZGV4ZXMWAGQFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjI3DxQrAAJkFwIFD1NlbGVjdGVkSW5kZXhlcxYABQtFZGl0SW5kZXhlcxYAZAUXU2Vhc29uU3RhdHMxJGRnU2Vhc29uMjQPFCsAAmQXAGQFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjI1DxQrAAJkFwIFD1NlbGVjdGVkSW5kZXhlcxYABQtFZGl0SW5kZXhlcxYAZAUdU2Vhc29uU3RhdHMxJGRnU2Vhc29uMjckY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50ZgUIXyFQQ291bnRkBQZfIURTSUNmFgIfABYCHwFmZGQFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjI4DxQrAAJkFwIFD1NlbGVjdGVkSW5kZXhlcxYABQtFZGl0SW5kZXhlcxYAZAUdU2Vhc29uU3RhdHMxJGRnU2Vhc29uMjYkY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50ZgUIXyFQQ291bnRkBQZfIURTSUNmFgIfABYCHwFmZGQFHVNlYXNvblN0YXRzMSRkZ1NlYXNvbjE2JGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudGYFCF8hUENvdW50ZAUGXyFEU0lDZhYCHwAWAh8BZmRkBR1TZWFzb25TdGF0czEkZGdTZWFzb24xOCRjdGwwMA8UKwADFCsAAmQXAwULXyFJdGVtQ291bnRmBQhfIVBDb3VudGQFBl8hRFNJQ2YWAh8AFgIfAWZkZAUcU2Vhc29uU3RhdHMxJGRnU2Vhc29uMSRjdGwwMA8UKwADFCsAAmQXAwULXyFJdGVtQ291bnRmBQhfIVBDb3VudGQFBl8hRFNJQ2YWAh8AFgIfAWZkZAUdU2Vhc29uU3RhdHMxJGRnU2Vhc29uMTckY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50ZgUIXyFQQ291bnRkBQZfIURTSUNmFgIfABYCHwFmZGQFHVNlYXNvblN0YXRzMSRkZ1NlYXNvbjE5JGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudGYFCF8hUENvdW50ZAUGXyFEU0lDZhYCHwAWAh8BZmRkBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WGwUUUGxheWVySW5mbzEkdHNQbGF5ZXIFFFNlYXNvblN0YXRzMSR0c1N0YXRzBRNTZWFzb25TdGF0czEkdHNUeXBlBRdTZWFzb25TdGF0czEkZGdTZWFzb24xMQUWU2Vhc29uU3RhdHMxJGRnU2Vhc29uMQUWU2Vhc29uU3RhdHMxJGRnU2Vhc29uMgUWU2Vhc29uU3RhdHMxJGRnU2Vhc29uMwUWU2Vhc29uU3RhdHMxJGRnU2Vhc29uNAUWU2Vhc29uU3RhdHMxJGRnU2Vhc29uNQUWU2Vhc29uU3RhdHMxJGRnU2Vhc29uNgUXU2Vhc29uU3RhdHMxJGRnU2Vhc29uMTYFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjE3BRdTZWFzb25TdGF0czEkZGdTZWFzb24yMgUXU2Vhc29uU3RhdHMxJGRnU2Vhc29uMjUFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjEwBRdTZWFzb25TdGF0czEkZGdTZWFzb24xOQUXU2Vhc29uU3RhdHMxJGRnU2Vhc29uMjAFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjI2BRdTZWFzb25TdGF0czEkZGdTZWFzb24yNwUWU2Vhc29uU3RhdHMxJGRnU2Vhc29uNwUXU2Vhc29uU3RhdHMxJGRnU2Vhc29uMTgFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjI4BRZTZWFzb25TdGF0czEkZGdTZWFzb244BRdTZWFzb25TdGF0czEkZGdTZWFzb24xMgUXU2Vhc29uU3RhdHMxJGRnU2Vhc29uMjMFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjE0BRZTZWFzb25TdGF0czEkZGdTZWFzb245BRdTZWFzb25TdGF0czEkZGdTZWFzb24xMA8UKwACZBcCBQ9TZWxlY3RlZEluZGV4ZXMWAAULRWRpdEluZGV4ZXMWAGQFF1NlYXNvblN0YXRzMSRkZ1NlYXNvbjE4DxQrAAJkFwIFD1NlbGVjdGVkSW5kZXhlcxYABQtFZGl0SW5kZXhlcxYAZAUdU2Vhc29uU3RhdHMxJGRnU2Vhc29uMTMkY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50AioFCF8hUENvdW50ZAUGXyFEU0lDAioWAh8AFgIfAWZkZAUXU2Vhc29uU3RhdHMxJGRnU2Vhc29uMTQPFCsAAmQXAgUPU2VsZWN0ZWRJbmRleGVzFgAFC0VkaXRJbmRleGVzFgBkBRZTZWFzb25TdGF0czEkZGdTZWFzb245DxQrAAJkFwIFD1NlbGVjdGVkSW5kZXhlcxYABQtFZGl0SW5kZXhlcxYAZAUWU2Vhc29uU3RhdHMxJGRnU2Vhc29uOA8UKwACZBcCBQ9TZWxlY3RlZEluZGV4ZXMWAAULRWRpdEluZGV4ZXMWAGQFHVNlYXNvblN0YXRzMSRkZ1NlYXNvbjExJGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudGYFCF8hUENvdW50ZAUGXyFEU0lDZhYCHwAWAh8BZmRkBRxTZWFzb25TdGF0czEkZGdTZWFzb241JGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudGYFCF8hUENvdW50ZAUGXyFEU0lDZhYCHwAWAh8BZmRkBRxTZWFzb25TdGF0czEkZGdTZWFzb24yJGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudGYFCF8hUENvdW50ZAUGXyFEU0lDZhYCHwAWAh8BZmRkBRxTZWFzb25TdGF0czEkZGdTZWFzb244JGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudGYFCF8hUENvdW50ZAUGXyFEU0lDZhYCHwAWAh8BZmRkBRdTZWFzb25TdGF0czEkZGdTZWFzb24xOQ8UKwACZBcCBQ9TZWxlY3RlZEluZGV4ZXMWAAULRWRpdEluZGV4ZXMWAGQFHVNlYXNvblN0YXRzMSRkZ1NlYXNvbjI4JGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudGYFCF8hUENvdW50ZAUGXyFEU0lDZhYCHwAWAh8BZmRkBR1TZWFzb25TdGF0czEkZGdTZWFzb24xMiRjdGwwMA8UKwADFCsAAmQXAwULXyFJdGVtQ291bnRmBQhfIVBDb3VudGQFBl8hRFNJQ2YWAh8AFgIfAWZkZAUWU2Vhc29uU3RhdHMxJGRnU2Vhc29uMw8UKwACZBcCBQ9TZWxlY3RlZEluZGV4ZXMWAAULRWRpdEluZGV4ZXMWAGQFFlNlYXNvblN0YXRzMSRkZ1NlYXNvbjEPFCsAAmQXAgUPU2VsZWN0ZWRJbmRleGVzFgAFC0VkaXRJbmRleGVzFgBkBRZTZWFzb25TdGF0czEkZGdTZWFzb24yDxQrAAJkFwIFD1NlbGVjdGVkSW5kZXhlcxYABQtFZGl0SW5kZXhlcxYAZAUcU2Vhc29uU3RhdHMxJGRnU2Vhc29uNiRjdGwwMA8UKwADFCsAAmQXAwULXyFJdGVtQ291bnRmBQhfIVBDb3VudGQFBl8hRFNJQ2YWAh8AFgIfAWZkZAUcU2Vhc29uU3RhdHMxJGRnU2Vhc29uMyRjdGwwMA8UKwADFCsAAmQXAwULXyFJdGVtQ291bnRmBQhfIVBDb3VudGQFBl8hRFNJQ2YWAh8AFgIfAWZkZAUdU2Vhc29uU3RhdHMxJGRnU2Vhc29uMjAkY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50ZgUIXyFQQ291bnRkBQZfIURTSUNmFgIfABYCHwFmZGQFHFNlYXNvblN0YXRzMSRkZ1NlYXNvbjckY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50ZgUIXyFQQ291bnRkBQZfIURTSUNmFgIfABYCHwFmZGQFFlNlYXNvblN0YXRzMSRkZ1NlYXNvbjUPFCsAAmQXAgUPU2VsZWN0ZWRJbmRleGVzFgAFC0VkaXRJbmRleGVzFgBkBRxTZWFzb25TdGF0czEkZGdTZWFzb240JGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudGYFCF8hUENvdW50ZAUGXyFEU0lDZhYCHwAWAh8BZmRkBR1TZWFzb25TdGF0czEkZGdTZWFzb24xNCRjdGwwMA8UKwADFCsAAmQXAwULXyFJdGVtQ291bnRmBQhfIVBDb3VudGQFBl8hRFNJQ2YWAh8AFgIfAWZkZAUdU2Vhc29uU3RhdHMxJGRnU2Vhc29uMTAkY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50ZgUIXyFQQ291bnRkBQZfIURTSUNmFgIfABYCHwFmZGS5pGGgeuYWTe0zN20RMK5833AEDA==" />
+
+
+<script src="https://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjax.js" type="text/javascript"></script>
+<
+
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/Core.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/jQuery.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/jQueryPlugins.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/MaterialRipple/MaterialRippleScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/Scrolling/ScrollingScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/Navigation/OverlayScript.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/Navigation/NavigationScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/TabStrip/RadTabStripScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/TabStrip/Views/ClassicView.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Grid/RadGridScripts.js" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9C7144F1" />
+    
+    <div id="wrapper">
+        <div id="top">
+            
+
+
+<div class="header-chat-alert-spacer" style="visibility: hidden"><a class="header-chat-alert-text"></a></div>
+
+<div class="header-container">
+    <header>
+        <div class="top-logo">
+            <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
+            <div id="top_da">
+                <div class="fg-ra-desktop catchall728" style='width:728px; overflow:hidden;'><!-- ROS_728x90 --> <div id ='div-gpt-ad-1349421924281-14' style='margin: auto; width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-14').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-14'); });}</script></div></div>
+
+            </div>
+        </div>
+        <div class="top-logo sticky" style="display: none;">
+            <div class="top-logo-bkgd fg"><a href="http://www.fangraphs.com/" target="_top"><div class="top-logo-img fg"></div></a></div>
+        </div>
+        
+
+
+<nav id="navBar" class="nav-main fg">
+    <div class="nav-mobile-bar">
+        <div class="nav-mobile-button"></div>
+        <div class="nav-search">
+            <input type="text" id="psbox" onkeypress="KeyIt(event);" onkeydown="BackKey(event);" autocomplete="off" placeholder="Player & Blog Search" />
+            <div class="nav-search-mobile-x"></div>
+        </div>
+        <div class="nav-mobile-fill"></div>
+        <div class="nav-mobile-login" data-full="true">
+            <a id="linkAccountMobile" href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=https%3a%2f%2fwww.fangraphs.com%2fstatss.aspx%3fplayerid%3d1433%26position%3dC">
+                <div class="menu-item-label">
+                    <div class="label-account">Sign In</div><div class="icon-account signed-out"></div>
+                </div>
+            </a>
+            
+            
+        </div>
+    </div>
+    <div class="nav-search-players"></div>
+    
+    <div class="nav-mobile-menu">
+        <ul class="menu-top">
+            <li class="menu-item" data-sub="home">
+                <div class="menu-item-label">Membership</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-link">
+                            <a href="//www.fangraphs.com/plus/product/fangraphs-membership/">FanGraphs Membership</a>
+                        </div>
+                        <div class="menu-sub-link">
+                            <a href="//www.fangraphs.com/plus/shop/">FanGraphs T-Shirts</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item" data-sub="games">
+                <div class="menu-item-label">Games</div>
+                <div class="menu-sub">
+                    <div class="menu-sub-link">
+                        <a href="//www.fangraphs.com/thegame/">The Game: Baseball</a>
+                    </div>
+                    <div class="menu-sub-link">
+                        <a href="//ottoneu.fangraphs.com/">Ottoneu Fantasy Baseball</a>
+                    </div>
+                    <a href="//ottoneu.fangraphs.com/">Signup</a>, 
+                    <a href="//ottoneu.fangraphs.com/support">FAQ</a>, 
+                    <a href="//www.fangraphs.com/fantasy/category/ottoneu/">Blog Posts</a>
+                </div>
+            </li>
+            <li class="menu-item" data-sub="blogs" data-full="true">
+                <div class="menu-item-label">Blogs</div>
+                <div class="menu-sub">
+                    <div class="menu-sub-link">
+                        <a href="//www.fangraphs.com/blogroll.aspx">Blog Roll</a>
+                    </div>
+                    <hr />
+                    <div class="menu-sub-ajax">
+                        <div class="menusub_mid">
+                            <div class="menu-blog fg">
+                                <div class="menu-blog-header"><a href="http://www.fangraphs.com/blogs/">FanGraphs</a></div>
+                                <div id="menu-blog-roll-fg"></div>
+                                <div class="menu-blog-podcast">
+                                    <span>Podcasts:</span> <a href="http://www.fangraphs.com/blogs/category/podcast/">FanGraphs Audio</a> | <a href="http://www.fangraphs.com/blogs/category/effectively-wild/">Effectively Wild</a>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="menu-blog rg">
+                                <div class="menu-blog-header"><a href="http://www.fangraphs.com/fantasy/">RotoGraphs</a></div>
+                                <div id="menu-blog-roll-rg"></div>
+                                <div class="menu-blog-podcast">
+                                    <span>Podcasts: </span><a href="http://www.fangraphs.com/fantasy/category/podcast/">The Sleeper and The Bust</a> | <a href="http://www.fangraphs.com/fantasy/category/field-of-streams/">Field of Streams</a>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="menu-blog tht">
+                                <div class="menu-blog-header"><a href="http://www.hardballtimes.com/">The Hardball Times</a></div>
+                                <div id="menu-blog-roll-tht"></div>
+                                <div class="menu-blog-podcast">
+                                    <span>Podcasts: </span><a href="/tht/tht-audio/">THT Audio</a>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="menu-blog com">
+                                <div class="menu-blog-header"><a href="http://www.fangraphs.com/community/">Community Research</a></div>
+                                <div id="menu-blog-roll-com"></div>
+                            </div>
+                            <hr />
+                            <div class="menu-blog-podcast"><span>Archived Blogs:</span> <a class="not" href="http://www.fangraphs.com/not/">NotGraphs</a> | <a class="tg" href="http://www.fangraphs.com/techgraphs/">TechGraphs</a> | <a class="fg" href="http://www.fangraphs.com/plus/">FanGraphs+</a></div>
+                            <div class="menu-blog-podcast"><span>Archived THT:</span> <a class="tht" href="/tht/tht-live/">THT Live</a> | <a class="tht" href="/tht/category/tht-dispatch/">Dispatch</a> | <a class="tht" href="tht/category/tht-fantasy/">Fantasy</a> | <a class="tht" href="/tht/category/shysterball/">ShysterBall</a></div>
+                            <div class="menu-blog-podcast"><span>Archived Podcasts:</span> <a class="tht" href="/tht/stealing-home/">Stealing Home</a> | <a class="tht" href="/tht/doing-it-for-bartolo/">Doing It For Bartolo</a> | <a class="rg" href="/fantasy/category/ottographs-podcast/">OttoGraphs</a></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item" data-sub="projections" data-full="true">
+                <div class="menu-item-label">Projections</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-header">
+                            2018 Pre-Season Projections
+                        </div>
+                    </div>
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=fan">FANS</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=zips">ZiPS</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamer">Steamer</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=fangraphsdc">Depth Charts</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=atc">ATC</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=thebat">THE BAT</a>
+
+                    <div class="menu-sub-header">
+                        2018 600 PA / 200 IP Projections
+                    </div>
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamer600">Steamer600</a>
+                    <div class="menu-sub-header">
+                        2018 Updated In-Season Projections
+                    </div>
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=rzips">ZiPS (RoS)</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=uzips">ZiPS (Update)</a><br />
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamerr">Steamer (RoS)</a>, 
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steameru">Steamer (Update)</a>
+                    <div class="menu-sub-header">
+                        DFS Projections
+                    </div>
+                    <a href="//www.fangraphs.com/dailyprojections.aspx?pos=all&stats=bat&type=sabersim">SaberSim</a>
+                    <div class="menu-sub-link">
+                        <a href="//www.fangraphs.com/auctiontool.aspx">Auction Calculator</a>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="menu-item" data-sub="scores" data-full="true">
+                <div class="menu-item-label">Scores</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-header">
+                            Today: 
+                            <a href="//www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
+                            <a id="linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2017&amp;month=0&amp;season1=2017&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2018-03-28">Probable Pitchers</a>
+                        </div>
+                        <div class="menu-sub-header">
+                            Win Probability & Box Scores
+                        </div>
+                        <a href="//www.fangraphs.com/scoreboard.aspx">2017</a>,
+                        <a href="//www.fangraphs.com/scoreboard.aspx?date=2016-11-02">2016</a>, 
+                        <a href="//www.fangraphs.com/scoreboard.aspx?date=2015-11-01">2015</a>...
+                                
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item" data-sub="standings" data-full="true">
+                <div class="menu-item-label">Standings</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-link">
+                            <a href="//www.fangraphs.com/depthcharts.aspx?position=Standings">2018 Projected Standings</a>
+                        </div>
+                        <div class="menu-sub-link">
+                            <a href="/standings/playoff-odds">2018 Playoff Odds</a>, <a href="/standings/playoff-odds-graphs">Playoff Odds Graphs</a>
+                        </div>
+                        <table class="menu-standings-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="menu-sub-header">AL East</div>
+                                        <div id="menu-standings-ale"></div>
+                                       
+                                        <div class="menu-sub-header">AL Central</div>
+                                        <div id="menu-standings-alc"></div>
+
+                                        <div class="menu-sub-header">AL West</div>
+                                        <div id="menu-standings-alw"></div>
+                                    </td>
+                                    <td class="menu-table-sep"></td>
+                                    <td>
+                                        <div class="menu-sub-header">NL East</div>
+                                        <div id="menu-standings-nle"></div>
+
+                                        <div class="menu-sub-header">NL Central</div>
+                                        <div id="menu-standings-nlc"></div>
+
+                                        <div class="menu-sub-header">NL West</div>
+                                        <div id="menu-standings-nlw"></div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item" data-sub="leaders" data-full="true">
+                <div class="menu-item-label">Leaders</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-header">
+                            Batting Leaders
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0">2017</a>, 
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=0">2016</a>, 
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2015&month=0&season1=2015&ind=0">2015</a>, 
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=1871&ind=0&team=0&rost=0&players=0">Career</a>
+                        </div>
+                        <div class="menu-sub-header">
+                            Pitching Leaders:    
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0">2017</a>,                      
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=0">2016</a>, 
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2015&month=0&season1=2015&ind=0">2015</a>,  
+                            <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=1871&ind=0&team=0&rost=0&players=0">Career</a>
+                        </div>
+                        <div class="menu-sub-link">
+                            <b><a href="//www.fangraphs.com/leaderssplits.aspx">Splits Leaderboards</a></b>
+                        </div>
+                        <hr />
+                        <div class="menu-sub-link">
+                            <a href="//www.fangraphs.com/tools/free-agent-tracker?sign=all&pos=all&nteam=all&oteam=all">2018 Free Agent Tracker!</a>
+                        </div>
+                        <hr />
+                        <div class="menu-sub-header">
+                            Minor League Leaders
+                        </div>
+                        AAA: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=2&qual=y&type=0&season=2017">International</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=4&qual=y&type=0&season=2017">Pacific Coast</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=31&qual=y&type=0&season=2017">Mexican</a><br />
+                        AA: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=5&qual=y&type=0&season=2017">Eastern</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=6&qual=y&type=0&season=2017">Southern</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=7&qual=y&type=0&season=2017">Texas</a><br />
+                        A+: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=8&qual=y&type=0&season=2017">California</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=9&qual=y&type=0&season=2017">Carolina</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=10&qual=y&type=0&season=2017">Florida State</a><br />
+                        A: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=11&qual=y&type=0&season=2017">Midwest</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=14&qual=y&type=0&season=2017">South Atlantic</a><br />
+                        A-: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=12&qual=y&type=0&season=2017">New York-Penn</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=13&qual=y&type=0&season=2017">Northwest</a><br />
+                        R: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=15&qual=y&type=0&season=2017">Appalachian</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=17&qual=y&type=0&season=2017">Gulf Coast</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=18&qual=y&type=0&season=2017">Pioneer</a>, <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=16&qual=y&type=0&season=2017">Arizona</a><br />
+                        R: <a href="//www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=30&qual=y&type=0&season=2017">Dominican</a>
+                        <hr />
+                        <div class="menu-sub-header">
+                            WAR Tools
+                        </div>
+                        <a href="//www.fangraphs.com/warleaders.aspx">Combined WAR Leaderboards</a><br />
+                        <a href="//www.fangraphs.com/graphsw.aspx">WAR Graphs</a>, <a href="//www.fangraphs.com/graphswd.aspx">WAR Grid</a>
+                        <div class="menu-sub-header">
+                            WPA Tools
+                        </div>
+                        <a href="//www.fangraphs.com/tools/wpa-inquirer">WPA Inquirer</a><br />
+                        <div class="menu-sub-header">
+                            Rookie Leaders
+                        </div>
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=2">Batters 2017</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=2">Pitchers 2017</a>
+                        <div class="menu-sub-header">
+                            Splits Leaders
+                        </div>
+                        Batters: <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=13&season1=2017&ind=0">vs L</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=14&season1=2017&ind=0">vs R</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=15&season1=2017&ind=0">Home</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=16&season1=2017&ind=0">Away</a><br />
+                        Pitchers: <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=13&season1=2017&ind=0">vs L</a> , <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=14&season1=2017&ind=0">vs R</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=15&season1=2017&ind=0">Home</a>, <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=y&type=1&season=2017&month=16&season1=2017&ind=0">Away</a>
+                        <div class="menu-sub-header">
+                            League Average Heatmaps
+                        </div>
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2017&se=2017&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2017</a>, 
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2016&se=2016&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2016</a>, 
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2015&se=2015&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2015</a>, 
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2014&se=2014&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2014</a>, 
+                        <a href="//www.fangraphs.com/zonegridbase.aspx?playerid=&position=&ss=2013&se=2013&type=0&hand=all&count=all&blur=0&grid=10&view=bat">2013</a>
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item" data-sub="teams" data-full="true">
+                <div class="menu-item-label">Teams</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-header">
+                            Team Batting Stats
+                        </div>
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=0,ts&rost=&age=&filter=&players=0">2017</a>, 
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2016&month=0&season1=2016&ind=0&team=0,ts&rost=&age=&filter=&players=0">2016</a>, 
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2015&month=0&season1=2015&ind=0&team=0,ts&rost=&age=&filter=&players=0">2015</a>...
+                        <div class="menu-sub-header">
+                            Team Pitching Stats
+                        </div>
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=0,ts&rost=0&age=0&filter=&players=0">2017</a>, 
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2016&month=0&season1=2016&ind=0&team=0,ts&rost=0&age=0&filter=&players=0">2016</a>, 
+                        <a href="//www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2015&month=0&season1=2015&ind=0&team=0,ts&rost=0&age=0&filter=&players=0">2015</a>...
+
+                            <div class="menu-sub-link">
+                                <a href="//www.fangraphs.com/depthcharts.aspx?position=Team">Team WAR Totals (RoS)</a>
+                            </div>
+                        
+                        <table class="menu-team-table">
+                            <tr>
+                                <td>
+                                    <div class="menu-sub-header">AL East</div>
+                                    <a href="/teams/bluejays">Blue Jays</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=14">DC</a><br />
+                                    <a href="/teams/orioles">Orioles</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=2">DC</a><br />
+                                    <a href="/teams/rays">Rays</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=12">DC</a><br />
+                                    <a href="/teams/redsox">Red Sox</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=3">DC</a><br />
+                                    <a href="/teams/yankees">Yankees</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=9">DC</a><br />
+                                </td>
+                                <td>
+                                    <div class="menu-sub-header">AL Central</div>
+                                    <a href="/teams/indians">Indians</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=5">DC</a><br />
+                                    <a href="/teams/royals">Royals</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=7">DC</a><br />
+                                    <a href="/teams/tigers">Tigers</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=6">DC</a><br />
+                                    <a href="/teams/twins">Twins</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=8">DC</a><br />
+                                    <a href="/teams/whitesox">White Sox</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=4">DC</a><br />
+                                </td>
+                                <td>
+                                    <div class="menu-sub-header">AL West</div>
+                                    <a href="/teams/angels">Angels</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=1">DC</a><br />
+                                    <a href="/teams/astros">Astros</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=21">DC</a><br />
+                                    <a href="/teams/athletics">Athletics</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=10">DC</a><br />
+                                    <a href="/teams/mariners">Mariners</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=11">DC</a><br />
+                                    <a href="/teams/rangers">Rangers</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=13">DC</a><br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="menu-sub-header">NL East</div>
+                                    <a href="/teams/braves">Braves</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=16">DC</a><br />
+                                    <a href="/teams/marlins">Marlins</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=20">DC</a><br />
+                                    <a href="/teams/mets">Mets</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=25">DC</a><br />
+                                    <a href="/teams/nationals">Nationals</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=24">DC</a><br />
+                                    <a href="/teams/phillies">Phillies</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=26">DC</a></td>
+                                <td>
+                                    <div class="menu-sub-header">NL Central</div>
+                                    <a href="/teams/brewers">Brewers</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=23">DC</a><br />
+                                    <a href="/teams/cardinals">Cardinals</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=28">DC</a><br />
+                                    <a href="/teams/cubs">Cubs</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=17">DC</a><br />
+                                    <a href="/teams/pirates">Pirates</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=27">DC</a><br />
+                                    <a href="/teams/reds">Reds</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=18">DC</a></td>
+                                <td>
+                                    <div class="menu-sub-header">NL West</div>
+                                    <a href="/teams/diamondbacks">D-backs</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=15">DC</a><br />
+                                    <a href="/teams/dodgers">Dodgers</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=22">DC</a><br />
+                                    <a href="/teams/giants">Giants</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=30">DC</a><br />
+                                    <a href="/teams/padres">Padres</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=29">DC</a><br />
+                                    <a href="/teams/rockies">Rockies</a>&nbsp; | &nbsp;<a href="//www.fangraphs.com/depthcharts.aspx?position=ALL&teamid=19">DC</a></td>
+                            </tr>
+                        </table>
+                        <div class="menu-sub-header">
+                            Positional Depth Charts
+                        </div>
+                        Batters: <a href="//www.fangraphs.com/depthcharts.aspx?position=C">C</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=1B">1B</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=2B">2B</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=SS">SS</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=3B">3B</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=LF">LF</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=CF">CF</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=RF">RF</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=DH">DH</a><br />
+                        Pitchers: <a href="//www.fangraphs.com/depthcharts.aspx?position=SP">SP</a>,
+                        <a href="//www.fangraphs.com/depthcharts.aspx?position=RP">RP</a>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="menu-item" data-sub="glossary" data-full="true">
+                <div class="menu-item-label">Glossary</div>
+                <div class="menu-sub">
+                    <div class="menusub_mid">
+                        <div class="menu-sub-link">
+                            <a href="//www.fangraphs.com/library/">Library</a>
+                        </div>
+                        <div class="menu-sub-header">
+                            Batting Stats
+                        </div>
+                        <a href="//www.fangraphs.com/library/offense/woba/">wOBA</a>, <a href="//www.fangraphs.com/library/offense/wrc/">wRC+</a>, <a href="//www.fangraphs.com/library/offense/iso/">ISO</a>,
+                        <a href="//www.fangraphs.com/library/offense/rate-stats/">K% & BB%</a>,
+                        <a href="//www.fangraphs.com/library/offense/">more...</a>
+                        <div class="menu-sub-header">
+                            Pitching Stats
+                        </div>
+                        <a href="//www.fangraphs.com/library/pitching/fip/">FIP</a>, <a href="//www.fangraphs.com/library/pitching/xfip/">xFIP</a>, <a href="//www.fangraphs.com/library/pitching/babip/">BABIP</a>,
+                        <a href="//www.fangraphs.com/library/pitching/rate-stats/">K/9 & BB/9</a>,
+                        <a href="//www.fangraphs.com/library/pitching/">more...</a>
+                        <div class="menu-sub-header">
+                            Defensive Stats
+                        </div>
+                        <a href="//www.fangraphs.com/blogs/the-fangraphs-uzr-primer/">UZR Primer</a>,
+                        <a href="//www.fangraphs.com/library/defense/drs/">DRS</a>, <a href="//www.fangraphs.com/library/defense/fsr/">FSR</a>, <a href="//www.fangraphs.com/library/defense/tz-tzl/">TZ & TZL</a>,
+                        <a href="//www.fangraphs.com/library/defense/">more...</a>
+                        <div class="menu-sub-header">
+                            More
+                        </div>
+                        <a href="//www.fangraphs.com/library/misc/war/">WAR</a>, <a href="//www.fangraphs.com/blogs/ultimate-base-running-primer/">UBR Primer</a>, <a href="//www.fangraphs.com/library/misc/wpa/">WPA</a>,
+                        <a href="//www.fangraphs.com/library/misc/li/">LI</a>, <a href="//www.fangraphs.com/library/misc/clutch/">Clutch</a>
+                        <div class="menu-sub-header">
+                            Guts!
+                        </div>
+                        <a href="//www.fangraphs.com/guts.aspx?type=cn">Seasonal Constants</a><br />
+                        <a href="//www.fangraphs.com/guts.aspx?type=pf&teamid=0&season=2017">Park Factors</a><br />
+                        <a href="//www.fangraphs.com/guts.aspx?type=pfh&teamid=0&season=2017">Park Factors
+                            by Handedness</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-fill"></li>
+            <li class="menu-item" data-sub="login" data-full="true">
+                <a id="linkAccount" href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=https%3a%2f%2fwww.fangraphs.com%2fstatss.aspx%3fplayerid%3d1433%26position%3dC">
+                    <div class="menu-item-label">
+                        <div class="label-account">Sign In</div><div class="icon-account signed-out"></div>
+                    </div>
+                </a>
+                
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="my_popup">
+
+    <div class="popup-title" style="">Help Support FanGraphs</div>
+
+    <div id="nudge_pop">
+    </div>
+    <br />
+    <br />
+    <div class="popup-button-container">
+    <a class="membership_button popup-button" href="http://www.fangraphs.com/plus/product/fangraphs-membership/" style="background-color: #50ae26; color: #fff;">Become a Member
+    </a>
+    <a class="my_popup_close popup-button" style="background-color: #000; color: #fff;">No Thanks
+    </a>
+    </div>
+    <div class="popup-login">Already a member? <a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=https%3a%2f%2fwww.fangraphs.com%2fstatss.aspx%3fplayerid%3d1433%26position%3dC">Sign In</a></div>
+</div>
+
+
+
+<
+
+
+        <div id="divHeaderChat" class="header-chat-alert"><a class="header-chat-alert-text"></a></div>
+        
+    </header>
+</div>
+
+
+
+<script>
+
+</script>
+
+<style>
+
+   
+</style>
+
+<style></style>
+
+
+        </div>
+        <div id="content" style="position: relative;">
+            
+
+<link href="styles/_render/player-pages.css" rel="stylesheet" />
+<table class="player-info">
+    <tr>
+        <td class="player-info-box">
             <table>
                 <tr>
                     <td>
@@ -7,7 +848,7 @@ class="player-info-box">
         <div class="player-info-box-item">6' 1" / 255</div>
         <div class="player-info-box-pos">C</div></div>
                         <div class="player-info-bio">
-                            <strong>Birthdate: </strong>8/10/1987 (30 y, 7 m)<br /><strong>Contract:</strong> <a href="statss.aspx?playerid=1433&position=C#contract" >$12.5M / 2 Years (2017 - 2018)</a>
+                            <strong>Birthdate: </strong>8/10/1987 (30 y, 7 m, 19 d)<br /><strong>Contract:</strong> <a href="statss.aspx?playerid=1433&position=C#contract" >$12.5M / 2 Years (2017 - 2018)</a>
                         </div>
                     </td>
 
@@ -195,14 +1036,18 @@ class="player-info-box">
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason11_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">64</td><td class="grid_line_regular" align="right">224</td><td class="grid_line_regular" align="right">11</td><td class="grid_line_regular" align="right">19</td><td class="grid_line_regular" align="right">35</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_break" align="right">4.5 %</td><td class="grid_line_regular" align="right">16.1 %</td><td class="grid_line_regular" align="right">.188</td><td class="grid_line_regular" align="right">.262</td><td class="grid_line_break" align="right">.260</td><td class="grid_line_regular" align="right">.290</td><td class="grid_line_regular" align="right">.447</td><td class="grid_line_regular" align="right">.307</td><td class="grid_line_regular" align="right">92</td><td class="grid_line_break" align="right">-3.1</td><td class="grid_line_break" align="right">-5.4</td><td class="grid_line_regular" align="right">2.2</td><td class="grid_line_regular" align="right">0.4</td>
 	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason11_ctl00__34">
-		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=fangraphsdc">Depth Charts</a></td><td class="grid_line_regular" align="right">114</td><td class="grid_line_regular" align="right">480</td><td class="grid_line_regular" align="right">20</td><td class="grid_line_regular" align="right">49</td><td class="grid_line_regular" align="right">67</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_break" align="right">5.6 %</td><td class="grid_line_regular" align="right">17.3 %</td><td class="grid_line_regular" align="right">.176</td><td class="grid_line_regular" align="right">.276</td><td class="grid_line_break" align="right">.260</td><td class="grid_line_regular" align="right">.302</td><td class="grid_line_regular" align="right">.436</td><td class="grid_line_regular" align="right">.312</td><td class="grid_line_regular" align="right">95</td><td class="grid_line_break" align="right">-2.0</td><td class="grid_line_break" align="right">-4.7</td><td class="grid_line_regular" align="right">9.7</td><td class="grid_line_regular" align="right">2.1</td>
+		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=thebat">THE BAT</a></td><td class="grid_line_regular" align="right">122</td><td class="grid_line_regular" align="right">468</td><td class="grid_line_regular" align="right">20</td><td class="grid_line_regular" align="right">50</td><td class="grid_line_regular" align="right">64</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_break" align="right">6.4 %</td><td class="grid_line_regular" align="right">17.8 %</td><td class="grid_line_regular" align="right">.175</td><td class="grid_line_regular" align="right">.283</td><td class="grid_line_break" align="right">.263</td><td class="grid_line_regular" align="right">.312</td><td class="grid_line_regular" align="right">.438</td><td class="grid_line_regular" align="right">.318</td><td class="grid_line_regular" align="right">99</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
+	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason11_ctl00__35">
+		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=atc">ATC</a></td><td class="grid_line_regular" align="right">121</td><td class="grid_line_regular" align="right">456</td><td class="grid_line_regular" align="right">18</td><td class="grid_line_regular" align="right">45</td><td class="grid_line_regular" align="right">67</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_break" align="right">5.4 %</td><td class="grid_line_regular" align="right">16.5 %</td><td class="grid_line_regular" align="right">.171</td><td class="grid_line_regular" align="right">.286</td><td class="grid_line_break" align="right">.269</td><td class="grid_line_regular" align="right">.308</td><td class="grid_line_regular" align="right">.440</td><td class="grid_line_regular" align="right">.315</td><td class="grid_line_regular" align="right">93</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason11_ctl00__36">
-		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=steamer">Steamer</a></td><td class="grid_line_regular" align="right">83</td><td class="grid_line_regular" align="right">335</td><td class="grid_line_regular" align="right">14</td><td class="grid_line_regular" align="right">37</td><td class="grid_line_regular" align="right">43</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_break" align="right">5.9 %</td><td class="grid_line_regular" align="right">17.6 %</td><td class="grid_line_regular" align="right">.180</td><td class="grid_line_regular" align="right">.269</td><td class="grid_line_break" align="right">.254</td><td class="grid_line_regular" align="right">.300</td><td class="grid_line_regular" align="right">.434</td><td class="grid_line_regular" align="right">.310</td><td class="grid_line_regular" align="right">94</td><td class="grid_line_break" align="right">-1.9</td><td class="grid_line_break" align="right">-4.3</td><td class="grid_line_regular" align="right">8.6</td><td class="grid_line_regular" align="right">1.6</td>
-	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason11_ctl00__37">
+		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=fangraphsdc">Depth Charts</a></td><td class="grid_line_regular" align="right">114</td><td class="grid_line_regular" align="right">480</td><td class="grid_line_regular" align="right">20</td><td class="grid_line_regular" align="right">49</td><td class="grid_line_regular" align="right">68</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_break" align="right">5.6 %</td><td class="grid_line_regular" align="right">17.3 %</td><td class="grid_line_regular" align="right">.176</td><td class="grid_line_regular" align="right">.276</td><td class="grid_line_break" align="right">.260</td><td class="grid_line_regular" align="right">.302</td><td class="grid_line_regular" align="right">.437</td><td class="grid_line_regular" align="right">.312</td><td class="grid_line_regular" align="right">96</td><td class="grid_line_break" align="right">-2.1</td><td class="grid_line_break" align="right">-4.7</td><td class="grid_line_regular" align="right">9.7</td><td class="grid_line_regular" align="right">2.1</td>
+	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason11_ctl00__38">
+		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=steamer">Steamer</a></td><td class="grid_line_regular" align="right">99</td><td class="grid_line_regular" align="right">402</td><td class="grid_line_regular" align="right">17</td><td class="grid_line_regular" align="right">44</td><td class="grid_line_regular" align="right">53</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_break" align="right">5.9 %</td><td class="grid_line_regular" align="right">17.5 %</td><td class="grid_line_regular" align="right">.181</td><td class="grid_line_regular" align="right">.269</td><td class="grid_line_break" align="right">.254</td><td class="grid_line_regular" align="right">.300</td><td class="grid_line_regular" align="right">.435</td><td class="grid_line_regular" align="right">.311</td><td class="grid_line_regular" align="right">94</td><td class="grid_line_break" align="right">-2.2</td><td class="grid_line_break" align="right">-5.0</td><td class="grid_line_regular" align="right">10.2</td><td class="grid_line_regular" align="right">1.9</td>
+	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason11_ctl00__39">
 		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=zips">ZiPS</a></td><td class="grid_line_regular" align="right">107</td><td class="grid_line_regular" align="right">410</td><td class="grid_line_regular" align="right">17</td><td class="grid_line_regular" align="right">39</td><td class="grid_line_regular" align="right">62</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_break" align="right">5.4 %</td><td class="grid_line_regular" align="right">17.1 %</td><td class="grid_line_regular" align="right">.172</td><td class="grid_line_regular" align="right">.283</td><td class="grid_line_break" align="right">.266</td><td class="grid_line_regular" align="right">.305</td><td class="grid_line_regular" align="right">.439</td><td class="grid_line_regular" align="right">.314</td><td class="grid_line_regular" align="right">97</td><td class="grid_line_break" align="right">-0.2</td><td class="grid_line_break" align="right">-1.9</td><td class="grid_line_regular" align="right">5.9</td><td class="grid_line_regular" align="right">1.8</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason11_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason11_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">649</td><td class="grid_line_regular" align="right">2528</td><td class="grid_line_regular" align="right">94</td><td class="grid_line_regular" align="right">243</td><td class="grid_line_regular" align="right">356</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_break" align="right">5.9 %</td><td class="grid_line_regular" align="right">16.7 %</td><td class="grid_line_regular" align="right">.163</td><td class="grid_line_regular" align="right">.289</td><td class="grid_line_break" align="right">.268</td><td class="grid_line_regular" align="right">.311</td><td class="grid_line_regular" align="right">.431</td><td class="grid_line_regular" align="right">.319</td><td class="grid_line_regular" align="right">99</td><td class="grid_line_break" align="right">-25.3</td><td class="grid_line_break" align="right">-27.8</td><td class="grid_line_regular" align="right">51.3</td><td class="grid_line_regular" align="right">10.7</td>
-	</tr><tr class="rgRow grid_postseason_total" id="SeasonStats1_dgSeason11_ctl00__39">
+	</tr><tr class="rgRow grid_postseason_total" id="SeasonStats1_dgSeason11_ctl00__41">
 		<td class="grid_line_regular">Postseason</td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">19</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_break" align="right">5.3 %</td><td class="grid_line_regular" align="right">31.6 %</td><td class="grid_line_regular" align="right">.000</td><td class="grid_line_regular" align="right">.182</td><td class="grid_line_break" align="right">.118</td><td class="grid_line_regular" align="right">.167</td><td class="grid_line_regular" align="right">.118</td><td class="grid_line_regular" align="right">.137</td><td class="grid_line_regular" align="right">-23</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr>
 	</tbody>
@@ -303,14 +1148,18 @@ class="player-info-box">
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason1_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=0&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=0&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">64</td><td class="grid_line_regular" align="right">208</td><td class="grid_line_regular" align="right">224</td><td class="grid_line_regular" align="right">54</td><td class="grid_line_regular" align="right">37</td><td class="grid_line_regular" align="right">6</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">11</td><td class="grid_line_regular" align="right">19</td><td class="grid_line_regular" align="right">35</td><td class="grid_line_regular" align="right">10</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">36</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">11</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">.260</td>
 	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason1_ctl00__34">
-		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=fangraphsdc">Depth Charts</a></td><td class="grid_line_regular" align="right">114</td><td class="grid_line_regular" align="right">446</td><td class="grid_line_regular" align="right">480</td><td class="grid_line_regular" align="right">116</td><td class="grid_line_regular" align="right">78</td><td class="grid_line_regular" align="right">18</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">20</td><td class="grid_line_regular" align="right">49</td><td class="grid_line_regular" align="right">67</td><td class="grid_line_regular" align="right">27</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">83</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">.260</td>
+		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=thebat">THE BAT</a></td><td class="grid_line_regular" align="right">122</td><td class="grid_line_regular" align="right">431</td><td class="grid_line_regular" align="right">468</td><td class="grid_line_regular" align="right">113</td><td class="grid_line_regular" align="right">77</td><td class="grid_line_regular" align="right">16</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">20</td><td class="grid_line_regular" align="right">50</td><td class="grid_line_regular" align="right">64</td><td class="grid_line_regular" align="right">30</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">83</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">13</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">.263</td>
+	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason1_ctl00__35">
+		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=atc">ATC</a></td><td class="grid_line_regular" align="right">121</td><td class="grid_line_regular" align="right">425</td><td class="grid_line_regular" align="right">456</td><td class="grid_line_regular" align="right">115</td><td class="grid_line_regular" align="right">79</td><td class="grid_line_regular" align="right">17</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">18</td><td class="grid_line_regular" align="right">45</td><td class="grid_line_regular" align="right">67</td><td class="grid_line_regular" align="right">24</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">75</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">18</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">.269</td>
 	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason1_ctl00__36">
-		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=steamer">Steamer</a></td><td class="grid_line_regular" align="right">83</td><td class="grid_line_regular" align="right">309</td><td class="grid_line_regular" align="right">335</td><td class="grid_line_regular" align="right">78</td><td class="grid_line_regular" align="right">51</td><td class="grid_line_regular" align="right">12</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">14</td><td class="grid_line_regular" align="right">37</td><td class="grid_line_regular" align="right">43</td><td class="grid_line_regular" align="right">20</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">59</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">.254</td>
-	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason1_ctl00__37">
+		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=fangraphsdc">Depth Charts</a></td><td class="grid_line_regular" align="right">114</td><td class="grid_line_regular" align="right">446</td><td class="grid_line_regular" align="right">480</td><td class="grid_line_regular" align="right">116</td><td class="grid_line_regular" align="right">78</td><td class="grid_line_regular" align="right">18</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">20</td><td class="grid_line_regular" align="right">49</td><td class="grid_line_regular" align="right">68</td><td class="grid_line_regular" align="right">27</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">83</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">.260</td>
+	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason1_ctl00__38">
+		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=steamer">Steamer</a></td><td class="grid_line_regular" align="right">99</td><td class="grid_line_regular" align="right">372</td><td class="grid_line_regular" align="right">402</td><td class="grid_line_regular" align="right">94</td><td class="grid_line_regular" align="right">62</td><td class="grid_line_regular" align="right">15</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">17</td><td class="grid_line_regular" align="right">44</td><td class="grid_line_regular" align="right">53</td><td class="grid_line_regular" align="right">24</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">70</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">.254</td>
+	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason1_ctl00__39">
 		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=zips">ZiPS</a></td><td class="grid_line_regular" align="right">107</td><td class="grid_line_regular" align="right">383</td><td class="grid_line_regular" align="right">410</td><td class="grid_line_regular" align="right">102</td><td class="grid_line_regular" align="right">70</td><td class="grid_line_regular" align="right">15</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">17</td><td class="grid_line_regular" align="right">39</td><td class="grid_line_regular" align="right">62</td><td class="grid_line_regular" align="right">22</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">70</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">16</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">.266</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason1_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason1_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=0&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">649</td><td class="grid_line_regular" align="right">2344</td><td class="grid_line_regular" align="right">2528</td><td class="grid_line_regular" align="right">628</td><td class="grid_line_regular" align="right">434</td><td class="grid_line_regular" align="right">99</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">94</td><td class="grid_line_regular" align="right">243</td><td class="grid_line_regular" align="right">356</td><td class="grid_line_regular" align="right">150</td><td class="grid_line_regular" align="right">19</td><td class="grid_line_regular" align="right">422</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">22</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">95</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">.268</td>
-	</tr><tr class="rgRow grid_postseason_total" id="SeasonStats1_dgSeason1_ctl00__39">
+	</tr><tr class="rgRow grid_postseason_total" id="SeasonStats1_dgSeason1_ctl00__41">
 		<td class="grid_line_regular">Postseason</td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">17</td><td class="grid_line_regular" align="right">19</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">6</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">.118</td>
 	</tr>
 	</tbody>
@@ -422,14 +1271,18 @@ class="player-info-box">
 	</tr><tr class="rgRow grid_average" id="SeasonStats1_dgSeason2_ctl00__33">
 		<td class="grid_line_regular">2017</td><td class="grid_line_regular">Average</td><td class="grid_line_regular" align="right">8.5 %</td><td class="grid_line_regular" align="right">21.6 %</td><td class="grid_line_regular" align="right">0.39</td><td class="grid_line_break" align="right">.255</td><td class="grid_line_regular" align="right">.324</td><td class="grid_line_regular" align="right">.426</td><td class="grid_line_regular" align="right">.750</td><td class="grid_line_break" align="right">.171</td><td class="grid_line_regular" align="right">5.0</td><td class="grid_line_regular" align="right">.300</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">.321</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason2_ctl00__34">
-		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=fangraphsdc">Depth Charts</a></td><td class="grid_line_regular" align="right">5.6 %</td><td class="grid_line_regular" align="right">17.3 %</td><td class="grid_line_regular" align="right">0.33</td><td class="grid_line_break" align="right">.260</td><td class="grid_line_regular" align="right">.302</td><td class="grid_line_regular" align="right">.436</td><td class="grid_line_regular" align="right">.739</td><td class="grid_line_break" align="right">.176</td><td class="grid_line_regular" align="right">1.5</td><td class="grid_line_regular" align="right">.276</td><td class="grid_line_break" align="right">-1.7</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-0.3</td><td class="grid_line_break" align="right">55</td><td class="grid_line_regular" align="right">-3.6</td><td class="grid_line_regular" align="right">.312</td><td class="grid_line_regular" align="right">95</td>
+		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=thebat">THE BAT</a></td><td class="grid_line_regular" align="right">6.4 %</td><td class="grid_line_regular" align="right">17.8 %</td><td class="grid_line_regular" align="right">0.36</td><td class="grid_line_break" align="right">.263</td><td class="grid_line_regular" align="right">.312</td><td class="grid_line_regular" align="right">.438</td><td class="grid_line_regular" align="right">.749</td><td class="grid_line_break" align="right">.175</td><td class="grid_line_regular" align="right">1.6</td><td class="grid_line_regular" align="right">.283</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-0.3</td><td class="grid_line_break" align="right">56</td><td class="grid_line_regular" align="right">-1.2</td><td class="grid_line_regular" align="right">.318</td><td class="grid_line_regular" align="right">99</td>
+	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason2_ctl00__35">
+		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=atc">ATC</a></td><td class="grid_line_regular" align="right">5.4 %</td><td class="grid_line_regular" align="right">16.5 %</td><td class="grid_line_regular" align="right">0.33</td><td class="grid_line_break" align="right">.269</td><td class="grid_line_regular" align="right">.308</td><td class="grid_line_regular" align="right">.440</td><td class="grid_line_regular" align="right">.748</td><td class="grid_line_break" align="right">.171</td><td class="grid_line_regular" align="right">1.0</td><td class="grid_line_regular" align="right">.286</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-0.3</td><td class="grid_line_break" align="right">53</td><td class="grid_line_regular" align="right">-2.2</td><td class="grid_line_regular" align="right">.315</td><td class="grid_line_regular" align="right">93</td>
 	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason2_ctl00__36">
-		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=steamer">Steamer</a></td><td class="grid_line_regular" align="right">5.9 %</td><td class="grid_line_regular" align="right">17.6 %</td><td class="grid_line_regular" align="right">0.34</td><td class="grid_line_break" align="right">.254</td><td class="grid_line_regular" align="right">.300</td><td class="grid_line_regular" align="right">.434</td><td class="grid_line_regular" align="right">.734</td><td class="grid_line_break" align="right">.180</td><td class="grid_line_regular" align="right">2.2</td><td class="grid_line_regular" align="right">.269</td><td class="grid_line_break" align="right">-1.6</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-0.2</td><td class="grid_line_break" align="right">38</td><td class="grid_line_regular" align="right">-3.0</td><td class="grid_line_regular" align="right">.310</td><td class="grid_line_regular" align="right">94</td>
-	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason2_ctl00__37">
+		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=fangraphsdc">Depth Charts</a></td><td class="grid_line_regular" align="right">5.6 %</td><td class="grid_line_regular" align="right">17.3 %</td><td class="grid_line_regular" align="right">0.33</td><td class="grid_line_break" align="right">.260</td><td class="grid_line_regular" align="right">.302</td><td class="grid_line_regular" align="right">.437</td><td class="grid_line_regular" align="right">.739</td><td class="grid_line_break" align="right">.176</td><td class="grid_line_regular" align="right">1.7</td><td class="grid_line_regular" align="right">.276</td><td class="grid_line_break" align="right">-1.8</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-0.3</td><td class="grid_line_break" align="right">55</td><td class="grid_line_regular" align="right">-3.5</td><td class="grid_line_regular" align="right">.312</td><td class="grid_line_regular" align="right">96</td>
+	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason2_ctl00__38">
+		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=steamer">Steamer</a></td><td class="grid_line_regular" align="right">5.9 %</td><td class="grid_line_regular" align="right">17.5 %</td><td class="grid_line_regular" align="right">0.34</td><td class="grid_line_break" align="right">.254</td><td class="grid_line_regular" align="right">.300</td><td class="grid_line_regular" align="right">.435</td><td class="grid_line_regular" align="right">.735</td><td class="grid_line_break" align="right">.181</td><td class="grid_line_regular" align="right">2.1</td><td class="grid_line_regular" align="right">.269</td><td class="grid_line_break" align="right">-1.9</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-0.3</td><td class="grid_line_break" align="right">46</td><td class="grid_line_regular" align="right">-3.5</td><td class="grid_line_regular" align="right">.311</td><td class="grid_line_regular" align="right">94</td>
+	</tr><tr class="rgRow grid_projections_show" id="SeasonStats1_dgSeason2_ctl00__39">
 		<td class="grid_line_regular">2018</td><td class="grid_line_regular"><a href="projections.aspx?pos=all&stats=bat&type=zips">ZiPS</a></td><td class="grid_line_regular" align="right">5.4 %</td><td class="grid_line_regular" align="right">17.1 %</td><td class="grid_line_regular" align="right">0.31</td><td class="grid_line_break" align="right">.266</td><td class="grid_line_regular" align="right">.305</td><td class="grid_line_regular" align="right">.439</td><td class="grid_line_regular" align="right">.744</td><td class="grid_line_break" align="right">.172</td><td class="grid_line_regular" align="right">0.8</td><td class="grid_line_regular" align="right">.283</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-0.2</td><td class="grid_line_break" align="right">48</td><td class="grid_line_regular" align="right">-2.4</td><td class="grid_line_regular" align="right">.314</td><td class="grid_line_regular" align="right">97</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason2_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason2_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=1&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">5.9 %</td><td class="grid_line_regular" align="right">16.7 %</td><td class="grid_line_regular" align="right">0.36</td><td class="grid_line_break" align="right">.268</td><td class="grid_line_regular" align="right">.311</td><td class="grid_line_regular" align="right">.431</td><td class="grid_line_regular" align="right">.742</td><td class="grid_line_break" align="right">.163</td><td class="grid_line_regular" align="right">1.0</td><td class="grid_line_regular" align="right">.289</td><td class="grid_line_break" align="right">-9.4</td><td class="grid_line_regular" align="right">-13.0</td><td class="grid_line_regular" align="right">-2.9</td><td class="grid_line_break" align="right">295</td><td class="grid_line_regular" align="right">7.8</td><td class="grid_line_regular" align="right">.319</td><td class="grid_line_regular" align="right">99</td>
-	</tr><tr class="rgRow grid_postseason_total" id="SeasonStats1_dgSeason2_ctl00__39">
+	</tr><tr class="rgRow grid_postseason_total" id="SeasonStats1_dgSeason2_ctl00__41">
 		<td class="grid_line_regular">Postseason</td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">5.3 %</td><td class="grid_line_regular" align="right">31.6 %</td><td class="grid_line_regular" align="right">0.17</td><td class="grid_line_break" align="right">.118</td><td class="grid_line_regular" align="right">.167</td><td class="grid_line_regular" align="right">.118</td><td class="grid_line_regular" align="right">.284</td><td class="grid_line_break" align="right">.000</td><td class="grid_line_regular" align="right">1.6</td><td class="grid_line_regular" align="right">.182</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">0.0</td><td class="grid_line_break" align="right">0</td><td class="grid_line_regular" align="right">-2.5</td><td class="grid_line_regular" align="right">.137</td><td class="grid_line_regular" align="right">-23</td>
 	</tr>
 	</tbody>
@@ -517,9 +1370,9 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=2,4&qual=y&type=0&season=2017&team=0&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=0&season=2017&team=23&players=0">Rays (AAA)</a></td><td class="grid_line_regular" align="right">1.20</td><td class="grid_line_regular" align="right">18.5 %</td><td class="grid_line_regular" align="right">44.4 %</td><td class="grid_line_regular" align="right">37.0 %</td><td class="grid_line_regular" align="right">30.0 %</td><td class="grid_line_regular" align="right">20.0 %</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">51.9 %</td><td class="grid_line_regular" align="right">22.2 %</td><td class="grid_line_regular" align="right">25.9 %</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason3_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=2&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=2&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">1.72</td><td class="grid_line_regular" align="right">17.7 %</td><td class="grid_line_regular" align="right">52.0 %</td><td class="grid_line_regular" align="right">30.3 %</td><td class="grid_line_regular" align="right">11.3 %</td><td class="grid_line_regular" align="right">20.8 %</td><td class="grid_line_regular" align="right">6.6 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">46.3 %</td><td class="grid_line_regular" align="right">32.6 %</td><td class="grid_line_regular" align="right">21.1 %</td><td class="grid_line_break" align="right">22.3 %</td><td class="grid_line_regular" align="right">44.6 %</td><td class="grid_line_regular" align="right">33.1 %</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason3_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason3_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=2&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">1.99</td><td class="grid_line_regular" align="right">18.7 %</td><td class="grid_line_regular" align="right">54.1 %</td><td class="grid_line_regular" align="right">27.2 %</td><td class="grid_line_regular" align="right">6.6 %</td><td class="grid_line_regular" align="right">17.8 %</td><td class="grid_line_regular" align="right">4.8 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">38.0 %</td><td class="grid_line_regular" align="right">35.6 %</td><td class="grid_line_regular" align="right">26.3 %</td><td class="grid_line_break" align="right">18.1 %</td><td class="grid_line_regular" align="right">50.6 %</td><td class="grid_line_regular" align="right">31.3 %</td>
-	</tr><tr class="rgRow grid_postseason_total" id="SeasonStats1_dgSeason3_ctl00__39">
+	</tr><tr class="rgRow grid_postseason_total" id="SeasonStats1_dgSeason3_ctl00__41">
 		<td class="grid_line_regular">Postseason</td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">8.00</td><td class="grid_line_regular" align="right">18.2 %</td><td class="grid_line_regular" align="right">72.7 %</td><td class="grid_line_regular" align="right">9.1 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">100.0 %</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr>
 	</tbody>
@@ -603,9 +1456,9 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=2,4&qual=y&type=0&season=2017&team=0&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=0&season=2017&team=23&players=0">Rays (AAA)</a></td><td class="grid_line_regular" align="right">12</td><td class="grid_line_regular" align="right">10</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">47</td><td class="grid_line_regular" align="right">73</td><td class="grid_line_regular" align="right">120</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason4_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=2&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=2&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">91</td><td class="grid_line_regular" align="right">53</td><td class="grid_line_regular" align="right">31</td><td class="grid_line_regular" align="right">6</td><td class="grid_line_regular" align="right">6</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">220</td><td class="grid_line_regular" align="right">498</td><td class="grid_line_regular" align="right">718</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason4_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason4_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=2&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">1052</td><td class="grid_line_regular" align="right">529</td><td class="grid_line_regular" align="right">363</td><td class="grid_line_regular" align="right">35</td><td class="grid_line_regular" align="right">51</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">3031</td><td class="grid_line_regular" align="right">5805</td><td class="grid_line_regular" align="right">8836</td>
-	</tr><tr class="rgRow grid_postseason_total" id="SeasonStats1_dgSeason4_ctl00__39">
+	</tr><tr class="rgRow grid_postseason_total" id="SeasonStats1_dgSeason4_ctl00__41">
 		<td class="grid_line_regular">Postseason</td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">8</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">23</td><td class="grid_line_regular" align="right">47</td><td class="grid_line_regular" align="right">70</td>
 	</tr>
 	</tbody>
@@ -663,9 +1516,9 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=3&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=3&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">2.58</td><td class="grid_line_regular" align="right">-8.49</td><td class="grid_line_regular" align="right">11.07</td><td class="grid_line_regular" align="right">18.11</td><td class="grid_line_regular" align="right">1.84</td><td class="grid_line_regular" align="right">1.00</td><td class="grid_line_regular" align="right">1.89</td><td class="grid_line_regular" align="right">7</td><td class="grid_line_regular" align="right">2.06</td><td class="grid_line_regular" align="right">0.51</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason5_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=3&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=3&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">-0.62</td><td class="grid_line_regular" align="right">-4.60</td><td class="grid_line_regular" align="right">3.97</td><td class="grid_line_regular" align="right">-1.50</td><td class="grid_line_regular" align="right">-0.21</td><td class="grid_line_regular" align="right">0.99</td><td class="grid_line_regular" align="right">2.44</td><td class="grid_line_regular" align="right">3</td><td class="grid_line_regular" align="right">-0.05</td><td class="grid_line_regular" align="right">-0.58</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason5_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason5_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=3&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">-0.59</td><td class="grid_line_regular" align="right">-47.73</td><td class="grid_line_regular" align="right">47.14</td><td class="grid_line_regular" align="right">8.51</td><td class="grid_line_regular" align="right">0.91</td><td class="grid_line_regular" align="right">1.03</td><td class="grid_line_regular" align="right">2.07</td><td class="grid_line_regular" align="right">19</td><td class="grid_line_regular" align="right">1.42</td><td class="grid_line_regular" align="right">-2.00</td>
-	</tr><tr class="rgRow grid_postseason_total" id="SeasonStats1_dgSeason5_ctl00__39">
+	</tr><tr class="rgRow grid_postseason_total" id="SeasonStats1_dgSeason5_ctl00__41">
 		<td class="grid_line_regular">Postseason</td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">-0.32</td><td class="grid_line_regular" align="right">-0.63</td><td class="grid_line_regular" align="right">0.31</td><td class="grid_line_regular" align="right">-1.06</td><td class="grid_line_regular" align="right">-0.11</td><td class="grid_line_regular" align="right">1.47</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">-0.22</td><td class="grid_line_regular" align="right">0.00</td>
 	</tr>
 	</tbody>
@@ -719,7 +1572,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=4&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=4&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">53.9% (92.5)</td><td class="grid_line_regular" align="right">18.7% (84.6)</td><td class="grid_line_regular" align="right">6.7% (87.6)</td><td class="grid_line_regular" align="right">10.6% (78.4)</td><td class="grid_line_regular" align="right">9.6% (82.7)</td><td class="grid_line_regular" align="right">0.5% (85.2)</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">0.4%</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason6_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=4&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=4&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">55.0% (92.4)</td><td class="grid_line_regular" align="right">21.3% (83.4)</td><td class="grid_line_regular" align="right">4.7% (88.4)</td><td class="grid_line_regular" align="right">7.9% (80.0)</td><td class="grid_line_regular" align="right">10.2% (83.9)</td><td class="grid_line_regular" align="right">0.8% (85.7)</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">1.0%</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason6_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason6_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=4&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">56.0% (92.2)</td><td class="grid_line_regular" align="right">19.0% (84.0)</td><td class="grid_line_regular" align="right">6.1% (87.6)</td><td class="grid_line_regular" align="right">9.4% (78.2)</td><td class="grid_line_regular" align="right">8.2% (82.9)</td><td class="grid_line_regular" align="right">0.9% (84.3)</td><td class="grid_line_regular" align="right">0.4% (76.3)</td><td class="grid_line_regular" align="right">0.8%</td>
 	</tr>
 	</tbody>
@@ -779,7 +1632,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=9&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=9&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">32.1 %</td><td class="grid_line_regular" align="right">13.8 %</td><td class="grid_line_regular" align="right">5.1 %</td><td class="grid_line_regular" align="right">1.0 %</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">7.8 %</td><td class="grid_line_regular" align="right">19.3 %</td><td class="grid_line_regular" align="right">9.5 %</td><td class="grid_line_regular" align="right">1.7 %</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">9.7 %</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason16_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=9&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=9&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">30.7 %</td><td class="grid_line_regular" align="right">16.4 %</td><td class="grid_line_regular" align="right">3.3 %</td><td class="grid_line_regular" align="right">1.4 %</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">9.1 %</td><td class="grid_line_regular" align="right">21.0 %</td><td class="grid_line_regular" align="right">6.5 %</td><td class="grid_line_regular" align="right">2.2 %</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">9.5 %</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason16_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason16_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=9&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">34.1 %</td><td class="grid_line_regular" align="right">13.1 %</td><td class="grid_line_regular" align="right">4.8 %</td><td class="grid_line_regular" align="right">1.0 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">8.9 %</td><td class="grid_line_regular" align="right">20.0 %</td><td class="grid_line_regular" align="right">8.1 %</td><td class="grid_line_regular" align="right">1.5 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_regular" align="right">8.0 %</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">0.4 %</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr>
 	</tbody>
@@ -838,7 +1691,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=10&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=10&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">92.9</td><td class="grid_line_regular" align="right">91.6</td><td class="grid_line_regular" align="right">88.0</td><td class="grid_line_regular" align="right">83.2</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">92.3</td><td class="grid_line_regular" align="right">84.6</td><td class="grid_line_regular" align="right">78.6</td><td class="grid_line_regular" align="right">79.1</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">83.1</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason17_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=10&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=10&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">93.3</td><td class="grid_line_regular" align="right">91.5</td><td class="grid_line_regular" align="right">88.4</td><td class="grid_line_regular" align="right">85.9</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">91.3</td><td class="grid_line_regular" align="right">83.4</td><td class="grid_line_regular" align="right">79.6</td><td class="grid_line_regular" align="right">80.8</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">83.8</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason17_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason17_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=10&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">92.5</td><td class="grid_line_regular" align="right">91.7</td><td class="grid_line_regular" align="right">88.0</td><td class="grid_line_regular" align="right">83.8</td><td class="grid_line_regular" align="right">81.8</td><td class="grid_line_regular" align="right">91.1</td><td class="grid_line_regular" align="right">84.1</td><td class="grid_line_regular" align="right">78.0</td><td class="grid_line_regular" align="right">80.3</td><td class="grid_line_regular" align="right">57.6</td><td class="grid_line_regular" align="right">82.9</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">76.2</td>
 	</tr>
 	</tbody>
@@ -895,7 +1748,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=22&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=22&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">30.8 %</td><td class="grid_line_regular" align="right">6.7 %</td><td class="grid_line_regular" align="right">1.2 %</td><td class="grid_line_regular" align="right">22.8 %</td><td class="grid_line_regular" align="right">8.7 %</td><td class="grid_line_regular" align="right">18.8 %</td><td class="grid_line_regular" align="right">11.0 %</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason22_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=22&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=22&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">32.7 %</td><td class="grid_line_regular" align="right">4.6 %</td><td class="grid_line_regular" align="right">0.8 %</td><td class="grid_line_regular" align="right">22.9 %</td><td class="grid_line_regular" align="right">9.6 %</td><td class="grid_line_regular" align="right">21.9 %</td><td class="grid_line_regular" align="right">7.4 %</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason22_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason22_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=22&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">33.1 %</td><td class="grid_line_regular" align="right">6.5 %</td><td class="grid_line_regular" align="right">1.4 %</td><td class="grid_line_regular" align="right">22.4 %</td><td class="grid_line_regular" align="right">7.7 %</td><td class="grid_line_regular" align="right">18.6 %</td><td class="grid_line_regular" align="right">9.9 %</td><td class="grid_line_regular" align="right">0.1 %</td><td class="grid_line_regular" align="right">0.4 %</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr>
 	</tbody>
@@ -951,7 +1804,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">93.8</td><td class="grid_line_regular" align="right">88.7</td><td class="grid_line_regular" align="right">84.1</td><td class="grid_line_regular" align="right">92.7</td><td class="grid_line_regular" align="right">83.4</td><td class="grid_line_regular" align="right">85.4</td><td class="grid_line_regular" align="right">79.3</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason25_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">94.0</td><td class="grid_line_regular" align="right">88.9</td><td class="grid_line_regular" align="right">85.4</td><td class="grid_line_regular" align="right">91.2</td><td class="grid_line_regular" align="right">83.5</td><td class="grid_line_regular" align="right">83.8</td><td class="grid_line_regular" align="right">79.7</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason25_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason25_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">93.4</td><td class="grid_line_regular" align="right">88.5</td><td class="grid_line_regular" align="right">84.3</td><td class="grid_line_regular" align="right">92.0</td><td class="grid_line_regular" align="right">83.4</td><td class="grid_line_regular" align="right">84.8</td><td class="grid_line_regular" align="right">78.9</td><td class="grid_line_regular" align="right">71.0</td><td class="grid_line_regular" align="right">76.4</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr>
 	</tbody>
@@ -1011,7 +1864,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=7&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=7&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">15.7</td><td class="grid_line_regular" align="right">1.3</td><td class="grid_line_regular" align="right">0.2</td><td class="grid_line_regular" align="right">1.1</td><td class="grid_line_regular" align="right">-1.3</td><td class="grid_line_regular" align="right">-0.8</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">1.57</td><td class="grid_line_regular" align="right">0.37</td><td class="grid_line_regular" align="right">0.13</td><td class="grid_line_regular" align="right">0.56</td><td class="grid_line_regular" align="right">-0.71</td><td class="grid_line_regular" align="right">-7.53</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason10_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=7&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=7&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">-0.4</td><td class="grid_line_regular" align="right">0.7</td><td class="grid_line_regular" align="right">0.1</td><td class="grid_line_regular" align="right">-0.5</td><td class="grid_line_regular" align="right">-3.7</td><td class="grid_line_regular" align="right">0.6</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">-0.11</td><td class="grid_line_regular" align="right">0.48</td><td class="grid_line_regular" align="right">0.25</td><td class="grid_line_regular" align="right">-0.88</td><td class="grid_line_regular" align="right">-5.13</td><td class="grid_line_regular" align="right">10.66</td><td class="grid_line_regular" align="right">&nbsp;</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason10_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason10_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=7&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">15.8</td><td class="grid_line_regular" align="right">-7.7</td><td class="grid_line_regular" align="right">4.2</td><td class="grid_line_regular" align="right">-0.6</td><td class="grid_line_regular" align="right">-14.4</td><td class="grid_line_regular" align="right">-1.9</td><td class="grid_line_regular" align="right">2.1</td><td class="grid_line_break" align="right">0.32</td><td class="grid_line_regular" align="right">-0.46</td><td class="grid_line_regular" align="right">0.80</td><td class="grid_line_regular" align="right">-0.07</td><td class="grid_line_regular" align="right">-2.00</td><td class="grid_line_regular" align="right">-2.39</td><td class="grid_line_regular" align="right">5.65</td>
 	</tr>
 	</tbody>
@@ -1070,7 +1923,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=13&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=13&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">13.6</td><td class="grid_line_regular" align="right">0.3</td><td class="grid_line_regular" align="right">-0.3</td><td class="grid_line_regular" align="right">-0.8</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-1.1</td><td class="grid_line_regular" align="right">0.6</td><td class="grid_line_regular" align="right">1.8</td><td class="grid_line_regular" align="right">-0.1</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">0.5</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason19_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=13&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=13&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">-1.3</td><td class="grid_line_regular" align="right">3.0</td><td class="grid_line_regular" align="right">-0.3</td><td class="grid_line_regular" align="right">0.0</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-3.9</td><td class="grid_line_regular" align="right">0.5</td><td class="grid_line_regular" align="right">-1.5</td><td class="grid_line_regular" align="right">0.8</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-2.3</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason19_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason19_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=13&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">16.8</td><td class="grid_line_regular" align="right">-2.5</td><td class="grid_line_regular" align="right">2.2</td><td class="grid_line_regular" align="right">-4.4</td><td class="grid_line_regular" align="right">0.5</td><td class="grid_line_regular" align="right">-13.9</td><td class="grid_line_regular" align="right">-2.2</td><td class="grid_line_regular" align="right">-2.2</td><td class="grid_line_regular" align="right">0.0</td><td class="grid_line_regular" align="right">0.0</td><td class="grid_line_regular" align="right">-7.3</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">2.1</td>
 	</tr>
 	</tbody>
@@ -1129,7 +1982,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=14&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=14&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">2.28</td><td class="grid_line_regular" align="right">0.11</td><td class="grid_line_regular" align="right">-0.28</td><td class="grid_line_regular" align="right">-4.30</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-0.79</td><td class="grid_line_regular" align="right">0.17</td><td class="grid_line_regular" align="right">1.01</td><td class="grid_line_regular" align="right">-0.17</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">0.28</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason20_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=14&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=14&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">-0.60</td><td class="grid_line_regular" align="right">2.65</td><td class="grid_line_regular" align="right">-1.40</td><td class="grid_line_regular" align="right">0.19</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-6.13</td><td class="grid_line_regular" align="right">0.36</td><td class="grid_line_regular" align="right">-3.40</td><td class="grid_line_regular" align="right">5.49</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-3.43</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason20_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason20_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=14&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">0.56</td><td class="grid_line_regular" align="right">-0.21</td><td class="grid_line_regular" align="right">0.53</td><td class="grid_line_regular" align="right">-4.99</td><td class="grid_line_regular" align="right">26.70</td><td class="grid_line_regular" align="right">-1.79</td><td class="grid_line_regular" align="right">-0.12</td><td class="grid_line_regular" align="right">-0.31</td><td class="grid_line_regular" align="right">0.03</td><td class="grid_line_regular" align="right">0.00</td><td class="grid_line_regular" align="right">-1.03</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">5.57</td>
 	</tr>
 	</tbody>
@@ -1185,7 +2038,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">13.8</td><td class="grid_line_regular" align="right">0.6</td><td class="grid_line_regular" align="right">-0.8</td><td class="grid_line_regular" align="right">1.0</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-0.2</td><td class="grid_line_regular" align="right">0.9</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason26_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">-1.7</td><td class="grid_line_regular" align="right">0.3</td><td class="grid_line_regular" align="right">0.6</td><td class="grid_line_regular" align="right">0.7</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">0.1</td><td class="grid_line_regular" align="right">-0.5</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason26_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason26_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">22.1</td><td class="grid_line_regular" align="right">0.0</td><td class="grid_line_regular" align="right">-2.7</td><td class="grid_line_regular" align="right">-10.3</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">-5.0</td><td class="grid_line_regular" align="right">-2.3</td><td class="grid_line_regular" align="right">-0.2</td><td class="grid_line_regular" align="right">2.0</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr>
 	</tbody>
@@ -1241,7 +2094,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">2.42</td><td class="grid_line_regular" align="right">0.51</td><td class="grid_line_regular" align="right">-3.65</td><td class="grid_line_regular" align="right">0.24</td><td class="grid_line_regular" align="right">-0.51</td><td class="grid_line_regular" align="right">-0.06</td><td class="grid_line_regular" align="right">0.44</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason27_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">-0.74</td><td class="grid_line_regular" align="right">0.98</td><td class="grid_line_regular" align="right">10.66</td><td class="grid_line_regular" align="right">0.41</td><td class="grid_line_regular" align="right">-6.62</td><td class="grid_line_regular" align="right">0.04</td><td class="grid_line_regular" align="right">-1.02</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason27_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason27_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">0.76</td><td class="grid_line_regular" align="right">0.00</td><td class="grid_line_regular" align="right">-2.27</td><td class="grid_line_regular" align="right">-0.53</td><td class="grid_line_regular" align="right">-2.13</td><td class="grid_line_regular" align="right">-0.31</td><td class="grid_line_regular" align="right">-0.26</td><td class="grid_line_regular" align="right">-5.84</td><td class="grid_line_regular" align="right">5.56</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr>
 	</tbody>
@@ -1312,7 +2165,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=5&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=5&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">40.3 %</td><td class="grid_line_regular" align="right">73.9 %</td><td class="grid_line_regular" align="right">55.6 %</td><td class="grid_line_regular" align="right">67.1 %</td><td class="grid_line_regular" align="right">88.4 %</td><td class="grid_line_regular" align="right">80.0 %</td><td class="grid_line_regular" align="right">45.4 %</td><td class="grid_line_regular" align="right">67.9 %</td><td class="grid_line_regular" align="right">11.0 %</td>
 	</tr><tr class="rgRow grid_average" id="SeasonStats1_dgSeason7_ctl00__33">
 		<td class="grid_line_regular">2017</td><td class="grid_line_regular">Average</td><td class="grid_line_regular" align="right">29.9 %</td><td class="grid_line_regular" align="right">66.7 %</td><td class="grid_line_regular" align="right">46.5 %</td><td class="grid_line_regular" align="right">62.9 %</td><td class="grid_line_regular" align="right">85.5 %</td><td class="grid_line_regular" align="right">77.5 %</td><td class="grid_line_regular" align="right">45.0 %</td><td class="grid_line_regular" align="right">60.3 %</td><td class="grid_line_regular" align="right">10.4 %</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason7_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason7_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=5&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">35.0 %</td><td class="grid_line_regular" align="right">73.7 %</td><td class="grid_line_regular" align="right">52.7 %</td><td class="grid_line_regular" align="right">65.7 %</td><td class="grid_line_regular" align="right">87.6 %</td><td class="grid_line_regular" align="right">79.8 %</td><td class="grid_line_regular" align="right">45.9 %</td><td class="grid_line_regular" align="right">64.0 %</td><td class="grid_line_regular" align="right">10.6 %</td>
 	</tr>
 	</tbody>
@@ -1382,7 +2235,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=15&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=15&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">39.4 %</td><td class="grid_line_regular" align="right">72.5 %</td><td class="grid_line_regular" align="right">55.7 %</td><td class="grid_line_regular" align="right">63.3 %</td><td class="grid_line_regular" align="right">89.9 %</td><td class="grid_line_regular" align="right">80.4 %</td><td class="grid_line_regular" align="right">49.2 %</td><td class="grid_line_regular" align="right">24.5</td>
 	</tr><tr class="rgRow grid_average" id="SeasonStats1_dgSeason18_ctl00__33">
 		<td class="grid_line_regular">2017</td><td class="grid_line_regular">Average</td><td class="grid_line_regular" align="right">30.3 %</td><td class="grid_line_regular" align="right">64.1 %</td><td class="grid_line_regular" align="right">46.5 %</td><td class="grid_line_regular" align="right">61.2 %</td><td class="grid_line_regular" align="right">85.8 %</td><td class="grid_line_regular" align="right">77.4 %</td><td class="grid_line_regular" align="right">47.9 %</td><td class="grid_line_regular" align="right">23.8</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason18_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason18_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=15&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">34.9 %</td><td class="grid_line_regular" align="right">71.6 %</td><td class="grid_line_regular" align="right">52.7 %</td><td class="grid_line_regular" align="right">62.5 %</td><td class="grid_line_regular" align="right">88.8 %</td><td class="grid_line_regular" align="right">79.8 %</td><td class="grid_line_regular" align="right">48.6 %</td><td class="grid_line_regular" align="right">23.5</td>
 	</tr>
 	</tbody>
@@ -1436,7 +2289,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">31.6 %</td><td class="grid_line_regular" align="right">70.7 %</td><td class="grid_line_regular" align="right">50.2 %</td><td class="grid_line_regular" align="right">64.5 %</td><td class="grid_line_regular" align="right">90.6 %</td><td class="grid_line_regular" align="right">82.0 %</td><td class="grid_line_regular" align="right">47.7 %</td><td class="grid_line_regular" align="right">25.5</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason28_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=8&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">41.4 %</td><td class="grid_line_regular" align="right">71.5 %</td><td class="grid_line_regular" align="right">55.9 %</td><td class="grid_line_regular" align="right">65.6 %</td><td class="grid_line_regular" align="right">89.0 %</td><td class="grid_line_regular" align="right">80.0 %</td><td class="grid_line_regular" align="right">48.0 %</td><td class="grid_line_regular" align="right">25.0</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason28_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason28_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=8&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">35.1 %</td><td class="grid_line_regular" align="right">71.4 %</td><td class="grid_line_regular" align="right">52.8 %</td><td class="grid_line_regular" align="right">62.9 %</td><td class="grid_line_regular" align="right">88.5 %</td><td class="grid_line_regular" align="right">79.8 %</td><td class="grid_line_regular" align="right">48.7 %</td><td class="grid_line_regular" align="right">24.1</td>
 	</tr>
 	</tbody>
@@ -1493,9 +2346,9 @@ class="player-info-box">
 	</tr><tr class="rgRow grid_minors_show" id="SeasonStats1_dgSeason8_ctl00__4">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=5,6,7&qual=y&type=0&season=2009&team=0&players=0">2009</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=0&season=2009&team=538&players=0">Twins (AA)</a></td><td class="grid_line_regular" align="right">C</td><td class="grid_line_regular" align="right">45</td><td class="grid_line_regular" align="right">44</td><td class="grid_line_regular" align="right">368.0</td><td class="grid_line_regular" align="right">313</td><td class="grid_line_regular" align="right">36</td><td class="grid_line_break" align="right">4</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">7</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_break" align="right">17</td><td class="grid_line_regular" align="right">12</td><td class="grid_line_regular" align="right">4</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td>
 	</tr><tr class="rgRow grid_minors_show" id="SeasonStats1_dgSeason8_ctl00__5">
-		<td class="grid_line_regular"><a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=2,4&qual=y&type=0&season=2010&team=0&players=0">2010</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=0&season=2010&team=552&players=0">Nationals (AAA)</a></td><td class="grid_line_regular" align="right">C</td><td class="grid_line_regular" align="right">18</td><td class="grid_line_regular" align="right">18</td><td class="grid_line_regular" align="right">160.1</td><td class="grid_line_regular" align="right">122</td><td class="grid_line_regular" align="right">12</td><td class="grid_line_break" align="right">0</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">1</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_break" align="right">5</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td>
-	</tr><tr class="rgRow grid_minors_show" id="SeasonStats1_dgSeason8_ctl00__6">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=2,4&qual=y&type=0&season=2010&team=0&players=0">2010</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=0&season=2010&team=534&players=0">Twins (AAA)</a></td><td class="grid_line_regular" align="right">C</td><td class="grid_line_regular" align="right">54</td><td class="grid_line_regular" align="right">54</td><td class="grid_line_regular" align="right">470.1</td><td class="grid_line_regular" align="right">384</td><td class="grid_line_regular" align="right">29</td><td class="grid_line_break" align="right">5</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">5</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_break" align="right">19</td><td class="grid_line_regular" align="right">19</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td>
+	</tr><tr class="rgRow grid_minors_show" id="SeasonStats1_dgSeason8_ctl00__6">
+		<td class="grid_line_regular"><a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=2,4&qual=y&type=0&season=2010&team=0&players=0">2010</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/minorleaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=0&season=2010&team=552&players=0">Nationals (AAA)</a></td><td class="grid_line_regular" align="right">C</td><td class="grid_line_regular" align="right">18</td><td class="grid_line_regular" align="right">18</td><td class="grid_line_regular" align="right">160.1</td><td class="grid_line_regular" align="right">122</td><td class="grid_line_regular" align="right">12</td><td class="grid_line_break" align="right">0</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">1</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_break" align="right">5</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_break" align="right">&nbsp;</td>
 	</tr><tr class="rgAltRow" id="SeasonStats1_dgSeason8_ctl00__7">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=fld&lg=all&qual=y&type=0&season=2010&month=0&season1=2010&ind=0&team=0&rost=0&age=0&filter=&players=0">2010</a></td><td class="grid_line_regular">2 Teams</td><td class="grid_line_regular" align="right"><a href="http://www.fangraphs.com/leaders.aspx?pos=c&stats=fld&lg=all&qual=y&type=0&season=2010&month=0&season1=2010&ind=0&team=0&rost=0&age=0&filter=&players=0">C</a></td><td class="grid_line_regular" align="right">22</td><td class="grid_line_regular" align="right">21</td><td class="grid_line_regular" align="right">192.1</td><td class="grid_line_regular" align="right">137</td><td class="grid_line_regular" align="right">10</td><td class="grid_line_break" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_break" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_break" align="right">&nbsp;</td><td class="grid_line_break" align="right">10</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">7</td><td class="grid_line_break" align="right">1.000</td><td class="grid_line_break" align="right">&nbsp;</td>
 	</tr><tr class="rgRow grid_multi" id="SeasonStats1_dgSeason8_ctl00__8">
@@ -1755,7 +2608,7 @@ class="player-info-box">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=6&season=2016&month=0&season1=2016&ind=0&team=0&rost=0&age=0&filter=&players=0">2016</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=6&season=2016&month=0&season1=2016&ind=0&team=24&rost=0&age=0&filter=&players=0">Nationals</a></td><td class="grid_line_regular" align="right">15.5</td><td class="grid_line_regular" align="right">-6.9</td><td class="grid_line_regular" align="right">-1.0</td><td class="grid_line_regular" align="right">9.4</td><td class="grid_line_break" align="right">8.5</td><td class="grid_line_regular" align="right">8.4</td><td class="grid_line_break" align="right">0.8</td><td class="grid_line_regular" align="right">15.8</td><td class="grid_line_break" align="right">33.6</td><td class="grid_line_regular" align="right">3.4</td><td class="grid_line_regular" align="right">$27.5</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr><tr class="rgRow" id="SeasonStats1_dgSeason9_ctl00__32">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=6&season=2017&month=0&season1=2017&ind=0&team=0&rost=0&age=0&filter=&players=0">2017</a></td><td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=6&season=2017&month=0&season1=2017&ind=0&team=12&rost=0&age=0&filter=&players=0">Rays</a></td><td class="grid_line_regular" align="right">-2.3</td><td class="grid_line_regular" align="right">-3.1</td><td class="grid_line_regular" align="right">-2.0</td><td class="grid_line_regular" align="right">4.2</td><td class="grid_line_break" align="right">-5.4</td><td class="grid_line_regular" align="right">2.2</td><td class="grid_line_break" align="right">0.8</td><td class="grid_line_regular" align="right">6.9</td><td class="grid_line_break" align="right">4.5</td><td class="grid_line_regular" align="right">0.4</td><td class="grid_line_regular" align="right">$3.6</td><td class="grid_line_regular" align="right">&nbsp;</td>
-	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason9_ctl00__38">
+	</tr><tr class="rgRow grid_total" id="SeasonStats1_dgSeason9_ctl00__40">
 		<td class="grid_line_regular"><a href="http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=y&type=6&season=2017&month=0&season1=2010&ind=0&team=0&rost=0&players=0">Total</a></td><td class="grid_line_regular">- - -</td><td class="grid_line_regular" align="right">-2.6</td><td class="grid_line_regular" align="right">-25.3</td><td class="grid_line_regular" align="right">4.7</td><td class="grid_line_regular" align="right">46.5</td><td class="grid_line_break" align="right">-27.8</td><td class="grid_line_regular" align="right">51.3</td><td class="grid_line_break" align="right">4.6</td><td class="grid_line_regular" align="right">74.2</td><td class="grid_line_break" align="right">102.3</td><td class="grid_line_regular" align="right">10.7</td><td class="grid_line_regular" align="right">$82.0</td><td class="grid_line_regular" align="right">&nbsp;</td>
 	</tr>
 	</tbody>
@@ -1867,4 +2720,67 @@ In 2018: Salary increases to $10,500,000 if Ramos starts 55 games at catcher and
 <
 
         </div>
-        <div id=
+        <div id="footer">
+            <div id="Footer1_panFooter" class="ra-wide box-ra ra-member-hide">
+	
+    <div>
+        <div class="catchall728" style='width:728px; overflow:hidden;'><!-- ROS-Footer --> <div id ='div-gpt-ad-1349421924281-10' style='width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-10').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-10'); });}</script></div></div>
+
+    </div>
+
+</div>
+
+<br />
+
+<div class="footer-bar">
+    <div class="footer-bar-background"><div class="footer-bar-item">
+        
+    </div></div>
+    <div class="footer-bar-item">
+        <span class="mobile-hide">Updated: Wednesday, March 28, 2018 3:25 AM ET</span><span class="mobile-show">Updated: 3/28/2018 3:25 AM ET</span>
+    </div>
+    <div class="footer-bar-item" style="text-align: center; margin: auto;">
+        <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
+        - <a href="/about/terms-of-service">Terms of Service</a> - <a href="/about/privacy-policy">Privacy Policy</a>
+    </div>
+</div>
+<div class="footer-credits">
+    <div class="footer-credits-item">
+        <a href="http://www.baseballinfosolutions.com" class="footer-credits-item-name">
+            <img src="/images/bis-logo-white.png" alt="bis logo" /></a>
+        <div class="footer-credits-item-text">All major league baseball data including pitch type, velocity, batted ball location,
+        and play-by-play data provided by Baseball Info Solutions.</div>
+    </div>
+    <div class="footer-credits-item">
+        <a href="http://www.foxsports.com/" class="footer-credits-item-name">
+            <img src="/images/badge_300.gif" /></a>
+        <div class="footer-credits-item-text">FOX Sports Engage Network Partner</div>
+    </div>
+    <div class="footer-credits-item">
+        <a href="http://www.stats.com" class="footer-credits-item-name">
+            <img src="/images/statslogo_sm.png" alt="statslogo" style="width: 100px;" /></a>
+        <div class="footer-credits-item-text">All minor league baseball data provided by Major League Baseball Advanced Media
+        as distributed by STATS.</div>
+    </div>
+    <div class="footer-credits-item">
+        <div class="footer-credits-item-name">Mitchel Lichtman</div>
+        <div class="footer-credits-item-text">All UZR (ultimate zone rating) calculations are provided courtesy of Mitchel Lichtman.</div>
+    </div>
+    <div class="footer-credits-item">
+        <a href="http://www.tangotiger.com" class="footer-credits-item-name">TangoTiger.com</a>
+       <div class="footer-credits-item-text"> All Win Expectancy, Leverage Index, Run Expectancy, and Fans Scouting Report data licenced from TangoTiger.com</div>
+    </div>
+    <div class="footer-credits-item">
+        <a href="http://www.retrosheet.org" class="footer-credits-item-name">Retrosheet.org</a>
+        <div class="footer-credits-item-text">Play-by-play data prior to 2002 was obtained free of charge from and is copyrighted
+        by Retrosheet.</div>
+    </div>
+</div>
+
+<div class="catchall1" style='width:1px; '><!-- /1128006/Tynt_1x1_Fangraphs --> <div id ='div-gpt-ad-1349421924281-28' style='width:1px; height:1px; '><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-28').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-28'); });}</script></div></div>
+
+
+<div id="Footer1_panAdIO">
+	
+
+    <!--

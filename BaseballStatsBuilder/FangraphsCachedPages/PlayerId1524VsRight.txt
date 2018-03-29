@@ -1,25 +1,34 @@
-20170927/ZachDateMetaData
+20180329/ZachDateMetaData
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1"><title>
+<head id="Head1"><<<title>
 	Justin Verlander &raquo; Splits &raquo; vs R &raquo; Pitching | FanGraphs Baseball
 </title><meta name='description' content='Justin Verlander vs R pitching splits for Major League baseball' />
-<meta name='keywords' content='justin verlander, justin verlander splits' /><link href="//cdn.fangraphs.com/css/fg?v=8rJXhdGJNuggvy44cjblBiIeACMjztvOlzaxMuDDesE1" rel="stylesheet">
+<meta name='keywords' content='justin verlander, justin verlander splits' /><link href="//cdn.fangraphs.com/css/fg?v=pxJFRhZvnKEN61YvxHWehNCXVBNx8FAzVBf_8-cPt_Q1" rel="stylesheet">
 
 <link href="//cdn.fangraphs.com/css/telerik?v=7kp8vZ-2gyqQIN75Z0UB_Vbc6sYJCM3fVOkK0XkRN401" rel="stylesheet">
 
 
 
-<link href="//cdn.fangraphs.com/css/desktop?v=ukj0UEPnjiCrF74Q1UldMdwYsalobeZzNRjvPIKaHtw1" rel="stylesheet">
+<link href="//cdn.fangraphs.com/css/desktop?v=RA0h6is2mfq9Yhqsxow5ABJu5OJPfy_vOYSNz0pHnjk1" rel="stylesheet">
 
 <meta name="viewport" content="width=1000">
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
+
+
 
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
 
-<script type="text/javascript" src="//cdn.fangraphs.com/js/fg-head?v=W-KSu4mMHKiFJM8fJcjb8YxnqNt7CCTKfH7f7RpWjxY1"></script>
+
+<
+
 
 
 
@@ -31,91 +40,308 @@
 <meta property="og:image" content="//cdn.fangraphs.com/blogs/wp-content/uploads/2016/04/flat_fg_green.png" />
 
 
-<link href="/WebResource.axd?d=4eFj2ghicsUvR4-jzn-y5qljBL4LM8D_52KGPCKA_0Xrtrry5DxJsUoLHytEMkaBKAzibyQ3TCK3urr2XIpkSjqFQbHILRAhDM4anA_249w8WfBBihjP6qqmR4ZNzCRCohQrhFOEXDdvbEyY7tQvDg3GTjY1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=mwtUK2fFCfI9PIy9leufp4PsJOiDSnChR0AElThtZ1zmQV2TqogHE7tPBg6KGSWsS9cU8rUvS6Sc-JQH11HRWJGqfaiId5HCQU2guU3GBAiszNd2v9czvdhqbUqhdippXORU9odWfJgTRQlB1S0nIRaEbtQ1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=vyGwVOpDBkG0uXr0j-cum2_sVH1cpEbGbXWTc3SNBgXB1z5PODv1nirzv_tWKIyJnZmugW1iwy81ct5y-9fQmNhaW7mLfqDT1ufneVLQwrI5xxpC9tVF9rJunaETJBP4-6yBOj8-g978ZupiXoWAHUZAPMk1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=apUTkvkq_aLiJTCAYExnXgaMBysrZftWI83mGKeHEOBSF5PIMsaAUP0ct8iqqdYzzwGTdVQfKHd0nsu1j2VUO1CuVN1URz8DperJmgNoxc3RmF9eBpzuFsKH-IlmyZbY0vJRklv4ETNhN7r5EsNITJFgMDA1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=A02NNKC_b5BcC1yDjQZjFkdb4gUSvzrdkCtAkgZ8AExChxlYEMgcSqTHWu2MVcFlJT-mje0kcnR2-JBKnlb30pvv29rsUn6lHFWcYS5gWLNfAUx2jpQIC10Me0swXAVf17eZAIO5F4ZzP3vJp8DxyAyguYw1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=GQpBOiIPRRVOqnbzRTk6AeAexawlxHPpLFJL4VowleC0eY695IHY5vNyuZv-mJQQ-70jzcmZYDCTt1a5Trcq25lnAN7zlqeB1aaYeKoxl6ObyItvLvkCbLWA2GiJUfAxtmKZ4syVhmUgxaCMWURkddLotII1&amp;t=636021859100000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /></head>
+
+<!-- AMAZON ADS START -->
+
+<script type='text/javascript'>
+  !function(a9,a,p,s,t,A,g){if(a[a9])return;function q(c,r){a[a9]._Q.push([c,r])}a[a9]={init:function(){q("i",arguments)},fetchBids:function(){q("f",arguments)},setDisplayBids:function(){},targetingKeys:function(){return[]},_Q:[]};A=p.createElement(s);A.async=!0;A.src=t;g=p.getElementsByTagName(s)[0];g.parentNode.insertBefore(A,g)}("apstag",window,document,"script","//c.amazon-adsystem.com/aax2/apstag.js");
+
+ // initialize apstag and have apstag set bids on the googletag slots when they are returned to the page
+  apstag.init({
+    pubID: '54eeeb9c-d6c6-4712-bb2a-e2aed51c3eb7',
+    adServer: 'googletag',
+    bidTimeout: 800
+  });
+
+  // request the bids for the four googletag slots
+  apstag.fetchBids({
+    slots: [{
+                                          slotID: 'div-gpt-ad-1349421924281-10',
+                                          slotName: '/1128006/ROS-Footer',
+                                          sizes: [[728, 90]]
+                                         },{
+                                          slotID: 'div-gpt-ad-1349421924281-13',
+                                          slotName: '/1128006/RoS_300x250',
+                                          sizes: [[300, 250]]
+                                         },{
+                                          slotID: 'div-gpt-ad-1349421924281-14',
+                                          slotName: '/1128006/ROS_728x90',
+                                          sizes: [[728, 90]]
+                                         },{
+                                          slotID: 'div-gpt-ad-1349421924281-28',
+                                          slotName: '/1128006/Tynt_1x1_Fangraphs',
+                                          sizes: [[1, 1]]
+                                         }]
+  }, function(bids) {
+    // set apstag bids, then trigger the first request to DFP
+    googletag.cmd.push(function() {
+      apstag.setDisplayBids();
+      // googletag.pubads().refresh();    
+    });
+  });
+</script>
+
+<!-- AMAZON ADS END -->
+
+<!-- Prebid Config Section START -->
+<!-- Make sure this is inserted before your GPT tag -->
+<script> 
+    var PREBID_TIMEOUT = 800;
+
+    var adUnits = [{
+                                    code: 'div-gpt-ad-1349421924281-10',
+                                    sizes: [[728, 90]],
+                                    bids: [
+                                    {
+                                      bidder: 'appnexus',
+                                      params: { placementId: '12307741' }
+                                   },{
+                                      bidder: 'komoona',
+                                      params: {
+                                           hbid: 'ee37c793019a4b62a076b0f62f608697',
+                                           placementId: '721852f036df57e9588348781776800b' }
+                                   },{
+                                      bidder: 'sovrn',
+                                      params: { tagid: '560323' }
+                                   },{
+                                      bidder: 'brealtime',
+                                      params: { placementId: '12660718' }
+                                   },{
+                                      bidder: 'conversant',
+                                      params: { 
+                                            site_id: '116646',
+                                            secure: 1
+                                      }
+                                   },{
+                                      bidder: 'oftmedia',
+                                      params: { placementId: '12738344' }
+                                   },{
+                                      bidder: 'rhythmone',
+                                      params: { placementId: '74397' }
+                                   }
+                                    ]
+                                    },{
+                                    code: 'div-gpt-ad-1349421924281-13',
+                                    sizes: [[300, 250]],
+                                    bids: [
+                                    {
+                                      bidder: 'appnexus',
+                                      params: { placementId: '12316220' }
+                                   },{
+                                      bidder: 'komoona',
+                                      params: {
+                                           hbid: 'ee37c793019a4b62a076b0f62f608697',
+                                           placementId: '9077d0ad318744965a25849789cd07ba' }
+                                   },{
+                                      bidder: 'sovrn',
+                                      params: { tagid: '560319' }
+                                   },{
+                                      bidder: 'brealtime',
+                                      params: { placementId: '12660714' }
+                                   },{
+                                      bidder: 'conversant',
+                                      params: { 
+                                            site_id: '116642',
+                                            secure: 1
+                                      }
+                                   },{
+                                      bidder: 'oftmedia',
+                                      params: { placementId: '12738340' }
+                                   },{
+                                      bidder: 'rhythmone',
+                                      params: { placementId: '74397' }
+                                   }
+                                    ]
+                                    },{
+                                    code: 'div-gpt-ad-1349421924281-14',
+                                    sizes: [[728, 90]],
+                                    bids: [
+                                    {
+                                      bidder: 'appnexus',
+                                      params: { placementId: '12316456' }
+                                   },{
+                                      bidder: 'komoona',
+                                      params: {
+                                           hbid: 'ee37c793019a4b62a076b0f62f608697',
+                                           placementId: '55097cbb2e7d10c13266447931ad394a' }
+                                   },{
+                                      bidder: 'sovrn',
+                                      params: { tagid: '560321' }
+                                   },{
+                                      bidder: 'brealtime',
+                                      params: { placementId: '12660716' }
+                                   },{
+                                      bidder: 'conversant',
+                                      params: { 
+                                            site_id: '116644',
+                                            secure: 1
+                                      }
+                                   },{
+                                      bidder: 'oftmedia',
+                                      params: { placementId: '12738342' }
+                                   },{
+                                      bidder: 'rhythmone',
+                                      params: { placementId: '74397' }
+                                   }
+                                    ]
+                                    }
+    ];
+
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
+
+    pbjs.bidderSettings = {
+      brealtime: {
+        bidCpmAdjustment : function(bidCpm){
+          // adjust the bid in real time before the auction takes place
+          return bidCpm * 0.80;
+        }
+      },
+      oftmedia: {
+        bidCpmAdjustment : function(bidCpm){
+          // adjust the bid in real time before the auction takes place
+          return bidCpm * 0.90;
+        }
+      }
+    };
+
+    const customConfigObject = {
+  'buckets' : [{
+      'precision': 2,
+      'min' : 0,
+      'max' : 3,
+      'increment' : 0.01
+    },
+    {
+      'precision': 2,
+      'min' : 3,
+      'max' : 8,
+      'increment' : 0.05
+    },
+    {
+      'precision': 2,
+      'min' : 8,
+      'max' : 9.50,
+      'increment' : 0.10
+    },
+    {
+      'precision': 2,
+      'min' : 9.50,
+      'max' : 20,
+      'increment' : 0.50
+    },
+    {
+      'precision': 2,
+      'min' : 20,
+      'max' : 35,
+      'increment' : 1.00
+    }]
+};
+
+    pbjs.que.push(function () {
+        pbjs.setPriceGranularity(customConfigObject);
+    });
+
+</script>
+<!-- Prebid Config Section END -->
+
+<!-- Prebid Boilerplate Section START. No Need to Edit. -->
+<
+<script>
+      var googletag = googletag || {};
+      googletag.cmd = googletag.cmd || [];
+      googletag.cmd.push(function () {
+          googletag.pubads().disableInitialLoad();
+      });
+
+      pbjs.que.push(function () {
+          pbjs.addAdUnits(adUnits);
+          pbjs.enableAnalytics([{
+                provider: 'pubwise',
+                options: {
+                    site: 'd2a5ef67-8fed-4d00-9918-927ea7374a10',
+                    endpoint:'https://api.pubwise.io/api/v4/event/add/'
+                    }
+                }]
+          );
+          pbjs.requestBids({
+              bidsBackHandler: sendAdserverRequest
+          });
+      });
+
+      function sendAdserverRequest() {
+          if (pbjs.adserverRequestSent) return;
+          pbjs.adserverRequestSent = true;
+          googletag.cmd.push(function () {
+              pbjs.que.push(function () {
+                  pbjs.setTargetingForGPTAsync();
+                  googletag.pubads().refresh();
+              });
+          });
+      }
+
+      setTimeout(function () {
+          sendAdserverRequest();
+      }, PREBID_TIMEOUT);
+
+</script>
+<!-- Prebid Boilerplate Section END -->
+
+<script type='text/javascript'>
+      (function () {
+          var gads = document.createElement('script');
+          gads.async = true;
+          gads.type = 'text/javascript';
+          var useSSL = 'https:' == document.location.protocol;
+          gads.src = (useSSL ? 'https:' : 'http:') +
+              '//www.googletagservices.com/tag/js/gpt.js';
+          var node = document.getElementsByTagName('script')[0];
+          node.parentNode.insertBefore(gads, node);
+      })();
+</script>
+<script type='text/javascript'>
+    googletag.cmd.push(function () {
+googletag.defineSlot('/1128006/ROS-Footer', [728, 90], 'div-gpt-ad-1349421924281-10').addService(googletag.pubads());
+googletag.defineSlot('/1128006/RoS_300x250', [300, 250], 'div-gpt-ad-1349421924281-13').addService(googletag.pubads());
+googletag.defineSlot('/1128006/ROS_728x90', [728, 90], 'div-gpt-ad-1349421924281-14').addService(googletag.pubads());
+googletag.defineSlot('/1128006/Tynt_1x1_Fangraphs', [1, 1], 'div-gpt-ad-1349421924281-28').addService(googletag.pubads());
+
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+    });
+</script>
+
+
+
+
+<link href="/WebResource.axd?d=4eFj2ghicsUvR4-jzn-y5qljBL4LM8D_52KGPCKA_0Xrtrry5DxJsUoLHytEMkaBKAzibyQ3TCK3urr2XIpkSjqFQbHILRAhDM4anA_249w8WfBBihjP6qqmR4ZNzCRCohQrhFOEXDdvbEyY7tQvDg3GTjY1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=A02NNKC_b5BcC1yDjQZjFkdb4gUSvzrdkCtAkgZ8AExChxlYEMgcSqTHWu2MVcFlJT-mje0kcnR2-JBKnlb30pvv29rsUn6lHFWcYS5gWLNfAUx2jpQIC10Me0swXAVf17eZAIO5F4ZzP3vJp8DxyAyguYw1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=vyGwVOpDBkG0uXr0j-cum2_sVH1cpEbGbXWTc3SNBgXB1z5PODv1nirzv_tWKIyJnZmugW1iwy81ct5y-9fQmNhaW7mLfqDT1ufneVLQwrI5xxpC9tVF9rJunaETJBP4-6yBOj8-g978ZupiXoWAHUZAPMk1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=GQpBOiIPRRVOqnbzRTk6AeAexawlxHPpLFJL4VowleC0eY695IHY5vNyuZv-mJQQ-70jzcmZYDCTt1a5Trcq25lnAN7zlqeB1aaYeKoxl6ObyItvLvkCbLWA2GiJUfAxtmKZ4syVhmUgxaCMWURkddLotII1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=apUTkvkq_aLiJTCAYExnXgaMBysrZftWI83mGKeHEOBSF5PIMsaAUP0ct8iqqdYzzwGTdVQfKHd0nsu1j2VUO1CuVN1URz8DperJmgNoxc3RmF9eBpzuFsKH-IlmyZbY0vJRklv4ETNhN7r5EsNITJFgMDA1&amp;t=636551671418718926" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /></head>
 <body>
     <form method="post" action="./statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=0.2" id="form1">
 <input type="hidden" name="RadScriptManager1_TSM" id="RadScriptManager1_TSM" value="" />
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE4NTYwMDE5OTBkGAcFHVNlYXNvblNwbGl0czEkZGdTZWFzb24yJGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudAIOBQhfIVBDb3VudGQFBl8hRFNJQwIOFgIeA19zZRYCHgJfY2ZkZAUdU2Vhc29uU3BsaXRzMSRkZ1NlYXNvbjEkY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50Ag4FCF8hUENvdW50ZAUGXyFEU0lDAg4WAh8AFgIfAWZkZAUXU2Vhc29uU3BsaXRzMSRkZ1NlYXNvbjMPFCsAAmQXAwULRWRpdEluZGV4ZXMWAAUPU2VsZWN0ZWRJbmRleGVzFgAFE1NlbGVjdGVkQ2VsbEluZGV4ZXMWAGQFF1NlYXNvblNwbGl0czEkZGdTZWFzb24yDxQrAAJkFwMFC0VkaXRJbmRleGVzFgAFD1NlbGVjdGVkSW5kZXhlcxYABRNTZWxlY3RlZENlbGxJbmRleGVzFgBkBRdTZWFzb25TcGxpdHMxJGRnU2Vhc29uMQ8UKwACZBcDBQtFZGl0SW5kZXhlcxYABQ9TZWxlY3RlZEluZGV4ZXMWAAUTU2VsZWN0ZWRDZWxsSW5kZXhlcxYAZAUdU2Vhc29uU3BsaXRzMSRkZ1NlYXNvbjMkY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50Ag4FCF8hUENvdW50ZAUGXyFEU0lDAg4WAh8AFgIfAWZkZAUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgcFFFBsYXllckluZm8xJHRzUGxheWVyBRRTZWFzb25TcGxpdHMxJHRzVHlwZQUTU2Vhc29uU3BsaXRzMSR0c0xvZwUVU2Vhc29uU3BsaXRzMSRyZFNwbGl0BRdTZWFzb25TcGxpdHMxJGRnU2Vhc29uMQUXU2Vhc29uU3BsaXRzMSRkZ1NlYXNvbjIFF1NlYXNvblNwbGl0czEkZGdTZWFzb24zqzEjEAtKhjsfE6W5wgz9RXTyIlg=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE4NTYwMDE5OTBkGAcFHVNlYXNvblNwbGl0czEkZGdTZWFzb24yJGN0bDAwDxQrAAMUKwACZBcDBQtfIUl0ZW1Db3VudAIOBQhfIVBDb3VudGQFBl8hRFNJQwIOFgIeA19zZRYCHgJfY2ZkZAUdU2Vhc29uU3BsaXRzMSRkZ1NlYXNvbjEkY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50Ag4FCF8hUENvdW50ZAUGXyFEU0lDAg4WAh8AFgIfAWZkZAUXU2Vhc29uU3BsaXRzMSRkZ1NlYXNvbjMPFCsAAmQXAwULRWRpdEluZGV4ZXMWAAUPU2VsZWN0ZWRJbmRleGVzFgAFE1NlbGVjdGVkQ2VsbEluZGV4ZXMWAGQFF1NlYXNvblNwbGl0czEkZGdTZWFzb24yDxQrAAJkFwMFC0VkaXRJbmRleGVzFgAFD1NlbGVjdGVkSW5kZXhlcxYABRNTZWxlY3RlZENlbGxJbmRleGVzFgBkBRdTZWFzb25TcGxpdHMxJGRnU2Vhc29uMQ8UKwACZBcDBQtFZGl0SW5kZXhlcxYABQ9TZWxlY3RlZEluZGV4ZXMWAAUTU2VsZWN0ZWRDZWxsSW5kZXhlcxYAZAUdU2Vhc29uU3BsaXRzMSRkZ1NlYXNvbjMkY3RsMDAPFCsAAxQrAAJkFwMFC18hSXRlbUNvdW50Ag4FCF8hUENvdW50ZAUGXyFEU0lDAg4WAh8AFgIfAWZkZAUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgYFFFBsYXllckluZm8xJHRzUGxheWVyBRRTZWFzb25TcGxpdHMxJHRzVHlwZQUTU2Vhc29uU3BsaXRzMSR0c0xvZwUXU2Vhc29uU3BsaXRzMSRkZ1NlYXNvbjEFF1NlYXNvblNwbGl0czEkZGdTZWFzb24yBRdTZWFzb25TcGxpdHMxJGRnU2Vhc29uMwl05rtcFJgMXeEP1lyXUEQH9tyK" />
 
 
-<script src="http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjax.js" type="text/javascript"></script>
-<script type="text/javascript">
-//<![CDATA[
-(window.Sys && Sys._Application && Sys.Observer)||document.write('<script type="text/javascript" src="/ScriptResource.axd?d=p9mqTehpNnW4Ng4qP2akHL8YAQo3nBfFajEIsM_t4c3Wu3VOlQpV1KgkmRsJF3NiZHwk0dk4WOJFNRF7JL0xB0oPHK0Xgwgby7XjOfibqcrAlpw-a-VQK1bwvC8jQZSXW3uhH98nPWcL2_Bqvmx9I8y19DR1I8t5TXbjaNEFQ0Gbx6yQ0&t=ffffffffcc58dd65"><\/script>');//]]>
-</script>
+<script src="https://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjax.js" type="text/javascript"></script>
+<
 
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Common/Core.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Common/jQuery.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Common/jQueryPlugins.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Common/MaterialRipple/MaterialRippleScripts.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Common/Scrolling/ScrollingScripts.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Common/Navigation/OverlayScript.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Common/Navigation/NavigationScripts.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/TabStrip/RadTabStripScripts.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/TabStrip/Views/ClassicView.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Common/Navigation/OData/OData.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Common/AnimationFramework/AnimationFramework.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Menu/RadMenuScripts.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Menu/MenuItem/RadMenuItem.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Menu/Views/LiteView.js" type="text/javascript"></script>
-<script src="http://aspnet-scripts.telerikstatic.com/ajax/2016.2.607/Grid/RadGridScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/Core.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/jQuery.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/jQueryPlugins.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/MaterialRipple/MaterialRippleScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/Scrolling/ScrollingScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/Navigation/OverlayScript.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Common/Navigation/NavigationScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/TabStrip/RadTabStripScripts.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/TabStrip/Views/ClassicView.js" type="text/javascript"></script>
+<script src="https://d2i2wahzwrm1n5.cloudfront.net/ajax/2016.2.607/Grid/RadGridScripts.js" type="text/javascript"></script>
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="7FC7DAE8" />
     
     <div id="wrapper">
         <div id="top">
             
 
-<script type='text/javascript'>
-    var googletag = googletag || {};
-    googletag.cmd = googletag.cmd || [];
-    (function () {
-        var gads = document.createElement('script');
-        gads.async = true;
-        gads.type = 'text/javascript';
-        var useSSL = 'https:' == document.location.protocol;
-        gads.src = (useSSL ? 'https:' : 'http:') +
-'//www.googletagservices.com/tag/js/gpt.js';
-        var node = document.getElementsByTagName('script')[0];
-        node.parentNode.insertBefore(gads, node);
-    })();
-</script>
-<script type='text/javascript'>
-    googletag.cmd.push(function () {
-        googletag.defineSlot('/1128006/Home_160x600', [160, 600], 'div-gpt-ad-1349421924281-0').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/Home_300x250', [300, 250], 'div-gpt-ad-1349421924281-1').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/Home_728x90', [728, 90], 'div-gpt-ad-1349421924281-2').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/HouseBTF', [300, 250], 'div-gpt-ad-1349421924281-3').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/HouseHP', [300, 250], 'div-gpt-ad-1349421924281-4').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/HP-BTF-2', [300, 250], 'div-gpt-ad-1349421924281-5').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/HP-footer', [728, 90], 'div-gpt-ad-1349421924281-6').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/PBT_ad.com_300x250', [300, 250], 'div-gpt-ad-1349421924281-7').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/PBT_ad.com_728x90', [728, 90], 'div-gpt-ad-1349421924281-8').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/ROS-BTF-2', [300, 250], 'div-gpt-ad-1349421924281-9').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/ROS-Footer', [728, 90], 'div-gpt-ad-1349421924281-10').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/ROS_160x600', [160, 600], 'div-gpt-ad-1349421924281-11').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/ROS_160x600_BTF', [160, 600], 'div-gpt-ad-1349421924281-12').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/RoS_300x250', [300, 250], 'div-gpt-ad-1349421924281-13').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/ROS_728x90', [728, 90], 'div-gpt-ad-1349421924281-14').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/Scotts_Lawn', [1, 1], 'div-gpt-ad-1349421924281-15').addService(googletag.pubads());
-        googletag.defineSlot('/1128006/Special_Ad', [400, 168], 'div-gpt-ad-1349421924281-16').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/Special_Ad_BTF', [400, 168], 'div-gpt-ad-1349421924281-17').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/Stats-footer', [728, 90], 'div-gpt-ad-1349421924281-18').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/PBT_ad.com_300x250', [300, 250], 'div-gpt-ad-1349421924281-19').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/PBT_ad.com_728x90', [728, 90], 'div-gpt-ad-1349421924281-20').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/House-Special', [320, 170], 'div-gpt-ad-1349421924281-21').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/HP_300x600', [300, 600], 'div-gpt-ad-1349421924281-22').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/ROS_300x600_BTF', [300, 600], 'div-gpt-ad-1349421924281-23').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/Adiply_stats_skin', [3, 3], 'div-gpt-ad-1349421924281-24').addService(googletag.pubads());
-        googletag.defineSlot('/1128006/AdiplyT_300x250_1_', [300, 250], 'div-gpt-ad-1349421924281-25').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/AdiplyT_300x250_2', [300, 250], 'div-gpt-ad-1349421924281-26').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/WAB', [980, 50], 'div-gpt-ad-1349421924281-27').setForceSafeFrame(true).addService(googletag.pubads());
-        googletag.defineSlot('/1128006/Tynt_1x1_Fangraphs', [1, 1], 'div-gpt-ad-1349421924281-28').addService(googletag.pubads());
-        googletag.defineSlot('/1128006/FirstImpression', [1, 1], 'div-gpt-ad-1349421924281-29').addService(googletag.pubads());
-        googletag.enableServices();
-    });
-</script>
 
-<div class="header-chat-alert" style="visibility: hidden"><a class="header-chat-alert-text"></a></div>
+<div class="header-chat-alert-spacer" style="visibility: hidden"><a class="header-chat-alert-text"></a></div>
 
 <div class="header-container">
     <header>
@@ -124,7 +350,6 @@
             <div id="top_da">
                 <div class="fg-ra-desktop catchall728" style='width:728px; overflow:hidden;'><!-- ROS_728x90 --> <div id ='div-gpt-ad-1349421924281-14' style='margin: auto; width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-14').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-14'); });}</script></div></div>
 
-                
             </div>
         </div>
         <div class="top-logo sticky" style="display: none;">
@@ -141,15 +366,15 @@
             <div class="nav-search-mobile-x"></div>
         </div>
         <div class="nav-mobile-fill"></div>
-         <div class="nav-mobile-login" data-full="true">
-                <a id="linkAccountMobile" href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d8700%26position%3dP%26season%3d0%26split%3d0.2">
-                    <div class="menu-item-label">
-                        <div class="label-account">Sign In</div><div class="icon-account signed-out"></div>
-                    </div>
-                </a>
-                
-
-            </div>
+        <div class="nav-mobile-login" data-full="true">
+            <a id="linkAccountMobile" href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=https%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d8700%26position%3dP%26season%3d0%26split%3d0.2">
+                <div class="menu-item-label">
+                    <div class="label-account">Sign In</div><div class="icon-account signed-out"></div>
+                </div>
+            </a>
+            
+            
+        </div>
     </div>
     <div class="nav-search-players"></div>
     
@@ -188,8 +413,42 @@
                     <div class="menu-sub-link">
                         <a href="//www.fangraphs.com/blogroll.aspx">Blog Roll</a>
                     </div>
+                    <hr />
                     <div class="menu-sub-ajax">
-                        
+                        <div class="menusub_mid">
+                            <div class="menu-blog fg">
+                                <div class="menu-blog-header"><a href="http://www.fangraphs.com/blogs/">FanGraphs</a></div>
+                                <div id="menu-blog-roll-fg"></div>
+                                <div class="menu-blog-podcast">
+                                    <span>Podcasts:</span> <a href="http://www.fangraphs.com/blogs/category/podcast/">FanGraphs Audio</a> | <a href="http://www.fangraphs.com/blogs/category/effectively-wild/">Effectively Wild</a>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="menu-blog rg">
+                                <div class="menu-blog-header"><a href="http://www.fangraphs.com/fantasy/">RotoGraphs</a></div>
+                                <div id="menu-blog-roll-rg"></div>
+                                <div class="menu-blog-podcast">
+                                    <span>Podcasts: </span><a href="http://www.fangraphs.com/fantasy/category/podcast/">The Sleeper and The Bust</a> | <a href="http://www.fangraphs.com/fantasy/category/field-of-streams/">Field of Streams</a>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="menu-blog tht">
+                                <div class="menu-blog-header"><a href="http://www.hardballtimes.com/">The Hardball Times</a></div>
+                                <div id="menu-blog-roll-tht"></div>
+                                <div class="menu-blog-podcast">
+                                    <span>Podcasts: </span><a href="/tht/tht-audio/">THT Audio</a>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="menu-blog com">
+                                <div class="menu-blog-header"><a href="http://www.fangraphs.com/community/">Community Research</a></div>
+                                <div id="menu-blog-roll-com"></div>
+                            </div>
+                            <hr />
+                            <div class="menu-blog-podcast"><span>Archived Blogs:</span> <a class="not" href="http://www.fangraphs.com/not/">NotGraphs</a> | <a class="tg" href="http://www.fangraphs.com/techgraphs/">TechGraphs</a> | <a class="fg" href="http://www.fangraphs.com/plus/">FanGraphs+</a></div>
+                            <div class="menu-blog-podcast"><span>Archived THT:</span> <a class="tht" href="/tht/tht-live/">THT Live</a> | <a class="tht" href="/tht/category/tht-dispatch/">Dispatch</a> | <a class="tht" href="tht/category/tht-fantasy/">Fantasy</a> | <a class="tht" href="/tht/category/shysterball/">ShysterBall</a></div>
+                            <div class="menu-blog-podcast"><span>Archived Podcasts:</span> <a class="tht" href="/tht/stealing-home/">Stealing Home</a> | <a class="tht" href="/tht/doing-it-for-bartolo/">Doing It For Bartolo</a> | <a class="rg" href="/fantasy/category/ottographs-podcast/">OttoGraphs</a></div>
+                        </div>
                     </div>
                 </div>
             </li>
@@ -198,20 +457,22 @@
                 <div class="menu-sub">
                     <div class="menusub_mid">
                         <div class="menu-sub-header">
-                            2017 Pre-Season Projections
+                            2018 Pre-Season Projections
                         </div>
                     </div>
                     <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=fan">FANS</a>,
                     <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=zips">ZiPS</a>,
                     <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamer">Steamer</a>,
                     <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=fangraphsdc">Depth Charts</a>,
-                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=atc">ATC</a>
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=atc">ATC</a>,
+                    <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=thebat">THE BAT</a>
+
                     <div class="menu-sub-header">
-                        2017 600 PA / 200 IP Projections
+                        2018 600 PA / 200 IP Projections
                     </div>
                     <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=steamer600">Steamer600</a>
                     <div class="menu-sub-header">
-                        2017 Updated In-Season Projections
+                        2018 Updated In-Season Projections
                     </div>
                     <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=rzips">ZiPS (RoS)</a>,
                     <a href="//www.fangraphs.com/projections.aspx?pos=all&stats=bat&type=uzips">ZiPS (Update)</a><br />
@@ -226,7 +487,7 @@
                     </div>
                 </div>
             </li>
-           
+            
             <li class="menu-item" data-sub="scores" data-full="true">
                 <div class="menu-item-label">Scores</div>
                 <div class="menu-sub">
@@ -234,7 +495,7 @@
                         <div class="menu-sub-header">
                             Today: 
                             <a href="//www.fangraphs.com/livescoreboard.aspx">Live Scoreboard</a>,  
-                            <a id="linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2017&amp;month=0&amp;season1=2017&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2017-09-26">Probable Pitchers</a>
+                            <a id="linkProb" href="http://www.fangraphs.com/leaders.aspx?pos=all&amp;stats=pit&amp;lg=all&amp;qual=0&amp;type=8&amp;season=2017&amp;month=0&amp;season1=2017&amp;ind=0&amp;team=0&amp;rost=0&amp;age=0&amp;filter=&amp;players=p2018-03-28">Probable Pitchers</a>
                         </div>
                         <div class="menu-sub-header">
                             Win Probability & Box Scores
@@ -252,14 +513,39 @@
                 <div class="menu-sub">
                     <div class="menusub_mid">
                         <div class="menu-sub-link">
-                            <a href="//www.fangraphs.com/depthcharts.aspx?position=Standings">2017 Projected Standings</a>
+                            <a href="//www.fangraphs.com/depthcharts.aspx?position=Standings">2018 Projected Standings</a>
                         </div>
                         <div class="menu-sub-link">
-                            <a href="//www.fangraphs.com/coolstandings.aspx">2017 Playoff Odds</a>, <a href="//www.fangraphs.com/coolgraphs.aspx">Playoff Odds Graphs</a>
+                            <a href="/standings/playoff-odds">2018 Playoff Odds</a>, <a href="/standings/playoff-odds-graphs">Playoff Odds Graphs</a>
                         </div>
-                        <div id="menuteams">
-                            
-                        </div>
+                        <table class="menu-standings-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="menu-sub-header">AL East</div>
+                                        <div id="menu-standings-ale"></div>
+                                       
+                                        <div class="menu-sub-header">AL Central</div>
+                                        <div id="menu-standings-alc"></div>
+
+                                        <div class="menu-sub-header">AL West</div>
+                                        <div id="menu-standings-alw"></div>
+                                    </td>
+                                    <td class="menu-table-sep"></td>
+                                    <td>
+                                        <div class="menu-sub-header">NL East</div>
+                                        <div id="menu-standings-nle"></div>
+
+                                        <div class="menu-sub-header">NL Central</div>
+                                        <div id="menu-standings-nlc"></div>
+
+                                        <div class="menu-sub-header">NL West</div>
+                                        <div id="menu-standings-nlw"></div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </li>
@@ -286,7 +572,7 @@
                         </div>
                         <hr />
                         <div class="menu-sub-link">
-                            <a href="//www.fangraphs.com/freeagents.aspx?sign=all&pos=all&nteam=all&oteam=all">2017 Free Agent Tracker!</a>
+                            <a href="//www.fangraphs.com/tools/free-agent-tracker?sign=all&pos=all&nteam=all&oteam=all">2018 Free Agent Tracker!</a>
                         </div>
                         <hr />
                         <div class="menu-sub-header">
@@ -308,7 +594,7 @@
                         <div class="menu-sub-header">
                             WPA Tools
                         </div>
-                        <a href="//www.fangraphs.com/wpainquirer.aspx">WPA Inquirer</a><br />
+                        <a href="//www.fangraphs.com/tools/wpa-inquirer">WPA Inquirer</a><br />
                         <div class="menu-sub-header">
                             Rookie Leaders
                         </div>
@@ -418,7 +704,7 @@
                     </div>
                 </div>
             </li>
-           
+            
             <li class="menu-item" data-sub="glossary" data-full="true">
                 <div class="menu-item-label">Glossary</div>
                 <div class="menu-sub">
@@ -453,23 +739,21 @@
                             Guts!
                         </div>
                         <a href="//www.fangraphs.com/guts.aspx?type=cn">Seasonal Constants</a><br />
-                        <a href="//www.fangraphs.com/guts.aspx?type=pf&teamid=0&season=2015">Park Factors</a><br />
-                        <a href="//www.fangraphs.com/guts.aspx?type=pfh&teamid=0&season=2015">Park Factors
+                        <a href="//www.fangraphs.com/guts.aspx?type=pf&teamid=0&season=2017">Park Factors</a><br />
+                        <a href="//www.fangraphs.com/guts.aspx?type=pfh&teamid=0&season=2017">Park Factors
                             by Handedness</a>
                     </div>
                 </div>
             </li>
-            <li class="nav-fill">
-
-            </li>
+            <li class="nav-fill"></li>
             <li class="menu-item" data-sub="login" data-full="true">
-                <a id="linkAccount" href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d8700%26position%3dP%26season%3d0%26split%3d0.2">
+                <a id="linkAccount" href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=https%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d8700%26position%3dP%26season%3d0%26split%3d0.2">
                     <div class="menu-item-label">
                         <div class="label-account">Sign In</div><div class="icon-account signed-out"></div>
                     </div>
                 </a>
                 
-               
+                
             </li>
         </ul>
     </div>
@@ -477,7 +761,7 @@
 
 <div id="my_popup">
 
-    <h2 style="">Help Support FanGraphs</h2>
+    <div class="popup-title" style="">Help Support FanGraphs</div>
 
     <div id="nudge_pop">
     </div>
@@ -489,91 +773,23 @@
     <a class="my_popup_close popup-button" style="background-color: #000; color: #fff;">No Thanks
     </a>
     </div>
-    <div class="popup-login">Already a member? <a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=http%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d8700%26position%3dP%26season%3d0%26split%3d0.2">Sign In</a></div>
+    <div class="popup-login">Already a member? <a href="http://www.fangraphs.com/blogs/wp-login.php?redirect_to=https%3a%2f%2fwww.fangraphs.com%2fstatsplits.aspx%3fplayerid%3d8700%26position%3dP%26season%3d0%26split%3d0.2">Sign In</a></div>
 </div>
 
+
+
+<
+
+
         <div id="divHeaderChat" class="header-chat-alert"><a class="header-chat-alert-text"></a></div>
+        
     </header>
 </div>
 
-<!-- start - 0--><!-- control end - 0-->
+
 
 <script>
 
-    //header alert function
-    $.get('/api/chatheader/getvalues', function (d) {
-
-        d.chatBoolean ? $('.header-chat-alert').addClass('chatShow') : $('.header-chat-alert').removeClass('chatShow')
-        $('.header-chat-alert-text').attr('href', d.chatLink).text(d.chatText)
-
-        if (!d.chatBoolean && d.defaultText.length) {
-            $('.header-chat-alert').addClass('chatShow')
-            $('.header-chat-alert-text').attr('href', d.defaultLink).text(d.defaultText)
-        }
-    })
-
-
-    //scroll functionality
-
-    var $header = $('.header-container')
-    var debounceFunction = null
-    var scrollStart = $(window).scrollTop()
-
-    var debounce = function () {
-        if (debounceFunction != null && Math.abs($(window).scrollTop() - scrollStart) < 100) {
-            clearTimeout(debounceFunction)
-        }
-        debounceFunction = setTimeout(scrollHandler, 100)
-    }
-
-    var scrollHandler = function () {
-
-        screenStart = $(window).scrollTop()
-
-        if ($(window).scrollTop() > 60) {
-            $('.header-chat-alert').addClass('sticky')
-        }
-        else if ($(window).scrollTop() < 30) {
-            $('.header-chat-alert').removeClass('sticky')
-        }
-
-        if ($(window).scrollTop() > 99) {
-            $header.addClass('sticky')
-            $('.top-logo:not(".sticky")').hide()
-            $('.top-logo.sticky').show()
-        }
-        else {
-            $header.removeClass('sticky')
-            $('.top-logo:not(".sticky")').show()
-            $('.top-logo.sticky').hide()
-        }
-    }
-
-    //initial check, no debounce
-    $(document).ready(function () {
-        if ($(window).scrollTop() > 99) {
-            $header.removeClass('sticky')
-            $('.top-logo:not(".sticky")').show()
-            $('.top-logo.sticky').hide()
-        }
-    })
-
-    $(window).scroll(debounce)
-
-    
-    //from https://stackoverflow.com/questions/17534661/make-anchor-link-go-some-pixels-above-where-its-linked-to
-   function offsetAnchor() {
-       if (location.hash.length !== 0) {
-           window.scrollTo(window.scrollX, window.scrollY - 100);
-       }
-   }
-   $(document).on('click', 'a[href*="#"]', function (event) {
-       window.setTimeout(function () {
-           offsetAnchor();
-       }, 0);
-   });
-
-   window.setTimeout(offsetAnchor, 0);
 </script>
 
 <style>
@@ -581,50 +797,39 @@
    
 </style>
 
-<style>header {width: 1000px;}   
-            #wrapper { width: 1000px; }
-                @media screen and (max-width: 1020px) {    
-                    .header-container.sticky, .header-container {
-                        position: static;
-                    }
-
-                    #content {padding-top: 20px;}
-                }</style>
+<style></style>
 
 
         </div>
         <div id="content">
             
-<table cellspacing="0" cellpadding="0" style="width: 980px; border: 0px;">
-    <tr>
-        <td style="width: 676px; background-color: #FFF; height: 250px; vertical-align: top; border-right: 2px solid #D3D3D3; border-top: 1px solid #D3D3D3; border-bottom: 1px solid #D3D3D3; border-left: 1px solid #D3D3D3;">
-            <table cellspacing="0" cellpadding="0" style="width: 677px; border: 0px; vertical-align: top;">
-                <tr>
-                    <td style="background-color: #FFF; padding-bottom: 5px;"
-                        valign="top">
 
-                        <span style="padding-left: 5px;">
-                            <strong style="font-size:15pt;">Justin Verlander</strong></span>
-                        <div class="spacer_10"></div>
-                        <div style="font-size: 10pt; padding-left: 5px;">
-                            <strong>Birthdate:</strong> 2/20/1983 (34 y, 7 m, 7 d) &nbsp;&nbsp;&nbsp;&nbsp;<strong>Bats/Throws:</strong> R/R &nbsp;&nbsp;&nbsp;&nbsp;<strong>Height/Weight:</strong> 6-5/225 &nbsp;&nbsp;&nbsp;&nbsp;<strong>Position:</strong> P<br /><b>Drafted:</b> <a href="statss.aspx?playerid=8700&position=P#draft" style="text-decoration:none;">2004 June Amateur Draft - Round: 1, Pick: 2, Overall: 2, Team: Detroit Tigers</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=8700&position=P#contract" style="text-decoration:none;">$180M / 7 Years (2013 - 2019) + 1 Option Years</a>
+<link href="styles/_render/player-pages.css" rel="stylesheet" />
+<table class="player-info">
+    <tr>
+        <td class="player-info-box">
+            <table>
+                <tr>
+                    <td>
+                            <div class="player-info-box-header team-astros"><div class="player-info-box-name"><h1>Justin Verlander</h1><div class="player-info-box-name-team"><a href="/teams/astros">Houston Astros</a></div></div><div class="player-info-box-item">Age: 35</div><div class="player-info-box-item">Bats/Throws: R/R</div>
+        <div class="player-info-box-item">6' 5" / 225</div>
+        <div class="player-info-box-pos">P</div></div>
+                        <div class="player-info-bio">
+                            <strong>Birthdate: </strong>2/20/1983 (35 y, 1 m, 9 d)<br /><b>Drafted:</b> <a href="statss.aspx?playerid=8700&position=P#draft" style="text-decoration:none;">2004 June Amateur Draft - Round: 1, Pick: 2, Overall: 2, Team: Detroit Tigers</a><br /><strong>Contract:</strong> <a href="statss.aspx?playerid=8700&position=P#contract" >$180M / 7 Years (2013 - 2019) + 1 Option Years</a>
                         </div>
                     </td>
+
                     
-                    <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; font-size:10pt;"><div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;"><b><a href="https://www.rotowire.com/users/ad_jump.asp?id=688&playerid=8309" style="text-decoration:none;">RotoWire News</a>:</b> Verlander indicated his changeup last Friday was the best it's been in his four starts with the Astros, Jake Kaplan of the Houston Chronicle reports. (9/24/2017)</div></td></tr>
+                    <tr><td><hr class="player-page-info-sep"/><div class="player-page-rotowire"><strong><a href="https://www.rotowire.com/users/ad_jump.asp?id=688&playerid=8309">RotoWire News</a>:</strong> Verlander allowed five singles and a walk while striking out three over seven scoreless innings in Monday's start against the Mets. (3/19/2018)</div></td></tr>
 
                 </tr>
-                <tr style="background-color: #FFF;"><td style="border-top:2px solid #D3D3D3; vertical-align:top; padding-bottom:4px; padding-left:5px;"><div class="m_stories" style="font-size:13pt"><span class="m_date">9/6/2017</span> - <a href="http://www.fangraphs.com/blogs/how-justin-verlander-got-his-groove-back/">How Justin Verlander Got His Groove Back</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=7030">Jeff Sullivan (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/how-justin-verlander-got-his-groove-back/#comments"><img src="images/commentslink.gif" border="0px" />4</a></span><br /><span class="m_date">9/1/2017</span> - <a href="http://www.fangraphs.com/blogs/the-astros-make-their-big-splash/">The Astros Make Their Big Splash</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=4">Dave Cameron (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/the-astros-make-their-big-splash/#comments"><img src="images/commentslink.gif" border="0px" />68</a></span><br /><span class="m_date">9/1/2017</span> - <a href="http://www.fangraphs.com/blogs/resurgent-justin-verlander-traded-to-astros/">Resurgent Justin Verlander Traded to Astros</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=7030">Jeff Sullivan (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/resurgent-justin-verlander-traded-to-astros/#comments"><img src="images/commentslink.gif" border="0px" />12</a></span><br /><span class="m_date">8/31/2017</span> - <a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-492-the-angels-are-good/">The Sleeper and the Bust Episode: 492 - The Angels&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer (RotoGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-492-the-angels-are-good/#comments"><img src="images/commentslink.gif" border="0px" />0</a></span><br /><span class="m_date">8/9/2017</span> - <a href="http://www.fangraphs.com/blogs/getting-the-tigers-a-real-prospect-for-justin-verlander/">Getting the Tigers a Real Prospect for Justin Verl&raquo;</a><span class="m_comments"> by </span><span class="m_author"><a href="http://www.fangraphs.com/blogs/index.php?author=4">Dave Cameron (FanGraphs)</a></span><span class="m_comments">&nbsp;<a href="http://www.fangraphs.com/blogs/getting-the-tigers-a-real-prospect-for-justin-verlander/#comments"><img src="images/commentslink.gif" border="0px" />76</a></span><br /></div></td></tr>
-
-                <tr id="so1" style="background-color: #FFF;"><td colspan="5" style="border-top:2px solid #D3D3D3; padding:3px; text-align:justify;"><div class="m_stories" style="width:100%; font-size:10pt"><center>Profiles:&nbsp;&nbsp;<a id="soa2" href="javascript:showMoreSO();">2010</a>&nbsp;&nbsp;<a id="soa3" href="javascript:showMoreSO2011();">2011</a>&nbsp;&nbsp;<a id="soa4" href="javascript:showMoreSO2012();">2012</a>&nbsp;&nbsp;<a id="soa5" href="javascript:showMoreSO2013();">2013</a>&nbsp;&nbsp;<a id="soa6" href="javascript:showMoreSO2014();">2014</a>&nbsp;&nbsp;<a id="soa7" href="javascript:showMoreSO2015();">2015</a>&nbsp;&nbsp;<a id="soa8" href="javascript:showMoreSO2016();">2016</a>&nbsp;&nbsp;<a id="soa9"  href="javascript:showMoreSO2017();">2017</a>&nbsp;&nbsp;(Click Year to Expand / <a href="javascript:hideSO('so1');">Close</a>)</center></div></td></tr>
-                <tr id="so2" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Year in Review: </b>Verlander had a breakout season in 2009, as posted the best K/9 of his career – 10.09, which was second best in all of baseball – as well as a 2.36 BB/9. After two years of declining fastball speed (it went from averaging 95.1 mph in 2006 to 94.8 in 2007 and 93.6 in 2008), his fastball gained speed and was the fastest of his career and second best in the bigs at 95.6. His BABIP was a smidgen high at .328, so he deserved better than his already-great 3.45 ERA. The only, slight, cause for concern is that his GB% has decreased each year and now sits at 36% (in the bottom 10), but that is a small and acceptable price to pay for the big-time strikeouts and quality control.<br /><br /><b>The Year Ahead: </b>Verlander enters 2010, his age-27 season, as one of the top starting pitchers in the game. He should contribute in all four starting-pitcher categories. Both his wins and strikeouts should be very good, although, because of regression, you cannot expect him to repeat his huge 2009 totals of 19 wins and 269 strikeouts. On the other hand, even if his BB/9 and K/9 numbers regress, he could outperform his 2009 ERA and WHIP, because his BABIP should improve. As one of the top 2009 starters, by posting flashy K and W values, and a young guy with no health issues, he will not come cheap in 2010 and should be one of the first handful of pitchers selected. (Dave Allen)</td></tr></table></center></div></td></tr>
-                <tr id="so3" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>Verlander was a fantasy stud in 2010, just like he was in 2006, 2007 and 2009.  He did struggle in 2008 and that can be easily attributed to  his fastball going from 95 mph  (which has been the average in every other season) to 93.5 mph. Besides 2008, he has average rate of more than 8.00 K/9 innings and under 3.00 BB/9.  He should be able to get about 15 wins by going against the rest of the AL Central and the having decent run support.  He is one of the top aces in the league and should be treated as one. Verlander should be one of the top-15 pitchers to come off the board and probably in the top five in an AL only league. (Jeff Zimmerman)<br /><br /><b>The Quick Opinion: </b>Verlander has been a great fantasy pitcher over the past few season and there is no reason to see that change in 2011.</td></tr></table></center></div></td></tr>
-                <tr id="so4" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>The year after Roger Clemens (the last AL starting pitcher to win the MVP award) won his honor, he repeated as the Cy Young award winner. He regressed in nearly every category, whether fantasy relevant or not, yet was still the AL’s best pitcher that year. That’s the type of year Verlander owners should be hoping for. He has substantial competition to repeating as the Cy Young winner, but he’ll have as good a shot as anyone, even if he can’t repeat his 2011 level of success. Saying that Verlander isn’t going to be as good in 2012 as he was in 2011 isn’t heresy, it’s just the law of averages. Even if he regresses to his career levels, he’ll still be one of the best three pitchers in the game, and worthy of a high draft pick. (Dan Wade)<br /><br /><b>The Quick Opinion: </b>If he’s anything other than one of the five best pitchers in baseball this season, consider it a big upset. Verlander is a dominant pitcher in the prime of his career; no matter how narrow the definition of a true ace pitcher is, Verlander fits. </td></tr></table></center></div></td></tr>
-                <tr id="so5" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>After a sensational 2011 season, Verlander kept chugging along last year, striking out a batter per inning, limiting the free pass and acting as a workhorse. However, hopes for another sub-3.00 ERA hinges upon a third straight season of a well-below-average batting average on balls in play. Prior to 2011, Verlander's BABIP did not deviate too far from the average (except for 2009 when it was well above it). Over the last two years, though, his BABIP has been at levels you might expect from an extreme fly ball pitcher with superb defensive support. If and when that BABIP does rise, the strand rate will fall, and his ERA will creep above 3.00 again. Of course, even if that happens, he'll still remain a top-five fantasy pitcher, so he remains as safe an investment as it gets among starting pitchers. (<a target="_blank" href="http://www.pallocale.com/">Mike Podhorzer</a>)<br /><br /><b>The Quick Opinion: </b>Coming off a Cy Young 2011 campaign, Verlander followed up strongly, pitching nearly as well and posting similar skills. Though it's up in the air how long he can maintain batting averages on balls in play well below the league average, he should once again be a top fantasy starter.</td></tr></table></center></div></td></tr>
-                <tr id="so6" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>When a 3.46 ERA is considered a disappointing performance, you know you have been on a roll in past seasons. But for arguably the best pitcher in baseball, that's exactly how fantasy owners felt about Justin Verlander. On the heels of a one mile per hour decline in fastball velocity, Verlander's peripherals took a step backward, driving his SIERA to its highest level since 2008. And for just the second time in his career, his batting average on balls in play jumped above the .300 plateau. Oddly, despite a walk rate that increased to the second worst mark of his career, his first strike rate actually hit a career high. His velocity did improve as the season wore on and he was as dominant as ever in September. While it would be unwise to expect the soon-to-be 31-year-old to return to peak form, his skills should rebound a bit and lead to a more typical Justin Verlander type season. (<a href="https://twitter.com/MikePodhorzer" target="_blank">Mike Podhorzer</a>)<br /><br /><b>The Quick Opinion: </b>A dip in fastball velocity and poor defensive support combined to hamper Verlander's performance and disappoint his fantasy owners. But his advanced metrics suggest that this is nearly the same pitcher and he should remain a strong candidate to finish the season as the top earner among starting pitchers.</td></tr></table></center></div></td></tr>
-                <tr id="so7" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>The 31-year-old Verlander is at crossroads in his career. He is going to need to figure out how to pitch successfully with a lower fastball velocity. That gas has been slowly declining since 2009, but over the last couple of seasons it has dropped two mph from 94.3 to 92.3 mph. At the same time, his swinging strike rate has gone from 12% to 9%, which is inline with his strikeout rate dropping from nine per nine to seven per nine. Looking at all his numbers, almost all are trending in the wrong way. Contact percentages are up. Zone percentage is down. Batting average on balls in play is up. Home runs are up.  Historically speaking, he has little chance of a velocity rebound. Owners need to go into 2015 expecting the 2014 Verlander, not the one from previous Cy Young seasons. Along with the drop in strikeouts, his ERA and estimators now stand near the four territory instead of being sub-three. These type of numbers puts in the category of pitchers like Bud Norris, Dan Haren, Jake Peavy and Wade Miley --acceptable starters, but not great. He is going to get drafted way ahead of those pitchers on the chance of a possible rebound. Don't take the chance. He isn't completely useless, but his current talent needs to be valued, not his production from a couple seasons ago. (Jeff Zimmerman)<br /><br /><b>The Quick Opinion: </b>All pitchers eventually begin to see their production wane. Just like CC Sabathia and Tim Lincecum, Justin Verlander needs to be valued on his current talent, not his previous Cy Young production levels.</td></tr></table></center></div></td></tr>
-                <tr id="so8" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>Verlander made 32 starts in 2014 which might make the injury excuse that year a tough sell for some. But simply chalking up his poor play to skills degradation doesn't really make sense for the sudden cliff dive. He had core surgery ahead of the '14 season and somehow didn't miss any time, but after a strong start (2.67 ERA thru eight starts) he labored through the summer (5.87 in his next 18) and finished with a 4.54 ERA, second-worst in his career. The tricep injury of '15 fit a more defined pattern. He was out until mid-June and then struggled immediately upon returning, a "normal" trajectory for associating injury with performance. So whether or not you fully subscribe to the injury reason behind his ugly '14 and start of '15, let's move onto the good part of last season. The biggest difference in his game was the fastball. In the 38 starts from the start of 2014 through July 19th of 2015, he allowed an .856 OPS with just a 13% strikeout rate on the heater. In his final 14 starts last year, he was at .541 and 25%, respectively. The key, as is often the case with pitching, was location. The high heat sparked his run. A full 49% of his fastballs were in the upper third of the zone, matching the Vintage Verlander of 2009-2012. The secondary stuff always looked like it'd make for a smooth decline even as the velo waned and now with health, we're seeing that play out. The risk is now baked into the cost making Verlander a worthy third starting pitcher target in all formats. (<a href="http://thespguide.com/">Paul Sporer</a>)<br /><br /><b>The Quick Opinion: </b>After being sidelined for almost three months with a triceps injury, Verlander got off to a horrific start (6.62 ERA thru six starts) before recapturing his ace form for his final 14 starts (2.27 ERA in 99 IP). It looks like health was the real issue in '14 and early-'15, and that a healthy Verlander is a still a very good Verlander, but now at age-33 we can't assume he will stay upright for a full season.</td></tr></table></center></div></td></tr>
-                <tr id="so9" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>Verlander showed his 2015 second half was no fluke and removed doubt about his health, registering 227.2 innings (third-most in the major leagues) during a Cy Young-winning-worthy season. His velocity spiked with not only his fastball but perhaps more importantly with his slider, which jumped to a career-best 88 mph – fourth-highest in the league. The results on both pitches were tremendous (combined .647 OPS, 10th-best) while the curveball returned to its previous plus-plus levels (.422 OPS, sixth-best). He got back to the high fastball, a pitch that spurred his 2015 success and portended the 2016 return to greatness if he kept it up. His 1061 fastballs in the upper third were second-most in the league while his .499 OPS on those pitches was third-best (min. 700 high fastballs thrown). He continues to move away from his changeup (career-low 8.5% usage) as the results continue to struggle. Verlander always seemed like someone capable of a soft decline in his 30s because of his exquisite secondary arsenal and now that he’s healthy, we’re seeing just that. Mid-30s arms do carry perennial health risk as the innings pile up, but nothing in his skill set suggests any sharp regression is coming. (<a href="http://twitter.com/sporer">Paul Sporer</a>)<br /><br /><b>The Quick Opinion: </b>Verlander's resurgence included a career-best strikeout rate (28%), K%-BB% (22%), and swinging strike rate (12%) which led to his best results since 2012 (3.04 ERA, 1.00 WHIP). A velocity boost aided both the fastball and slider while restoring the market’s confidence in the ace, especially after so many other perceived aces fell back.</td></tr></table></center></div></td></tr>
+                <tr><td><hr class="player-page-info-sep"/><table class="player-page-news"><tr>
+                    <td>11/5/2017</td><td class="td-badge"><div class="rg badge">RG</div></td><td><a href="http://www.fangraphs.com/fantasy/the-sleeper-and-the-bust-episode-505-live-from-afl/">The Sleeper and the Bust Episode: 505 – Live from &#8230;</a><span class="m_author"> by <a href="http://www.fangraphs.com/fantasy/index.php?author=11752">Paul Sporer</a></span></td></tr><tr>
+                    <td>11/1/2017</td><td class="td-badge"><div class="fg badge">FG</div></td><td><a href="http://www.fangraphs.com/blogs/did-justin-verlander-find-a-new-pitch/">Did Justin Verlander Find a New Pitch?</a><span class="m_author"> by <a href="http://www.fangraphs.com/blogs/index.php?author=22">Eno Sarris</a></span></td></tr><tr>
+                    <td>10/31/2017</td><td class="td-badge"><div class="fg badge">FG</div></td><td><a href="http://www.fangraphs.com/blogs/justin-verlander-hall-of-famer/">Justin Verlander: Hall of Famer?</a><span class="m_author"> by <a href="http://www.fangraphs.com/blogs/index.php?author=13690">Craig Edwards</a></span></td></tr><tr>
+                    <td>10/30/2017</td><td class="td-badge"><div class="fg badge">FG</div></td><td><a href="http://www.fangraphs.com/blogs/does-the-juiced-ball-lead-to-straighter-pitches/">Does the Juiced Ball Lead to Straighter Pitches?</a><span class="m_author"> by <a href="http://www.fangraphs.com/blogs/index.php?author=22">Eno Sarris</a></span></td></tr><tr>
+                    <td>10/24/2017</td><td class="td-badge"><div class="rg badge">RG</div></td><td><a href="http://www.fangraphs.com/fantasy/2017-pera-update-with-exit-velocity-grades/">2017 pERA Update With Exit Velocity Grades</a><span class="m_author"> by <a href="http://www.fangraphs.com/fantasy/index.php?author=7554">Jeff Zimmerman</a></span></td></tr></table></div></td></tr>
+            
             </table>
         </td>
         <td style="width: 302px; height: 250px; vertical-align: top;">
@@ -632,348 +837,74 @@
 
         </td>
     </tr>
+    <tr>
+        
+        <tr id="so2" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Year in Review: </b>Verlander had a breakout season in 2009, as posted the best K/9 of his career – 10.09, which was second best in all of baseball – as well as a 2.36 BB/9. After two years of declining fastball speed (it went from averaging 95.1 mph in 2006 to 94.8 in 2007 and 93.6 in 2008), his fastball gained speed and was the fastest of his career and second best in the bigs at 95.6. His BABIP was a smidgen high at .328, so he deserved better than his already-great 3.45 ERA. The only, slight, cause for concern is that his GB% has decreased each year and now sits at 36% (in the bottom 10), but that is a small and acceptable price to pay for the big-time strikeouts and quality control.<br /><br /><b>The Year Ahead: </b>Verlander enters 2010, his age-27 season, as one of the top starting pitchers in the game. He should contribute in all four starting-pitcher categories. Both his wins and strikeouts should be very good, although, because of regression, you cannot expect him to repeat his huge 2009 totals of 19 wins and 269 strikeouts. On the other hand, even if his BB/9 and K/9 numbers regress, he could outperform his 2009 ERA and WHIP, because his BABIP should improve. As one of the top 2009 starters, by posting flashy K and W values, and a young guy with no health issues, he will not come cheap in 2010 and should be one of the first handful of pitchers selected. (Dave Allen)</td></tr></table></center></div></td></tr>
+        <tr id="so3" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>Verlander was a fantasy stud in 2010, just like he was in 2006, 2007 and 2009.  He did struggle in 2008 and that can be easily attributed to  his fastball going from 95 mph  (which has been the average in every other season) to 93.5 mph. Besides 2008, he has average rate of more than 8.00 K/9 innings and under 3.00 BB/9.  He should be able to get about 15 wins by going against the rest of the AL Central and the having decent run support.  He is one of the top aces in the league and should be treated as one. Verlander should be one of the top-15 pitchers to come off the board and probably in the top five in an AL only league. (Jeff Zimmerman)<br /><br /><b>The Quick Opinion: </b>Verlander has been a great fantasy pitcher over the past few season and there is no reason to see that change in 2011.</td></tr></table></center></div></td></tr>
+        <tr id="so4" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>The year after Roger Clemens (the last AL starting pitcher to win the MVP award) won his honor, he repeated as the Cy Young award winner. He regressed in nearly every category, whether fantasy relevant or not, yet was still the AL’s best pitcher that year. That’s the type of year Verlander owners should be hoping for. He has substantial competition to repeating as the Cy Young winner, but he’ll have as good a shot as anyone, even if he can’t repeat his 2011 level of success. Saying that Verlander isn’t going to be as good in 2012 as he was in 2011 isn’t heresy, it’s just the law of averages. Even if he regresses to his career levels, he’ll still be one of the best three pitchers in the game, and worthy of a high draft pick. (Dan Wade)<br /><br /><b>The Quick Opinion: </b>If he’s anything other than one of the five best pitchers in baseball this season, consider it a big upset. Verlander is a dominant pitcher in the prime of his career; no matter how narrow the definition of a true ace pitcher is, Verlander fits. </td></tr></table></center></div></td></tr>
+        <tr id="so5" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>After a sensational 2011 season, Verlander kept chugging along last year, striking out a batter per inning, limiting the free pass and acting as a workhorse. However, hopes for another sub-3.00 ERA hinges upon a third straight season of a well-below-average batting average on balls in play. Prior to 2011, Verlander's BABIP did not deviate too far from the average (except for 2009 when it was well above it). Over the last two years, though, his BABIP has been at levels you might expect from an extreme fly ball pitcher with superb defensive support. If and when that BABIP does rise, the strand rate will fall, and his ERA will creep above 3.00 again. Of course, even if that happens, he'll still remain a top-five fantasy pitcher, so he remains as safe an investment as it gets among starting pitchers. (<a target="_blank" href="http://www.pallocale.com/">Mike Podhorzer</a>)<br /><br /><b>The Quick Opinion: </b>Coming off a Cy Young 2011 campaign, Verlander followed up strongly, pitching nearly as well and posting similar skills. Though it's up in the air how long he can maintain batting averages on balls in play well below the league average, he should once again be a top fantasy starter.</td></tr></table></center></div></td></tr>
+        <tr id="so6" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>When a 3.46 ERA is considered a disappointing performance, you know you have been on a roll in past seasons. But for arguably the best pitcher in baseball, that's exactly how fantasy owners felt about Justin Verlander. On the heels of a one mile per hour decline in fastball velocity, Verlander's peripherals took a step backward, driving his SIERA to its highest level since 2008. And for just the second time in his career, his batting average on balls in play jumped above the .300 plateau. Oddly, despite a walk rate that increased to the second worst mark of his career, his first strike rate actually hit a career high. His velocity did improve as the season wore on and he was as dominant as ever in September. While it would be unwise to expect the soon-to-be 31-year-old to return to peak form, his skills should rebound a bit and lead to a more typical Justin Verlander type season. (<a href="https://twitter.com/MikePodhorzer" target="_blank">Mike Podhorzer</a>)<br /><br /><b>The Quick Opinion: </b>A dip in fastball velocity and poor defensive support combined to hamper Verlander's performance and disappoint his fantasy owners. But his advanced metrics suggest that this is nearly the same pitcher and he should remain a strong candidate to finish the season as the top earner among starting pitchers.</td></tr></table></center></div></td></tr>
+        <tr id="so7" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>The 31-year-old Verlander is at crossroads in his career. He is going to need to figure out how to pitch successfully with a lower fastball velocity. That gas has been slowly declining since 2009, but over the last couple of seasons it has dropped two mph from 94.3 to 92.3 mph. At the same time, his swinging strike rate has gone from 12% to 9%, which is inline with his strikeout rate dropping from nine per nine to seven per nine. Looking at all his numbers, almost all are trending in the wrong way. Contact percentages are up. Zone percentage is down. Batting average on balls in play is up. Home runs are up.  Historically speaking, he has little chance of a velocity rebound. Owners need to go into 2015 expecting the 2014 Verlander, not the one from previous Cy Young seasons. Along with the drop in strikeouts, his ERA and estimators now stand near the four territory instead of being sub-three. These type of numbers puts in the category of pitchers like Bud Norris, Dan Haren, Jake Peavy and Wade Miley --acceptable starters, but not great. He is going to get drafted way ahead of those pitchers on the chance of a possible rebound. Don't take the chance. He isn't completely useless, but his current talent needs to be valued, not his production from a couple seasons ago. (Jeff Zimmerman)<br /><br /><b>The Quick Opinion: </b>All pitchers eventually begin to see their production wane. Just like CC Sabathia and Tim Lincecum, Justin Verlander needs to be valued on his current talent, not his previous Cy Young production levels.</td></tr></table></center></div></td></tr>
+        <tr id="so8" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>Verlander made 32 starts in 2014 which might make the injury excuse that year a tough sell for some. But simply chalking up his poor play to skills degradation doesn't really make sense for the sudden cliff dive. He had core surgery ahead of the '14 season and somehow didn't miss any time, but after a strong start (2.67 ERA thru eight starts) he labored through the summer (5.87 in his next 18) and finished with a 4.54 ERA, second-worst in his career. The tricep injury of '15 fit a more defined pattern. He was out until mid-June and then struggled immediately upon returning, a "normal" trajectory for associating injury with performance. So whether or not you fully subscribe to the injury reason behind his ugly '14 and start of '15, let's move onto the good part of last season. The biggest difference in his game was the fastball. In the 38 starts from the start of 2014 through July 19th of 2015, he allowed an .856 OPS with just a 13% strikeout rate on the heater. In his final 14 starts last year, he was at .541 and 25%, respectively. The key, as is often the case with pitching, was location. The high heat sparked his run. A full 49% of his fastballs were in the upper third of the zone, matching the Vintage Verlander of 2009-2012. The secondary stuff always looked like it'd make for a smooth decline even as the velo waned and now with health, we're seeing that play out. The risk is now baked into the cost making Verlander a worthy third starting pitcher target in all formats. (<a href="http://thespguide.com/">Paul Sporer</a>)<br /><br /><b>The Quick Opinion: </b>After being sidelined for almost three months with a triceps injury, Verlander got off to a horrific start (6.62 ERA thru six starts) before recapturing his ace form for his final 14 starts (2.27 ERA in 99 IP). It looks like health was the real issue in '14 and early-'15, and that a healthy Verlander is a still a very good Verlander, but now at age-33 we can't assume he will stay upright for a full season.</td></tr></table></center></div></td></tr>
+        <tr id="so9" style="background-color: #FFF; display:none;"><td colspan="5" padding:3px; text-align:justify;"><div class="m_stories" style="font-size:10pt"><center><table><tr><td style="width:615px; padding-right:7px; text-align:justify;" valign="top"><b>Profile: </b>Verlander showed his 2015 second half was no fluke and removed doubt about his health, registering 227.2 innings (third-most in the major leagues) during a Cy Young-winning-worthy season. His velocity spiked with not only his fastball but perhaps more importantly with his slider, which jumped to a career-best 88 mph – fourth-highest in the league. The results on both pitches were tremendous (combined .647 OPS, 10th-best) while the curveball returned to its previous plus-plus levels (.422 OPS, sixth-best). He got back to the high fastball, a pitch that spurred his 2015 success and portended the 2016 return to greatness if he kept it up. His 1061 fastballs in the upper third were second-most in the league while his .499 OPS on those pitches was third-best (min. 700 high fastballs thrown). He continues to move away from his changeup (career-low 8.5% usage) as the results continue to struggle. Verlander always seemed like someone capable of a soft decline in his 30s because of his exquisite secondary arsenal and now that he’s healthy, we’re seeing just that. Mid-30s arms do carry perennial health risk as the innings pile up, but nothing in his skill set suggests any sharp regression is coming. (<a href="http://twitter.com/sporer">Paul Sporer</a>)<br /><br /><b>The Quick Opinion: </b>Verlander's resurgence included a career-best strikeout rate (28%), K%-BB% (22%), and swinging strike rate (12%) which led to his best results since 2012 (3.04 ERA, 1.00 WHIP). A velocity boost aided both the fastball and slider while restoring the market’s confidence in the ace, especially after so many other perceived aces fell back.</td></tr></table></center></div></td></tr>
+    </tr>
 </table>
-
+<div id="player-pages-player-caps"></div>
+<br /><div class="player-info-fan-proj signed-out">If you would like to make a projection for this player, please <a href="javascript:top.location.href='http://www.fangraphs.com/blogs/wp-login.php?redirect_to='+escape(parent.location.href)" target="_top">Log In</a> or <a href="http://www.fangraphs.com/blogs/wp-login.php?action=register" target="_top">Register</a>.</div>
 <br />
 <div id="PlayerInfo1_tsPlayer" class="RadTabStrip RadTabStrip_FanGraphs RadTabStripTop_FanGraphs RadTabStripTop">
 	<!-- 2016.2.607.45 --><div class="rtsLevel rtsLevel1">
 		<ul class="rtsUL"><li class="rtsLI rtsFirst"><a class="rtsLink" href="graphs.aspx?playerid=8700"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Graphs</span></span></span></a></li><li class="rtsLI"><a class="rtsLink rtsBefore" href="statss.aspx?playerid=8700&amp;position=P"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Season Stats</span></span></span></a></li><li class="rtsLI"><a class="rtsLink rtsSelected" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season="><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Splits</span></span></span></a></li><li class="rtsLI"><a class="rtsLink rtsAfter" href="splitstool.aspx?playerid=8700&amp;position=P"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Splits Tool</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsd.aspx?playerid=8700&amp;position=P"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Game Log</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsp.aspx?playerid=8700&amp;position=P&amp;season="><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Play Log</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="comparison.aspx?playerid=8700&amp;position=P&amp;page=0&amp;players="><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Compare</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="pitchfxo.aspx?playerid=8700&amp;position=P"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Pitch Graphs</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="spraycharts.aspx?playerid=8700&amp;position=P&amp;type=battedball"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Spray Charts</span></span></span></a></li><li class="rtsLI rtsLast"><a class="rtsLink" href="zonegrid.aspx?playerid=8700&amp;position=P"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Heatmaps</span></span></span></a></li></ul>
-	</div><script type="text/javascript">
-		Telerik.Web.UI.RadTabStrip._align('PlayerInfo1_tsPlayer', 3, 0);
-	</script><input id="PlayerInfo1_tsPlayer_ClientState" name="PlayerInfo1_tsPlayer_ClientState" type="hidden" />
+	</div><<input id="PlayerInfo1_tsPlayer_ClientState" name="PlayerInfo1_tsPlayer_ClientState" type="hidden" />
 </div>
 <hr />
-<script type="text/javascript">
+<
+<
 
-    function hideSO(a) {
-
-        if (document.getElementById('so2') != null && a != 'so2') {
-            var panela = document.getElementById('so2');
-            panela.style.display = 'none';
-            document.getElementById("soa2").style.fontWeight = 'normal';
-        }
-        if (document.getElementById('so3') != null && a != 'so3') {
-            var panelb = document.getElementById('so3');
-            panelb.style.display = 'none';
-            document.getElementById("soa3").style.fontWeight = 'normal';
-        }
-        if (document.getElementById('so4') != null && a != 'so4') {
-            var panelc = document.getElementById('so4');
-            panelc.style.display = 'none';
-            document.getElementById("soa4").style.fontWeight = 'normal';
-        }
-        if (document.getElementById('so5') != null && a != 'so5') {
-            var paneld = document.getElementById('so5');
-            paneld.style.display = 'none';
-            document.getElementById("soa5").style.fontWeight = 'normal';
-        }
-        if (document.getElementById('so6') != null && a != 'so6') {
-            var panele = document.getElementById('so6');
-            panele.style.display = 'none';
-            document.getElementById("soa6").style.fontWeight = 'normal';
-        }
-        if (document.getElementById('so7') != null && a != 'so7') {
-            var panelf = document.getElementById('so7');
-            panelf.style.display = 'none';
-            document.getElementById("soa7").style.fontWeight = 'normal';
-        }
-        if (document.getElementById('so8') != null && a != 'so8') {
-            var panelg = document.getElementById('so8');
-            panelg.style.display = 'none';
-            document.getElementById("soa8").style.fontWeight = 'normal';
-        }
-        if (document.getElementById('so9') != null && a != 'so9') {
-            var panelg = document.getElementById('so9');
-            panelg.style.display = 'none';
-            document.getElementById("soa9").style.fontWeight = 'normal';
-        }
-
-    }
-
-    function showMoreSO() {
-        //    var panel = document.getElementById('so1');
-        //    
-        //    if(panel.style.display == 'none')
-        //    {
-        //        panel.style.display = 'inherit';
-        //    }
-        //    else
-        //    {
-        //        panel.style.display = 'inherit';
-        //    }
-
-        hideSO('so2');
-
-        var panelo = document.getElementById('so2');
-
-        if (panelo.style.display == 'none') {
-            panelo.style.display = 'table-row';
-            document.getElementById('soa2').style.fontWeight = 'bold';
-        }
-        else {
-            panelo.style.display = 'none';
-            document.getElementById('soa2').style.fontWeight = 'normal';
-        }
-    }
-
-    function showMoreSO2011() {
-        //    var panel = document.getElementById('so1');
-        //    
-        //    if(panel.style.display == 'none')
-        //    {
-        //        panel.style.display = 'inherit';
-        //    }
-        //    else
-        //    {
-        //        panel.style.display = 'inherit';
-        //    }
-
-        hideSO('so3');
-
-        var panelo = document.getElementById('so3');
-
-        if (panelo.style.display == 'none') {
-            panelo.style.display = 'table-row';
-            document.getElementById('soa3').style.fontWeight = 'bold';
-        }
-        else {
-            panelo.style.display = 'none';
-            document.getElementById('soa3').style.fontWeight = 'normal';
-        }
-    }
-
-    function showMoreSO2012() {
-        //            var panel = document.getElementById('so1');
-        //            
-        //            if(panel.style.display == 'none')
-        //            {
-        //                panel.style.display = 'inherit';
-        //            }
-        //            else
-        //            {
-        //                panel.style.display = 'inherit';
-        //            }
-
-        hideSO('so4');
-
-        var panelo = document.getElementById('so4');
-
-        if (panelo.style.display == 'none') {
-            panelo.style.display = 'table-row';
-            document.getElementById('soa4').style.fontWeight = 'bold';
-        }
-        else {
-            panelo.style.display = 'none';
-            document.getElementById('soa4').style.fontWeight = 'normal';
-        }
-    }
-
-    function showMoreSO2013() {
-        //            var panel = document.getElementById('so1');
-        //            
-        //            if(panel.style.display == 'none')
-        //            {
-        //                panel.style.display = 'inherit';
-        //            }
-        //            else
-        //            {
-        //                panel.style.display = 'inherit';
-        //            }
-
-        hideSO('so5');
-
-        var panelo = document.getElementById('so5');
-
-        if (panelo.style.display == 'none') {
-            panelo.style.display = 'table-row';
-            document.getElementById('soa5').style.fontWeight = 'bold';
-        }
-        else {
-            panelo.style.display = 'none';
-            document.getElementById('soa5').style.fontWeight = 'normal';
-        }
-    }
-
-    function showMoreSO2014() {
-        //            var panel = document.getElementById('so1');
-        //            
-        //            if(panel.style.display == 'none')
-        //            {
-        //                panel.style.display = 'inherit';
-        //            }
-        //            else
-        //            {
-        //                panel.style.display = 'inherit';
-        //            }
-
-        hideSO('so6');
-
-        var panelo = document.getElementById('so6');
-
-        if (panelo.style.display == 'none') {
-            panelo.style.display = 'table-row';
-            document.getElementById('soa6').style.fontWeight = 'bold';
-        }
-        else {
-            panelo.style.display = 'none';
-            document.getElementById('soa6').style.fontWeight = 'normal';
-        }
-    }
-
-    function showMoreSO2015() {
-        //            var panel = document.getElementById('so1');
-        //            
-        //            if(panel.style.display == 'none')
-        //            {
-        //                panel.style.display = 'inherit';
-        //            }
-        //            else
-        //            {
-        //                panel.style.display = 'inherit';
-        //            }
-
-        hideSO('so7');
-
-        var panelo = document.getElementById('so7');
-
-        if (panelo.style.display == 'none') {
-            panelo.style.display = 'table-row';
-            document.getElementById('soa7').style.fontWeight = 'bold';
-        }
-        else {
-            panelo.style.display = 'none';
-            document.getElementById('soa7').style.fontWeight = 'normal';
-        }
-    }
-
-    function showMoreSO2016() {
-        //            var panel = document.getElementById('so1');
-        //            
-        //            if(panel.style.display == 'none')
-        //            {
-        //                panel.style.display = 'inherit';
-        //            }
-        //            else
-        //            {
-        //                panel.style.display = 'inherit';
-        //            }
-
-        hideSO('so8');
-
-        var panelo = document.getElementById('so8');
-
-        if (panelo.style.display == 'none') {
-            panelo.style.display = 'table-row';
-            document.getElementById('soa8').style.fontWeight = 'bold';
-        }
-        else {
-            panelo.style.display = 'none';
-            document.getElementById('soa8').style.fontWeight = 'normal';
-        }
-    }
-
-    function showMoreSO2017() {
-        //            var panel = document.getElementById('so1');
-        //            
-        //            if(panel.style.display == 'none')
-        //            {
-        //                panel.style.display = 'inherit';
-        //            }
-        //            else
-        //            {
-        //                panel.style.display = 'inherit';
-        //            }
-
-        hideSO('so9');
-
-        var panelo = document.getElementById('so9');
-
-        if (panelo.style.display == 'none') {
-            panelo.style.display = 'table-row';
-            document.getElementById('soa9').style.fontWeight = 'bold';
-        }
-        else {
-            panelo.style.display = 'none';
-            document.getElementById('soa9').style.fontWeight = 'normal';
-        }
-    }
-</script>
-<script type="text/javascript">
-    // Create the tooltips only on document load
-    $(document).ready(function () {
-        // Notice the use of the each() method to acquire access to each elements attributes
-        $('img[tooltip]').each(function () {
-            $(this).qtip({
-                position: {
-                    viewport: $(window),
-                    at: "bottomMiddle"
-                },
-                content: $(this).attr('tooltip'),
-                style: {
-                    classes: "qtip-dark"
-                }
-            });
-        });
-    });
-</script>
-
+<script src="/javascript/lib/purify.min.js"></script>
+<script>var customNoShow = false;</script><script>var dataPlayerCaps=[{"season": "2010",
+            "profile": "YEAR IN REVIEW: Verlander had a breakout season in 2009, as posted the best K/9 of his career – 10.09, which was second best in all of baseball – as well as a 2.36 BB/9. After two years of declining fastball speed (it went from averaging 95.1 mph in 2006 to 94.8 in 2007 and 93.6 in 2008), his fastball gained speed and was the fastest of his career and second best in the bigs at 95.6. His BABIP was a smidgen high at .328, so he deserved better than his already-great 3.45 ERA. The only, slight, cause for concern is that his GB% has decreased each year and now sits at 36% (in the bottom 10), but that is a small and acceptable price to pay for the big-time strikeouts and quality control.", 
+            "quickProfile": "THE YEAR AHEAD: Verlander enters 2010, his age-27 season, as one of the top starting pitchers in the game. He should contribute in all four starting-pitcher categories. Both his wins and strikeouts should be very good, although, because of regression, you cannot expect him to repeat his huge 2009 totals of 19 wins and 269 strikeouts. On the other hand, even if his BB/9 and K/9 numbers regress, he could outperform his 2009 ERA and WHIP, because his BABIP should improve. As one of the top 2009 starters, by posting flashy K and W values, and a young guy with no health issues, he will not come cheap in 2010 and should be one of the first handful of pitchers selected. (Dave Allen)"},{"season": "2011",
+            "profile": "Verlander was a fantasy stud in 2010, just like he was in 2006, 2007 and 2009.  He did struggle in 2008 and that can be easily attributed to  his fastball going from 95 mph  (which has been the average in every other season) to 93.5 mph. Besides 2008, he has average rate of more than 8.00 K/9 innings and under 3.00 BB/9.  He should be able to get about 15 wins by going against the rest of the AL Central and the having decent run support.  He is one of the top aces in the league and should be treated as one. Verlander should be one of the top-15 pitchers to come off the board and probably in the top five in an AL only league. (Jeff Zimmerman)", 
+            "quickProfile": "Verlander has been a great fantasy pitcher over the past few season and there is no reason to see that change in 2011."},{"season": "2012",
+            "profile": "The year after Roger Clemens (the last AL starting pitcher to win the MVP award) won his honor, he repeated as the Cy Young award winner. He regressed in nearly every category, whether fantasy relevant or not, yet was still the AL’s best pitcher that year. That’s the type of year Verlander owners should be hoping for. He has substantial competition to repeating as the Cy Young winner, but he’ll have as good a shot as anyone, even if he can’t repeat his 2011 level of success. Saying that Verlander isn’t going to be as good in 2012 as he was in 2011 isn’t heresy, it’s just the law of averages. Even if he regresses to his career levels, he’ll still be one of the best three pitchers in the game, and worthy of a high draft pick. (Dan Wade)", 
+            "quickProfile": "If he’s anything other than one of the five best pitchers in baseball this season, consider it a big upset. Verlander is a dominant pitcher in the prime of his career; no matter how narrow the definition of a true ace pitcher is, Verlander fits. "},{"season": "2013",
+            "profile": "After a sensational 2011 season, Verlander kept chugging along last year, striking out a batter per inning, limiting the free pass and acting as a workhorse. However, hopes for another sub-3.00 ERA hinges upon a third straight season of a well-below-average batting average on balls in play. Prior to 2011, Verlander's BABIP did not deviate too far from the average (except for 2009 when it was well above it). Over the last two years, though, his BABIP has been at levels you might expect from an extreme fly ball pitcher with superb defensive support. If and when that BABIP does rise, the strand rate will fall, and his ERA will creep above 3.00 again. Of course, even if that happens, he'll still remain a top-five fantasy pitcher, so he remains as safe an investment as it gets among starting pitchers. (<a target=\"_blank\" href=\"http://www.pallocale.com/\">Mike Podhorzer</a>)", 
+            "quickProfile": "Coming off a Cy Young 2011 campaign, Verlander followed up strongly, pitching nearly as well and posting similar skills. Though it's up in the air how long he can maintain batting averages on balls in play well below the league average, he should once again be a top fantasy starter."},{"season": "2014",
+            "profile": "When a 3.46 ERA is considered a disappointing performance, you know you have been on a roll in past seasons. But for arguably the best pitcher in baseball, that's exactly how fantasy owners felt about Justin Verlander. On the heels of a one mile per hour decline in fastball velocity, Verlander's peripherals took a step backward, driving his SIERA to its highest level since 2008. And for just the second time in his career, his batting average on balls in play jumped above the .300 plateau. Oddly, despite a walk rate that increased to the second worst mark of his career, his first strike rate actually hit a career high. His velocity did improve as the season wore on and he was as dominant as ever in September. While it would be unwise to expect the soon-to-be 31-year-old to return to peak form, his skills should rebound a bit and lead to a more typical Justin Verlander type season. (<a href=\"https://twitter.com/MikePodhorzer\" target=\"_blank\">Mike Podhorzer</a>)", 
+            "quickProfile": "A dip in fastball velocity and poor defensive support combined to hamper Verlander's performance and disappoint his fantasy owners. But his advanced metrics suggest that this is nearly the same pitcher and he should remain a strong candidate to finish the season as the top earner among starting pitchers."},{"season": "2015",
+            "profile": "The 31-year-old Verlander is at crossroads in his career. He is going to need to figure out how to pitch successfully with a lower fastball velocity. That gas has been slowly declining since 2009, but over the last couple of seasons it has dropped two mph from 94.3 to 92.3 mph. At the same time, his swinging strike rate has gone from 12% to 9%, which is inline with his strikeout rate dropping from nine per nine to seven per nine. Looking at all his numbers, almost all are trending in the wrong way. Contact percentages are up. Zone percentage is down. Batting average on balls in play is up. Home runs are up.  Historically speaking, he has little chance of a velocity rebound. Owners need to go into 2015 expecting the 2014 Verlander, not the one from previous Cy Young seasons. Along with the drop in strikeouts, his ERA and estimators now stand near the four territory instead of being sub-three. These type of numbers puts in the category of pitchers like Bud Norris, Dan Haren, Jake Peavy and Wade Miley --acceptable starters, but not great. He is going to get drafted way ahead of those pitchers on the chance of a possible rebound. Don't take the chance. He isn't completely useless, but his current talent needs to be valued, not his production from a couple seasons ago. (Jeff Zimmerman)", 
+            "quickProfile": "All pitchers eventually begin to see their production wane. Just like CC Sabathia and Tim Lincecum, Justin Verlander needs to be valued on his current talent, not his previous Cy Young production levels."},{"season": "2016",
+            "profile": "Verlander made 32 starts in 2014 which might make the injury excuse that year a tough sell for some. But simply chalking up his poor play to skills degradation doesn't really make sense for the sudden cliff dive. He had core surgery ahead of the '14 season and somehow didn't miss any time, but after a strong start (2.67 ERA thru eight starts) he labored through the summer (5.87 in his next 18) and finished with a 4.54 ERA, second-worst in his career. The tricep injury of '15 fit a more defined pattern. He was out until mid-June and then struggled immediately upon returning, a \"normal\" trajectory for associating injury with performance. So whether or not you fully subscribe to the injury reason behind his ugly '14 and start of '15, let's move onto the good part of last season. The biggest difference in his game was the fastball. In the 38 starts from the start of 2014 through July 19th of 2015, he allowed an .856 OPS with just a 13% strikeout rate on the heater. In his final 14 starts last year, he was at .541 and 25%, respectively. The key, as is often the case with pitching, was location. The high heat sparked his run. A full 49% of his fastballs were in the upper third of the zone, matching the Vintage Verlander of 2009-2012. The secondary stuff always looked like it'd make for a smooth decline even as the velo waned and now with health, we're seeing that play out. The risk is now baked into the cost making Verlander a worthy third starting pitcher target in all formats. (<a href=\"http://thespguide.com/\">Paul Sporer</a>)", 
+            "quickProfile": "After being sidelined for almost three months with a triceps injury, Verlander got off to a horrific start (6.62 ERA thru six starts) before recapturing his ace form for his final 14 starts (2.27 ERA in 99 IP). It looks like health was the real issue in '14 and early-'15, and that a healthy Verlander is a still a very good Verlander, but now at age-33 we can't assume he will stay upright for a full season."},{"season": "2017",
+            "profile": "Verlander showed his 2015 second half was no fluke and removed doubt about his health, registering 227.2 innings (third-most in the major leagues) during a Cy Young-winning-worthy season. His velocity spiked with not only his fastball but perhaps more importantly with his slider, which jumped to a career-best 88 mph – fourth-highest in the league. The results on both pitches were tremendous (combined .647 OPS, 10th-best) while the curveball returned to its previous plus-plus levels (.422 OPS, sixth-best). He got back to the high fastball, a pitch that spurred his 2015 success and portended the 2016 return to greatness if he kept it up. His 1061 fastballs in the upper third were second-most in the league while his .499 OPS on those pitches was third-best (min. 700 high fastballs thrown). He continues to move away from his changeup (career-low 8.5% usage) as the results continue to struggle. Verlander always seemed like someone capable of a soft decline in his 30s because of his exquisite secondary arsenal and now that he’s healthy, we’re seeing just that. Mid-30s arms do carry perennial health risk as the innings pile up, but nothing in his skill set suggests any sharp regression is coming. (<a href=\"http://twitter.com/sporer\">Paul Sporer</a>)", 
+            "quickProfile": "Verlander's resurgence included a career-best strikeout rate (28%), K%-BB% (22%), and swinging strike rate (12%) which led to his best results since 2012 (3.04 ERA, 1.00 WHIP). A velocity boost aided both the fastball and slider while restoring the market’s confidence in the ace, especially after so many other perceived aces fell back."},{"season": "2018",
+            "profile": "Maybe this year we won’t have to go through the charade of declaring Justin Verlander toast after a bad start or three. A couple shellackings at the hands of Cleveland (16 ER in 7.1 IP) saddled Verlander with a 4.96 ERA through his first 17 starts. He then reeled off a 10-start run of 2.31 ERA before the trade to Houston where he continued to excel through September and October. Perhaps just escaping regular outings against Cleveland will quell the perennial first-half worries. They dropped 15 runs in two horrific starts (9.2 IP) back in 2016, leaving him with a 4.30 ERA through 16 starts before he posted a dazzling 1.98 in his final 18 and re-established his ace credentials.   The Astros do get Cleveland seven times in a nine-game run from May 18th to 27th and if Verlander starts the last game of the Angels series before that run, he’ll miss them entirely this season. However, if he’s slated for either of the first two games of that run then he’ll get them twice and have to figure out a way to thwart his career nemesis (career-worst 4.71 ERA in a career-high 324.2 IP). While he is entering his age-35 season, the velo is at a seven-year high and the base skills are rock solid. He’ll also play a full season in front of a strong defense in a better park with great lineup support and the best bullpen he’s ever seen on an Opening Day roster. (<a href='https://twitter.com/sporer'>Paul Sporer</a>)", 
+            "quickProfile": "The lack of truly bankable aces will help Verlander elude fantasy baseball’s usual ageism this draft season, and though some trepidation is understandable with a mid-30s arm who just threw 243 innings, 37 of which came in the playoffs, he isn’t a normal 35-year-old. Assuage your fears by backing him up a little earlier than you might normally back up a top-15 starter, but otherwise enjoy the fruits of one of the generation’s best pitchers."}]; </script>
+<script src="/jsx/playerPages/_render/playerCaps.js"></script>
             <div id="SeasonSplits1_tsType" class="RadTabStrip RadTabStrip_FanGraphs RadTabStripTop_FanGraphs RadTabStripTop">
 	<div class="rtsLevel rtsLevel1">
 		<ul class="rtsUL"><li class="rtsLI rtsFirst"><a class="rtsLink rtsSelected" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season="><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Standard Splits</span></span></span></a></li><li class="rtsLI rtsLast"><a class="rtsLink rtsAfter" href="pitchfx.aspx?playerid=8700&amp;position=P"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Pitch Type Splits</span></span></span></a></li></ul>
-	</div><script type="text/javascript">
-		Telerik.Web.UI.RadTabStrip._align('SeasonSplits1_tsType', 3, 0);
-	</script><input id="SeasonSplits1_tsType_ClientState" name="SeasonSplits1_tsType_ClientState" type="hidden" />
+	</div><<input id="SeasonSplits1_tsType_ClientState" name="SeasonSplits1_tsType_ClientState" type="hidden" />
 </div>
+
 <div class="spacer_10"></div>
+
+
 <div id="SeasonSplits1_tsLog" class="RadTabStrip RadTabStrip_FanGraphs RadTabStripTop_FanGraphs RadTabStripTop">
 	<div class="rtsLevel rtsLevel1">
 		<ul class="rtsUL"><li class="rtsLI rtsFirst"><a class="rtsLink rtsSelected" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Career</span></span></span></a></li><li class="rtsLI"><a class="rtsLink rtsAfter" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2017"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2017</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2016"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2016</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2015"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2015</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2014"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2014</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2013"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2013</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2012"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2012</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2011"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2011</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2010"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2010</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2009"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2009</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2008"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2008</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2007"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2007</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2006"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2006</span></span></span></a></li><li class="rtsLI rtsLast"><a class="rtsLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=2005"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">2005</span></span></span></a></li></ul>
-	</div><script type="text/javascript">
-		Telerik.Web.UI.RadTabStrip._align('SeasonSplits1_tsLog', 3, 0);
-	</script><input id="SeasonSplits1_tsLog_ClientState" name="SeasonSplits1_tsLog_ClientState" type="hidden" />
+	</div><<input id="SeasonSplits1_tsLog_ClientState" name="SeasonSplits1_tsLog_ClientState" type="hidden" />
 </div>
 <div class="spacer_10"></div>
-<div tabindex="0" id="SeasonSplits1_rdSplit" class="RadMenu RadMenu_DepthChart rmSized">
-	<ul class="rmRootGroup rmHorizontal">
-		<li class="rmItem rmFirst"><span class="rmLink rmRootLink" tabindex="0"><font size="2">Handedness</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=0.1">vs L</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=0.2">vs R</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Home / Away</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=1.1">Home</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=1.2">Away</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=1.3">Home vs L</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=1.4">Home vs R</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=1.5">Away vs L</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=1.6">Away vs R</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Monthly</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=2.1">Mar/Apr</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=2.2">May</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=2.3">Jun</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=2.4">Jul</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=2.5">Aug</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=2.6">Sept/Oct</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=2.7">1st Half</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=2.8">2nd Half</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Leverage</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=5.1">Low Leverage</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=5.2">Medium Leverage</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=5.3">High Leverage</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Situational</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=6.1">Bases Empty</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=6.2">Men on Base</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=6.3">Men In Scoring</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Through Count</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=7.1">Through 3 - 0</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=7.2">Through 3 - 1</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=7.3">Through 3 - 2</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=7.4">Through 2 - 0</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=7.5">Through 1 - 0</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=7.6">Through 2 - 1</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=7.7">Through 1 - 1</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=7.8">Through 0 - 1</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=7.9">Through 2 - 2</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=7.10">Through 1 - 2</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=7.11">Through 0 - 2</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">SP / RP</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst rmLast"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=8.1">As Starter</a></li>
-			</ul>
-		</div></li><li class="rmItem "><span class="rmLink rmRootLink" tabindex="0"><font size="2">Shifts</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=9.1">No Shift</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=9.2">Shift - All</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=9.3">Shift - Traditional</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=9.4">Shift - Non Traditional</a></li>
-			</ul>
-		</div></li><li class="rmItem rmLast"><span class="rmLink rmRootLink" tabindex="0"><font size="2">TTO</font></span><div class="rmSlide">
-			<ul class="rmVertical rmGroup rmLevel1">
-				<li class="rmItem rmFirst"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=10.1">1st Through Order as SP</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=10.2">2nd Through Order as SP</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=10.3">3rd Through Order as SP</a></li><li class="rmItem "><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=10.4">4th Through Order as SP</a></li><li class="rmItem rmLast"><a class="rmLink" href="statsplits.aspx?playerid=8700&amp;position=P&amp;season=0&amp;split=10.5">5th Through Order as SP</a></li>
-			</ul>
-		</div></li>
-	</ul><input id="SeasonSplits1_rdSplit_ClientState" name="SeasonSplits1_rdSplit_ClientState" type="hidden" />
-</div>
+
+<div id="menu-splits"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+<script>var subMenuArray=[{ header: 'Handedness', teams: [{ label: 'vs L', value: '0.1' },{ label: 'vs R', value: '0.2' }]},{ header: 'Home / Away', teams: [{ label: 'Home', value: '1.1' },{ label: 'Away', value: '1.2' },{ label: 'Home vs L', value: '1.3' },{ label: 'Home vs R', value: '1.4' },{ label: 'Away vs L', value: '1.5' },{ label: 'Away vs R', value: '1.6' }]},{ header: 'Monthly', teams: [{ label: 'Mar/Apr', value: '2.1' },{ label: 'May', value: '2.2' },{ label: 'Jun', value: '2.3' },{ label: 'Jul', value: '2.4' },{ label: 'Aug', value: '2.5' },{ label: 'Sept/Oct', value: '2.6' },{ label: '1st Half', value: '2.7' },{ label: '2nd Half', value: '2.8' }]},{ header: 'Leverage', teams: [{ label: 'Low Leverage', value: '5.1' },{ label: 'Medium Leverage', value: '5.2' },{ label: 'High Leverage', value: '5.3' }]},{ header: 'Situational', teams: [{ label: 'Bases Empty', value: '6.1' },{ label: 'Men on Base', value: '6.2' },{ label: 'Men In Scoring', value: '6.3' }]},{ header: 'Through Count', teams: [{ label: 'Through 3 - 0', value: '7.1' },{ label: 'Through 1 - 2', value: '7.10' },{ label: 'Through 0 - 2', value: '7.11' },{ label: 'Through 3 - 1', value: '7.2' },{ label: 'Through 3 - 2', value: '7.3' },{ label: 'Through 2 - 0', value: '7.4' },{ label: 'Through 1 - 0', value: '7.5' },{ label: 'Through 2 - 1', value: '7.6' },{ label: 'Through 1 - 1', value: '7.7' },{ label: 'Through 0 - 1', value: '7.8' },{ label: 'Through 2 - 2', value: '7.9' }]},{ header: 'SP / RP', teams: [{ label: 'As Starter', value: '8.1' }]},{ header: 'Shifts', teams: [{ label: 'No Shift', value: '9.1' },{ label: 'Shift - All', value: '9.2' },{ label: 'Shift - Traditional', value: '9.3' },{ label: 'Shift - Non Traditional', value: '9.4' }]},{ header: 'TTO', teams: [{ label: '1st Through Order as SP', value: '10.1' },{ label: '2nd Through Order as SP', value: '10.2' },{ label: '3rd Through Order as SP', value: '10.3' },{ label: '4th Through Order as SP', value: '10.4' },{ label: '5th Through Order as SP', value: '10.5' }]}]; var splitsCoreURL = '/statsplits.aspx?playerid=8700&position=P&season=0&split=';</script>
+
+<
+
+
 
 <br /><div class="br_stitle"><a name="standard" href="#standard">Standard</a></div><div class="br_sbyl"></div>
 <div id="SeasonSplits1_dgSeason1" class="RadGrid RadGrid_FanGraphs" style="width:978px;">
@@ -1030,9 +961,9 @@
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason1_ctl00__11">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">113.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">454</td><td class="grid_line_regular" align="right">95</td><td class="grid_line_regular" align="right">18</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">45</td><td class="grid_line_regular" align="right">41</td><td class="grid_line_regular" align="right">15</td><td class="grid_line_regular" align="right">23</td><td class="grid_line_regular" align="right">0</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">110</td><td class="grid_line_regular" align="right">.223</td><td class="grid_line_regular" align="right">.272</td><td class="grid_line_regular" align="right">.385</td><td class="grid_line_regular" align="right">.283</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason1_ctl00__12">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">108.2</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">438</td><td class="grid_line_regular" align="right">88</td><td class="grid_line_regular" align="right">12</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">34</td><td class="grid_line_regular" align="right">33</td><td class="grid_line_regular" align="right">11</td><td class="grid_line_regular" align="right">30</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">103</td><td class="grid_line_regular" align="right">.217</td><td class="grid_line_regular" align="right">.274</td><td class="grid_line_regular" align="right">.334</td><td class="grid_line_regular" align="right">.265</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">109.2</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">444</td><td class="grid_line_regular" align="right">91</td><td class="grid_line_regular" align="right">12</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">34</td><td class="grid_line_regular" align="right">33</td><td class="grid_line_regular" align="right">11</td><td class="grid_line_regular" align="right">30</td><td class="grid_line_regular" align="right">1</td><td class="grid_line_regular" align="right">2</td><td class="grid_line_regular" align="right">104</td><td class="grid_line_regular" align="right">.221</td><td class="grid_line_regular" align="right">.277</td><td class="grid_line_regular" align="right">.337</td><td class="grid_line_regular" align="right">.267</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason1_ctl00__13">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">1177.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">4866</td><td class="grid_line_regular" align="right">1084</td><td class="grid_line_regular" align="right">212</td><td class="grid_line_regular" align="right">13</td><td class="grid_line_regular" align="right">516</td><td class="grid_line_regular" align="right">469</td><td class="grid_line_regular" align="right">108</td><td class="grid_line_regular" align="right">295</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">63</td><td class="grid_line_regular" align="right">1062</td><td class="grid_line_regular" align="right">.241</td><td class="grid_line_regular" align="right">.297</td><td class="grid_line_regular" align="right">.368</td><td class="grid_line_regular" align="right">.294</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">1178.1</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">4872</td><td class="grid_line_regular" align="right">1087</td><td class="grid_line_regular" align="right">212</td><td class="grid_line_regular" align="right">13</td><td class="grid_line_regular" align="right">516</td><td class="grid_line_regular" align="right">469</td><td class="grid_line_regular" align="right">108</td><td class="grid_line_regular" align="right">295</td><td class="grid_line_regular" align="right">5</td><td class="grid_line_regular" align="right">63</td><td class="grid_line_regular" align="right">1063</td><td class="grid_line_regular" align="right">.241</td><td class="grid_line_regular" align="right">.298</td><td class="grid_line_regular" align="right">.369</td><td class="grid_line_regular" align="right">.294</td>
 	</tr>
 	</tbody>
 
@@ -1091,9 +1022,9 @@
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason2_ctl00__11">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">8.74</td><td class="grid_line_regular" align="right">1.83</td><td class="grid_line_regular" align="right">4.78</td><td class="grid_line_regular" align="right">1.19</td><td class="grid_line_regular" align="right">24.2 %</td><td class="grid_line_regular" align="right">5.1 %</td><td class="grid_line_regular" align="right">19.2 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.04</td><td class="grid_line_regular" align="right">.266</td><td class="grid_line_regular" align="right">76.5 %</td><td class="grid_line_regular" align="right">3.67</td><td class="grid_line_regular" align="right">4.00</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason2_ctl00__12">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">8.53</td><td class="grid_line_regular" align="right">2.48</td><td class="grid_line_regular" align="right">3.43</td><td class="grid_line_regular" align="right">0.91</td><td class="grid_line_regular" align="right">23.5 %</td><td class="grid_line_regular" align="right">6.9 %</td><td class="grid_line_regular" align="right">16.7 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.09</td><td class="grid_line_regular" align="right">.264</td><td class="grid_line_regular" align="right">82.2 %</td><td class="grid_line_regular" align="right">3.45</td><td class="grid_line_regular" align="right">4.16</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">8.53</td><td class="grid_line_regular" align="right">2.46</td><td class="grid_line_regular" align="right">3.47</td><td class="grid_line_regular" align="right">0.90</td><td class="grid_line_regular" align="right">23.4 %</td><td class="grid_line_regular" align="right">6.8 %</td><td class="grid_line_regular" align="right">16.7 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.10</td><td class="grid_line_regular" align="right">.269</td><td class="grid_line_regular" align="right">82.7 %</td><td class="grid_line_regular" align="right">3.44</td><td class="grid_line_regular" align="right">4.16</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason2_ctl00__13">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">8.12</td><td class="grid_line_regular" align="right">2.26</td><td class="grid_line_regular" align="right">3.60</td><td class="grid_line_regular" align="right">0.83</td><td class="grid_line_regular" align="right">21.8 %</td><td class="grid_line_regular" align="right">6.1 %</td><td class="grid_line_regular" align="right">15.8 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.17</td><td class="grid_line_regular" align="right">.292</td><td class="grid_line_regular" align="right">71.7 %</td><td class="grid_line_regular" align="right">3.42</td><td class="grid_line_regular" align="right">3.83</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">8.12</td><td class="grid_line_regular" align="right">2.25</td><td class="grid_line_regular" align="right">3.60</td><td class="grid_line_regular" align="right">0.82</td><td class="grid_line_regular" align="right">21.8 %</td><td class="grid_line_regular" align="right">6.1 %</td><td class="grid_line_regular" align="right">15.8 %</td><td class="grid_line_regular" align="right">- - -</td><td class="grid_line_regular" align="right">1.17</td><td class="grid_line_regular" align="right">.293</td><td class="grid_line_regular" align="right">71.8 %</td><td class="grid_line_regular" align="right">3.42</td><td class="grid_line_regular" align="right">3.84</td>
 	</tr>
 	</tbody>
 
@@ -1155,9 +1086,9 @@
 	</tr><tr class="rgAltRow" id="SeasonSplits1_dgSeason3_ctl00__11">
 		<td class="grid_line_regular">2016</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">0.82</td><td class="grid_line_regular" align="right">18.3 %</td><td class="grid_line_regular" align="right">36.9 %</td><td class="grid_line_regular" align="right">44.9 %</td><td class="grid_line_regular" align="right">7.9 %</td><td class="grid_line_regular" align="right">10.7 %</td><td class="grid_line_regular" align="right">6.1 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">40.2 %</td><td class="grid_line_regular" align="right">36.1 %</td><td class="grid_line_regular" align="right">23.7 %</td><td class="grid_line_break" align="right">19.9 %</td><td class="grid_line_regular" align="right">48.1 %</td><td class="grid_line_regular" align="right">32.0 %</td><td class="grid_line_break" align="right">1772</td><td class="grid_line_regular" align="right">580</td><td class="grid_line_regular" align="right">1192</td>
 	</tr><tr class="rgRow" id="SeasonSplits1_dgSeason3_ctl00__12">
-		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">0.88</td><td class="grid_line_regular" align="right">23.5 %</td><td class="grid_line_regular" align="right">35.8 %</td><td class="grid_line_regular" align="right">40.7 %</td><td class="grid_line_regular" align="right">7.3 %</td><td class="grid_line_regular" align="right">8.9 %</td><td class="grid_line_regular" align="right">5.6 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">35.0 %</td><td class="grid_line_regular" align="right">37.3 %</td><td class="grid_line_regular" align="right">27.7 %</td><td class="grid_line_break" align="right">17.2 %</td><td class="grid_line_regular" align="right">48.8 %</td><td class="grid_line_regular" align="right">34.0 %</td><td class="grid_line_break" align="right">1769</td><td class="grid_line_regular" align="right">591</td><td class="grid_line_regular" align="right">1178</td>
+		<td class="grid_line_regular">2017</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">0.86</td><td class="grid_line_regular" align="right">24.1 %</td><td class="grid_line_regular" align="right">35.2 %</td><td class="grid_line_regular" align="right">40.7 %</td><td class="grid_line_regular" align="right">7.2 %</td><td class="grid_line_regular" align="right">8.8 %</td><td class="grid_line_regular" align="right">5.6 %</td><td class="grid_line_regular" align="right">0.0 %</td><td class="grid_line_break" align="right">34.7 %</td><td class="grid_line_regular" align="right">37.7 %</td><td class="grid_line_regular" align="right">27.6 %</td><td class="grid_line_break" align="right">16.9 %</td><td class="grid_line_regular" align="right">49.7 %</td><td class="grid_line_regular" align="right">33.4 %</td><td class="grid_line_break" align="right">1789</td><td class="grid_line_regular" align="right">596</td><td class="grid_line_regular" align="right">1193</td>
 	</tr><tr class="rgRow grid_total" id="SeasonSplits1_dgSeason3_ctl00__13">
-		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">1.00</td><td class="grid_line_regular" align="right">20.7 %</td><td class="grid_line_regular" align="right">39.7 %</td><td class="grid_line_regular" align="right">39.6 %</td><td class="grid_line_regular" align="right">11.8 %</td><td class="grid_line_regular" align="right">8.0 %</td><td class="grid_line_regular" align="right">6.5 %</td><td class="grid_line_regular" align="right">17.6 %</td><td class="grid_line_break" align="right">39.4 %</td><td class="grid_line_regular" align="right">33.8 %</td><td class="grid_line_regular" align="right">26.8 %</td><td class="grid_line_break" align="right">19.1 %</td><td class="grid_line_regular" align="right">52.4 %</td><td class="grid_line_regular" align="right">28.5 %</td><td class="grid_line_break" align="right">18673</td><td class="grid_line_regular" align="right">6333</td><td class="grid_line_regular" align="right">12340</td>
+		<td class="grid_line_regular">Total</td><td class="grid_line_regular">vs R</td><td class="grid_line_regular" align="right">1.00</td><td class="grid_line_regular" align="right">20.7 %</td><td class="grid_line_regular" align="right">39.7 %</td><td class="grid_line_regular" align="right">39.6 %</td><td class="grid_line_regular" align="right">11.8 %</td><td class="grid_line_regular" align="right">8.0 %</td><td class="grid_line_regular" align="right">6.5 %</td><td class="grid_line_regular" align="right">17.6 %</td><td class="grid_line_break" align="right">39.4 %</td><td class="grid_line_regular" align="right">33.9 %</td><td class="grid_line_regular" align="right">26.8 %</td><td class="grid_line_break" align="right">19.1 %</td><td class="grid_line_regular" align="right">52.4 %</td><td class="grid_line_regular" align="right">28.5 %</td><td class="grid_line_break" align="right">18693</td><td class="grid_line_regular" align="right">6338</td><td class="grid_line_regular" align="right">12355</td>
 	</tr>
 	</tbody>
 
@@ -1167,157 +1098,27 @@
 
         </div>
         <div id="footer">
-            
-
-<style>
-    .ra-temp-full {
-        width: 100%;
-        height: 50px;
-        background-color: beige;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-    }
-
-    .footer-bar {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        position: relative;
-        margin-top: 10px;
-        line-height: 45px;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-        -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-                justify-content: space-between;
-        padding: 0 10px;
-    }
-
-    .footer-bar-background {
-        background-color: #cecece;
-        border-bottom: 2px solid gray;
-        width: 100%;
-        height: 45px;
-        position: absolute;
-        left: 0;
-    }
-    .footer-bar-item {
-        margin: 0 10px;
-        z-index: 1;
-        width: 100%;
-    }
-
-    .footer-bar-item a {
-        font-weight: 600;
-    }
-
-    .footer-credits {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        padding: 0 10px;
-    }
-
-    .footer-credits-item {
-        -webkit-box-flex: 0;
-            -ms-flex: 0 1 300px;
-                flex: 0 1 300px;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-            -ms-flex-direction: column;
-                flex-direction: column;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        /*margin: 10px;*/
-        padding: 10px;
-    }
-
-    .footer-credits-item-name {
-        display: block;
-        font-weight: 600;
-        margin-bottom: 10px;
-    }
-
-    .footer-credits-item img {
-        max-width: 300px;
-    }
-    .footer-credits-item-text {
-        width: 100%;
-    }
-
-    .footer-credits {
-        display: block;
-    }
-    .footer-credits-item {
-        display: inline-block;
-        box-sizing: border-box;
-        width: 32.333%;
-        text-align: center;
-    }
-
-    @media (max-width: 950px) {
-
-        .footer-credits-item {
-            width: 49%;
-        }   
-    }
-    @media (max-width: 650px) {
-        .footer-credits-item {
-            width: 100%;
-        }
-    }
-
-</style>
-
-<div id="Footer1_panROS" class="ra-wide box-ra ra-member-hide">
+            <div id="Footer1_panFooter" class="ra-wide box-ra ra-member-hide">
 	
-    <center>
-        <div class="catchall728" style='width:728px; overflow:hidden;'><!-- Stats-footer --> <div id ='div-gpt-ad-1349421924281-18' style='width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-18').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-18'); });}</script></div></div>
+    <div>
+        <div class="catchall728" style='width:728px; overflow:hidden;'><!-- ROS-Footer --> <div id ='div-gpt-ad-1349421924281-10' style='width:728px; height:90px; overflow:hidden;'><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-10').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-10'); });}</script></div></div>
 
-    </center>
+    </div>
 
 </div>
 
 <br />
-
-<div id="Footer1_panAdiply">
-	
-
-    <div class="catchall3" style='width:3px; '><!-- Adiply_stats_skin --> <div id ='div-gpt-ad-1349421924281-24' style='width:3px; height:3px; '><script type='text/javascript'>if ($('#div-gpt-ad-1349421924281-24').is(':visible')) {googletag.cmd.push(function () { googletag.display('div-gpt-ad-1349421924281-24'); });}</script></div></div>
-
-
-
-</div>
 
 <div class="footer-bar">
     <div class="footer-bar-background"><div class="footer-bar-item">
         
     </div></div>
     <div class="footer-bar-item">
-        <span class="mobile-hide">Updated: Tuesday, September 26, 2017 10:40 AM ET</span><span class="mobile-show">Updated: 9/26/2017 10:40 AM ET</span>
+        <span class="mobile-hide">Updated: Wednesday, March 28, 2018 3:25 AM ET</span><span class="mobile-show">Updated: 3/28/2018 3:25 AM ET</span>
     </div>
     <div class="footer-bar-item" style="text-align: center; margin: auto;">
         <a href="http://www.fangraphs.com/linkify.aspx">Player Linker</a> - <a href="http://www.fangraphs.com/blogs/contact/">Contact Us</a> - <a href="http://www.fangraphs.com/blogs/advertise/">Advertise</a>
-        - <a href="http://www.fangraphs.com/tos.aspx">Terms of Service</a> - <a href="http://www.fangraphs.com/policy.aspx">Privacy Policy</a>
+        - <a href="/about/terms-of-service">Terms of Service</a> - <a href="/about/privacy-policy">Privacy Policy</a>
     </div>
 </div>
 <div class="footer-credits">
@@ -1334,7 +1135,7 @@
     </div>
     <div class="footer-credits-item">
         <a href="http://www.stats.com" class="footer-credits-item-name">
-            <img src="/images/statslogo_new.png" alt="statslogo" style="width: 100px;" /></a>
+            <img src="/images/statslogo_sm.png" alt="statslogo" style="width: 100px;" /></a>
         <div class="footer-credits-item-text">All minor league baseball data provided by Major League Baseball Advanced Media
         as distributed by STATS.</div>
     </div>
@@ -1359,7 +1160,6 @@
 <div id="Footer1_panAdIO">
 	
 
-    
     <!--BEGIN FIRSTIMPRESSION TAG -->
 <img src=https://cdn.firstimpression.io/delivery/lg.php?bannerid=100005&campaignid=184&zoneid=102011>
 <script data-cfasync='false' type='text/javascript'>
@@ -1384,43 +1184,10 @@ var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
 
 <!-- Chartbeat Tag -->
 
-<script type="text/javascript">
-    var _sf_async_config = { uid: 4890, domain: "fangraphs.com" };
-    (function () {
-        function loadChartbeat() {
-            window._sf_endpt = (new Date()).getTime();
-            var e = document.createElement('script');
-            e.setAttribute('language', 'javascript');
-            e.setAttribute('type', 'text/javascript');
-            e.setAttribute('src',
-       (("https:" == document.location.protocol) ? "https://s3.amazonaws.com/" : "http://") +
-       "static.chartbeat.com/js/chartbeat.js");
-            document.body.appendChild(e);
-        }
-        var oldonload = window.onload;
-        window.onload = (typeof window.onload != 'function') ?
-            loadChartbeat : function () { oldonload(); loadChartbeat(); };
-    })();
-
-</script>
+<
 
 <!-- Quantcast Tag -->
-<script type="text/javascript">
-    var _qevents = _qevents || [];
-
-    (function () {
-        var elem = document.createElement('script');
-        elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
-        elem.async = true;
-        elem.type = "text/javascript";
-        var scpt = document.getElementsByTagName('script')[0];
-        scpt.parentNode.insertBefore(elem, scpt);
-    })();
-
-    _qevents.push({
-        qacct: "p-8dBx9wgQFa1M6"
-    });
-</script>
+<
 <noscript>
     <div style="display: none;">
         <img src="//pixel.quantserve.com/pixel/p-8dBx9wgQFa1M6.gif" border="0" height="1"
@@ -1431,17 +1198,7 @@ var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
 
 <!-- Clicky Tag -->
 
-<script type="text/javascript">
-    var clicky_site_ids = clicky_site_ids || [];
-    clicky_site_ids.push(100553825);
-    (function () {
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = '//static.getclicky.com/js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(s);
-    })();
-</script>
+<
 <noscript>
     <p>
         <img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100553825ns.gif" />
@@ -1450,15 +1207,7 @@ var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
 
 <!-- PAGE DATE -->
 
-<script type="text/javascript">
-
-    $.get('/pagesync.aspx?url=' + window.location.href, function (data) {
-    });
-
-    $.get('/membersync.aspx', function (data) {
-    });
-
-</script>
+<
 
 <script src="/ads.js" type="text/javascript"></script>
 <script>
@@ -1603,7 +1352,7 @@ var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
         }
       ]
     });
-
+    ga('require', 'GTM-WQPMP6C');
     ga('send', 'pageview');
 </script>
 
@@ -1611,31 +1360,7 @@ var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
     </div>
     
 
-<script type="text/javascript">
-//<![CDATA[
-Sys.Application.add_init(function() {
-    $create(Telerik.Web.UI.RadTabStrip, {"_align":3,"_selectedIndex":2,"_skin":"FanGraphs","clientStateFieldID":"PlayerInfo1_tsPlayer_ClientState","selectedIndexes":["2"],"tabData":[{},{},{},{},{},{},{},{},{},{}]}, null, null, $get("PlayerInfo1_tsPlayer"));
-});
-Sys.Application.add_init(function() {
-    $create(Telerik.Web.UI.RadTabStrip, {"_align":3,"_selectedIndex":0,"_skin":"FanGraphs","clickSelectedTab":true,"clientStateFieldID":"SeasonSplits1_tsType_ClientState","selectedIndexes":["0"],"tabData":[{},{}]}, null, null, $get("SeasonSplits1_tsType"));
-});
-Sys.Application.add_init(function() {
-    $create(Telerik.Web.UI.RadTabStrip, {"_align":3,"_selectedIndex":0,"_skin":"FanGraphs","clickSelectedTab":true,"clientStateFieldID":"SeasonSplits1_tsLog_ClientState","selectedIndexes":["0"],"tabData":[{},{},{},{},{},{},{},{},{},{},{},{},{},{}]}, null, null, $get("SeasonSplits1_tsLog"));
-});
-Sys.Application.add_init(function() {
-    $create(Telerik.Web.UI.RadMenu, {"_childListElementCssClass":null,"_renderMode":2,"_skin":"DepthChart","clientStateFieldID":"SeasonSplits1_rdSplit_ClientState","collapseAnimation":"{\"type\":0,\"duration\":450}","collapseDelay":0,"expandAnimation":"{\"type\":0,\"duration\":450}","itemData":[{"items":[{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=0.1"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=0.2"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=1.1"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=1.2"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=1.3"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=1.4"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=1.5"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=1.6"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=2.1"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=2.2"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=2.3"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=2.4"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=2.5"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=2.6"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=2.7"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=2.8"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=5.1"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=5.2"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=5.3"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=6.1"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=6.2"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=6.3"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=7.1"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=7.2"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=7.3"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=7.4"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=7.5"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=7.6"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=7.7"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=7.8"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=7.9"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=7.10"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=7.11"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=8.1"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=9.1"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=9.2"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=9.3"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=9.4"}]},{"items":[{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=10.1"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=10.2"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=10.3"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=10.4"},{"navigateUrl":"statsplits.aspx?playerid=8700\u0026position=P\u0026season=0\u0026split=10.5"}]}]}, null, null, $get("SeasonSplits1_rdSplit"));
-});
-Sys.Application.add_init(function() {
-    $create(Telerik.Web.UI.RadGrid, {"ClientID":"SeasonSplits1_dgSeason1","ClientSettings":{"AllowAutoScrollOnDragDrop":true,"ShouldCreateRows":true,"DataBinding":{},"Selecting":{"CellSelectionMode":0},"Scrolling":{},"Resizing":{},"ClientMessages":{},"KeyboardNavigationSettings":{"AllowActiveRowCycle":false,"EnableKeyboardShortcuts":true,"FocusKey":89,"InitInsertKey":73,"RebindKey":82,"ExitEditInsertModeKey":27,"UpdateInsertItemKey":13,"DeleteActiveRow":127,"ExpandDetailTableKey":39,"CollapseDetailTableKey":37,"MoveDownKey":40,"MoveUpKey":38,"SaveChangesKey":85,"CancelChangesKey":81},"Animation":{},"Virtualization":{}},"Skin":"FanGraphs","UniqueID":"SeasonSplits1$dgSeason1","_activeRowIndex":"","_controlToFocus":"","_currentPageIndex":0,"_defaultDateTimeFormat":"M/d/yyyy h:mm:ss tt","_editIndexes":"[]","_embeddedSkin":false,"_freezeText":"Freeze","_gridTableViewsData":"[{\"ClientID\":\"SeasonSplits1_dgSeason1_ctl00\",\"UniqueID\":\"SeasonSplits1$dgSeason1$ctl00\",\"PageSize\":10,\"PageCount\":1,\"EditMode\":\"EditForms\",\"AllowPaging\":false,\"CurrentPageIndex\":0,\"VirtualItemCount\":100000,\"AllowMultiColumnSorting\":false,\"AllowNaturalSort\":true,\"AllowFilteringByColumn\":false,\"PageButtonCount\":10,\"HasDetailTables\":false,\"HasMultiHeaders\":false,\"CheckListWebServicePath\":\"\",\"GroupLoadMode\":\"Server\",\"PagerAlwaysVisible\":false,\"IsItemInserted\":false,\"clientDataKeyNames\":[],\"hasDetailItemTemplate\":false,\"_dataBindTemplates\":false,\"_selectedItemStyle\":\"\",\"_selectedItemStyleClass\":\"rgSelectedRow\",\"_columnsData\":[{\"UniqueName\":\"Season\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"Season\",\"Display\":true},{\"UniqueName\":\"Split\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"Split\",\"Display\":true},{\"UniqueName\":\"IP\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"IP\",\"DataFormatString\":\"{0:0.0}\",\"Display\":true},{\"UniqueName\":\"ERA\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"ERA\",\"DataFormatString\":\"{0:0.00}\",\"Display\":true},{\"UniqueName\":\"TBF\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"TBF\",\"Display\":true},{\"UniqueName\":\"H\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"H\",\"Display\":true},{\"UniqueName\":\"2B\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"2B\",\"Display\":true},{\"UniqueName\":\"3B\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"3B\",\"Display\":true},{\"UniqueName\":\"R\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"R\",\"Display\":true},{\"UniqueName\":\"ER\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"ER\",\"Display\":true},{\"UniqueName\":\"HR\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"HR\",\"Display\":true},{\"UniqueName\":\"BB\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"BB\",\"Display\":true},{\"UniqueName\":\"IBB\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"IBB\",\"Display\":true},{\"UniqueName\":\"HBP\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"HBP\",\"Display\":true},{\"UniqueName\":\"SO\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"SO\",\"Display\":true},{\"UniqueName\":\"AVG\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"AVG\",\"DataFormatString\":\"{0:.000}\",\"Display\":true},{\"UniqueName\":\"OBP\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"OBP\",\"DataFormatString\":\"{0:.000}\",\"Display\":true},{\"UniqueName\":\"SLG\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"SLG\",\"DataFormatString\":\"{0:.000}\",\"Display\":true},{\"UniqueName\":\"wOBA\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"wOBA\",\"DataFormatString\":\"{0:.000}\",\"Display\":true}]}]","_masterClientID":"SeasonSplits1_dgSeason1_ctl00","_shouldFocusOnPage":false,"_unfreezeText":"Unfreeze","allowMultiRowSelection":false,"clientStateFieldID":"SeasonSplits1_dgSeason1_ClientState","expandItems":{},"renderMode":2}, null, null, $get("SeasonSplits1_dgSeason1"));
-});
-Sys.Application.add_init(function() {
-    $create(Telerik.Web.UI.RadGrid, {"ClientID":"SeasonSplits1_dgSeason2","ClientSettings":{"AllowAutoScrollOnDragDrop":true,"ShouldCreateRows":true,"DataBinding":{},"Selecting":{"CellSelectionMode":0},"Scrolling":{},"Resizing":{},"ClientMessages":{},"KeyboardNavigationSettings":{"AllowActiveRowCycle":false,"EnableKeyboardShortcuts":true,"FocusKey":89,"InitInsertKey":73,"RebindKey":82,"ExitEditInsertModeKey":27,"UpdateInsertItemKey":13,"DeleteActiveRow":127,"ExpandDetailTableKey":39,"CollapseDetailTableKey":37,"MoveDownKey":40,"MoveUpKey":38,"SaveChangesKey":85,"CancelChangesKey":81},"Animation":{},"Virtualization":{}},"Skin":"FanGraphs","UniqueID":"SeasonSplits1$dgSeason2","_activeRowIndex":"","_controlToFocus":"","_currentPageIndex":0,"_defaultDateTimeFormat":"M/d/yyyy h:mm:ss tt","_editIndexes":"[]","_embeddedSkin":false,"_freezeText":"Freeze","_gridTableViewsData":"[{\"ClientID\":\"SeasonSplits1_dgSeason2_ctl00\",\"UniqueID\":\"SeasonSplits1$dgSeason2$ctl00\",\"PageSize\":10,\"PageCount\":1,\"EditMode\":\"EditForms\",\"AllowPaging\":false,\"CurrentPageIndex\":0,\"VirtualItemCount\":100000,\"AllowMultiColumnSorting\":false,\"AllowNaturalSort\":true,\"AllowFilteringByColumn\":false,\"PageButtonCount\":10,\"HasDetailTables\":false,\"HasMultiHeaders\":false,\"CheckListWebServicePath\":\"\",\"GroupLoadMode\":\"Server\",\"PagerAlwaysVisible\":false,\"IsItemInserted\":false,\"clientDataKeyNames\":[],\"hasDetailItemTemplate\":false,\"_dataBindTemplates\":false,\"_selectedItemStyle\":\"\",\"_selectedItemStyleClass\":\"rgSelectedRow\",\"_columnsData\":[{\"UniqueName\":\"Season\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"Season\",\"Display\":true},{\"UniqueName\":\"Split\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"Split\",\"Display\":true},{\"UniqueName\":\"K/9\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"K/9\",\"DataFormatString\":\"{0:0.00}\",\"Display\":true},{\"UniqueName\":\"BB/9\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"BB/9\",\"DataFormatString\":\"{0:0.00}\",\"Display\":true},{\"UniqueName\":\"K/BB\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"K/BB\",\"DataFormatString\":\"{0:0.00}\",\"Display\":true},{\"UniqueName\":\"HR/9\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"HR/9\",\"DataFormatString\":\"{0:0.00}\",\"Display\":true},{\"UniqueName\":\"K%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"K%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"BB%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"BB%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"K-BB%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Double\",\"DataField\":\"K-BB%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"AVG\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"AVG\",\"DataFormatString\":\"{0:.000}\",\"Display\":true},{\"UniqueName\":\"WHIP\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"WHIP\",\"DataFormatString\":\"{0:0.00}\",\"Display\":true},{\"UniqueName\":\"BABIP\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"BABIP\",\"DataFormatString\":\"{0:.000}\",\"Display\":true},{\"UniqueName\":\"LOB%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"LOB%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"FIP\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"FIP\",\"DataFormatString\":\"{0:0.00}\",\"Display\":true},{\"UniqueName\":\"xFIP\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"xFIP\",\"DataFormatString\":\"{0:0.00}\",\"Display\":true}]}]","_masterClientID":"SeasonSplits1_dgSeason2_ctl00","_shouldFocusOnPage":false,"_unfreezeText":"Unfreeze","allowMultiRowSelection":false,"clientStateFieldID":"SeasonSplits1_dgSeason2_ClientState","expandItems":{},"renderMode":2}, null, null, $get("SeasonSplits1_dgSeason2"));
-});
-Sys.Application.add_init(function() {
-    $create(Telerik.Web.UI.RadGrid, {"ClientID":"SeasonSplits1_dgSeason3","ClientSettings":{"AllowAutoScrollOnDragDrop":true,"ShouldCreateRows":true,"DataBinding":{},"Selecting":{"CellSelectionMode":0},"Scrolling":{},"Resizing":{},"ClientMessages":{},"KeyboardNavigationSettings":{"AllowActiveRowCycle":false,"EnableKeyboardShortcuts":true,"FocusKey":89,"InitInsertKey":73,"RebindKey":82,"ExitEditInsertModeKey":27,"UpdateInsertItemKey":13,"DeleteActiveRow":127,"ExpandDetailTableKey":39,"CollapseDetailTableKey":37,"MoveDownKey":40,"MoveUpKey":38,"SaveChangesKey":85,"CancelChangesKey":81},"Animation":{},"Virtualization":{}},"Skin":"FanGraphs","UniqueID":"SeasonSplits1$dgSeason3","_activeRowIndex":"","_controlToFocus":"","_currentPageIndex":0,"_defaultDateTimeFormat":"M/d/yyyy h:mm:ss tt","_editIndexes":"[]","_embeddedSkin":false,"_freezeText":"Freeze","_gridTableViewsData":"[{\"ClientID\":\"SeasonSplits1_dgSeason3_ctl00\",\"UniqueID\":\"SeasonSplits1$dgSeason3$ctl00\",\"PageSize\":10,\"PageCount\":1,\"EditMode\":\"EditForms\",\"AllowPaging\":false,\"CurrentPageIndex\":0,\"VirtualItemCount\":100000,\"AllowMultiColumnSorting\":false,\"AllowNaturalSort\":true,\"AllowFilteringByColumn\":false,\"PageButtonCount\":10,\"HasDetailTables\":false,\"HasMultiHeaders\":false,\"CheckListWebServicePath\":\"\",\"GroupLoadMode\":\"Server\",\"PagerAlwaysVisible\":false,\"IsItemInserted\":false,\"clientDataKeyNames\":[],\"hasDetailItemTemplate\":false,\"_dataBindTemplates\":false,\"_selectedItemStyle\":\"\",\"_selectedItemStyleClass\":\"rgSelectedRow\",\"_columnsData\":[{\"UniqueName\":\"Season\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"Season\",\"Display\":true},{\"UniqueName\":\"Split\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"Split\",\"Display\":true},{\"UniqueName\":\"GB/FB\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"GB/FB\",\"DataFormatString\":\"{0:0.00}\",\"Display\":true},{\"UniqueName\":\"LD%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"LD%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"GB%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"GB%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"FB%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"FB%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"IFFB%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"IFFB%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"HR/FB\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"HR/FB\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"IFH%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"IFH%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"BUH%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"BUH%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"Pull%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"Pull%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"Cent%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"Cent%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"Oppo%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"Oppo%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"Soft%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"Soft%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"Med%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"Med%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"Hard%\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Single\",\"DataField\":\"Hard%\",\"DataFormatString\":\"{0:P1}\",\"Display\":true},{\"UniqueName\":\"Pitches\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int32\",\"DataField\":\"Pitches\",\"Display\":true},{\"UniqueName\":\"Balls\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"Balls\",\"Display\":true},{\"UniqueName\":\"Strikes\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Int16\",\"DataField\":\"Strikes\",\"Display\":true}]}]","_masterClientID":"SeasonSplits1_dgSeason3_ctl00","_shouldFocusOnPage":false,"_unfreezeText":"Unfreeze","allowMultiRowSelection":false,"clientStateFieldID":"SeasonSplits1_dgSeason3_ClientState","expandItems":{},"renderMode":2}, null, null, $get("SeasonSplits1_dgSeason3"));
-});
-//]]>
-</script>
+<
 </form>
 </body>
 </html>
