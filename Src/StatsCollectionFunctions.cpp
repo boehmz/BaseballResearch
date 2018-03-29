@@ -288,7 +288,7 @@ FullSeasonStatsAdvancedNoHandedness GetBatterStatsSeason(std::string playerId, C
 	FullSeasonStatsAdvancedNoHandedness batterStats;
 	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, 0);
 	vector<string> fangraphsYearRows = GetFangraphsRowColumns(">" + yearString + "<", fangraphsPlayerData, 20, "name=\"dashboard\"", "", true);
-	if (fangraphsYearRows.size() > 19) {
+	if (fangraphsYearRows.size() > 19 && fangraphsYearRows[12] != "" && fangraphsYearRows[13] != "") {
 		batterStats.average = stof(fangraphsYearRows[11]);
 		batterStats.onBaseAverage = stof(fangraphsYearRows[12]);
 		batterStats.slugging = stof(fangraphsYearRows[13]);
