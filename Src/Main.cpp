@@ -203,7 +203,7 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20170823;
+		reviewDateStart = 20170925;
 		reviewDateEnd = 20171001;
 		percentOfSeasonPassed = 10.0f / 160.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
@@ -591,7 +591,7 @@ void RefineAlgorithm()
 										if (thisPlayerVSpecificPitcherLines.size() > 47) {
 											int numPlateAppearances = atoi(thisPlayerVSpecificPitcherLines[17].c_str());
 											if (numPlateAppearances >= 5) {
-												singlePlayerData.playerPointsPerGame = stof(thisPlayerVSpecificPitcherLines[34]);
+												singlePlayerData.playerPointsPerGame = stof(thisPlayerVSpecificPitcherLines[34]) * 100;
 											}
 										}
 									}
@@ -2301,10 +2301,10 @@ void GenerateLineups(CURL *curl)
 		string sabrPredictorTextPitchers = getSabrPredictorFileContents(todaysDate, true);
 		string batterVSpecificPitcherTextFileName = "2018ResultsTracker\\BatterVPitcherLogs\\" + todaysDate + ".txt";
 		string batterVSpecificPitcherText = GetEntireFileContents(batterVSpecificPitcherTextFileName);
-
+		string generalBattingOrders = GetEntireFileContents("Team2018DataCached\\GeneralBattingOrders.txt");
 		for (int p = 2; p <= 7; ++p)
 		{
-			// first basemen
+			int positionIndex = p - 2;
 			std::string readBuffer;
 			char pAsString[5];
 			itoa(p, pAsString, 10);
@@ -2425,8 +2425,9 @@ void GenerateLineups(CURL *curl)
 				if (batterStatsCurrentYear.average >= 0)
 					combinedBatterStats = combinedBatterStats * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStatsCurrentYear;
 
-				singlePlayerData.playerPointsPerGame = combinedBatterStats.ops * 100.0f;
-				allPlayers25Slugging[p].push_back(singlePlayerData);
+				
+				float batterCombinedSluggingPoints = combinedBatterStats.slugging * 100.0f;
+				float batterVSpecificPitcherPoints = combinedBatterStats.ops * 100.0f;
 				size_t indexInVSpecificPitcherFile = batterVSpecificPitcherText.find(singlePlayerData.playerName);
 				if (indexInVSpecificPitcherFile != string::npos) {
 					size_t prevLineIndex = batterVSpecificPitcherText.rfind("\n", indexInVSpecificPitcherFile);
@@ -2435,11 +2436,10 @@ void GenerateLineups(CURL *curl)
 					if (thisPlayerVSpecificPitcherLines.size() > 47) {
 						int numPlateAppearances = atoi(thisPlayerVSpecificPitcherLines[17].c_str());
 						if (numPlateAppearances >= 5) {
-							singlePlayerData.playerPointsPerGame = stof(thisPlayerVSpecificPitcherLines[34]);
+							batterVSpecificPitcherPoints = stof(thisPlayerVSpecificPitcherLines[34]) * 100.0f;
 						}
 					}
 				}
-				allPlayers25OpsBatterVSpecificPitcher[p].push_back(singlePlayerData);
 
 				int gameStartTime = 24;
 				size_t colonIndex = readBuffer.find(":", placeHolderIndex + 1);
@@ -2496,10 +2496,7 @@ void GenerateLineups(CURL *curl)
 				bool bAcceptableBattingOrder = false;
 				int minBattingOrder = 2;
 				int maxBattingOrder = 5;
-				// catchers usually bat later anyway
-				if (p == 2)
-					maxBattingOrder = 6;
-				
+								
 				for (unsigned int i = 0; i < previousDayResults.size(); ++i) {
 					size_t playerIdIndex = previousDayResults[i].find(previousDayResults[i].substr(0, 3) + ";" + singlePlayerData.playerId + ";", 0);
 					if (playerIdIndex != string::npos)
@@ -2515,6 +2512,14 @@ void GenerateLineups(CURL *curl)
 						}
 					}
 				}
+				size_t generalBattingOrderIndex = generalBattingOrders.find(ConvertLFNameToFLName(singlePlayerData.playerName));
+				if (generalBattingOrderIndex != string::npos) {
+					size_t prevNewLineIndex = generalBattingOrders.rfind("\n", generalBattingOrderIndex);
+					int battingOrderGeneral = atoi(generalBattingOrders.substr(prevNewLineIndex + 1, 1).c_str());
+					if (battingOrderGeneral >= minBattingOrder && battingOrderGeneral <= maxBattingOrder) {
+						bAcceptableBattingOrder = true;
+					}
+				}
 
 				// throw this guy out if he's not a starter or his game will most likely be rained out
 				if (bAcceptableBattingOrder
@@ -2523,6 +2528,10 @@ void GenerateLineups(CURL *curl)
 					&& gameStartTime >= earliestGameTime
 					&& !bRainedOut) {
 					positionalPlayerData.push_back(singlePlayerData);
+					singlePlayerData.playerPointsPerGame = batterCombinedSluggingPoints;
+					allPlayers25Slugging[positionIndex].push_back(singlePlayerData);
+					singlePlayerData.playerPointsPerGame = batterVSpecificPitcherPoints;
+					allPlayers25OpsBatterVSpecificPitcher[positionIndex].push_back(singlePlayerData);
 				}
 				if (placeHolderIndex == string::npos)
 					break;
@@ -2555,7 +2564,44 @@ void GenerateLineups(CURL *curl)
 			sort(allPlayers[pos].begin(), allPlayers[pos].end(), comparePlayerByPointsPerGame);
 		}
 	}
+	int budgetForThisPitcher = maxTotalBudget;
 	vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
+	maxTotalBudget = budgetForThisPitcher;
+	allPlayers.clear();
+	allPlayers = allPlayers25OpsBatterVSpecificPitcher;
+	for (int a = 0; a < 6; ++a) {
+		sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+	}
+	vector<PlayerData> opsVSpecificPitcherLineup = OptimizeLineupToFitBudget();
+	maxTotalBudget = budgetForThisPitcher;
+	allPlayers.clear();
+	allPlayers = allPlayers25Slugging;
+	for (int a = 0; a < 6; ++a) {
+		sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+	}
+	vector<PlayerData> opsOnlyLineup = OptimizeLineupToFitBudget();
+	maxTotalBudget = budgetForThisPitcher;
+	allPlayers.clear();
+	allPlayers = allPlayers25PitcherMultiply;
+	for (int a = 0; a < 6; ++a) {
+		sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+	}
+	vector<PlayerData> fanduelPitcherMultiplyLineup = OptimizeLineupToFitBudget();
+	maxTotalBudget = budgetForThisPitcher;
+	allPlayers.clear();
+	allPlayers = allPlayers25PitcherDKMultiply;
+	for (int a = 0; a < 6; ++a) {
+		sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+	}
+	vector<PlayerData> draftkingPitcherMultiplyLineup = OptimizeLineupToFitBudget();
+	maxTotalBudget = budgetForThisPitcher;
+	allPlayers.clear();
+	allPlayers = allPlayers25PitcherYahooMultiply;
+	for (int a = 0; a < 6; ++a) {
+		sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+	}
+	vector<PlayerData> yahooPitcherMultiplyLineup = OptimizeLineupToFitBudget();
+
 	int breakpoint = 0;
 }
 
