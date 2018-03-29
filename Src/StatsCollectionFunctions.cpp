@@ -296,6 +296,8 @@ FullSeasonStatsAdvancedNoHandedness GetBatterStatsSeason(std::string playerId, C
 		batterStats.woba = stof(fangraphsYearRows[14]);
 		batterStats.wrcPlus = stof(fangraphsYearRows[15]);
 		batterStats.iso = stof(fangraphsYearRows[9]);
+		batterStats.walkPercent = stof(fangraphsYearRows[7].substr(0, fangraphsYearRows[7].length() - 1));
+		batterStats.strikeoutPercent = stof(fangraphsYearRows[8].substr(0, fangraphsYearRows[8].length() - 1));
 	}
 
 	return batterStats;
@@ -318,6 +320,8 @@ FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string pla
 	if (batterStats.average > 0) {
 		batterStats.wrcPlus = stof(fangraphsStandardRows[21]);
 	}
+	batterStats.strikeoutPercent = stof( fangraphsStandardRows[14].substr(0, fangraphsStandardRows[14].length() - 1));
+	batterStats.walkPercent = stof(fangraphsStandardRows[13].substr(0, fangraphsStandardRows[13].length() - 1));
 	return batterStats;
 }
 void FullSeasonStatsAdvancedNoHandedness::operator+=(const FullSeasonStatsAdvancedNoHandedness& other) {
