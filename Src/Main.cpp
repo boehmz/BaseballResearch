@@ -21,10 +21,10 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = -1;
-std::string todaysDate = "20171001";
+std::string todaysDate = "20180329";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 161.0f / 162.0f;
+float percentOfSeasonPassed = 0.0f / 162.0f;
 // tournament is:
 // any batting order
 // applies team stacks
@@ -51,7 +51,7 @@ vector<string> probableRainoutGames;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 	switch (processType)
 	{
 	case UnitTest:
@@ -1426,7 +1426,7 @@ void ChooseAPitcher(CURL *curl)
 	if (curl)
 	{
 		std::string readBuffer;
-		string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=1&sort=4&game=d&colA=0&daypt=0&denom=3&xavg=0&inact=0&maxprc=99999&sched=1&starters=1&hithand=0&numlist=c&user=GoldenExcalibur&key=G5970032941";
+		string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=1&sort=4&game=d&colA=0&daypt=0&denom=3&xavg=0&inact=0&maxprc=99999&sched=1&starters=1&hithand=0&numlist=c";
 		curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
@@ -1731,7 +1731,7 @@ void GenerateNewLineup(CURL *curl)
 		  char pAsString[5];
 		  itoa(p, pAsString, 10);
 		  string pAsStringString(pAsString);
-		  string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941";
+		  string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c";
 
 		  curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
 		  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -2038,7 +2038,7 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl)
 			char prevDayCStr[5];
 			itoa(thisDayAbbreviatedInt, prevDayCStr, 10);
 			string prevDay = prevDayCStr;
-			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + prevDay + "&game=fd&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
+			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + prevDay + "&game=fd&scsv=1&nowrap=1";
 			curl_easy_setopt(curl, CURLOPT_URL, resultsURL.c_str());
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &previousResults);
@@ -2055,7 +2055,7 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl)
 			char pAsString[5];
 			itoa(p, pAsString, 10);
 			string pAsStringString(pAsString);
-			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941";
+			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c";
 
 			curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -2344,7 +2344,7 @@ vector<PlayerData> OptimizeLineupToFitBudget()
     for (unsigned int i = allPlayers[0].size() - 1; i > 0; --i)
     {
         bool bDeleteThisPlayer = false;
-        if (allPlayers[0][i].playerSalary >= allPlayers[0][i-1].playerSalary)
+        if (allPlayers[0][i].playerSalary > allPlayers[0][i-1].playerSalary)
         {
             allPlayers[0].erase(allPlayers[0].begin() + i);
         }
@@ -2928,7 +2928,7 @@ void DetermineProbableStarters(CURL* curl)
 			char pAsString[5];
 			itoa(p, pAsString, 10);
 			string pAsStringString(pAsString);
-			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=4&game=d&colA=0&daypt=1&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c&user=GoldenExcalibur&key=G5970032941";
+			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=4&game=d&colA=0&daypt=1&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=1&numlist=c";
 
 			curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -4660,7 +4660,7 @@ void GetBeatTheStreakCandidates(CURL *curl)
 		}
 
 		std::string versusPitcherDirectStats;
-		readURL = "http://dailybaseballdata.com/cgi-bin/dailyhit.pl?date=&xyear=0&pa=0&showdfs=&sort=woba&r40=0&scsv=1&nohead=1&user=GoldenExcalibur&key=G5970032941";
+		readURL = "http://dailybaseballdata.com/cgi-bin/dailyhit.pl?date=&xyear=0&pa=0&showdfs=&sort=woba&r40=0&scsv=1&nohead=1";
 		curl_easy_setopt(curl, CURLOPT_URL, readURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &versusPitcherDirectStats);
@@ -4772,7 +4772,7 @@ void GetBeatTheStreakCandidates(CURL *curl)
 
 
 		std::string startingPitcherData;
-		readURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=1&sort=4&game=d&colA=0&daypt=0&denom=3&xavg=0&inact=0&maxprc=99999&sched=1&starters=1&hithand=0&numlist=c&user=GoldenExcalibur&key=G5970032941";
+		readURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=1&sort=4&game=d&colA=0&daypt=0&denom=3&xavg=0&inact=0&maxprc=99999&sched=1&starters=1&hithand=0&numlist=c";
 		curl_easy_setopt(curl, CURLOPT_URL, readURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &startingPitcherData);
