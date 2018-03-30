@@ -53,7 +53,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -250,7 +250,19 @@ void RefineAlgorithm()
 			}
 			string thisDateOnePrevious = IntToDateYMD(d - 1);
 			string actualResults;
-			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + thisDateWithoutYear + "&game=fd&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
+            string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=";
+            char yearStringC[5];
+            char monthStringC[3];
+            char dayStringC[3];
+            itoa(yearInt, yearStringC, 10);
+            itoa(monthInt, monthStringC, 10);
+            itoa(dayInt, dayStringC, 10);
+            resultsURL += "&month=";
+            resultsURL += monthStringC;
+            resultsURL += "&day=";
+            resultsURL += dayStringC;
+            resultsURL += "&year=2017";
+            resultsURL += "&game=fd&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
 			curl_easy_setopt(curl, CURLOPT_URL, resultsURL.c_str());
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &actualResults);
