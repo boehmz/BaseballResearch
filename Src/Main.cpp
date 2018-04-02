@@ -53,7 +53,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 	switch (processType)
 	{
 	case UnitTest:
@@ -3451,8 +3451,7 @@ void PopulateProbableRainoutGames(CURL *curl)
 				probableRainoutGames.push_back(ballparkName);
 			}
 
-
-			size_t dashIndex = weatherData.rfind(" – ", timeIndex);
+			size_t dashIndex = weatherData.rfind(" \x96 ", timeIndex);
 			
 			size_t colonIndex = weatherData.find(":", dashIndex);
 			int gameStartTime = atoi(weatherData.substr(dashIndex + 3, colonIndex - dashIndex - 3).c_str());
