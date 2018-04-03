@@ -451,8 +451,8 @@ void RefineAlgorithm()
 											}
 										}
 										float expectedFdPointsPitcher = stof(thisSabrLinePitchers[14]);
-										float expectedDkPointsPitcher = stof(thisSabrLinePitchers[13]);
-										float expectedYahooPointsPitcher = stof(thisSabrLinePitchers[12]);
+										float expectedDkPointsPitcher = stof(thisSabrLinePitchers[15]);
+										float expectedYahooPointsPitcher = stof(thisSabrLinePitchers[13]);
 										float pitcherOnBaseAllowed = stof(thisSabrLinePitchers[6]) + stof(thisSabrLinePitchers[11]);
 										float pitcherBattersFaced = stof(thisSabrLinePitchers[5]);
 										float pitcherTotalBasesAllowed = stof(thisSabrLinePitchers[7]) + stof(thisSabrLinePitchers[8]) * 2 + stof(thisSabrLinePitchers[9]) * 3 + stof(thisSabrLinePitchers[10]) * 4;
@@ -469,7 +469,7 @@ void RefineAlgorithm()
 											allPlayers25PitcherMultiply[playerPosition].push_back(singlePlayerData);
 											singlePlayerData.playerPointsPerGame = storedPoints * (60.0f / expectedDkPointsPitcher);
 											allPlayers25PitcherDkMultiply[playerPosition].push_back(singlePlayerData);
-											singlePlayerData.playerPointsPerGame = storedPoints * (120.0f / expectedYahooPointsPitcher);
+											singlePlayerData.playerPointsPerGame = storedPoints * (60.0f / expectedYahooPointsPitcher);
 											allPlayers25PitcherYahooMultiply[playerPosition].push_back(singlePlayerData);
 											singlePlayerData.playerPointsPerGame = storedPoints * (1.7f * pitcherOpsAllowed / leagueAverageOps);
 											allPlayers25PitcherOpsMultiply[playerPosition].push_back(singlePlayerData);
@@ -2304,10 +2304,9 @@ void GenerateLineups(CURL *curl)
 		curl = curl_easy_init();
 	vector<TeamStackTracker> teamStackList;
 	vector< vector<PlayerData> > allPlayers25PitcherMultiply(6);	// use pitcher multiply for tournaments and daily double up
-	vector< vector<PlayerData> > allPlayers25PitcherDKMultiply(6);	// use pitcher multiply DraftKings for daily double up
+    vector< vector<PlayerData> > allPlayers25PitcherYahooMultiply(6);    // use yahoo multiply for daily double up
     vector< vector<PlayerData> > allPlayers25PitcherOpsMultiply(6); // use pitcher allowed ops multiply for tournaments
 	vector< vector<PlayerData> > allPlayers25Slugging(6);	// use slugging for tournaments ONLY
-	vector< vector<PlayerData> > allPlayers25PitcherYahooMultiply(6);	// use yahoo multiply for tournaments
 	if (curl)
 	{
 		
@@ -2440,8 +2439,7 @@ void GenerateLineups(CURL *curl)
 								}
 							}
 							float expectedFdPointsPitcher = stof(thisSabrLinePitchers[14]);
-							float expectedDkPointsPitcher = stof(thisSabrLinePitchers[13]);
-							float expectedYahooPointsPitcher = stof(thisSabrLinePitchers[12]);
+							float expectedYahooPointsPitcher = stof(thisSabrLinePitchers[13]);
 						}
 					}
 				}
@@ -2597,13 +2595,6 @@ void GenerateLineups(CURL *curl)
 		sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
 	}
 	vector<PlayerData> fanduelPitcherMultiplyLineup = OptimizeLineupToFitBudget();
-	maxTotalBudget = budgetForThisPitcher;
-	allPlayers.clear();
-	allPlayers = allPlayers25PitcherDKMultiply;
-	for (int a = 0; a < 6; ++a) {
-		sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
-	}
-	vector<PlayerData> draftkingPitcherMultiplyLineup = OptimizeLineupToFitBudget();
 	maxTotalBudget = budgetForThisPitcher;
 	allPlayers.clear();
 	allPlayers = allPlayers25PitcherYahooMultiply;
