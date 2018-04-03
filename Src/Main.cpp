@@ -20,11 +20,11 @@ GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
-int earliestGameTime = -1;
-std::string todaysDate = "20180329";
+int earliestGameTime = 19;
+std::string todaysDate = "20180330";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 0.0f / 162.0f;
+float percentOfSeasonPassed = 1.0f / 162.0f;
 // tournament is:
 // any batting order
 // applies team stacks
@@ -53,7 +53,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 	switch (processType)
 	{
 	case UnitTest:
@@ -203,8 +203,8 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20170925;
-		reviewDateEnd = 20171001;
+		reviewDateStart = 20170410;
+		reviewDateEnd = 20170601;
 		percentOfSeasonPassed = 10.0f / 160.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -1596,7 +1596,9 @@ void ChooseAPitcher(CURL *curl)
 				opponentTeamIndex = teamThisYearRunsPerGameData.find("data-sort=", opponentTeamIndex + 1);
 				opponentTeamIndex = teamThisYearRunsPerGameData.find(">", opponentTeamIndex + 1);
 				size_t opponentTeamNextIndex = teamThisYearRunsPerGameData.find("<", opponentTeamIndex + 1);
-				opponentOps = stof(teamThisYearRunsPerGameData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str());
+				string opponentOpsString = teamThisYearRunsPerGameData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1);
+				if (opponentOpsString != "--")
+					opponentOps = stof(opponentOpsString.c_str());
 				// ops to runs per game is
 				// 13.349 * ops - 5.379
 				opponentRunsPerGame += (13.349f * opponentOps - 5.379f) * min(1.0f, percentOfSeasonPassed * 2.0f);
@@ -1605,7 +1607,11 @@ void ChooseAPitcher(CURL *curl)
 				opponentTeamIndex = teamThisYearStrikeoutData.find("data-sort=", opponentTeamIndex + 1);
 				opponentTeamIndex = teamThisYearStrikeoutData.find(">", opponentTeamIndex + 1);
 				opponentTeamNextIndex = teamThisYearStrikeoutData.find("<", opponentTeamIndex + 1);
-				opponentStrikeoutsPerGame += stof(teamThisYearStrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1).c_str()) * min(1.0f, percentOfSeasonPassed * 2.0f);
+				string opponentKPerGameThisYearString = teamThisYearStrikeoutData.substr(opponentTeamIndex + 1, opponentTeamNextIndex - opponentTeamIndex - 1);
+				float opponentKPerGameThisYear = 8.1f;
+				if (opponentKPerGameThisYearString != "--")
+					opponentKPerGameThisYear = stof(opponentKPerGameThisYearString.c_str());
+				opponentStrikeoutsPerGame += opponentKPerGameThisYear * min(1.0f, percentOfSeasonPassed * 2.0f);
 			
 				// ballpark factors
 				float pitcherBallparkHomerRateVsRighty, pitcherBallparkHomerRateVsLefty;
@@ -2284,7 +2290,6 @@ void GenerateLineups(CURL *curl)
 	vector<TeamStackTracker> teamStackList;
 	vector< vector<PlayerData> > allPlayers25PitcherMultiply(6);	// use pitcher multiply for tournaments
 	vector< vector<PlayerData> > allPlayers25PitcherDKMultiply(6);	// use pitcher multiply DraftKings for tournaments (slightly different results)
-	vector< vector<PlayerData> > allPlayers25OpsBatterVSpecificPitcher(6);	// use batter v specific pitcher for tournaments
 	vector< vector<PlayerData> > allPlayers25Slugging(6);	// use slugging for tournaments ONLY
 	vector< vector<PlayerData> > allPlayers25PitcherYahooMultiply(6);	// use yahoo multiply for double up games
 	if (curl)
@@ -2311,8 +2316,6 @@ void GenerateLineups(CURL *curl)
 
 		string sabrPredictorText = getSabrPredictorFileContents(todaysDate, false);
 		string sabrPredictorTextPitchers = getSabrPredictorFileContents(todaysDate, true);
-		string batterVSpecificPitcherTextFileName = "2018ResultsTracker\\BatterVPitcherLogs\\" + todaysDate + ".txt";
-		string batterVSpecificPitcherText = GetEntireFileContents(batterVSpecificPitcherTextFileName);
 		string generalBattingOrders = GetEntireFileContents("Team2018DataCached\\GeneralBattingOrders.txt");
 		for (int p = 2; p <= 7; ++p)
 		{
@@ -2439,19 +2442,6 @@ void GenerateLineups(CURL *curl)
 
 				
 				float batterCombinedSluggingPoints = combinedBatterStats.slugging * 100.0f;
-				float batterVSpecificPitcherPoints = combinedBatterStats.ops * 100.0f;
-				size_t indexInVSpecificPitcherFile = batterVSpecificPitcherText.find(singlePlayerData.playerName);
-				if (indexInVSpecificPitcherFile != string::npos) {
-					size_t prevLineIndex = batterVSpecificPitcherText.rfind("\n", indexInVSpecificPitcherFile);
-					size_t nextLineIndex = batterVSpecificPitcherText.find("\n", indexInVSpecificPitcherFile);
-					vector<string> thisPlayerVSpecificPitcherLines = SplitStringIntoMultiple(batterVSpecificPitcherText.substr(prevLineIndex, nextLineIndex - prevLineIndex), ";");
-					if (thisPlayerVSpecificPitcherLines.size() > 47) {
-						int numPlateAppearances = atoi(thisPlayerVSpecificPitcherLines[17].c_str());
-						if (numPlateAppearances >= 5) {
-							batterVSpecificPitcherPoints = stof(thisPlayerVSpecificPitcherLines[34]) * 100.0f;
-						}
-					}
-				}
 
 				int gameStartTime = 24;
 				size_t colonIndex = readBuffer.find(":", placeHolderIndex + 1);
@@ -2542,8 +2532,6 @@ void GenerateLineups(CURL *curl)
 					positionalPlayerData.push_back(singlePlayerData);
 					singlePlayerData.playerPointsPerGame = batterCombinedSluggingPoints;
 					allPlayers25Slugging[positionIndex].push_back(singlePlayerData);
-					singlePlayerData.playerPointsPerGame = batterVSpecificPitcherPoints;
-					allPlayers25OpsBatterVSpecificPitcher[positionIndex].push_back(singlePlayerData);
 				}
 				if (placeHolderIndex == string::npos)
 					break;
@@ -2578,13 +2566,7 @@ void GenerateLineups(CURL *curl)
 	}
 	int budgetForThisPitcher = maxTotalBudget;
 	vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
-	maxTotalBudget = budgetForThisPitcher;
-	allPlayers.clear();
-	allPlayers = allPlayers25OpsBatterVSpecificPitcher;
-	for (int a = 0; a < 6; ++a) {
-		sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
-	}
-	vector<PlayerData> opsVSpecificPitcherLineup = OptimizeLineupToFitBudget();
+	
 	maxTotalBudget = budgetForThisPitcher;
 	allPlayers.clear();
 	allPlayers = allPlayers25Slugging;
@@ -2685,6 +2667,17 @@ vector<PlayerData> OptimizeLineupToFitBudget()
         allPlayers[0].insert(allPlayers[0].end(), allPlayers[i].begin(), allPlayers[i].end());
     }
     sort(allPlayers[0].begin(), allPlayers[0].end(), comparePlayerByPointsPerGame);
+	if (allPlayers[0].size() > 1) {
+		allPlayers[0].erase(allPlayers[0].begin() + 1, allPlayers[0].end());
+	}
+	for (unsigned int i = 1; i < allPlayers.size(); ++i) {
+		for (unsigned int p = 0; p < allPlayers[i].size(); ++p) {
+			if (allPlayers[i][p].playerId == allPlayers[0][0].playerId) {
+				allPlayers[i].erase(allPlayers[i].begin() + p);
+				break;
+			}
+		}
+	}
 	for (unsigned int i = 0; i < allPlayers.size(); ++i)
 	{
 		if (allPlayers[i].size() == 0) {
@@ -2699,14 +2692,7 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 		}
 	}
     
-    for (unsigned int i = allPlayers[0].size() - 1; i > 0; --i)
-    {
-        bool bDeleteThisPlayer = false;
-        if (allPlayers[0][i].playerSalary > allPlayers[0][i-1].playerSalary)
-        {
-            allPlayers[0].erase(allPlayers[0].begin() + i);
-        }
-    }
+	
 
 
 	for (unsigned int i = 0; i < allPlayers.size(); ++i)
