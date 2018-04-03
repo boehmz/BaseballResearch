@@ -2303,7 +2303,7 @@ void GenerateLineups(CURL *curl)
 	if (curl == NULL)
 		curl = curl_easy_init();
 	vector<TeamStackTracker> teamStackList;
-	vector< vector<PlayerData> > allPlayers25PitcherMultiply(6);	// use pitcher multiply for tournaments and daily double up
+	vector< vector<PlayerData> > allPlayers25PitcherMultiply(6);	// use pitcher multiply for tournaments
     vector< vector<PlayerData> > allPlayers25PitcherYahooMultiply(6);    // use yahoo multiply for daily double up
     vector< vector<PlayerData> > allPlayers25PitcherOpsMultiply(6); // use pitcher allowed ops multiply for tournaments
 	vector< vector<PlayerData> > allPlayers25Slugging(6);	// use slugging for tournaments ONLY
@@ -2397,18 +2397,22 @@ void GenerateLineups(CURL *curl)
 
 				singlePlayerData.playerPointsPerGame = -1;
 
+                float expectedFdPointsOpposingPitcher = -1;
+                float expectedYahooPointsOpposingPitcher = -1;
+                float expectedFdPoints = -1;
 				size_t playerNameIndex = sabrPredictorText.find(ConvertLFNameToFLName(singlePlayerData.playerName));
 				if (playerNameIndex != string::npos) {
 					size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
 					vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
-					float expectedFdPoints = stof(thisSabrLine[17]);
+                    expectedFdPoints = stof(thisSabrLine[17]);
 					singlePlayerData.playerPointsPerGame = expectedFdPoints;
+                    
 
 					bool teamStackTrackerExists = false;
 					for (unsigned int texp = 0; texp < teamStackList.size(); ++texp) {
 						if (teamStackList[texp].teamCode == singlePlayerData.teamCode) {
 							teamStackList[texp].numPlayersAdded++;
-							teamStackList[texp].teamTotalExpectedPoints += singlePlayerData.playerPointsPerGame;
+							teamStackList[texp].teamTotalExpectedPoints += expectedFdPoints;
 							teamStackTrackerExists = true;
 							break;
 						}
@@ -2417,7 +2421,7 @@ void GenerateLineups(CURL *curl)
 						TeamStackTracker tst;
 						tst.numPlayersAdded = 1;
 						tst.teamCode = singlePlayerData.teamCode;
-						tst.teamTotalExpectedPoints = singlePlayerData.playerPointsPerGame;
+						tst.teamTotalExpectedPoints = expectedFdPoints;
 						teamStackList.push_back(tst);
 					}
 
@@ -2438,8 +2442,8 @@ void GenerateLineups(CURL *curl)
 									thisSabrLinePitchers = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(prevNewLinePitchers, nextNewLinePitchers - prevNewLinePitchers), ",", "\"");
 								}
 							}
-							float expectedFdPointsPitcher = stof(thisSabrLinePitchers[14]);
-							float expectedYahooPointsPitcher = stof(thisSabrLinePitchers[13]);
+                            expectedFdPointsOpposingPitcher = stof(thisSabrLinePitchers[14]);
+                            expectedYahooPointsOpposingPitcher = stof(thisSabrLinePitchers[13]);
 						}
 					}
 				}
@@ -2546,6 +2550,10 @@ void GenerateLineups(CURL *curl)
 					positionalPlayerData.push_back(singlePlayerData);
 					singlePlayerData.playerPointsPerGame = batterCombinedSluggingPoints;
 					allPlayers25Slugging[positionIndex].push_back(singlePlayerData);
+                    singlePlayerData.playerPointsPerGame = expectedFdPoints * (160.0f / expectedFdPointsOpposingPitcher);
+                    allPlayers25PitcherMultiply[positionIndex].push_back(singlePlayerData);
+                    singlePlayerData.playerPointsPerGame = expectedFdPoints * (60.0f / expectedYahooPointsOpposingPitcher);
+                    allPlayers25PitcherYahooMultiply[positionIndex].push_back(singlePlayerData);
 				}
 				if (placeHolderIndex == string::npos)
 					break;
@@ -2603,6 +2611,27 @@ void GenerateLineups(CURL *curl)
 	}
 	vector<PlayerData> yahooPitcherMultiplyLineup = OptimizeLineupToFitBudget();
 
+    cout << "daily double lineups: " << std::endl;
+    for (int i = 0; i < yahooPitcherMultiplyLineup.size(); ++i) {
+        cout << yahooPitcherMultiplyLineup[i].playerName << endl;
+    }
+    cout << "\nTournament lineups: " << std::endl;
+    cout << "Fd pitcher multiply:\n";
+    for (int i = 0; i < fanduelPitcherMultiplyLineup.size(); ++i) {
+        cout << fanduelPitcherMultiplyLineup[i].playerName << endl;
+    }
+    cout << "\nSlugging Only:\n";
+    for (int i = 0; i < sluggingOnlyLineup.size(); ++i) {
+        cout << sluggingOnlyLineup[i].playerName << endl;
+    }
+    
+    //daily double
+    yahooPitcherMultiplyLineup = yahooPitcherMultiplyLineup;
+    
+    // tournaments
+    fanduelPitcherMultiplyLineup = fanduelPitcherMultiplyLineup;
+    sluggingOnlyLineup = sluggingOnlyLineup;
+    
 	int breakpoint = 0;
 }
 
