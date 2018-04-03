@@ -3437,8 +3437,7 @@ void PopulateProbableRainoutGames(CURL *curl)
 				probableRainoutGames.push_back(ballparkName);
 			}
 
-
-			size_t dashIndex = weatherData.rfind(" – ", timeIndex);
+			size_t dashIndex = weatherData.rfind(" \x96 ", timeIndex);
 			
 			size_t colonIndex = weatherData.find(":", dashIndex);
 			int gameStartTime = atoi(weatherData.substr(dashIndex + 3, colonIndex - dashIndex - 3).c_str());
