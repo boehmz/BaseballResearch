@@ -634,6 +634,11 @@ FullSeasonStatsAdvanced GetBatterAdvancedStats(string playerId, string yearStrin
 
 string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, int advancedStatsFlags)
 {
+#if PLATFORM_OSX
+    // redirects to advanced stats for some reason doesn't work on osx, will investigate later
+    // urls need the &position=C added on to them, perhaps we can find through player position
+    return "";
+#endif
 	string fangraphsData = "";
 	string cachedFileName = "FangraphsCachedPages\\PlayerId" + playerId + ".txt";
 	if ((advancedStatsFlags & AdvancedStatsBattingSplitsVersusLeftHand) ||
@@ -826,6 +831,11 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
 
 	if (fangraphsData == "")
 	{
+#if PLATFORM_OSX
+        // redirects to advanced stats for some reason doesn't work on osx, will investigate later
+        // urls need the &position=C added on to them, perhaps we can find through player position
+        return "";
+#endif
 		if (curl == NULL)
 			curl = curl_easy_init();
 
