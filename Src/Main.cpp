@@ -20,7 +20,7 @@ GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
-int earliestGameTime = 19;
+int earliestGameTime = 22;
 std::string todaysDate = "20180404";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
@@ -2504,7 +2504,11 @@ void GenerateLineups(CURL *curl)
 				{
 					// game is in progress
 					gameStartTime = 999;
-				}
+                } else if (readBuffer.find("Postponed", placeHolderIndex + 1) != string::npos && readBuffer.find("Postponed", placeHolderIndex + 1) < nextSemiColonIndex)
+                {
+                    // game is in progress
+                    gameStartTime = 999;
+                }
 
 				size_t closestRainOutPark = string::npos;
 				for (unsigned int i = 0; i < probableRainoutGames.size(); ++i)
