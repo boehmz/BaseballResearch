@@ -20,11 +20,11 @@ GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
-int earliestGameTime = 22;
-std::string todaysDate = "20180404";
+int earliestGameTime = 18;
+std::string todaysDate = "20180405";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 5.0f / 162.0f;
+float percentOfSeasonPassed = 6.0f / 162.0f;
 // tournament is:
 // any batting order
 // applies team stacks
@@ -2470,7 +2470,7 @@ void GenerateLineups(CURL *curl)
 
 				
 				float batterCombinedSluggingPoints = combinedBatterStats.slugging * 100.0f;
-
+                
 				int gameStartTime = 24;
 				size_t colonIndex = readBuffer.find(":", placeHolderIndex + 1);
 				size_t nextSemiColonIndex = readBuffer.find("\n", placeHolderIndex + 1);
@@ -2508,7 +2508,12 @@ void GenerateLineups(CURL *curl)
                 {
                     // game is in progress
                     gameStartTime = 999;
+                } else if (readBuffer.find("End", placeHolderIndex + 1) != string::npos && readBuffer.find("End", placeHolderIndex + 1) < nextSemiColonIndex)
+                {
+                    // game is in progress
+                    gameStartTime = 999;
                 }
+                
 
 				size_t closestRainOutPark = string::npos;
 				for (unsigned int i = 0; i < probableRainoutGames.size(); ++i)
