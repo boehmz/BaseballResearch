@@ -14,6 +14,8 @@
 std::string GetPlatformCompatibleFileNameFromRelativePath(std::string relativeFileName);
 void _itoa_osx(int value, char* result, int base);
 
+bool FileExists(const char* fileName);
+void CutAndPasteFile(const char* src, const char* dest);
 int CurrentYearAsInt();
 std::string ConvertFLNameToLFName(std::string firstLast);
 std::string ConvertLFNameToFLName(std::string lastFirst);

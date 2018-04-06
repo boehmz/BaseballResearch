@@ -7,14 +7,38 @@
 #include <sstream>
 #include <unordered_map>
 #include <assert.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #include "StringUtils.h"
 #include "StatsCollectionFunctions.h"
 
 using namespace std;
 
+bool FileExists(const char* fileName) {
+    if (strlen(fileName) == 0)
+        return false;
+    struct stat buffer;
+    return (stat (fileName, &buffer) == 0);
+}
+
+void CutAndPasteFile(const char* srcFileName, const char* destFileName) {
+    if (FileExists(destFileName)) {
+        cout << "WARNING: copying to existing file: " << destFileName << ".  Aborting." << endl;
+        return;
+    }
+    if (strlen(srcFileName) > 0 && strlen(destFileName) > 0) {
+        std::ifstream src(srcFileName, std::ios::binary);
+        std::ofstream dest(destFileName, std::ios::binary);
+        dest << src.rdbuf();
+        remove(srcFileName);
+    }
+}
+
 std::string GetPlatformCompatibleFileNameFromRelativePath(std::string relativeFileName) {
 #if PLATFORM_OSX
-    relativeFileName = "/Users/boehmz/zb/BaseballResearch/BaseballStatsBuilder/" + relativeFileName;
+    if (relativeFileName.find("/Users/boehmz/") != 0) {
+        relativeFileName = "/Users/boehmz/zb/BaseballResearch/BaseballStatsBuilder/" + relativeFileName;
+    }
     size_t folderPathIndex = relativeFileName.find("\\");
     while (folderPathIndex != string::npos) {
         relativeFileName = relativeFileName.replace(folderPathIndex, 1, "/");

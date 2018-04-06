@@ -19,12 +19,12 @@ using namespace std;
 GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
-int latestGameTime = 99;
-int earliestGameTime = 18;
-std::string todaysDate = "20180405";
+int latestGameTime = 16;
+int earliestGameTime = 1;
+std::string todaysDate = "20180406";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 6.0f / 162.0f;
+float percentOfSeasonPassed = 7.0f / 162.0f;
 // tournament is:
 // any batting order
 // applies team stacks
@@ -1433,6 +1433,28 @@ float GetExpectedFanduelPointsFromPitcherStats(FullSeasonPitcherStats pitcherSta
 	return playerPointsPerGame;
 }
 
+void TryCopySabrFilesToProperLocation() {
+    string battersSrcLocation = "";
+    string battersDestLocation = "";
+    string pitchersSrcLocation = "";
+    string pitchersDestLocation = "";
+#if PLATFORM_OSX
+    battersSrcLocation = "/Users/boehmz/Downloads/FanGraphs Leaderboard.csv";
+    pitchersSrcLocation = "/Users/boehmz/Downloads/FanGraphs Leaderboard (1).csv";
+    battersDestLocation = GetPlatformCompatibleFileNameFromRelativePath("FangraphsSABRPredictions/Batters/" + todaysDate + ".csv");
+    pitchersDestLocation = GetPlatformCompatibleFileNameFromRelativePath("FangraphsSABRPredictions/Pitchers/" + todaysDate + ".csv");
+#endif
+    if (battersSrcLocation != "" && pitchersSrcLocation != "") {
+        string battersContents = GetEntireFileContents(battersSrcLocation);
+        if (battersContents.find("SS") == string::npos || battersContents.find("CF") == string::npos) {
+            string cacheForSwap = pitchersSrcLocation;
+            pitchersSrcLocation = battersSrcLocation;
+            battersSrcLocation = cacheForSwap;
+        }
+    }
+    CutAndPasteFile(battersSrcLocation.c_str(), battersDestLocation.c_str());
+    CutAndPasteFile(pitchersSrcLocation.c_str(), pitchersDestLocation.c_str());
+}
 void ChooseAPitcher(CURL *curl)
 {
 	if (curl == NULL)
@@ -1465,7 +1487,9 @@ void ChooseAPitcher(CURL *curl)
 		curl_easy_perform(curl);
 		curl_easy_reset(curl);
         string sabrPredictorTextPitchers = getSabrPredictorFileContents(todaysDate, true);
-
+        if (sabrPredictorTextPitchers == "") {
+            TryCopySabrFilesToProperLocation();
+        }
 	
 		ofstream pitcherStatsArchiveFile;
         string pitcherStatsArchiveFileName = CURRENT_YEAR;
@@ -1730,6 +1754,9 @@ void ChooseAPitcher(CURL *curl)
 		teamWinTrackerFile.close();
 		playerResultsTrackerFile.close();
 
+        if (positionalPlayerData.size() == 0) {
+            cout << "No pitchers were found today (" << todaysDate << ")." << endl;
+        }
 		for (unsigned int i = 0; i < positionalPlayerData.size() && i < 10; ++i)
 		{
 			cout << i << ".  " << positionalPlayerData[i].playerName << "  " << positionalPlayerData[i].playerPointsPerGame << "  " << positionalPlayerData[i].playerSalary << endl;
