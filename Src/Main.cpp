@@ -19,8 +19,8 @@ using namespace std;
 GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
-int latestGameTime = 16;
-int earliestGameTime = 1;
+int latestGameTime = 99;
+int earliestGameTime = 19;
 std::string todaysDate = "20180406";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
@@ -2338,7 +2338,7 @@ void GenerateLineups(CURL *curl)
 	{
 		
 		// previous days results, to get the likely batting order
-		int numDaysPreviousResults = 5;
+		int numDaysPreviousResults = 7;
 		vector<string> previousDayResults;
 		for (int i = 1; i <= numDaysPreviousResults; ++i) {
 			string previousResults;
@@ -2573,21 +2573,6 @@ void GenerateLineups(CURL *curl)
                     // if this player's lineup is not out yet, base it off previous/general lineup orders
                     if (lineupOrderString == "-")
                     {
-                        for (unsigned int i = 0; i < previousDayResults.size(); ++i) {
-                            size_t playerIdIndex = previousDayResults[i].find(previousDayResults[i].substr(0, 3) + ";" + singlePlayerData.playerId + ";", 0);
-                            if (playerIdIndex != string::npos)
-                            {
-                                for (int m = 0; m < 5; ++m) {
-                                    playerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
-                                }
-                                size_t nextPlayerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
-                                int prevBattingOrder = atoi(previousDayResults[i].substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str());
-                                if (prevBattingOrder >= minBattingOrder && prevBattingOrder <= maxBattingOrder) {
-                                    bAcceptableBattingOrder = true;
-                                    break;
-                                }
-                            }
-                        }
                         if (percentOfSeasonPassed <= (7.0 / 162.0)) {
                             size_t generalBattingOrderIndex = generalBattingOrders.find(ConvertLFNameToFLName(singlePlayerData.playerName));
                             if (generalBattingOrderIndex != string::npos) {
@@ -2597,6 +2582,24 @@ void GenerateLineups(CURL *curl)
                                     bAcceptableBattingOrder = true;
                                 }
                             }
+                        } else {
+                            int numTimesPreviouslyAcceptableOrder = 0;
+                            for (unsigned int i = 0; i < previousDayResults.size(); ++i) {
+                                size_t playerIdIndex = previousDayResults[i].find(previousDayResults[i].substr(0, 3) + ";" + singlePlayerData.playerId + ";", 0);
+                                if (playerIdIndex != string::npos)
+                                {
+                                    for (int m = 0; m < 5; ++m) {
+                                        playerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
+                                    }
+                                    size_t nextPlayerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
+                                    int prevBattingOrder = atoi(previousDayResults[i].substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str());
+                                    if (prevBattingOrder >= minBattingOrder && prevBattingOrder <= maxBattingOrder) {
+                                        numTimesPreviouslyAcceptableOrder++;
+                                    }
+                                }
+                            }
+                            if (numTimesPreviouslyAcceptableOrder >= 4)
+                                bAcceptableBattingOrder = true;
                         }
                     } else {
                         int actualBattingOrder = atoi(lineupOrderString.c_str());
