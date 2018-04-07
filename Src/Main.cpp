@@ -21,7 +21,7 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180406";
+std::string todaysDate = "20180407";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
 float percentOfSeasonPassed = 7.0f / 162.0f;
@@ -2680,16 +2680,16 @@ void GenerateLineups(CURL *curl)
 	vector<PlayerData> yahooPitcherMultiplyLineup = OptimizeLineupToFitBudget();
 
     cout << "daily double lineups: " << std::endl;
-    for (int i = 0; i < yahooPitcherMultiplyLineup.size(); ++i) {
+    for (unsigned int i = 0; i < yahooPitcherMultiplyLineup.size(); ++i) {
         cout << yahooPitcherMultiplyLineup[i].playerName << endl;
     }
     cout << "\nTournament lineups: " << std::endl;
     cout << "Fd pitcher multiply:\n";
-    for (int i = 0; i < fanduelPitcherMultiplyLineup.size(); ++i) {
+    for (unsigned int i = 0; i < fanduelPitcherMultiplyLineup.size(); ++i) {
         cout << fanduelPitcherMultiplyLineup[i].playerName << endl;
     }
     cout << "\nSlugging Only:\n";
-    for (int i = 0; i < sluggingOnlyLineup.size(); ++i) {
+    for (unsigned int i = 0; i < sluggingOnlyLineup.size(); ++i) {
         cout << sluggingOnlyLineup[i].playerName << endl;
     }
     
