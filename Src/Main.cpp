@@ -91,7 +91,8 @@ int main(void)
 	}
 
 	cout << "program has finished" << endl;
-	getchar();
+	int wait = -1;
+	cin >> wait;
 	return 0;
 }
 
