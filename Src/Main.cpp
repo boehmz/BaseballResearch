@@ -2564,7 +2564,13 @@ void GenerateLineups(CURL *curl)
 				int maxBattingOrder = 5;
 								
                 size_t playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertLFNameToFLName(singlePlayerData.playerName) + " ");
-                if (playerIndexInTodaysLineups != string::npos) {
+				if (playerIndexInTodaysLineups == string::npos) {
+					string playerInitialName = ConvertLFNameToFLName(singlePlayerData.playerName);
+					size_t spaceIndex = playerInitialName.find(" ");
+					playerInitialName = playerInitialName.substr(0, 1) + "." + playerInitialName.substr(spaceIndex);
+					playerIndexInTodaysLineups = todaysLineups.find(">" + playerInitialName + " ");
+				}
+				if (playerIndexInTodaysLineups != string::npos) {
                     size_t prevLineupOrderIndex = todaysLineups.rfind("lineup-large-pos", playerIndexInTodaysLineups);
                     size_t lineupOrderStartIndex = todaysLineups.find(">", prevLineupOrderIndex);
                     size_t lineupOrderEndIndex = todaysLineups.find("<", prevLineupOrderIndex);
@@ -2607,7 +2613,7 @@ void GenerateLineups(CURL *curl)
                             bAcceptableBattingOrder = true;
                         }
                     }
-                }
+				}
 
 				// throw this guy out if he's not a starter or his game will most likely be rained out
 				if (bAcceptableBattingOrder
