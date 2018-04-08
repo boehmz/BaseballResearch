@@ -20,11 +20,11 @@ GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
-int earliestGameTime = 19;
-std::string todaysDate = "20180407";
+int earliestGameTime = 16;
+std::string todaysDate = "20180408";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 7.0f / 162.0f;
+float percentOfSeasonPassed = 9.0f / 162.0f;
 // tournament is:
 // any batting order
 // applies team stacks
@@ -2748,6 +2748,34 @@ vector<PlayerData> OptimizeLineupToFitBudget()
     allPlayers[1].insert(allPlayers[1].end(), allPlayers[0].begin(), allPlayers[0].end());
     sort(allPlayers[1].begin(), allPlayers[1].end(), comparePlayerByPointsPerGame);
 
+	allPlayers[0].clear();
+	for (unsigned int i = 1; i < allPlayers.size(); ++i) {
+		allPlayers[0].insert(allPlayers[0].end(), allPlayers[i].begin(), allPlayers[i].end());
+	}
+	sort(allPlayers[0].begin(), allPlayers[0].end(), comparePlayerByPointsPerGame);
+	if (allPlayers[0].size() > 1) {
+		allPlayers[0].erase(allPlayers[0].begin() + 1, allPlayers[0].end());
+	}
+	if (allPlayers[0].size() > 0) {
+		for (unsigned int i = 1; i < allPlayers.size(); ++i) {
+			for (unsigned int p = 0; p < allPlayers[i].size(); ++p) {
+				if (allPlayers[i][p].playerId == allPlayers[0][0].playerId) {
+					allPlayers[i].erase(allPlayers[i].begin() + p);
+					break;
+				}
+			}
+		}
+
+		for (unsigned int i = 1; i < allPlayers.size(); ++i) {
+			for (unsigned int p = 0; p < allPlayers[i].size(); ++p) {
+				if (allPlayers[i][p].teamCode == allPlayers[0][0].teamCode) {
+					//	allPlayers[i][p].playerPointsPerGame += 2500;
+				}
+			}
+			sort(allPlayers[i].begin(), allPlayers[i].end(), comparePlayerByPointsPerGame);
+		}
+	}
+
 	for (unsigned int ap = 0; ap < allPlayers.size(); ++ap)
 	{
 		for (int i = allPlayers[ap].size() - 1; i > 0; --i)
@@ -2773,22 +2801,8 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 			}
 		}
 	}
-    allPlayers[0].clear();
-    for (unsigned int i = 1; i < allPlayers.size(); ++i) {
-        allPlayers[0].insert(allPlayers[0].end(), allPlayers[i].begin(), allPlayers[i].end());
-    }
-    sort(allPlayers[0].begin(), allPlayers[0].end(), comparePlayerByPointsPerGame);
-	if (allPlayers[0].size() > 1) {
-		allPlayers[0].erase(allPlayers[0].begin() + 1, allPlayers[0].end());
-	}
-	for (unsigned int i = 1; i < allPlayers.size(); ++i) {
-		for (unsigned int p = 0; p < allPlayers[i].size(); ++p) {
-			if (allPlayers[i][p].playerId == allPlayers[0][0].playerId) {
-				allPlayers[i].erase(allPlayers[i].begin() + p);
-				break;
-			}
-		}
-	}
+   
+	
 	for (unsigned int i = 0; i < allPlayers.size(); ++i)
 	{
 		if (allPlayers[i].size() == 0) {
@@ -2802,8 +2816,8 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 			return playersToReturn;
 		}
 	}
-    
 	
+
 
 
 	for (unsigned int i = 0; i < allPlayers.size(); ++i)
