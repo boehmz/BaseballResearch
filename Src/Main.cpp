@@ -25,11 +25,8 @@ std::string todaysDate = "20180408";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
 float percentOfSeasonPassed = 9.0f / 162.0f;
-// tournament is:
-// any batting order
-// applies team stacks
-// max 4 per team
-bool bTournamentLineup = true;
+// whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
+bool stackMax3Teams = false;
 // regular (non-tournament) is:
 // batting order 2-5 (6 for catchers)
 // applies team stacks
@@ -53,7 +50,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -547,7 +544,7 @@ void RefineAlgorithm()
 										allPlayers25SeasonWrcPitcherMultiply[playerPosition].push_back(singlePlayerData);
 										singlePlayerData.playerPointsPerGame = combinedBatterStats.slugging * 10.8216856682926313f + combinedBatterStats.wrcPlus * .00302694128934278411f;
 										singlePlayerData.playerPointsPerGame *= (pitcherPointsNumerator / pitcherPoints);
-										allPlayers25MachineLearningPitcherMultiply[playerPosition].push_back(singlePlayerData);
+										//allPlayers25MachineLearningPitcherMultiply[playerPosition].push_back(singlePlayerData);
 										
 										singlePlayerData.playerPointsPerGame = combinedBatterStats.slugging * 100.0f;
 										singlePlayerData.playerPointsPerGame *= opponentPitcher->second.era;
@@ -565,9 +562,9 @@ void RefineAlgorithm()
 										singlePlayerData.playerPointsPerGame *= opponentPitcher->second.whip;
 										allPlayers25SeasonIsoPitcherMultiplyWhip[playerPosition].push_back(singlePlayerData);
 										
-									//	singlePlayerData.playerPointsPerGame = combinedBatterStats.iso * 14.0676013585639081f;
-									//	singlePlayerData.playerPointsPerGame += opponentPitcher->second.era * 0.0405585668255538101f + opponentPitcher->second.xfip * 0.535854100213696949f;
-									//	allPlayers25MachineLearningPitcherMultiply[playerPosition].push_back(singlePlayerData);
+										singlePlayerData.playerPointsPerGame = combinedBatterStats.iso * 23.7785561843114834f;
+										singlePlayerData.playerPointsPerGame += opponentPitcher->second.xfip * 1.33606417498833263f;
+										allPlayers25MachineLearningPitcherMultiply[playerPosition].push_back(singlePlayerData);
 									/*	if (combinedBatterStats.onBaseAverage >= 0.35f && combinedBatterStats.slugging >= 0.49f && combinedBatterStats.wrcPlus >= 120 && opponentPitcher->second.era > 4.3f && opponentPitcher->second.fip > 4.4f) {
 											singlePlayerData.playerPointsPerGame = combinedBatterStats.ops * 100.0f;
 											allPlayersHighScoreThreshold[playerPosition].push_back(singlePlayerData);
@@ -575,10 +572,10 @@ void RefineAlgorithm()
 												allPlayersHighScoreThresholdOrder25[playerPosition].push_back(singlePlayerData);
 											}
 										}	*/
-										if (numBattersWithPitcherPutInTrainingFileToday < 30) {
-										//	top30BattersWithPitcherTrainingFile << combinedBatterStats.iso * 100.0f << "," << combinedBatterStats.wrcPlus;
-										//	top30BattersWithPitcherTrainingFile << "," << opponentPitcher->second.era << "," << opponentPitcher->second.xfip;
-										//	top30BattersWithPitcherTrainingFile  << "," << actualPlayerPoints << endl;
+										if (numBattersWithPitcherPutInTrainingFileToday < 30 && opponentPitcher->second.numInnings > 200) {
+											top30BattersWithPitcherTrainingFile << combinedBatterStats.iso * 100.0f << "," << combinedBatterStats.wrcPlus;
+											top30BattersWithPitcherTrainingFile << "," << opponentPitcher->second.era << "," << opponentPitcher->second.xfip;
+											top30BattersWithPitcherTrainingFile  << "," << actualPlayerPoints << endl;
 											numBattersWithPitcherPutInTrainingFileToday++;
 										}
 										if (actualPlayerPoints >= 25) {
@@ -2263,10 +2260,7 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl)
 				// catchers usually bat later anyway
 				if (p == 2)
 					maxBattingOrder = 6;
-				if (bTournamentLineup) {
-				//	minBattingOrder = -1;
-				//	maxBattingOrder = 99;
-				}
+				
 				for (unsigned int i = 0; i < previousDayResults.size(); ++i) {
 					size_t playerIdIndex = previousDayResults[i].find(previousDayResults[i].substr(0,3) + ";" + singlePlayerData.playerId + ";", 0);
 					if (playerIdIndex != string::npos)
@@ -2335,6 +2329,7 @@ void GenerateLineups(CURL *curl)
     vector< vector<PlayerData> > allPlayers25PitcherYahooMultiply(6);    // use yahoo multiply for daily double up
     vector< vector<PlayerData> > allPlayers25PitcherOpsMultiply(6); // use pitcher allowed ops multiply for tournaments
 	vector< vector<PlayerData> > allPlayers25Slugging(6);	// use slugging for tournaments ONLY
+	vector< vector<PlayerData> > allPlayers25(6);	// use standard with max 3 teams for tournaments ONLY
 	if (curl)
 	{
 		
@@ -2629,6 +2624,8 @@ void GenerateLineups(CURL *curl)
                     allPlayers25PitcherMultiply[positionIndex].push_back(singlePlayerData);
                     singlePlayerData.playerPointsPerGame = expectedFdPoints * (60.0f / expectedYahooPointsOpposingPitcher);
                     allPlayers25PitcherYahooMultiply[positionIndex].push_back(singlePlayerData);
+					singlePlayerData.playerPointsPerGame = expectedFdPoints;
+					allPlayers25[positionIndex].push_back(singlePlayerData);
 				}
 				if (placeHolderIndex == string::npos)
 					break;
@@ -2685,6 +2682,15 @@ void GenerateLineups(CURL *curl)
 		sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
 	}
 	vector<PlayerData> yahooPitcherMultiplyLineup = OptimizeLineupToFitBudget();
+	maxTotalBudget = budgetForThisPitcher;
+	allPlayers.clear();
+	allPlayers = allPlayers25;
+	for (int a = 0; a < 6; ++a) {
+		sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+	}
+	stackMax3Teams = true;
+	vector<PlayerData> minMaxLineup = OptimizeLineupToFitBudget();
+	stackMax3Teams = false;
 
     cout << "daily double lineups: " << std::endl;
     for (unsigned int i = 0; i < yahooPitcherMultiplyLineup.size(); ++i) {
@@ -2695,10 +2701,18 @@ void GenerateLineups(CURL *curl)
     for (unsigned int i = 0; i < fanduelPitcherMultiplyLineup.size(); ++i) {
         cout << fanduelPitcherMultiplyLineup[i].playerName << endl;
     }
-    cout << "\nSlugging Only:\n";
-    for (unsigned int i = 0; i < sluggingOnlyLineup.size(); ++i) {
-        cout << sluggingOnlyLineup[i].playerName << endl;
-    }
+	if (sluggingOnlyLineup.size() > 0) {
+		cout << "\nSlugging Only:\n";
+		for (unsigned int i = 0; i < sluggingOnlyLineup.size(); ++i) {
+			cout << sluggingOnlyLineup[i].playerName << endl;
+		}
+	}
+	if (minMaxLineup.size() > 0) {
+		cout << "\nQuintiple Up:\n";
+		for (unsigned int i = 0; i < minMaxLineup.size(); ++i) {
+			cout << minMaxLineup[i].playerName << endl;
+		}
+	}
     
     //daily double
     yahooPitcherMultiplyLineup = yahooPitcherMultiplyLineup;
@@ -2706,7 +2720,8 @@ void GenerateLineups(CURL *curl)
     // tournaments
     fanduelPitcherMultiplyLineup = fanduelPitcherMultiplyLineup;
     sluggingOnlyLineup = sluggingOnlyLineup;
-    
+	minMaxLineup = minMaxLineup;
+
 	int breakpoint = 0;
 }
 
@@ -2740,10 +2755,7 @@ void removePlayerFromTeam(unordered_map<string, int> &numPlayersTeamMap, string 
 vector<PlayerData> OptimizeLineupToFitBudget()
 {
 	vector<unsigned int> idealPlayerPerPosition;
-	int maxPlayersPerTeam = 3;
-	if (bTournamentLineup) {
-		maxPlayersPerTeam = 4;
-	}
+	int maxPlayersPerTeam = 4;
     // one utility player, combine 1B/C
     allPlayers[1].insert(allPlayers[1].end(), allPlayers[0].begin(), allPlayers[0].end());
     sort(allPlayers[1].begin(), allPlayers[1].end(), comparePlayerByPointsPerGame);
@@ -2753,6 +2765,14 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 		allPlayers[0].insert(allPlayers[0].end(), allPlayers[i].begin(), allPlayers[i].end());
 	}
 	sort(allPlayers[0].begin(), allPlayers[0].end(), comparePlayerByPointsPerGame);
+	unordered_set<string> top3Teams;
+	for (unsigned int i = 0; i < allPlayers[0].size(); ++i) {
+		if (allPlayers[0][i].teamCode != pitcherOpponentTeamCode && top3Teams.find(allPlayers[0][i].teamCode) == top3Teams.end()) {
+			top3Teams.insert(allPlayers[0][i].teamCode);
+		}
+		if (top3Teams.size() >= 3)
+			break;
+	}
 	if (allPlayers[0].size() > 1) {
 		allPlayers[0].erase(allPlayers[0].begin() + 1, allPlayers[0].end());
 	}
@@ -2766,13 +2786,23 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 			}
 		}
 
-		for (unsigned int i = 1; i < allPlayers.size(); ++i) {
-			for (unsigned int p = 0; p < allPlayers[i].size(); ++p) {
-				if (allPlayers[i][p].teamCode == allPlayers[0][0].teamCode) {
-					//	allPlayers[i][p].playerPointsPerGame += 2500;
+		if (stackMax3Teams) {
+			for (unsigned int i = 1; i < allPlayers.size(); ++i) {
+				for (unsigned int p = 0; p < allPlayers[i].size(); ++p) {
+					if (allPlayers[i][p].teamCode == allPlayers[0][0].teamCode) {
+						allPlayers[i][p].playerPointsPerGame += 2500;
+					}
+				}
+				sort(allPlayers[i].begin(), allPlayers[i].end(), comparePlayerByPointsPerGame);
+			}
+
+			for (unsigned int i = 1; i < allPlayers.size(); ++i) {
+				for (int p = allPlayers[i].size() - 1; p >= 0; --p) {
+					if (top3Teams.find(allPlayers[i][p].teamCode) == top3Teams.end()) {
+						allPlayers[i].erase(allPlayers[i].begin() + p);
+					}
 				}
 			}
-			sort(allPlayers[i].begin(), allPlayers[i].end(), comparePlayerByPointsPerGame);
 		}
 	}
 
@@ -2837,9 +2867,9 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 		totalSalary += allPlayers[positionIndex][idealPlayerPerPosition[i]].playerSalary;
 		addPlayerToTeam(numPlayersFromTeam, allPlayers[positionIndex][idealPlayerPerPosition[i]].teamCode);
 	}
-	if (bTournamentLineup) {
-		addPlayerToTeam(numPlayersFromTeam, pitcherTeamCode);
-	}
+
+	addPlayerToTeam(numPlayersFromTeam, pitcherTeamCode);
+	
 	vector<string> teamsWithTooManyPlayers = teamsWithNumPlayersAboveThreshold(numPlayersFromTeam, maxPlayersPerTeam);
 	while (teamsWithTooManyPlayers.size() > 0) {
 		int playerIndexToDrop = -1;
