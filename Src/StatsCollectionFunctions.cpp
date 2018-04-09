@@ -24,16 +24,19 @@ string GetEntireFileContents(string fileName)
 #if PLATFORM_OSX
     fileName = GetPlatformCompatibleFileNameFromRelativePath(fileName);
 #endif
-    ifstream readFromFile(fileName);
-    if (!readFromFile.good()) {
-     //   cerr << "Error: " << strerror(errno);
-        readFromFile.close();
-        return "";
-    }
-	stringstream sstr;
-	sstr << readFromFile.rdbuf();
-    readFromFile.close();
-	return sstr.str();
+
+	ifstream ifs(fileName.c_str(), ios::in | ios::binary | ios::ate);
+	if (!ifs.good()) {
+		ifs.close();
+		return "";
+	}
+	ifstream::pos_type fileSize = ifs.tellg();
+	ifs.seekg(0, ios::beg);
+
+	vector<char> bytes(fileSize);
+	ifs.read(bytes.data(), fileSize);
+	ifs.close();
+	return string(bytes.data(), fileSize);
 }
 
 string ReplaceURLWhiteSpaces(string originalURL)
