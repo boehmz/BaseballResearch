@@ -20,11 +20,11 @@ GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
-int earliestGameTime = 16;
-std::string todaysDate = "20180408";
+int earliestGameTime = 19;
+std::string todaysDate = "20180410";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 9.0f / 162.0f;
+float percentOfSeasonPassed = 10.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMax3Teams = false;
 // regular (non-tournament) is:
@@ -50,7 +50,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 	switch (processType)
 	{
 	case UnitTest:
@@ -1555,6 +1555,7 @@ void ChooseAPitcher(CURL *curl)
         string sabrPredictorTextPitchers = getSabrPredictorFileContents(todaysDate, true);
         if (sabrPredictorTextPitchers == "") {
             TryCopySabrFilesToProperLocation();
+            sabrPredictorTextPitchers = getSabrPredictorFileContents(todaysDate, true);
         }
 	
 		ofstream pitcherStatsArchiveFile;
