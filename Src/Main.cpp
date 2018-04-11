@@ -187,6 +187,8 @@ void RefineAlgorithm()
 		vector<float> last30DayAdjustedsOpsInputVariables;
 		vector<float> last7DaysOpsAdjustedInputVariables;
 		vector<float> pitcherFactorInputVariables;
+		vector<FullSeasonStatsAdvancedNoHandedness> combinedStatsInputValues;
+		vector<FullSeasonPitcherStats> combinedOpposingPitcherStatsInputValues;
 		vector<float> validOutputValues;
 		vector<float> sabrPredictorValues;
 		vector<float> sabrPredictorOutputValues;
@@ -363,7 +365,13 @@ void RefineAlgorithm()
 								combinedBatterStats = batterStatsCareer * 0.5f + batterStats2016 * 0.5f;
 							}
 							combinedBatterStats = combinedBatterStats * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStats;
-                         
+							auto opponentPitcher = opponentPitcherScoreMap.find(singlePlayerData.teamCode);
+
+							if (combinedBatterStats.average > 0 && opponentPitcher != opponentPitcherScoreMap.end()) {
+								combinedOpposingPitcherStatsInputValues.push_back(opponentPitcher->second);
+								combinedStatsInputValues.push_back(combinedBatterStats);
+								validOutputValues.push_back(actualPlayerPoints);
+							}
 							if (battingOrder >= 2 && battingOrder <= 5 && combinedBatterStats.average > 0.21f) {
 								singlePlayerData.playerPointsPerGame = combinedBatterStats.ops * 100.0f;
 								allPlayers25SeasonOps[playerPosition].push_back(singlePlayerData);
@@ -532,7 +540,7 @@ void RefineAlgorithm()
 							}
 							if (true || sabrPredictorTextPitchers == "") {
 								if (combinedBatterStats.average > 0.21f && battingOrder >= 2 && battingOrder <= 5) {
-									auto opponentPitcher = opponentPitcherScoreMap.find(singlePlayerData.teamCode);
+									
 									if (opponentPitcher != opponentPitcherScoreMap.end()) {
 										float pitcherPointsNumerator = 15.0f;
 										float pitcherPoints = opponentPitcher->second.era * -0.352834158133307318f + opponentPitcher->second.xfip * -1.50744966177988493f + opponentPitcher->second.strikeOutsPer9 * 1.44486530250260237f;
@@ -1089,6 +1097,66 @@ void RefineAlgorithm()
 			float last7OpsAdjustedRSquared = CalculateRSquared(last7DaysOpsAdjustedInputVariables, validOutputValues);
 			float pitcherFactorRSquared = CalculateRSquared(pitcherFactorInputVariables, validOutputValues);
 			float sabrBatterRSquared = CalculateRSquared(sabrPredictorValues, sabrPredictorOutputValues);
+			
+			vector<float> tempInputValues;
+			tempInputValues.clear();
+			std::for_each(combinedOpposingPitcherStatsInputValues.begin(), combinedOpposingPitcherStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonPitcherStats& stats) {tempInputValues.push_back(stats.era); });
+			float eraRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			tempInputValues.clear();
+			std::for_each(combinedOpposingPitcherStatsInputValues.begin(), combinedOpposingPitcherStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonPitcherStats& stats) {tempInputValues.push_back(stats.fip); });
+			float fipRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			tempInputValues.clear();
+			std::for_each(combinedOpposingPitcherStatsInputValues.begin(), combinedOpposingPitcherStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonPitcherStats& stats) {tempInputValues.push_back(stats.strikeOutsPer9); });
+			float kPer9RSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			tempInputValues.clear();
+			std::for_each(combinedOpposingPitcherStatsInputValues.begin(), combinedOpposingPitcherStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonPitcherStats& stats) {tempInputValues.push_back(stats.whip); });
+			float whipRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			tempInputValues.clear();
+			std::for_each(combinedOpposingPitcherStatsInputValues.begin(), combinedOpposingPitcherStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonPitcherStats& stats) {tempInputValues.push_back(stats.xfip); });
+			float xfipRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+
+			tempInputValues.clear();
+			std::for_each(combinedStatsInputValues.begin(), combinedStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonStatsAdvancedNoHandedness& stats) {tempInputValues.push_back(stats.average); });
+			float averageRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			tempInputValues.clear();
+			std::for_each(combinedStatsInputValues.begin(), combinedStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonStatsAdvancedNoHandedness& stats) {tempInputValues.push_back(stats.iso); });
+			float isoRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			tempInputValues.clear();
+			std::for_each(combinedStatsInputValues.begin(), combinedStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonStatsAdvancedNoHandedness& stats) {tempInputValues.push_back(stats.onBaseAverage); });
+			float obpRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			tempInputValues.clear();
+			std::for_each(combinedStatsInputValues.begin(), combinedStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonStatsAdvancedNoHandedness& stats) {tempInputValues.push_back(stats.ops); });
+			float opsRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			tempInputValues.clear();
+			std::for_each(combinedStatsInputValues.begin(), combinedStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonStatsAdvancedNoHandedness& stats) {tempInputValues.push_back(stats.slugging); });
+			float sluggingRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			tempInputValues.clear();
+			std::for_each(combinedStatsInputValues.begin(), combinedStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonStatsAdvancedNoHandedness& stats) {tempInputValues.push_back(stats.strikeoutPercent); });
+			float strikeoutPercentRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			tempInputValues.clear();
+			std::for_each(combinedStatsInputValues.begin(), combinedStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonStatsAdvancedNoHandedness& stats) {tempInputValues.push_back(stats.walkPercent); });
+			float walkPercentRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			tempInputValues.clear();
+			std::for_each(combinedStatsInputValues.begin(), combinedStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonStatsAdvancedNoHandedness& stats) {tempInputValues.push_back(stats.woba); });
+			float wobaRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			tempInputValues.clear();
+			std::for_each(combinedStatsInputValues.begin(), combinedStatsInputValues.end(),
+				[&tempInputValues](const FullSeasonStatsAdvancedNoHandedness& stats) {tempInputValues.push_back(stats.wrcPlus); });
+			float wrcPlusRSquared = CalculateRSquared(tempInputValues, validOutputValues);
+			//woba and kPer9
 			inputCoefficients[0] = inputCoefficients[0];
 		}
 
