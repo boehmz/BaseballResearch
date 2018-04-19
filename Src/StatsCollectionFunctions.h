@@ -63,6 +63,8 @@ struct FullSeasonStatsAdvancedNoHandedness
 	float wrcPlus = -1;
 	float walkPercent = -1;
 	float strikeoutPercent = -1;
+    float runsPerPA = -1;
+    float rbisPerPA = -1;
 
 	FullSeasonStatsAdvancedNoHandedness() {}
 

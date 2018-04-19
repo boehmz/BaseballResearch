@@ -301,6 +301,9 @@ FullSeasonStatsAdvancedNoHandedness GetBatterStatsSeason(std::string playerId, C
 		batterStats.iso = stof(fangraphsYearRows[9]);
 		batterStats.walkPercent = stof(fangraphsYearRows[7].substr(0, fangraphsYearRows[7].length() - 1));
 		batterStats.strikeoutPercent = stof(fangraphsYearRows[8].substr(0, fangraphsYearRows[8].length() - 1));
+        float numPlateAppearances = stof(fangraphsYearRows[2]);
+        batterStats.runsPerPA = stof(fangraphsYearRows[4]) / numPlateAppearances;
+        batterStats.rbisPerPA = stof(fangraphsYearRows[5]) / numPlateAppearances;
 	}
 
 	return batterStats;
@@ -325,6 +328,9 @@ FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string pla
 	}
 	batterStats.strikeoutPercent = stof( fangraphsStandardRows[14].substr(0, fangraphsStandardRows[14].length() - 1));
 	batterStats.walkPercent = stof(fangraphsStandardRows[13].substr(0, fangraphsStandardRows[13].length() - 1));
+    float numPlateAppearances = stof(fangraphsStandardRows[4]);
+    batterStats.rbisPerPA = stof(fangraphsStandardRows[10]) / numPlateAppearances;
+    batterStats.runsPerPA = stof(fangraphsStandardRows[9]) / numPlateAppearances;
 	return batterStats;
 }
 void FullSeasonStatsAdvancedNoHandedness::operator+=(const FullSeasonStatsAdvancedNoHandedness& other) {
@@ -340,6 +346,8 @@ void FullSeasonStatsAdvancedNoHandedness::operator+=(const FullSeasonStatsAdvanc
 			walkPercent += other.walkPercent;
 		woba += other.woba;
 		wrcPlus += other.wrcPlus;
+        rbisPerPA += other.rbisPerPA;
+        runsPerPA += other.runsPerPA;
 	}
 }
 FullSeasonStatsAdvancedNoHandedness operator+(const FullSeasonStatsAdvancedNoHandedness& lhs, const FullSeasonStatsAdvancedNoHandedness& rhs) {
@@ -362,6 +370,8 @@ void FullSeasonStatsAdvancedNoHandedness::operator*=(float rhs) {
 			strikeoutPercent *= rhs;
 		if (walkPercent >= 0)
 			walkPercent *= rhs;
+        rbisPerPA *= rhs;
+        runsPerPA *= rhs;
 	}
 }
 FullSeasonStatsAdvancedNoHandedness operator*(float floatFactor, const FullSeasonStatsAdvancedNoHandedness& stats) {
@@ -391,6 +401,10 @@ bool FullSeasonStatsAdvancedNoHandedness::operator==(const FullSeasonStatsAdvanc
 		return false;
 	if (abs(rhs.wrcPlus - wrcPlus) >= 0.5f)
 		return false;
+    if (abs(rhs.rbisPerPA - rbisPerPA) >= 0.0005f)
+        return false;
+    if (abs(rhs.runsPerPA - runsPerPA) >= 0.0005f)
+        return false;
 	return true;
 }
 
