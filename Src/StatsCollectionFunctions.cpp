@@ -891,7 +891,12 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
 		size_t writeToFileIndexEnd = string::npos;
 		size_t fileTotalsIndex = fangraphsData.find(">Total<", writeToFileIndexBegin);
 		if (fileTotalsIndex != string::npos) {
+            
 			writeToFileIndexEnd = fangraphsData.find("id=\"DailyStats", fileTotalsIndex);
+            size_t theadIndex = fangraphsData.rfind("<thead", fileTotalsIndex);
+            if (theadIndex != string::npos) {
+                writeToFileIndexBegin = theadIndex;
+            }
 		}
 		else {
 			writeToFileIndexEnd = fangraphsData.find("id=\"footer\"", writeToFileIndexBegin);
