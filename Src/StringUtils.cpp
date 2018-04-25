@@ -22,6 +22,10 @@ bool FileExists(const char* fileName) {
 }
 
 void CutAndPasteFile(const char* srcFileName, const char* destFileName) {
+    if (!FileExists(srcFileName)) {
+        cout << "Could not cut file" << srcFileName << " because it does not exist." << endl;
+        return;
+    }
     if (FileExists(destFileName)) {
         cout << "WARNING: copying to existing file: " << destFileName << ".  Aborting." << endl;
         return;
