@@ -54,6 +54,87 @@ std::string GetPlatformCompatibleFileNameFromRelativePath(std::string relativeFi
 int CurrentYearAsInt() {
     return atoi(CURRENT_YEAR);
 }
+
+std::string ConvertSpecialCharactersToEnglish26(std::string specialCharactersString) {
+    vector< vector<string>> specialCharacterMappings(27);
+    specialCharacterMappings[0].push_back("\xc3\xa0");
+    specialCharacterMappings[0].push_back("a");
+    specialCharacterMappings[1].push_back("\xc3\xa1");
+    specialCharacterMappings[1].push_back("a");
+    specialCharacterMappings[2].push_back("\xc3\xa2");
+    specialCharacterMappings[2].push_back("a");
+    specialCharacterMappings[3].push_back("\xc3\xa3");
+    specialCharacterMappings[3].push_back("a");
+    specialCharacterMappings[4].push_back("\xc3\xa4");
+    specialCharacterMappings[4].push_back("a");
+    specialCharacterMappings[5].push_back("\xc3\xa5");
+    specialCharacterMappings[5].push_back("a");
+    specialCharacterMappings[6].push_back("\xc3\xa7");
+    specialCharacterMappings[6].push_back("c");
+    specialCharacterMappings[7].push_back("\xc3\xa8");
+    specialCharacterMappings[7].push_back("e");
+    specialCharacterMappings[8].push_back("\xc3\xa9");
+    specialCharacterMappings[8].push_back("e");
+    specialCharacterMappings[9].push_back("\xc3\xaa");
+    specialCharacterMappings[9].push_back("e");
+    specialCharacterMappings[10].push_back("\xc3\xab");
+    specialCharacterMappings[10].push_back("e");
+    specialCharacterMappings[11].push_back("\xc3\xac");
+    specialCharacterMappings[11].push_back("i");
+    specialCharacterMappings[12].push_back("\xc3\xad");
+    specialCharacterMappings[12].push_back("i");
+    specialCharacterMappings[13].push_back("\xc3\xae");
+    specialCharacterMappings[13].push_back("i");
+    specialCharacterMappings[14].push_back("\xc3\xaf");
+    specialCharacterMappings[14].push_back("i");
+    specialCharacterMappings[15].push_back("\xc3\xb1");
+    specialCharacterMappings[15].push_back("n");
+    specialCharacterMappings[16].push_back("\xc3\xb2");
+    specialCharacterMappings[16].push_back("o");
+    specialCharacterMappings[17].push_back("\xc3\xb3");
+    specialCharacterMappings[17].push_back("o");
+    specialCharacterMappings[18].push_back("\xc3\xb4");
+    specialCharacterMappings[18].push_back("o");
+    specialCharacterMappings[19].push_back("\xc3\xb5");
+    specialCharacterMappings[19].push_back("o");
+    specialCharacterMappings[20].push_back("\xc3\xb6");
+    specialCharacterMappings[20].push_back("o");
+    specialCharacterMappings[21].push_back("\xc3\xb9");
+    specialCharacterMappings[21].push_back("u");
+    specialCharacterMappings[22].push_back("\xc3\xba");
+    specialCharacterMappings[22].push_back("u");
+    specialCharacterMappings[23].push_back("\xc3\xbb");
+    specialCharacterMappings[23].push_back("u");
+    specialCharacterMappings[24].push_back("\xc3\xbc");
+    specialCharacterMappings[24].push_back("u");
+    specialCharacterMappings[25].push_back("\xc3\xbd");
+    specialCharacterMappings[25].push_back("y");
+    specialCharacterMappings[26].push_back("\xc3\xbf");
+    specialCharacterMappings[26].push_back("y");
+    
+    for (unsigned int i = 0; i < specialCharacterMappings.size(); ++i) {
+        size_t specialCharacterIndex = specialCharactersString.find(specialCharacterMappings[i][0]);
+        while (specialCharacterIndex != string::npos) {
+            specialCharactersString.replace(specialCharacterIndex, 2, specialCharacterMappings[i][1]);
+            specialCharacterIndex = specialCharactersString.find(specialCharacterMappings[i][0]);
+        }
+    }
+    
+    return specialCharactersString;
+}
+
+std::string ConvertNameToFirstInitialLastName(std::string name) {
+    size_t commaIndex = name.find(",");
+    if (commaIndex != string::npos) {
+        name = ConvertLFNameToFLName(name);
+    }
+    size_t spaceIndex = name.find(" ");
+    if (spaceIndex != string::npos) {
+        name = name.substr(0, 1) + "." + name.substr(spaceIndex);
+    }
+    return name;
+}
+
 std::string ConvertFLNameToLFName(std::string firstLast)
 {
 	string convertedName = firstLast;

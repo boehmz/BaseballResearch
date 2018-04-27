@@ -22,7 +22,7 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180425";
+std::string todaysDate = "20180426";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
 float percentOfSeasonPassed = 23.0f / 162.0f;
@@ -204,7 +204,7 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20170801;
+		reviewDateStart = 20170415;
 		reviewDateEnd = 20171001;
 		percentOfSeasonPassed = 13.0f / 160.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
@@ -2521,7 +2521,7 @@ void GenerateLineups(CURL *curl)
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &todaysLineups);
         curl_easy_perform(curl);
         curl_easy_reset(curl);
-        
+        todaysLineups = ConvertSpecialCharactersToEnglish26(todaysLineups);
 
 		string sabrPredictorText = getSabrPredictorFileContents(todaysDate, false);
 		string sabrPredictorTextPitchers = getSabrPredictorFileContents(todaysDate, true);
@@ -2720,13 +2720,11 @@ void GenerateLineups(CURL *curl)
 				bool bAcceptableBattingOrder = false;
 				int minBattingOrder = 2;
 				int maxBattingOrder = 5;
-								
+
                 size_t playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertLFNameToFLName(singlePlayerData.playerName) + " ");
 				if (playerIndexInTodaysLineups == string::npos) {
-					string playerInitialName = ConvertLFNameToFLName(singlePlayerData.playerName);
-					size_t spaceIndex = playerInitialName.find(" ");
-					playerInitialName = playerInitialName.substr(0, 1) + "." + playerInitialName.substr(spaceIndex);
-					playerIndexInTodaysLineups = todaysLineups.find(">" + playerInitialName + " ");
+					playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertNameToFirstInitialLastName(singlePlayerData.playerName) + " ");
+                    
 				}
 				if (playerIndexInTodaysLineups != string::npos) {
                     size_t prevLineupOrderIndex = todaysLineups.rfind("lineup-large-pos", playerIndexInTodaysLineups);
