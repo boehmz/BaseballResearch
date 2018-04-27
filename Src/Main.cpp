@@ -51,7 +51,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -2938,6 +2938,20 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 		if (topXTeams.size() >= 4)
 			break;
 	}
+    for (unsigned int i = 0; i < allPlayers[0].size();) {
+        bool utilityPlayerHasOtherChoicesAtPosition = true;
+        for (unsigned int op = 1; op < allPlayers.size(); ++op) {
+            if (allPlayers[op].size() == 1 && allPlayers[op][0].playerId == allPlayers[0][0].playerId) {
+                utilityPlayerHasOtherChoicesAtPosition = false;
+                break;
+            }
+        }
+        if (!utilityPlayerHasOtherChoicesAtPosition) {
+            allPlayers[0].erase(allPlayers[0].begin());
+        } else {
+            break;
+        }
+    }
 	if (allPlayers[0].size() > 1) {
 		allPlayers[0].erase(allPlayers[0].begin() + 1, allPlayers[0].end());
 	}
