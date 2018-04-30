@@ -385,7 +385,7 @@ void RefineAlgorithm()
 								combinedStatsInputValues.push_back(combinedBatterStats);
 								validOutputValues.push_back(actualPlayerPoints);
 							}
-                            singlePlayerData.playerPointsPerGame = singlePlayerData.playerSalary + rand() % 100;
+                            singlePlayerData.playerPointsPerGame = (int)singlePlayerData.playerSalary + rand() % 100;
                             allPlayersSalary[playerPosition].push_back(singlePlayerData);
 							if (battingOrder >= 2 && battingOrder <= 5 && combinedBatterStats.average > 0.21f) {
                                 singlePlayerData.playerPointsPerGame = singlePlayerData.playerSalary + rand() % 100;
@@ -863,6 +863,7 @@ void RefineAlgorithm()
 					}
 				}
 
+				vector<vector<PlayerData>> emptyLineup;
 				vector< vector< vector<PlayerData> > > allPlayersLineupOrder;
 				allPlayersLineupOrder.push_back(allPlayersAll);		//0
 				allPlayersLineupOrder.push_back(allPlayersAll);
@@ -912,17 +913,27 @@ void RefineAlgorithm()
                 allPlayersLineupOrder.push_back(allPlayers25RbiRunsOpiTimesPitcher);    //45
                 allPlayersLineupOrder.push_back(allPlayers25RbiRunsOpiTimesPitcher);
                 allPlayersLineupOrder.push_back(allPlayers25RbiRunsOpiTimesPitcher);
-                allPlayersLineupOrder.push_back(allPlayers25RbiRunsOpiTimesPitcher);
+                allPlayersLineupOrder.push_back(emptyLineup);
                 allPlayersLineupOrder.push_back(allPlayersSalary);
                 allPlayersLineupOrder.push_back(allPlayers25Salary);    //50
                 allPlayersLineupOrder.push_back(allPlayers25Salary);
                 allPlayersLineupOrder.push_back(allPlayers25Salary);
-                allPlayersLineupOrder.push_back(allPlayers25Salary);
+                allPlayersLineupOrder.push_back(emptyLineup);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyWhip);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyWhip);  //55
                 allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyWhip);
-                allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyWhip);
+                allPlayersLineupOrder.push_back(emptyLineup);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyKPer9);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyKPer9);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyKPer9);	//60
+				allPlayersLineupOrder.push_back(emptyLineup);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIso);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIso);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIso);
+				allPlayersLineupOrder.push_back(emptyLineup);	//65
 				allPlayersLineupOrder.push_back(allPlayersActualScores);
+
+				chosenLineupsList.resize(allPlayersLineupOrder.size());
 				float battingOrderBonus = 0.0f;
 				for (unsigned int line = 0; line < chosenLineupsList.size(); ++line) {
 					allPlayers.clear();
@@ -965,19 +976,27 @@ void RefineAlgorithm()
 					maxTotalBudget = 25000;
                    
 					vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
-                    if (line == 48 || line == 53 || line == 57) {
-                        float maxPrevPoints = chosenLineupsList[line-3][chosenLineupsList[line-3].size()-1];
-                        if (chosenLineupsList[line-2][chosenLineupsList[line-2].size()-1] > maxPrevPoints)
-                            maxPrevPoints = chosenLineupsList[line-2][chosenLineupsList[line-2].size()-1];
-                        if (chosenLineupsList[line-1][chosenLineupsList[line-1].size()-1] > maxPrevPoints)
-                            maxPrevPoints = chosenLineupsList[line-1][chosenLineupsList[line-1].size()-1];
-                        chosenLineupsList[line].push_back(maxPrevPoints);
+                    if (line == 48 || line == 53 || line == 57 || line == 61 || line == 65) {
+						if (allPlayersLineupOrder[line].size() > 0) {
+							int latestDay = max(chosenLineupsList[line - 3].size() - 1, chosenLineupsList[line - 2].size() - 1);
+							latestDay = max(latestDay, chosenLineupsList[line - 1].size());
+							if (latestDay >= 0) {
+								float maxPrevPoints = -1;
+								if ((chosenLineupsList[line - 3].size() - 1 == latestDay) && (chosenLineupsList[line - 3][chosenLineupsList[line - 3].size() - 1] > maxPrevPoints))
+									maxPrevPoints = chosenLineupsList[line - 3][chosenLineupsList[line - 3].size() - 1];
+								if ((chosenLineupsList[line - 2].size() - 1 == latestDay) && (chosenLineupsList[line - 2][chosenLineupsList[line - 2].size() - 1] > maxPrevPoints))
+									maxPrevPoints = chosenLineupsList[line - 2][chosenLineupsList[line - 2].size() - 1];
+								if ((chosenLineupsList[line - 1].size() - 1 == latestDay) && (chosenLineupsList[line - 1][chosenLineupsList[line - 1].size() - 1] > maxPrevPoints))
+									maxPrevPoints = chosenLineupsList[line - 1][chosenLineupsList[line - 1].size() - 1];
+								chosenLineupsList[line].push_back(maxPrevPoints);
+							}
+						}
                     } else if (chosenLineup.size() > 0) {
 						float totalPoints = tallyLineupTotals(chosenLineup, actualResults, thisDateWithoutYear);
                         if (totalPoints > 200 && line != (chosenLineupsList.size()-1)) {
                             cout << "Got over 200 points on " << d << " with lineup formula " << line << endl;
                         }
-                        if ((line >= 45 && line <= 46) || (line >= 50 && line <= 52) || (line >= 54 && line <= 56)) {
+                        if ((line >= 45 && line <= 46) || (line >= 50 && line <= 52) || (line >= 54 && line <= 56) || (line >= 58 && line <= 60) || (line >= 62 && line <= 64)) {
                             int deleteMin = 46;
                             int deleteMax = 47;
                             if (line > deleteMax) {
@@ -988,6 +1007,15 @@ void RefineAlgorithm()
                                 deleteMin = 55;
                                 deleteMax = 56;
                             }
+							if (line > deleteMax) {
+								deleteMin = 59;
+								deleteMax = 60;
+							}
+							if (line > deleteMax) {
+								deleteMin = 63;
+								deleteMax = 64;
+							}
+							allPlayersLineupOrder[deleteMax + 1] = allPlayers;
                             for (int cl = deleteMin; cl <= deleteMax; ++cl) {
                                 for (unsigned int p1 = 0; p1 < allPlayersLineupOrder[cl].size(); ++p1) {
                                     for (int p2 = allPlayersLineupOrder[cl][p1].size() - 1; p2 >= 0; --p2) {
@@ -2935,7 +2963,7 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 		if (allPlayers[0][i].teamCode != pitcherOpponentTeamCode && topXTeams.find(allPlayers[0][i].teamCode) == topXTeams.end()) {
 			topXTeams.insert(allPlayers[0][i].teamCode);
 		}
-		if (topXTeams.size() >= 4)
+		if (topXTeams.size() >= 3)
 			break;
 	}
     for (unsigned int i = 0; i < allPlayers[0].size();) {
