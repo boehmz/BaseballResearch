@@ -1956,6 +1956,7 @@ void ChooseAPitcher(CURL *curl)
 			cin.ignore();
 			cin >> pitcherSelected;
 		}
+        
         if (pitcherSelected < positionalPlayerData.size()) {
             maxTotalBudget = 35000 - positionalPlayerData[pitcherSelected].playerSalary;
             auto opponentInformation = opponentMap.find(positionalPlayerData[pitcherSelected].teamCode);
@@ -1964,6 +1965,9 @@ void ChooseAPitcher(CURL *curl)
                 pitcherOpponentTeamCode = opponentInformation->second.teamCodeRotoGuru;
             }
             pitcherTeamCode = positionalPlayerData[pitcherSelected].teamCode;
+            cout << "Selected " << positionalPlayerData[pitcherSelected].playerName << endl;
+        } else {
+            cout << "Selected no one because there was no one to select\n";
         }
 		curl_easy_cleanup(curl);
 	}
