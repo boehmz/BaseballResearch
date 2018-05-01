@@ -22,10 +22,10 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180426";
+std::string todaysDate = "20180501";
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 23.0f / 162.0f;
+float percentOfSeasonPassed = 27.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -51,7 +51,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 	switch (processType)
 	{
 	case UnitTest:
@@ -979,7 +979,7 @@ void RefineAlgorithm()
                     if (line == 48 || line == 53 || line == 57 || line == 61 || line == 65) {
 						if (allPlayersLineupOrder[line].size() > 0) {
 							int latestDay = max(chosenLineupsList[line - 3].size() - 1, chosenLineupsList[line - 2].size() - 1);
-							latestDay = max(latestDay, chosenLineupsList[line - 1].size());
+							latestDay = max(latestDay, (int)chosenLineupsList[line - 1].size());
 							if (latestDay >= 0) {
 								float maxPrevPoints = -1;
 								if ((chosenLineupsList[line - 3].size() - 1 == latestDay) && (chosenLineupsList[line - 3][chosenLineupsList[line - 3].size() - 1] > maxPrevPoints))
