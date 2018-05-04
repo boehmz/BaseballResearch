@@ -55,4 +55,16 @@ Moon Shots:
 	thisYear.ops * (160.0f / expectedSabrFdPointsPitcher)
 	battingOrder >= 2 && battingOrder <= 5
 	results in high scores 248, 169, 148 over 33 tries
+"Combined ISo Times Combined XFIP":
+	combinedBatterStats.iso * 100.0f * combinedPitcherStats.xfip
+	battingOrder >= 2 && battingOrder <= 5
+	results in high scores of 222,213,184 over 136 tries
+"Combined ISo Times Combined KPer9::
+	combinedBatterStats.iso * 3000.0f * (1.0f / combinedPitcherStats.strikeOutsPer9)
+	battingOrder >= 2 && battingOrder <= 5
+	results in high scores of 219,203,188 over 136 tries
+"Combined Slugging"
+	combinedBatterStats.slugging * 100
+	battingOrder >= 2 && battingOrder <= 5 && combinedBatterStats.average > 0.21f
+	results in high scores of 228,227,202 over 136 tries
 	
