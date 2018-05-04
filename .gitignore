@@ -12,6 +12,7 @@
 *.db
 *.enc
 *.idb
+*.ipdb
 *.log
 .vs/BaseballStatsBuilder/v14/.suo
 BaseballStatsBuilder/FangraphsCachedPages/CumulativeUpTo/*.*
