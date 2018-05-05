@@ -51,7 +51,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -204,8 +204,8 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20170415;
-		reviewDateEnd = 20171001;
+		reviewDateStart = 20180401;
+		reviewDateEnd = 20180503;
 		percentOfSeasonPassed = 13.0f / 160.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -258,12 +258,26 @@ void RefineAlgorithm()
             itoa(yearInt, yearStringC, 10);
             itoa(monthInt, monthStringC, 10);
             itoa(dayInt, dayStringC, 10);
-            resultsURL += "&month=";
-            resultsURL += monthStringC;
-            resultsURL += "&day=";
-            resultsURL += dayStringC;
-            resultsURL += "&year=2017";
-            resultsURL += "&game=fd&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
+			if (strcmp(yearStringC, CURRENT_YEAR) == 0) {
+				resultsURL += monthStringC;
+				if (strlen(dayStringC) == 1) {
+					resultsURL += "0";
+				}
+				resultsURL += dayStringC;
+				resultsURL += "&game=fd&scsv=1&nowrap=1";
+			}
+			else {
+				resultsURL += "&month=";
+				resultsURL += monthStringC;
+				resultsURL += "&day=";
+				resultsURL += dayStringC;
+				resultsURL += "&year=";
+				resultsURL += yearStringC;
+				resultsURL += "&game=fd&scsv=1&nowrap=1";
+				if (strcmp(yearStringC, "2017") == 0)
+					resultsURL += "&user=GoldenExcalibur&key=G5970032941";
+			}
+			
 			curl_easy_setopt(curl, CURLOPT_URL, resultsURL.c_str());
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &actualResults);
@@ -352,8 +366,11 @@ void RefineAlgorithm()
 
 				while (nextIndex != string::npos) {
 					vector<string> thisLineActualResults = SplitStringIntoMultiple(actualResults.substr(currentIndex, nextIndex - currentIndex), ";");
-					if (thisLineActualResults.size() < 10)
+					if (thisLineActualResults.size() < 10) {
+						currentIndex = nextIndex + 1;
+						nextIndex = actualResults.find("\n", currentIndex + 1);
 						continue;
+					}
 					if (thisLineActualResults[4] == "1") {
 						PlayerData singlePlayerData;
 						singlePlayerData.playerId = thisLineActualResults[1];
