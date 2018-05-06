@@ -17,6 +17,5 @@
 *.vcxproj.filters
 .vs/
 .vs/BaseballStatsBuilder/v14/.suo
-BaseballStatsBuilder/FangraphsCachedPages/CumulativeUpTo/*.*
-BaseballStatsBuilder/FangraphsCachedPages/*.txt
+BaseballStatsBuilder/FangraphsCachedPages/
 BaseballStatsBuilder/Top*.csv
