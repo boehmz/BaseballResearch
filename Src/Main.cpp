@@ -21,11 +21,12 @@ GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
-int earliestGameTime = 19;
-std::string todaysDate = "20180501";
+int earliestGameTime = 16;
+std::string todaysDate = "20180506";
+bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 27.0f / 162.0f;
+float percentOfSeasonPassed = 32.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -51,7 +52,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 	switch (processType)
 	{
 	case UnitTest:
@@ -204,7 +205,7 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20180401;
+		reviewDateStart = 20170822;
 		reviewDateEnd = 20180503;
 		percentOfSeasonPassed = 13.0f / 160.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
@@ -402,10 +403,10 @@ void RefineAlgorithm()
 								combinedStatsInputValues.push_back(combinedBatterStats);
 								validOutputValues.push_back(actualPlayerPoints);
 							}
-                            singlePlayerData.playerPointsPerGame = (int)singlePlayerData.playerSalary + rand() % 100;
+                            singlePlayerData.playerPointsPerGame = static_cast <float>(singlePlayerData.playerSalary + rand() % 100);
                             allPlayersSalary[playerPosition].push_back(singlePlayerData);
 							if (battingOrder >= 2 && battingOrder <= 5 && combinedBatterStats.average > 0.21f) {
-                                singlePlayerData.playerPointsPerGame = singlePlayerData.playerSalary + rand() % 100;
+                                singlePlayerData.playerPointsPerGame = static_cast <float>(singlePlayerData.playerSalary + rand() % 100);
                                 allPlayers25Salary[playerPosition].push_back(singlePlayerData);
                                 
 								singlePlayerData.playerPointsPerGame = combinedBatterStats.ops * 100.0f;
@@ -480,7 +481,7 @@ void RefineAlgorithm()
 									string playerTeamName = thisSabrLine[1];
 									string playerGameName = thisSabrLine[2];
 									size_t gameNameIndex = sabrPredictorTextPitchers.find(playerGameName);
-									if (gameNameIndex != string::npos) {
+									if (playerTeamName.length() > 0 && playerGameName.length() > 0 && gameNameIndex != string::npos) {
 										size_t prevNewLinePitchers = sabrPredictorTextPitchers.rfind("\n", gameNameIndex);
 										size_t nextNewLinePitchers = sabrPredictorTextPitchers.find("\n", gameNameIndex);
 										vector<string> thisSabrLinePitchers = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(prevNewLinePitchers, nextNewLinePitchers - prevNewLinePitchers), ",", "\"");
@@ -1014,8 +1015,8 @@ void RefineAlgorithm()
                             cout << "Got over 200 points on " << d << " with lineup formula " << line << endl;
                         }
                         if ((line >= 45 && line <= 46) || (line >= 50 && line <= 52) || (line >= 54 && line <= 56) || (line >= 58 && line <= 60) || (line >= 62 && line <= 64)) {
-                            int deleteMin = 46;
-                            int deleteMax = 47;
+                            unsigned int deleteMin = 46;
+                            unsigned int deleteMax = 47;
                             if (line > deleteMax) {
                                 deleteMin = 51;
                                 deleteMax = 52;
@@ -1033,7 +1034,7 @@ void RefineAlgorithm()
 								deleteMax = 64;
 							}
 							allPlayersLineupOrder[deleteMax + 1] = allPlayers;
-                            for (int cl = deleteMin; cl <= deleteMax; ++cl) {
+                            for (unsigned int cl = deleteMin; cl <= deleteMax; ++cl) {
                                 for (unsigned int p1 = 0; p1 < allPlayersLineupOrder[cl].size(); ++p1) {
                                     for (int p2 = allPlayersLineupOrder[cl][p1].size() - 1; p2 >= 0; --p2) {
                                         
@@ -1974,7 +1975,7 @@ void ChooseAPitcher(CURL *curl)
 			cin >> pitcherSelected;
 		}
         
-        if (pitcherSelected < positionalPlayerData.size()) {
+        if (pitcherSelected >= 0 && (unsigned int)pitcherSelected < positionalPlayerData.size()) {
             maxTotalBudget = 35000 - positionalPlayerData[pitcherSelected].playerSalary;
             auto opponentInformation = opponentMap.find(positionalPlayerData[pitcherSelected].teamCode);
             if (opponentInformation != opponentMap.end())

@@ -30,7 +30,7 @@ string GetEntireFileContents(string fileName)
 		ifs.close();
 		return "";
 	}
-	ifstream::pos_type fileSize = ifs.tellg();
+	unsigned int fileSize = static_cast<unsigned int>( ifs.tellg());
 	ifs.seekg(0, ios::beg);
 
 	vector<char> bytes(fileSize);
@@ -651,6 +651,8 @@ FullSeasonStatsAdvanced GetBatterAdvancedStats(string playerId, string yearStrin
 
 string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, int advancedStatsFlags)
 {
+	if (skipStatsCollection)
+		return "";
 	string fangraphsData = "";
 	string cachedFileName = "FangraphsCachedPages\\PlayerId" + playerId + ".txt";
 	if ((advancedStatsFlags & AdvancedStatsBattingSplitsVersusLeftHand) ||
