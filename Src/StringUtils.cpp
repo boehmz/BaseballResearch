@@ -272,7 +272,7 @@ std::string IntToDateYMD(int date, string yearString, bool roundUp)
 	return dateFormatted;
 }
 
-void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuffer)
+void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuffer, bool allowRedirects)
 {
 	if (curl == NULL)
 		curl = curl_easy_init();
@@ -282,9 +282,26 @@ void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuff
 		curl_easy_setopt(curl, CURLOPT_URL, readURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &writeBuffer);
+		if (allowRedirects)
+			curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 		curl_easy_perform(curl);
 		curl_easy_reset(curl);
 	}
+}
+
+std::string GetSubStringBetweenStrings(const std::string& wholeString, const std::string& leftString, const std::string& rightString) {
+	string betweenString = "";
+	if (wholeString != "") {
+		size_t leftIndex = wholeString.find(leftString);
+		leftIndex += leftString.length();
+		size_t rightIndex = wholeString.find(rightString, leftIndex);
+		if (leftIndex != string::npos && rightIndex != string::npos) {
+			betweenString = wholeString.substr(leftIndex, rightIndex - leftIndex);
+		} else {
+			cout << "Right or left string not found, returning blank between string\n";
+		}
+	}
+	return betweenString;
 }
 
 std::vector<string> SplitStringIntoMultiple(std::string wholeString, std::string tokens, std::string removeFromIndividual)

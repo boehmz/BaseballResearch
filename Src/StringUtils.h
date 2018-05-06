@@ -24,10 +24,11 @@ std::string IntToDateYMD(int date, std::string yearString = CURRENT_YEAR, bool r
 std::string DateToDateWithDashes(std::string date);
 std::string ConvertSpecialCharactersToEnglish26(std::string specialCharactersString);
 void RemoveJavaScriptBlocksFromFileText(std::string& fileText);
+std::string GetSubStringBetweenStrings(const std::string& wholeString, const std::string& leftString, const std::string& rightString);
 
 std::vector<std::string> SplitStringIntoMultiple(std::string wholeString, std::string tokens, std::string removeFromIndividual = "");
 
 int GetNumDaysInMonth(int monthInteger);
 
-void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuffer);
+void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuffer, bool allowRedirects = false);
 #endif
