@@ -769,15 +769,7 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 			ofstream writeToFile;
 			writeToFile.open(cachedFileName);
 			writeToFile << todaysDate << "/ZachDateMetaData" << endl;
-			string finalWriteString = "";
-			if ((advancedStatsFlags & AdvancedStatsBattingSplitsVersusLeftHand) ||
-				(advancedStatsFlags & AdvancedStatsPitchingSplitsVersusLeftHand))
-				finalWriteString = fangraphsData;
-			else if ((advancedStatsFlags & AdvancedStatsBattingSplitsVersusRightHand) ||
-				(advancedStatsFlags & AdvancedStatsPitchingSplitsVersusRightHand))
-				finalWriteString = fangraphsData;
-			else
-				finalWriteString = fangraphsData.substr(writeToFileIndexBegin, writeToFileLength);
+			string finalWriteString = fangraphsData.substr(writeToFileIndexBegin, writeToFileLength);
 			size_t startIndex = finalWriteString.find("class=\"player-info-box\"");
 			if (startIndex == string::npos) {
 				startIndex = finalWriteString.find("Birthdate:");
@@ -787,10 +779,23 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 			if (startIndex == string::npos)
 				startIndex = 0;
 			size_t endIndex = finalWriteString.find("\"footer", startIndex);
-			finalWriteString.substr(startIndex, endIndex - startIndex);
+			finalWriteString = finalWriteString.substr(startIndex, endIndex - startIndex);
 			RemoveJavaScriptBlocksFromFileText(finalWriteString);
+			size_t firstStandardSection = finalWriteString.find("name=\"standard");
+			if (firstStandardSection != string::npos) {
+				finalWriteString = finalWriteString.substr(firstStandardSection);
+			}
 			writeToFile << finalWriteString;
 			writeToFile.close();
+
+			size_t fileNamePlayerIdIndex = cachedFileName.find("\\PlayerId");
+			if (fileNamePlayerIdIndex != string::npos) {
+				string cachedAtDateFilename = cachedFileName.insert(fileNamePlayerIdIndex, "\\CachedAtDate\\" + todaysDate);
+				ofstream cachedAtDateFile;
+				cachedAtDateFile.open(cachedAtDateFilename);
+				cachedAtDateFile << finalWriteString;
+				cachedAtDateFile.close();
+			}
 		}
 		else
 		{
