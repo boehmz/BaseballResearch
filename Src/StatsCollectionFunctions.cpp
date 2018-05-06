@@ -686,6 +686,21 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 		size_t fangraphsURLIndexEnd = playerRotoGuruData.find("\" ", fangraphsURLIndexStart + 1);
 		string fangraphsURL = playerRotoGuruData.substr(fangraphsURLIndexStart + 1, fangraphsURLIndexEnd - fangraphsURLIndexStart - 1);
 		fangraphsURL = ReplaceURLWhiteSpaces(fangraphsURL);
+		if (fangraphsURL.find("?letter=") != string::npos) {
+			string writeBuffer;
+			CurlGetSiteContents(curl, fangraphsURL, writeBuffer, true);
+
+			string playerName = GetSubStringBetweenStrings(playerRotoGuruData, "<TITLE>", "</TITLE>");
+			size_t nameIndex = writeBuffer.find(ConvertLFNameToFLName(playerName));
+			if (nameIndex != string::npos) {
+				size_t firstRedirectIndex = writeBuffer.rfind("statss.aspx?playerid=", nameIndex);
+				if (firstRedirectIndex != string::npos) {
+					size_t nextQuoteIndex = writeBuffer.find("\"", firstRedirectIndex + 1);
+					fangraphsURL = "https://www.fangraphs.com/" + writeBuffer.substr(firstRedirectIndex, nextQuoteIndex - firstRedirectIndex);
+				}
+			}
+
+		}
 
 		curl_easy_setopt(curl, CURLOPT_URL, fangraphsURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
