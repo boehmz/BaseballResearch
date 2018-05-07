@@ -194,6 +194,25 @@ void RemoveJavaScriptBlocksFromFileText(std::string& fileText) {
 	}
 }
 
+void RemoveAllSectionsWithKeyword(std::string& wholeString, const std::string& keyword, const std::string& sectionBegin, const std::string& sectionEnd) {
+	size_t keywordIndex = wholeString.find(keyword);
+	while (keywordIndex != string::npos) {
+		size_t sectionStartIndex = keywordIndex;
+		size_t sectionEndIndex = keywordIndex + keyword.length();
+		if (sectionBegin.length() > 0)
+			sectionStartIndex = wholeString.rfind(sectionBegin, keywordIndex);
+		if (sectionEnd.length() > 0)
+			sectionEndIndex = wholeString.find(sectionEnd, keywordIndex);
+		if (sectionStartIndex == string::npos || sectionEndIndex == string::npos) {
+			keywordIndex = wholeString.find(keyword, keywordIndex + 1);
+		}
+		else {
+			wholeString.erase(sectionStartIndex, sectionEndIndex + sectionEnd.length() - sectionStartIndex);
+			keywordIndex = wholeString.find(keyword);
+		}
+	}
+}
+
 // date = "0808" or "20170808"
 // output = "2017-08-08"
 std::string DateToDateWithDashes(std::string date) {

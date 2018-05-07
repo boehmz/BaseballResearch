@@ -24,6 +24,7 @@ std::string IntToDateYMD(int date, std::string yearString = CURRENT_YEAR, bool r
 std::string DateToDateWithDashes(std::string date);
 std::string ConvertSpecialCharactersToEnglish26(std::string specialCharactersString);
 void RemoveJavaScriptBlocksFromFileText(std::string& fileText);
+void RemoveAllSectionsWithKeyword(std::string& wholeString, const std::string& keyword, const std::string& sectionBegin, const std::string& sectionEnd);
 std::string GetSubStringBetweenStrings(const std::string& wholeString, const std::string& leftString, const std::string& rightString);
 
 std::vector<std::string> SplitStringIntoMultiple(std::string wholeString, std::string tokens, std::string removeFromIndividual = "");
