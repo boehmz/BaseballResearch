@@ -649,6 +649,32 @@ FullSeasonStatsAdvanced GetBatterAdvancedStats(string playerId, string yearStrin
 	return batterAdvancedStats;
 }
 
+void RemovePre2014TablesFromString(string& fangraphsData) {
+	int removingYear = 2013;
+	while (true) {
+		char removeYearStringC[5];
+		itoa(removingYear, removeYearStringC, 10);
+		string removeYearString = ">";
+		removeYearString += removeYearStringC;
+		removeYearString += "<";
+		size_t yearIndex = fangraphsData.find(removeYearString);
+		if (yearIndex == string::npos)
+			break;
+		while (yearIndex != string::npos) {
+			size_t rowStartIndex = fangraphsData.rfind("<tr ", yearIndex);
+			size_t rowEndIndex = fangraphsData.find("</tr>", yearIndex);
+			if (rowStartIndex == string::npos || rowEndIndex == string::npos) {
+				yearIndex = fangraphsData.find(removeYearString, yearIndex + 1);
+			}
+			else {
+				fangraphsData.erase(rowStartIndex, rowEndIndex + 5 - rowStartIndex);
+				yearIndex = fangraphsData.find(removeYearString);
+			}		
+		}
+		removingYear--;
+	}
+}
+
 string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, int advancedStatsFlags)
 {
 	if (skipStatsCollection)
@@ -796,10 +822,33 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 			size_t endIndex = finalWriteString.find("\"footer", startIndex);
 			finalWriteString = finalWriteString.substr(startIndex, endIndex - startIndex);
 			RemoveJavaScriptBlocksFromFileText(finalWriteString);
-			size_t firstStandardSection = finalWriteString.find("name=\"standard");
-			if (firstStandardSection != string::npos) {
-				finalWriteString = finalWriteString.substr(firstStandardSection);
+			size_t firstDashboardSection = finalWriteString.find("name=\"dashboard");
+			if (firstDashboardSection != string::npos) {
+				finalWriteString = finalWriteString.substr(firstDashboardSection);
+			} else {
+				size_t firstStandardSection = finalWriteString.find("name=\"standard");
+				if (firstStandardSection != string::npos) {
+					finalWriteString = finalWriteString.substr(firstStandardSection);
+				}
 			}
+			size_t firstFieldingSection = finalWriteString.find("name=\"fielding");
+			if (firstFieldingSection != string::npos)
+				finalWriteString = finalWriteString.substr(0, firstFieldingSection);
+			RemovePre2014TablesFromString(finalWriteString);
+			RemoveAllSectionsWithKeyword(finalWriteString, "<col  />", "<colgroup>", "</colgroup>");
+			RemoveAllSectionsWithKeyword(finalWriteString, "grid_minors_show", "<tr ", "</tr>");
+			RemoveAllSectionsWithKeyword(finalWriteString, "grid_multi", "<tr ", "</tr>");
+			RemoveAllSectionsWithKeyword(finalWriteString, "grid_projections", "<tr ", "</tr>");
+			RemoveAllSectionsWithKeyword(finalWriteString, "grid_postseason", "<tr ", "</tr>");
+			RemoveAllSectionsWithKeyword(finalWriteString, "href=\"http", "<", ">");
+			RemoveAllSectionsWithKeyword(finalWriteString, "javascript:doNothing", "<", ">");
+			RemoveAllSectionsWithKeyword(finalWriteString, "href =\"javascript", "<a ", "</a>");
+			RemoveAllSectionsWithKeyword(finalWriteString, "class=\"grid_line_regular\"", "", "");
+			RemoveAllSectionsWithKeyword(finalWriteString, "align=\"right\"", "", "");
+			RemoveAllSectionsWithKeyword(finalWriteString, "<input id=\"", "", "</div>");
+
+			
+
 			writeToFile << finalWriteString;
 			writeToFile.close();
 
@@ -811,6 +860,7 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 				cachedAtDateFile << finalWriteString;
 				cachedAtDateFile.close();
 			}
+			fangraphsData = finalWriteString;
 		}
 		else
 		{
