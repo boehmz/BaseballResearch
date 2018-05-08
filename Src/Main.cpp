@@ -22,11 +22,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 16;
-std::string todaysDate = "20180507";
+std::string todaysDate = "20180508";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 32.0f / 162.0f;
+float percentOfSeasonPassed = 33.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -52,7 +52,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -206,8 +206,8 @@ void RefineAlgorithm()
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
 		reviewDateStart = 20170822;
-		reviewDateEnd = 20180503;
-		percentOfSeasonPassed = 13.0f / 160.0f;
+		reviewDateEnd = 20171001;
+		percentOfSeasonPassed = 130.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
         string top30BattersWithPitcherTrainingFileName = "Top30Order25BattersWithPitcherTrainingFile.csv";
@@ -949,6 +949,22 @@ void RefineAlgorithm()
 				allPlayersLineupOrder.push_back(allPlayers25SeasonIso);
 				allPlayersLineupOrder.push_back(allPlayers25SeasonIso);
 				allPlayersLineupOrder.push_back(emptyLineup);	//65
+                allPlayersLineupOrder.push_back(allPlayers25PitcherMultiply);
+                allPlayersLineupOrder.push_back(allPlayers25PitcherMultiply);
+                allPlayersLineupOrder.push_back(allPlayers25PitcherMultiply);
+                allPlayersLineupOrder.push_back(emptyLineup);
+                allPlayersLineupOrder.push_back(allPlayers25AvoidPitchers40);   //70
+                allPlayersLineupOrder.push_back(allPlayers25AvoidPitchers40);
+                allPlayersLineupOrder.push_back(allPlayers25AvoidPitchers40);
+                allPlayersLineupOrder.push_back(emptyLineup);
+                allPlayersLineupOrder.push_back(allPlayers25PitcherDkMultiply);
+                allPlayersLineupOrder.push_back(allPlayers25PitcherDkMultiply); //75
+                allPlayersLineupOrder.push_back(allPlayers25PitcherDkMultiply);
+                allPlayersLineupOrder.push_back(emptyLineup);
+                allPlayersLineupOrder.push_back(allPlayers25PitcherOpsMultiply);
+                allPlayersLineupOrder.push_back(allPlayers25PitcherOpsMultiply);
+                allPlayersLineupOrder.push_back(allPlayers25PitcherOpsMultiply);    //80
+                allPlayersLineupOrder.push_back(emptyLineup);
 				allPlayersLineupOrder.push_back(allPlayersActualScores);
 
 				chosenLineupsList.resize(allPlayersLineupOrder.size());
@@ -994,10 +1010,10 @@ void RefineAlgorithm()
 					maxTotalBudget = 25000;
                    
 					vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
-                    if (line == 48 || line == 53 || line == 57 || line == 61 || line == 65) {
+                    if (line == 48 || line == 53 || line == 57 || line == 61 || line == 65 || line == 69 || line == 73 || line == 77 || line == 81) {
 						if (allPlayersLineupOrder[line].size() > 0) {
 							int latestDay = max(chosenLineupsList[line - 3].size() - 1, chosenLineupsList[line - 2].size() - 1);
-							latestDay = max(latestDay, (int)chosenLineupsList[line - 1].size());
+							latestDay = max(latestDay, (int)chosenLineupsList[line - 1].size() - 1);
 							if (latestDay >= 0) {
 								float maxPrevPoints = -1;
 								if ((chosenLineupsList[line - 3].size() - 1 == latestDay) && (chosenLineupsList[line - 3][chosenLineupsList[line - 3].size() - 1] > maxPrevPoints))
@@ -1014,7 +1030,7 @@ void RefineAlgorithm()
                         if (totalPoints > 200 && line != (chosenLineupsList.size()-1)) {
                             cout << "Got over 200 points on " << d << " with lineup formula " << line << endl;
                         }
-                        if ((line >= 45 && line <= 46) || (line >= 50 && line <= 52) || (line >= 54 && line <= 56) || (line >= 58 && line <= 60) || (line >= 62 && line <= 64)) {
+                        if ((line >= 45 && line <= 47) || (line >= 50 && line <= 52) || (line >= 54 && line <= 56) || (line >= 58 && line <= 60) || (line >= 62 && line <= 64) || (line >= 66 && line <= 68) || (line >= 70 && line <= 72) || (line >= 74 && line <= 76) || (line >= 78 && line <= 80)) {
                             unsigned int deleteMin = 46;
                             unsigned int deleteMax = 47;
                             if (line > deleteMax) {
@@ -1033,6 +1049,22 @@ void RefineAlgorithm()
 								deleteMin = 63;
 								deleteMax = 64;
 							}
+                            if (line > deleteMax) {
+                                deleteMin = 67;
+                                deleteMax = 68;
+                            }
+                            if (line > deleteMax) {
+                                deleteMin = 71;
+                                deleteMax = 72;
+                            }
+                            if (line > deleteMax) {
+                                deleteMin = 75;
+                                deleteMax = 76;
+                            }
+                            if (line > deleteMax) {
+                                deleteMin = 79;
+                                deleteMax = 80;
+                            }
 							allPlayersLineupOrder[deleteMax + 1] = allPlayers;
                             for (unsigned int cl = deleteMin; cl <= deleteMax; ++cl) {
                                 for (unsigned int p1 = 0; p1 < allPlayersLineupOrder[cl].size(); ++p1) {
