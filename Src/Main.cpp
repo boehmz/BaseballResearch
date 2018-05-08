@@ -21,7 +21,7 @@ GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
-int earliestGameTime = 16;
+int earliestGameTime = 19;
 std::string todaysDate = "20180508";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
@@ -52,7 +52,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 	switch (processType)
 	{
 	case UnitTest:
@@ -2708,6 +2708,7 @@ void GenerateLineups(CURL *curl)
                 float expectedFdPointsOpposingPitcher = -1;
                 float expectedYahooPointsOpposingPitcher = -1;
                 float expectedFdPoints = -1;
+                float expectedPitcherOpsAllowed = -1;
 				size_t playerNameIndex = sabrPredictorText.find(ConvertLFNameToFLName(singlePlayerData.playerName));
 				if (playerNameIndex != string::npos) {
                     
@@ -2755,6 +2756,10 @@ void GenerateLineups(CURL *curl)
 							}
                             expectedFdPointsOpposingPitcher = stof(thisSabrLinePitchers[14]);
                             expectedYahooPointsOpposingPitcher = stof(thisSabrLinePitchers[13]);
+                            float pitcherOnBaseAllowed = stof(thisSabrLinePitchers[6]) + stof(thisSabrLinePitchers[11]);
+                            float pitcherBattersFaced = stof(thisSabrLinePitchers[5]);
+                            float pitcherTotalBasesAllowed = stof(thisSabrLinePitchers[7]) + stof(thisSabrLinePitchers[8]) * 2 + stof(thisSabrLinePitchers[9]) * 3 + stof(thisSabrLinePitchers[10]) * 4;
+                            expectedPitcherOpsAllowed = pitcherOnBaseAllowed / pitcherBattersFaced + pitcherTotalBasesAllowed / pitcherBattersFaced;
 						}
 					}
 				}
@@ -2913,6 +2918,11 @@ void GenerateLineups(CURL *curl)
                             singlePlayerData.playerPointsPerGame = expectedFdPoints * (60.0f / expectedYahooPointsOpposingPitcher);
                             allPlayers25PitcherYahooMultiply[positionIndex].push_back(singlePlayerData);
                         }
+                        
+                        if (expectedPitcherOpsAllowed >= 0) {
+                            singlePlayerData.playerPointsPerGame = expectedFdPoints * (1.7f * expectedPitcherOpsAllowed / leagueAverageOps);
+                            allPlayers25PitcherOpsMultiply[positionIndex].push_back(singlePlayerData);
+                        }
                         singlePlayerData.playerPointsPerGame = expectedFdPoints;
                         allPlayers25[positionIndex].push_back(singlePlayerData);
                     }
@@ -2961,6 +2971,48 @@ void GenerateLineups(CURL *curl)
 		sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
 	}
 	vector<PlayerData> fanduelPitcherMultiplyLineup = OptimizeLineupToFitBudget();
+    maxTotalBudget = budgetForThisPitcher;
+    allPlayers.clear();
+    allPlayers = allPlayers25PitcherOpsMultiply;
+    for (int a = 0; a < 6; ++a) {
+        sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+    }
+    vector<PlayerData> fanduelPitcherOpsMultiplyLineup = OptimizeLineupToFitBudget();
+    for (unsigned int p1 = 0; p1 < allPlayers25PitcherOpsMultiply.size(); ++p1) {
+        for (int p2 = allPlayers25PitcherOpsMultiply[p1].size() - 1; p2 >= 0; --p2) {
+            for (unsigned int other = 0; other < fanduelPitcherOpsMultiplyLineup.size(); ++other) {
+                if (allPlayers25PitcherOpsMultiply[p1][p2].playerId == fanduelPitcherOpsMultiplyLineup[other].playerId) {
+                    allPlayers25PitcherOpsMultiply[p1].erase(allPlayers25PitcherOpsMultiply[p1].begin() + p2);
+                    break;
+                }
+            }
+        }
+    }
+    maxTotalBudget = budgetForThisPitcher;
+    allPlayers.clear();
+    allPlayers = allPlayers25PitcherOpsMultiply;
+    for (int a = 0; a < 6; ++a) {
+        sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+    }
+    vector<PlayerData> fanduelPitcherOpsMultiplyLineup2 = OptimizeLineupToFitBudget();
+    for (unsigned int p1 = 0; p1 < allPlayers25PitcherOpsMultiply.size(); ++p1) {
+        for (int p2 = allPlayers25PitcherOpsMultiply[p1].size() - 1; p2 >= 0; --p2) {
+            for (unsigned int other = 0; other < fanduelPitcherOpsMultiplyLineup2.size(); ++other) {
+                if (allPlayers25PitcherOpsMultiply[p1][p2].playerId == fanduelPitcherOpsMultiplyLineup2[other].playerId) {
+                    allPlayers25PitcherOpsMultiply[p1].erase(allPlayers25PitcherOpsMultiply[p1].begin() + p2);
+                    break;
+                }
+            }
+        }
+    }
+    maxTotalBudget = budgetForThisPitcher;
+    allPlayers.clear();
+    allPlayers = allPlayers25PitcherOpsMultiply;
+    for (int a = 0; a < 6; ++a) {
+        sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
+    }
+    vector<PlayerData> fanduelPitcherOpsMultiplyLineup3 = OptimizeLineupToFitBudget();
+    
 	maxTotalBudget = budgetForThisPitcher;
 	allPlayers.clear();
 	allPlayers = allPlayers25PitcherYahooMultiply;
@@ -2986,6 +3038,25 @@ void GenerateLineups(CURL *curl)
     cout << "Fd pitcher multiply:\n";
     for (unsigned int i = 0; i < fanduelPitcherMultiplyLineup.size(); ++i) {
         cout << fanduelPitcherMultiplyLineup[i].playerName << endl;
+    }
+    if (fanduelPitcherOpsMultiplyLineup.size() > 0) {
+        cout << "\nFd Expected Pitcher OPS Allowed multiply:\n";
+        for (unsigned int i = 0; i < fanduelPitcherOpsMultiplyLineup.size(); ++i) {
+            cout << fanduelPitcherOpsMultiplyLineup[i].playerName << endl;
+        }
+        if (fanduelPitcherOpsMultiplyLineup2.size() > 0) {
+            cout << "2nd\n";
+            for (unsigned int i = 0; i < fanduelPitcherOpsMultiplyLineup2.size(); ++i) {
+                cout << fanduelPitcherOpsMultiplyLineup2[i].playerName << endl;
+            }
+        }
+        if (fanduelPitcherOpsMultiplyLineup3.size() > 0) {
+            cout << "3rd\n";
+            for (unsigned int i = 0; i < fanduelPitcherOpsMultiplyLineup3.size(); ++i) {
+                cout << fanduelPitcherOpsMultiplyLineup3[i].playerName << endl;
+            }
+        }
+        
     }
 	if (sluggingOnlyLineup.size() > 0) {
 		cout << "\nSlugging Only:\n";
