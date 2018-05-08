@@ -22,7 +22,7 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 16;
-std::string todaysDate = "20180506";
+std::string todaysDate = "20180507";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
@@ -1956,6 +1956,41 @@ void ChooseAPitcher(CURL *curl)
 		}
 		teamWinTrackerFile.close();
 		playerResultsTrackerFile.close();
+        
+        string relieverStatsAdvancedFileName = "FangraphsCachedPages\\CachedAtDate\\" + todaysDate + "\\RelieverStatsAdvanced.txt";
+        string relieverStatsBattedBallFileName = "FangraphsCachedPages\\CachedAtDate\\" + todaysDate + "\\RelieverStatsBattedBall.txt";
+#if PLATFORM_OSX
+        relieverStatsAdvancedFileName = GetPlatformCompatibleFileNameFromRelativePath(relieverStatsAdvancedFileName);
+        relieverStatsBattedBallFileName = GetPlatformCompatibleFileNameFromRelativePath(relieverStatsBattedBallFileName);
+#endif
+        
+        string relieverStatsAdvancedFileContents = GetEntireFileContents(relieverStatsAdvancedFileName);
+        string relieverStatsBattedBallFileContents = GetEntireFileContents(relieverStatsBattedBallFileName);
+        if (relieverStatsAdvancedFileContents.length() == 0) {
+            CurlGetSiteContents(curl, "https://www.fangraphs.com/leaders.aspx?pos=all&stats=rel&lg=all&qual=0&type=1&season=2018&month=0&season1=2018&ind=0&team=0,ts&rost=0&age=0&filter=&players=0", relieverStatsAdvancedFileContents);
+            size_t indexStart = relieverStatsAdvancedFileContents.find(">Team<");
+            if (indexStart != string::npos) {
+                indexStart = relieverStatsAdvancedFileContents.rfind("<th ", indexStart);
+                size_t indexEnd = relieverStatsAdvancedFileContents.find(">Custom Leaderboards<", indexStart);
+                relieverStatsAdvancedFileContents = relieverStatsAdvancedFileContents.substr(indexStart, indexEnd == string::npos ? string::npos : indexEnd - indexStart);
+            }
+            ofstream relieverStatsAdvancedFile(relieverStatsAdvancedFileName);
+            relieverStatsAdvancedFile << relieverStatsAdvancedFileContents;
+            relieverStatsAdvancedFile.close();
+        }
+        if (relieverStatsBattedBallFileContents.length() == 0) {
+            CurlGetSiteContents(curl, "https://www.fangraphs.com/leaders.aspx?pos=all&stats=rel&lg=all&qual=0&type=2&season=2018&month=0&season1=2018&ind=0&team=0,ts&rost=0&age=0&filter=&players=0", relieverStatsBattedBallFileContents);
+            size_t indexStart = relieverStatsBattedBallFileContents.find(">Team<");
+            if (indexStart != string::npos) {
+                indexStart = relieverStatsBattedBallFileContents.rfind("<th ", indexStart);
+                size_t indexEnd = relieverStatsBattedBallFileContents.find(">Custom Leaderboards<", indexStart);
+                relieverStatsBattedBallFileContents = relieverStatsBattedBallFileContents.substr(indexStart, indexEnd == string::npos ? string::npos : indexEnd - indexStart);
+            }
+            ofstream relieverStatsBattedBallFile(relieverStatsBattedBallFileName);
+            relieverStatsBattedBallFile << relieverStatsBattedBallFileContents;
+            relieverStatsBattedBallFile.close();
+        }
+        
 
         if (positionalPlayerData.size() == 0) {
             cout << "No pitchers were found today (" << todaysDate << ")." << endl;
@@ -2692,6 +2727,10 @@ void GenerateLineups(CURL *curl)
 					}
 				}
 				
+                FullSeasonStatsAdvanced batterStatsCurrentYearHandedness = GetBatterAdvancedStats(singlePlayerData.playerId, CURRENT_YEAR, curl);
+                FullSeasonStatsAdvanced batterStatsLastYearHandedness = GetBatterAdvancedStats(singlePlayerData.playerId, LAST_YEAR, curl);
+                FullSeasonStatsAdvanced batterStatsCareerHandedness = GetBatterAdvancedStats(singlePlayerData.playerId, "Total", curl);
+                
 				FullSeasonStatsAdvancedNoHandedness batterStatsCurrentYear = GetBatterStatsSeason(singlePlayerData.playerId, curl, CURRENT_YEAR);
 				FullSeasonStatsAdvancedNoHandedness batterStatsLastYear = GetBatterStatsSeason(singlePlayerData.playerId, curl, LAST_YEAR);
 				FullSeasonStatsAdvancedNoHandedness batterStatsCareer = GetBatterStatsSeason(singlePlayerData.playerId, curl, "Total");
