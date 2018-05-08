@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <sstream>
 #include <unordered_map>
+#include <sys/stat.h>
 #include "StatsCollectionFunctions.h"
 #include "SharedGlobals.h"
 #include "StringUtils.h"
@@ -853,10 +854,21 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 			writeToFile.close();
 
 			size_t fileNamePlayerIdIndex = cachedFileName.find("\\PlayerId");
+#if PLATFORM_OSX
+            if (fileNamePlayerIdIndex == string::npos) {
+                fileNamePlayerIdIndex = cachedFileName.find("/PlayerId");
+            }
+#endif
 			if (fileNamePlayerIdIndex != string::npos) {
-				string cachedAtDateFilename = cachedFileName.insert(fileNamePlayerIdIndex, "\\CachedAtDate\\" + todaysDate);
+#if PLATFORM_OSX
+                cachedFileName.insert(fileNamePlayerIdIndex, "/CachedAtDate/" + todaysDate);
+                string directory = cachedFileName.substr(0, cachedFileName.find_last_of("/"));
+                mkdir(directory.c_str(), ACCESSPERMS);
+#else
+                cachedFileName.insert(fileNamePlayerIdIndex, "\\CachedAtDate\\" + todaysDate);
+#endif
 				ofstream cachedAtDateFile;
-				cachedAtDateFile.open(cachedAtDateFilename);
+				cachedAtDateFile.open(cachedFileName);
 				cachedAtDateFile << finalWriteString;
 				cachedAtDateFile.close();
 			}
