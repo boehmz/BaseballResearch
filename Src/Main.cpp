@@ -237,6 +237,7 @@ void RefineAlgorithm()
 				continue;
 			}
 			if (monthInt > 10) {
+                percentOfSeasonPassed = 0;
 				d = (yearInt + 1) * 10000 + 315;
 				continue;
 			}
