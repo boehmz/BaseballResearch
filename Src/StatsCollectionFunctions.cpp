@@ -650,8 +650,10 @@ FullSeasonStatsAdvanced GetBatterAdvancedStats(string playerId, string yearStrin
 	return batterAdvancedStats;
 }
 
-void RemovePre2014TablesFromString(string& fangraphsData) {
-	int removingYear = 2013;
+void RemovePreCurrentYearTablesFromString(string& fangraphsData) {
+	int removingYear = atoi(CURRENT_YEAR);
+    removingYear--;
+    int consecutiveEmptyYears = 0;
 	while (true) {
 		char removeYearStringC[5];
 		itoa(removingYear, removeYearStringC, 10);
@@ -659,19 +661,24 @@ void RemovePre2014TablesFromString(string& fangraphsData) {
 		removeYearString += removeYearStringC;
 		removeYearString += "<";
 		size_t yearIndex = fangraphsData.find(removeYearString);
-		if (yearIndex == string::npos)
-			break;
-		while (yearIndex != string::npos) {
-			size_t rowStartIndex = fangraphsData.rfind("<tr ", yearIndex);
-			size_t rowEndIndex = fangraphsData.find("</tr>", yearIndex);
-			if (rowStartIndex == string::npos || rowEndIndex == string::npos) {
-				yearIndex = fangraphsData.find(removeYearString, yearIndex + 1);
-			}
-			else {
-				fangraphsData.erase(rowStartIndex, rowEndIndex + 5 - rowStartIndex);
-				yearIndex = fangraphsData.find(removeYearString);
-			}		
-		}
+        if (yearIndex == string::npos) {
+            consecutiveEmptyYears++;
+            if (consecutiveEmptyYears >= 3)
+                break;
+        } else {
+            consecutiveEmptyYears = 0;
+            while (yearIndex != string::npos) {
+                size_t rowStartIndex = fangraphsData.rfind("<tr ", yearIndex);
+                size_t rowEndIndex = fangraphsData.find("</tr>", yearIndex);
+                if (rowStartIndex == string::npos || rowEndIndex == string::npos) {
+                    yearIndex = fangraphsData.find(removeYearString, yearIndex + 1);
+                }
+                else {
+                    fangraphsData.erase(rowStartIndex, rowEndIndex + 5 - rowStartIndex);
+                    yearIndex = fangraphsData.find(removeYearString);
+                }
+            }
+        }
 		removingYear--;
 	}
 }
@@ -835,7 +842,6 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 			size_t firstFieldingSection = finalWriteString.find("name=\"fielding");
 			if (firstFieldingSection != string::npos)
 				finalWriteString = finalWriteString.substr(0, firstFieldingSection);
-			RemovePre2014TablesFromString(finalWriteString);
 			RemoveAllSectionsWithKeyword(finalWriteString, "<col  />", "<colgroup>", "</colgroup>");
 			RemoveAllSectionsWithKeyword(finalWriteString, "grid_minors_show", "<tr ", "</tr>");
 			RemoveAllSectionsWithKeyword(finalWriteString, "grid_multi", "<tr ", "</tr>");
@@ -848,10 +854,11 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 			RemoveAllSectionsWithKeyword(finalWriteString, "align=\"right\"", "", "");
 			RemoveAllSectionsWithKeyword(finalWriteString, "<input id=\"", "", "</div>");
 
-			
-
 			writeToFile << finalWriteString;
 			writeToFile.close();
+            
+            fangraphsData = finalWriteString;
+            
 
 			size_t fileNamePlayerIdIndex = cachedFileName.find("\\PlayerId");
 #if PLATFORM_OSX
@@ -867,12 +874,12 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 #else
                 cachedFileName.insert(fileNamePlayerIdIndex, "\\CachedAtDate\\" + todaysDate);
 #endif
+                RemovePreCurrentYearTablesFromString(finalWriteString);
 				ofstream cachedAtDateFile;
 				cachedAtDateFile.open(cachedFileName);
 				cachedAtDateFile << finalWriteString;
 				cachedAtDateFile.close();
 			}
-			fangraphsData = finalWriteString;
 		}
 		else
 		{

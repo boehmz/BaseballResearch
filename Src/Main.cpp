@@ -22,11 +22,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180508";
+std::string todaysDate = "20180511";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 33.0f / 162.0f;
+float percentOfSeasonPassed = 35.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -206,7 +206,7 @@ void RefineAlgorithm()
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
 		reviewDateStart = 20170822;
-		reviewDateEnd = 20171001;
+		reviewDateEnd = 20180505;
 		percentOfSeasonPassed = 130.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -267,6 +267,7 @@ void RefineAlgorithm()
 				}
 				resultsURL += dayStringC;
 				resultsURL += "&game=fd&scsv=1&nowrap=1";
+                resultsURL += "&user=GoldenExcalibur&key=G5970032941";
 			}
 			else {
 				resultsURL += "&month=";
@@ -519,6 +520,28 @@ void RefineAlgorithm()
 											singlePlayerData.playerPointsPerGame = storedPoints * (1.7f * pitcherOpsAllowed / leagueAverageOps);
 											allPlayers25PitcherOpsMultiply[playerPosition].push_back(singlePlayerData);
                                             
+                                            if (combinedBatterStats.average > 0.1f) {
+                                                singlePlayerData.playerPointsPerGame = combinedBatterStats.rbisPerPA * 1000.0f;
+                                                allPlayers25Rbis[playerPosition].push_back(singlePlayerData);
+                                                singlePlayerData.playerPointsPerGame *= (1.7f * pitcherOpsAllowed / leagueAverageOps);//opponentPitcher->second.xfip;//(60.0f / opponentPitcher->second.strikeOutsPer9);
+                                                allPlayers25RbisTimesPitcher[playerPosition].push_back(singlePlayerData);
+                                                
+                                                singlePlayerData.playerPointsPerGame = combinedBatterStats.runsPerPA * 1000.0f;
+                                                allPlayers25Runs[playerPosition].push_back(singlePlayerData);
+                                                singlePlayerData.playerPointsPerGame *= (1.7f * pitcherOpsAllowed / leagueAverageOps);//opponentPitcher->second.xfip;//(60.0f / opponentPitcher->second.strikeOutsPer9);
+                                                allPlayers25RunsTimesPitcher[playerPosition].push_back(singlePlayerData);
+                                                
+                                                singlePlayerData.playerPointsPerGame = (combinedBatterStats.rbisPerPA + combinedBatterStats.runsPerPA) * 1000.0f;
+                                                allPlayers25RbisPlusRuns[playerPosition].push_back(singlePlayerData);
+                                                singlePlayerData.playerPointsPerGame *= (1.7f * pitcherOpsAllowed / leagueAverageOps);//opponentPitcher->second.xfip;// (60.0f / opponentPitcher->second.strikeOutsPer9);
+                                                allPlayers25RbisPlusRunsTimesPitcher[playerPosition].push_back(singlePlayerData);
+                                                
+                                                singlePlayerData.playerPointsPerGame = (combinedBatterStats.rbisPerPA * 3.5f + combinedBatterStats.runsPerPA * 3.2f + (combinedBatterStats.onBaseAverage + combinedBatterStats.iso) * 3.0f) * 1000.0f;
+                                                allPlayers25RbiRunsOpi[playerPosition].push_back(singlePlayerData);
+                                                singlePlayerData.playerPointsPerGame *= (1.7f * pitcherOpsAllowed / leagueAverageOps);//opponentPitcher->second.xfip;//(60.0f / opponentPitcher->second.strikeOutsPer9);
+                                                allPlayers25RbiRunsOpiTimesPitcher[playerPosition].push_back(singlePlayerData);
+                                            }
+                                            
 											if (combinedBatterStats.average > 0.21f) {
 												playerPointsCached = singlePlayerData.playerPointsPerGame;
 												singlePlayerData.playerPointsPerGame = combinedBatterStats.ops * 100.0f * (160.0f / expectedFdPointsPitcher);
@@ -613,27 +636,7 @@ void RefineAlgorithm()
 										singlePlayerData.playerPointsPerGame += opponentPitcher->second.xfip * 1.33606417498833263f;
                                         
                                         
-                                        if (combinedBatterStats.average > 0.1f) {
-                                            singlePlayerData.playerPointsPerGame = combinedBatterStats.rbisPerPA * 1000.0f;
-                                            allPlayers25Rbis[playerPosition].push_back(singlePlayerData);
-                                            singlePlayerData.playerPointsPerGame *= opponentPitcher->second.xfip;//(60.0f / opponentPitcher->second.strikeOutsPer9);
-                                            allPlayers25RbisTimesPitcher[playerPosition].push_back(singlePlayerData);
-                                            
-                                            singlePlayerData.playerPointsPerGame = combinedBatterStats.runsPerPA * 1000.0f;
-                                            allPlayers25Runs[playerPosition].push_back(singlePlayerData);
-                                            singlePlayerData.playerPointsPerGame *= opponentPitcher->second.xfip;//(60.0f / opponentPitcher->second.strikeOutsPer9);
-                                            allPlayers25RunsTimesPitcher[playerPosition].push_back(singlePlayerData);
-                                            
-                                            singlePlayerData.playerPointsPerGame = (combinedBatterStats.rbisPerPA + combinedBatterStats.runsPerPA) * 1000.0f;
-                                            allPlayers25RbisPlusRuns[playerPosition].push_back(singlePlayerData);
-                                            singlePlayerData.playerPointsPerGame *= opponentPitcher->second.xfip;// (60.0f / opponentPitcher->second.strikeOutsPer9);
-                                            allPlayers25RbisPlusRunsTimesPitcher[playerPosition].push_back(singlePlayerData);
-                                            
-                                            singlePlayerData.playerPointsPerGame = (combinedBatterStats.rbisPerPA * 3.5f + combinedBatterStats.runsPerPA * 3.2f + (combinedBatterStats.onBaseAverage + combinedBatterStats.iso) * 3.0f) * 1000.0f;
-                                            allPlayers25RbiRunsOpi[playerPosition].push_back(singlePlayerData);
-                                            singlePlayerData.playerPointsPerGame *= opponentPitcher->second.xfip;//(60.0f / opponentPitcher->second.strikeOutsPer9);
-                                            allPlayers25RbiRunsOpiTimesPitcher[playerPosition].push_back(singlePlayerData);
-                                        }
+                                        
                                         
 										allPlayers25MachineLearningPitcherMultiply[playerPosition].push_back(singlePlayerData);
 									/*	if (combinedBatterStats.onBaseAverage >= 0.35f && combinedBatterStats.slugging >= 0.49f && combinedBatterStats.wrcPlus >= 120 && opponentPitcher->second.era > 4.3f && opponentPitcher->second.fip > 4.4f) {
@@ -1697,7 +1700,7 @@ void ChooseAPitcher(CURL *curl)
 	if (curl)
 	{
 		std::string readBuffer;
-		string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=1&sort=4&game=d&colA=0&daypt=0&denom=3&xavg=0&inact=0&maxprc=99999&sched=1&starters=1&hithand=0&numlist=c";
+		string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=1&sort=4&game=d&colA=0&daypt=0&denom=3&xavg=0&inact=0&maxprc=99999&sched=1&starters=1&hithand=0&numlist=c&user=GoldenExcalibur&key=G59700329411";
 		curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
@@ -2623,7 +2626,7 @@ void GenerateLineups(CURL *curl)
             prevDay = prevDay.substr(4);
             if (prevDay.at(0) == '0')
                 prevDay = prevDay.substr(1);
-			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + prevDay + "&game=fd&scsv=1&nowrap=1";
+			string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=" + prevDay + "&game=fd&scsv=1&nowrap=1&user=GoldenExcalibur&key=G5970032941";
 			curl_easy_setopt(curl, CURLOPT_URL, resultsURL.c_str());
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &previousResults);
@@ -2651,7 +2654,7 @@ void GenerateLineups(CURL *curl)
 			char pAsString[5];
 			itoa(p, pAsString, 10);
 			string pAsStringString(pAsString);
-			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=0&numlist=c";
+			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=0&numlist=c&user=GoldenExcalibur&key=G5970032941";
 
 			curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
