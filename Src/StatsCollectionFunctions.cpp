@@ -853,7 +853,15 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 			RemoveAllSectionsWithKeyword(finalWriteString, "class=\"grid_line_regular\"", "", "");
 			RemoveAllSectionsWithKeyword(finalWriteString, "align=\"right\"", "", "");
 			RemoveAllSectionsWithKeyword(finalWriteString, "<input id=\"", "", "</div>");
-
+            RemoveAllSectionsWithKeyword(finalWriteString, "scope=\"col\" class=\"rgHeader\"", "", "");
+            RemoveAllSectionsWithKeyword(finalWriteString, "style=\"", "", ";\"");
+            RemoveAllSectionsWithKeyword(finalWriteString, "href=\"javascript:", "", ";\"");
+            RemoveAllSectionsWithKeyword(finalWriteString, "scope=\"col\" class=\"grid_line_breakh", "", "");
+            RemoveAllSectionsWithKeyword(finalWriteString, "class=\"", "", "\"");
+            RemoveAllSectionsWithKeyword(finalWriteString, "id=\"SeasonStats", "", "\"");
+            RemoveAllSectionsWithKeyword(finalWriteString, "href=\"#", "", "\"");
+            RemoveAllSectionsWithKeyword(finalWriteString, "<input type=\"hidden\"/>", "", "");
+            
 			writeToFile << finalWriteString;
 			writeToFile.close();
             
