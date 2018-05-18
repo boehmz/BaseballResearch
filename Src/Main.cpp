@@ -22,11 +22,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180511";
+std::string todaysDate = "20180517";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 35.0f / 162.0f;
+float percentOfSeasonPassed = 43.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -80,11 +80,20 @@ int main(void)
 		}
 		else
 		{
-			//AssembleBatterSplits(curl);
-			ChooseAPitcher(curl);
-			//GenerateNewLineup(curl);
-			//GenerateNewLineupFromSabrPredictor(curl);
-			GenerateLineups(curl);
+            bool shouldContinue = true;
+            while (shouldContinue) {
+                //AssembleBatterSplits(curl);
+                ChooseAPitcher(curl);
+                //GenerateNewLineup(curl);
+                //GenerateNewLineupFromSabrPredictor(curl);
+                GenerateLineups(curl);
+                cout << "\nEnter 'y' to continue, anything else to quit\n";
+                char optionSelected;
+                cin >> optionSelected;
+                while (!cin) {
+                    shouldContinue = (optionSelected == 'y');
+                }
+            }
 		}
 		break;
 	}
@@ -2602,6 +2611,8 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl)
 	int breakpoint = 0;
 }
 
+unordered_set<string> pitcherOpsMultiplyLineupPlayersTaken;
+
 void GenerateLineups(CURL *curl)
 {
 	if (curl == NULL)
@@ -2923,7 +2934,7 @@ void GenerateLineups(CURL *curl)
                             allPlayers25PitcherYahooMultiply[positionIndex].push_back(singlePlayerData);
                         }
                         
-                        if (expectedPitcherOpsAllowed >= 0) {
+                        if (expectedPitcherOpsAllowed >= 0 && pitcherOpsMultiplyLineupPlayersTaken.find(singlePlayerData.playerId) == pitcherOpsMultiplyLineupPlayersTaken.end()) {
                             singlePlayerData.playerPointsPerGame = expectedFdPoints * (1.7f * expectedPitcherOpsAllowed / leagueAverageOps);
                             allPlayers25PitcherOpsMultiply[positionIndex].push_back(singlePlayerData);
                         }
@@ -2982,6 +2993,9 @@ void GenerateLineups(CURL *curl)
         sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
     }
     vector<PlayerData> fanduelPitcherOpsMultiplyLineup = OptimizeLineupToFitBudget();
+    for (unsigned int p1 = 0; p1 < fanduelPitcherOpsMultiplyLineup.size(); ++p1) {
+        pitcherOpsMultiplyLineupPlayersTaken.insert(fanduelPitcherOpsMultiplyLineup[p1].playerId);
+    }
     for (unsigned int p1 = 0; p1 < allPlayers25PitcherOpsMultiply.size(); ++p1) {
         for (int p2 = allPlayers25PitcherOpsMultiply[p1].size() - 1; p2 >= 0; --p2) {
             for (unsigned int other = 0; other < fanduelPitcherOpsMultiplyLineup.size(); ++other) {
