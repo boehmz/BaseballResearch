@@ -52,7 +52,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::UnitTest;
 	switch (processType)
 	{
 	case UnitTest:
@@ -214,8 +214,8 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-		reviewDateStart = 20170822;
-		reviewDateEnd = 20180505;
+        reviewDateStart = 20180507;
+		reviewDateEnd = 20180511;
 		percentOfSeasonPassed = 130.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -260,7 +260,7 @@ void RefineAlgorithm()
 			if (thisDateWithoutYear.at(0) == '0') {
 				thisDateWithoutYear = thisDateWithoutYear.substr(1);
 			}
-			string thisDateOnePrevious = IntToDateYMD(d - 1);
+			string thisDateOnePrevious = IntToDateYMD(d, -1);
 			string actualResults;
             string resultsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=";
             char yearStringC[5];
@@ -2631,9 +2631,8 @@ void GenerateLineups(CURL *curl)
 		vector<string> previousDayResults;
 		for (int i = 1; i <= numDaysPreviousResults; ++i) {
 			string previousResults;
-			string thisDayAbbreviated = todaysDate.substr(4);
-			int thisDayAbbreviatedInt = atoi(thisDayAbbreviated.c_str());
-			string prevDay = IntToDateYMD(thisDayAbbreviatedInt - i, todaysDate.substr(0, 4));
+			int thisDayInt = atoi(todaysDate.c_str());
+			string prevDay = IntToDateYMD(thisDayInt, 0 - i);
             prevDay = prevDay.substr(4);
             if (prevDay.at(0) == '0')
                 prevDay = prevDay.substr(1);
@@ -4078,6 +4077,10 @@ void UnitTestAllStatCollectionFunctions()
 		expectedJeddGyorko2016Stats.iso = 0.253f;
 		expectedJeddGyorko2016Stats.woba = 0.339f;
 		expectedJeddGyorko2016Stats.wrcPlus = 112;
+        expectedJeddGyorko2016Stats.rbisPerPA = 59.0f / 438.0f;
+        expectedJeddGyorko2016Stats.runsPerPA = 58.0f / 438.0f;
+        expectedJeddGyorko2016Stats.strikeoutPercent = 21.9f;
+        expectedJeddGyorko2016Stats.walkPercent = 8.4f;
 
 		// cache greinke 2016 stats for easier testing
 		FullSeasonPitcherStats expectedPitcher2016Stats;
@@ -4159,6 +4162,10 @@ void UnitTestAllStatCollectionFunctions()
 		expectedJeddGyorko2016Stats.iso = 0.253f * 0.5f;
 		expectedJeddGyorko2016Stats.woba = 0.339f * 0.5f;
 		expectedJeddGyorko2016Stats.wrcPlus = 112 * 0.5f;
+        expectedJeddGyorko2016Stats.rbisPerPA = 59.0f / 438.0f * 0.5f;
+        expectedJeddGyorko2016Stats.runsPerPA = 58.0f / 438.0f * 0.5f;
+        expectedJeddGyorko2016Stats.strikeoutPercent = 21.9f * 0.5f;
+        expectedJeddGyorko2016Stats.walkPercent = 8.4f * 0.5f;
 		assert(expectedJeddGyorko2016Stats == jeddGyorko2016Stats);
 		assert((expectedJeddGyorko2016Stats + expectedJeddGyorko2016Stats) == (jeddGyorko2016Stats * 2.0f));
 
@@ -4206,11 +4213,16 @@ void UnitTestAllStatCollectionFunctions()
 	assert(abs(coorsRunsFactorRightyBatter - 1.37f) < 0.01f);
 
 	// string functions
-	assert(IntToDateYMD(20170801 - 1) == "20170731");
-	assert(IntToDateYMD(801 - 1, "2017") == "20170731");
-	assert(IntToDateYMD(20170801 - 25) == "20170707");
-	assert(IntToDateYMD(801 - 30, "2017") == "20170702");
-	assert(IntToDateYMD(20170730 + 45, "2017", true) == "20170913");
+	assert(IntToDateYMD(20170801, -1) == "20170731");
+	assert(IntToDateYMD(20170801, -25) == "20170707");
+	assert(IntToDateYMD(20170730, 45) == "20170913");
+    assert(IntToDateYMD(20180501, -1) == "20180430");
+    assert(IntToDateYMD(20180501, 30) == "20180531");
+    assert(IntToDateYMD(20180501, 31) == "20180601");
+    assert(IntToDateYMD(20180501, 62) == "20180702");
+    assert(IntToDateYMD(20180702, -62) == "20180501");
+    assert(IntToDateYMD(20180601, -31) == "20180501");
+    assert(IntToDateYMD(20180531, -30) == "20180501");
 }
 
 string ConvertOddsPortalNameToTeamRankingsName(string oddsportalTeamName)
@@ -4675,7 +4687,7 @@ void Analyze2016TeamWins()
 		char thisDateCStr[5];
 		itoa(d, thisDateCStr, 10);
 		string thisDate = thisDateCStr;
-		string thisDateWithYear = IntToDateYMD(d, "2016");
+		string thisDateWithYear = IntToDateYMD(d + 2016 * 10000, 0);
 
 		string daysPitcherStats = "";
 		string dayStatsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=";
@@ -4763,8 +4775,8 @@ void GatherPitcher2016CumulativeData()
 		char thisDateCStr[5];
 		itoa(d, thisDateCStr, 10);
 		string thisDate = thisDateCStr;
-		string thisDateWithYear = IntToDateYMD(d, "2016");
-		string prevDateWithYear = IntToDateYMD(d - 1, "2016");
+		string thisDateWithYear = IntToDateYMD(d + 2016 * 10000, 0);
+		string prevDateWithYear = IntToDateYMD(d + 2016 * 10000, -1);
 
 		string daysPitcherStats = "";
 		string dayStatsURL = "http://rotoguru1.com/cgi-bin/byday.pl?date=";
@@ -4870,7 +4882,7 @@ void Gather2016TeamWins()
 
 		ofstream winResultsOutputFile;
 		string winResultsFileName = "2017ResultsTracker\\OddsWinsResults\\";
-		winResultsFileName += IntToDateYMD(d, "2017") +".txt";
+		winResultsFileName += IntToDateYMD(d + 2017 * 10000, 0); +".txt";
 #if PLATFORM_OSX
         winResultsFileName = GetPlatformCompatibleFileNameFromRelativePath(winResultsFileName);
 #endif
@@ -4932,7 +4944,7 @@ void Gather2016TeamWins()
 
 					if (winningTeamName.find_first_of("&<=01234") == string::npos && losingTeamName.find("&<=01234") == string::npos)
 					{
-						string yearMonthDate = IntToDateYMD(atoi(timeString.c_str()) <= 7 ? d - 1 : d, "2017");
+						string yearMonthDate = IntToDateYMD(d + 2017 * 10000, atoi(timeString.c_str()) <= 7 ? -1 : 0);
 						winResultsOutputFile << yearMonthDate << ";";
 						winResultsOutputFile << winningTeamName << ";" << losingTeamName << ";";
 						if (winningTeamNameIndex < losingTeamNameIndex)

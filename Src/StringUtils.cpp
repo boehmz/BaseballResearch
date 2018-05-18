@@ -255,16 +255,13 @@ int GetNumDaysInMonth(int monthInteger) {
 	return -1;
 }
 
-std::string IntToDateYMD(int date, string yearString, bool roundUp)
+std::string IntToDateYMD(int date, int daysBeforeOrAfter)
 {
 	int yearInteger = date / 10000;
 	int monthInteger = (date - yearInteger * 10000) / 100;
 	int dayInteger = date - (yearInteger * 10000) - (monthInteger * 100);
-	if (!roundUp && dayInteger > GetNumDaysInMonth(monthInteger)) {
-		monthInteger++;
-		dayInteger = -100 + dayInteger;
-	}
-
+    dayInteger += daysBeforeOrAfter;
+    
 	while (dayInteger <= 0)
 	{
 		monthInteger--;
@@ -281,14 +278,7 @@ std::string IntToDateYMD(int date, string yearString, bool roundUp)
 	char thisDateCStr[9];
 	itoa(date, thisDateCStr, 10);
 
-	if (yearInteger > 1900)
-		return thisDateCStr;
-
-	string dateFormatted = yearString;
-	if (date < 1000)
-		dateFormatted += "0";
-	dateFormatted += thisDateCStr;
-	return dateFormatted;
+    return thisDateCStr;
 }
 
 void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuffer, bool allowRedirects)

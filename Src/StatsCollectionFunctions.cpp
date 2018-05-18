@@ -309,8 +309,15 @@ FullSeasonStatsAdvancedNoHandedness GetBatterStatsSeason(std::string playerId, C
 
 	return batterStats;
 }
+
 FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo, bool entireCareer) {
 	FullSeasonStatsAdvancedNoHandedness batterStats;
+    
+    string cachedAtDateFileName = "FangraphsCachedPages\\CachedAtDate\\" + dateUpTo + "\\ PlayerId" + playerId + ".txt";
+    string cachedAtDateFileContents = GetEntireFileContents(cachedAtDateFileName);
+    if (cachedAtDateFileContents != "") {
+        return batterStats;
+    }
 
 	string fangraphsPlayerData = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, false, entireCareer);
 
@@ -416,6 +423,12 @@ FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(string playerId, CURL *curl
 {
 	FullSeasonPitcherStats pitcherStats;
 
+    string cachedAtDateFileName = "FangraphsCachedPages\\CachedAtDate\\" + dateUpTo + "\\ PlayerId" + playerId + ".txt";
+    string cachedAtDateFileContents = GetEntireFileContents(cachedAtDateFileName);
+    if (cachedAtDateFileContents != "") {
+        return pitcherStats;
+    }
+    
 	string fangraphsPlayerData = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, false, entireCareer);
 	string fangraphsPlayerDataAdvanced = GetPlayerFangraphsPageDataCumulativeUpTo(playerId, curl, dateUpTo, true, entireCareer);
 
