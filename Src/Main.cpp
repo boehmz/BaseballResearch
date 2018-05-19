@@ -22,11 +22,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180517";
+std::string todaysDate = "20180518";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 43.0f / 162.0f;
+float percentOfSeasonPassed = 44.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -52,7 +52,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::UnitTest;
+	ProcessType processType = ProcessType::GenerateLineup;
 	switch (processType)
 	{
 	case UnitTest:
@@ -90,9 +90,7 @@ int main(void)
                 cout << "\nEnter 'y' to continue, anything else to quit\n";
                 char optionSelected;
                 cin >> optionSelected;
-                while (!cin) {
-                    shouldContinue = (optionSelected == 'y');
-                }
+                shouldContinue = (optionSelected == 'y');
             }
 		}
 		break;
@@ -1948,7 +1946,6 @@ void ChooseAPitcher(CURL *curl)
 				pitcherStatsArchiveFile << singlePlayerData.teamCode << ";" << singlePlayerData.playerId << ";" << singlePlayerData.playerName << ";" << thisYearPitcherStats.ToString();
 				pitcherStatsArchiveFile << endl;
 			}
-            bRainedOut = false;
 			// throw this guy out if his game will most likely be rained out
 			if (singlePlayerData.playerPointsPerGame > 0 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut && opponentsInfo != opponentMap.end())
 				positionalPlayerData.push_back(singlePlayerData);
@@ -2911,7 +2908,6 @@ void GenerateLineups(CURL *curl)
                     }
 				}
 
-                bRainedOut = false;
 				// throw this guy out if he's not a starter or his game will most likely be rained out
 				if (bAcceptableBattingOrder
 					&& !bFacingChosenPitcher
@@ -3947,10 +3943,8 @@ void PopulateProbableRainoutGames(CURL *curl)
 				size_t precipPercentEnd = weatherData.find("Precip%:", weatherDataBeginIndex + 1);
 				precipPercentEnd += 8;
 				size_t windIndex = weatherData.find("Wind:", precipPercentEnd);
-				for (int i = 0; i < 4; ++i)
-				{
-					precipPercentEnd = weatherData.find("%", precipPercentEnd + 1);
-				}
+                precipPercentEnd = weatherData.find("bgcolor=#FFFFCC", precipPercentEnd + 1);
+                precipPercentEnd = weatherData.find("%", precipPercentEnd + 1);
 				if (precipPercentEnd < windIndex)
 				{
 					for (int i = 0; i < 6; ++i)
