@@ -54,6 +54,7 @@ FullSeasonStats GetBatterStats(std::string playerId, std::string yearString, CUR
 
 struct FullSeasonStatsAdvancedNoHandedness
 {
+    int numPlateAppearances = 0;
 	float average = -1;
 	float onBaseAverage = -1;
 	float slugging = -1;

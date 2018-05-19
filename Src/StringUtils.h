@@ -21,6 +21,7 @@ std::string ConvertFLNameToLFName(std::string firstLast);
 std::string ConvertLFNameToFLName(std::string lastFirst);
 std::string ConvertNameToFirstInitialLastName(std::string name);
 std::string IntToDateYMD(int date, int daysBeforeOrAfter);
+std::string GetDateBeforeOrAfterNumDays(std::string date, int daysBeforeOrAfter);
 std::string DateToDateWithDashes(std::string date);
 std::string ConvertSpecialCharactersToEnglish26(std::string specialCharactersString);
 void RemoveJavaScriptBlocksFromFileText(std::string& fileText);

@@ -255,6 +255,11 @@ int GetNumDaysInMonth(int monthInteger) {
 	return -1;
 }
 
+std::string GetDateBeforeOrAfterNumDays(std::string date, int daysBeforeOrAfter) {
+    int dateInt = atoi(date.c_str());
+    return IntToDateYMD(dateInt, daysBeforeOrAfter);
+}
+
 std::string IntToDateYMD(int date, int daysBeforeOrAfter)
 {
 	int yearInteger = date / 10000;

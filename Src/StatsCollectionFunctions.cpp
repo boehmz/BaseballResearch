@@ -313,9 +313,32 @@ FullSeasonStatsAdvancedNoHandedness GetBatterStatsSeason(std::string playerId, C
 FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo, bool entireCareer) {
 	FullSeasonStatsAdvancedNoHandedness batterStats;
     
-    string cachedAtDateFileName = "FangraphsCachedPages\\CachedAtDate\\" + dateUpTo + "\\ PlayerId" + playerId + ".txt";
+    string cachedDate = GetDateBeforeOrAfterNumDays(dateUpTo, 1);
+    string cachedAtDateFileName = "FangraphsCachedPages\\CachedAtDate\\" + cachedDate + "\\PlayerId" + playerId + ".txt";
     string cachedAtDateFileContents = GetEntireFileContents(cachedAtDateFileName);
     if (cachedAtDateFileContents != "") {
+        string rowTitle = ">Total<";
+        if (!entireCareer) {
+            rowTitle = ">" + cachedDate.substr(0,4) + "<";
+        }
+        vector<string> fangraphsStandardRows = GetFangraphsRowColumns(rowTitle, cachedAtDateFileContents, 20, "name=\"dashboard", "name=\"standard", false);
+        if (fangraphsStandardRows.size() == 0)
+            return batterStats;
+        batterStats.numPlateAppearances = stof(fangraphsStandardRows[2]);
+        batterStats.average = stof(fangraphsStandardRows[17]);
+        batterStats.onBaseAverage = stof(fangraphsStandardRows[18]);
+        batterStats.slugging = stof(fangraphsStandardRows[19]);
+        batterStats.ops = batterStats.onBaseAverage + batterStats.slugging;
+        batterStats.iso = stof(fangraphsStandardRows[15]);
+        batterStats.woba = stof(fangraphsStandardRows[20]);
+        if (batterStats.average > 0) {
+            batterStats.wrcPlus = stof(fangraphsStandardRows[21]);
+        }
+        batterStats.strikeoutPercent = stof( fangraphsStandardRows[14].substr(0, fangraphsStandardRows[14].length() - 1));
+        batterStats.walkPercent = stof(fangraphsStandardRows[13].substr(0, fangraphsStandardRows[13].length() - 1));
+        float numPlateAppearances = stof(fangraphsStandardRows[4]);
+        batterStats.rbisPerPA = stof(fangraphsStandardRows[10]) / numPlateAppearances;
+        batterStats.runsPerPA = stof(fangraphsStandardRows[9]) / numPlateAppearances;
         return batterStats;
     }
 
@@ -423,9 +446,35 @@ FullSeasonPitcherStats GetPitcherCumulativeStatsUpTo(string playerId, CURL *curl
 {
 	FullSeasonPitcherStats pitcherStats;
 
-    string cachedAtDateFileName = "FangraphsCachedPages\\CachedAtDate\\" + dateUpTo + "\\ PlayerId" + playerId + ".txt";
+    string cachedDate = GetDateBeforeOrAfterNumDays(dateUpTo, 1);
+    string cachedAtDateFileName = "FangraphsCachedPages\\CachedAtDate\\" + cachedDate + "\\PlayerId" + playerId + ".txt";
     string cachedAtDateFileContents = GetEntireFileContents(cachedAtDateFileName);
     if (cachedAtDateFileContents != "") {
+        string rowTitle = ">Total<";
+        if (!entireCareer) {
+            rowTitle = ">" + cachedDate.substr(0,4) + "<";
+        }
+        vector<string> fangraphsStandardRows = GetFangraphsRowColumns(rowTitle, cachedAtDateFileContents, 18, "name=\"standard", "name=\"advanced", false);
+        if (fangraphsStandardRows.size() == 0)
+            return pitcherStats;
+        
+        pitcherStats.numInnings = stof(fangraphsStandardRows[1].c_str());
+        pitcherStats.numInnings = floor(pitcherStats.numInnings) + ((pitcherStats.numInnings - floor(pitcherStats.numInnings)) * 3.4f);
+        if (pitcherStats.numInnings > 0) {
+            pitcherStats.era = stof(fangraphsStandardRows[2].c_str());
+            float obpAllowed = stof(fangraphsStandardRows[15].c_str());
+            float slgAllowed = stof(fangraphsStandardRows[16].c_str());
+            pitcherStats.opsAllowed = obpAllowed + slgAllowed;
+            pitcherStats.wobaAllowed = stof(fangraphsStandardRows[17].c_str());
+            
+            vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(rowTitle, cachedAtDateFileContents, 14, "name=\"advanced", "name=\"battedball\"", false);
+            if (fangraphsAdvancedRows.size() == 0)
+                return pitcherStats;
+            pitcherStats.whip = stof(fangraphsAdvancedRows[9].c_str());
+            pitcherStats.fip = stof(fangraphsAdvancedRows[12].c_str());
+            pitcherStats.xfip = stof(fangraphsAdvancedRows[13].c_str());
+            pitcherStats.strikeOutsPer9 = stof(fangraphsAdvancedRows[1].c_str());
+        }
         return pitcherStats;
     }
     
