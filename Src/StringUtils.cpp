@@ -30,11 +30,15 @@ void CutAndPasteFile(const char* srcFileName, const char* destFileName) {
         cout << "WARNING: copying to existing file: " << destFileName << ".  Aborting." << endl;
         return;
     }
-    if (strlen(srcFileName) > 0 && strlen(destFileName) > 0) {
-        std::ifstream src(srcFileName, std::ios::binary);
-        std::ofstream dest(destFileName, std::ios::binary);
-        dest << src.rdbuf();
-        remove(srcFileName);
+	if (strlen(srcFileName) > 0 && strlen(destFileName) > 0) {
+		std::ifstream src(srcFileName, std::ios::binary);
+		std::ofstream dest(destFileName, std::ios::binary);
+		dest << src.rdbuf();
+		src.close();
+		dest.close();
+		if (remove(srcFileName) != 0) {
+			perror("Error deleting file that was being cut");
+		}
     }
 }
 

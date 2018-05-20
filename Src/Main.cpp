@@ -22,11 +22,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180518";
+std::string todaysDate = "20180520";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 44.0f / 162.0f;
+float percentOfSeasonPassed = 45.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -212,8 +212,8 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = 20180507;
-		reviewDateEnd = 20180511;
+        reviewDateStart = 20180506;
+		reviewDateEnd = 20180506;
 		percentOfSeasonPassed = 130.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -1687,6 +1687,11 @@ void TryCopySabrFilesToProperLocation() {
     pitchersSrcLocation = "/Users/boehmz/Downloads/FanGraphs Leaderboard (1).csv";
     battersDestLocation = GetPlatformCompatibleFileNameFromRelativePath("FangraphsSABRPredictions/Batters/" + todaysDate + ".csv");
     pitchersDestLocation = GetPlatformCompatibleFileNameFromRelativePath("FangraphsSABRPredictions/Pitchers/" + todaysDate + ".csv");
+#else
+	battersSrcLocation = "C:\\Users\\Administrator\\Downloads\\FanGraphs Leaderboard.csv";
+	pitchersSrcLocation = "C:\\Users\\Administrator\\Downloads\\FanGraphs Leaderboard (1).csv";
+	battersDestLocation = "FangraphsSABRPredictions\\Batters\\" + todaysDate + ".csv";
+	pitchersDestLocation = "FangraphsSABRPredictions\\Pitchers\\" + todaysDate + ".csv";
 #endif
     if (battersSrcLocation != "" && pitchersSrcLocation != "") {
         string battersContents = GetEntireFileContents(battersSrcLocation);
@@ -4876,7 +4881,7 @@ void Gather2016TeamWins()
 
 		ofstream winResultsOutputFile;
 		string winResultsFileName = "2017ResultsTracker\\OddsWinsResults\\";
-		winResultsFileName += IntToDateYMD(d + 2017 * 10000, 0); +".txt";
+		winResultsFileName += IntToDateYMD(d + 2017 * 10000, 0) + ".txt";
 #if PLATFORM_OSX
         winResultsFileName = GetPlatformCompatibleFileNameFromRelativePath(winResultsFileName);
 #endif
