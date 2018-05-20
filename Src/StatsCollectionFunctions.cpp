@@ -329,7 +329,7 @@ FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string pla
         batterStats.numPlateAppearances = stof(fangraphsStandardRows[2]);
         batterStats.average = stof(fangraphsStandardRows[11]);
         batterStats.onBaseAverage = stof(fangraphsStandardRows[12]);
-        batterStats.slugging = stof(fangraphsStandardRows[14]);
+        batterStats.slugging = stof(fangraphsStandardRows[13]);
         batterStats.ops = batterStats.onBaseAverage + batterStats.slugging;
         batterStats.iso = stof(fangraphsStandardRows[9]);
         batterStats.woba = stof(fangraphsStandardRows[14]);
