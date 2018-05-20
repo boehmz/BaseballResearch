@@ -20,3 +20,5 @@
 BaseballStatsBuilder/FangraphsCachedPages/
 BaseballStatsBuilder/Top*.csv
 Player2018DataCached/
+BaseballStatsBuilder/2018ResultsTracker/BeatTheStreak/
+BaseballStatsBuilder/2018ResultsTracker/Pitchers/
