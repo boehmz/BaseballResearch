@@ -1741,14 +1741,7 @@ void ChooseAPitcher(CURL *curl)
             sabrPredictorTextPitchers = getSabrPredictorFileContents(todaysDate, true);
         }
 	
-		ofstream pitcherStatsArchiveFile;
-        string pitcherStatsArchiveFileName = CURRENT_YEAR;
-        pitcherStatsArchiveFileName += "ResultsTracker\\TeamWinResults\\PitcherData\\" + todaysDate + ".txt";
-#if PLATFORM_OSX
-        pitcherStatsArchiveFileName = GetPlatformCompatibleFileNameFromRelativePath(pitcherStatsArchiveFileName);
-#endif
-        pitcherStatsArchiveFile.open(pitcherStatsArchiveFileName);
-
+		vector<PlayerData> allPitchersIncludingOnesRainedOutOrInvalidGameTimes;
 		vector<PlayerData> positionalPlayerData;
 
 		size_t placeHolderIndex = readBuffer.find("GID;", 0);
@@ -1946,31 +1939,21 @@ void ChooseAPitcher(CURL *curl)
             } else {
                 bRainedOut = true;
             }
-			if (thisYearPitcherStats.xfip > -0.1f)
-			{
-				pitcherStatsArchiveFile << singlePlayerData.teamCode << ";" << singlePlayerData.playerId << ";" << singlePlayerData.playerName << ";" << thisYearPitcherStats.ToString();
-				pitcherStatsArchiveFile << endl;
-			}
+			
 			// throw this guy out if his game will most likely be rained out
 			if (singlePlayerData.playerPointsPerGame > 0 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut && opponentsInfo != opponentMap.end())
 				positionalPlayerData.push_back(singlePlayerData);
+			if (singlePlayerData.playerPointsPerGame > 0 && opponentsInfo != opponentMap.end())
+				allPitchersIncludingOnesRainedOutOrInvalidGameTimes.push_back(singlePlayerData);
 			if (placeHolderIndex == string::npos)
 				break;
 			else
 				placeHolderIndex = readBuffer.find("\n", placeHolderIndex + 1);
 		}
-		pitcherStatsArchiveFile.close();
 
 		sort(positionalPlayerData.begin(), positionalPlayerData.end(), comparePlayerByPointsPerGame);
-
-		ofstream playerResultsTrackerFile;
-        string playerResultsTrackerFileName = CURRENT_YEAR;
-        playerResultsTrackerFileName += "ResultsTracker\\Pitchers\\" + todaysDate + ".txt";
-#if PLATFORM_OSX
-        playerResultsTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(playerResultsTrackerFileName);
-#endif
-		playerResultsTrackerFile.open(playerResultsTrackerFileName);
-
+		sort(allPitchersIncludingOnesRainedOutOrInvalidGameTimes.begin(), allPitchersIncludingOnesRainedOutOrInvalidGameTimes.end(), comparePlayerByPointsPerGame);
+		
 		ofstream teamWinTrackerFile;
         string teamWinTrackerFileName = CURRENT_YEAR;
         teamWinTrackerFileName += "ResultsTracker\\TeamWinResults\\" + todaysDate + ".txt";
@@ -1978,17 +1961,17 @@ void ChooseAPitcher(CURL *curl)
         teamWinTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(teamWinTrackerFileName);
 #endif
 		teamWinTrackerFile.open(teamWinTrackerFileName);
-		for (unsigned int i = 0; i < positionalPlayerData.size(); ++i)
+		for (unsigned int i = 0; i < allPitchersIncludingOnesRainedOutOrInvalidGameTimes.size(); ++i)
 		{
 			string alreadyWrittenData = GetEntireFileContents(teamWinTrackerFileName);
-			if (alreadyWrittenData.find(positionalPlayerData[i].teamCode) == string::npos)
+			if (alreadyWrittenData.find(allPitchersIncludingOnesRainedOutOrInvalidGameTimes[i].teamCode) == string::npos)
 			{
-				auto opponentsInfo = opponentMap.find(positionalPlayerData[i].teamCode);
+				auto opponentsInfo = opponentMap.find(allPitchersIncludingOnesRainedOutOrInvalidGameTimes[i].teamCode);
 				if (opponentsInfo != opponentMap.end())
 				{
-					if (positionalPlayerData[i].playerPointsPerGame > 0 && opponentsInfo->second.pitcherEstimatedPpg > 0)
+					if (allPitchersIncludingOnesRainedOutOrInvalidGameTimes[i].playerPointsPerGame > 0 && opponentsInfo->second.pitcherEstimatedPpg > 0)
 					{
-						teamWinTrackerFile << positionalPlayerData[i].teamCode << ";" << positionalPlayerData[i].playerPointsPerGame << ";" << opponentsInfo->second.teamCodeRotoGuru << ";" << opponentsInfo->second.pitcherEstimatedPpg << ";";
+						teamWinTrackerFile << allPitchersIncludingOnesRainedOutOrInvalidGameTimes[i].teamCode << ";" << allPitchersIncludingOnesRainedOutOrInvalidGameTimes[i].playerPointsPerGame << ";" << opponentsInfo->second.teamCodeRotoGuru << ";" << opponentsInfo->second.pitcherEstimatedPpg << ";";
 						auto myTeamInfo = opponentMap.find(opponentsInfo->second.teamCodeRotoGuru);
 						if (myTeamInfo != opponentMap.end())
 						{
@@ -1998,11 +1981,8 @@ void ChooseAPitcher(CURL *curl)
 					}
 				}
 			}
-			playerResultsTrackerFile << positionalPlayerData[i].playerId << ";" << positionalPlayerData[i].playerName << ";" << positionalPlayerData[i].playerPointsPerGame;
-			playerResultsTrackerFile << endl;
 		}
 		teamWinTrackerFile.close();
-		playerResultsTrackerFile.close();
         
         string relieverStatsAdvancedFileName = "FangraphsCachedPages\\CachedAtDate\\" + todaysDate + "\\RelieverStatsAdvanced.txt";
         string relieverStatsBattedBallFileName = "FangraphsCachedPages\\CachedAtDate\\" + todaysDate + "\\RelieverStatsBattedBall.txt";
