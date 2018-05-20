@@ -8,6 +8,8 @@
 #include <sstream>
 #include <unordered_map>
 #include <sys/stat.h>
+#include <sys/types.h>
+#include <direct.h>
 #include "StatsCollectionFunctions.h"
 #include "SharedGlobals.h"
 #include "StringUtils.h"
@@ -302,9 +304,9 @@ FullSeasonStatsAdvancedNoHandedness GetBatterStatsSeason(std::string playerId, C
 		batterStats.iso = stof(fangraphsYearRows[9]);
 		batterStats.walkPercent = stof(fangraphsYearRows[7].substr(0, fangraphsYearRows[7].length() - 1));
 		batterStats.strikeoutPercent = stof(fangraphsYearRows[8].substr(0, fangraphsYearRows[8].length() - 1));
-        float numPlateAppearances = stof(fangraphsYearRows[2]);
-        batterStats.runsPerPA = stof(fangraphsYearRows[4]) / numPlateAppearances;
-        batterStats.rbisPerPA = stof(fangraphsYearRows[5]) / numPlateAppearances;
+		batterStats.numPlateAppearances = stof(fangraphsYearRows[2]);
+        batterStats.runsPerPA = stof(fangraphsYearRows[4]) / batterStats.numPlateAppearances;
+        batterStats.rbisPerPA = stof(fangraphsYearRows[5]) / batterStats.numPlateAppearances;
 	}
 
 	return batterStats;
@@ -325,20 +327,19 @@ FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string pla
         if (fangraphsStandardRows.size() == 0)
             return batterStats;
         batterStats.numPlateAppearances = stof(fangraphsStandardRows[2]);
-        batterStats.average = stof(fangraphsStandardRows[17]);
-        batterStats.onBaseAverage = stof(fangraphsStandardRows[18]);
-        batterStats.slugging = stof(fangraphsStandardRows[19]);
+        batterStats.average = stof(fangraphsStandardRows[11]);
+        batterStats.onBaseAverage = stof(fangraphsStandardRows[12]);
+        batterStats.slugging = stof(fangraphsStandardRows[14]);
         batterStats.ops = batterStats.onBaseAverage + batterStats.slugging;
-        batterStats.iso = stof(fangraphsStandardRows[15]);
-        batterStats.woba = stof(fangraphsStandardRows[20]);
+        batterStats.iso = stof(fangraphsStandardRows[9]);
+        batterStats.woba = stof(fangraphsStandardRows[14]);
         if (batterStats.average > 0) {
-            batterStats.wrcPlus = stof(fangraphsStandardRows[21]);
+            batterStats.wrcPlus = stof(fangraphsStandardRows[15]);
         }
-        batterStats.strikeoutPercent = stof( fangraphsStandardRows[14].substr(0, fangraphsStandardRows[14].length() - 1));
-        batterStats.walkPercent = stof(fangraphsStandardRows[13].substr(0, fangraphsStandardRows[13].length() - 1));
-        float numPlateAppearances = stof(fangraphsStandardRows[4]);
-        batterStats.rbisPerPA = stof(fangraphsStandardRows[10]) / numPlateAppearances;
-        batterStats.runsPerPA = stof(fangraphsStandardRows[9]) / numPlateAppearances;
+        batterStats.strikeoutPercent = stof( fangraphsStandardRows[8].substr(0, fangraphsStandardRows[8].length() - 1));
+        batterStats.walkPercent = stof(fangraphsStandardRows[7].substr(0, fangraphsStandardRows[7].length() - 1));
+        batterStats.rbisPerPA = stof(fangraphsStandardRows[5]) / batterStats.numPlateAppearances;
+        batterStats.runsPerPA = stof(fangraphsStandardRows[4]) / batterStats.numPlateAppearances;
         return batterStats;
     }
 
@@ -359,9 +360,9 @@ FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string pla
 	}
 	batterStats.strikeoutPercent = stof( fangraphsStandardRows[14].substr(0, fangraphsStandardRows[14].length() - 1));
 	batterStats.walkPercent = stof(fangraphsStandardRows[13].substr(0, fangraphsStandardRows[13].length() - 1));
-    float numPlateAppearances = stof(fangraphsStandardRows[4]);
-    batterStats.rbisPerPA = stof(fangraphsStandardRows[10]) / numPlateAppearances;
-    batterStats.runsPerPA = stof(fangraphsStandardRows[9]) / numPlateAppearances;
+	batterStats.numPlateAppearances = stof(fangraphsStandardRows[4]);
+    batterStats.rbisPerPA = stof(fangraphsStandardRows[10]) / batterStats.numPlateAppearances;
+    batterStats.runsPerPA = stof(fangraphsStandardRows[9]) / batterStats.numPlateAppearances;
 	return batterStats;
 }
 void FullSeasonStatsAdvancedNoHandedness::operator+=(const FullSeasonStatsAdvancedNoHandedness& other) {
@@ -943,6 +944,8 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
                 mkdir(directory.c_str(), ACCESSPERMS);
 #else
                 cachedFileName.insert(fileNamePlayerIdIndex, "\\CachedAtDate\\" + todaysDate);
+				string directory = cachedFileName.substr(0, cachedFileName.find_last_of("\\"));
+				_mkdir(directory.c_str());
 #endif
                 RemovePreCurrentYearTablesFromString(finalWriteString);
 				ofstream cachedAtDateFile;
