@@ -20,8 +20,8 @@ using namespace std;
 GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
-int latestGameTime = 99;
-int earliestGameTime = 19;
+int latestGameTime = 16;
+int earliestGameTime = 16;
 std::string todaysDate = "20180520";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
@@ -1820,6 +1820,9 @@ void ChooseAPitcher(CURL *curl)
 			// default to average
 			float opponentRunsPerGame = 4.4f;
 			float opponentStrikeoutsPerGame = 8.1f;
+			if (singlePlayerData.playerName.find("Ohtani, Shohei-pitcher") != string::npos) {
+				singlePlayerData.playerName = "Ohtani, Shohei";
+			}
 
 			if (opponentsInfo != opponentMap.end())
 			{
@@ -1841,9 +1844,9 @@ void ChooseAPitcher(CURL *curl)
 			if (lastYearPitcherStats.strikeOutsPer9 >= 0 && pitcherCareerStats.strikeOutsPer9 >= 0) {
 				combinedPitcherStats = 0.5f * lastYearPitcherStats + 0.5f * pitcherCareerStats;
 			}
-			else if (pitcherCareerStats.strikeOutsPer9 >= 0) {
+			else if (pitcherCareerStats.strikeOutsPer9 >= 0 && pitcherCareerStats.numInnings > 50) {
 				// no rookies sorry
-				//combinedPitcherStats = pitcherCareerStats;
+				combinedPitcherStats = pitcherCareerStats;
 			}
 
 			if (combinedPitcherStats.strikeOutsPer9 >= 0 && thisYearPitcherStats.strikeOutsPer9 >= 0) {
@@ -1900,6 +1903,7 @@ void ChooseAPitcher(CURL *curl)
 			combinedPitcherStats.strikeOutsPer9 = 0.5f * opponentStrikeoutsPerGame + 0.5f * combinedPitcherStats.strikeOutsPer9;
 			combinedPitcherStats.era = 0.5f * opponentRunsPerGame + 0.5f * combinedPitcherStats.era;
             singlePlayerData.playerPointsPerGame = -1;
+			bool pointsCalculatedFromSabrPredictor = false;
             if (combinedPitcherStats.strikeOutsPer9 >= 0) {
                 singlePlayerData.playerPointsPerGame = combinedPitcherStats.era * -0.352834158133307318f + combinedPitcherStats.xfip * -1.50744966177988493f + combinedPitcherStats.strikeOutsPer9 * 1.44486530250260237f;
             } else {
@@ -1908,7 +1912,8 @@ void ChooseAPitcher(CURL *curl)
                     size_t nextNewLine = sabrPredictorTextPitchers.find("\n", playerNameIndex);
                     vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
                     float expectedFdPoints = stof(thisSabrLine[14]);
-                    singlePlayerData.playerPointsPerGame = expectedFdPoints / 5.75f;
+                    singlePlayerData.playerPointsPerGame = 2.0f + (expectedFdPoints - 25.0f) / 3.33f;
+					pointsCalculatedFromSabrPredictor = true;
                 }
             }
 
@@ -1926,15 +1931,17 @@ void ChooseAPitcher(CURL *curl)
 				}
 				gameStartTime = opponentsInfo->second.gameTime;
 
-				string opponentTeamCode = opponentsInfo->second.teamCodeRotoGuru;
-				auto myTeam = opponentMap.find(opponentTeamCode);
-				if (myTeam != opponentMap.end())
-				{
-					myTeam->second.pitcherEstimatedPpg = singlePlayerData.playerPointsPerGame;
-					myTeam->second.teamWinEstimatedScore = 0;
-					myTeam->second.teamWinEstimatedScore -= thisYearPitcherStats.fip * 0.1f;
-					myTeam->second.teamWinEstimatedScore -= thisYearPitcherStats.whip * 0.7f;
-					myTeam->second.teamWinEstimatedScore -= opponentOps * 0.9f;
+				if (!pointsCalculatedFromSabrPredictor) {
+					string opponentTeamCode = opponentsInfo->second.teamCodeRotoGuru;
+					auto myTeam = opponentMap.find(opponentTeamCode);
+					if (myTeam != opponentMap.end())
+					{
+						myTeam->second.pitcherEstimatedPpg = singlePlayerData.playerPointsPerGame;
+						myTeam->second.teamWinEstimatedScore = 0;
+						myTeam->second.teamWinEstimatedScore -= thisYearPitcherStats.fip * 0.1f;
+						myTeam->second.teamWinEstimatedScore -= thisYearPitcherStats.whip * 0.7f;
+						myTeam->second.teamWinEstimatedScore -= opponentOps * 0.9f;
+					}
 				}
             } else {
                 bRainedOut = true;
@@ -1969,14 +1976,11 @@ void ChooseAPitcher(CURL *curl)
 				auto opponentsInfo = opponentMap.find(allPitchersIncludingOnesRainedOutOrInvalidGameTimes[i].teamCode);
 				if (opponentsInfo != opponentMap.end())
 				{
-					if (allPitchersIncludingOnesRainedOutOrInvalidGameTimes[i].playerPointsPerGame > 0 && opponentsInfo->second.pitcherEstimatedPpg > 0)
+					auto myTeamInfo = opponentMap.find(opponentsInfo->second.teamCodeRotoGuru);
+					if (myTeamInfo != opponentMap.end() && allPitchersIncludingOnesRainedOutOrInvalidGameTimes[i].playerPointsPerGame > 0 && opponentsInfo->second.pitcherEstimatedPpg > 0 && myTeamInfo->second.pitcherEstimatedPpg > 0)
 					{
 						teamWinTrackerFile << allPitchersIncludingOnesRainedOutOrInvalidGameTimes[i].teamCode << ";" << allPitchersIncludingOnesRainedOutOrInvalidGameTimes[i].playerPointsPerGame << ";" << opponentsInfo->second.teamCodeRotoGuru << ";" << opponentsInfo->second.pitcherEstimatedPpg << ";";
-						auto myTeamInfo = opponentMap.find(opponentsInfo->second.teamCodeRotoGuru);
-						if (myTeamInfo != opponentMap.end())
-						{
-							teamWinTrackerFile << myTeamInfo->second.teamWinEstimatedScore - opponentsInfo->second.teamWinEstimatedScore << ";";
-						}
+						teamWinTrackerFile << myTeamInfo->second.teamWinEstimatedScore - opponentsInfo->second.teamWinEstimatedScore << ";";
 						teamWinTrackerFile << endl;
 					}
 				}
@@ -2639,8 +2643,12 @@ void GenerateLineups(CURL *curl)
 		string sabrPredictorText = getSabrPredictorFileContents(todaysDate, false);
 		string sabrPredictorTextPitchers = getSabrPredictorFileContents(todaysDate, true);
 		string generalBattingOrders = GetEntireFileContents("Team2018DataCached\\GeneralBattingOrders.txt");
+		int tempMinBattingOrder = -1;
+		int tempMaxBattingOrder = -1;
+		
 		for (int p = 2; p <= 7; ++p)
 		{
+			bool addedAtLeast1Player = false;
 			int positionIndex = p - 2;
 			std::string readBuffer;
 			char pAsString[5];
@@ -2653,6 +2661,15 @@ void GenerateLineups(CURL *curl)
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 			curl_easy_perform(curl);
 			curl_easy_reset(curl);
+
+			int minBattingOrder = 2;
+			int maxBattingOrder = 5;
+			if (tempMinBattingOrder != -1) {
+				minBattingOrder = tempMinBattingOrder;
+			}
+			if (tempMaxBattingOrder != -1) {
+				maxBattingOrder = tempMaxBattingOrder;
+			}
 
 			size_t placeHolderIndex = readBuffer.find("GID;", 0);
 			size_t endOfPlayerDataIndex = readBuffer.find("Statistical data provided", placeHolderIndex);
@@ -2840,9 +2857,7 @@ void GenerateLineups(CURL *curl)
 				}
 				bool bFacingChosenPitcher = singlePlayerData.teamCode == pitcherOpponentTeamCode;
 				bool bAcceptableBattingOrder = false;
-				int minBattingOrder = 2;
-				int maxBattingOrder = 5;
-
+				
                 size_t playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertLFNameToFLName(singlePlayerData.playerName) + " ");
 				if (playerIndexInTodaysLineups == string::npos) {
 					playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertNameToFirstInitialLastName(singlePlayerData.playerName) + " ");
@@ -2920,12 +2935,22 @@ void GenerateLineups(CURL *curl)
                         }
                         singlePlayerData.playerPointsPerGame = expectedFdPoints;
                         allPlayers25[positionIndex].push_back(singlePlayerData);
+						addedAtLeast1Player = true;
                     }
 				}
 				if (placeHolderIndex == string::npos)
 					break;
 				else
 					placeHolderIndex = readBuffer.find("\n", placeHolderIndex + 1);
+			}
+			if (!addedAtLeast1Player && tempMaxBattingOrder < 9) {
+				tempMinBattingOrder = minBattingOrder - 1;
+				tempMaxBattingOrder = maxBattingOrder + 1;
+				--p;
+			}
+			else {
+				tempMinBattingOrder = -1;
+				tempMaxBattingOrder = -1;
 			}
 
 		}
