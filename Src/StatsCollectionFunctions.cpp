@@ -9,7 +9,9 @@
 #include <unordered_map>
 #include <sys/stat.h>
 #include <sys/types.h>
+#if !PLATFORM_OSX
 #include <direct.h>
+#endif
 #include "StatsCollectionFunctions.h"
 #include "SharedGlobals.h"
 #include "StringUtils.h"
@@ -880,7 +882,8 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 			if (firstFieldingSection != string::npos)
 				finalWriteString = finalWriteString.substr(0, firstFieldingSection);
 			RemoveAllSectionsWithKeyword(finalWriteString, "<col  />", "<colgroup>", "</colgroup>");
-			RemoveAllSectionsWithKeyword(finalWriteString, "grid_minors_show", "<tr ", "</tr>");
+			RemoveAllSectionsWithKeyword(finalWriteString, "grid_average", "<tr ", "</tr>");
+            RemoveAllSectionsWithKeyword(finalWriteString, "grid_minors_show", "<tr ", "</tr>");
 			RemoveAllSectionsWithKeyword(finalWriteString, "grid_multi", "<tr ", "</tr>");
 			RemoveAllSectionsWithKeyword(finalWriteString, "grid_projections", "<tr ", "</tr>");
 			RemoveAllSectionsWithKeyword(finalWriteString, "grid_postseason", "<tr ", "</tr>");
