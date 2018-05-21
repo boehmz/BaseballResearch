@@ -92,6 +92,8 @@ struct FullSeasonStatsAdvanced
 	float wobaVersusRighty = -1;
 	float isoVersusLefty = -1;
 	float isoVersusRighty = -1;
+	int numPlateAppearancesVersusRighty = -1;
+	int numPlateAppearancesVersusLefty = -1;
 
 	FullSeasonStatsAdvanced() {}
 

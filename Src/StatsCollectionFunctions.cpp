@@ -304,7 +304,7 @@ FullSeasonStatsAdvancedNoHandedness GetBatterStatsSeason(std::string playerId, C
 		batterStats.iso = stof(fangraphsYearRows[9]);
 		batterStats.walkPercent = stof(fangraphsYearRows[7].substr(0, fangraphsYearRows[7].length() - 1));
 		batterStats.strikeoutPercent = stof(fangraphsYearRows[8].substr(0, fangraphsYearRows[8].length() - 1));
-		batterStats.numPlateAppearances = stof(fangraphsYearRows[2]);
+		batterStats.numPlateAppearances = atoi(fangraphsYearRows[2].c_str());
         batterStats.runsPerPA = stof(fangraphsYearRows[4]) / batterStats.numPlateAppearances;
         batterStats.rbisPerPA = stof(fangraphsYearRows[5]) / batterStats.numPlateAppearances;
 	}
@@ -326,7 +326,7 @@ FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string pla
         vector<string> fangraphsStandardRows = GetFangraphsRowColumns(rowTitle, cachedAtDateFileContents, 20, "name=\"dashboard", "name=\"standard", false);
         if (fangraphsStandardRows.size() == 0)
             return batterStats;
-        batterStats.numPlateAppearances = stof(fangraphsStandardRows[2]);
+        batterStats.numPlateAppearances = atoi(fangraphsStandardRows[2].c_str());
         batterStats.average = stof(fangraphsStandardRows[11]);
         batterStats.onBaseAverage = stof(fangraphsStandardRows[12]);
         batterStats.slugging = stof(fangraphsStandardRows[13]);
@@ -360,7 +360,7 @@ FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string pla
 	}
 	batterStats.strikeoutPercent = stof( fangraphsStandardRows[14].substr(0, fangraphsStandardRows[14].length() - 1));
 	batterStats.walkPercent = stof(fangraphsStandardRows[13].substr(0, fangraphsStandardRows[13].length() - 1));
-	batterStats.numPlateAppearances = stof(fangraphsStandardRows[4]);
+	batterStats.numPlateAppearances = atoi(fangraphsStandardRows[4].c_str());
     batterStats.rbisPerPA = stof(fangraphsStandardRows[10]) / batterStats.numPlateAppearances;
     batterStats.runsPerPA = stof(fangraphsStandardRows[9]) / batterStats.numPlateAppearances;
 	return batterStats;
@@ -608,106 +608,31 @@ FullSeasonStatsAdvanced GetBatterAdvancedStats(string playerId, string yearStrin
 	FullSeasonStatsAdvanced batterAdvancedStats;
 
 	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, AdvancedStatsBattingSplitsVersusLeftHand);
-	size_t fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"standard\"", 0);
-	if (fangraphsCurrentIndex != string::npos)
-	{
-		fangraphsCurrentIndex = fangraphsPlayerData.find(">" + yearString + "<", fangraphsCurrentIndex + 1);
-
-		if (fangraphsCurrentIndex != string::npos)
-		{
-			for (int i = 0; i < 22; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			size_t fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			batterAdvancedStats.averageVersusLefty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-		}
+	vector<string> fangraphsStandardRows = GetFangraphsRowColumns(">" + yearString + "<", fangraphsPlayerData, 21, "name=\"standard\"", "name=\"advanced\"", false);
+	if (fangraphsStandardRows.size() == 21) {
+		batterAdvancedStats.numPlateAppearancesVersusLefty = atoi(fangraphsStandardRows[3].c_str());
+		batterAdvancedStats.averageVersusLefty = stof(fangraphsStandardRows[20]);
 	}
-
-	fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"advanced\"", 0);
-	if (fangraphsCurrentIndex != string::npos)
-	{
-		fangraphsCurrentIndex = fangraphsPlayerData.find(">" + yearString + "<", fangraphsCurrentIndex + 1);
-
-		if (fangraphsCurrentIndex != string::npos)
-		{
-			for (int i = 0; i < 8; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			size_t fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			batterAdvancedStats.sluggingVersusLefty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-			batterAdvancedStats.isoVersusLefty = batterAdvancedStats.sluggingVersusLefty - batterAdvancedStats.averageVersusLefty;
-
-			for (int i = 0; i < 2; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			batterAdvancedStats.opsVersusLefty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-
-			for (int i = 0; i < 6; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			batterAdvancedStats.wobaVersusLefty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-		}
+	vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(">" + yearString + "<", fangraphsPlayerData, 14, "name=\"advanced\"", "name=\"battedball\"", false);
+	if (fangraphsAdvancedRows.size() == 14) {
+		batterAdvancedStats.sluggingVersusLefty = stof(fangraphsAdvancedRows[6]);
+			batterAdvancedStats.isoVersusLefty = stof(fangraphsAdvancedRows[8]);
+			batterAdvancedStats.opsVersusLefty = stof(fangraphsAdvancedRows[7]);
+			batterAdvancedStats.wobaVersusLefty = stof(fangraphsAdvancedRows[12]);
 	}
 
 	fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, AdvancedStatsBattingSplitsVersusRightHand);
-	fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"standard\"", 0);
-	if (fangraphsCurrentIndex != string::npos)
-	{
-		fangraphsCurrentIndex = fangraphsPlayerData.find(">" + yearString + "<", fangraphsCurrentIndex + 1);
-
-		if (fangraphsCurrentIndex != string::npos)
-		{
-			for (int i = 0; i < 22; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			size_t fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			batterAdvancedStats.averageVersusRighty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-		}
+	fangraphsStandardRows = GetFangraphsRowColumns(">" + yearString + "<", fangraphsPlayerData, 21, "name=\"standard\"", "name=\"advanced\"", false);
+	if (fangraphsStandardRows.size() == 21) {
+		batterAdvancedStats.numPlateAppearancesVersusRighty = atoi(fangraphsStandardRows[3].c_str());
+		batterAdvancedStats.averageVersusRighty = stof(fangraphsStandardRows[20]);
 	}
-	fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"advanced\"", 0);
-	if (fangraphsCurrentIndex != string::npos)
-	{
-		fangraphsCurrentIndex = fangraphsPlayerData.find(">" + yearString + "<", fangraphsCurrentIndex + 1);
-
-		if (fangraphsCurrentIndex != string::npos)
-		{
-			for (int i = 0; i < 8; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			size_t fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			batterAdvancedStats.sluggingVersusRighty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-			batterAdvancedStats.isoVersusRighty = batterAdvancedStats.sluggingVersusRighty - batterAdvancedStats.averageVersusRighty;
-
-			for (int i = 0; i < 2; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			batterAdvancedStats.opsVersusRighty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-
-			for (int i = 0; i < 6; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			batterAdvancedStats.wobaVersusRighty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-		}
+	fangraphsAdvancedRows = GetFangraphsRowColumns(">" + yearString + "<", fangraphsPlayerData, 14, "name=\"advanced\"", "name=\"battedball\"", false);
+	if (fangraphsAdvancedRows.size() == 14) {
+		batterAdvancedStats.sluggingVersusRighty = stof(fangraphsAdvancedRows[6]);
+		batterAdvancedStats.isoVersusRighty = stof(fangraphsAdvancedRows[8]);
+		batterAdvancedStats.opsVersusRighty = stof(fangraphsAdvancedRows[7]);
+		batterAdvancedStats.wobaVersusRighty = stof(fangraphsAdvancedRows[12]);
 	}
 
 	return batterAdvancedStats;
