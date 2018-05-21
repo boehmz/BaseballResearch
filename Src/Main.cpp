@@ -52,7 +52,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -212,8 +212,8 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = 20180506;
-		reviewDateEnd = 20180506;
+        reviewDateStart = 20180519;
+		reviewDateEnd = 20180519;
 		percentOfSeasonPassed = 130.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -264,9 +264,11 @@ void RefineAlgorithm()
             char yearStringC[5];
             char monthStringC[3];
             char dayStringC[3];
+			char lastYearStringC[5];
             itoa(yearInt, yearStringC, 10);
             itoa(monthInt, monthStringC, 10);
             itoa(dayInt, dayStringC, 10);
+			itoa(yearInt - 1, lastYearStringC, 10);
 			if (strcmp(yearStringC, CURRENT_YEAR) == 0) {
 				resultsURL += monthStringC;
 				if (strlen(dayStringC) == 1) {
@@ -398,11 +400,11 @@ void RefineAlgorithm()
 						if (playerPosition >= 0) {
 							
 							FullSeasonStatsAdvancedNoHandedness batterStats = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious);
-							FullSeasonStatsAdvancedNoHandedness batterStats2016 = GetBatterStatsSeason(singlePlayerData.playerId, curl, "2016");
+							FullSeasonStatsAdvancedNoHandedness batterStatsLastYear = GetBatterStatsSeason(singlePlayerData.playerId, curl, lastYearStringC);
 							FullSeasonStatsAdvancedNoHandedness batterStatsCareer = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious, true);
 							FullSeasonStatsAdvancedNoHandedness combinedBatterStats = batterStats;
-							if (batterStats2016.average >= 0) {
-								combinedBatterStats = batterStatsCareer * 0.5f + batterStats2016 * 0.5f;
+							if (batterStatsLastYear.average >= 0) {
+								combinedBatterStats = batterStatsCareer * 0.5f + batterStatsLastYear * 0.5f;
 							}
 							combinedBatterStats = combinedBatterStats * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStats;
 							auto opponentPitcher = opponentPitcherScoreMap.find(singlePlayerData.teamCode);
@@ -698,7 +700,7 @@ void RefineAlgorithm()
 								auto opponentPitcher = opponentPitcherScoreMap.find(opponentTeamCode);
 								if (opponentPitcher == opponentPitcherScoreMap.end()) {
 									FullSeasonPitcherStats careerPitcherStats = GetPitcherCumulativeStatsUpTo(thisLineActualResults[1], curl, thisDateOnePrevious, true);
-									FullSeasonPitcherStats lastYearPitcherStats = GetPitcherStats(thisLineActualResults[1], "2016", curl);
+									FullSeasonPitcherStats lastYearPitcherStats = GetPitcherStats(thisLineActualResults[1], lastYearStringC, curl);
 									FullSeasonPitcherStats combinedPitcherStats(lastYearPitcherStats);
 									if (lastYearPitcherStats.numInnings > 0) {
 										combinedPitcherStats = careerPitcherStats * 0.5f + lastYearPitcherStats * 0.5f;
