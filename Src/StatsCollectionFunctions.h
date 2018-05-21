@@ -108,6 +108,8 @@ FullSeasonStatsAdvanced operator+(const FullSeasonStatsAdvanced& lhs, const Full
 FullSeasonStatsAdvanced GetBatterAdvancedStats(std::string playerId, std::string yearString, CURL *curl);
 FullSeasonStatsAdvanced GetPitcherAdvancedStats(std::string playerId, std::string yearString, CURL *curl);
 
+FullSeasonStatsAdvanced GetBatterCumulativeAdvancedStatsUpTo(std::string playerId, std::string dateUpTo, bool entireCareer);
+
 struct FullSeasonPitcherStats
 {
 	float era = -99;

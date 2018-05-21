@@ -52,7 +52,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::UnitTest;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -407,6 +407,11 @@ void RefineAlgorithm()
 								combinedBatterStats = batterStatsCareer * 0.5f + batterStatsLastYear * 0.5f;
 							}
 							combinedBatterStats = combinedBatterStats * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStats;
+							
+							FullSeasonStatsAdvanced batterStatsHandedness = GetBatterCumulativeAdvancedStatsUpTo(singlePlayerData.playerId, thisDateOnePrevious, false);
+							FullSeasonStatsAdvanced batterStatsHandednessLastYear = GetBatterAdvancedStats(singlePlayerData.playerId, lastYearStringC, curl);
+							FullSeasonStatsAdvanced batterStatsHandednessCareer = GetBatterCumulativeAdvancedStatsUpTo(singlePlayerData.playerId, thisDateOnePrevious, true);
+							
 							auto opponentPitcher = opponentPitcherScoreMap.find(singlePlayerData.teamCode);
 
 							if (combinedBatterStats.average > 0 && opponentPitcher != opponentPitcherScoreMap.end()) {

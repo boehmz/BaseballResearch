@@ -312,6 +312,55 @@ FullSeasonStatsAdvancedNoHandedness GetBatterStatsSeason(std::string playerId, C
 	return batterStats;
 }
 
+FullSeasonStatsAdvanced GetBatterCumulativeAdvancedStatsUpTo(std::string playerId, std::string dateUpTo, bool entireCareer) {
+	FullSeasonStatsAdvanced batterAdvancedStats;
+
+	string cachedDate = GetDateBeforeOrAfterNumDays(dateUpTo, 1);
+	string cachedAtDateVersusLeftFileName = "FangraphsCachedPages\\CachedAtDate\\" + cachedDate + "\\PlayerId" + playerId + "VsLeft.txt";
+	string cachedAtDateVersusLeftFileContents = GetEntireFileContents(cachedAtDateVersusLeftFileName);
+	if (cachedAtDateVersusLeftFileContents != "") {
+		string rowTitle = ">Total<";
+		if (!entireCareer) {
+			rowTitle = ">" + cachedDate.substr(0, 4) + "<";
+		}
+
+		vector<string> fangraphsStandardRows = GetFangraphsRowColumns(rowTitle, cachedAtDateVersusLeftFileContents, 21, "name=\"standard\"", "name=\"advanced\"", false);
+		if (fangraphsStandardRows.size() == 21) {
+			batterAdvancedStats.numPlateAppearancesVersusLefty = atoi(fangraphsStandardRows[3].c_str());
+			batterAdvancedStats.averageVersusLefty = stof(fangraphsStandardRows[20]);
+		}
+		vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(rowTitle, cachedAtDateVersusLeftFileContents, 14, "name=\"advanced\"", "name=\"battedball\"", false);
+		if (fangraphsAdvancedRows.size() == 14) {
+			batterAdvancedStats.sluggingVersusLefty = stof(fangraphsAdvancedRows[6]);
+			batterAdvancedStats.isoVersusLefty = stof(fangraphsAdvancedRows[8]);
+			batterAdvancedStats.opsVersusLefty = stof(fangraphsAdvancedRows[7]);
+			batterAdvancedStats.wobaVersusLefty = stof(fangraphsAdvancedRows[12]);
+		}
+	}
+
+	string cachedAtDateVersusRightFileName = "FangraphsCachedPages\\CachedAtDate\\" + cachedDate + "\\PlayerId" + playerId + "VsRight.txt";
+	string cachedAtDateVersusRightFileContents = GetEntireFileContents(cachedAtDateVersusRightFileName);
+	if (cachedAtDateVersusRightFileContents != "") {
+		string rowTitle = ">Total<";
+		if (!entireCareer) {
+			rowTitle = ">" + cachedDate.substr(0, 4) + "<";
+		}
+		vector<string> fangraphsStandardRows = GetFangraphsRowColumns(rowTitle, cachedAtDateVersusRightFileContents, 21, "name=\"standard\"", "name=\"advanced\"", false);
+		if (fangraphsStandardRows.size() == 21) {
+			batterAdvancedStats.numPlateAppearancesVersusRighty = atoi(fangraphsStandardRows[3].c_str());
+			batterAdvancedStats.averageVersusRighty = stof(fangraphsStandardRows[20]);
+		}
+		vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(rowTitle, cachedAtDateVersusRightFileContents, 14, "name=\"advanced\"", "name=\"battedball\"", false);
+		if (fangraphsAdvancedRows.size() == 14) {
+			batterAdvancedStats.sluggingVersusRighty = stof(fangraphsAdvancedRows[6]);
+			batterAdvancedStats.isoVersusRighty = stof(fangraphsAdvancedRows[8]);
+			batterAdvancedStats.opsVersusRighty = stof(fangraphsAdvancedRows[7]);
+			batterAdvancedStats.wobaVersusRighty = stof(fangraphsAdvancedRows[12]);
+		}
+	}
+	return batterAdvancedStats;
+}
+
 FullSeasonStatsAdvancedNoHandedness GetBatterCumulativeStatsUpTo(std::string playerId, CURL *curl, std::string dateUpTo, bool entireCareer) {
 	FullSeasonStatsAdvancedNoHandedness batterStats;
     
