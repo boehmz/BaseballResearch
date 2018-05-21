@@ -1109,6 +1109,10 @@ bool FullSeasonStatsAdvanced::operator==(const FullSeasonStatsAdvanced& rhs)
 		return false;
 	if (abs(rhs.wobaVersusRighty - wobaVersusRighty) > 0.0015f)
 		return false;
+	if (rhs.numPlateAppearancesVersusLefty != numPlateAppearancesVersusLefty)
+		return false;
+	if (rhs.numPlateAppearancesVersusRighty != numPlateAppearancesVersusRighty)
+		return false;
 	return true;
 }
 

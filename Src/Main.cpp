@@ -52,7 +52,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::UnitTest;
 	switch (processType)
 	{
 	case UnitTest:
@@ -4068,6 +4068,7 @@ void UnitTestAllStatCollectionFunctions()
 	curl = curl_easy_init();
 	if (curl)
 	{
+		// Eric Hosmer stats and advanced stats
 		FullSeasonStats batterStats = GetBatterStats("3215", "2016", curl);
 		FullSeasonStatsAdvanced batter2016AdvancedStats = GetBatterAdvancedStats("3215", "2016", curl);
 		
@@ -4126,6 +4127,8 @@ void UnitTestAllStatCollectionFunctions()
 		expectedBatter2016AdvancedStats.opsVersusRighty = 0.813f;
 		expectedBatter2016AdvancedStats.isoVersusRighty = 0.176f;
 		expectedBatter2016AdvancedStats.wobaVersusRighty = 0.348f;
+		expectedBatter2016AdvancedStats.numPlateAppearancesVersusLefty = 218;
+		expectedBatter2016AdvancedStats.numPlateAppearancesVersusRighty = 449;
 
 		assert(expectedPitcher2016Stats == pitcher2016Stats);
 		pitcher2016Stats *= 0.345f;
