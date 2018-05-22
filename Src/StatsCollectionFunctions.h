@@ -32,6 +32,7 @@ std::string ReplaceURLWhiteSpaces(std::string originalURL);
 float CalculateRSquared(std::vector<float> finalInputs, std::vector<float> outputValues);
 
 std::string GetPlayerStatsRawString(std::string playerId, std::string yearString, CURL *curl);
+bool doesPlayerThrowLeftHanded(std::string playerId, CURL *curl);
 const int AdvancedStatsBattingSplitsVersusRightHand = 1;
 const int AdvancedStatsBattingSplitsVersusLeftHand = 2;
 const int AdvancedStatsPitchingSplitsVersusRightHand = 4;
@@ -120,6 +121,7 @@ struct FullSeasonPitcherStats
 	float xfip = -999;
 	float wobaAllowed = -999;
 	float opsAllowed = -999;
+    bool isLeftHanded = false;
 
 	FullSeasonPitcherStats() {}
 	FullSeasonPitcherStats(std::string inString);
