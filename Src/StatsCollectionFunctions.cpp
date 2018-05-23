@@ -596,98 +596,24 @@ FullSeasonStatsAdvanced GetPitcherAdvancedStats(string playerId, string yearStri
 	FullSeasonStatsAdvanced pitcherAdvancedStats;
 
 	string fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, AdvancedStatsPitchingSplitsVersusLeftHand);
-	size_t fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"standard\"", 0);
-	if (fangraphsCurrentIndex != string::npos)
-	{
-		fangraphsCurrentIndex = fangraphsPlayerData.find(">" + yearString + "<", fangraphsCurrentIndex + 1);
-
-		if (fangraphsCurrentIndex != string::npos)
-		{
-			pitcherAdvancedStats.opsVersusLefty = 0;
-
-			for (int i = 0; i < 16; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			size_t fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherAdvancedStats.averageVersusLefty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-
-			for (int i = 0; i < 2; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherAdvancedStats.opsVersusLefty += stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-
-			for (int i = 0; i < 2; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			float slugging = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-			pitcherAdvancedStats.opsVersusLefty += slugging;
-			pitcherAdvancedStats.sluggingVersusLefty = slugging;
-			pitcherAdvancedStats.isoVersusLefty = slugging - pitcherAdvancedStats.averageVersusLefty;
-
-			for (int i = 0; i < 2; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherAdvancedStats.wobaVersusLefty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-		}
-	}
+    vector<string> fangraphsStandardRows = GetFangraphsRowColumns(">" + yearString + "<", fangraphsPlayerData, 18, "name=\"standard", "name=\"advanced", true);
+    if (fangraphsStandardRows.size() == 0)
+        return pitcherAdvancedStats;
+    pitcherAdvancedStats.averageVersusLefty = stof(fangraphsStandardRows[14]);
+    pitcherAdvancedStats.sluggingVersusLefty = stof(fangraphsStandardRows[16]);
+    pitcherAdvancedStats.wobaVersusLefty = stof(fangraphsStandardRows[17]);
+    pitcherAdvancedStats.isoVersusLefty = pitcherAdvancedStats.sluggingVersusLefty - pitcherAdvancedStats.averageVersusLefty;
+    pitcherAdvancedStats.opsVersusLefty = stof(fangraphsStandardRows[15]) + pitcherAdvancedStats.sluggingVersusLefty;
 
 	fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, AdvancedStatsPitchingSplitsVersusRightHand);
-	fangraphsCurrentIndex = fangraphsPlayerData.find("name=\"standard\"", 0);
-	if (fangraphsCurrentIndex != string::npos)
-	{
-		fangraphsCurrentIndex = fangraphsPlayerData.find(">" + yearString + "<", fangraphsCurrentIndex + 1);
-
-		if (fangraphsCurrentIndex != string::npos)
-		{
-			pitcherAdvancedStats.opsVersusRighty = 0;
-
-			for (int i = 0; i < 16; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			size_t fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherAdvancedStats.averageVersusRighty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-
-			for (int i = 0; i < 2; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherAdvancedStats.opsVersusRighty += stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-
-			for (int i = 0; i < 2; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			float slugging = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-			pitcherAdvancedStats.opsVersusRighty += slugging;
-			pitcherAdvancedStats.sluggingVersusRighty = slugging;
-			pitcherAdvancedStats.isoVersusRighty = slugging - pitcherAdvancedStats.averageVersusRighty;
-
-			for (int i = 0; i < 2; ++i)
-			{
-				fangraphsCurrentIndex = fangraphsPlayerData.find("</td>", fangraphsCurrentIndex + 1);
-			}
-			fangraphsNextIndex = fangraphsCurrentIndex;
-			fangraphsCurrentIndex = fangraphsPlayerData.rfind(">", fangraphsNextIndex);
-			pitcherAdvancedStats.wobaVersusRighty = stof(fangraphsPlayerData.substr(fangraphsCurrentIndex + 1, fangraphsNextIndex - fangraphsCurrentIndex - 1).c_str());
-		}
-	}
+    fangraphsStandardRows = GetFangraphsRowColumns(">" + yearString + "<", fangraphsPlayerData, 18, "name=\"standard", "name=\"advanced", true);
+    if (fangraphsStandardRows.size() == 0)
+        return pitcherAdvancedStats;
+    pitcherAdvancedStats.averageVersusRighty = stof(fangraphsStandardRows[14]);
+    pitcherAdvancedStats.sluggingVersusRighty = stof(fangraphsStandardRows[16]);
+    pitcherAdvancedStats.wobaVersusRighty = stof(fangraphsStandardRows[17]);
+    pitcherAdvancedStats.isoVersusRighty = pitcherAdvancedStats.sluggingVersusRighty - pitcherAdvancedStats.averageVersusRighty;
+    pitcherAdvancedStats.opsVersusRighty = stof(fangraphsStandardRows[15]) + pitcherAdvancedStats.sluggingVersusRighty;
 
 	return pitcherAdvancedStats;
 }
