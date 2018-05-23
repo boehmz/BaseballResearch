@@ -213,7 +213,7 @@ void RefineAlgorithm()
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
         reviewDateStart = 20180507;
-		reviewDateEnd = 20180518;
+		reviewDateEnd = 20180521;
 		percentOfSeasonPassed = 35.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -458,12 +458,16 @@ void RefineAlgorithm()
                                     allPlayers25SeasonOpsHandedness[playerPosition].push_back(singlePlayerData);
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusLefty * 100.0f;
                                     allPlayers25SeasonWobaHandedness[playerPosition].push_back(singlePlayerData);
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusLefty * 100.0f;
+                                    allPlayers25SeasonIsoHandedness[playerPosition].push_back(singlePlayerData);
                                 }
                                 if (opponentPitcher != opponentPitcherScoreMap.end() && !opponentPitcher->second.isLeftHanded && combinedBatterStatsHandedness.numPlateAppearancesVersusRighty > 100) {
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusRighty * 100.0f;
                                     allPlayers25SeasonOpsHandedness[playerPosition].push_back(singlePlayerData);
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusRighty * 100.0f;
                                     allPlayers25SeasonWobaHandedness[playerPosition].push_back(singlePlayerData);
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusRighty * 100.0f;
+                                    allPlayers25SeasonIsoHandedness[playerPosition].push_back(singlePlayerData);
                                 }
 							}
 
@@ -1013,7 +1017,8 @@ void RefineAlgorithm()
                 allPlayersLineupOrder.push_back(emptyLineup);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonOpsHandedness);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonWobaHandedness);
-				allPlayersLineupOrder.push_back(allPlayersActualScores);
+                allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandedness);
+				allPlayersLineupOrder.push_back(allPlayersActualScores);            //85
 
 				chosenLineupsList.resize(allPlayersLineupOrder.size());
 				float battingOrderBonus = 0.0f;
