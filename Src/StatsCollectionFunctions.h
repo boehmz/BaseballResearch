@@ -10,7 +10,7 @@ struct PlayerData
 	std::string playerName;
 	std::string teamCode;
 	int playerSalary;
-	bool batsLeftHanded;
+	char battingHandedness;
 	bool isFacingLefthander;
 	float playerPointsPerGame;
 	int battingOrder;
@@ -33,6 +33,7 @@ float CalculateRSquared(std::vector<float> finalInputs, std::vector<float> outpu
 
 std::string GetPlayerStatsRawString(std::string playerId, std::string yearString, CURL *curl);
 bool doesPlayerThrowLeftHanded(std::string playerId, CURL *curl);
+char getPlayerBattingHandedness(std::string playerId, CURL *curl);
 const int AdvancedStatsBattingSplitsVersusRightHand = 1;
 const int AdvancedStatsBattingSplitsVersusLeftHand = 2;
 const int AdvancedStatsPitchingSplitsVersusRightHand = 4;

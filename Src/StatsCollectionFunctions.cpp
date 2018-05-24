@@ -140,6 +140,47 @@ bool doesPlayerThrowLeftHanded(std::string playerId, CURL *curl) {
     return false;
 }
 
+char getPlayerBattingHandedness(std::string playerId, CURL *curl) {
+    string rotoguruData = GetPlayerStatsRawString(playerId, "any", curl);
+    size_t throwsIndex = rotoguruData.find("Bats:");
+    if (throwsIndex != string::npos) {
+        size_t throwBeginIndex = rotoguruData.find(">", throwsIndex + 1);
+        size_t throwEndIndex = rotoguruData.find("<", throwBeginIndex);
+        if (throwBeginIndex != string::npos && throwEndIndex != string::npos) {
+            string throwsString = rotoguruData.substr(throwBeginIndex + 1, throwEndIndex - throwBeginIndex - 1);
+            if (throwsString == "") {
+                rotoguruData = GetPlayerStatsRawString(playerId, "2018", curl);
+                throwsIndex = rotoguruData.find("Bats:");
+                if (throwsIndex != string::npos) {
+                    throwBeginIndex = rotoguruData.find(">", throwsIndex + 1);
+                    throwEndIndex = rotoguruData.find("<", throwBeginIndex);
+                    if (throwBeginIndex != string::npos && throwEndIndex != string::npos) {
+                        throwsString = rotoguruData.substr(throwBeginIndex + 1, throwEndIndex - throwBeginIndex - 1);
+                    }
+                }
+            }
+            if (throwsString == "Right") {
+                return 'R';
+            } else if (throwsString == "Left") {
+                return 'L';
+            } else if (throwsString == "Switch") {
+                return 'S';
+            }
+            if (throwsString.at(0) == 'R' || throwsString.at(0) == 'r') {
+                return 'R';
+            }
+            if (throwsString.at(0) == 'L' || throwsString.at(0) == 'l') {
+                return 'L';
+            }
+            if (throwsString.at(0) == 'S' || throwsString.at(0) == 's') {
+                return 'S';
+            }
+        }
+    }
+    cout << "Could not find batting hand information about " << playerId << endl;
+    return false;
+}
+
 string GetPlayerStatsRawString(string playerId, string yearString, CURL *curl)
 {
 	string playerStatsLookupBuffer = "";

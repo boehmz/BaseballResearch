@@ -356,6 +356,9 @@ void RefineAlgorithm()
                 vector< vector<PlayerData> > allPlayers25SeasonIsoHandedness(6);
                 vector< vector<PlayerData> > allPlayers25SeasonOpsHandedness(6);
                 vector< vector<PlayerData> > allPlayers25SeasonWobaHandedness(6);
+                vector< vector<PlayerData> > allPlayers25SeasonIsoHandednessTimesPitcherIsoHandedness(6);
+                vector< vector<PlayerData> > allPlayers25SeasonOpsHandednessTimesPitcherOpsHandedness(6);
+                vector< vector<PlayerData> > allPlayers25SeasonWobaHandednessTimesPitcherWobaHandedness(6);
                 
                 vector< vector<PlayerData> > allPlayersSalary(6);
                 vector< vector<PlayerData> > allPlayers25Salary(6);
@@ -405,6 +408,7 @@ void RefineAlgorithm()
 						int playerPosition = atoi(thisLineActualResults[6].c_str());
 						playerPosition -= 2;
 						if (playerPosition >= 0) {
+                            singlePlayerData.battingHandedness = getPlayerBattingHandedness(singlePlayerData.playerId, curl);
 							
 							FullSeasonStatsAdvancedNoHandedness batterStats = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious);
 							FullSeasonStatsAdvancedNoHandedness batterStatsLastYear = GetBatterStatsSeason(singlePlayerData.playerId, curl, lastYearStringC);
@@ -455,25 +459,91 @@ void RefineAlgorithm()
 									numBattersPutInTrainingFileToday++;
 								}
                                 
+                                float batterOverPitcherMultiplier = 2.0f;
                                 if (opponentPitcher != opponentPitcherScoreMap.end() && opponentPitcher->second.isLeftHanded && combinedBatterStatsHandedness.numPlateAppearancesVersusLefty > 100) {
                                //     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.
                                 //    allPlayers25RunsHandedness[playerPosition].push_back(singlePlayerData);
                                 //    allPlayers25RbiRunsOpiHandedness[playerPosition].push_back(singlePlayerData);
                                 //    allPlayers25SeasonIsoHandedness[playerPosition].push_back(singlePlayerData);
-                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusLefty * 100.0f;
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusLefty * 1000.0f;
                                     allPlayers25SeasonOpsHandedness[playerPosition].push_back(singlePlayerData);
-                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusLefty * 100.0f;
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusLefty * 1000.0f;
                                     allPlayers25SeasonWobaHandedness[playerPosition].push_back(singlePlayerData);
-                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusLefty * 100.0f;
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusLefty * 1000.0f;
                                     allPlayers25SeasonIsoHandedness[playerPosition].push_back(singlePlayerData);
+                                    
+                                    if (singlePlayerData.battingHandedness == 'S') {
+                                        if (opponentPitcher->second.isLeftHanded)
+                                            singlePlayerData.battingHandedness = 'R';
+                                        else
+                                            singlePlayerData.battingHandedness = 'L';
+                                    }
+                                    auto opponentPitcherAdvancedHandedness = opponentPitcherStatsAdvancedMap.find(singlePlayerData.teamCode);
+                                    if (opponentPitcherAdvancedHandedness != opponentPitcherStatsAdvancedMap.end()) {
+                                        FullSeasonStatsAdvanced p = opponentPitcherAdvancedHandedness->second;
+                                        if (singlePlayerData.battingHandedness == 'L' && opponentPitcherAdvancedHandedness->second.numPlateAppearancesVersusLefty > 10) {
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusLefty * 1000.0f * batterOverPitcherMultiplier;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.opsVersusLefty;
+                                            allPlayers25SeasonOpsHandednessTimesPitcherOpsHandedness[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusLefty * 1000.0f * batterOverPitcherMultiplier;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.wobaVersusLefty;
+                                            allPlayers25SeasonWobaHandednessTimesPitcherWobaHandedness[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusLefty * 1000.0f * batterOverPitcherMultiplier;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.isoVersusLefty;
+                                            allPlayers25SeasonIsoHandednessTimesPitcherIsoHandedness[playerPosition].push_back(singlePlayerData);
+                                        }
+                                        if (singlePlayerData.battingHandedness == 'R' && opponentPitcherAdvancedHandedness->second.numPlateAppearancesVersusRighty > 10) {
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusLefty * 1000.0f * batterOverPitcherMultiplier;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.opsVersusRighty;
+                                            allPlayers25SeasonOpsHandednessTimesPitcherOpsHandedness[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusLefty * 1000.0f * batterOverPitcherMultiplier;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.wobaVersusRighty;
+                                            allPlayers25SeasonWobaHandednessTimesPitcherWobaHandedness[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusLefty * 1000.0f * batterOverPitcherMultiplier;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.isoVersusRighty;
+                                            allPlayers25SeasonIsoHandednessTimesPitcherIsoHandedness[playerPosition].push_back(singlePlayerData);
+                                        }
+                                    }
                                 }
                                 if (opponentPitcher != opponentPitcherScoreMap.end() && !opponentPitcher->second.isLeftHanded && combinedBatterStatsHandedness.numPlateAppearancesVersusRighty > 100) {
-                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusRighty * 100.0f;
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusRighty * 1000.0f;
                                     allPlayers25SeasonOpsHandedness[playerPosition].push_back(singlePlayerData);
-                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusRighty * 100.0f;
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusRighty * 1000.0f;
                                     allPlayers25SeasonWobaHandedness[playerPosition].push_back(singlePlayerData);
-                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusRighty * 100.0f;
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusRighty * 1000.0f;
                                     allPlayers25SeasonIsoHandedness[playerPosition].push_back(singlePlayerData);
+                                    
+                                    if (singlePlayerData.battingHandedness == 'S') {
+                                        if (opponentPitcher->second.isLeftHanded)
+                                            singlePlayerData.battingHandedness = 'R';
+                                        else
+                                            singlePlayerData.battingHandedness = 'L';
+                                    }
+                                    auto opponentPitcherAdvancedHandedness = opponentPitcherStatsAdvancedMap.find(singlePlayerData.teamCode);
+                                    if (opponentPitcherAdvancedHandedness != opponentPitcherStatsAdvancedMap.end()) {
+                                        if (singlePlayerData.battingHandedness == 'L' && opponentPitcherAdvancedHandedness->second.numPlateAppearancesVersusLefty > 10) {
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusRighty * 1000.0f * batterOverPitcherMultiplier;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.opsVersusLefty;
+                                            allPlayers25SeasonOpsHandednessTimesPitcherOpsHandedness[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusRighty * 1000.0f * batterOverPitcherMultiplier;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.wobaVersusLefty;
+                                            allPlayers25SeasonWobaHandednessTimesPitcherWobaHandedness[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusRighty * 1000.0f * batterOverPitcherMultiplier;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.isoVersusLefty;
+                                            allPlayers25SeasonIsoHandednessTimesPitcherIsoHandedness[playerPosition].push_back(singlePlayerData);
+                                        }
+                                        if (singlePlayerData.battingHandedness == 'R' && opponentPitcherAdvancedHandedness->second.numPlateAppearancesVersusRighty > 10) {
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusRighty * 1000.0f * batterOverPitcherMultiplier;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.opsVersusRighty;
+                                            allPlayers25SeasonOpsHandednessTimesPitcherOpsHandedness[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusRighty * 1000.0f * batterOverPitcherMultiplier;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.wobaVersusRighty;
+                                            allPlayers25SeasonWobaHandednessTimesPitcherWobaHandedness[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusRighty * 1000.0f * batterOverPitcherMultiplier;
+                                            singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.isoVersusRighty;
+                                            allPlayers25SeasonIsoHandednessTimesPitcherIsoHandedness[playerPosition].push_back(singlePlayerData);
+                                        }
+                                    }
                                 }
 							}
 
@@ -1036,7 +1106,10 @@ void RefineAlgorithm()
                 allPlayersLineupOrder.push_back(allPlayers25SeasonOpsHandedness);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonWobaHandedness);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandedness);
-				allPlayersLineupOrder.push_back(allPlayersActualScores);            //85
+                allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandednessTimesPitcherIsoHandedness);  //85
+                allPlayersLineupOrder.push_back(allPlayers25SeasonOpsHandednessTimesPitcherOpsHandedness);
+                allPlayersLineupOrder.push_back(allPlayers25SeasonWobaHandednessTimesPitcherWobaHandedness);
+				allPlayersLineupOrder.push_back(allPlayersActualScores);            
 
 				chosenLineupsList.resize(allPlayersLineupOrder.size());
 				float battingOrderBonus = 0.0f;
@@ -2214,9 +2287,9 @@ void GenerateNewLineup(CURL *curl)
 			}
 			nextIndex = readBuffer.find(";", placeHolderIndex + 1);
 			if (readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1) == "L")
-				singlePlayerData.batsLeftHanded = true;
+                singlePlayerData.battingHandedness = 'L';
 			else
-				singlePlayerData.batsLeftHanded = false;
+                singlePlayerData.battingHandedness = 'R';
 
 			// opposing pitcher handedness
 			for (int i = 0; i < 4; ++i)
@@ -2265,7 +2338,7 @@ void GenerateNewLineup(CURL *curl)
 				opposingPitcherAdvancedStats = opponentInformation->second.pitcherAdvancedStats;
 				float ballParkFactorAsLefty, ballParkFactorAsRighty;
 				GetBallparkFactors(opponentInformation->second.ballParkPlayedIn, "SLG", ballParkFactorAsLefty, ballParkFactorAsRighty);
-				if (singlePlayerData.batsLeftHanded)
+				if (singlePlayerData.battingHandedness == 'L')
 					ballParkFactor = ballParkFactorAsLefty;
 				else
 					ballParkFactor = ballParkFactorAsRighty;
@@ -2275,18 +2348,18 @@ void GenerateNewLineup(CURL *curl)
 				string playerHasNoOpponentInformation = singlePlayerData.teamCode;
 				assert(playerHasNoOpponentInformation == "nope");
 			}
-			if ((singlePlayerData.batsLeftHanded && opposingPitcherAdvancedStats.opsVersusLefty >= 0) ||
-				(!singlePlayerData.batsLeftHanded && opposingPitcherAdvancedStats.opsVersusRighty >= 0))
+			if ((singlePlayerData.battingHandedness == 'L' && opposingPitcherAdvancedStats.opsVersusLefty >= 0) ||
+				(!singlePlayerData.battingHandedness == 'L' && opposingPitcherAdvancedStats.opsVersusRighty >= 0))
 			{
 				//ops to points = 5.89791155 * ops + 3.76171160
 				float averagePointsPerGame = 5.89791155f * leagueAverageOps + 3.76171160f;
 				float opposingPitcherAveragePointsAllowed = 3.76171160f;
-				if (singlePlayerData.batsLeftHanded)
+				if (singlePlayerData.battingHandedness == 'L')
 					opposingPitcherAveragePointsAllowed += 5.89791155f * opposingPitcherAdvancedStats.opsVersusLefty;
 				else
 					opposingPitcherAveragePointsAllowed += 5.89791155f * opposingPitcherAdvancedStats.opsVersusRighty;
 				pitcherFactor = opposingPitcherAveragePointsAllowed / averagePointsPerGame;
-				if (singlePlayerData.batsLeftHanded)
+				if (singlePlayerData.battingHandedness == 'L')
 					pitcherFactor = opposingPitcherAdvancedStats.opsVersusLefty / leagueAverageOps;
 				else
 					pitcherFactor = opposingPitcherAdvancedStats.opsVersusRighty / leagueAverageOps;
