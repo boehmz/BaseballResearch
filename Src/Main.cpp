@@ -22,11 +22,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180522";
+std::string todaysDate = "20180523";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 47.0f / 162.0f;
+float percentOfSeasonPassed = 48.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -381,6 +381,7 @@ void RefineAlgorithm()
 
 				unordered_map<std::string, FullSeasonPitcherStats> opponentPitcherScoreMap;
 				unordered_map<std::string, FullSeasonPitcherStats> opponentPitcherProjectionsMap;
+                unordered_map<std::string, FullSeasonStatsAdvanced> opponentPitcherStatsAdvancedMap;
 
 				while (nextIndex != string::npos) {
 					vector<string> thisLineActualResults = SplitStringIntoMultiple(actualResults.substr(currentIndex, nextIndex - currentIndex), ";");
@@ -408,17 +409,22 @@ void RefineAlgorithm()
 							FullSeasonStatsAdvancedNoHandedness batterStats = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious);
 							FullSeasonStatsAdvancedNoHandedness batterStatsLastYear = GetBatterStatsSeason(singlePlayerData.playerId, curl, lastYearStringC);
 							FullSeasonStatsAdvancedNoHandedness batterStatsCareer = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious, true);
-							FullSeasonStatsAdvancedNoHandedness combinedBatterStats = batterStats;
-							if (batterStatsLastYear.average >= 0) {
+							FullSeasonStatsAdvancedNoHandedness combinedBatterStats = batterStatsCareer;
+							if (batterStatsLastYear.numPlateAppearances >= 30) {
 								combinedBatterStats = batterStatsCareer * 0.5f + batterStatsLastYear * 0.5f;
 							}
-							combinedBatterStats = combinedBatterStats * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStats;
+                            if (batterStats.numPlateAppearances >= 30) {
+                                combinedBatterStats = combinedBatterStats * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStats;
+                            }
 							
 							FullSeasonStatsAdvanced batterStatsHandedness = GetBatterCumulativeAdvancedStatsUpTo(singlePlayerData.playerId, thisDateOnePrevious, false);
 							FullSeasonStatsAdvanced batterStatsHandednessLastYear = GetBatterAdvancedStats(singlePlayerData.playerId, lastYearStringC, curl);
 							FullSeasonStatsAdvanced batterStatsHandednessCareer = GetBatterCumulativeAdvancedStatsUpTo(singlePlayerData.playerId, thisDateOnePrevious, true);
-                            FullSeasonStatsAdvanced combinedBatterStatsHandedness = batterStatsHandednessCareer * 0.5f + batterStatsHandednessLastYear * 0.5f;
-                            combinedBatterStatsHandedness = combinedBatterStatsHandedness * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStatsHandedness;
+                            FullSeasonStatsAdvanced combinedBatterStatsHandedness = batterStatsHandednessCareer;
+                            if (batterStatsHandednessLastYear.numPlateAppearancesVersusRighty > 10 && batterStatsHandednessLastYear.numPlateAppearancesVersusLefty > 10)
+                                combinedBatterStatsHandedness = batterStatsHandednessCareer * 0.5f + batterStatsHandednessLastYear * 0.5f;
+                            if (batterStatsHandedness.numPlateAppearancesVersusRighty > 10 && batterStatsHandedness.numPlateAppearancesVersusLefty > 10)
+                                combinedBatterStatsHandedness = combinedBatterStatsHandedness * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStatsHandedness;
 							
 							auto opponentPitcher = opponentPitcherScoreMap.find(singlePlayerData.teamCode);
 
@@ -738,16 +744,14 @@ void RefineAlgorithm()
 								if (opponentPitcher == opponentPitcherScoreMap.end()) {
 									FullSeasonPitcherStats careerPitcherStats = GetPitcherCumulativeStatsUpTo(thisLineActualResults[1], curl, thisDateOnePrevious, true);
 									FullSeasonPitcherStats lastYearPitcherStats = GetPitcherStats(thisLineActualResults[1], lastYearStringC, curl);
-									FullSeasonPitcherStats combinedPitcherStats(lastYearPitcherStats);
-									if (lastYearPitcherStats.numInnings > 0) {
+									FullSeasonPitcherStats combinedPitcherStats(careerPitcherStats);
+									if (lastYearPitcherStats.numInnings > 10) {
 										combinedPitcherStats = careerPitcherStats * 0.5f + lastYearPitcherStats * 0.5f;
-										if (pitcherStatsThisYearSoFar.numInnings > 0) {
-											combinedPitcherStats = combinedPitcherStats * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * pitcherStatsThisYearSoFar;
-										}
 									}
-									else {
-										combinedPitcherStats = pitcherStatsThisYearSoFar;
-									}
+                                    if (pitcherStatsThisYearSoFar.numInnings > 10) {
+                                        combinedPitcherStats = combinedPitcherStats * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * pitcherStatsThisYearSoFar;
+                                    }
+									
 									if (combinedPitcherStats.numInnings > 0) {
 										//float pitcherPoints = GetExpectedFanduelPointsFromPitcherStats(combinedPitcherStats);
 										float pitcherPoints = combinedPitcherStats.era * -0.352834158133307318f + combinedPitcherStats.xfip * -1.50744966177988493f + combinedPitcherStats.strikeOutsPer9 * 1.44486530250260237f;
@@ -760,6 +764,20 @@ void RefineAlgorithm()
 										}
 									}
 								}
+
+                                auto opponentPitcherStatsAdvanced = opponentPitcherStatsAdvancedMap.find(opponentTeamCode);
+                                if (opponentPitcherStatsAdvanced == opponentPitcherStatsAdvancedMap.end()) {
+                                    FullSeasonStatsAdvanced pitcherStatsAdvancedCurrentYear = GetPitcherCumulativeAdvancedStatsUpTo(thisLineActualResults[1], thisDateOnePrevious, false);
+                                    FullSeasonStatsAdvanced pitcherStatsAdvancedLastYear = GetPitcherAdvancedStats(thisLineActualResults[1], lastYearStringC, curl);
+                                    FullSeasonStatsAdvanced pitcherStatsAdvancedCareer = GetPitcherCumulativeAdvancedStatsUpTo(thisLineActualResults[1], thisDateOnePrevious, true);
+                                    FullSeasonStatsAdvanced pitcherStatsAdvancedCombined = pitcherStatsAdvancedCareer;
+                                    if (pitcherStatsAdvancedLastYear.numPlateAppearancesVersusRighty > 10 && pitcherStatsAdvancedLastYear.numPlateAppearancesVersusLefty > 10)
+                                        pitcherStatsAdvancedCombined = pitcherStatsAdvancedCareer * 0.5f + pitcherStatsAdvancedLastYear * 0.5f;
+                                    if (pitcherStatsAdvancedCurrentYear.numPlateAppearancesVersusLefty > 10 && pitcherStatsAdvancedCurrentYear.numPlateAppearancesVersusRighty > 10)
+                                        pitcherStatsAdvancedCombined = pitcherStatsAdvancedCombined * (1.0f - percentOfSeasonPassed) + pitcherStatsAdvancedCurrentYear * percentOfSeasonPassed;
+                                    opponentPitcherStatsAdvancedMap.insert({opponentTeamCode, pitcherStatsAdvancedCombined});
+                                }
+
 								FullSeasonPitcherStats projectionsPitcherStats;
 								auto opponentPitcherProjected = opponentPitcherProjectionsMap.find(opponentTeamCode);
 								if (opponentPitcherProjected == opponentPitcherProjectionsMap.end()) {

@@ -108,7 +108,7 @@ FullSeasonStatsAdvanced operator+(const FullSeasonStatsAdvanced& lhs, const Full
 
 FullSeasonStatsAdvanced GetBatterAdvancedStats(std::string playerId, std::string yearString, CURL *curl);
 FullSeasonStatsAdvanced GetPitcherAdvancedStats(std::string playerId, std::string yearString, CURL *curl);
-
+FullSeasonStatsAdvanced GetPitcherCumulativeAdvancedStatsUpTo(std::string playerId, std::string dateUpTo, bool entireCareer);
 FullSeasonStatsAdvanced GetBatterCumulativeAdvancedStatsUpTo(std::string playerId, std::string dateUpTo, bool entireCareer);
 
 struct FullSeasonPitcherStats
