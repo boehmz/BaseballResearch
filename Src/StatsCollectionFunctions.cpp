@@ -1108,6 +1108,54 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
 	return fangraphsData;
 }
 
+BattedBallProfile GetBattedBallProfileFromBattedBallProfileRows(string fangraphsData, string rowTitle) {
+	BattedBallProfile profile;
+	vector<string> fangraphsBattedBallRows = GetFangraphsRowColumns(rowTitle, fangraphsData, 15, "name=\"battedball\"", "", true);
+	if (fangraphsBattedBallRows.size() == 0)
+		return profile;
+	for (unsigned int i = 0; i < fangraphsBattedBallRows.size(); ++i) {
+		size_t percentIndex = fangraphsBattedBallRows[i].find(" %");
+		if (percentIndex != string::npos) {
+			fangraphsBattedBallRows[i] = fangraphsBattedBallRows[i].substr(0, percentIndex);
+		}
+	}
+	profile.homerunPerFlyBallPercent = stof(fangraphsBattedBallRows[6]);
+	profile.softPercent = stof(fangraphsBattedBallRows[12]);
+	profile.mediumPercent = stof(fangraphsBattedBallRows[13]);
+	profile.hardPercent = stof(fangraphsBattedBallRows[14]);
+	return profile;
+}
+
+BattedBallProfile GetPlayerBattedBallProfile(std::string playerId, std::string year, CURL *curl, int advancedStatsFlags) {
+	string fangraphsData = GetPlayerFangraphsPageData(playerId, curl, year != CURRENT_YEAR, advancedStatsFlags);
+	year = ">" + year + "<";
+	return GetBattedBallProfileFromBattedBallProfileRows(fangraphsData, year);
+}
+
+BattedBallProfile GetPlayerCumulativeBattedBallProfileUpTo(std::string playerId, std::string dateUpTo, bool entireCareer, int advancedStatsFlags) {
+	FullSeasonStatsAdvanced batterAdvancedStats;
+
+	string cachedDate = GetDateBeforeOrAfterNumDays(dateUpTo, 1);
+	string cachedAtDateFileName = "FangraphsCachedPages\\CachedAtDate\\" + cachedDate + "\\PlayerId" + playerId;
+	if (advancedStatsFlags & AdvancedStatsBattingSplitsVersusLeftHand) {
+		cachedAtDateFileName += "VsLeft";
+	}
+	if (advancedStatsFlags & AdvancedStatsBattingSplitsVersusRightHand) {
+		cachedAtDateFileName += "VsRight";
+	}
+	cachedAtDateFileName += ".txt";
+	string cachedAtDateFileContents = GetEntireFileContents(cachedAtDateFileName);
+	if (cachedAtDateFileContents != "") {
+		string rowTitle = ">Total<";
+		if (!entireCareer) {
+			rowTitle = ">" + cachedDate.substr(0, 4) + "<";
+		}
+		return GetBattedBallProfileFromBattedBallProfileRows(cachedAtDateFileContents, rowTitle);
+	}
+	BattedBallProfile bpp;
+	return bpp;
+}
+
 FullSeasonPitcherStats::FullSeasonPitcherStats(std::string inString)
 {
 	vector<string> statLines = SplitStringIntoMultiple(inString, ";");
@@ -1277,6 +1325,50 @@ bool FullSeasonStats::operator==(const FullSeasonStats& rhs)
 	if (abs(rhs.totalGamesStarted - totalGamesStarted) > 0.5f)
 		return false;
 	return true;
+}
+
+bool BattedBallProfile::operator==(const BattedBallProfile& rhs) {
+	if (abs(homerunPerFlyBallPercent - rhs.homerunPerFlyBallPercent) > 0.1)
+		return false;
+	if (abs(softPercent - rhs.softPercent) > 0.1f)
+		return false;
+	if (abs(mediumPercent- rhs.mediumPercent) > 0.1f)
+		return false;
+	if (abs(hardPercent - rhs.hardPercent) > 0.1f)
+		return false;
+	return true;
+}
+void BattedBallProfile::operator+=(const BattedBallProfile& other) {
+	if (softPercent >= 0 && other.softPercent >= 0) {
+		homerunPerFlyBallPercent += other.homerunPerFlyBallPercent;
+		softPercent += other.softPercent;
+		mediumPercent += other.mediumPercent;
+		hardPercent += other.hardPercent;
+	}
+}
+void BattedBallProfile::operator*=(float rhs) {
+	if (softPercent >= 0) {
+		homerunPerFlyBallPercent *= rhs;
+		softPercent *= rhs;
+		mediumPercent *= rhs;
+		hardPercent *= rhs;
+	}
+}
+
+BattedBallProfile operator*(float floatFactor, const BattedBallProfile& stats) {
+	BattedBallProfile bbp(stats);
+	bbp *= floatFactor;
+	return bbp;
+}
+BattedBallProfile operator*(const BattedBallProfile& stats, float floatFactor) {
+	BattedBallProfile bbp(stats);
+	bbp *= floatFactor;
+	return bbp;
+}
+BattedBallProfile operator+(const BattedBallProfile& lhs, const BattedBallProfile& rhs) {
+	BattedBallProfile bbp(lhs);
+	bbp += rhs;
+	return bbp;
 }
 
 /*

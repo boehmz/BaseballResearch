@@ -54,6 +54,24 @@ struct FullSeasonStats
 };
 FullSeasonStats GetBatterStats(std::string playerId, std::string yearString, CURL *curl);
 
+struct BattedBallProfile {
+	float homerunPerFlyBallPercent = -1;
+	float softPercent = -1;
+	float mediumPercent = -1;
+	float hardPercent = -1;
+
+	bool operator==(const BattedBallProfile& rhs);
+	void operator+=(const BattedBallProfile& other);
+	void operator*=(float rhs);
+};
+BattedBallProfile operator*(float floatFactor, const BattedBallProfile& stats);
+BattedBallProfile operator*(const BattedBallProfile& stats, float floatFactor);
+BattedBallProfile operator+(const BattedBallProfile& lhs, const BattedBallProfile& rhs);
+
+BattedBallProfile GetPlayerBattedBallProfile(std::string playerId, std::string year, CURL *curl, int advancedStatsFlags);
+BattedBallProfile GetPlayerCumulativeBattedBallProfileUpTo(std::string playerId, std::string dateUpTo, bool entireCareer, int advancedStatsFlags);
+
+
 struct FullSeasonStatsAdvancedNoHandedness
 {
     int numPlateAppearances = 0;
