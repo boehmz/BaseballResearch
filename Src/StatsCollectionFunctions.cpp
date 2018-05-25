@@ -645,7 +645,7 @@ FullSeasonStatsAdvanced GetPitcherAdvancedStats(string playerId, string yearStri
     pitcherAdvancedStats.wobaVersusLefty = stof(fangraphsStandardRows[17]);
     pitcherAdvancedStats.isoVersusLefty = pitcherAdvancedStats.sluggingVersusLefty - pitcherAdvancedStats.averageVersusLefty;
     pitcherAdvancedStats.opsVersusLefty = stof(fangraphsStandardRows[15]) + pitcherAdvancedStats.sluggingVersusLefty;
-    pitcherAdvancedStats.numPlateAppearancesVersusLefty = stof(fangraphsStandardRows[3]);
+    pitcherAdvancedStats.numPlateAppearancesVersusLefty = atoi(fangraphsStandardRows[3].c_str());
 
 	fangraphsPlayerData = GetPlayerFangraphsPageData(playerId, curl, yearString != CURRENT_YEAR, AdvancedStatsPitchingSplitsVersusRightHand);
     fangraphsStandardRows = GetFangraphsRowColumns(">" + yearString + "<", fangraphsPlayerData, 18, "name=\"standard", "name=\"advanced", true);
@@ -656,7 +656,7 @@ FullSeasonStatsAdvanced GetPitcherAdvancedStats(string playerId, string yearStri
     pitcherAdvancedStats.wobaVersusRighty = stof(fangraphsStandardRows[17]);
     pitcherAdvancedStats.isoVersusRighty = pitcherAdvancedStats.sluggingVersusRighty - pitcherAdvancedStats.averageVersusRighty;
     pitcherAdvancedStats.opsVersusRighty = stof(fangraphsStandardRows[15]) + pitcherAdvancedStats.sluggingVersusRighty;
-    pitcherAdvancedStats.numPlateAppearancesVersusRighty = stof(fangraphsStandardRows[3]);
+    pitcherAdvancedStats.numPlateAppearancesVersusRighty = atoi(fangraphsStandardRows[3].c_str());
 
 	return pitcherAdvancedStats;
 }
@@ -681,7 +681,7 @@ FullSeasonStatsAdvanced GetPitcherCumulativeAdvancedStatsUpTo(std::string player
         pitcherAdvancedStats.wobaVersusLefty = stof(fangraphsStandardRows[17]);
         pitcherAdvancedStats.isoVersusLefty = pitcherAdvancedStats.sluggingVersusLefty - pitcherAdvancedStats.averageVersusLefty;
         pitcherAdvancedStats.opsVersusLefty = stof(fangraphsStandardRows[15]) + pitcherAdvancedStats.sluggingVersusLefty;
-        pitcherAdvancedStats.numPlateAppearancesVersusLefty = stof(fangraphsStandardRows[3]);
+        pitcherAdvancedStats.numPlateAppearancesVersusLefty = atoi(fangraphsStandardRows[3].c_str());
     }
     
     string cachedAtDateVersusRightFileName = "FangraphsCachedPages\\CachedAtDate\\" + cachedDate + "\\PlayerId" + playerId + "VsRight.txt";
@@ -699,7 +699,7 @@ FullSeasonStatsAdvanced GetPitcherCumulativeAdvancedStatsUpTo(std::string player
         pitcherAdvancedStats.wobaVersusRighty = stof(fangraphsStandardRows[17]);
         pitcherAdvancedStats.isoVersusRighty = pitcherAdvancedStats.sluggingVersusRighty - pitcherAdvancedStats.averageVersusRighty;
         pitcherAdvancedStats.opsVersusRighty = stof(fangraphsStandardRows[15]) + pitcherAdvancedStats.sluggingVersusRighty;
-        pitcherAdvancedStats.numPlateAppearancesVersusRighty = stof(fangraphsStandardRows[3]);
+        pitcherAdvancedStats.numPlateAppearancesVersusRighty = atoi(fangraphsStandardRows[3].c_str());
     }
     return pitcherAdvancedStats;
 }
