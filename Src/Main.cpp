@@ -212,8 +212,8 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = 20180507;
-		reviewDateEnd = 20180523;
+        reviewDateStart = 20180519;
+		reviewDateEnd = 20180520;
 		percentOfSeasonPassed = 35.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -482,7 +482,7 @@ void RefineAlgorithm()
                                     if (opponentPitcherAdvancedHandedness != opponentPitcherStatsAdvancedMap.end()) {
                                         FullSeasonStatsAdvanced p = opponentPitcherAdvancedHandedness->second;
                                         if (singlePlayerData.battingHandedness == 'L' && opponentPitcherAdvancedHandedness->second.numPlateAppearancesVersusLefty > 10) {
-                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusLefty * 1000.0;
+                                            singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusLefty * 1000.0f;
                                             singlePlayerData.playerPointsPerGame = pow(singlePlayerData.playerPointsPerGame, batterOverPitcherMultiplier);
                                             singlePlayerData.playerPointsPerGame *= opponentPitcherAdvancedHandedness->second.opsVersusLefty;
                                             allPlayers25SeasonOpsHandednessTimesPitcherOpsHandedness[playerPosition].push_back(singlePlayerData);
@@ -2361,7 +2361,7 @@ void GenerateNewLineup(CURL *curl)
 				assert(playerHasNoOpponentInformation == "nope");
 			}
 			if ((singlePlayerData.battingHandedness == 'L' && opposingPitcherAdvancedStats.opsVersusLefty >= 0) ||
-				(!singlePlayerData.battingHandedness == 'L' && opposingPitcherAdvancedStats.opsVersusRighty >= 0))
+				(singlePlayerData.battingHandedness == 'R' && opposingPitcherAdvancedStats.opsVersusRighty >= 0))
 			{
 				//ops to points = 5.89791155 * ops + 3.76171160
 				float averagePointsPerGame = 5.89791155f * leagueAverageOps + 3.76171160f;
