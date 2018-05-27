@@ -107,8 +107,6 @@ struct OpponentInformation
 void RefineAlgorithm();
 
 
-void DetermineProbableStarters(CURL* curl);
-
 struct BatterSplitsData
 {
 	float opsSeason = -1;
