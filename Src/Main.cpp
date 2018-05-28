@@ -22,7 +22,7 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 16;
 int earliestGameTime = 16;
-std::string todaysDate = "20180527";
+std::string todaysDate = "20180528";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
@@ -37,8 +37,8 @@ bool stackMaxNumTeams = false;
 int dayToDayInjuredPlayersNum = 0;
 string dayToDayInjuredPlayers[] = { "" };
 
-string pitcherTeamCode = "";
-string pitcherOpponentTeamCode = "";
+unordered_set<string> pitcherTeamCodes;
+unordered_set<string> pitcherOpponentTeamCodes;
 
 const float leagueAverageOps = 0.72f;
 
@@ -211,9 +211,9 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = 20180519;
-		reviewDateEnd = 20180520;
-		percentOfSeasonPassed = 35.0f / 162.0f;
+        reviewDateStart = 20170518;
+		reviewDateEnd = 20180518;
+		percentOfSeasonPassed = 32.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
         string top30BattersWithPitcherTrainingFileName = "Top30Order25BattersWithPitcherTrainingFile.csv";
@@ -413,6 +413,7 @@ void RefineAlgorithm()
 						singlePlayerData.playerPointsPerGame = -1;
 
 						int playerPosition = atoi(thisLineActualResults[6].c_str());
+						playerPosition = playerPosition % 10;
 						playerPosition -= 2;
 						if (playerPosition >= 0) {
                             singlePlayerData.battingHandedness = getPlayerBattingHandedness(singlePlayerData.playerId, curl);
@@ -571,6 +572,8 @@ void RefineAlgorithm()
 								size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
 								vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
 								float expectedFdPoints = stof(thisSabrLine[17]);
+								if (gameType == GameType::DraftKings)
+									expectedFdPoints = stof(thisSabrLine[16]);
 								singlePlayerData.playerPointsPerGame = expectedFdPoints;
                                 if (battingOrder >= 2 && battingOrder <= 5) {
                                     bool teamStackTrackerExists = false;
@@ -1171,6 +1174,8 @@ void RefineAlgorithm()
 						sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
 					}
 					maxTotalBudget = 25000;
+					if (gameType == GameType::DraftKings)
+						maxTotalBudget = 30000;
                    
 					vector<PlayerData> chosenLineup = OptimizeLineupToFitBudget();
                     if (line == 48 || line == 53 || line == 57 || line == 61 || line == 65 || line == 69 || line == 73 || line == 77 || line == 81) {
@@ -2179,37 +2184,46 @@ void ChooseAPitcher(CURL *curl)
             relieverStatsBattedBallFile.close();
         }
         
-
-        if (positionalPlayerData.size() == 0) {
-            cout << "No pitchers were found today (" << todaysDate << ")." << endl;
-        }
-		for (unsigned int i = 0; i < positionalPlayerData.size() && i < 30; ++i)
-		{
-			cout << i << ".  " << positionalPlayerData[i].playerName << "  " << positionalPlayerData[i].playerPointsPerGame << "  " << positionalPlayerData[i].playerSalary << endl;
+		int numPitchersToChoose = 1;
+		maxTotalBudget = 35000;
+		if (gameType == GameType::DraftKings) {
+			numPitchersToChoose = 2;
+			maxTotalBudget = 50000;
 		}
-		cout << "Choose between pitcher 0 and 29." << endl;
-		int pitcherSelected = -1;
-		cin >> pitcherSelected;
-		while (!cin || pitcherSelected < 0 || pitcherSelected > 29)
-		{
-			cout << "Must select between 0 and 9." << endl;
-			cin.clear();
-			cin.ignore();
+		while (numPitchersToChoose > 0) {
+			if (positionalPlayerData.size() == 0) {
+				cout << "No pitchers were found today (" << todaysDate << ")." << endl;
+			}
+			for (unsigned int i = 0; i < positionalPlayerData.size() && i < 30; ++i)
+			{
+				cout << i << ".  " << positionalPlayerData[i].playerName << "  " << positionalPlayerData[i].playerPointsPerGame << "  " << positionalPlayerData[i].playerSalary << endl;
+			}
+			cout << "Choose between pitcher 0 and 29." << endl;
+			int pitcherSelected = -1;
 			cin >> pitcherSelected;
+			while (!cin || pitcherSelected < 0 || pitcherSelected > 29)
+			{
+				cout << "Must select between 0 and 9." << endl;
+				cin.clear();
+				cin.ignore();
+				cin >> pitcherSelected;
+			}
+
+			if (pitcherSelected >= 0 && (unsigned int)pitcherSelected < positionalPlayerData.size()) {
+				maxTotalBudget -= positionalPlayerData[pitcherSelected].playerSalary;
+				auto opponentInformation = opponentMap.find(positionalPlayerData[pitcherSelected].teamCode);
+				if (opponentInformation != opponentMap.end())
+				{
+					pitcherOpponentTeamCodes.insert(opponentInformation->second.teamCodeRotoGuru);
+				}
+				pitcherTeamCodes.insert(positionalPlayerData[pitcherSelected].teamCode);
+				cout << "Selected " << positionalPlayerData[pitcherSelected].playerName << endl;
+			}
+			else {
+				cout << "Selected no one because there was no one to select\n";
+			}
+			numPitchersToChoose--;
 		}
-        
-        if (pitcherSelected >= 0 && (unsigned int)pitcherSelected < positionalPlayerData.size()) {
-            maxTotalBudget = 35000 - positionalPlayerData[pitcherSelected].playerSalary;
-            auto opponentInformation = opponentMap.find(positionalPlayerData[pitcherSelected].teamCode);
-            if (opponentInformation != opponentMap.end())
-            {
-                pitcherOpponentTeamCode = opponentInformation->second.teamCodeRotoGuru;
-            }
-            pitcherTeamCode = positionalPlayerData[pitcherSelected].teamCode;
-            cout << "Selected " << positionalPlayerData[pitcherSelected].playerName << endl;
-        } else {
-            cout << "Selected no one because there was no one to select\n";
-        }
 		curl_easy_cleanup(curl);
 	}
 }
@@ -2453,7 +2467,7 @@ void GenerateNewLineup(CURL *curl)
 					break;
 				}
 			}
-			bool bFacingChosenPitcher = singlePlayerData.teamCode == pitcherOpponentTeamCode;
+			bool bFacingChosenPitcher = pitcherOpponentTeamCodes.find(singlePlayerData.teamCode) != pitcherOpponentTeamCodes.end();
 			// throw this guy out if he's not a starter or his game will most likely be rained out
 			if (!bFacingChosenPitcher && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut)
 				positionalPlayerData.push_back(singlePlayerData);
@@ -2685,7 +2699,7 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl)
 						break;
 					}
 				}
-				bool bFacingChosenPitcher = singlePlayerData.teamCode == pitcherOpponentTeamCode;
+				bool bFacingChosenPitcher = pitcherOpponentTeamCodes.find(singlePlayerData.teamCode) != pitcherOpponentTeamCodes.end();
 				bool bAcceptableBattingOrder = false;
 				int minBattingOrder = 2;
 				int maxBattingOrder = 5;
@@ -3020,7 +3034,7 @@ void GenerateLineups(CURL *curl)
 						break;
 					}
 				}
-				bool bFacingChosenPitcher = singlePlayerData.teamCode == pitcherOpponentTeamCode;
+				bool bFacingChosenPitcher = pitcherOpponentTeamCodes.find(singlePlayerData.teamCode) != pitcherOpponentTeamCodes.end();
 				bool bAcceptableBattingOrder = false;
 				
                 size_t playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertLFNameToFLName(singlePlayerData.playerName) + " ");
@@ -3301,70 +3315,73 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 {
 	vector<unsigned int> idealPlayerPerPosition;
 	int maxPlayersPerTeam = 4;
-    // one utility player, combine 1B/C
-    allPlayers[1].insert(allPlayers[1].end(), allPlayers[0].begin(), allPlayers[0].end());
-    sort(allPlayers[1].begin(), allPlayers[1].end(), comparePlayerByPointsPerGame);
 
-	allPlayers[0].clear();
-	for (unsigned int i = 1; i < allPlayers.size(); ++i) {
-		allPlayers[0].insert(allPlayers[0].end(), allPlayers[i].begin(), allPlayers[i].end());
-	}
-	sort(allPlayers[0].begin(), allPlayers[0].end(), comparePlayerByPointsPerGame);
-	unordered_set<string> topXTeams;
-	for (unsigned int i = 0; i < allPlayers[0].size(); ++i) {
-		if (allPlayers[0][i].teamCode != pitcherOpponentTeamCode && topXTeams.find(allPlayers[0][i].teamCode) == topXTeams.end()) {
-			topXTeams.insert(allPlayers[0][i].teamCode);
-		}
-		if (topXTeams.size() >= 3)
-			break;
-	}
-    for (unsigned int i = 0; i < allPlayers[0].size();) {
-        bool utilityPlayerHasOtherChoicesAtPosition = true;
-        for (unsigned int op = 1; op < allPlayers.size(); ++op) {
-            if (allPlayers[op].size() == 1 && allPlayers[op][0].playerId == allPlayers[0][0].playerId) {
-                utilityPlayerHasOtherChoicesAtPosition = false;
-                break;
-            }
-        }
-        if (!utilityPlayerHasOtherChoicesAtPosition) {
-            allPlayers[0].erase(allPlayers[0].begin());
-        } else {
-            break;
-        }
-    }
-	if (allPlayers[0].size() > 1) {
-		allPlayers[0].erase(allPlayers[0].begin() + 1, allPlayers[0].end());
-	}
-	if (allPlayers[0].size() > 0) {
+	if (gameType == GameType::Fanduel) {
+		// one utility player, combine 1B/C
+		allPlayers[1].insert(allPlayers[1].end(), allPlayers[0].begin(), allPlayers[0].end());
+		sort(allPlayers[1].begin(), allPlayers[1].end(), comparePlayerByPointsPerGame);
+
+		allPlayers[0].clear();
 		for (unsigned int i = 1; i < allPlayers.size(); ++i) {
-			for (unsigned int p = 0; p < allPlayers[i].size(); ++p) {
-				if (allPlayers[i][p].playerId == allPlayers[0][0].playerId) {
-					allPlayers[i].erase(allPlayers[i].begin() + p);
+			allPlayers[0].insert(allPlayers[0].end(), allPlayers[i].begin(), allPlayers[i].end());
+		}
+		sort(allPlayers[0].begin(), allPlayers[0].end(), comparePlayerByPointsPerGame);
+		unordered_set<string> topXTeams;
+		for (unsigned int i = 0; i < allPlayers[0].size(); ++i) {
+			if (pitcherOpponentTeamCodes.find(allPlayers[0][i].teamCode) != pitcherOpponentTeamCodes.end() && topXTeams.find(allPlayers[0][i].teamCode) == topXTeams.end()) {
+				topXTeams.insert(allPlayers[0][i].teamCode);
+			}
+			if (topXTeams.size() >= 3)
+				break;
+		}
+		for (unsigned int i = 0; i < allPlayers[0].size();) {
+			bool utilityPlayerHasOtherChoicesAtPosition = true;
+			for (unsigned int op = 1; op < allPlayers.size(); ++op) {
+				if (allPlayers[op].size() == 1 && allPlayers[op][0].playerId == allPlayers[0][0].playerId) {
+					utilityPlayerHasOtherChoicesAtPosition = false;
 					break;
 				}
 			}
+			if (!utilityPlayerHasOtherChoicesAtPosition) {
+				allPlayers[0].erase(allPlayers[0].begin());
+			}
+			else {
+				break;
+			}
 		}
-
-		if (stackMaxNumTeams) {
+		if (allPlayers[0].size() > 1) {
+			allPlayers[0].erase(allPlayers[0].begin() + 1, allPlayers[0].end());
+		}
+		if (allPlayers[0].size() > 0) {
 			for (unsigned int i = 1; i < allPlayers.size(); ++i) {
 				for (unsigned int p = 0; p < allPlayers[i].size(); ++p) {
-					if (allPlayers[i][p].teamCode == allPlayers[0][0].teamCode) {
-						allPlayers[i][p].playerPointsPerGame += 2500;
+					if (allPlayers[i][p].playerId == allPlayers[0][0].playerId) {
+						allPlayers[i].erase(allPlayers[i].begin() + p);
+						break;
 					}
 				}
-				sort(allPlayers[i].begin(), allPlayers[i].end(), comparePlayerByPointsPerGame);
 			}
 
-			for (unsigned int i = 1; i < allPlayers.size(); ++i) {
-				for (int p = allPlayers[i].size() - 1; p >= 0; --p) {
-					if (topXTeams.find(allPlayers[i][p].teamCode) == topXTeams.end()) {
-						allPlayers[i].erase(allPlayers[i].begin() + p);
+			if (stackMaxNumTeams) {
+				for (unsigned int i = 1; i < allPlayers.size(); ++i) {
+					for (unsigned int p = 0; p < allPlayers[i].size(); ++p) {
+						if (allPlayers[i][p].teamCode == allPlayers[0][0].teamCode) {
+							allPlayers[i][p].playerPointsPerGame += 2500;
+						}
+					}
+					sort(allPlayers[i].begin(), allPlayers[i].end(), comparePlayerByPointsPerGame);
+				}
+
+				for (unsigned int i = 1; i < allPlayers.size(); ++i) {
+					for (int p = allPlayers[i].size() - 1; p >= 0; --p) {
+						if (topXTeams.find(allPlayers[i][p].teamCode) == topXTeams.end()) {
+							allPlayers[i].erase(allPlayers[i].begin() + p);
+						}
 					}
 				}
 			}
 		}
 	}
-
 	for (unsigned int ap = 0; ap < allPlayers.size(); ++ap)
 	{
 		for (int i = allPlayers[ap].size() - 1; i > 0; --i)
@@ -3424,7 +3441,9 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 		addPlayerToTeam(numPlayersFromTeam, allPlayers[positionIndex][idealPlayerPerPosition[i]].teamCode);
 	}
 
-	addPlayerToTeam(numPlayersFromTeam, pitcherTeamCode);
+	for (const auto& pitcherString : pitcherTeamCodes) {
+		addPlayerToTeam(numPlayersFromTeam, pitcherString);
+	}
 	
 	vector<string> teamsWithTooManyPlayers = teamsWithNumPlayersAboveThreshold(numPlayersFromTeam, maxPlayersPerTeam);
 	while (teamsWithTooManyPlayers.size() > 0) {
