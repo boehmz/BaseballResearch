@@ -3271,7 +3271,7 @@ void GenerateLineups(CURL *curl)
 			cout << sluggingOnlyLineup[i].playerName << endl;
 		}
 	}
-	if (minMaxLineup.size() > 0) {
+	if (minMaxLineup.size() > 0 && gameType != GameType::DraftKings) {
 		cout << "\nQuintiple Up:\n";
 		for (unsigned int i = 0; i < minMaxLineup.size(); ++i) {
 			cout << minMaxLineup[i].playerName << endl;
