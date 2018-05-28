@@ -17,7 +17,7 @@
 using namespace std;
 
 // BeatTheStreak not supported past 2017, RIP
-GameType gameType = GameType::Fanduel;
+GameType gameType = GameType::DraftKings;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 16;
@@ -573,7 +573,7 @@ void RefineAlgorithm()
 								vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
 								float expectedFdPoints = stof(thisSabrLine[17]);
 								if (gameType == GameType::DraftKings)
-									expectedFdPoints = stof(thisSabrLine[16]);
+									expectedFdPoints = stof(thisSabrLine[18]);
 								singlePlayerData.playerPointsPerGame = expectedFdPoints;
                                 if (battingOrder >= 2 && battingOrder <= 5) {
                                     bool teamStackTrackerExists = false;
@@ -2066,7 +2066,7 @@ void ChooseAPitcher(CURL *curl)
 			combinedPitcherStats.era = 0.5f * opponentRunsPerGame + 0.5f * combinedPitcherStats.era;
             singlePlayerData.playerPointsPerGame = -1;
 			bool pointsCalculatedFromSabrPredictor = false;
-            if (combinedPitcherStats.strikeOutsPer9 >= 0) {
+            if (combinedPitcherStats.strikeOutsPer9 >= 0 && gameType != GameType::DraftKings) {
                 singlePlayerData.playerPointsPerGame = combinedPitcherStats.era * -0.352834158133307318f + combinedPitcherStats.xfip * -1.50744966177988493f + combinedPitcherStats.strikeOutsPer9 * 1.44486530250260237f;
             } else {
                 size_t playerNameIndex = sabrPredictorTextPitchers.find(ConvertLFNameToFLName(singlePlayerData.playerName));
@@ -2075,6 +2075,9 @@ void ChooseAPitcher(CURL *curl)
                     vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
                     float expectedFdPoints = stof(thisSabrLine[14]);
                     singlePlayerData.playerPointsPerGame = 2.0f + (expectedFdPoints - 25.0f) / 3.33f;
+					if (gameType == GameType::DraftKings) {
+						singlePlayerData.playerPointsPerGame = stof(thisSabrLine[15]);
+					}
 					pointsCalculatedFromSabrPredictor = true;
                 }
             }
@@ -2907,6 +2910,8 @@ void GenerateLineups(CURL *curl)
 					size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
 					vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
                     expectedFdPoints = stof(thisSabrLine[17]);
+					if (gameType == GameType::DraftKings)
+						expectedFdPoints = stof(thisSabrLine[18]);
 					singlePlayerData.playerPointsPerGame = expectedFdPoints;
                     
 
