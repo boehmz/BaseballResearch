@@ -17,16 +17,16 @@
 using namespace std;
 
 // BeatTheStreak not supported past 2017, RIP
-GameType gameType = GameType::DraftKings;
+GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
-int latestGameTime = 16;
-int earliestGameTime = 16;
-std::string todaysDate = "20180528";
+int latestGameTime = 99;
+int earliestGameTime = 19;
+std::string todaysDate = "20180530";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 51.0f / 162.0f;
+float percentOfSeasonPassed = 53.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -51,7 +51,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -211,8 +211,8 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = 20170518;
-		reviewDateEnd = 20180518;
+        reviewDateStart = 20180507;
+		reviewDateEnd = 20180529;
 		percentOfSeasonPassed = 32.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -358,14 +358,19 @@ void RefineAlgorithm()
                 vector< vector<PlayerData> > allPlayers25RbisPlusRunsTimesPitcher(6);
                 vector< vector<PlayerData> > allPlayers25RbiRunsOpiTimesPitcher(6);
                 
-                vector< vector<PlayerData> > allPlayers25RunsHandedness(6);
-                vector< vector<PlayerData> > allPlayers25RbiRunsOpiHandedness(6);
                 vector< vector<PlayerData> > allPlayers25SeasonIsoHandedness(6);
                 vector< vector<PlayerData> > allPlayers25SeasonOpsHandedness(6);
                 vector< vector<PlayerData> > allPlayers25SeasonWobaHandedness(6);
                 vector< vector<PlayerData> > allPlayers25SeasonIsoHandednessTimesPitcherIsoHandedness(6);
                 vector< vector<PlayerData> > allPlayers25SeasonOpsHandednessTimesPitcherOpsHandedness(6);
                 vector< vector<PlayerData> > allPlayers25SeasonWobaHandednessTimesPitcherWobaHandedness(6);
+                vector< vector<PlayerData> > allPlayers25SeasonIsoHandednessTimesDkPitcher(6);
+                vector< vector<PlayerData> > allPlayers25SeasonOpsHandednessTimesDkPitcher(6);
+                vector< vector<PlayerData> > allPlayers25SeasonWobaHandednessTimesDkPitcher(6);
+                vector< vector<PlayerData> > allPlayers25SeasonIsoHandednessTwoThirds(6);
+                vector< vector<PlayerData> > allPlayers25SeasonOpsHandednessTwoThirds(6);
+                vector< vector<PlayerData> > allPlayers25SeasonWobaHandednessTwoThirds(6);
+                
                 
                 vector< vector<PlayerData> > allPlayersSalary(6);
                 vector< vector<PlayerData> > allPlayers25Salary(6);
@@ -449,7 +454,8 @@ void RefineAlgorithm()
 							}
                             singlePlayerData.playerPointsPerGame = static_cast <float>(singlePlayerData.playerSalary + rand() % 100);
                             allPlayersSalary[playerPosition].push_back(singlePlayerData);
-							if (battingOrder >= 2 && battingOrder <= 5 && combinedBatterStats.average > 0.21f) {
+							float batterOverPitcherMultiplier = 2.5f;
+                            if (battingOrder >= 2 && battingOrder <= 5 && combinedBatterStats.average > 0.21f) {
                                 singlePlayerData.playerPointsPerGame = static_cast <float>(singlePlayerData.playerSalary + rand() % 100);
                                 allPlayers25Salary[playerPosition].push_back(singlePlayerData);
                                 
@@ -467,18 +473,24 @@ void RefineAlgorithm()
 									numBattersPutInTrainingFileToday++;
 								}
                                 
-                                float batterOverPitcherMultiplier = 2.5f;
+                                
                                 if (opponentPitcher != opponentPitcherScoreMap.end() && opponentPitcher->second.isLeftHanded && combinedBatterStatsHandedness.numPlateAppearancesVersusLefty > 100) {
-                               //     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.
-                                //    allPlayers25RunsHandedness[playerPosition].push_back(singlePlayerData);
-                                //    allPlayers25RbiRunsOpiHandedness[playerPosition].push_back(singlePlayerData);
-                                //    allPlayers25SeasonIsoHandedness[playerPosition].push_back(singlePlayerData);
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusLefty * 1000.0f;
                                     allPlayers25SeasonOpsHandedness[playerPosition].push_back(singlePlayerData);
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusLefty * 1000.0f;
                                     allPlayers25SeasonWobaHandedness[playerPosition].push_back(singlePlayerData);
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusLefty * 1000.0f;
                                     allPlayers25SeasonIsoHandedness[playerPosition].push_back(singlePlayerData);
+
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusLefty * 667.0f;
+                                    singlePlayerData.playerPointsPerGame += combinedBatterStats.ops * 333.0f;
+                                    allPlayers25SeasonOpsHandednessTwoThirds[playerPosition].push_back(singlePlayerData);
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusLefty * 667.0f;
+                                    singlePlayerData.playerPointsPerGame += combinedBatterStats.woba * 333.0f;
+                                    allPlayers25SeasonWobaHandednessTwoThirds[playerPosition].push_back(singlePlayerData);
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusLefty * 667.0f;
+                                    singlePlayerData.playerPointsPerGame += combinedBatterStats.iso * 333.0f;
+                                    allPlayers25SeasonIsoHandednessTwoThirds[playerPosition].push_back(singlePlayerData);
                                     
                                     if (singlePlayerData.battingHandedness == 'S') {
                                         if (opponentPitcher->second.isLeftHanded)
@@ -526,6 +538,16 @@ void RefineAlgorithm()
                                     allPlayers25SeasonWobaHandedness[playerPosition].push_back(singlePlayerData);
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusRighty * 1000.0f;
                                     allPlayers25SeasonIsoHandedness[playerPosition].push_back(singlePlayerData);
+                                    
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusRighty * 667.0f;
+                                    singlePlayerData.playerPointsPerGame += combinedBatterStats.ops * 333.0f;
+                                    allPlayers25SeasonOpsHandednessTwoThirds[playerPosition].push_back(singlePlayerData);
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusRighty * 667.0f;
+                                    singlePlayerData.playerPointsPerGame += combinedBatterStats.woba * 333.0f;
+                                    allPlayers25SeasonWobaHandednessTwoThirds[playerPosition].push_back(singlePlayerData);
+                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusRighty * 667.0f;
+                                    singlePlayerData.playerPointsPerGame += combinedBatterStats.iso * 333.0f;
+                                    allPlayers25SeasonIsoHandednessTwoThirds[playerPosition].push_back(singlePlayerData);
                                     
                                     if (singlePlayerData.battingHandedness == 'S') {
                                         if (opponentPitcher->second.isLeftHanded)
@@ -683,6 +705,35 @@ void RefineAlgorithm()
                                                 allPlayers25RbiRunsOpi[playerPosition].push_back(singlePlayerData);
                                                 singlePlayerData.playerPointsPerGame *= (1.7f * pitcherOpsAllowed / leagueAverageOps);//opponentPitcher->second.xfip;//(60.0f / opponentPitcher->second.strikeOutsPer9);
                                                 allPlayers25RbiRunsOpiTimesPitcher[playerPosition].push_back(singlePlayerData);
+                                                
+                                                if (opponentPitcher != opponentPitcherScoreMap.end() && opponentPitcher->second.isLeftHanded && combinedBatterStatsHandedness.numPlateAppearancesVersusLefty > 100) {
+                                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusLefty * 1000.0f;
+                                                    singlePlayerData.playerPointsPerGame = pow(singlePlayerData.playerPointsPerGame, batterOverPitcherMultiplier);
+                                                    singlePlayerData.playerPointsPerGame *= (60.0f / expectedDkPointsPitcher);
+                                                    allPlayers25SeasonOpsHandednessTimesDkPitcher[playerPosition].push_back(singlePlayerData);
+                                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusLefty * 1000.0f;
+                                                     singlePlayerData.playerPointsPerGame = pow(singlePlayerData.playerPointsPerGame, batterOverPitcherMultiplier);
+                                                    singlePlayerData.playerPointsPerGame *= (60.0f / expectedDkPointsPitcher);
+                                                    allPlayers25SeasonWobaHandednessTimesDkPitcher[playerPosition].push_back(singlePlayerData);
+                                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusLefty * 1000.0f;
+                                                     singlePlayerData.playerPointsPerGame = pow(singlePlayerData.playerPointsPerGame, batterOverPitcherMultiplier);
+                                                    singlePlayerData.playerPointsPerGame *= (60.0f / expectedDkPointsPitcher);
+                                                    allPlayers25SeasonIsoHandednessTimesDkPitcher[playerPosition].push_back(singlePlayerData);
+                                                }
+                                                if (opponentPitcher != opponentPitcherScoreMap.end() && !opponentPitcher->second.isLeftHanded && combinedBatterStatsHandedness.numPlateAppearancesVersusRighty > 100) {
+                                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusRighty * 1000.0f;
+                                                     singlePlayerData.playerPointsPerGame = pow(singlePlayerData.playerPointsPerGame, batterOverPitcherMultiplier);
+                                                    singlePlayerData.playerPointsPerGame *= (60.0f / expectedDkPointsPitcher);
+                                                    allPlayers25SeasonOpsHandednessTimesDkPitcher[playerPosition].push_back(singlePlayerData);
+                                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusRighty * 1000.0f;
+                                                     singlePlayerData.playerPointsPerGame = pow(singlePlayerData.playerPointsPerGame, batterOverPitcherMultiplier);
+                                                    singlePlayerData.playerPointsPerGame *= (60.0f / expectedDkPointsPitcher);
+                                                    allPlayers25SeasonWobaHandednessTimesDkPitcher[playerPosition].push_back(singlePlayerData);
+                                                    singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusRighty * 1000.0f;
+                                                     singlePlayerData.playerPointsPerGame = pow(singlePlayerData.playerPointsPerGame, batterOverPitcherMultiplier);
+                                                    singlePlayerData.playerPointsPerGame *= (60.0f / expectedDkPointsPitcher);
+                                                    allPlayers25SeasonIsoHandednessTimesDkPitcher[playerPosition].push_back(singlePlayerData);
+                                                }
                                             }
                                             
                                             
@@ -1125,12 +1176,18 @@ void RefineAlgorithm()
                 allPlayersLineupOrder.push_back(allPlayers25PitcherOpsMultiply);
                 allPlayersLineupOrder.push_back(allPlayers25PitcherOpsMultiply);    //80
                 allPlayersLineupOrder.push_back(emptyLineup);
+                allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandedness);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonOpsHandedness);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonWobaHandedness);
-                allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandedness);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandednessTimesPitcherIsoHandedness);  //85
                 allPlayersLineupOrder.push_back(allPlayers25SeasonOpsHandednessTimesPitcherOpsHandedness);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonWobaHandednessTimesPitcherWobaHandedness);
+                allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandednessTimesDkPitcher);
+                allPlayersLineupOrder.push_back(allPlayers25SeasonOpsHandednessTimesDkPitcher);
+                allPlayersLineupOrder.push_back(allPlayers25SeasonWobaHandednessTimesDkPitcher);    //90
+                allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandednessTwoThirds);
+                allPlayersLineupOrder.push_back(allPlayers25SeasonOpsHandednessTwoThirds);
+                allPlayersLineupOrder.push_back(allPlayers25SeasonWobaHandednessTwoThirds);
 				allPlayersLineupOrder.push_back(allPlayersActualScores);            
 
 				chosenLineupsList.resize(allPlayersLineupOrder.size());
@@ -1190,7 +1247,7 @@ void RefineAlgorithm()
 									maxPrevPoints = chosenLineupsList[line - 2][chosenLineupsList[line - 2].size() - 1];
 								if ((chosenLineupsList[line - 1].size() - 1 == latestDay) && (chosenLineupsList[line - 1][chosenLineupsList[line - 1].size() - 1] > maxPrevPoints))
 									maxPrevPoints = chosenLineupsList[line - 1][chosenLineupsList[line - 1].size() - 1];
-								chosenLineupsList[line].push_back(maxPrevPoints);
+							//	chosenLineupsList[line].push_back(maxPrevPoints);
 							}
 						}
                     } else if (chosenLineup.size() > 0) {
@@ -2111,7 +2168,7 @@ void ChooseAPitcher(CURL *curl)
             } else {
                 bRainedOut = true;
             }
-			
+            
 			// throw this guy out if his game will most likely be rained out
 			if (singlePlayerData.playerPointsPerGame > 0 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut && opponentsInfo != opponentMap.end())
 				positionalPlayerData.push_back(singlePlayerData);
