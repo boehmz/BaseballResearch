@@ -17,16 +17,16 @@
 using namespace std;
 
 // BeatTheStreak not supported past 2017, RIP
-GameType gameType = GameType::Fanduel;
+GameType gameType = GameType::DraftKings;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180530";
+std::string todaysDate = "20180531";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 53.0f / 162.0f;
+float percentOfSeasonPassed = 54.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -51,7 +51,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 	switch (processType)
 	{
 	case UnitTest:
@@ -3098,7 +3098,6 @@ void GenerateLineups(CURL *curl)
 				}
 				bool bFacingChosenPitcher = pitcherOpponentTeamCodes.find(singlePlayerData.teamCode) != pitcherOpponentTeamCodes.end();
 				bool bAcceptableBattingOrder = false;
-				
                 size_t playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertLFNameToFLName(singlePlayerData.playerName) + " ");
 				if (playerIndexInTodaysLineups == string::npos) {
 					playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertNameToFirstInitialLastName(singlePlayerData.playerName) + " ");
@@ -3176,8 +3175,8 @@ void GenerateLineups(CURL *curl)
                         }
                         singlePlayerData.playerPointsPerGame = expectedFdPoints;
                         allPlayers25[positionIndex].push_back(singlePlayerData);
-						addedAtLeast1Player = true;
                     }
+                    addedAtLeast1Player = true;
 				}
 				if (placeHolderIndex == string::npos)
 					break;

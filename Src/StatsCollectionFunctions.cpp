@@ -128,6 +128,10 @@ bool doesPlayerThrowLeftHanded(std::string playerId, CURL *curl) {
             } else if (throwsString == "Left") {
                 return true;
             }
+            // hard code because some players have their throws field missing
+            if (playerId == "147u") {
+                return false;
+            }
             if (throwsString.at(0) == 'R' || throwsString.at(0) == 'r') {
                 return false;
             }
