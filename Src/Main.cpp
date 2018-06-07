@@ -17,18 +17,18 @@
 using namespace std;
 
 // BeatTheStreak not supported past 2017, RIP
-GameType gameType = GameType::DraftKings;
+GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180606";
+std::string todaysDate = "20180607";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 60.0f / 162.0f;
+float percentOfSeasonPassed = 61.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
-bool stackMaxNumTeams = true;
+bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
 // batting order 2-5 (6 for catchers)
 // applies team stacks
@@ -3581,8 +3581,8 @@ vector<PlayerData> OptimizeLineupToFitBudget()
                 }
             }
         }
+        vector<PlayerData> playersToReturn;
         if (chosenPlayers.size() > 0) {
-            vector<PlayerData> playersToReturn;
             for (unsigned int i = 0; i < chosenPlayers.size(); ++i)
             {
                 unsigned int positionIndex = i;
@@ -3590,8 +3590,8 @@ vector<PlayerData> OptimizeLineupToFitBudget()
                     positionIndex = allPlayers.size() - 1;
                 playersToReturn.push_back(allPlayers[positionIndex][chosenPlayers[i]]);
             }
-            return playersToReturn;
         }
+        return playersToReturn;
     }
 	
 
@@ -6236,7 +6236,11 @@ void GetBallparkFactors(string ballparkName, string statName, float& outFactorLe
 		if (rightHandedBatterIndex != string::npos && ballParkEndIndex != string::npos)
 			outFactorRightyBatter = stof(ballParkFactorData.substr(rightHandedBatterIndex + 1, ballParkEndIndex - rightHandedBatterIndex - 1));
 
-	}
+    } else {
+        cout << "Could not find park info for " << ballparkName;
+        outFactorLeftyBatter = 1;
+        outFactorRightyBatter = 1;
+    }
 }
 
 
