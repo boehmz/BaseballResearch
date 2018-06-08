@@ -1147,6 +1147,10 @@ void RefineAlgorithm()
                // allPlayersLineupOrder.push_back(allPlayers25Salary);    //50
                // allPlayersLineupOrder.push_back(allPlayers25Salary);
                // allPlayersLineupOrder.push_back(allPlayers25Salary);
+				allPlayersLineupOrder.push_back(allPlayers25PitcherYahooMultiply);
+				allPlayersLineupOrder.push_back(allPlayers25PitcherYahooMultiply);    //50
+				allPlayersLineupOrder.push_back(allPlayers25PitcherYahooMultiply);
+				allPlayersLineupOrder.push_back(allPlayers25PitcherYahooMultiply);
                 allPlayersLineupOrder.push_back(emptyLineup);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyWhip);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyWhip);  //55
