@@ -307,7 +307,8 @@ void RefineAlgorithm()
 			string gameTimesAndOdds = "";
 			CurlGetSiteContents(curl, gameTimesAndOddsURL, gameTimesAndOdds, true);
 			CutStringToOnlySectionBetweenKeywords(gameTimesAndOdds, "class=\"odds_gamesHolder\"", "class=\"odds_pages\"");
-			
+			unordered_map<string, int> teamCodeToGameTime;
+
 			string resultsLine;
 
 			numBattersPutInTrainingFileToday = 0;
@@ -425,6 +426,38 @@ void RefineAlgorithm()
 						int playerPosition = atoi(thisLineActualResults[6].c_str());
 						playerPosition = playerPosition % 10;
 						playerPosition -= 2;
+						int gameStartTime = -1;
+						auto gameTimeElement = teamCodeToGameTime.find(singlePlayerData.teamCode);
+						if (gameTimeElement == teamCodeToGameTime.end()) {
+							
+							string teamCodesData = GetEntireFileContents("TeamCodes.txt");
+							string teamCodeForFile = ConvertRotoGuruTeamCodeToStandardTeamCode(singlePlayerData.teamCode);
+							size_t teamCodeLineIndex = teamCodesData.find(";" + teamCodeForFile + ";");
+							teamCodeLineIndex = teamCodesData.rfind("\n", teamCodeLineIndex);
+							size_t teamCodeLineEndIndex = teamCodesData.find("\n", teamCodeLineIndex + 1);
+							string teamCodesLine = teamCodesData.substr(teamCodeLineIndex + 1, teamCodeLineEndIndex - teamCodeLineIndex - 1);
+							vector<string> teamCodesColumns = SplitStringIntoMultiple(teamCodesLine, ";");
+							string fullteamName = teamCodesColumns[0];
+							string gameTimeSection = ExtractStringToBeOnlySectionBetweenKeywords(gameTimesAndOdds, fullteamName, "oddsOpener");
+							bool isPm = true;
+							size_t pmamIndex = gameTimeSection.find(" PM");
+							if (pmamIndex == string::npos) {
+								pmamIndex = gameTimeSection.find(" AM");
+								isPm = false;
+							}
+							if (pmamIndex != string::npos) {
+								size_t timeIndexBegin = gameTimeSection.rfind(">", pmamIndex);
+								size_t timeIndexEnd = gameTimeSection.find(":", timeIndexBegin);
+								gameStartTime = atoi(gameTimeSection.substr(timeIndexBegin + 1, timeIndexEnd - timeIndexBegin - 1).c_str());
+								if (isPm)
+									gameStartTime += 12;
+							}
+							teamCodeToGameTime.insert({ singlePlayerData.teamCode, gameStartTime });
+						} else {
+							gameStartTime = gameTimeElement->second;
+						}
+						if (gameStartTime < 19)
+							playerPosition = -999;
 						if (playerPosition >= 0) {
                             singlePlayerData.battingHandedness = getPlayerBattingHandedness(singlePlayerData.playerId, curl);
 							
@@ -3509,7 +3542,7 @@ vector<PlayerData> OptimizeLineupToFitBudget()
     if (stackMaxNumTeams) {
         vector<unsigned int> chosenPlayers;
         float bestValidScore = -1;
-        int leastTeamsRepresented = idealPlayerPerPosition.size() + 1;
+        unsigned int leastTeamsRepresented = idealPlayerPerPosition.size() + 1;
         for (unsigned int a = 0; a < allPlayers[1].size(); ++a) {
             changeIdealPlayerAtPosition(idealPlayerPerPosition, 1, a, numPlayersFromTeam, totalSalary);
             for (unsigned int b = 0; b < allPlayers[2].size(); ++b) {
