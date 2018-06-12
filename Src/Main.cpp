@@ -22,11 +22,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180608";
+std::string todaysDate = "20180610";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 62.0f / 162.0f;
+float percentOfSeasonPassed = 63.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -51,7 +51,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -167,7 +167,7 @@ string getSabrPredictorFileContents(string date, bool bPitchers) {
 
 void RefineAlgorithm()
 {
-    
+	stackMaxNumTeams = true;
 	bool bRefineForPitchers = true;
 	bool bRefineForBatters = true;
 	bool bCombinePitcherIntoLineup = true;
@@ -213,7 +213,7 @@ void RefineAlgorithm()
 		vector<float> sabrPredictorPitcherOutputValues;
         reviewDateStart = 20180415;
 		reviewDateEnd = 20180529;
-		percentOfSeasonPassed = 32.0f / 162.0f;
+		percentOfSeasonPassed = 14.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
         string top30BattersWithPitcherTrainingFileName = "Top30Order25BattersWithPitcherTrainingFile.csv";
@@ -303,6 +303,11 @@ void RefineAlgorithm()
 			curl_easy_perform(curl);
 			curl_easy_reset(curl);
 
+			string gameTimesAndOddsURL = "http://www.donbest.com/mlb/odds/" + thisDate + ".html";
+			string gameTimesAndOdds = "";
+			CurlGetSiteContents(curl, gameTimesAndOddsURL, gameTimesAndOdds, true);
+			CutStringToOnlySectionBetweenKeywords(gameTimesAndOdds, "class=\"odds_gamesHolder\"", "class=\"odds_pages\"");
+			
 			string resultsLine;
 
 			numBattersPutInTrainingFileToday = 0;
@@ -2841,6 +2846,7 @@ vector<PlayerData> GetLineupWhileResettingAllPlayers(vector< vector<PlayerData> 
 
 void GenerateLineups(CURL *curl)
 {
+	stackMaxNumTeams = false;
 	if (curl == NULL)
 		curl = curl_easy_init();
 	vector<TeamStackTracker> teamStackList;
