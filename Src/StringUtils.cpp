@@ -198,6 +198,16 @@ void RemoveJavaScriptBlocksFromFileText(std::string& fileText) {
 	}
 }
 
+void CutStringToOnlySectionBetweenKeywords(std::string& wholeString, const std::string& sectionBegin, const std::string& sectionEnd) {
+	size_t beginIndex = wholeString.find(sectionBegin);
+	if (beginIndex == string::npos)
+		beginIndex = 0;
+	size_t endIndex = wholeString.find(sectionEnd, beginIndex);
+	if (endIndex != string::npos)
+		endIndex += sectionEnd.length();
+	wholeString = wholeString.substr(beginIndex, endIndex - beginIndex);
+}
+
 void RemoveAllSectionsWithKeyword(std::string& wholeString, const std::string& keyword, const std::string& sectionBegin, const std::string& sectionEnd) {
 	size_t keywordIndex = wholeString.find(keyword);
 	while (keywordIndex != string::npos) {

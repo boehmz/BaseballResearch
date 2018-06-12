@@ -27,6 +27,7 @@ std::string ConvertSpecialCharactersToEnglish26(std::string specialCharactersStr
 void RemoveJavaScriptBlocksFromFileText(std::string& fileText);
 void RemoveAllSectionsWithKeyword(std::string& wholeString, const std::string& keyword, const std::string& sectionBegin, const std::string& sectionEnd);
 std::string GetSubStringBetweenStrings(const std::string& wholeString, const std::string& leftString, const std::string& rightString);
+void CutStringToOnlySectionBetweenKeywords(std::string& wholeString, const std::string& sectionBegin, const std::string& sectionEnd);
 
 std::vector<std::string> SplitStringIntoMultiple(std::string wholeString, std::string tokens, std::string removeFromIndividual = "");
 
