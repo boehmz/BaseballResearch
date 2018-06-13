@@ -419,8 +419,7 @@ void RefineAlgorithm()
 						singlePlayerData.teamCode = thisLineActualResults[9];
 						int battingOrder = atoi(thisLineActualResults[5].c_str());
 						singlePlayerData.battingOrder = battingOrder;
-						int mainBattingOrderMin = 2;
-						int mainBattingOrderMax = 5;
+						
 						float actualPlayerPoints = stof(thisLineActualResults[7]);
 						std::transform(singlePlayerData.teamCode.begin(), singlePlayerData.teamCode.end(), singlePlayerData.teamCode.begin(), ::tolower);
 						singlePlayerData.playerPointsPerGame = -1;
@@ -461,6 +460,11 @@ void RefineAlgorithm()
 						if (gameStartTime < 19)
 							playerPosition = -999;
 						if (playerPosition >= 0) {
+							int mainBattingOrderMin = 2;
+							int mainBattingOrderMax = 5;
+							if (gameType == GameType::DraftKings && playerPosition == 0)
+								mainBattingOrderMax++;
+
                             singlePlayerData.battingHandedness = getPlayerBattingHandedness(singlePlayerData.playerId, curl);
 							
 							FullSeasonStatsAdvancedNoHandedness batterStats = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious);
