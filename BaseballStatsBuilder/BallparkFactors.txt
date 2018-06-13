@@ -322,7 +322,7 @@ Tropicana Field;
 0.90;R;1.02
 
 
-U.S. Cellular Field;
+U.S. Cellular Field; Guaranteed Rate Field;
 1.10;HR;1.19
 0.74;Triples;1.24
 0.89;Doubles;0.88
