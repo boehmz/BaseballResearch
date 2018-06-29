@@ -316,8 +316,11 @@ void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuff
 		curl_easy_setopt(curl, CURLOPT_URL, readURL.c_str());
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &writeBuffer);
-		if (allowRedirects)
+        curl_easy_setopt(curl, CURLOPT_TIMEOUT, 30L);
+        if (allowRedirects) {
 			curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+            curl_easy_setopt(curl, CURLOPT_TIMEOUT, 60L);
+        }
 		curl_easy_perform(curl);
 		curl_easy_reset(curl);
 	}
