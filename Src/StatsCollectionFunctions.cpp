@@ -132,7 +132,7 @@ bool doesPlayerThrowLeftHanded(std::string playerId, CURL *curl) {
             if (playerId == "147u" || playerId == "148a") {
                 return false;
             }
-            if (playerId == "148c")
+            if (playerId == "148c" || playerId == "148v")
                 return true;
             if (throwsString.at(0) == 'R' || throwsString.at(0) == 'r') {
                 return false;
