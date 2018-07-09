@@ -22,11 +22,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180610";
+std::string todaysDate = "20180709";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 63.0f / 162.0f;
+float percentOfSeasonPassed = 89.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -51,7 +51,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 int main(void)
 {
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 	switch (processType)
 	{
 	case UnitTest:
@@ -165,6 +165,14 @@ string getSabrPredictorFileContents(string date, bool bPitchers) {
 	return sabrPredictorText;
 }
 
+struct VegasTeamRunPair {
+    string teamCode;
+    float vegasRuns;
+};
+bool compareVegasRunsByTeam(VegasTeamRunPair a, VegasTeamRunPair b) {
+    return a.vegasRuns > b.vegasRuns;
+}
+
 void RefineAlgorithm()
 {
 	stackMaxNumTeams = true;
@@ -212,7 +220,7 @@ void RefineAlgorithm()
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
         reviewDateStart = 20180415;
-		reviewDateEnd = 20180529;
+		reviewDateEnd = 20180701;
 		percentOfSeasonPassed = 14.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -235,6 +243,8 @@ void RefineAlgorithm()
 		playersOver25PointsSum.average = playersOver25PointsSum.iso = playersOver25PointsSum.onBaseAverage = playersOver25PointsSum.ops = playersOver25PointsSum.slugging = playersOver25PointsSum.strikeoutPercent = playersOver25PointsSum.walkPercent = playersOver25PointsSum.woba = playersOver25PointsSum.wrcPlus = 0;
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
+            vector<VegasTeamRunPair> vegasRunsPerTeam;
+            vegasRunsPerTeam.clear();
 			int yearInt = d / 10000;
 			int monthInt = (d - yearInt * 10000) / 100;
 			int dayInt = (d - yearInt * 10000 - monthInt * 100);
@@ -308,6 +318,7 @@ void RefineAlgorithm()
 			CurlGetSiteContents(curl, gameTimesAndOddsURL, gameTimesAndOdds, true);
 			CutStringToOnlySectionBetweenKeywords(gameTimesAndOdds, "class=\"odds_gamesHolder\"", "class=\"odds_pages\"");
 			unordered_map<string, int> teamCodeToGameTime;
+            
 
 			string resultsLine;
 
@@ -412,6 +423,12 @@ void RefineAlgorithm()
 						continue;
 					}
 					if (thisLineActualResults[4] == "1") {
+                        int mainStartTime = 19;
+                        if (gameTimesAndOdds.find("Saturday") != string::npos) {
+                            mainStartTime = 18;
+                        } else if (gameTimesAndOdds.find("Sunday") != string::npos) {
+                            mainStartTime = 16;
+                        }
 						PlayerData singlePlayerData;
 						singlePlayerData.playerId = thisLineActualResults[1];
 						singlePlayerData.playerName = thisLineActualResults[3];
@@ -453,14 +470,48 @@ void RefineAlgorithm()
 								if (isPm)
 									gameStartTime += 12;
 							}
+                            bool isHomeTeam = gameTimeSection.find("oddsTeamWLink") == string::npos;
+                            size_t lineTotalsSectionBegin = gameTimeSection.find("_Div_Line_");
+                            if (lineTotalsSectionBegin != string::npos) {
+                                lineTotalsSectionBegin = gameTimeSection.find(">", lineTotalsSectionBegin);
+                                size_t lineTotalsSectionEnd = gameTimeSection.find("<", lineTotalsSectionBegin);
+                                float linetotalsNumber1 = stof(gameTimeSection.substr(lineTotalsSectionBegin+1, lineTotalsSectionEnd - lineTotalsSectionBegin - 1));
+                                lineTotalsSectionBegin = gameTimeSection.find("_Div_Line_", lineTotalsSectionBegin);
+                                if (lineTotalsSectionBegin != string::npos) {
+                                    lineTotalsSectionBegin = gameTimeSection.find(">", lineTotalsSectionBegin);
+                                    size_t lineTotalsSectionEnd = gameTimeSection.find("<", lineTotalsSectionBegin);
+                                    float linetotalsNumber2 = stof(gameTimeSection.substr(lineTotalsSectionBegin+1, lineTotalsSectionEnd - lineTotalsSectionBegin - 1));
+                                    float oddsLine = linetotalsNumber1;
+                                    float totalsLine = linetotalsNumber2;
+                                    if (linetotalsNumber2 <= 0 || linetotalsNumber2 >= 99) {
+                                        oddsLine = linetotalsNumber2;
+                                        totalsLine = linetotalsNumber1;
+                                    }
+                                    float totalsPercent = (oddsLine + 110) / -190;
+                                    if (totalsPercent < 0)
+                                        totalsPercent = 0;
+                                    if (totalsPercent > 1)
+                                        totalsPercent = 1;
+                                    totalsPercent = 0.55f + totalsPercent * 0.35f;
+                                    if ((isHomeTeam && linetotalsNumber2 == totalsLine) || (!isHomeTeam && linetotalsNumber1 == totalsLine))
+                                        totalsPercent = 1.0f - totalsPercent;
+                                    
+                                    float vegasRuns = totalsPercent * totalsLine;
+                                    VegasTeamRunPair vtrp;
+                                    vtrp.teamCode = singlePlayerData.teamCode;
+                                    vtrp.vegasRuns = vegasRuns;
+                                    if (gameStartTime >= mainStartTime)
+                                        vegasRunsPerTeam.push_back(vtrp);
+                                }
+                            }
 							teamCodeToGameTime.insert({ singlePlayerData.teamCode, gameStartTime });
 						} else {
 							gameStartTime = gameTimeElement->second;
 						}
-						if (gameStartTime < 19)
+						if (gameStartTime < mainStartTime)
 							playerPosition = -999;
 						if (playerPosition >= 0) {
-							int mainBattingOrderMin = 2;
+							int mainBattingOrderMin = 1;
 							int mainBattingOrderMax = 5;
 							if (gameType == GameType::DraftKings && playerPosition == 0)
 								mainBattingOrderMax++;
@@ -3430,12 +3481,15 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 		sort(allPlayers[0].begin(), allPlayers[0].end(), comparePlayerByPointsPerGame);
 		unordered_set<string> topXTeams;
 		for (unsigned int i = 0; i < allPlayers[0].size(); ++i) {
-			if (pitcherOpponentTeamCodes.find(allPlayers[0][i].teamCode) != pitcherOpponentTeamCodes.end() && topXTeams.find(allPlayers[0][i].teamCode) == topXTeams.end()) {
-				topXTeams.insert(allPlayers[0][i].teamCode);
-			}
-			if (topXTeams.size() >= 3)
-				break;
+            if (pitcherOpponentTeamCodes.find(allPlayers[0][i].teamCode) != pitcherOpponentTeamCodes.end() && topXTeams.find(allPlayers[0][i].teamCode) == topXTeams.end()) {
+                topXTeams.insert(allPlayers[0][i].teamCode);
+            }
+            if (topXTeams.size() >= 3)
+                break;
+
 		}
+        
+        
 		for (unsigned int i = 0; i < allPlayers[0].size();) {
 			bool utilityPlayerHasOtherChoicesAtPosition = true;
 			for (unsigned int op = 1; op < allPlayers.size(); ++op) {
@@ -3476,6 +3530,8 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 
 				for (unsigned int i = 1; i < allPlayers.size(); ++i) {
 					for (int p = allPlayers[i].size() - 1; p >= 0; --p) {
+                        if (allPlayers[i].size() == 1 || (i == allPlayers.size()-1 && allPlayers[i].size() == 3))
+                            break;
 						if (topXTeams.find(allPlayers[i][p].teamCode) == topXTeams.end()) {
 							allPlayers[i].erase(allPlayers[i].begin() + p);
 						}
@@ -3508,7 +3564,7 @@ vector<PlayerData> OptimizeLineupToFitBudget()
 
 			if (bDeleteThisPlayer)
 			{
-				allPlayers[ap].erase(allPlayers[ap].begin() + i);
+			//	allPlayers[ap].erase(allPlayers[ap].begin() + i);
 			}
 		}
 	}
