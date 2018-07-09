@@ -164,6 +164,63 @@ std::string ConvertLFNameToFLName(std::string lastFirst)
 	return convertedName;
 }
 
+void ReplaceInStringIfExists(std::string& originalString, const std::string& removeString, const std::string& replaceString) {
+	size_t removalIndex = originalString.find(removeString);
+	if (removalIndex != string::npos) {
+		originalString.replace(removalIndex, removeString.length(), replaceString);
+	}
+}
+
+void EraseInString(std::string& originalString, const std::string& eraseString) {
+	size_t removalIndex = originalString.find(eraseString);
+	if (removalIndex != string::npos) {
+		originalString.erase(removalIndex, eraseString.size());
+	}
+}
+
+size_t FindPlayerNameIndexInList(const std::string& playerName, const std::string& searchText) {
+	if (playerName.length() == 0 || searchText.length() == 0)
+		return string::npos;
+	size_t index = searchText.find(playerName);
+	if (index == string::npos) {
+		string tempFinder = playerName;
+		if (playerName.find(",") != string::npos) {
+			tempFinder = ConvertLFNameToFLName(playerName);
+		} else {
+			tempFinder = ConvertFLNameToLFName(playerName);
+		}
+		index = searchText.find(tempFinder);
+		if (index == string::npos) {
+			size_t dotIndex = tempFinder.find('.');
+			while (dotIndex != string::npos) {
+				tempFinder.erase(dotIndex, 1);
+				dotIndex = tempFinder.find('.');
+			}
+			index = searchText.find(tempFinder);
+			if (index == string::npos) {
+				ReplaceInStringIfExists(tempFinder, "Kike", "Enrique");
+				index = searchText.find(tempFinder);
+				if (index == string::npos) {
+					EraseInString(tempFinder, " Jr");
+					index = searchText.find(tempFinder);
+					if (index == string::npos) {
+						ReplaceInStringIfExists(tempFinder, "Nick", "Nicholas");
+						ReplaceInStringIfExists(tempFinder, "Mike", "Michael");
+						EraseInString(tempFinder, "-hitter");
+						index = searchText.find(tempFinder);
+						if (index == string::npos) {
+							ReplaceInStringIfExists(tempFinder, "Rafael", "Raffy");
+							ReplaceInStringIfExists(tempFinder, "JR ", "John Ryan ");
+							index = searchText.find(tempFinder);
+						}
+					}
+				}
+			}
+		}
+	}
+	return index;
+}
+
 void _itoa_osx(int value, char* result, int base) {
     // check that the base if valid
     if (base < 2 || base > 36) { *result = '\0'; return; }

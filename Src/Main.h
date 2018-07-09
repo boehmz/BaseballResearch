@@ -12,7 +12,7 @@
 #include <unordered_map>
 #include "StatsCollectionFunctions.h"
 
-std::vector<PlayerData> OptimizeLineupToFitBudget();
+std::vector<PlayerData> OptimizeLineupToFitBudget(std::vector< std::vector<PlayerData> > allPlayersToOptimize);
 
 bool comparePlayerByPointsPerGame(PlayerData i, PlayerData j);
 
@@ -129,9 +129,6 @@ struct BatterSplitsData
 	BatterSplitsData() {}
 };
 void AssembleBatterSplits(CURL *curl);
-
-
-std::vector<PlayerData> OptimizeLineupToFitBudget();
 
 void PopulateProbableRainoutGames(CURL* curl);
 
