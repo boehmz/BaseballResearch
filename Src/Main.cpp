@@ -23,11 +23,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180709";
+std::string todaysDate = "20180712";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 89.0f / 162.0f;
+float percentOfSeasonPassed = 92.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -3054,7 +3054,7 @@ void GenerateLineups(CURL *curl)
 			curl_easy_perform(curl);
 			curl_easy_reset(curl);
 
-			int minBattingOrder = 2;
+			int minBattingOrder = 1;
 			int maxBattingOrder = 5;
 			if (tempMinBattingOrder != -1) {
 				minBattingOrder = tempMinBattingOrder;
@@ -3115,6 +3115,8 @@ void GenerateLineups(CURL *curl)
                 float expectedFdPoints = -1;
                 float expectedPitcherOpsAllowed = -1;
 				size_t playerNameIndex = sabrPredictorText.find(ConvertLFNameToFLName(singlePlayerData.playerName));
+                if (playerNameIndex == string::npos)
+                    playerNameIndex = FindPlayerNameIndexInList(singlePlayerData.playerName, sabrPredictorText);
 				if (playerNameIndex != string::npos) {
                     
 					size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
