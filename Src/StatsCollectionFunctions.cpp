@@ -105,6 +105,7 @@ float CalculateRSquared(vector<float> finalInputs, vector<float> outputValues)
 }
 
 bool doesPlayerThrowLeftHanded(std::string playerId, CURL *curl) {
+    
     string rotoguruData = GetPlayerStatsRawString(playerId, "any", curl);
     size_t throwsIndex = rotoguruData.find("Throws:");
     if (throwsIndex != string::npos) {
@@ -128,8 +129,9 @@ bool doesPlayerThrowLeftHanded(std::string playerId, CURL *curl) {
             } else if (throwsString == "Left") {
                 return true;
             }
+            
             // hard code because some players have their throws field missing
-            if (playerId == "147u" || playerId == "148a") {
+            if (playerId == "147u" || playerId == "148a" || playerId == "149f") {
                 return false;
             }
             if (playerId == "148c" || playerId == "148v")
@@ -141,6 +143,9 @@ bool doesPlayerThrowLeftHanded(std::string playerId, CURL *curl) {
                 return true;
             }
         }
+    }
+    if (playerId == "141q") {
+        return false;
     }
     cout << "Could not find throwing hand information about " << playerId << endl;
     return false;
