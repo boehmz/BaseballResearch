@@ -178,6 +178,7 @@ bool compareVegasRunsByTeam(VegasTeamRunPair a, VegasTeamRunPair b) {
 void GetMinMaxRelatedLineupIndices(unsigned int lineLocal, unsigned int& deleteMin, unsigned int& deleteMax) {
 	deleteMin = 0;
 	deleteMax = 0;
+	return;
 	if ((lineLocal >= 45 && lineLocal <= 47) || (lineLocal >= 50 && lineLocal <= 52) || (lineLocal >= 54 && lineLocal <= 56) || (lineLocal >= 58 && lineLocal <= 60) || (lineLocal >= 62 && lineLocal <= 64) || (lineLocal >= 66 && lineLocal <= 68) || (lineLocal >= 70 && lineLocal <= 72) || (lineLocal >= 74 && lineLocal <= 76) || (lineLocal >= 78 && lineLocal <= 80)) {
 		deleteMin = 46;
 		deleteMax = 47;
@@ -262,9 +263,9 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = 20180411;
+        reviewDateStart = 20180401;
 		reviewDateEnd = 20180711;
-		percentOfSeasonPassed = 10.0f / 162.0f;
+		percentOfSeasonPassed = 0.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
         string top30BattersWithPitcherTrainingFileName = "Top30Order25BattersWithPitcherTrainingFile.csv";
@@ -310,6 +311,14 @@ void RefineAlgorithm()
 		bottom10BullpensMay13.insert("laa");
 		bottom10BullpensMay13.insert("det");
 
+		struct PrevPlayerDailyPointsData {
+			int numGames;
+			int numGamesOverThreshold;
+
+			PrevPlayerDailyPointsData() : numGames(0), numGamesOverThreshold(0) {
+			}
+		};
+		unordered_map<string, PrevPlayerDailyPointsData*> playerDailyPointsMap;
 
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
@@ -475,6 +484,12 @@ void RefineAlgorithm()
 				vector< vector<PlayerData> > allPlayers25SeasonWrc(6);
 				vector< vector<PlayerData> > allPlayers25SeasonWrcPitcherMultiply(6);
 
+				
+				vector< vector<PlayerData> > allPlayersPercentOverThreshold(6);
+				vector< vector<PlayerData> > allPlayers15PercentOverThreshold(6);
+				vector< vector<PlayerData> > allPlayersPercentOverThresholdTimesPitcher(6);
+				vector< vector<PlayerData> > allPlayers15PercentOverThresholdTimesPitcher(6);
+
 				vector<TeamStackTracker> teamStackList;
 
 				size_t currentIndex = actualResults.find("</script>", 0);
@@ -546,34 +561,37 @@ void RefineAlgorithm()
                             if (lineTotalsSectionBegin != string::npos) {
                                 lineTotalsSectionBegin = gameTimeSection.find(">", lineTotalsSectionBegin);
                                 size_t lineTotalsSectionEnd = gameTimeSection.find("<", lineTotalsSectionBegin);
-                                float linetotalsNumber1 = stof(gameTimeSection.substr(lineTotalsSectionBegin+1, lineTotalsSectionEnd - lineTotalsSectionBegin - 1));
-                                lineTotalsSectionBegin = gameTimeSection.find("_Div_Line_", lineTotalsSectionBegin);
-                                if (lineTotalsSectionBegin != string::npos) {
-                                    lineTotalsSectionBegin = gameTimeSection.find(">", lineTotalsSectionBegin);
-                                    size_t lineTotalsSectionEnd = gameTimeSection.find("<", lineTotalsSectionBegin);
-                                    float linetotalsNumber2 = stof(gameTimeSection.substr(lineTotalsSectionBegin+1, lineTotalsSectionEnd - lineTotalsSectionBegin - 1));
-                                    float oddsLine = linetotalsNumber1;
-                                    float totalsLine = linetotalsNumber2;
-                                    if (linetotalsNumber2 <= 0 || linetotalsNumber2 >= 99) {
-                                        oddsLine = linetotalsNumber2;
-                                        totalsLine = linetotalsNumber1;
-                                    }
-                                    float totalsPercent = (oddsLine + 110) / -190;
-                                    if (totalsPercent < 0)
-                                        totalsPercent = 0;
-                                    if (totalsPercent > 1)
-                                        totalsPercent = 1;
-                                    totalsPercent = 0.55f + totalsPercent * 0.35f;
-                                    if ((isHomeTeam && linetotalsNumber2 == totalsLine) || (!isHomeTeam && linetotalsNumber1 == totalsLine))
-                                        totalsPercent = 1.0f - totalsPercent;
-                                    
-                                    float vegasRuns = totalsPercent * totalsLine;
-                                    VegasTeamRunPair vtrp;
-                                    vtrp.teamCode = singlePlayerData.teamCode;
-                                    vtrp.vegasRuns = vegasRuns;
-                                    if (gameStartTime >= mainStartTime)
-                                        vegasRunsPerTeam.push_back(vtrp);
-                                }
+								string lineTotalsNumber1String = gameTimeSection.substr(lineTotalsSectionBegin + 1, lineTotalsSectionEnd - lineTotalsSectionBegin - 1);
+								if (lineTotalsNumber1String != "-" && lineTotalsNumber1String.size() > 0) {
+									float linetotalsNumber1 = stof(lineTotalsNumber1String);
+									lineTotalsSectionBegin = gameTimeSection.find("_Div_Line_", lineTotalsSectionBegin);
+									if (lineTotalsSectionBegin != string::npos) {
+										lineTotalsSectionBegin = gameTimeSection.find(">", lineTotalsSectionBegin);
+										size_t lineTotalsSectionEnd = gameTimeSection.find("<", lineTotalsSectionBegin);
+										float linetotalsNumber2 = stof(gameTimeSection.substr(lineTotalsSectionBegin + 1, lineTotalsSectionEnd - lineTotalsSectionBegin - 1));
+										float oddsLine = linetotalsNumber1;
+										float totalsLine = linetotalsNumber2;
+										if (linetotalsNumber2 <= 0 || linetotalsNumber2 >= 99) {
+											oddsLine = linetotalsNumber2;
+											totalsLine = linetotalsNumber1;
+										}
+										float totalsPercent = (oddsLine + 110) / -190;
+										if (totalsPercent < 0)
+											totalsPercent = 0;
+										if (totalsPercent > 1)
+											totalsPercent = 1;
+										totalsPercent = 0.55f + totalsPercent * 0.35f;
+										if ((isHomeTeam && linetotalsNumber2 == totalsLine) || (!isHomeTeam && linetotalsNumber1 == totalsLine))
+											totalsPercent = 1.0f - totalsPercent;
+
+										float vegasRuns = totalsPercent * totalsLine;
+										VegasTeamRunPair vtrp;
+										vtrp.teamCode = singlePlayerData.teamCode;
+										vtrp.vegasRuns = vegasRuns;
+										if (gameStartTime >= mainStartTime)
+											vegasRunsPerTeam.push_back(vtrp);
+									}
+								}
                             }
 							teamCodeToGameTime.insert({ singlePlayerData.teamCode, gameStartTime });
 						} else {
@@ -616,11 +634,25 @@ void RefineAlgorithm()
 								combinedOpposingPitcherStatsInputValues.push_back(opponentPitcher->second);
 								combinedStatsInputValues.push_back(combinedBatterStats);
 								validOutputValues.push_back(actualPlayerPoints);
-                                
-                                
 							}
                             singlePlayerData.playerPointsPerGame = static_cast <float>(singlePlayerData.playerSalary + rand() % 100);
                             allPlayersSalary[playerPosition].push_back(singlePlayerData);
+							auto playerPointsDailyObject = playerDailyPointsMap.find(singlePlayerData.playerId);
+							PrevPlayerDailyPointsData* prevData;
+							if (playerPointsDailyObject == playerDailyPointsMap.end()) {
+								prevData = new PrevPlayerDailyPointsData();
+								playerDailyPointsMap.insert({ singlePlayerData.playerId, prevData });
+							} else {
+								prevData = playerPointsDailyObject->second;
+							}
+							
+							if (prevData->numGames >= 10) {
+								singlePlayerData.playerPointsPerGame = 1000.0f * (float)prevData->numGamesOverThreshold / (float)prevData->numGames;
+								allPlayersPercentOverThreshold[playerPosition].push_back(singlePlayerData);
+								if (battingOrder >= mainBattingOrderMin && battingOrder <= mainBattingOrderMax) {
+									allPlayers15PercentOverThreshold[playerPosition].push_back(singlePlayerData);
+								}
+							}
 							float batterOverPitcherMultiplier = 2.5f;
                             if (battingOrder >= mainBattingOrderMin && battingOrder <= mainBattingOrderMax && combinedBatterStats.average > 0.21f) {
                                 singlePlayerData.playerPointsPerGame = static_cast <float>(singlePlayerData.playerSalary + rand() % 100);
@@ -920,9 +952,22 @@ void RefineAlgorithm()
 
 											singlePlayerData.playerPointsPerGame = storedPoints;
 										}
-
+										if (prevData->numGames >= 10) {
+											float storedPoints = singlePlayerData.playerPointsPerGame;
+											singlePlayerData.playerPointsPerGame = 1000.0f * (float)prevData->numGamesOverThreshold / (float)prevData->numGames;
+											singlePlayerData.playerPointsPerGame *= (60.0f / expectedDkPointsPitcher);;
+											allPlayersPercentOverThresholdTimesPitcher[playerPosition].push_back(singlePlayerData);
+											if (battingOrder >= mainBattingOrderMin && battingOrder <= mainBattingOrderMax) {
+												allPlayers15PercentOverThresholdTimesPitcher[playerPosition].push_back(singlePlayerData);
+											}
+											singlePlayerData.playerPointsPerGame = storedPoints;
+										}
 									}
 								}
+							}
+							prevData->numGames++;
+							if (actualPlayerPoints >= 12.99f) {
+								prevData->numGamesOverThreshold++;
 							}
 							size_t playerNameProjectionsIndex = batters2017SeasonProjections.find(ConvertLFNameToFLName(singlePlayerData.playerName));
 							if (playerNameProjectionsIndex != string::npos && battingOrder >= mainBattingOrderMin && battingOrder <= mainBattingOrderMax) {
@@ -1265,58 +1310,30 @@ void RefineAlgorithm()
 				vector<vector<PlayerData>> emptyLineup;
 				vector< vector< vector<PlayerData> > > allPlayersLineupOrder;
 				allPlayersLineupOrder.push_back(allPlayersAll);		//0
-				allPlayersLineupOrder.push_back(allPlayersAll);
 				allPlayersLineupOrder.push_back(allPlayersTwoThruFive);
 				allPlayersLineupOrder.push_back(allPlayers24);
 				allPlayersLineupOrder.push_back(allPlayers25AvoidPitchers30);
-				allPlayersLineupOrder.push_back(allPlayers25AvoidPitchers40);	//5
-				allPlayersLineupOrder.push_back(allPlayers35);
+				allPlayersLineupOrder.push_back(allPlayers25AvoidPitchers40);
+				allPlayersLineupOrder.push_back(allPlayers35);						//5
 				allPlayersLineupOrder.push_back(allPlayers25PitcherMultiply);
-				allPlayersLineupOrder.push_back(allPlayers25SeasonOps);
-				allPlayersLineupOrder.push_back(allPlayers25SeasonOpsPitcherMultiply);
-				allPlayersLineupOrder.push_back(allPlayers25SeasonIso);	//10
-				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiply);
 				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyEra);
-				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyFip);
 				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyXFip);
-				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyKPer9);	//15
-				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyWhip);
-				allPlayersLineupOrder.push_back(allPlayersStackingTeams);
-				allPlayersLineupOrder.push_back(allPlayers27StackingTeams);
-				allPlayersLineupOrder.push_back(allPlayers26StackingTeams);
-				allPlayersLineupOrder.push_back(allPlayers25StackingTeams);	//20
-				allPlayersLineupOrder.push_back(allPlayersHomeRuns);
+				allPlayersLineupOrder.push_back(allPlayers25SeasonIsoPitcherMultiplyKPer9);
+				allPlayersLineupOrder.push_back(allPlayers25StackingTeams);		//10
 				allPlayersLineupOrder.push_back(allPlayers25PitcherDkMultiply);
 				allPlayersLineupOrder.push_back(allPlayers25PitcherYahooMultiply);
 				allPlayersLineupOrder.push_back(allPlayers25PitcherOpsMultiply);
-				allPlayersLineupOrder.push_back(allPlayers25SeasonWrc);	//25
 				allPlayersLineupOrder.push_back(allPlayers25SeasonWrcPitcherMultiply);
-				allPlayersLineupOrder.push_back(allPlayers25MachineLearning);
+				allPlayersLineupOrder.push_back(allPlayers25MachineLearning);		//15
 				allPlayersLineupOrder.push_back(allPlayers25MachineLearningPitcherMultiply);
-				allPlayersLineupOrder.push_back(allPlayers25OpsBatterVSpecificPitcher);
-				allPlayersLineupOrder.push_back(allPlayersProjectionsIso25); //30
-				allPlayersLineupOrder.push_back(allPlayersProjectionsSlugging25);
-				allPlayersLineupOrder.push_back(allPlayersProjectionsOps25);
-				allPlayersLineupOrder.push_back(allPlayersProjectionsIso25PitcherMultiply);
-				allPlayersLineupOrder.push_back(allPlayersProjectionsSlugging25PitcherMultiply);
-				allPlayersLineupOrder.push_back(allPlayersProjectionsOps25PitcherMultiply);	//35
-				allPlayersLineupOrder.push_back(allPlayersHighScoreThreshold);
-				allPlayersLineupOrder.push_back(allPlayersHighScoreThresholdOrder25);
-                allPlayersLineupOrder.push_back(allPlayers25Rbis);
                 allPlayersLineupOrder.push_back(allPlayers25Runs);
-                allPlayersLineupOrder.push_back(allPlayers25RbisPlusRuns);  //40
                 allPlayersLineupOrder.push_back(allPlayers25RbiRunsOpi);
-                allPlayersLineupOrder.push_back(allPlayers25RbisTimesPitcher);
                 allPlayersLineupOrder.push_back(allPlayers25RunsTimesPitcher);
-                allPlayersLineupOrder.push_back(allPlayers25RbisPlusRunsTimesPitcher);
-                allPlayersLineupOrder.push_back(allPlayers25RbiRunsOpiTimesPitcher);    //45
-                allPlayersLineupOrder.push_back(allPlayers25RbiRunsOpiTimesPitcher);
+                allPlayersLineupOrder.push_back(allPlayers25RbisPlusRunsTimesPitcher);		//20
+				allPlayersLineupOrder.push_back(allPlayers25RbiRunsOpiTimesPitcher);
+              /*  allPlayersLineupOrder.push_back(allPlayers25RbiRunsOpiTimesPitcher);
                 allPlayersLineupOrder.push_back(allPlayers25RbiRunsOpiTimesPitcher);
                 allPlayersLineupOrder.push_back(emptyLineup);
-               // allPlayersLineupOrder.push_back(allPlayersSalary);
-               // allPlayersLineupOrder.push_back(allPlayers25Salary);    //50
-               // allPlayersLineupOrder.push_back(allPlayers25Salary);
-               // allPlayersLineupOrder.push_back(allPlayers25Salary);
 				allPlayersLineupOrder.push_back(allPlayers25PitcherYahooMultiply);
 				allPlayersLineupOrder.push_back(allPlayers25PitcherYahooMultiply);    //50
 				allPlayersLineupOrder.push_back(allPlayers25PitcherYahooMultiply);
@@ -1350,19 +1367,23 @@ void RefineAlgorithm()
                 allPlayersLineupOrder.push_back(allPlayers25PitcherOpsMultiply);
                 allPlayersLineupOrder.push_back(allPlayers25PitcherOpsMultiply);    //80
                 allPlayersLineupOrder.push_back(emptyLineup);
+				*/
                 allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandedness);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonOpsHandedness);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonWobaHandedness);
-                allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandednessTimesPitcherIsoHandedness);  //85
+                allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandednessTimesPitcherIsoHandedness);		//25
                 allPlayersLineupOrder.push_back(allPlayers25SeasonOpsHandednessTimesPitcherOpsHandedness);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonWobaHandednessTimesPitcherWobaHandedness);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandednessTimesDkPitcher);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonOpsHandednessTimesDkPitcher);
-                allPlayersLineupOrder.push_back(allPlayers25SeasonWobaHandednessTimesDkPitcher);    //90
-                allPlayersLineupOrder.push_back(allPlayers25SeasonIsoHandednessTwoThirds);
+                allPlayersLineupOrder.push_back(allPlayers25SeasonWobaHandednessTimesDkPitcher);		//30
                 allPlayersLineupOrder.push_back(allPlayers25SeasonOpsHandednessTwoThirds);
                 allPlayersLineupOrder.push_back(allPlayers25SeasonWobaHandednessTwoThirds);
-				allPlayersLineupOrder.push_back(allPlayersActualScores);            
+				allPlayersLineupOrder.push_back(allPlayersPercentOverThreshold);
+				allPlayersLineupOrder.push_back(allPlayers15PercentOverThreshold);
+				allPlayersLineupOrder.push_back(allPlayersPercentOverThresholdTimesPitcher);		//35
+				allPlayersLineupOrder.push_back(allPlayers15PercentOverThresholdTimesPitcher);
+				allPlayersLineupOrder.push_back(allPlayersActualScores);
 
 				chosenLineupsList.resize(allPlayersLineupOrder.size());
 				std::vector<std::thread> allThreads;
@@ -3657,7 +3678,7 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
     if (stackMaxNumTeams) {
         vector<unsigned int> chosenPlayers;
         float bestValidScore = -1;
-        unsigned int leastTeamsRepresented = idealPlayerPerPosition.size() + 1;
+		unsigned int leastTeamsRepresented =  idealPlayerPerPosition.size() + 1;
         for (unsigned int a = 0; a < allPlayersToOptimize[1].size(); ++a) {
 			changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 1, a, numPlayersFromTeam, totalSalary);
 			for (unsigned int b = 0; b < allPlayersToOptimize[2].size(); ++b) {
@@ -3675,9 +3696,9 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
                                 for (unsigned int g = f+1; g < allPlayersToOptimize[5].size(); ++g) {
                                     changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 7, g, numPlayersFromTeam, totalSalary);
 									
-                                    int bestUtilityPlayer = -1;
+									int bestUtilityPlayer = -1;
                                     for (unsigned int h = 0; h < allPlayersToOptimize[0].size(); ++h) {
-                                        PlayerData newCandidate = allPlayersToOptimize[0][h];
+										PlayerData newCandidate = allPlayersToOptimize[0][h];
                                         PlayerData currentUtilityPlayer = allPlayersToOptimize[0][idealPlayerPerPosition[0]];
                                         int teamCurrentSize = 0;
                                         {
@@ -3696,7 +3717,7 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
                                                 unsigned int exPos = ex;
                                                 if (exPos >= allPlayersToOptimize.size())
                                                     exPos = allPlayersToOptimize.size() - 1;
-                                                if (newCandidate.playerId == allPlayersToOptimize[exPos][ex].playerId) {
+                                                if (newCandidate.playerId == allPlayersToOptimize[exPos][idealPlayerPerPosition[ex]].playerId) {
                                                     existingPlayer = true;
                                                     break;
                                                 }
@@ -3717,16 +3738,15 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
                                         changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 0, bestUtilityPlayer, numPlayersFromTeam, totalSalary);
                                     
 									float expectedScore = 0;
-                                    unordered_set<string> teamsInLineup;
                                     for (unsigned int i = 0; i < idealPlayerPerPosition.size(); ++i) {
                                         unsigned int positionIndex = i;
                                         if (positionIndex >= allPlayersToOptimize.size())
                                             positionIndex = allPlayersToOptimize.size() - 1;
                                         expectedScore += allPlayersToOptimize[positionIndex][idealPlayerPerPosition[i]].playerPointsPerGame;
-                                        teamsInLineup.insert(allPlayersToOptimize[positionIndex][idealPlayerPerPosition[i]].teamCode);
                                     }
-									teamsInLineup.clear();
+									unordered_set<string> teamsInLineup;
 									int maxInOneTeam = -1;
+									int teamStackScore = 0;
 									for (auto itr = numPlayersFromTeam.begin(); itr != numPlayersFromTeam.end(); ++itr) {
 										if (itr->second == 1) {
 											teamsInLineup.insert(itr->first);
@@ -3734,8 +3754,9 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
 										if (itr->second > 0 && itr->second > maxInOneTeam) {
 											maxInOneTeam = itr->second;
 										}
+										teamStackScore += itr->second * itr->second;
 									}
-									int teamStackScore = teamsInLineup.size();// +4 - maxInOneTeam;
+									teamStackScore = teamsInLineup.size();// +4 - maxInOneTeam;
                                     if (totalSalary <= maxTotalBudget && teamsWithNumPlayersAboveThreshold(numPlayersFromTeam, maxPlayersPerTeam).size() == 0) {
                                         if ((expectedScore > bestValidScore && teamStackScore == leastTeamsRepresented) || teamStackScore < leastTeamsRepresented) {
 											leastTeamsRepresented = teamStackScore;
