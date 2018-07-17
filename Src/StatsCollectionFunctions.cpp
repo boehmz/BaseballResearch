@@ -381,13 +381,19 @@ FullSeasonPitcherStats GetPitcherStats(string playerId, string yearString, CURL 
 	}
 
 	vector<string> fangraphsAdvancedRows = GetFangraphsRowColumns(yearString, fangraphsPlayerData, 14, "name=\"advanced\"", "name=\"battedball\"", bStarterOnlyNotAvailable);
-	pitcherStats.whip = stof(fangraphsAdvancedRows[9].c_str());
+    if (fangraphsAdvancedRows.size() > 13) {
+        pitcherStats.whip = stof(fangraphsAdvancedRows[9].c_str());
+    } else {
+         bStarterOnlyNotAvailable = true;
+    }
 	if (bStarterOnlyNotAvailable)
 	{
 		vector<string> fangraphsDashboardRows = GetFangraphsRowColumns(yearString, fangraphsPlayerData, 17, "name=\"dashboard\"", "name=\"standard\"", bStarterOnlyNotAvailable);
-		pitcherStats.strikeOutsPer9 = stof(fangraphsDashboardRows[7].c_str());
-		pitcherStats.fip = stof(fangraphsDashboardRows[15].c_str());
-		pitcherStats.xfip = stof(fangraphsDashboardRows[16].c_str());
+        if (fangraphsDashboardRows.size() > 16) {
+            pitcherStats.strikeOutsPer9 = stof(fangraphsDashboardRows[7].c_str());
+            pitcherStats.fip = stof(fangraphsDashboardRows[15].c_str());
+            pitcherStats.xfip = stof(fangraphsDashboardRows[16].c_str());
+        }
 
 	}
 	else
