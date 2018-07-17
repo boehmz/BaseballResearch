@@ -42,6 +42,7 @@ const int AdvancedStatsPitchingStarterStatsOnly = 16;
 std::string GetPlayerFangraphsPageData(std::string playerId, CURL *curl, bool bCachedOk, int advancedStatsFlags);
 std::string GetPlayerFangraphsPageDataCumulativeUpTo(std::string playerId, CURL *curl, std::string dateUpTo, bool advancedPage, bool entireCareer = false);
 std::vector<std::string> GetFangraphsRowColumns(std::string yearRow, std::string allData, int numColumns, std::string section, std::string nextSection, bool watchOutForProjections);
+void CalculateMeanAndStdDeviation(const std::vector<float>& data, float &outMean, float &outStandardDeviation);
 
 struct FullSeasonStats
 {

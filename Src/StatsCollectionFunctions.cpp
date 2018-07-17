@@ -104,6 +104,25 @@ float CalculateRSquared(vector<float> finalInputs, vector<float> outputValues)
 	return rSquared;
 }
 
+void CalculateMeanAndStdDeviation(const std::vector<float>& data, float &outMean, float &outStandardDeviation) {
+    outMean = 0;
+    outStandardDeviation = 0;
+    if (data.size() > 0) {
+        float total = 0;
+        for (unsigned int i = 0; i < data.size(); ++i) {
+            total += data[i];
+        }
+        outMean = total / (float)data.size();
+        float variance = 0;
+        for (unsigned int i = 0; i < data.size(); ++i) {
+            float diff = data[i] - outMean;
+            variance += diff * diff;
+        }
+        variance = variance / (float)data.size();
+        outStandardDeviation = sqrt(variance);
+    }
+}
+
 bool doesPlayerThrowLeftHanded(std::string playerId, CURL *curl) {
     
     string rotoguruData = GetPlayerStatsRawString(playerId, "any", curl);
