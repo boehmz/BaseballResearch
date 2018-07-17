@@ -224,6 +224,7 @@ void RefineAlgorithm()
 	bool bRefineForBatters = true;
 	bool bCombinePitcherIntoLineup = true;
 	bool bRefineForGames = false;
+    bool bRefineForStats = false;
 
 	fstream gamesRecordOverallFile;
 	if (bRefineForGames) {
@@ -263,9 +264,9 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = 20180401;
+        reviewDateStart = 20180411;
 		reviewDateEnd = 20180711;
-		percentOfSeasonPassed = 0.0f / 162.0f;
+		percentOfSeasonPassed = 10.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
         string top30BattersWithPitcherTrainingFileName = "Top30Order25BattersWithPitcherTrainingFile.csv";
@@ -319,6 +320,92 @@ void RefineAlgorithm()
 			}
 		};
 		unordered_map<string, PrevPlayerDailyPointsData*> playerDailyPointsMap;
+        
+        // <2000 to >5000 every 100
+        vector< vector<float>> salaryToPointsData(31);
+        vector< vector<float>> battingOrderToPointsData(9);
+        // <5 to >15 every 1
+        vector< vector<float>> sabrPredictorToPointsData(11);
+        // <18 to >50 every 2
+        vector< vector<float>> opposingPitcherToPointsData(17);
+        
+        
+        vector<float> salaryZScoreData;
+        vector<float> battingOrderZScoreData;
+        vector<float> sabrPredictorZScoreData;
+        vector<float> opposingPitcherZScoreData;
+        
+        salaryZScoreData.push_back(0.684326219f);
+        salaryZScoreData.push_back(0.72521793f);
+        salaryZScoreData.push_back(0.562745567f);
+        salaryZScoreData.push_back(0.623168727f);
+        salaryZScoreData.push_back(0.583861391f);
+        salaryZScoreData.push_back(0.444285983f);
+        salaryZScoreData.push_back(0.533525699f);
+        salaryZScoreData.push_back(0.365333891f);
+        salaryZScoreData.push_back(0.500139279f);
+        salaryZScoreData.push_back(0.313253646f);
+        salaryZScoreData.push_back(0.378422026f);
+        salaryZScoreData.push_back(0.428780582f);
+        salaryZScoreData.push_back(0.358654412f);
+        salaryZScoreData.push_back(0.278028581f);
+        salaryZScoreData.push_back(0.277979786f);
+        salaryZScoreData.push_back(0.239677714f);
+        salaryZScoreData.push_back(0.246390382f);
+        salaryZScoreData.push_back(0.193585791f);
+        salaryZScoreData.push_back(0.206519807f);
+        salaryZScoreData.push_back(0.164700357f);
+        salaryZScoreData.push_back(0.231827112f);
+        salaryZScoreData.push_back(0.271126361f);
+        salaryZScoreData.push_back(0.190352599f);
+        salaryZScoreData.push_back(0.159474396f);
+        salaryZScoreData.push_back(0.118813745f);
+        salaryZScoreData.push_back(0.176133421f);
+        salaryZScoreData.push_back(-0.035434249f);
+        salaryZScoreData.push_back(0.093564571f);
+        salaryZScoreData.push_back(-0.195278088f);
+        salaryZScoreData.push_back(-0.075106663f);
+        salaryZScoreData.push_back(-0.012959041f);
+        
+        battingOrderZScoreData.push_back(0.229783353f);
+        battingOrderZScoreData.push_back(0.266524606f);
+        battingOrderZScoreData.push_back(0.229968731f);
+        battingOrderZScoreData.push_back(0.252781051f);
+        battingOrderZScoreData.push_back(0.397359494f);
+        battingOrderZScoreData.push_back(0.410875497f);
+        battingOrderZScoreData.push_back(0.501418077f);
+        battingOrderZScoreData.push_back(0.636321489f);
+        battingOrderZScoreData.push_back(0.755235095f);
+
+        sabrPredictorZScoreData.push_back(0.877546772f);
+        sabrPredictorZScoreData.push_back(0.931622898f);
+        sabrPredictorZScoreData.push_back(0.764231298f);
+        sabrPredictorZScoreData.push_back(0.520054731f);
+        sabrPredictorZScoreData.push_back(0.405926954f);
+        sabrPredictorZScoreData.push_back(0.345501921f);
+        sabrPredictorZScoreData.push_back(0.179735337f);
+        sabrPredictorZScoreData.push_back(0.164493967f);
+        sabrPredictorZScoreData.push_back(0.091639886f);
+        sabrPredictorZScoreData.push_back(-0.16239957f);
+        sabrPredictorZScoreData.push_back(-0.218038244f);
+        
+        opposingPitcherZScoreData.push_back(0.082882083f);
+        opposingPitcherZScoreData.push_back(0.219051383f);
+        opposingPitcherZScoreData.push_back(0.222386798f);
+        opposingPitcherZScoreData.push_back(0.260000402f);
+        opposingPitcherZScoreData.push_back(0.353844443f);
+        opposingPitcherZScoreData.push_back(0.469044754f);
+        opposingPitcherZScoreData.push_back(0.413536729f);
+        opposingPitcherZScoreData.push_back(0.393954791f);
+        opposingPitcherZScoreData.push_back(0.428555875f);
+        opposingPitcherZScoreData.push_back(0.476113806f);
+        opposingPitcherZScoreData.push_back(0.518061555f);
+        opposingPitcherZScoreData.push_back(0.369258656f);
+        opposingPitcherZScoreData.push_back(0.711210045f);
+        opposingPitcherZScoreData.push_back(0.277606724f);
+        opposingPitcherZScoreData.push_back(0.822123043f);
+        opposingPitcherZScoreData.push_back(0.66037244f);
+        opposingPitcherZScoreData.push_back(1.11302749f);
 
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
@@ -489,6 +576,7 @@ void RefineAlgorithm()
 				vector< vector<PlayerData> > allPlayers15PercentOverThreshold(6);
 				vector< vector<PlayerData> > allPlayersPercentOverThresholdTimesPitcher(6);
 				vector< vector<PlayerData> > allPlayers15PercentOverThresholdTimesPitcher(6);
+                vector< vector<PlayerData> > allPlayersZScore(6);
 
 				vector<TeamStackTracker> teamStackList;
 
@@ -602,7 +690,7 @@ void RefineAlgorithm()
 						
 						if (playerPosition >= 0) {
 							int mainBattingOrderMin = 1;
-							int mainBattingOrderMax = 5;
+							int mainBattingOrderMax = 4;
 							if (gameType == GameType::DraftKings && playerPosition == 0)
 								mainBattingOrderMax++;
 
@@ -628,6 +716,18 @@ void RefineAlgorithm()
                             if (batterStatsHandedness.numPlateAppearancesVersusRighty > 10 && batterStatsHandedness.numPlateAppearancesVersusLefty > 10)
                                 combinedBatterStatsHandedness = combinedBatterStatsHandedness * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStatsHandedness;
 							
+                            // <2000 to >5000 every 100
+                            if (bRefineForStats) {
+                                int salaryIndex = (singlePlayerData.playerSalary - 2000) / 100;
+                                if (salaryIndex >= salaryToPointsData.size())
+                                    salaryIndex = salaryToPointsData.size() - 1;
+                                
+                                salaryToPointsData[salaryIndex].push_back(actualPlayerPoints);
+                                int battingOrderIndex = battingOrder - 1;
+                                if (battingOrderIndex >= 0 && battingOrderIndex < battingOrderToPointsData.size())
+                                    battingOrderToPointsData[battingOrderIndex].push_back(actualPlayerPoints);
+                            }
+                            
 							auto opponentPitcher = opponentPitcherScoreMap.find(singlePlayerData.teamCode);
 
 							if (combinedBatterStats.average > 0 && opponentPitcher != opponentPitcherScoreMap.end()) {
@@ -798,6 +898,16 @@ void RefineAlgorithm()
 								float expectedFdPoints = stof(thisSabrLine[17]);
 								if (gameType == GameType::DraftKings)
 									expectedFdPoints = stof(thisSabrLine[18]);
+                                if (bRefineForStats) {
+                                    int sabrIndex = expectedFdPoints - 5;
+                                    if (sabrIndex < 0)
+                                        sabrIndex = 0;
+                                    if (sabrIndex >= sabrPredictorToPointsData.size())
+                                        sabrIndex = sabrPredictorToPointsData.size() - 1;
+                                    // <5 to >15 every 1
+                                    sabrPredictorToPointsData[sabrIndex].push_back(actualPlayerPoints);
+                                }
+                                
 								singlePlayerData.playerPointsPerGame = expectedFdPoints;
                                 if (battingOrder >= mainBattingOrderMin && battingOrder <= mainBattingOrderMax) {
                                     bool teamStackTrackerExists = false;
@@ -870,6 +980,45 @@ void RefineAlgorithm()
 										float pitcherBattersFaced = stof(thisSabrLinePitchers[5]);
 										float pitcherTotalBasesAllowed = stof(thisSabrLinePitchers[7]) + stof(thisSabrLinePitchers[8]) * 2 + stof(thisSabrLinePitchers[9]) * 3 + stof(thisSabrLinePitchers[10]) * 4;
 										float pitcherOpsAllowed = pitcherOnBaseAllowed / pitcherBattersFaced + pitcherTotalBasesAllowed / pitcherBattersFaced;
+                                        
+                                        {
+                                            int opposingPitcherIndex = (expectedFdPointsPitcher - 18.0f) / 2.0f;
+                                            if (opposingPitcherIndex < 0)
+                                                opposingPitcherIndex = 0;
+                                            if (opposingPitcherIndex >= opposingPitcherToPointsData.size())
+                                                opposingPitcherIndex = opposingPitcherToPointsData.size() - 1;
+                                            
+                                            if (bRefineForStats) {
+                                                // <18 to >50 every 2
+                                                opposingPitcherToPointsData[opposingPitcherIndex].push_back(actualPlayerPoints);
+                                            }
+                                            
+                                            int sabrIndex = expectedFdPoints - 5;
+                                            if (sabrIndex < 0)
+                                                sabrIndex = 0;
+                                            if (sabrIndex >= sabrPredictorToPointsData.size())
+                                                sabrIndex = sabrPredictorToPointsData.size() - 1;
+                                            
+                                            int salaryIndex = (singlePlayerData.playerSalary - 2000) / 100;
+                                            if (salaryIndex >= salaryToPointsData.size())
+                                                salaryIndex = salaryToPointsData.size() - 1;
+                                            
+                                            int battingOrderIndex = battingOrder - 1;
+                                            
+                                            float salaryZScore, battingOrderZScore, sabrPredictZScore, oppPitcherSabrZScore;
+                                            salaryZScore = salaryZScoreData[salaryIndex];
+                                            battingOrderZScore = battingOrderZScoreData[battingOrderIndex];
+                                            sabrPredictZScore = sabrPredictorZScoreData[sabrIndex];
+                                            oppPitcherSabrZScore = opposingPitcherZScoreData[opposingPitcherIndex];
+                                            singlePlayerData.playerPointsPerGame = salaryZScore * 0.25f + battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f;
+                                            singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.333f + sabrPredictZScore * 0.333f + oppPitcherSabrZScore * 0.333f;
+                                            singlePlayerData.playerPointsPerGame = 3000 - 1000 * singlePlayerData.playerPointsPerGame;
+                                            allPlayersZScore[playerPosition].push_back(singlePlayerData);
+                                        }
+                                        
+                                        
+                                        
+                                        singlePlayerData.playerPointsPerGame = expectedFdPoints;
 										if (battingOrder >= mainBattingOrderMin && battingOrder <= mainBattingOrderMax
 											&& expectedFdPointsPitcher < 30)
 											allPlayers25AvoidPitchers30[playerPosition].push_back(singlePlayerData);
@@ -878,14 +1027,15 @@ void RefineAlgorithm()
 											allPlayers25AvoidPitchers40[playerPosition].push_back(singlePlayerData);
 										if (battingOrder >= mainBattingOrderMin && battingOrder <= mainBattingOrderMax) {
 											float storedPoints = singlePlayerData.playerPointsPerGame;
-											singlePlayerData.playerPointsPerGame *= 160.0f / expectedFdPointsPitcher;
-											allPlayers25PitcherMultiply[playerPosition].push_back(singlePlayerData);
-											singlePlayerData.playerPointsPerGame = storedPoints * (60.0f / expectedDkPointsPitcher);
-											allPlayers25PitcherDkMultiply[playerPosition].push_back(singlePlayerData);
-											singlePlayerData.playerPointsPerGame = storedPoints * (60.0f / expectedYahooPointsPitcher);
-											allPlayers25PitcherYahooMultiply[playerPosition].push_back(singlePlayerData);
-											singlePlayerData.playerPointsPerGame = storedPoints * (1.7f * pitcherOpsAllowed / leagueAverageOps);
-											allPlayers25PitcherOpsMultiply[playerPosition].push_back(singlePlayerData);
+                                            
+                                            singlePlayerData.playerPointsPerGame *= 160.0f / expectedFdPointsPitcher;
+                                            allPlayers25PitcherMultiply[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = storedPoints * (60.0f / expectedDkPointsPitcher);
+                                            allPlayers25PitcherDkMultiply[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = storedPoints * (60.0f / expectedYahooPointsPitcher);
+                                            allPlayers25PitcherYahooMultiply[playerPosition].push_back(singlePlayerData);
+                                            singlePlayerData.playerPointsPerGame = storedPoints * (1.7f * pitcherOpsAllowed / leagueAverageOps);
+                                            allPlayers25PitcherOpsMultiply[playerPosition].push_back(singlePlayerData);
                                             
                                             if (combinedBatterStats.average > 0.1f) {
                                                 singlePlayerData.playerPointsPerGame = combinedBatterStats.rbisPerPA * 1000.0f;
@@ -1383,6 +1533,7 @@ void RefineAlgorithm()
 				allPlayersLineupOrder.push_back(allPlayers15PercentOverThreshold);
 				allPlayersLineupOrder.push_back(allPlayersPercentOverThresholdTimesPitcher);		//35
 				allPlayersLineupOrder.push_back(allPlayers15PercentOverThresholdTimesPitcher);
+                allPlayersLineupOrder.push_back(allPlayersZScore);
 				allPlayersLineupOrder.push_back(allPlayersActualScores);
 
 				chosenLineupsList.resize(allPlayersLineupOrder.size());
@@ -1568,6 +1719,84 @@ void RefineAlgorithm()
 		top10PitchersTrainingFile.close();
 		top25BattersTrainingFile.close();
 		top30BattersWithPitcherTrainingFile.close();
+        if (bRefineForStats) {
+            ofstream statsDataTrackerFile;
+            string statsDataTrackerFileName = "2018ResultsTracker\\StatsRelationships.txt";
+#if PLATFORM_OSX
+            statsDataTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(statsDataTrackerFileName);
+#endif
+            statsDataTrackerFile.open(statsDataTrackerFileName);
+            
+            for (unsigned int i = 0; i < salaryToPointsData.size(); ++i) {
+                sort(salaryToPointsData[i].begin(), salaryToPointsData[i].end());
+            }
+            for (unsigned int i = 0; i < battingOrderToPointsData.size(); ++i) {
+                sort(battingOrderToPointsData[i].begin(), battingOrderToPointsData[i].end());
+            }
+            for (unsigned int i = 0; i < sabrPredictorToPointsData.size(); ++i) {
+                sort(sabrPredictorToPointsData[i].begin(), sabrPredictorToPointsData[i].end());
+            }
+            for (unsigned int i = 0; i < opposingPitcherToPointsData.size(); ++i) {
+                sort(opposingPitcherToPointsData[i].begin(), opposingPitcherToPointsData[i].end());
+            }
+            
+            // <2000 to >5000 every 100
+            statsDataTrackerFile << "Salary Relationships:\n";
+            for (unsigned int i = 0; i < salaryToPointsData.size(); ++i) {
+                unsigned int rowSize = salaryToPointsData[i].size();
+                if (rowSize > 0) {
+                    int salary = i * 100 + 2000;
+                //    statsDataTrackerFile << salary << "," << salaryToPointsData[i][rowSize/4] << "," << salaryToPointsData[i][rowSize/2] << "," << salaryToPointsData[i][(rowSize*3)/4] << ",(sampleSize=" << rowSize << ")\n";
+                    float mean = 0;
+                    float stdDev = 0;
+                    CalculateMeanAndStdDeviation(salaryToPointsData[i], mean, stdDev);
+                    statsDataTrackerFile << salary << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+                }
+            }
+
+            statsDataTrackerFile << "Batting Order Relationships:\n";
+            for (unsigned int i = 0; i < battingOrderToPointsData.size(); ++i) {
+                unsigned int rowSize = battingOrderToPointsData[i].size();
+                if (rowSize > 0) {
+                    int battingOrder = i + 1;
+                  //  statsDataTrackerFile << battingOrder << "," << battingOrderToPointsData[i][rowSize/4] << "," << battingOrderToPointsData[i][rowSize/2] << "," << battingOrderToPointsData[i][(rowSize*3)/4] << ",(sampleSize=" << rowSize << ")\n";
+                    float mean = 0;
+                    float stdDev = 0;
+                    CalculateMeanAndStdDeviation(battingOrderToPointsData[i], mean, stdDev);
+                    statsDataTrackerFile << battingOrder << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+                }
+            }
+            
+            // <5 to >15 every 1
+            statsDataTrackerFile << "Sabr Prediction Relationships:\n";
+            for (unsigned int i = 0; i < sabrPredictorToPointsData.size(); ++i) {
+                unsigned int rowSize = sabrPredictorToPointsData[i].size();
+                if (rowSize > 0) {
+                    int predicted = i + 5;
+                 //   statsDataTrackerFile << predicted << "," << sabrPredictorToPointsData[i][rowSize/4] << "," << sabrPredictorToPointsData[i][rowSize/2] << "," << sabrPredictorToPointsData[i][(rowSize*3)/4] << ",(sampleSize=" << rowSize << ")\n";
+                    float mean = 0;
+                    float stdDev = 0;
+                    CalculateMeanAndStdDeviation(sabrPredictorToPointsData[i], mean, stdDev);
+                    statsDataTrackerFile << predicted << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+                }
+            }
+            
+            // <18 to >50 every 2
+            statsDataTrackerFile << "Opposing Pitcher Sabr Relationships:\n";
+            for (unsigned int i = 0; i < opposingPitcherToPointsData.size(); ++i) {
+                unsigned int rowSize = opposingPitcherToPointsData[i].size();
+                if (rowSize > 0) {
+                    int pitcherPredicted = i * 2 + 18;
+                 //   statsDataTrackerFile << pitcherPredicted << "," << opposingPitcherToPointsData[i][rowSize/4] << "," << opposingPitcherToPointsData[i][rowSize/2] << "," << opposingPitcherToPointsData[i][(rowSize*3)/4] << ",(sampleSize=" << rowSize << ")\n";
+                    float mean = 0;
+                    float stdDev = 0;
+                    CalculateMeanAndStdDeviation(opposingPitcherToPointsData[i], mean, stdDev);
+                    statsDataTrackerFile << pitcherPredicted << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+                }
+            }
+           
+            statsDataTrackerFile.close();
+        }
 		if (bRefineForBatters) {
 			vector<int> lineupsOver80;
 			vector<float> lineupsTotalPointsPer;
@@ -3557,6 +3786,19 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
 			if (topXTeams.size() >= 5)
 				break;
 		}
+        if ( !stackMaxNumTeams && allPlayersToOptimize[0].size() > 0) {
+            PlayerData utilityPlayerData;
+            float bestPointsPerDollar = -1;
+            for (unsigned int i = 0; i < allPlayersToOptimize[0].size(); ++i) {
+                float pointsPerDollar = allPlayersToOptimize[0][i].playerPointsPerGame / (float)allPlayersToOptimize[0][i].playerSalary;
+                if (pointsPerDollar > bestPointsPerDollar) {
+                    utilityPlayerData = allPlayersToOptimize[0][i];
+                    bestPointsPerDollar = pointsPerDollar;
+                }
+            }
+            allPlayersToOptimize[0][0] = utilityPlayerData;
+        }
+        
 		for (unsigned int i = 0; i < allPlayersToOptimize[0].size();) {
 			bool utilityPlayerHasOtherChoicesAtPosition = true;
 			for (unsigned int op = 1; op < allPlayersToOptimize.size(); ++op) {
