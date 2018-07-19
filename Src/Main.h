@@ -26,6 +26,7 @@ void GenerateNewLineupFromSabrPredictor(CURL *curl);
 void GenerateLineups(CURL *curl);
 void ChooseAPitcher(CURL *curl);
 void Analyze2016Stats();
+void FillZScoreData();
 
 struct TeamStackTracker {
 	std::string teamCode;

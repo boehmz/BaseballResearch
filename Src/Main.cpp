@@ -51,6 +51,7 @@ std::unordered_map<std::string, BatterSplitsData> allBattersSplits;
 
 int main(void)
 {
+	FillZScoreData();
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
 	ProcessType processType = ProcessType::Refine;
 	switch (processType)
@@ -101,6 +102,11 @@ int main(void)
 	cin >> wait;
 	return 0;
 }
+
+vector<float> salaryZScoreData;
+vector<float> battingOrderZScoreData;
+vector<float> sabrPredictorZScoreData;
+vector<float> opposingPitcherZScoreData;
 
 bool compareTeamsByAveragePlayerPointsPerGame(TeamStackTracker a, TeamStackTracker b) {
 	if (b.numPlayersAdded <= 0)
@@ -217,6 +223,80 @@ void GetMinMaxRelatedLineupIndices(unsigned int lineLocal, unsigned int& deleteM
 	}
 }
 
+void FillZScoreData() {
+	salaryZScoreData.push_back(0.754326219f);
+	salaryZScoreData.push_back(0.72521793f);
+	salaryZScoreData.push_back(0.662745567f);
+	salaryZScoreData.push_back(0.623168727f);
+	salaryZScoreData.push_back(0.583861391f);
+	salaryZScoreData.push_back(0.544285983f);
+	salaryZScoreData.push_back(0.533525699f);
+	salaryZScoreData.push_back(0.515333891f);
+	salaryZScoreData.push_back(0.500139279f);
+	salaryZScoreData.push_back(0.483253646f);
+	salaryZScoreData.push_back(0.458422026f);
+	salaryZScoreData.push_back(0.428780582f);
+	salaryZScoreData.push_back(0.358654412f);
+	salaryZScoreData.push_back(0.278028581f);
+	salaryZScoreData.push_back(0.267979786f);
+	salaryZScoreData.push_back(0.259677714f);
+	salaryZScoreData.push_back(0.246390382f);
+	salaryZScoreData.push_back(0.233585791f);
+	salaryZScoreData.push_back(0.226519807f);
+	salaryZScoreData.push_back(0.214700357f);
+	salaryZScoreData.push_back(0.201827112f);
+	salaryZScoreData.push_back(0.191126361f);
+	salaryZScoreData.push_back(0.190352599f);
+	salaryZScoreData.push_back(0.159474396f);
+	salaryZScoreData.push_back(0.118813745f);
+	salaryZScoreData.push_back(0.096133421f);
+	salaryZScoreData.push_back(-0.035434249f);
+	salaryZScoreData.push_back(-0.043564571f);
+	salaryZScoreData.push_back(-0.075278088f);
+	salaryZScoreData.push_back(-0.095106663f);
+	salaryZScoreData.push_back(-0.12959041f);
+	
+	battingOrderZScoreData.push_back(0.229783353f);
+	battingOrderZScoreData.push_back(0.266524606f);
+	battingOrderZScoreData.push_back(0.229968731f);
+	battingOrderZScoreData.push_back(0.252781051f);
+	battingOrderZScoreData.push_back(0.397359494f);
+	battingOrderZScoreData.push_back(0.410875497f);
+	battingOrderZScoreData.push_back(0.501418077f);
+	battingOrderZScoreData.push_back(0.636321489f);
+	battingOrderZScoreData.push_back(0.755235095f);
+	
+	sabrPredictorZScoreData.push_back(0.947546772f);
+	sabrPredictorZScoreData.push_back(0.931622898f);
+	sabrPredictorZScoreData.push_back(0.764231298f);
+	sabrPredictorZScoreData.push_back(0.520054731f);
+	sabrPredictorZScoreData.push_back(0.405926954f);
+	sabrPredictorZScoreData.push_back(0.345501921f);
+	sabrPredictorZScoreData.push_back(0.179735337f);
+	sabrPredictorZScoreData.push_back(0.164493967f);
+	sabrPredictorZScoreData.push_back(0.091639886f);
+	sabrPredictorZScoreData.push_back(-0.16239957f);
+	sabrPredictorZScoreData.push_back(-0.218038244f);
+	
+	opposingPitcherZScoreData.push_back(0.082882083f);
+	opposingPitcherZScoreData.push_back(0.219051383f);
+	opposingPitcherZScoreData.push_back(0.222386798f);
+	opposingPitcherZScoreData.push_back(0.260000402f);
+	opposingPitcherZScoreData.push_back(0.353844443f);
+	opposingPitcherZScoreData.push_back(0.409044754f);
+	opposingPitcherZScoreData.push_back(0.413536729f);
+	opposingPitcherZScoreData.push_back(0.423954791f);
+	opposingPitcherZScoreData.push_back(0.438555875f);
+	opposingPitcherZScoreData.push_back(0.476113806f);
+	opposingPitcherZScoreData.push_back(0.518061555f);
+	opposingPitcherZScoreData.push_back(0.619258656f);
+	opposingPitcherZScoreData.push_back(0.711210045f);
+	opposingPitcherZScoreData.push_back(0.777606724f);
+	opposingPitcherZScoreData.push_back(0.822123043f);
+	opposingPitcherZScoreData.push_back(0.94037244f);
+	opposingPitcherZScoreData.push_back(1.11302749f);
+}
+
 void RefineAlgorithm()
 {
 	stackMaxNumTeams = true;
@@ -328,85 +408,7 @@ void RefineAlgorithm()
         vector< vector<float>> sabrPredictorToPointsData(11);
         // <18 to >50 every 2
         vector< vector<float>> opposingPitcherToPointsData(17);
-        
-        
-        vector<float> salaryZScoreData;
-        vector<float> battingOrderZScoreData;
-        vector<float> sabrPredictorZScoreData;
-        vector<float> opposingPitcherZScoreData;
-        
-        salaryZScoreData.push_back(0.754326219f);
-        salaryZScoreData.push_back(0.72521793f);
-        salaryZScoreData.push_back(0.662745567f);
-        salaryZScoreData.push_back(0.623168727f);
-        salaryZScoreData.push_back(0.583861391f);
-        salaryZScoreData.push_back(0.544285983f);
-        salaryZScoreData.push_back(0.533525699f);
-        salaryZScoreData.push_back(0.515333891f);
-        salaryZScoreData.push_back(0.500139279f);
-        salaryZScoreData.push_back(0.483253646f);
-        salaryZScoreData.push_back(0.458422026f);
-        salaryZScoreData.push_back(0.428780582f);
-        salaryZScoreData.push_back(0.358654412f);
-        salaryZScoreData.push_back(0.278028581f);
-        salaryZScoreData.push_back(0.267979786f);
-        salaryZScoreData.push_back(0.259677714f);
-        salaryZScoreData.push_back(0.246390382f);
-        salaryZScoreData.push_back(0.233585791f);
-        salaryZScoreData.push_back(0.226519807f);
-        salaryZScoreData.push_back(0.214700357f);
-        salaryZScoreData.push_back(0.201827112f);
-        salaryZScoreData.push_back(0.191126361f);
-        salaryZScoreData.push_back(0.190352599f);
-        salaryZScoreData.push_back(0.159474396f);
-        salaryZScoreData.push_back(0.118813745f);
-        salaryZScoreData.push_back(0.096133421f);
-        salaryZScoreData.push_back(-0.035434249f);
-        salaryZScoreData.push_back(-0.043564571f);
-        salaryZScoreData.push_back(-0.075278088f);
-        salaryZScoreData.push_back(-0.095106663f);
-        salaryZScoreData.push_back(-0.12959041f);
-        
-        battingOrderZScoreData.push_back(0.229783353f);
-        battingOrderZScoreData.push_back(0.266524606f);
-        battingOrderZScoreData.push_back(0.229968731f);
-        battingOrderZScoreData.push_back(0.252781051f);
-        battingOrderZScoreData.push_back(0.397359494f);
-        battingOrderZScoreData.push_back(0.410875497f);
-        battingOrderZScoreData.push_back(0.501418077f);
-        battingOrderZScoreData.push_back(0.636321489f);
-        battingOrderZScoreData.push_back(0.755235095f);
-
-        sabrPredictorZScoreData.push_back(0.947546772f);
-        sabrPredictorZScoreData.push_back(0.931622898f);
-        sabrPredictorZScoreData.push_back(0.764231298f);
-        sabrPredictorZScoreData.push_back(0.520054731f);
-        sabrPredictorZScoreData.push_back(0.405926954f);
-        sabrPredictorZScoreData.push_back(0.345501921f);
-        sabrPredictorZScoreData.push_back(0.179735337f);
-        sabrPredictorZScoreData.push_back(0.164493967f);
-        sabrPredictorZScoreData.push_back(0.091639886f);
-        sabrPredictorZScoreData.push_back(-0.16239957f);
-        sabrPredictorZScoreData.push_back(-0.218038244f);
-        
-        opposingPitcherZScoreData.push_back(0.082882083f);
-        opposingPitcherZScoreData.push_back(0.219051383f);
-        opposingPitcherZScoreData.push_back(0.222386798f);
-        opposingPitcherZScoreData.push_back(0.260000402f);
-        opposingPitcherZScoreData.push_back(0.353844443f);
-        opposingPitcherZScoreData.push_back(0.409044754f);
-        opposingPitcherZScoreData.push_back(0.413536729f);
-        opposingPitcherZScoreData.push_back(0.423954791f);
-        opposingPitcherZScoreData.push_back(0.438555875f);
-        opposingPitcherZScoreData.push_back(0.476113806f);
-        opposingPitcherZScoreData.push_back(0.518061555f);
-        opposingPitcherZScoreData.push_back(0.619258656f);
-        opposingPitcherZScoreData.push_back(0.711210045f);
-        opposingPitcherZScoreData.push_back(0.777606724f);
-        opposingPitcherZScoreData.push_back(0.822123043f);
-        opposingPitcherZScoreData.push_back(0.94037244f);
-        opposingPitcherZScoreData.push_back(1.11302749f);
-
+		
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
             vector<VegasTeamRunPair> vegasRunsPerTeam;
@@ -3235,12 +3237,8 @@ void GenerateLineups(CURL *curl)
 	stackMaxNumTeams = false;
 	if (curl == NULL)
 		curl = curl_easy_init();
-	vector<TeamStackTracker> teamStackList;
-	vector< vector<PlayerData> > allPlayers25PitcherMultiply(6);	// use pitcher multiply for tournaments
     vector< vector<PlayerData> > allPlayers25PitcherYahooMultiply(6);    // use yahoo multiply for daily double up
-    vector< vector<PlayerData> > allPlayers25PitcherOpsMultiply(6); // use pitcher allowed ops multiply for tournaments
-	vector< vector<PlayerData> > allPlayers25Slugging(6);	// use slugging for tournaments ONLY
-	vector< vector<PlayerData> > allPlayers25(6);	// use standard with max 3 teams for tournaments ONLY
+	vector< vector<PlayerData> > allPlayersZScore(6);	// most accurate formula, uses all players.  Good for tournaments and daily doubles.
 	if (curl)
 	{
 		
@@ -3305,7 +3303,7 @@ void GenerateLineups(CURL *curl)
 			curl_easy_reset(curl);
 
 			int minBattingOrder = 1;
-			int maxBattingOrder = 5;
+			int maxBattingOrder = 4;
 			if (tempMinBattingOrder != -1) {
 				minBattingOrder = tempMinBattingOrder;
 			}
@@ -3376,23 +3374,6 @@ void GenerateLineups(CURL *curl)
 						expectedFdPoints = stof(thisSabrLine[18]);
 					singlePlayerData.playerPointsPerGame = expectedFdPoints;
                     
-
-					bool teamStackTrackerExists = false;
-					for (unsigned int texp = 0; texp < teamStackList.size(); ++texp) {
-						if (teamStackList[texp].teamCode == singlePlayerData.teamCode) {
-							teamStackList[texp].numPlayersAdded++;
-							teamStackList[texp].teamTotalExpectedPoints += expectedFdPoints;
-							teamStackTrackerExists = true;
-							break;
-						}
-					}
-					if (!teamStackTrackerExists) {
-						TeamStackTracker tst;
-						tst.numPlayersAdded = 1;
-						tst.teamCode = singlePlayerData.teamCode;
-						tst.teamTotalExpectedPoints = expectedFdPoints;
-						teamStackList.push_back(tst);
-					}
 
 					if (sabrPredictorTextPitchers != "") {
 						string playerTeamName = thisSabrLine[1];
@@ -3503,6 +3484,7 @@ void GenerateLineups(CURL *curl)
 				}
 				bool bFacingChosenPitcher = pitcherOpponentTeamCodes.find(singlePlayerData.teamCode) != pitcherOpponentTeamCodes.end();
 				bool bAcceptableBattingOrder = false;
+				int actualBattingOrder = -1;
                 size_t playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertLFNameToFLName(singlePlayerData.playerName) + " ");
 				if (playerIndexInTodaysLineups == string::npos) {
 					playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertNameToFirstInitialLastName(singlePlayerData.playerName) + " ");
@@ -3525,9 +3507,11 @@ void GenerateLineups(CURL *curl)
                                 if (battingOrderGeneral >= minBattingOrder && battingOrderGeneral <= maxBattingOrder) {
                                     bAcceptableBattingOrder = true;
                                 }
+								actualBattingOrder = battingOrderGeneral;
                             }
                         } else {
                             int numTimesPreviouslyAcceptableOrder = 0;
+							vector<int> prevBattingOrders;
                             for (unsigned int i = 0; i < previousDayResults.size(); ++i) {
                                 size_t playerIdIndex = previousDayResults[i].find(previousDayResults[i].substr(0, 3) + ";" + singlePlayerData.playerId + ";", 0);
                                 if (playerIdIndex != string::npos)
@@ -3537,6 +3521,7 @@ void GenerateLineups(CURL *curl)
                                     }
                                     size_t nextPlayerIdIndex = previousDayResults[i].find(";", playerIdIndex + 1);
                                     int prevBattingOrder = atoi(previousDayResults[i].substr(playerIdIndex + 1, nextPlayerIdIndex - playerIdIndex - 1).c_str());
+									prevBattingOrders.push_back(prevBattingOrder);
                                     if (prevBattingOrder >= minBattingOrder && prevBattingOrder <= maxBattingOrder) {
                                         numTimesPreviouslyAcceptableOrder++;
                                     }
@@ -3544,9 +3529,11 @@ void GenerateLineups(CURL *curl)
                             }
                             if (numTimesPreviouslyAcceptableOrder >= 4)
                                 bAcceptableBattingOrder = true;
+							if (prevBattingOrders.size() >= 4)
+								actualBattingOrder = prevBattingOrders[prevBattingOrders.size()/2];
                         }
                     } else {
-                        int actualBattingOrder = atoi(lineupOrderString.c_str());
+                        actualBattingOrder = atoi(lineupOrderString.c_str());
                         if (actualBattingOrder >= minBattingOrder && actualBattingOrder <= maxBattingOrder) {
                             bAcceptableBattingOrder = true;
                         }
@@ -3555,34 +3542,46 @@ void GenerateLineups(CURL *curl)
 
                 
 				// throw this guy out if he's not a starter or his game will most likely be rained out
-				if (bAcceptableBattingOrder
-					&& !bFacingChosenPitcher
+				if (!bFacingChosenPitcher
 					&& gameStartTime <= latestGameTime
 					&& gameStartTime >= earliestGameTime
 					&& !bRainedOut
                     && singlePlayerData.playerSalary > 0) {
-                    if (batterCombinedSluggingPoints > 0) {
-                        singlePlayerData.playerPointsPerGame = batterCombinedSluggingPoints;
-                        allPlayers25Slugging[positionIndex].push_back(singlePlayerData);
+                    
+                    if (bAcceptableBattingOrder) {
+						if (expectedFdPoints > 0) {
+							if (expectedYahooPointsOpposingPitcher > 0 && pitcherYahooMultiplyLineupPlayersTaken.find(singlePlayerData.playerId) == pitcherYahooMultiplyLineupPlayersTaken.end()) {
+								singlePlayerData.playerPointsPerGame = expectedFdPoints * (60.0f / expectedYahooPointsOpposingPitcher);
+								allPlayers25PitcherYahooMultiply[positionIndex].push_back(singlePlayerData);
+							}
+						}
                     }
-                    if (expectedFdPoints > 0) {
-                        if (expectedFdPointsOpposingPitcher > 0) {
-                            singlePlayerData.playerPointsPerGame = expectedFdPoints * (160.0f / expectedFdPointsOpposingPitcher);
-                            allPlayers25PitcherMultiply[positionIndex].push_back(singlePlayerData);
-                        }
-                        if (expectedYahooPointsOpposingPitcher > 0 && pitcherYahooMultiplyLineupPlayersTaken.find(singlePlayerData.playerId) == pitcherYahooMultiplyLineupPlayersTaken.end()) {
-                            singlePlayerData.playerPointsPerGame = expectedFdPoints * (60.0f / expectedYahooPointsOpposingPitcher);
-                            allPlayers25PitcherYahooMultiply[positionIndex].push_back(singlePlayerData);
-                        }
-                        
-                        if (expectedPitcherOpsAllowed >= 0) {
-                            singlePlayerData.playerPointsPerGame = expectedFdPoints * (1.7f * expectedPitcherOpsAllowed / leagueAverageOps);
-                            allPlayers25PitcherOpsMultiply[positionIndex].push_back(singlePlayerData);
-                        }
-                        singlePlayerData.playerPointsPerGame = expectedFdPoints;
-                        allPlayers25[positionIndex].push_back(singlePlayerData);
-                    }
-                    addedAtLeast1Player = true;
+					
+					if (actualBattingOrder > 0) {
+						int opposingPitcherIndex = (expectedFdPointsOpposingPitcher - 18.0f) / 2.0f;
+						if (opposingPitcherIndex < 0)
+							opposingPitcherIndex = 0;
+						if (opposingPitcherIndex >= opposingPitcherZScoreData.size())
+							opposingPitcherIndex = opposingPitcherZScoreData.size() - 1;
+						
+						int sabrIndex = expectedFdPoints - 5;
+						if (sabrIndex < 0)
+							sabrIndex = 0;
+						if (sabrIndex >= sabrPredictorZScoreData.size())
+							sabrIndex = sabrPredictorZScoreData.size() - 1;
+						
+						int battingOrderIndex = actualBattingOrder - 1;
+						
+						float battingOrderZScore, sabrPredictZScore, oppPitcherSabrZScore;
+						battingOrderZScore = battingOrderZScoreData[battingOrderIndex];
+						sabrPredictZScore = sabrPredictorZScoreData[sabrIndex];
+						oppPitcherSabrZScore = opposingPitcherZScoreData[opposingPitcherIndex];
+						singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.333f + sabrPredictZScore * 0.333f + oppPitcherSabrZScore * 0.333f;
+						singlePlayerData.playerPointsPerGame = 3000 - 1000 * singlePlayerData.playerPointsPerGame;
+						allPlayersZScore[positionIndex].push_back(singlePlayerData);
+					}
+                    
+					addedAtLeast1Player = true;
 				}
 				if (placeHolderIndex == string::npos)
 					break;
@@ -3602,109 +3601,37 @@ void GenerateLineups(CURL *curl)
 		}
 		curl_easy_cleanup(curl);
 	}
-	sort(teamStackList.begin(), teamStackList.end(), compareTeamsByAveragePlayerPointsPerGame);
-	// always use stacks
-	if (true) {
-		for (unsigned int pos = 0; pos < allPlayers.size(); ++pos) {
-			for (unsigned int player = 0; player < allPlayers[pos].size(); ++player) {
-				int teamStackRank = -1;
-				for (unsigned int team = 0; team < teamStackList.size(); ++team) {
-					if (teamStackList[team].teamCode == allPlayers[pos][player].teamCode) {
-						teamStackRank = team;
-						break;
-					}
-				}
-				if (teamStackRank < 10 && teamStackRank >= 0) {
-					allPlayers[pos][player].playerPointsPerGame += (float)(10 - teamStackRank);
-				}
-			}
-			sort(allPlayers[pos].begin(), allPlayers[pos].end(), comparePlayerByPointsPerGame);
-		}
-	}
 	int budgetForThisPitcher = maxTotalBudget;
 	
-    vector<PlayerData> sluggingOnlyLineup = GetLineupWhileResettingAllPlayers(allPlayers25Slugging, budgetForThisPitcher);
-    
-	vector<PlayerData> fanduelPitcherMultiplyLineup = GetLineupWhileResettingAllPlayers(allPlayers25PitcherMultiply, budgetForThisPitcher);
-    
+	
     if (gameType == GameType::Fanduel) {
         stackMaxNumTeams = true;
     }
+	vector<PlayerData> zScoreLineup = GetLineupWhileResettingAllPlayers(allPlayersZScore, budgetForThisPitcher);
+	stackMaxNumTeams = false;
+	
     vector<PlayerData> pitcherYahooMultiplyLineup = GetLineupWhileResettingAllPlayers(allPlayers25PitcherYahooMultiply, budgetForThisPitcher);
     
     for (unsigned int p1 = 0; p1 < pitcherYahooMultiplyLineup.size(); ++p1) {
         pitcherYahooMultiplyLineupPlayersTaken.insert(pitcherYahooMultiplyLineup[p1].playerId);
     }
-    for (unsigned int p1 = 0; p1 < allPlayers25PitcherYahooMultiply.size(); ++p1) {
-        for (int p2 = allPlayers25PitcherYahooMultiply[p1].size() - 1; p2 >= 0; --p2) {
-            for (unsigned int other = 0; other < pitcherYahooMultiplyLineup.size(); ++other) {
-                if (allPlayers25PitcherYahooMultiply[p1][p2].playerId == pitcherYahooMultiplyLineup[other].playerId) {
-                    allPlayers25PitcherYahooMultiply[p1].erase(allPlayers25PitcherYahooMultiply[p1].begin() + p2);
-                    break;
-                }
-            }
-        }
-    }
-    vector<PlayerData> pitcherYahooMultiplyLineup2 = GetLineupWhileResettingAllPlayers(allPlayers25PitcherYahooMultiply, budgetForThisPitcher);
-    for (unsigned int p1 = 0; p1 < allPlayers25PitcherYahooMultiply.size(); ++p1) {
-        for (int p2 = allPlayers25PitcherYahooMultiply[p1].size() - 1; p2 >= 0; --p2) {
-            for (unsigned int other = 0; other < pitcherYahooMultiplyLineup2.size(); ++other) {
-                if (allPlayers25PitcherYahooMultiply[p1][p2].playerId == pitcherYahooMultiplyLineup2[other].playerId) {
-                    allPlayers25PitcherYahooMultiply[p1].erase(allPlayers25PitcherYahooMultiply[p1].begin() + p2);
-                    break;
-                }
-            }
-        }
-    }
-    stackMaxNumTeams = false;
-    
-	maxTotalBudget = budgetForThisPitcher;
-	allPlayers.clear();
-	allPlayers = allPlayers25;
-	for (int a = 0; a < 6; ++a) {
-		sort(allPlayers[a].begin(), allPlayers[a].end(), comparePlayerByPointsPerGame);
-	}
-	stackMaxNumTeams = true;
-    vector<PlayerData> minMaxLineup;// = OptimizeLineupToFitBudget(allPlayers);
-	stackMaxNumTeams = false;
-
-    cout << "\nTournament lineups: " << std::endl;
-    cout << "Fd pitcher multiply:\n";
-    for (unsigned int i = 0; i < fanduelPitcherMultiplyLineup.size(); ++i) {
-        cout << fanduelPitcherMultiplyLineup[i].playerName << endl;
-    }
+	
     if (pitcherYahooMultiplyLineup.size() > 0) {
         cout << "\nFd Yahoo Pitcher multiply:\n";
         for (unsigned int i = 0; i < pitcherYahooMultiplyLineup.size(); ++i) {
             cout << pitcherYahooMultiplyLineup[i].playerName << endl;
         }
-        if (pitcherYahooMultiplyLineup2.size() > 0) {
-            cout << "2nd\n";
-            for (unsigned int i = 0; i < pitcherYahooMultiplyLineup2.size(); ++i) {
-                cout << pitcherYahooMultiplyLineup2[i].playerName << endl;
-            }
-        }
     }
-	if (sluggingOnlyLineup.size() > 0) {
-		cout << "\nSlugging Only:\n";
-		for (unsigned int i = 0; i < sluggingOnlyLineup.size(); ++i) {
-			cout << sluggingOnlyLineup[i].playerName << endl;
+	if (zScoreLineup.size() > 0) {
+		cout << "\nFd ZScore LineUp:\n";
+		for (unsigned int i = 0; i < zScoreLineup.size(); ++i) {
+			cout << zScoreLineup[i].playerName << endl;
 		}
 	}
-	if (minMaxLineup.size() > 0 && gameType != GameType::DraftKings) {
-		cout << "\nQuintiple Up:\n";
-		for (unsigned int i = 0; i < minMaxLineup.size(); ++i) {
-			cout << minMaxLineup[i].playerName << endl;
-		}
-	}
-    
+	
     //fewest teams tournament lineup
     pitcherYahooMultiplyLineup = pitcherYahooMultiplyLineup;
-    
-    // tournaments
-    fanduelPitcherMultiplyLineup = fanduelPitcherMultiplyLineup;
-    sluggingOnlyLineup = sluggingOnlyLineup;
-	minMaxLineup = minMaxLineup;
+	zScoreLineup = zScoreLineup;
 
 	int breakpoint = 0;
 }
