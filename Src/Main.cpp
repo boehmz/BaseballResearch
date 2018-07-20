@@ -405,6 +405,10 @@ void RefineAlgorithm()
         vector< vector<float>> sabrPredictorToPointsData(11);
         // <18 to >50 every 2
         vector< vector<float>> opposingPitcherToPointsData(17);
+		// <20 to >50 every 1
+		vector< vector<float>> careerHardPercentToPointsData(31);
+		// <1 to >37 every 2
+		vector< vector<float>> careerHrFbPercentToPointsData(19);
 		
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
@@ -699,6 +703,10 @@ void RefineAlgorithm()
 							FullSeasonStatsAdvancedNoHandedness batterStatsLastYear = GetBatterStatsSeason(singlePlayerData.playerId, curl, lastYearStringC);
 							FullSeasonStatsAdvancedNoHandedness batterStatsCareer = GetBatterCumulativeStatsUpTo(singlePlayerData.playerId, curl, thisDateOnePrevious, true);
 							FullSeasonStatsAdvancedNoHandedness combinedBatterStats = batterStatsCareer;
+							BattedBallProfile battedBallThisYear = GetPlayerCumulativeBattedBallProfileUpTo(singlePlayerData.playerId, thisDateOnePrevious, false, 0);
+							BattedBallProfile battedBallLastYear = GetPlayerBattedBallProfile(singlePlayerData.playerId, lastYearStringC, curl, 0);
+							BattedBallProfile battedBallCareer = GetPlayerCumulativeBattedBallProfileUpTo(singlePlayerData.playerId, thisDateOnePrevious, true, 0);
+
 							if (batterStatsLastYear.numPlateAppearances >= 30) {
 								combinedBatterStats = batterStatsCareer * 0.5f + batterStatsLastYear * 0.5f;
 							}
@@ -725,6 +733,23 @@ void RefineAlgorithm()
                                 int battingOrderIndex = battingOrder - 1;
                                 if (battingOrderIndex >= 0 && battingOrderIndex < battingOrderToPointsData.size())
                                     battingOrderToPointsData[battingOrderIndex].push_back(actualPlayerPoints);
+
+								if (batterStatsCareer.numPlateAppearances > 200 && battedBallCareer.hardPercent >= 0) {
+									int hardIndex = battedBallCareer.hardPercent - 20;
+									if (hardIndex < 0)
+										hardIndex = 0;
+									if (hardIndex >= careerHardPercentToPointsData.size())
+										hardIndex = careerHardPercentToPointsData.size() - 1;
+									careerHardPercentToPointsData[hardIndex].push_back(actualPlayerPoints);
+									
+									int hrfbIndex = battedBallCareer.homerunPerFlyBallPercent - 1;
+									hrfbIndex /= 2;
+									if (hrfbIndex < 0)
+										hrfbIndex = 0;
+									if (hrfbIndex >= careerHrFbPercentToPointsData.size())
+										hrfbIndex = careerHrFbPercentToPointsData.size() - 1;
+									careerHrFbPercentToPointsData[hrfbIndex].push_back(actualPlayerPoints);
+								}
                             }
                             
 							auto opponentPitcher = opponentPitcherScoreMap.find(singlePlayerData.teamCode);
@@ -1538,7 +1563,7 @@ void RefineAlgorithm()
 				chosenLineupsList.resize(allPlayersLineupOrder.size());
 				std::vector<std::thread> allThreads;
 				float battingOrderBonus = 0.0f;
-				for (unsigned int line = 0; line < chosenLineupsList.size(); ++line) {
+				for (unsigned int line = 0; !bRefineForStats && line < chosenLineupsList.size(); ++line) {
 					allPlayers.clear();
 					unsigned int lineIndex = line;
 					unsigned int uniqueLines = chosenLineupsList.size();// (chosenLineupsList.size() / 3) - 1;
@@ -1739,6 +1764,13 @@ void RefineAlgorithm()
             for (unsigned int i = 0; i < opposingPitcherToPointsData.size(); ++i) {
                 sort(opposingPitcherToPointsData[i].begin(), opposingPitcherToPointsData[i].end());
             }
+			for (unsigned int i = 0; i < careerHardPercentToPointsData.size(); ++i) {
+				sort(careerHardPercentToPointsData[i].begin(), careerHardPercentToPointsData[i].end());
+			}
+			for (unsigned int i = 0; i < careerHrFbPercentToPointsData.size(); ++i) {
+				sort(careerHrFbPercentToPointsData[i].begin(), careerHrFbPercentToPointsData[i].end());
+			}
+			
             
             // <2000 to >5000 every 100
             statsDataTrackerFile << "Salary Relationships:\n";
@@ -1794,6 +1826,32 @@ void RefineAlgorithm()
                     statsDataTrackerFile << pitcherPredicted << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
                 }
             }
+
+			statsDataTrackerFile << "Career Hard Percent Relationships:\n";
+			for (unsigned int i = 0; i < careerHardPercentToPointsData.size(); ++i) {
+				unsigned int rowSize = careerHardPercentToPointsData[i].size();
+				if (rowSize > 0) {
+					int hardPercent = i + 20;
+					float mean = 0;
+					float stdDev = 0;
+					CalculateMeanAndStdDeviation(careerHardPercentToPointsData[i], mean, stdDev);
+					statsDataTrackerFile << hardPercent << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+				}
+			}
+
+			statsDataTrackerFile << "Career Hr Per FlyBall Percent Relationships:\n";
+			for (unsigned int i = 0; i < careerHrFbPercentToPointsData.size(); ++i) {
+				unsigned int rowSize = careerHrFbPercentToPointsData[i].size();
+				if (rowSize > 0) {
+					int hrfbPercent = i * 2 + 1;
+					float mean = 0;
+					float stdDev = 0;
+					CalculateMeanAndStdDeviation(careerHrFbPercentToPointsData[i], mean, stdDev);
+					statsDataTrackerFile << hrfbPercent << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+				}
+			}
+
+			
            
             statsDataTrackerFile.close();
         }
