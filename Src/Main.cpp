@@ -1615,6 +1615,7 @@ void RefineAlgorithm()
 									}
 								}
 							}
+                            
 							chosenLineupsList[lineLocal].push_back(totalPoints);
 						}
 					};
@@ -3147,7 +3148,8 @@ template <typename T> unordered_set<T> getSetIntersection(unordered_set<T> set1,
 vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPlayersToOptimize)
 {
     for (unsigned int a = 0; a < allPlayersToOptimize.size(); ++a) {
-        sort(allPlayersToOptimize[a].begin(), allPlayersToOptimize[a].end(), comparePlayerByPointsPerGame);
+        reverse(allPlayersToOptimize[a].begin(), allPlayersToOptimize[a].end());
+        stable_sort(allPlayersToOptimize[a].begin(), allPlayersToOptimize[a].end(), comparePlayerByPointsPerGame);
     }
     
 	vector<unsigned int> idealPlayerPerPosition;
@@ -3156,13 +3158,13 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
 	if (gameType == GameType::Fanduel) {
 		// one utility player, combine 1B/C
 		allPlayersToOptimize[1].insert(allPlayersToOptimize[1].end(), allPlayersToOptimize[0].begin(), allPlayersToOptimize[0].end());
-		sort(allPlayersToOptimize[1].begin(), allPlayersToOptimize[1].end(), comparePlayerByPointsPerGame);
+		stable_sort(allPlayersToOptimize[1].begin(), allPlayersToOptimize[1].end(), comparePlayerByPointsPerGame);
 
 		allPlayersToOptimize[0].clear();
 		for (unsigned int i = 1; i < allPlayersToOptimize.size(); ++i) {
 			allPlayersToOptimize[0].insert(allPlayersToOptimize[0].end(), allPlayersToOptimize[i].begin(), allPlayersToOptimize[i].end());
 		}
-		sort(allPlayersToOptimize[0].begin(), allPlayersToOptimize[0].end(), comparePlayerByPointsPerGame);
+		stable_sort(allPlayersToOptimize[0].begin(), allPlayersToOptimize[0].end(), comparePlayerByPointsPerGame);
 		unordered_set<string> topXTeams;
 
 		for (unsigned int i = 0; i < allPlayersToOptimize[0].size(); ++i) {
@@ -3224,7 +3226,7 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
 						}
 					}
                      */
-					sort(allPlayersToOptimize[i].begin(), allPlayersToOptimize[i].end(), comparePlayerByPointsPerGame);
+					stable_sort(allPlayersToOptimize[i].begin(), allPlayersToOptimize[i].end(), comparePlayerByPointsPerGame);
 				}
 
 				for (unsigned int i = 0; i < allPlayersToOptimize.size(); ++i) {
