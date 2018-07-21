@@ -148,6 +148,7 @@ void UnitTestAllStatCollectionFunctions();
 void GetBallparkFactors(std::string ballparkName, std::string statName, float& outFactorLeftyBatter, float& outFactorRightyBatter);
 
 void GetBeatTheStreakCandidates(CURL *curl);
+std::string convertTeamCodeToSynonym(std::string teamCode, int codeIndex);
 std::string ConvertOddsPortalNameToTeamRankingsName(std::string oddsportalTeamName);
 std::string ConvertTeamCodeToTeamRankingsName(std::string teamCode);
 std::string ConvertOddsPortalNameToTeamCodeName(std::string oddsportalTeamName, bool standardTeamCode);

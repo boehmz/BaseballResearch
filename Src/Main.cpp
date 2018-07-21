@@ -23,7 +23,7 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180720";
+std::string todaysDate = "20180721";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
@@ -53,7 +53,7 @@ int main(void)
 {
 	FillZScoreData();
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 	switch (processType)
 	{
 	case UnitTest:
@@ -105,6 +105,7 @@ vector<float> battingOrderZScoreData;
 vector<float> sabrPredictorZScoreData;
 vector<float> opposingPitcherZScoreData;
 vector<float> homeRunPerFlyBallRateZScoreData;
+vector<float> oppRelieverXfipZScoreData;
 
 bool compareTeamsByAveragePlayerPointsPerGame(TeamStackTracker a, TeamStackTracker b) {
 	if (b.numPlayersAdded <= 0)
@@ -311,6 +312,27 @@ void FillZScoreData() {
     homeRunPerFlyBallRateZScoreData.push_back(0.590182385f);
     homeRunPerFlyBallRateZScoreData.push_back(0.610080145f);
     homeRunPerFlyBallRateZScoreData.push_back(0.718241474f);
+    
+    oppRelieverXfipZScoreData.push_back(0.722488735f);
+    oppRelieverXfipZScoreData.push_back(0.695584288f);
+    oppRelieverXfipZScoreData.push_back(0.663458108f);
+    oppRelieverXfipZScoreData.push_back(0.628129198f);
+    oppRelieverXfipZScoreData.push_back(0.598617212f);
+    oppRelieverXfipZScoreData.push_back(0.565823083f);
+    oppRelieverXfipZScoreData.push_back(0.537848663f);
+    oppRelieverXfipZScoreData.push_back(0.497695125f);
+    oppRelieverXfipZScoreData.push_back(0.423029637f);
+    oppRelieverXfipZScoreData.push_back(0.415182742f);
+    oppRelieverXfipZScoreData.push_back(0.405073316f);
+    oppRelieverXfipZScoreData.push_back(0.398547052f);
+    oppRelieverXfipZScoreData.push_back(0.388779362f);
+    oppRelieverXfipZScoreData.push_back(0.367933366f);
+    oppRelieverXfipZScoreData.push_back(0.333489432f);
+    oppRelieverXfipZScoreData.push_back(0.314279868f);
+    oppRelieverXfipZScoreData.push_back(0.264233844f);
+    oppRelieverXfipZScoreData.push_back(0.231811269f);
+    oppRelieverXfipZScoreData.push_back(0.208861365f);
+    oppRelieverXfipZScoreData.push_back(0.127622917f);
 }
 
 void RefineAlgorithm()
@@ -360,9 +382,9 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = 20180401;
+        reviewDateStart = 20180507;
 		reviewDateEnd = 20180713;
-		percentOfSeasonPassed = 0.0f / 162.0f;
+		percentOfSeasonPassed = 33.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
         string top30BattersWithPitcherTrainingFileName = "Top30Order25BattersWithPitcherTrainingFile.csv";
@@ -428,6 +450,14 @@ void RefineAlgorithm()
 		vector< vector<float>> careerHardPercentToPointsData(31);
 		// <1 to >37 every 2
 		vector< vector<float>> careerHrFbPercentToPointsData(19);
+        // <7 to >12 every 0.33
+        vector< vector<float>> oppRelieverK9ToPointsData(16);
+        // <1 to >1.5 every 0.05
+        vector< vector<float>> oppRelieverWhipToPointsData(11);
+        // <3 to >5 every .1
+        vector< vector<float>> oppRelieverXfipToPointsData(21);
+        // <2.5 to >5 every .1
+        vector< vector<float>> oppRelieverSieraToPointsData(26);
 		
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
@@ -533,7 +563,14 @@ void RefineAlgorithm()
 #endif
                 string relieverStatsAdvancedFileContents = GetEntireFileContents(relieverStatsAdvancedFileName);
                 string relieverStatsBattedBallFileContents = GetEntireFileContents(relieverStatsBattedBallFileName);
-
+                struct RelieverStats {
+                    float whip = -1;
+                    float siera = -1;
+                    float xfip = -1;
+                    float strikeoutsPer9 = -1;
+                };
+                unordered_map<string, RelieverStats*> teamToOpponentsRelieverStatsMap;
+                
 				vector< vector<PlayerData> > allPlayersAll(6);
 				vector< vector<PlayerData> > allPlayersHomeRuns(6);
 				vector< vector<PlayerData> > allPlayersStackingTeams(6);
@@ -652,14 +689,7 @@ void RefineAlgorithm()
 						auto gameTimeElement = teamCodeToGameTime.find(singlePlayerData.teamCode);
 						if (gameTimeElement == teamCodeToGameTime.end()) {
 							
-							string teamCodesData = GetEntireFileContents("TeamCodes.txt");
-							string teamCodeForFile = ConvertRotoGuruTeamCodeToStandardTeamCode(singlePlayerData.teamCode);
-							size_t teamCodeLineIndex = teamCodesData.find(";" + teamCodeForFile + ";");
-							teamCodeLineIndex = teamCodesData.rfind("\n", teamCodeLineIndex);
-							size_t teamCodeLineEndIndex = teamCodesData.find("\n", teamCodeLineIndex + 1);
-							string teamCodesLine = teamCodesData.substr(teamCodeLineIndex + 1, teamCodeLineEndIndex - teamCodeLineIndex - 1);
-							vector<string> teamCodesColumns = SplitStringIntoMultiple(teamCodesLine, ";");
-							string fullteamName = teamCodesColumns[0];
+                            string fullteamName = convertTeamCodeToSynonym(ConvertRotoGuruTeamCodeToStandardTeamCode(singlePlayerData.teamCode), 0);
 							string gameTimeSection = ExtractStringToBeOnlySectionBetweenKeywords(gameTimesAndOdds, fullteamName, "oddsOpener");
 							bool isPm = true;
 							size_t pmamIndex = gameTimeSection.find(" PM");
@@ -749,6 +779,55 @@ void RefineAlgorithm()
                                 combinedBatterStatsHandedness = batterStatsHandednessCareer * 0.5f + batterStatsHandednessLastYear * 0.5f;
                             if (batterStatsHandedness.numPlateAppearancesVersusRighty > 10 && batterStatsHandedness.numPlateAppearancesVersusLefty > 10)
                                 combinedBatterStatsHandedness = combinedBatterStatsHandedness * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStatsHandedness;
+                            
+                            auto opponentRelieverStats = teamToOpponentsRelieverStatsMap.find(singlePlayerData.teamCode);
+                            if (relieverStatsAdvancedFileContents != "" && opponentRelieverStats == teamToOpponentsRelieverStatsMap.end()) {
+                                RelieverStats* rs = new RelieverStats();
+                                string fangraphsTeamName = convertTeamCodeToSynonym(ConvertRotoGuruTeamCodeToStandardTeamCode(opponentTeamCode), 4);
+                                vector<string> relieverRowColumns = GetFangraphsRowColumns(">" + fangraphsTeamName + "<", relieverStatsAdvancedFileContents, 19, "<tbody>", "", false);
+                                if (relieverRowColumns.size() > 18) {
+                                    rs->siera = stof(relieverRowColumns[18]);
+                                    rs->strikeoutsPer9 = stof(relieverRowColumns[0]);
+                                    rs->whip = stof(relieverRowColumns[8]);
+                                    rs->xfip = stof(relieverRowColumns[17]);
+                                    teamToOpponentsRelieverStatsMap.insert({singlePlayerData.teamCode,rs});
+                                    opponentRelieverStats = teamToOpponentsRelieverStatsMap.find(singlePlayerData.teamCode);
+                                } else {
+                                    cout << "Could not find reliever stats for team " << opponentTeamCode << endl;
+                                }
+                            }
+                            if (opponentRelieverStats != teamToOpponentsRelieverStatsMap.end()) {
+                                if (bRefineForStats) {
+                                    int k9Index = (opponentRelieverStats->second->strikeoutsPer9 - 7.0f) * 3.0f;
+                                    if (k9Index < 0)
+                                        k9Index = 0;
+                                    if (k9Index >= oppRelieverK9ToPointsData.size())
+                                        k9Index = oppRelieverK9ToPointsData.size()-1;
+                                    
+                                    int whipIndex = (opponentRelieverStats->second->whip - 1.0f) * 20.0f;
+                                    if (whipIndex < 0)
+                                        whipIndex = 0;
+                                    if (whipIndex >= oppRelieverWhipToPointsData.size())
+                                        whipIndex = oppRelieverWhipToPointsData.size()-1;
+                                    
+                                    int xfipIndex = (opponentRelieverStats->second->xfip - 3.0f) * 10.0f;
+                                    if (xfipIndex < 0)
+                                        xfipIndex = 0;
+                                    if (xfipIndex >= oppRelieverXfipToPointsData.size())
+                                        xfipIndex = oppRelieverXfipToPointsData.size()-1;
+                                    
+                                    int sieraIndex = (opponentRelieverStats->second->siera - 2.5f) * 10.0f;
+                                    if (sieraIndex < 0)
+                                        sieraIndex = 0;
+                                    if (sieraIndex >= oppRelieverSieraToPointsData.size())
+                                        sieraIndex = oppRelieverSieraToPointsData.size() - 1;
+                                    
+                                    oppRelieverK9ToPointsData[k9Index].push_back(actualPlayerPoints);
+                                    oppRelieverWhipToPointsData[whipIndex].push_back(actualPlayerPoints);
+                                    oppRelieverXfipToPointsData[xfipIndex].push_back(actualPlayerPoints);
+                                    oppRelieverSieraToPointsData[sieraIndex].push_back(actualPlayerPoints);
+                                }
+                            }
 							
                             // <2000 to >5000 every 100
                             if (bRefineForStats) {
@@ -1069,6 +1148,16 @@ void RefineAlgorithm()
                                                 hrfbZScore = homeRunPerFlyBallRateZScoreData[hrfbIndex];
                                             }
                                             
+                                            float relieverXfipZScore = -999;
+                                            if (opponentRelieverStats != teamToOpponentsRelieverStatsMap.end()) {
+                                                int xfipIndex = (opponentRelieverStats->second->xfip - 3.0f) * 10.0f;
+                                                if (xfipIndex < 0)
+                                                    xfipIndex = 0;
+                                                if (xfipIndex >= oppRelieverXfipToPointsData.size())
+                                                    xfipIndex = oppRelieverXfipToPointsData.size()-1;
+                                                relieverXfipZScore = oppRelieverXfipZScoreData[xfipIndex];
+                                            }
+                                            
                                             float salaryZScore, battingOrderZScore, sabrPredictZScore, oppPitcherSabrZScore;
                                             salaryZScore = salaryZScoreData[salaryIndex];
                                             battingOrderZScore = battingOrderZScoreData[battingOrderIndex];
@@ -1078,6 +1167,9 @@ void RefineAlgorithm()
                                             singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.333f + sabrPredictZScore * 0.333f + oppPitcherSabrZScore * 0.333f;
                                             if (hrfbZScore > -900) {
                                                  singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f + hrfbZScore * 0.25f;
+                                            }
+                                            if (relieverXfipZScore > -900) {
+                                                singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f + relieverXfipZScore * 0.25f;
                                             }
                                             singlePlayerData.playerPointsPerGame = 3000 - 1000 * singlePlayerData.playerPointsPerGame;
                                             allPlayersZScore[playerPosition].push_back(singlePlayerData);
@@ -1810,10 +1902,21 @@ void RefineAlgorithm()
 			for (unsigned int i = 0; i < careerHardPercentToPointsData.size(); ++i) {
 				sort(careerHardPercentToPointsData[i].begin(), careerHardPercentToPointsData[i].end());
 			}
-			for (unsigned int i = 0; i < careerHrFbPercentToPointsData.size(); ++i) {
-				sort(careerHrFbPercentToPointsData[i].begin(), careerHrFbPercentToPointsData[i].end());
+			for (unsigned int i = 0; i < oppRelieverSieraToPointsData.size(); ++i) {
+				sort(oppRelieverSieraToPointsData[i].begin(), oppRelieverSieraToPointsData[i].end());
 			}
-			
+            for (unsigned int i = 0; i < careerHrFbPercentToPointsData.size(); ++i) {
+                sort(careerHrFbPercentToPointsData[i].begin(), careerHrFbPercentToPointsData[i].end());
+            }
+            for (unsigned int i = 0; i < oppRelieverXfipToPointsData.size(); ++i) {
+                sort(oppRelieverXfipToPointsData[i].begin(), oppRelieverXfipToPointsData[i].end());
+            }
+            for (unsigned int i = 0; i < oppRelieverWhipToPointsData.size(); ++i) {
+                sort(oppRelieverWhipToPointsData[i].begin(), oppRelieverWhipToPointsData[i].end());
+            }
+            for (unsigned int i = 0; i < oppRelieverK9ToPointsData.size(); ++i) {
+                sort(oppRelieverK9ToPointsData[i].begin(), oppRelieverK9ToPointsData[i].end());
+            }
             
             // <2000 to >5000 every 100
             statsDataTrackerFile << "Salary Relationships:\n";
@@ -1893,9 +1996,55 @@ void RefineAlgorithm()
 					statsDataTrackerFile << hrfbPercent << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
 				}
 			}
-
-			
-           
+            
+            statsDataTrackerFile << "Opp Reliever Strikeouts per 9 Relationships:\n";
+            for (unsigned int i = 0; i < oppRelieverK9ToPointsData.size(); ++i) {
+                unsigned int rowSize = oppRelieverK9ToPointsData[i].size();
+                if (rowSize > 0) {
+                    float kPer9 = 7.0f + (i * 0.33f);
+                    float mean = 0;
+                    float stdDev = 0;
+                    CalculateMeanAndStdDeviation(oppRelieverK9ToPointsData[i], mean, stdDev);
+                    statsDataTrackerFile << kPer9 << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+                }
+            }
+            
+            statsDataTrackerFile << "Opp Reliever Whip Relationships:\n";
+            for (unsigned int i = 0; i < oppRelieverWhipToPointsData.size(); ++i) {
+                unsigned int rowSize = oppRelieverWhipToPointsData[i].size();
+                if (rowSize > 0) {
+                    float whip = 1.0f + (i * 0.05f);
+                    float mean = 0;
+                    float stdDev = 0;
+                    CalculateMeanAndStdDeviation(oppRelieverWhipToPointsData[i], mean, stdDev);
+                    statsDataTrackerFile << whip << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+                }
+            }
+            
+            statsDataTrackerFile << "Opp Reliever Xfip Relationships:\n";
+            for (unsigned int i = 0; i < oppRelieverXfipToPointsData.size(); ++i) {
+                unsigned int rowSize = oppRelieverXfipToPointsData[i].size();
+                if (rowSize > 0) {
+                    float xfip = 3.0f + (i*0.1f);
+                    float mean = 0;
+                    float stdDev = 0;
+                    CalculateMeanAndStdDeviation(oppRelieverXfipToPointsData[i], mean, stdDev);
+                    statsDataTrackerFile << xfip << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+                }
+            }
+            
+            statsDataTrackerFile << "Opp Reliever Siera Relationships:\n";
+            for (unsigned int i = 0; i < oppRelieverSieraToPointsData.size(); ++i) {
+                unsigned int rowSize = oppRelieverSieraToPointsData[i].size();
+                if (rowSize > 0) {
+                    float siera = 2.5f + (i*0.1f);
+                    float mean = 0;
+                    float stdDev = 0;
+                    CalculateMeanAndStdDeviation(oppRelieverSieraToPointsData[i], mean, stdDev);
+                    statsDataTrackerFile << siera << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+                }
+            }
+            
             statsDataTrackerFile.close();
         }
 		if (bRefineForBatters) {
@@ -4576,41 +4725,64 @@ void UnitTestAllStatCollectionFunctions()
     assert(IntToDateYMD(20180531, -30) == "20180501");
 }
 
+string teamCodesDataShared = "";
+string convertTeamCodeToSynonym(string teamCode, int codeIndex) {
+    if (teamCodesDataShared == "") {
+        teamCodesDataShared = GetEntireFileContents("TeamCodes.txt");
+    }
+    size_t teamNameBeginIndex = teamCodesDataShared.find(";" + teamCode + ";", 0);
+    if (teamNameBeginIndex != string::npos) {
+        teamNameBeginIndex = teamCodesDataShared.rfind("\n", teamNameBeginIndex);
+        teamNameBeginIndex++;
+        size_t teamCodeLineEndIndex = teamCodesDataShared.find("\n", teamNameBeginIndex);
+        string teamCodesLine = teamCodesDataShared.substr(teamNameBeginIndex, teamCodeLineEndIndex - teamNameBeginIndex);
+        vector<string> teamCodesColumns = SplitStringIntoMultiple(teamCodesLine, ";");
+        return teamCodesColumns[codeIndex];
+    }
+    return "";
+}
+
 string ConvertOddsPortalNameToTeamRankingsName(string oddsportalTeamName)
 {
-	string teamCodesData = GetEntireFileContents("TeamCodes.txt");
+    if (teamCodesDataShared == "") {
+        teamCodesDataShared = GetEntireFileContents("TeamCodes.txt");
+    }
 
-	size_t teamNameIndex = teamCodesData.find(oddsportalTeamName, 0);
+	size_t teamNameIndex = teamCodesDataShared.find(oddsportalTeamName, 0);
 	if (teamNameIndex == string::npos && oddsportalTeamName.find("Cardinals") != string::npos)
 	{
-		teamNameIndex = teamCodesData.find("Cardinals");
+		teamNameIndex = teamCodesDataShared.find("Cardinals");
 	}
 	for (int i = 0; i < 2; ++i)
 	{
-		teamNameIndex = teamCodesData.find(";", teamNameIndex + 1);
+		teamNameIndex = teamCodesDataShared.find(";", teamNameIndex + 1);
 	}
-	size_t teamNameEndIndex = teamCodesData.find(";", teamNameIndex + 1);
-	return teamCodesData.substr(teamNameIndex + 1, teamNameEndIndex - teamNameIndex - 1);
+	size_t teamNameEndIndex = teamCodesDataShared.find(";", teamNameIndex + 1);
+	return teamCodesDataShared.substr(teamNameIndex + 1, teamNameEndIndex - teamNameIndex - 1);
 }
 string ConvertTeamCodeToTeamRankingsName(string teamCode)
 {
-	string teamCodesData = GetEntireFileContents("TeamCodes.txt");
-	size_t teamNameIndex = teamCodesData.find(";" + teamCode + ";", 0);	
-	size_t teamNamePrevIndex = teamCodesData.rfind(";", teamNameIndex - 1);
+    if (teamCodesDataShared == "") {
+        teamCodesDataShared = GetEntireFileContents("TeamCodes.txt");
+    }
+	size_t teamNameIndex = teamCodesDataShared.find(";" + teamCode + ";", 0);
+	size_t teamNamePrevIndex = teamCodesDataShared.rfind(";", teamNameIndex - 1);
 
-	return teamCodesData.substr(teamNamePrevIndex + 1, teamNameIndex - teamNamePrevIndex - 1);
+	return teamCodesDataShared.substr(teamNamePrevIndex + 1, teamNameIndex - teamNamePrevIndex - 1);
 }
 std::string ConvertTeamCodeToOddsPortalName(std::string teamCode, bool standardTeamCode = true) {
-	string teamCodesData = GetEntireFileContents("TeamCodes.txt");
+    if (teamCodesDataShared == "") {
+        teamCodesDataShared = GetEntireFileContents("TeamCodes.txt");
+    }
 	if (!standardTeamCode)
 		teamCode = ConvertRotoGuruTeamCodeToStandardTeamCode(teamCode);
-	size_t teamCodeIndex = teamCodesData.find(";" + teamCode + ";", 0);
+	size_t teamCodeIndex = teamCodesDataShared.find(";" + teamCode + ";", 0);
 	if (teamCodeIndex == string::npos)
 		assert(false);
-	teamCodeIndex = teamCodesData.rfind("\n", teamCodeIndex);
+	teamCodeIndex = teamCodesDataShared.rfind("\n", teamCodeIndex);
 	teamCodeIndex++;
-	size_t oddsportalNameEndIndex = teamCodesData.find(";", teamCodeIndex);
-	string oddsportalTeamName = teamCodesData.substr(teamCodeIndex, oddsportalNameEndIndex - teamCodeIndex);
+	size_t oddsportalNameEndIndex = teamCodesDataShared.find(";", teamCodeIndex);
+	string oddsportalTeamName = teamCodesDataShared.substr(teamCodeIndex, oddsportalNameEndIndex - teamCodeIndex);
 	if ( oddsportalTeamName.find("Cardinals") != string::npos)
 	{
 		oddsportalTeamName = "St.Louis Cardinals";
@@ -4619,19 +4791,21 @@ std::string ConvertTeamCodeToOddsPortalName(std::string teamCode, bool standardT
 }
 std::string ConvertOddsPortalNameToTeamCodeName(std::string oddsportalTeamName, bool standardTeamCode = true)
 {
-	string teamCodesData = GetEntireFileContents("TeamCodes.txt");
+    if (teamCodesDataShared == "") {
+        teamCodesDataShared = GetEntireFileContents("TeamCodes.txt");
+    }
 
-	size_t teamNameIndex = teamCodesData.find(oddsportalTeamName, 0);
+	size_t teamNameIndex = teamCodesDataShared.find(oddsportalTeamName, 0);
 	if (teamNameIndex == string::npos && oddsportalTeamName.find("Cardinals") != string::npos)
 	{
-		teamNameIndex = teamCodesData.find("Cardinals");
+		teamNameIndex = teamCodesDataShared.find("Cardinals");
 	}
 	for (int i = 0; i < 3; ++i)
 	{
-		teamNameIndex = teamCodesData.find(";", teamNameIndex + 1);
+		teamNameIndex = teamCodesDataShared.find(";", teamNameIndex + 1);
 	}
-	size_t teamNameEndIndex = teamCodesData.find(";", teamNameIndex + 1);
-	string teamCode = teamCodesData.substr(teamNameIndex + 1, teamNameEndIndex - teamNameIndex - 1);
+	size_t teamNameEndIndex = teamCodesDataShared.find(";", teamNameIndex + 1);
+	string teamCode = teamCodesDataShared.substr(teamNameIndex + 1, teamNameEndIndex - teamNameIndex - 1);
 	if (!standardTeamCode)
 		teamCode = ConvertRotoGuruTeamCodeToStandardTeamCode(teamCode);
 	return teamCode;

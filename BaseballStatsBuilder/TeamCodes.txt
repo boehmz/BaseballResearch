@@ -1,35 +1,35 @@
-Tampa Bay Rays;Tropicana Field;Tampa Bay;tam;
-Boston Red Sox;Fenway Park;Boston;bos;
-Chicago White Sox;U.S. Cellular Field;Chi Sox;chw;
-New York Yankees;Yankee Stadium;NY Yankees;nyy;
-Pittsburgh Pirates;PNC Park;Pittsburgh;pit;
-St. Louis Cardinals;Busch Stadium;St. Louis;stl;
-San Diego Padres;Petco Park;San Diego;sdg;
+Tampa Bay Rays;Tropicana Field;Tampa Bay;tam;Rays;
+Boston Red Sox;Fenway Park;Boston;bos;Red Sox;
+Chicago White Sox;U.S. Cellular Field;Chi Sox;chw;White Sox;
+New York Yankees;Yankee Stadium;NY Yankees;nyy;Yankees;
+Pittsburgh Pirates;PNC Park;Pittsburgh;pit;Pirates;
+St. Louis Cardinals;Busch Stadium;St. Louis;stl;Cardinals;
+San Diego Padres;Petco Park;San Diego;sdg;Padres;
 Atlanta Braves;SunTrust Park;Atlanta;atl;
-Milwaukee Brewers;Miller Park;Milwaukee;mil;
-Chicago Cubs;Wrigley Field;Chi Cubs;chc;
-Cleveland Indians;Progressive Field;Cleveland;cle;
-Minnesota Twins;Target Field;Minnesota;min;
-Los Angeles Angels;Angel Stadium;LA Angels;laa;
-Houston Astros;Minute Maid Park;Houston;hou;
-Texas Rangers;Rangers Ballpark;Texas;tex;
-Oakland Athletics;Oakland Coliseum;Oakland;oak;
-Miami Marlins;Marlins Park;Miami;mia;
-Seattle Mariners;Safeco Field;Seattle;sea;
-Arizona Diamondbacks;Chase Field;Arizona;ari;
-Los Angeles Dodgers;Dodger Stadium;LA Dodgers;lad;
-Toronto Blue Jays;Rogers Centre;Toronto;tor;
-Baltimore Orioles;Camden Yards;Baltimore;bal;
-Cincinnati Reds;Great American Ball Park;Cincinnati;cin;
-San Francisco Giants;AT&T Park;SF Giants;sfo;
-Kansas City Royals;Kauffman Stadium;Kansas City;kan;
-Philadelphia Phillies;Citizens Bank Park;Philadelphia;phi;
-New York Mets;Citi Field;NY Mets;nym;
-Detroit Tigers;Comerica Park;Detroit;det;
-Colorado Rockies;Coors Field;Colorado;col;
-Washington Nationals;Nationals Park;Washington;was;
+Milwaukee Brewers;Miller Park;Milwaukee;mil;Brewers;
+Chicago Cubs;Wrigley Field;Chi Cubs;chc;Cubs;
+Cleveland Indians;Progressive Field;Cleveland;cle;Indians;
+Minnesota Twins;Target Field;Minnesota;min;Twins;
+Los Angeles Angels;Angel Stadium;LA Angels;laa;Angels;
+Houston Astros;Minute Maid Park;Houston;hou;Astros;
+Texas Rangers;Rangers Ballpark;Texas;tex;Rangers;
+Oakland Athletics;Oakland Coliseum;Oakland;oak;Athletics;
+Miami Marlins;Marlins Park;Miami;mia;Marlins;
+Seattle Mariners;Safeco Field;Seattle;sea;Mariners;
+Arizona Diamondbacks;Chase Field;Arizona;ari;Diamondbacks;
+Los Angeles Dodgers;Dodger Stadium;LA Dodgers;lad;Dodgers;
+Toronto Blue Jays;Rogers Centre;Toronto;tor;Blue Jays;
+Baltimore Orioles;Camden Yards;Baltimore;bal;Orioles;
+Cincinnati Reds;Great American Ball Park;Cincinnati;cin;Reds;
+San Francisco Giants;AT&T Park;SF Giants;sfo;Giants;
+Kansas City Royals;Kauffman Stadium;Kansas City;kan;Royals;
+Philadelphia Phillies;Citizens Bank Park;Philadelphia;phi;Phillies;
+New York Mets;Citi Field;NY Mets;nym;Mets;
+Detroit Tigers;Comerica Park;Detroit;det;Tigers;
+Colorado Rockies;Coors Field;Colorado;col;Rockies;
+Washington Nationals;Nationals Park;Washington;was;Nationals;
 
-weather data name; stadium name; .teamrankings.com name; standard 3 letter code
+weather data name; stadium name; .teamrankings.com name; standard 3 letter code;fangraphs team name;
 // still need to confirm:
 // Giants stadium name
 // Indians stadium name
