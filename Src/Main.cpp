@@ -23,11 +23,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180712";
+std::string todaysDate = "20180720";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 92.0f / 162.0f;
+float percentOfSeasonPassed = 97.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -104,6 +104,7 @@ vector<float> salaryZScoreData;
 vector<float> battingOrderZScoreData;
 vector<float> sabrPredictorZScoreData;
 vector<float> opposingPitcherZScoreData;
+vector<float> homeRunPerFlyBallRateZScoreData;
 
 bool compareTeamsByAveragePlayerPointsPerGame(TeamStackTracker a, TeamStackTracker b) {
 	if (b.numPlayersAdded <= 0)
@@ -292,6 +293,24 @@ void FillZScoreData() {
 	opposingPitcherZScoreData.push_back(0.822123043f);
 	opposingPitcherZScoreData.push_back(0.94037244f);
 	opposingPitcherZScoreData.push_back(1.11302749f);
+    
+    homeRunPerFlyBallRateZScoreData.push_back(0.938377373f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.725585551f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.574343696f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.440486465f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.39541186f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.365598503f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.343530478f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.314732583f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.298522114f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.248320115f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.29376924f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.36521288f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.455161427f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.497065423f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.590182385f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.610080145f);
+    homeRunPerFlyBallRateZScoreData.push_back(0.718241474f);
 }
 
 void RefineAlgorithm()
@@ -506,6 +525,14 @@ void RefineAlgorithm()
 				string batterVSpecificPitcherTextFileName = "2017ResultsTracker\\BatterVPitcherLogs\\" + thisDate + ".txt";
 				string batterVSpecificPitcherText = GetEntireFileContents(batterVSpecificPitcherTextFileName);
 				string sabrPredictorTextPitchers = getSabrPredictorFileContents(thisDate, true);
+                string relieverStatsAdvancedFileName = "FangraphsCachedPages\\CachedAtDate\\" + thisDate + "\\RelieverStatsAdvanced.txt";
+                string relieverStatsBattedBallFileName = "FangraphsCachedPages\\CachedAtDate\\" + thisDate + "\\RelieverStatsBattedBall.txt";
+#if PLATFORM_OSX
+                relieverStatsAdvancedFileName = GetPlatformCompatibleFileNameFromRelativePath(relieverStatsAdvancedFileName);
+                relieverStatsBattedBallFileName = GetPlatformCompatibleFileNameFromRelativePath(relieverStatsBattedBallFileName);
+#endif
+                string relieverStatsAdvancedFileContents = GetEntireFileContents(relieverStatsAdvancedFileName);
+                string relieverStatsBattedBallFileContents = GetEntireFileContents(relieverStatsBattedBallFileName);
 
 				vector< vector<PlayerData> > allPlayersAll(6);
 				vector< vector<PlayerData> > allPlayersHomeRuns(6);
@@ -735,7 +762,9 @@ void RefineAlgorithm()
                                     battingOrderToPointsData[battingOrderIndex].push_back(actualPlayerPoints);
 
 								if (batterStatsCareer.numPlateAppearances > 200 && battedBallCareer.hardPercent >= 0) {
-									int hardIndex = battedBallCareer.hardPercent - 20;
+                                    float combinedPercent = battedBallCareer.mediumPercent + battedBallCareer.hardPercent * 2;
+									int hardIndex = combinedPercent - 60;
+                                    hardIndex /= 3;
 									if (hardIndex < 0)
 										hardIndex = 0;
 									if (hardIndex >= careerHardPercentToPointsData.size())
@@ -1029,6 +1058,17 @@ void RefineAlgorithm()
                                             
                                             int battingOrderIndex = battingOrder - 1;
                                             
+                                            float hrfbZScore = -999;
+                                            if (battedBallCareer.homerunPerFlyBallPercent >= 0) {
+                                                int hrfbIndex = battedBallCareer.homerunPerFlyBallPercent - 1;
+                                                hrfbIndex /= 2;
+                                                if (hrfbIndex < 0)
+                                                    hrfbIndex = 0;
+                                                if (hrfbIndex >= homeRunPerFlyBallRateZScoreData.size())
+                                                    hrfbIndex = homeRunPerFlyBallRateZScoreData.size() - 1;
+                                                hrfbZScore = homeRunPerFlyBallRateZScoreData[hrfbIndex];
+                                            }
+                                            
                                             float salaryZScore, battingOrderZScore, sabrPredictZScore, oppPitcherSabrZScore;
                                             salaryZScore = salaryZScoreData[salaryIndex];
                                             battingOrderZScore = battingOrderZScoreData[battingOrderIndex];
@@ -1036,6 +1076,9 @@ void RefineAlgorithm()
                                             oppPitcherSabrZScore = opposingPitcherZScoreData[opposingPitcherIndex];
                                             singlePlayerData.playerPointsPerGame = salaryZScore * 0.25f + battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f;
                                             singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.333f + sabrPredictZScore * 0.333f + oppPitcherSabrZScore * 0.333f;
+                                            if (hrfbZScore > -900) {
+                                                 singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f + hrfbZScore * 0.25f;
+                                            }
                                             singlePlayerData.playerPointsPerGame = 3000 - 1000 * singlePlayerData.playerPointsPerGame;
                                             allPlayersZScore[playerPosition].push_back(singlePlayerData);
                                         }
@@ -1827,11 +1870,11 @@ void RefineAlgorithm()
                 }
             }
 
-			statsDataTrackerFile << "Career Hard Percent Relationships:\n";
+			statsDataTrackerFile << "Career Medium+Hard*2 Percent Relationships:\n";
 			for (unsigned int i = 0; i < careerHardPercentToPointsData.size(); ++i) {
 				unsigned int rowSize = careerHardPercentToPointsData[i].size();
 				if (rowSize > 0) {
-					int hardPercent = i + 20;
+					int hardPercent = i * 3 + 60;
 					float mean = 0;
 					float stdDev = 0;
 					CalculateMeanAndStdDeviation(careerHardPercentToPointsData[i], mean, stdDev);

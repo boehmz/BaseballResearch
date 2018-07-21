@@ -1155,10 +1155,12 @@ BattedBallProfile GetBattedBallProfileFromBattedBallProfileRows(string fangraphs
 			fangraphsBattedBallRows[i] = fangraphsBattedBallRows[i].substr(0, percentIndex);
 		}
 	}
-	profile.homerunPerFlyBallPercent = stof(fangraphsBattedBallRows[6]);
-	profile.softPercent = stof(fangraphsBattedBallRows[12]);
-	profile.mediumPercent = stof(fangraphsBattedBallRows[13]);
-	profile.hardPercent = stof(fangraphsBattedBallRows[14]);
+    if (fangraphsBattedBallRows[12].find("nbsp") == string::npos && fangraphsBattedBallRows[13].find("nbsp") == string::npos) {
+        profile.homerunPerFlyBallPercent = stof(fangraphsBattedBallRows[6]);
+        profile.softPercent = stof(fangraphsBattedBallRows[12]);
+        profile.mediumPercent = stof(fangraphsBattedBallRows[13]);
+        profile.hardPercent = stof(fangraphsBattedBallRows[14]);
+    }
 	return profile;
 }
 
