@@ -23,11 +23,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180721";
+std::string todaysDate = "20180723";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 97.0f / 162.0f;
+float percentOfSeasonPassed = 99.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -388,17 +388,21 @@ void RefineAlgorithm()
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
         string top30BattersWithPitcherTrainingFileName = "Top30Order25BattersWithPitcherTrainingFile.csv";
+        string top50ZScoreTrainingFileName = "Top50ZScoreTrainingFile.csv";
 #if PLATFORM_OSX
         top10PitchersTrainingFileName = GetPlatformCompatibleFileNameFromRelativePath(top10PitchersTrainingFileName);
         top25BattersTrainingFileName = GetPlatformCompatibleFileNameFromRelativePath(top25BattersTrainingFileName);
         top30BattersWithPitcherTrainingFileName = GetPlatformCompatibleFileNameFromRelativePath(top30BattersWithPitcherTrainingFileName);
+        top50ZScoreTrainingFileName = GetPlatformCompatibleFileNameFromRelativePath(top50ZScoreTrainingFileName);
 #endif
 		fstream top10PitchersTrainingFile(top10PitchersTrainingFileName, std::ios::out);
 		fstream top25BattersTrainingFile(top25BattersTrainingFileName, std::ios::out);
 		fstream top30BattersWithPitcherTrainingFile(top30BattersWithPitcherTrainingFileName, std::ios::out);
+        fstream top50ZScoreTrainingFile(top50ZScoreTrainingFileName, std::ios::out);
 		int numBattersPutInTrainingFileToday = 0;
 		int numPitchersPutInTrainingFileToday = 0;
 		int numBattersWithPitcherPutInTrainingFileToday = 0;
+        int numBattersZScoreInTrainingFileToday = 0;
 		FullSeasonPitcherStats playersOver25PointsSumPitcher;
 		FullSeasonStatsAdvancedNoHandedness playersOver25PointsSum;
 		int numPlayersOver25Points = 0;
@@ -543,6 +547,7 @@ void RefineAlgorithm()
 			numBattersPutInTrainingFileToday = 0;
 			numPitchersPutInTrainingFileToday = 0;
 			numBattersWithPitcherPutInTrainingFileToday = 0;
+            numBattersZScoreInTrainingFileToday = 0;
 			if (bRefineForBatters) {
 				ifstream resultsTrackerFile;
 				string resultsTrackerFileName = "2017ResultsTracker\\";
@@ -1170,7 +1175,15 @@ void RefineAlgorithm()
                                             }
                                             if (relieverXfipZScore > -900) {
                                                 singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f + relieverXfipZScore * 0.25f;
+                                                
+                                                if (numBattersZScoreInTrainingFileToday < 50) {
+                                                    top50ZScoreTrainingFile << battingOrderZScore * -1.0f << "," << sabrPredictZScore * -1.0f;
+                                                    top50ZScoreTrainingFile << "," << oppPitcherSabrZScore * -1.0f << "," << relieverXfipZScore * -1.0f;
+                                                    top50ZScoreTrainingFile  << "," << actualPlayerPoints << endl;
+                                                    numBattersZScoreInTrainingFileToday++;
+                                                }
                                             }
+                                         //   singlePlayerData.playerPointsPerGame = battingOrderZScore * 21.627f + sabrPredictZScore * 0.3177f + oppPitcherSabrZScore * 5.1647f + relieverXfipZScore * -1.809f;
                                             singlePlayerData.playerPointsPerGame = 3000 - 1000 * singlePlayerData.playerPointsPerGame;
                                             allPlayersZScore[playerPosition].push_back(singlePlayerData);
                                         }
@@ -1879,6 +1892,7 @@ void RefineAlgorithm()
 		top10PitchersTrainingFile.close();
 		top25BattersTrainingFile.close();
 		top30BattersWithPitcherTrainingFile.close();
+        top50ZScoreTrainingFile.close();
         if (bRefineForStats) {
             ofstream statsDataTrackerFile;
             string statsDataTrackerFileName = "2018ResultsTracker\\StatsRelationships.txt";
@@ -3200,6 +3214,7 @@ void GenerateLineups(CURL *curl)
 					playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertNameToFirstInitialLastName(singlePlayerData.playerName) + " ");
                     
 				}
+                
 				if (playerIndexInTodaysLineups != string::npos) {
                     size_t prevLineupOrderIndex = todaysLineups.rfind("lineup-large-pos", playerIndexInTodaysLineups);
                     size_t lineupOrderStartIndex = todaysLineups.find(">", prevLineupOrderIndex);
