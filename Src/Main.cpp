@@ -23,11 +23,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180723";
+std::string todaysDate = "20180726";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 99.0f / 162.0f;
+float percentOfSeasonPassed = 102.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -2965,7 +2965,22 @@ void GenerateLineups(CURL *curl)
 	vector< vector<PlayerData> > allPlayersZScore(6);	// most accurate formula, uses all players.  Good for tournaments and daily doubles.
 	if (curl)
 	{
-		
+        string relieverStatsAdvancedFileName = "FangraphsCachedPages\\CachedAtDate\\" + todaysDate + "\\RelieverStatsAdvanced.txt";
+        string relieverStatsBattedBallFileName = "FangraphsCachedPages\\CachedAtDate\\" + todaysDate + "\\RelieverStatsBattedBall.txt";
+#if PLATFORM_OSX
+        relieverStatsAdvancedFileName = GetPlatformCompatibleFileNameFromRelativePath(relieverStatsAdvancedFileName);
+        relieverStatsBattedBallFileName = GetPlatformCompatibleFileNameFromRelativePath(relieverStatsBattedBallFileName);
+#endif
+        string relieverStatsAdvancedFileContents = GetEntireFileContents(relieverStatsAdvancedFileName);
+        string relieverStatsBattedBallFileContents = GetEntireFileContents(relieverStatsBattedBallFileName);
+        struct RelieverStats {
+            float whip = -1;
+            float siera = -1;
+            float xfip = -1;
+            float strikeoutsPer9 = -1;
+        };
+        unordered_map<string, RelieverStats*> teamToOpponentsRelieverStatsMap;
+        
 		// previous days results, to get the likely batting order
 		int numDaysPreviousResults = 7;
 		vector<string> previousDayResults;
@@ -3074,8 +3089,16 @@ void GenerateLineups(CURL *curl)
 				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
 				singlePlayerData.playerSalary = atoi(readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1).c_str());
 
+                // number of games started this season
+                for (int i = 0; i < 17; ++i)
+                {
+                    placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+                }
+                nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+                string opponentTeamCode = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+                
 				// number of games started this season
-				for (int i = 0; i < 19; ++i)
+				for (int i = 0; i < 2; ++i)
 				{
 					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
 				}
@@ -3282,7 +3305,24 @@ void GenerateLineups(CURL *curl)
 						}
                     }
 					
-					if (actualBattingOrder > 0) {
+                    auto opponentRelieverStats = teamToOpponentsRelieverStatsMap.find(singlePlayerData.teamCode);
+                    if (relieverStatsAdvancedFileContents != "" && opponentRelieverStats == teamToOpponentsRelieverStatsMap.end()) {
+                        RelieverStats* rs = new RelieverStats();
+                        string fangraphsTeamName = convertTeamCodeToSynonym(ConvertRotoGuruTeamCodeToStandardTeamCode(opponentTeamCode), 4);
+                        vector<string> relieverRowColumns = GetFangraphsRowColumns(">" + fangraphsTeamName + "<", relieverStatsAdvancedFileContents, 19, "<tbody>", "", false);
+                        if (relieverRowColumns.size() > 18) {
+                            rs->siera = stof(relieverRowColumns[18]);
+                            rs->strikeoutsPer9 = stof(relieverRowColumns[0]);
+                            rs->whip = stof(relieverRowColumns[8]);
+                            rs->xfip = stof(relieverRowColumns[17]);
+                            teamToOpponentsRelieverStatsMap.insert({singlePlayerData.teamCode,rs});
+                            opponentRelieverStats = teamToOpponentsRelieverStatsMap.find(singlePlayerData.teamCode);
+                        } else {
+                            cout << "Could not find reliever stats for team " << opponentTeamCode << endl;
+                        }
+                    }
+                    
+					if (actualBattingOrder > 0 && expectedFdPoints > 0 && expectedFdPointsOpposingPitcher > 0) {
 						int opposingPitcherIndex = (expectedFdPointsOpposingPitcher - 18.0f) / 2.0f;
 						if (opposingPitcherIndex < 0)
 							opposingPitcherIndex = 0;
@@ -3296,12 +3336,25 @@ void GenerateLineups(CURL *curl)
 							sabrIndex = sabrPredictorZScoreData.size() - 1;
 						
 						int battingOrderIndex = actualBattingOrder - 1;
+                        
+                        float relieverXfipZScore = -999;
+                        if (opponentRelieverStats != teamToOpponentsRelieverStatsMap.end()) {
+                            int xfipIndex = (opponentRelieverStats->second->xfip - 3.0f) * 10.0f;
+                            if (xfipIndex < 0)
+                                xfipIndex = 0;
+                            if (xfipIndex >= oppRelieverXfipZScoreData.size())
+                                xfipIndex = oppRelieverXfipZScoreData.size()-1;
+                            relieverXfipZScore = oppRelieverXfipZScoreData[xfipIndex];
+                        }
 						
 						float battingOrderZScore, sabrPredictZScore, oppPitcherSabrZScore;
 						battingOrderZScore = battingOrderZScoreData[battingOrderIndex];
 						sabrPredictZScore = sabrPredictorZScoreData[sabrIndex];
 						oppPitcherSabrZScore = opposingPitcherZScoreData[opposingPitcherIndex];
 						singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.333f + sabrPredictZScore * 0.333f + oppPitcherSabrZScore * 0.333f;
+                        if (relieverXfipZScore > -900) {
+                            singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f + relieverXfipZScore * 0.25f;
+                        }
 						singlePlayerData.playerPointsPerGame = 3000 - 1000 * singlePlayerData.playerPointsPerGame;
 						allPlayersZScore[positionIndex].push_back(singlePlayerData);
 					}
