@@ -5,7 +5,7 @@ New York Yankees;Yankee Stadium;NY Yankees;nyy;Yankees;
 Pittsburgh Pirates;PNC Park;Pittsburgh;pit;Pirates;
 St. Louis Cardinals;Busch Stadium;St. Louis;stl;Cardinals;
 San Diego Padres;Petco Park;San Diego;sdg;Padres;
-Atlanta Braves;SunTrust Park;Atlanta;atl;
+Atlanta Braves;SunTrust Park;Atlanta;atl;Braves;
 Milwaukee Brewers;Miller Park;Milwaukee;mil;Brewers;
 Chicago Cubs;Wrigley Field;Chi Cubs;chc;Cubs;
 Cleveland Indians;Progressive Field;Cleveland;cle;Indians;
