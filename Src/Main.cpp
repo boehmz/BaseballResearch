@@ -23,11 +23,11 @@ int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180726";
+std::string todaysDate = "20180801";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 102.0f / 162.0f;
+float percentOfSeasonPassed = 108.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -2947,7 +2947,7 @@ void ChooseAPitcher(CURL *curl)
 	}
 }
 
-unordered_set<string> pitcherYahooMultiplyLineupPlayersTaken;
+unordered_set<string> ZScoreLineupPlayersTaken;
 
 vector<PlayerData> GetLineupWhileResettingAllPlayers(vector< vector<PlayerData> > newAllPlayers, int newMaxTotalBudget) {
     maxTotalBudget = newMaxTotalBudget;
@@ -3298,7 +3298,7 @@ void GenerateLineups(CURL *curl)
                     
                     if (bAcceptableBattingOrder) {
 						if (expectedFdPoints > 0) {
-							if (expectedYahooPointsOpposingPitcher > 0 && pitcherYahooMultiplyLineupPlayersTaken.find(singlePlayerData.playerId) == pitcherYahooMultiplyLineupPlayersTaken.end()) {
+							if (expectedYahooPointsOpposingPitcher > 0) {
 								singlePlayerData.playerPointsPerGame = expectedFdPoints * (60.0f / expectedYahooPointsOpposingPitcher);
 								allPlayers25PitcherYahooMultiply[positionIndex].push_back(singlePlayerData);
 							}
@@ -3356,7 +3356,8 @@ void GenerateLineups(CURL *curl)
                             singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f + relieverXfipZScore * 0.25f;
                         }
 						singlePlayerData.playerPointsPerGame = 3000 - 1000 * singlePlayerData.playerPointsPerGame;
-						allPlayersZScore[positionIndex].push_back(singlePlayerData);
+                        if (ZScoreLineupPlayersTaken.find(singlePlayerData.playerId) == ZScoreLineupPlayersTaken.end())
+                            allPlayersZScore[positionIndex].push_back(singlePlayerData);
 					}
                     
 					addedAtLeast1Player = true;
@@ -3390,8 +3391,8 @@ void GenerateLineups(CURL *curl)
 	
     vector<PlayerData> pitcherYahooMultiplyLineup = GetLineupWhileResettingAllPlayers(allPlayers25PitcherYahooMultiply, budgetForThisPitcher);
     
-    for (unsigned int p1 = 0; p1 < pitcherYahooMultiplyLineup.size(); ++p1) {
-        pitcherYahooMultiplyLineupPlayersTaken.insert(pitcherYahooMultiplyLineup[p1].playerId);
+    for (unsigned int p1 = 0; p1 < zScoreLineup.size(); ++p1) {
+        ZScoreLineupPlayersTaken.insert(zScoreLineup[p1].playerId);
     }
 	
     if (pitcherYahooMultiplyLineup.size() > 0) {
