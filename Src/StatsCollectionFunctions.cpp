@@ -851,6 +851,8 @@ string GetPlayerFangraphsPageData(string playerId, CURL *curl, bool bCachedOk, i
 
 			string playerName = GetSubStringBetweenStrings(playerRotoGuruData, "<TITLE>", "</TITLE>");
 			size_t nameIndex = writeBuffer.find(ConvertLFNameToFLName(playerName));
+            if (nameIndex == string::npos)
+                nameIndex = FindPlayerNameIndexInList(playerName, writeBuffer);
 			if (nameIndex != string::npos) {
 				size_t firstRedirectIndex = writeBuffer.rfind("statss.aspx?playerid=", nameIndex);
 				if (firstRedirectIndex != string::npos) {
