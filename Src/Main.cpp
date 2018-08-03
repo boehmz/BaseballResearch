@@ -18,16 +18,16 @@
 using namespace std;
 
 // BeatTheStreak not supported past 2017, RIP
-GameType gameType = GameType::Fanduel;
+GameType gameType = GameType::DraftKings;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
 int latestGameTime = 99;
 int earliestGameTime = 19;
-std::string todaysDate = "20180801";
+std::string todaysDate = "20180803";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 108.0f / 162.0f;
+float percentOfSeasonPassed = 111.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -53,7 +53,7 @@ int main(void)
 {
 	FillZScoreData();
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -1033,8 +1033,8 @@ void RefineAlgorithm()
 								size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
 								vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
 								float expectedFdPoints = stof(thisSabrLine[17]);
-								if (gameType == GameType::DraftKings)
-									expectedFdPoints = stof(thisSabrLine[18]);
+							//	if (gameType == GameType::DraftKings)
+							//		expectedFdPoints = stof(thisSabrLine[18]);
                                 if (bRefineForStats) {
                                     int sabrIndex = expectedFdPoints - 5;
                                     if (sabrIndex < 0)
@@ -2782,7 +2782,7 @@ void ChooseAPitcher(CURL *curl)
 			combinedPitcherStats.era = 0.5f * opponentRunsPerGame + 0.5f * combinedPitcherStats.era;
             singlePlayerData.playerPointsPerGame = -1;
 			bool pointsCalculatedFromSabrPredictor = false;
-            if (combinedPitcherStats.strikeOutsPer9 >= 0 && gameType != GameType::DraftKings) {
+            if (combinedPitcherStats.strikeOutsPer9 >= 0 && gameType == GameType::Fanduel) {
                 singlePlayerData.playerPointsPerGame = combinedPitcherStats.era * -0.352834158133307318f + combinedPitcherStats.xfip * -1.50744966177988493f + combinedPitcherStats.strikeOutsPer9 * 1.44486530250260237f;
             } else {
                 size_t playerNameIndex = sabrPredictorTextPitchers.find(ConvertLFNameToFLName(singlePlayerData.playerName));
@@ -3474,6 +3474,7 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
 	vector<unsigned int> idealPlayerPerPosition;
 	int maxPlayersPerTeam = 4;
 
+    unordered_set<string> topXTeams;
 	if (gameType == GameType::Fanduel) {
 		// one utility player, combine 1B/C
 		allPlayersToOptimize[1].insert(allPlayersToOptimize[1].end(), allPlayersToOptimize[0].begin(), allPlayersToOptimize[0].end());
@@ -3484,7 +3485,7 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
 			allPlayersToOptimize[0].insert(allPlayersToOptimize[0].end(), allPlayersToOptimize[i].begin(), allPlayersToOptimize[i].end());
 		}
 		stable_sort(allPlayersToOptimize[0].begin(), allPlayersToOptimize[0].end(), comparePlayerByPointsPerGame);
-		unordered_set<string> topXTeams;
+		
 
 		for (unsigned int i = 0; i < allPlayersToOptimize[0].size(); ++i) {
 			if (pitcherOpponentTeamCodes.find(allPlayersToOptimize[0][i].teamCode) == pitcherOpponentTeamCodes.end() && topXTeams.find(allPlayersToOptimize[0][i].teamCode) == topXTeams.end()) {
@@ -3544,23 +3545,37 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
 							allPlayersToOptimize[i][p].playerPointsPerGame += 2500;
 						}
 					}
-                     */
+                     
 					stable_sort(allPlayersToOptimize[i].begin(), allPlayersToOptimize[i].end(), comparePlayerByPointsPerGame);
-				}
-
-				for (unsigned int i = 0; i < allPlayersToOptimize.size(); ++i) {
-					for (int p = allPlayersToOptimize[i].size() - 1; p >= 0; --p) {
-                        if (allPlayersToOptimize[i].size() == 1 || (i == allPlayersToOptimize.size()-1 && allPlayersToOptimize[i].size() == 3))
-                            break;
-						if (topXTeams.find(allPlayersToOptimize[i][p].teamCode) == topXTeams.end()) {
-							allPlayersToOptimize[i].erase(allPlayersToOptimize[i].begin() + p);
-						}
-					}
+                    */
 				}
 			}
 		}
-	}
-
+    } else if (gameType == GameType::DraftKings) {
+        vector<PlayerData> allPlayersCombined;
+        for (unsigned int i = 0; i < allPlayersToOptimize.size(); ++i) {
+            allPlayersCombined.insert(allPlayersCombined.end(), allPlayersToOptimize[i].begin(), allPlayersToOptimize[i].end());
+        }
+        stable_sort(allPlayersCombined.begin(), allPlayersCombined.end(), comparePlayerByPointsPerGame);
+        for (unsigned int i = 0; i < allPlayersCombined.size(); ++i) {
+            if (pitcherOpponentTeamCodes.find(allPlayersCombined[i].teamCode) == pitcherOpponentTeamCodes.end() && topXTeams.find(allPlayersCombined[i].teamCode) == topXTeams.end()) {
+                topXTeams.insert(allPlayersCombined[i].teamCode);
+            }
+            if (topXTeams.size() >= 5)
+                break;
+        }
+    }
+    if (stackMaxNumTeams && topXTeams.size() > 0) {
+        for (unsigned int i = 0; i < allPlayersToOptimize.size(); ++i) {
+            for (int p = allPlayersToOptimize[i].size() - 1; p >= 0; --p) {
+                if (allPlayersToOptimize[i].size() == 1 || (i == allPlayersToOptimize.size()-1 && allPlayersToOptimize[i].size() == 3))
+                    break;
+                if (topXTeams.find(allPlayersToOptimize[i][p].teamCode) == topXTeams.end()) {
+                    allPlayersToOptimize[i].erase(allPlayersToOptimize[i].begin() + p);
+                }
+            }
+        }
+    }
 
 	
     if (!stackMaxNumTeams) {
@@ -3628,6 +3643,7 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
         vector<unsigned int> chosenPlayers;
         float bestValidScore = -1;
 		unsigned int leastTeamsRepresented =  idealPlayerPerPosition.size() + 1;
+        
         for (unsigned int a = 0; a < allPlayersToOptimize[1].size(); ++a) {
 			changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 1, a, numPlayersFromTeam, totalSalary);
 			for (unsigned int b = 0; b < allPlayersToOptimize[2].size(); ++b) {
@@ -3644,105 +3660,117 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
                                 changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 6, f, numPlayersFromTeam, totalSalary);
                                 for (unsigned int g = f+1; g < allPlayersToOptimize[5].size(); ++g) {
                                     changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 7, g, numPlayersFromTeam, totalSalary);
+                                    bool foundALineup = false;
+                                    for (unsigned int catcher = 0; catcher < allPlayersToOptimize[0].size(); ++catcher) {
 									
-									int bestUtilityPlayer = -1;
-                                    for (unsigned int h = 0; h < allPlayersToOptimize[0].size(); ++h) {
-										PlayerData newCandidate = allPlayersToOptimize[0][h];
-                                        PlayerData currentUtilityPlayer = allPlayersToOptimize[0][idealPlayerPerPosition[0]];
-                                        int teamCurrentSize = 0;
-                                        {
-                                            auto teamCurrentSizeContainer = numPlayersFromTeam.find(newCandidate.teamCode);
-                                            
-                                            if (teamCurrentSizeContainer != numPlayersFromTeam.end()) {
-                                                teamCurrentSize = teamCurrentSizeContainer->second;
-                                            }
-                                        }
-                                        if (teamCurrentSize > maxPlayersPerTeam || (teamCurrentSize >= maxPlayersPerTeam && newCandidate.teamCode != currentUtilityPlayer.teamCode))
-                                            continue;
-                                        
-                                        if (totalSalary - currentUtilityPlayer.playerSalary + newCandidate.playerSalary <= maxTotalBudget ) {
-                                            bool existingPlayer = false;
-                                            for (unsigned int ex = 1; ex < idealPlayerPerPosition.size(); ++ex) {
-                                                unsigned int exPos = ex;
-                                                if (exPos >= allPlayersToOptimize.size())
-                                                    exPos = allPlayersToOptimize.size() - 1;
-                                                if (newCandidate.playerId == allPlayersToOptimize[exPos][idealPlayerPerPosition[ex]].playerId) {
-                                                    existingPlayer = true;
-                                                    break;
-                                                }
-                                            }
-                                            if (existingPlayer)
-                                                continue;
-                                            if (bestUtilityPlayer == -1)
-                                                bestUtilityPlayer = h;
-                                            if ((newCandidate.teamCode != currentUtilityPlayer.teamCode && teamCurrentSize > 0) || (teamCurrentSize > 1)) {
-                                                bestUtilityPlayer = h;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    if (bestUtilityPlayer == -1)
-                                        continue;
-                                    if (bestUtilityPlayer >= 0)
-                                        changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 0, bestUtilityPlayer, numPlayersFromTeam, totalSalary);
-                                    
-                                    int teamStackScore = 0;
-									float expectedScore = 0;
-                                    for (unsigned int i = 0; i < idealPlayerPerPosition.size(); ++i) {
-                                        unsigned int positionIndex = i;
-                                        if (positionIndex >= allPlayersToOptimize.size())
-                                            positionIndex = allPlayersToOptimize.size() - 1;
-                                        PlayerData thisPlayer = allPlayersToOptimize[positionIndex][idealPlayerPerPosition[i]];
-                                        expectedScore += thisPlayer.playerPointsPerGame;
-                                        /*
-                                        int teammatesInLineup = numPlayersFromTeam.find(thisPlayer.teamCode)->second - 1;
-                                        if (teammatesInLineup == 0) {
-                                            teamStackScore += 12;
-                                        } else {
-                                            int closestBattingOrder = 12;
-                                            int numTeammatesFound = 0;
-                                            for (unsigned int o = 0; o < idealPlayerPerPosition.size(); ++o) {
-                                                if (i == o)
-                                                    continue;
-                                                unsigned int positionIndexOther = o;
-                                                if (positionIndexOther >= allPlayersToOptimize.size())
-                                                    positionIndexOther = allPlayersToOptimize.size() - 1;
-                                                PlayerData otherPlayer = allPlayersToOptimize[positionIndexOther][idealPlayerPerPosition[o]];
-                                                if (otherPlayer.teamCode == thisPlayer.teamCode) {
-                                                    int orderDifference = abs(otherPlayer.battingOrder - thisPlayer.battingOrder);
-                                                    if (orderDifference < closestBattingOrder) {
-                                                        closestBattingOrder = orderDifference;
+                                        if (gameType == GameType::DraftKings) {
+                                            changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 0, catcher, numPlayersFromTeam, totalSalary);
+                                        } else if (gameType == GameType::Fanduel) {
+                                            int bestUtilityPlayer = -1;
+                                            for (unsigned int h = 0; h < allPlayersToOptimize[0].size(); ++h) {
+                                                PlayerData newCandidate = allPlayersToOptimize[0][h];
+                                                PlayerData currentUtilityPlayer = allPlayersToOptimize[0][idealPlayerPerPosition[0]];
+                                                int teamCurrentSize = 0;
+                                                {
+                                                    auto teamCurrentSizeContainer = numPlayersFromTeam.find(newCandidate.teamCode);
+                                                    
+                                                    if (teamCurrentSizeContainer != numPlayersFromTeam.end()) {
+                                                        teamCurrentSize = teamCurrentSizeContainer->second;
                                                     }
-                                                    numTeammatesFound++;
                                                 }
-                                                if (numTeammatesFound == teammatesInLineup)
-                                                    break;
+                                                if (teamCurrentSize > maxPlayersPerTeam || (teamCurrentSize >= maxPlayersPerTeam && newCandidate.teamCode != currentUtilityPlayer.teamCode))
+                                                    continue;
+                                                
+                                                if (totalSalary - currentUtilityPlayer.playerSalary + newCandidate.playerSalary <= maxTotalBudget ) {
+                                                    bool existingPlayer = false;
+                                                    for (unsigned int ex = 1; ex < idealPlayerPerPosition.size(); ++ex) {
+                                                        unsigned int exPos = ex;
+                                                        if (exPos >= allPlayersToOptimize.size())
+                                                            exPos = allPlayersToOptimize.size() - 1;
+                                                        if (newCandidate.playerId == allPlayersToOptimize[exPos][idealPlayerPerPosition[ex]].playerId) {
+                                                            existingPlayer = true;
+                                                            break;
+                                                        }
+                                                    }
+                                                    if (existingPlayer)
+                                                        continue;
+                                                    if (bestUtilityPlayer == -1)
+                                                        bestUtilityPlayer = h;
+                                                    if ((newCandidate.teamCode != currentUtilityPlayer.teamCode && teamCurrentSize > 0) || (teamCurrentSize > 1)) {
+                                                        bestUtilityPlayer = h;
+                                                        break;
+                                                    }
+                                                }
                                             }
-                                            teamStackScore += closestBattingOrder - 1;
+                                            if (bestUtilityPlayer == -1)
+                                                continue;
+                                            if (bestUtilityPlayer >= 0)
+                                                changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 0, bestUtilityPlayer, numPlayersFromTeam, totalSalary);
                                         }
-                                         */
+                                        int teamStackScore = 0;
+                                        float expectedScore = 0;
+                                        for (unsigned int i = 0; i < idealPlayerPerPosition.size(); ++i) {
+                                            unsigned int positionIndex = i;
+                                            if (positionIndex >= allPlayersToOptimize.size())
+                                                positionIndex = allPlayersToOptimize.size() - 1;
+                                            PlayerData thisPlayer = allPlayersToOptimize[positionIndex][idealPlayerPerPosition[i]];
+                                            expectedScore += thisPlayer.playerPointsPerGame;
+                                            /*
+                                            int teammatesInLineup = numPlayersFromTeam.find(thisPlayer.teamCode)->second - 1;
+                                            if (teammatesInLineup == 0) {
+                                                teamStackScore += 12;
+                                            } else {
+                                                int closestBattingOrder = 12;
+                                                int numTeammatesFound = 0;
+                                                for (unsigned int o = 0; o < idealPlayerPerPosition.size(); ++o) {
+                                                    if (i == o)
+                                                        continue;
+                                                    unsigned int positionIndexOther = o;
+                                                    if (positionIndexOther >= allPlayersToOptimize.size())
+                                                        positionIndexOther = allPlayersToOptimize.size() - 1;
+                                                    PlayerData otherPlayer = allPlayersToOptimize[positionIndexOther][idealPlayerPerPosition[o]];
+                                                    if (otherPlayer.teamCode == thisPlayer.teamCode) {
+                                                        int orderDifference = abs(otherPlayer.battingOrder - thisPlayer.battingOrder);
+                                                        if (orderDifference < closestBattingOrder) {
+                                                            closestBattingOrder = orderDifference;
+                                                        }
+                                                        numTeammatesFound++;
+                                                    }
+                                                    if (numTeammatesFound == teammatesInLineup)
+                                                        break;
+                                                }
+                                                teamStackScore += closestBattingOrder - 1;
+                                            }
+                                             */
+                                        }
+                                        
+                                        unordered_set<string> teamsInLineup;
+                                        for (auto itr = numPlayersFromTeam.begin(); itr != numPlayersFromTeam.end(); ++itr) {
+                                            if (itr->second == 1) {
+                                                teamsInLineup.insert(itr->first);
+                                            }
+                                            
+                                            teamStackScore += itr->second * itr->second;
+                                        }
+                                        teamStackScore = teamsInLineup.size();// +4 - maxInOneTeam;
+                                        
+                                        if (totalSalary <= maxTotalBudget && teamsWithNumPlayersAboveThreshold(numPlayersFromTeam, maxPlayersPerTeam).size() == 0) {
+                                            if ((expectedScore > bestValidScore && teamStackScore == leastTeamsRepresented) || teamStackScore < leastTeamsRepresented) {
+                                                leastTeamsRepresented = teamStackScore;
+                                                bestValidScore = expectedScore;
+                                                chosenPlayers = idealPlayerPerPosition;
+                                            }
+                                            if (leastTeamsRepresented == 0 && g < bestLastOutfielderIndex)
+                                                bestLastOutfielderIndex = g;
+                                            foundALineup = true;
+                                        }
+                                        // fanduel isn't going through all catchers
+                                        if (gameType == GameType::Fanduel) {
+                                            break;
+                                        }
                                     }
-                                    
-									unordered_set<string> teamsInLineup;
-									for (auto itr = numPlayersFromTeam.begin(); itr != numPlayersFromTeam.end(); ++itr) {
-										if (itr->second == 1) {
-											teamsInLineup.insert(itr->first);
-										}
-										
-										teamStackScore += itr->second * itr->second;
-									}
-									teamStackScore = teamsInLineup.size();// +4 - maxInOneTeam;
-                                    
-                                    if (totalSalary <= maxTotalBudget && teamsWithNumPlayersAboveThreshold(numPlayersFromTeam, maxPlayersPerTeam).size() == 0) {
-                                        if ((expectedScore > bestValidScore && teamStackScore == leastTeamsRepresented) || teamStackScore < leastTeamsRepresented) {
-											leastTeamsRepresented = teamStackScore;
-                                            bestValidScore = expectedScore;
-                                            chosenPlayers = idealPlayerPerPosition;
-                                        }
-										if (leastTeamsRepresented == 0 && g < bestLastOutfielderIndex)
-											bestLastOutfielderIndex = g;
+                                    if (foundALineup)
                                         break;
-                                    }
                                 }
                                 if (f >= bestLastOutfielderIndex)
                                     break;
