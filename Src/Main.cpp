@@ -3743,12 +3743,18 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
                                         }
                                         int teamStackScore = 0;
                                         float expectedScore = 1;
+                                        bool noRepeatedPlayers = true;
+                                        unordered_set<string> playerIdsUsed;
                                         for (unsigned int i = 0; i < idealPlayerPerPosition.size(); ++i) {
                                             unsigned int positionIndex = i;
                                             if (positionIndex >= allPlayersToOptimize.size())
                                                 positionIndex = allPlayersToOptimize.size() - 1;
                                             PlayerData thisPlayer = allPlayersToOptimize[positionIndex][idealPlayerPerPosition[i]];
                                             expectedScore += thisPlayer.playerPointsPerGame;
+                                            if (playerIdsUsed.find(thisPlayer.playerId) != playerIdsUsed.end()) {
+                                                noRepeatedPlayers = false;
+                                            }
+                                            playerIdsUsed.insert(thisPlayer.playerId);
                                             /*
                                             int teammatesInLineup = numPlayersFromTeam.find(thisPlayer.teamCode)->second - 1;
                                             if (teammatesInLineup == 0) {
@@ -3788,7 +3794,7 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
                                         }
                                         teamStackScore = teamsInLineup.size();// +4 - maxInOneTeam;
                                         
-                                        if (totalSalary <= maxTotalBudget && teamsWithNumPlayersAboveThreshold(numPlayersFromTeam, maxPlayersPerTeam).size() == 0) {
+                                        if (noRepeatedPlayers && totalSalary <= maxTotalBudget && teamsWithNumPlayersAboveThreshold(numPlayersFromTeam, maxPlayersPerTeam).size() == 0) {
                                             if ((expectedScore > bestValidScore && teamStackScore == leastTeamsRepresented) || teamStackScore < leastTeamsRepresented) {
                                                 leastTeamsRepresented = teamStackScore;
                                                 bestValidScore = expectedScore;
