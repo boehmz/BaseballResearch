@@ -21,13 +21,13 @@ using namespace std;
 GameType gameType = GameType::DraftKings;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
-int latestGameTime = 99;
-int earliestGameTime = 13;
-std::string todaysDate = "20180807";
+int latestGameTime = 19;
+int earliestGameTime = 19;
+std::string todaysDate = "20180831";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 116.0f / 162.0f;
+float percentOfSeasonPassed = 134.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -53,7 +53,7 @@ int main(void)
 {
 	FillZScoreData();
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -399,9 +399,9 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = 20180507;
-		reviewDateEnd = 20180713;
-		percentOfSeasonPassed = 33.0f / 162.0f;
+        reviewDateStart = 20180715;
+		reviewDateEnd = 20180829;
+		percentOfSeasonPassed = 81.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
         string top30BattersWithPitcherTrainingFileName = "Top30Order25BattersWithPitcherTrainingFile.csv";
@@ -1742,7 +1742,7 @@ void RefineAlgorithm()
 				chosenLineupsList.resize(allPlayersLineupOrder.size());
 				std::vector<std::thread> allThreads;
 				float battingOrderBonus = 0.0f;
-				for (unsigned int line = 0; !bRefineForStats && line < 38; ++line) {
+				for (unsigned int line = 0; !bRefineForStats && line < allPlayersLineupOrder.size(); ++line) {
 					allPlayers.clear();
 					unsigned int lineIndex = line;
 					unsigned int uniqueLines = chosenLineupsList.size();// (chosenLineupsList.size() / 3) - 1;
@@ -2677,7 +2677,7 @@ void ChooseAPitcher(CURL *curl)
 			nextIndex = readBuffer.find(";", placeHolderIndex + 1);
 			singlePlayerData.playerName = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
 
-			// player's team code
+            // player's team code
 			placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
 			nextIndex = readBuffer.find(";", placeHolderIndex + 1);
 			singlePlayerData.teamCode = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1).c_str();
@@ -3145,6 +3145,7 @@ void GenerateLineups(CURL *curl)
 				size_t playerNameIndex = sabrPredictorText.find(ConvertLFNameToFLName(singlePlayerData.playerName));
                 if (playerNameIndex == string::npos)
                     playerNameIndex = FindPlayerNameIndexInList(singlePlayerData.playerName, sabrPredictorText);
+                
 				if (playerNameIndex != string::npos) {
                     
 					size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
@@ -3507,6 +3508,8 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
     
 	vector<unsigned int> idealPlayerPerPosition;
 	int maxPlayersPerTeam = 4;
+    if (gameType == GameType::DraftKings)
+        maxPlayersPerTeam = 5;
 
     unordered_set<string> topXTeams;
 	if (gameType == GameType::Fanduel) {
