@@ -30,6 +30,13 @@ std::string GetEntireFileContents(std::string fileName);
 std::string ReplaceURLWhiteSpaces(std::string originalURL);
 
 float CalculateRSquared(std::vector<float> finalInputs, std::vector<float> outputValues);
+template <typename T> T ClampVariable(T varToClamp, const T& min, const T& max) {
+    if (varToClamp < min)
+        varToClamp = min;
+    else if (varToClamp > max)
+        varToClamp = max;
+    return varToClamp;
+}
 
 std::string GetPlayerStatsRawString(std::string playerId, std::string yearString, CURL *curl);
 bool doesPlayerThrowLeftHanded(std::string playerId, CURL *curl);
