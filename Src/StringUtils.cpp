@@ -209,6 +209,8 @@ size_t FindPlayerNameIndexInList(const std::string& playerName, const std::strin
 						EraseInString(tempFinder, "-hitter");
 						index = searchText.find(tempFinder);
 						if (index == string::npos) {
+                            ReplaceInStringIfExists(tempFinder, "Nicholas", "Nick");
+                            ReplaceInStringIfExists(tempFinder, "Michael", "Mike");
 							ReplaceInStringIfExists(tempFinder, "Rafael", "Raffy");
 							ReplaceInStringIfExists(tempFinder, "JR ", "John Ryan ");
 							index = searchText.find(tempFinder);
