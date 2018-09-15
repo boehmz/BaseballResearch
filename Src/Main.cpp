@@ -18,16 +18,16 @@
 using namespace std;
 
 // BeatTheStreak not supported past 2017, RIP
-GameType gameType = GameType::DraftKings;
+GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
-int latestGameTime = 19;
-int earliestGameTime = 19;
-std::string todaysDate = "20180831";
+int latestGameTime =   99;
+int earliestGameTime = 22;
+std::string todaysDate = "20180914";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 134.0f / 162.0f;
+float percentOfSeasonPassed = 145.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -40,6 +40,7 @@ string dayToDayInjuredPlayers[] = { "" };
 
 unordered_set<string> pitcherTeamCodes;
 unordered_set<string> pitcherOpponentTeamCodes;
+unordered_map<std::string, FullSeasonPitcherStats> opponentPitcherScoreMap;
 
 const float leagueAverageOps = 0.72f;
 
@@ -53,7 +54,7 @@ int main(void)
 {
 	FillZScoreData();
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::Refine;
+	ProcessType processType = ProcessType::GenerateLineup;
 	switch (processType)
 	{
 	case UnitTest:
@@ -75,6 +76,12 @@ int main(void)
 	case GenerateLineup:
 		CURL* curl = NULL;
 		PopulateProbableRainoutGames(curl);
+        cout << "Likely rainout games:" << endl;
+        for (int i = 0; i < probableRainoutGames.size(); ++i) {
+            cout << probableRainoutGames[i] << endl;
+        }
+        if (probableRainoutGames.size() == 0)
+            cout << "none\n";
 		if (gameType == GameType::BeatTheStreak)
 		{
 			GetBeatTheStreakCandidates(curl);
@@ -107,6 +114,8 @@ vector<float> opposingPitcherZScoreData;
 vector<float> homeRunPerFlyBallRateZScoreData;
 vector<float> oppRelieverXfipZScoreData;
 vector<float> mediumPlus2HardZScoreData;
+vector<float> wobaHandednessZScoreData;
+vector<float> isoHandednessZScoreData;
 
 bool compareTeamsByAveragePlayerPointsPerGame(TeamStackTracker a, TeamStackTracker b) {
 	if (b.numPlayersAdded <= 0)
@@ -350,6 +359,52 @@ void FillZScoreData() {
     mediumPlus2HardZScoreData.push_back(0.196895716f);
     mediumPlus2HardZScoreData.push_back(0.170937132f);
     mediumPlus2HardZScoreData.push_back(0.151398983f);
+    
+    wobaHandednessZScoreData.push_back(0.855632082f);
+    wobaHandednessZScoreData.push_back(0.505211676f);
+    wobaHandednessZScoreData.push_back(0.472523579f);
+    wobaHandednessZScoreData.push_back(0.461794066f);
+    wobaHandednessZScoreData.push_back(0.449608586f);
+    wobaHandednessZScoreData.push_back(0.446413043f);
+    wobaHandednessZScoreData.push_back(0.389175228f);
+    wobaHandednessZScoreData.push_back(0.37886862f);
+    wobaHandednessZScoreData.push_back(0.361843352f);
+    wobaHandednessZScoreData.push_back(0.346863862f);
+    wobaHandednessZScoreData.push_back(0.254115963f);
+    wobaHandednessZScoreData.push_back(0.244698323f);
+    wobaHandednessZScoreData.push_back(0.173658922f);
+    wobaHandednessZScoreData.push_back(0.1340906f);
+    wobaHandednessZScoreData.push_back(0.042410639f);
+    wobaHandednessZScoreData.push_back(0.022423577f);
+    wobaHandednessZScoreData.push_back(0.007912312f);
+    wobaHandednessZScoreData.push_back(-0.011878467f);
+    wobaHandednessZScoreData.push_back(-0.303136081f);
+    wobaHandednessZScoreData.push_back(-0.856588973f);
+    wobaHandednessZScoreData.push_back(-0.93604129f);
+    
+    isoHandednessZScoreData.push_back(0.629894857f);
+    isoHandednessZScoreData.push_back(0.492533865f);
+    isoHandednessZScoreData.push_back(0.469265746f);
+    isoHandednessZScoreData.push_back(0.390670162f);
+    isoHandednessZScoreData.push_back(0.366614597f);
+    isoHandednessZScoreData.push_back(0.352584922f);
+    isoHandednessZScoreData.push_back(0.347582422f);
+    isoHandednessZScoreData.push_back(0.332285949f);
+    isoHandednessZScoreData.push_back(0.312925951f);
+    isoHandednessZScoreData.push_back(0.286729184f);
+    isoHandednessZScoreData.push_back(0.254406948f);
+    isoHandednessZScoreData.push_back(0.245307584f);
+    isoHandednessZScoreData.push_back(0.227196861f);
+    isoHandednessZScoreData.push_back(0.198574819f);
+    isoHandednessZScoreData.push_back(0.176828011f);
+    isoHandednessZScoreData.push_back(0.141186588f);
+    isoHandednessZScoreData.push_back(0.128506047f);
+    isoHandednessZScoreData.push_back(0.116038115f);
+    isoHandednessZScoreData.push_back(0.106351877f);
+    isoHandednessZScoreData.push_back(0.092766592f);
+    isoHandednessZScoreData.push_back(0.074126838f);
+    isoHandednessZScoreData.push_back(0.034093808f);
+    isoHandednessZScoreData.push_back(-0.127820324f);
 }
 
 void RefineAlgorithm()
@@ -479,6 +534,14 @@ void RefineAlgorithm()
         vector< vector<float>> oppRelieverXfipToPointsData(21);
         // <2.5 to >5 every .1
         vector< vector<float>> oppRelieverSieraToPointsData(26);
+        
+        // <.560 to >1.000 every .020
+        vector< vector<float>> opsHandednessToPointsData(23);
+        // <.080 to >.300 every .010
+        vector< vector<float>> isoHandednessToPointsData(23);
+        // <.250 to >.450 every .010
+        vector< vector<float>> wobaHandednessToPointsData(21);
+        
 		
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
@@ -673,7 +736,7 @@ void RefineAlgorithm()
 				currentIndex = actualResults.find("\n", currentIndex + 1);
 				size_t nextIndex = actualResults.find("\n", currentIndex + 1);
 
-				unordered_map<std::string, FullSeasonPitcherStats> opponentPitcherScoreMap;
+                opponentPitcherScoreMap.clear();
 				unordered_map<std::string, FullSeasonPitcherStats> opponentPitcherProjectionsMap;
                 unordered_map<std::string, FullSeasonStatsAdvanced> opponentPitcherStatsAdvancedMap;
 
@@ -908,7 +971,10 @@ void RefineAlgorithm()
 								}
 							}
 							float batterOverPitcherMultiplier = 2.5f;
-                            if (battingOrder >= mainBattingOrderMin && battingOrder <= mainBattingOrderMax && combinedBatterStats.average > 0.21f) {
+                            float wobaHandednessZScore = -999;
+                            float isoHandednessZScore = -999;
+                      //      if (battingOrder >= mainBattingOrderMin && battingOrder <= mainBattingOrderMax && combinedBatterStats.average > 0.21f) {
+                            if (true) {
                                 singlePlayerData.playerPointsPerGame = static_cast <float>(singlePlayerData.playerSalary + rand() % 100);
                                 allPlayers25Salary[playerPosition].push_back(singlePlayerData);
                                 
@@ -927,7 +993,7 @@ void RefineAlgorithm()
 								}
                                 
                                 
-                                if (opponentPitcher != opponentPitcherScoreMap.end() && opponentPitcher->second.isLeftHanded && combinedBatterStatsHandedness.numPlateAppearancesVersusLefty > 100) {
+                                if (opponentPitcher != opponentPitcherScoreMap.end() && opponentPitcher->second.isLeftHanded && batterStatsHandednessCareer.numPlateAppearancesVersusLefty > 100) {
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusLefty * 1000.0f;
                                     allPlayers25SeasonOpsHandedness[playerPosition].push_back(singlePlayerData);
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusLefty * 1000.0f;
@@ -944,6 +1010,20 @@ void RefineAlgorithm()
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusLefty * 667.0f;
                                     singlePlayerData.playerPointsPerGame += combinedBatterStats.iso * 333.0f;
                                     allPlayers25SeasonIsoHandednessTwoThirds[playerPosition].push_back(singlePlayerData);
+                                    
+                                    int opsIndex = (batterStatsHandedness.opsVersusLefty - .56f) / .02f;
+                                    opsIndex = ClampVariable(opsIndex, 0, (int)opsHandednessToPointsData.size()-1);
+                                    int isoIndex = (batterStatsHandedness.isoVersusLefty - .08f) / .01f;
+                                    isoIndex = ClampVariable(isoIndex, 0, (int)isoHandednessToPointsData.size()-1);
+                                    int wobaIndex = (batterStatsHandedness.wobaVersusLefty - .25f) / .01f;
+                                    wobaIndex = ClampVariable(wobaIndex, 0, (int)wobaHandednessToPointsData.size()-1);
+                                    if (bRefineForStats) {
+                                        opsHandednessToPointsData[opsIndex].push_back(actualPlayerPoints);
+                                        isoHandednessToPointsData[isoIndex].push_back(actualPlayerPoints);
+                                        wobaHandednessToPointsData[wobaIndex].push_back(actualPlayerPoints);
+                                    }
+                                    wobaHandednessZScore = wobaHandednessZScoreData[wobaIndex];
+                                    isoHandednessZScore = isoHandednessZScoreData[isoIndex];
                                     
                                     if (singlePlayerData.battingHandedness == 'S') {
                                         if (opponentPitcher->second.isLeftHanded)
@@ -984,7 +1064,7 @@ void RefineAlgorithm()
                                         }
                                     }
                                 }
-                                if (opponentPitcher != opponentPitcherScoreMap.end() && !opponentPitcher->second.isLeftHanded && combinedBatterStatsHandedness.numPlateAppearancesVersusRighty > 100) {
+                                if (opponentPitcher != opponentPitcherScoreMap.end() && !opponentPitcher->second.isLeftHanded && batterStatsHandednessCareer.numPlateAppearancesVersusRighty > 100) {
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.opsVersusRighty * 1000.0f;
                                     allPlayers25SeasonOpsHandedness[playerPosition].push_back(singlePlayerData);
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.wobaVersusRighty * 1000.0f;
@@ -1001,6 +1081,20 @@ void RefineAlgorithm()
                                     singlePlayerData.playerPointsPerGame = combinedBatterStatsHandedness.isoVersusRighty * 667.0f;
                                     singlePlayerData.playerPointsPerGame += combinedBatterStats.iso * 333.0f;
                                     allPlayers25SeasonIsoHandednessTwoThirds[playerPosition].push_back(singlePlayerData);
+                                    
+                                    int opsIndex = (batterStatsHandedness.opsVersusRighty - .56f) / .02f;
+                                    opsIndex = ClampVariable(opsIndex, 0, (int)opsHandednessToPointsData.size()-1);
+                                    int isoIndex = (batterStatsHandedness.isoVersusRighty - .08f) / .01f;
+                                    isoIndex = ClampVariable(isoIndex, 0, (int)isoHandednessToPointsData.size()-1);
+                                    int wobaIndex = (batterStatsHandedness.wobaVersusRighty - .25f) / .01f;
+                                    wobaIndex = ClampVariable(wobaIndex, 0, (int)wobaHandednessToPointsData.size()-1);
+                                    if (bRefineForStats) {
+                                        opsHandednessToPointsData[opsIndex].push_back(actualPlayerPoints);
+                                        isoHandednessToPointsData[isoIndex].push_back(actualPlayerPoints);
+                                        wobaHandednessToPointsData[wobaIndex].push_back(actualPlayerPoints);
+                                    }
+                                    wobaHandednessZScore = wobaHandednessZScoreData[wobaIndex];
+                                    isoHandednessZScore = isoHandednessZScoreData[isoIndex];
                                     
                                     if (singlePlayerData.battingHandedness == 'S') {
                                         if (opponentPitcher->second.isLeftHanded)
@@ -1213,6 +1307,15 @@ void RefineAlgorithm()
                                             
                                             if (medium2HardZScore > -900) {
                                                 singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f + medium2HardZScore * 0.25f;
+                                            }
+                                            if (wobaHandednessZScore > -900) {
+                                                singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f + wobaHandednessZScore * 0.25f;
+                                            }
+                                            if (isoHandednessZScore > -900) {
+                                                singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f + isoHandednessZScore * 0.25f;
+                                                if (relieverXfipZScore > -900) {
+                                                    singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.2f + sabrPredictZScore * 0.2f + oppPitcherSabrZScore * 0.2f + relieverXfipZScore * 0.2f + isoHandednessZScore * 0.2f;
+                                                }
                                             }
                                          //   singlePlayerData.playerPointsPerGame = battingOrderZScore * 21.627f + sabrPredictZScore * 0.3177f + oppPitcherSabrZScore * 5.1647f + relieverXfipZScore * -1.809f;
                                             singlePlayerData.playerPointsPerGame = 90 - 40 * singlePlayerData.playerPointsPerGame;
@@ -1962,6 +2065,15 @@ void RefineAlgorithm()
             for (unsigned int i = 0; i < oppRelieverK9ToPointsData.size(); ++i) {
                 sort(oppRelieverK9ToPointsData[i].begin(), oppRelieverK9ToPointsData[i].end());
             }
+            for (unsigned int i = 0; i < opsHandednessToPointsData.size(); ++i) {
+                sort(opsHandednessToPointsData[i].begin(), opsHandednessToPointsData[i].end());
+            }
+            for (unsigned int i = 0; i < isoHandednessToPointsData.size(); ++i) {
+                sort(isoHandednessToPointsData[i].begin(), isoHandednessToPointsData[i].end());
+            }
+            for (unsigned int i = 0; i < wobaHandednessToPointsData.size(); ++i) {
+                sort(wobaHandednessToPointsData[i].begin(), wobaHandednessToPointsData[i].end());
+            }
             
             // <2000 to >5000 every 100
             statsDataTrackerFile << "Salary Relationships:\n";
@@ -2087,6 +2199,40 @@ void RefineAlgorithm()
                     float stdDev = 0;
                     CalculateMeanAndStdDeviation(oppRelieverSieraToPointsData[i], mean, stdDev);
                     statsDataTrackerFile << siera << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+                }
+            }
+            
+            statsDataTrackerFile << "Iso Handedness Relationships:\n";
+            for (unsigned int i = 0; i < isoHandednessToPointsData.size(); ++i) {
+                unsigned int rowSize = isoHandednessToPointsData[i].size();
+                if (rowSize > 0) {
+                    float iso = 0.08f + (i*0.01f);
+                    float mean = 0;
+                    float stdDev = 0;
+                    CalculateMeanAndStdDeviation(isoHandednessToPointsData[i], mean, stdDev);
+                    statsDataTrackerFile << iso << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+                }
+            }
+            statsDataTrackerFile << "Ops Handedness Relationships:\n";
+            for (unsigned int i = 0; i < opsHandednessToPointsData.size(); ++i) {
+                unsigned int rowSize = opsHandednessToPointsData[i].size();
+                if (rowSize > 0) {
+                    float ops = 0.56f + (i*0.02f);
+                    float mean = 0;
+                    float stdDev = 0;
+                    CalculateMeanAndStdDeviation(opsHandednessToPointsData[i], mean, stdDev);
+                    statsDataTrackerFile << ops << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
+                }
+            }
+            statsDataTrackerFile << "Woba Handedness Relationships:\n";
+            for (unsigned int i = 0; i < wobaHandednessToPointsData.size(); ++i) {
+                unsigned int rowSize = wobaHandednessToPointsData[i].size();
+                if (rowSize > 0) {
+                    float woba = 0.25f + (i*0.01f);
+                    float mean = 0;
+                    float stdDev = 0;
+                    CalculateMeanAndStdDeviation(wobaHandednessToPointsData[i], mean, stdDev);
+                    statsDataTrackerFile << woba << "," << mean - stdDev << "," << mean << "," << mean + stdDev << ",(sampleSize=" << rowSize << ")\n";
                 }
             }
             
@@ -2615,6 +2761,9 @@ void ChooseAPitcher(CURL *curl)
 
 	if (curl)
 	{
+        opponentPitcherScoreMap.clear();
+        pitcherOpponentTeamCodes.clear();
+        pitcherTeamCodes.clear();
 		std::string readBuffer;
 		string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=1&sort=4";
 		if (gameType == GameType::Fanduel)
@@ -2681,7 +2830,7 @@ void ChooseAPitcher(CURL *curl)
 			placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
 			nextIndex = readBuffer.find(";", placeHolderIndex + 1);
 			singlePlayerData.teamCode = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1).c_str();
-
+            
 			// player salary
 			placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
 			nextIndex = readBuffer.find(";", placeHolderIndex + 1);
@@ -2811,7 +2960,7 @@ void ChooseAPitcher(CURL *curl)
 			//singlePlayerData.playerPointsPerGame = GetExpectedFanduelPointsFromPitcherStats(combinedPitcherStats, opponentRunsPerGame, opponentStrikeoutsPerGame);
 			combinedPitcherStats.strikeOutsPer9 = 0.5f * opponentStrikeoutsPerGame + 0.5f * combinedPitcherStats.strikeOutsPer9;
 			combinedPitcherStats.era = 0.5f * opponentRunsPerGame + 0.5f * combinedPitcherStats.era;
-            singlePlayerData.playerPointsPerGame = -1;
+            singlePlayerData.playerPointsPerGame = -999;
 			bool pointsCalculatedFromSabrPredictor = false;
             if (combinedPitcherStats.strikeOutsPer9 >= 0 && gameType == GameType::Fanduel) {
                 singlePlayerData.playerPointsPerGame = combinedPitcherStats.era * -0.352834158133307318f + combinedPitcherStats.xfip * -1.50744966177988493f + combinedPitcherStats.strikeOutsPer9 * 1.44486530250260237f;
@@ -2829,6 +2978,11 @@ void ChooseAPitcher(CURL *curl)
 					}
 					pointsCalculatedFromSabrPredictor = true;
                 }
+            }
+            if (opponentPitcherScoreMap.find(opponentTeamCode) == opponentPitcherScoreMap.end()) {
+                opponentPitcherScoreMap.insert({ opponentTeamCode,combinedPitcherStats });
+            } else {
+                cout << "It seems " << opponentTeamCode << " might be having a double header.  This could lead to errors\n";
             }
 
 			bool bRainedOut = false;
@@ -2860,9 +3014,8 @@ void ChooseAPitcher(CURL *curl)
             } else {
                 bRainedOut = true;
             }
-            
 			// throw this guy out if his game will most likely be rained out
-			if (singlePlayerData.playerPointsPerGame > 0 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut && opponentsInfo != opponentMap.end())
+			if (singlePlayerData.playerPointsPerGame > -5 && gameStartTime <= latestGameTime && gameStartTime >= earliestGameTime && !bRainedOut && opponentsInfo != opponentMap.end())
 				positionalPlayerData.push_back(singlePlayerData);
 			if (singlePlayerData.playerPointsPerGame > 0 && opponentsInfo != opponentMap.end())
 				allPitchersIncludingOnesRainedOutOrInvalidGameTimes.push_back(singlePlayerData);
@@ -3188,6 +3341,12 @@ void GenerateLineups(CURL *curl)
                 FullSeasonStatsAdvanced batterStatsCurrentYearHandedness = GetBatterAdvancedStats(singlePlayerData.playerId, CURRENT_YEAR, curl);
                 FullSeasonStatsAdvanced batterStatsLastYearHandedness = GetBatterAdvancedStats(singlePlayerData.playerId, LAST_YEAR, curl);
                 FullSeasonStatsAdvanced batterStatsCareerHandedness = GetBatterAdvancedStats(singlePlayerData.playerId, "Total", curl);
+                FullSeasonStatsAdvanced combinedBatterStatsHandedness = batterStatsCareerHandedness;
+                if (batterStatsLastYearHandedness.numPlateAppearancesVersusRighty > 10 && batterStatsLastYearHandedness.numPlateAppearancesVersusLefty > 10)
+                    combinedBatterStatsHandedness = batterStatsCareerHandedness * 0.5f + batterStatsLastYearHandedness * 0.5f;
+                if (batterStatsCurrentYearHandedness.numPlateAppearancesVersusRighty > 10 && batterStatsCurrentYearHandedness.numPlateAppearancesVersusLefty > 10)
+                    combinedBatterStatsHandedness = combinedBatterStatsHandedness * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStatsCurrentYearHandedness;
+                
                 
 				FullSeasonStatsAdvancedNoHandedness batterStatsCurrentYear = GetBatterStatsSeason(singlePlayerData.playerId, curl, CURRENT_YEAR);
 				FullSeasonStatsAdvancedNoHandedness batterStatsLastYear = GetBatterStatsSeason(singlePlayerData.playerId, curl, LAST_YEAR);
@@ -3321,7 +3480,6 @@ void GenerateLineups(CURL *curl)
                         }
                     }
 				}
-
                 
 				// throw this guy out if he's not a starter or his game will most likely be rained out
 				if (!bFacingChosenPitcher
@@ -3380,7 +3538,25 @@ void GenerateLineups(CURL *curl)
                                 xfipIndex = oppRelieverXfipZScoreData.size()-1;
                             relieverXfipZScore = oppRelieverXfipZScoreData[xfipIndex];
                         }
-						
+                        float isoHandednessZScore = -999;
+                        auto opponentPitcher = opponentPitcherScoreMap.find(singlePlayerData.teamCode);
+                        if (opponentPitcher != opponentPitcherScoreMap.end() && !opponentPitcher->second.isLeftHanded && batterStatsCareerHandedness.numPlateAppearancesVersusRighty > 100) {
+                      
+                            int isoIndex = (combinedBatterStatsHandedness.isoVersusRighty - .08f) / .01f;
+                            isoIndex = ClampVariable(isoIndex, 0, (int)isoHandednessZScoreData.size()-1);
+                            int wobaIndex = (combinedBatterStatsHandedness.wobaVersusRighty - .25f) / .01f;
+                            wobaIndex = ClampVariable(wobaIndex, 0, (int)wobaHandednessZScoreData.size()-1);
+                            isoHandednessZScore = isoHandednessZScoreData[isoIndex];
+                        }
+                        if (opponentPitcher != opponentPitcherScoreMap.end() && opponentPitcher->second.isLeftHanded && batterStatsCareerHandedness.numPlateAppearancesVersusLefty > 100) {
+                            
+                            int isoIndex = (combinedBatterStatsHandedness.isoVersusLefty - .08f) / .01f;
+                            isoIndex = ClampVariable(isoIndex, 0, (int)isoHandednessZScoreData.size()-1);
+                            int wobaIndex = (combinedBatterStatsHandedness.wobaVersusLefty - .25f) / .01f;
+                            wobaIndex = ClampVariable(wobaIndex, 0, (int)wobaHandednessZScoreData.size()-1);
+                            isoHandednessZScore = isoHandednessZScoreData[isoIndex];
+                        }
+                        
 						float battingOrderZScore, sabrPredictZScore, oppPitcherSabrZScore;
 						battingOrderZScore = battingOrderZScoreData[battingOrderIndex];
 						sabrPredictZScore = sabrPredictorZScoreData[sabrIndex];
@@ -3388,6 +3564,9 @@ void GenerateLineups(CURL *curl)
 						singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.333f + sabrPredictZScore * 0.333f + oppPitcherSabrZScore * 0.333f;
                         if (relieverXfipZScore > -900) {
                             singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f + relieverXfipZScore * 0.25f;
+                        }
+                        if (isoHandednessZScore > -900) {
+                            singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f + isoHandednessZScore * 0.25f;
                         }
 						singlePlayerData.playerPointsPerGame = 3000 - 1000 * singlePlayerData.playerPointsPerGame;
                         if (ZScoreLineupPlayersTaken.find(singlePlayerData.playerId) == ZScoreLineupPlayersTaken.end())
@@ -3511,7 +3690,6 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
     if (gameType == GameType::DraftKings)
         maxPlayersPerTeam = 5;
 
-    unordered_set<string> topXTeams;
 	if (gameType == GameType::Fanduel) {
 		// one utility player, combine 1B/C
 		allPlayersToOptimize[1].insert(allPlayersToOptimize[1].end(), allPlayersToOptimize[0].begin(), allPlayersToOptimize[0].end());
@@ -3524,13 +3702,7 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
 		stable_sort(allPlayersToOptimize[0].begin(), allPlayersToOptimize[0].end(), comparePlayerByPointsPerGame);
 		
 
-		for (unsigned int i = 0; i < allPlayersToOptimize[0].size(); ++i) {
-			if (pitcherOpponentTeamCodes.find(allPlayersToOptimize[0][i].teamCode) == pitcherOpponentTeamCodes.end() && topXTeams.find(allPlayersToOptimize[0][i].teamCode) == topXTeams.end()) {
-				topXTeams.insert(allPlayersToOptimize[0][i].teamCode);
-			}
-			if (topXTeams.size() >= 5)
-				break;
-		}
+		
         if ( !stackMaxNumTeams && allPlayersToOptimize[0].size() > 0) {
             PlayerData utilityPlayerData;
             float bestPointsPerDollar = -1;
@@ -3594,26 +3766,8 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
             allPlayersCombined.insert(allPlayersCombined.end(), allPlayersToOptimize[i].begin(), allPlayersToOptimize[i].end());
         }
         stable_sort(allPlayersCombined.begin(), allPlayersCombined.end(), comparePlayerByPointsPerGame);
-        for (unsigned int i = 0; i < allPlayersCombined.size(); ++i) {
-            if (pitcherOpponentTeamCodes.find(allPlayersCombined[i].teamCode) == pitcherOpponentTeamCodes.end() && topXTeams.find(allPlayersCombined[i].teamCode) == topXTeams.end()) {
-                topXTeams.insert(allPlayersCombined[i].teamCode);
-            }
-            if (topXTeams.size() >= 5)
-                break;
-        }
+       
     }
-    if (stackMaxNumTeams && topXTeams.size() > 0) {
-        for (unsigned int i = 0; i < allPlayersToOptimize.size(); ++i) {
-            for (int p = allPlayersToOptimize[i].size() - 1; p >= 0; --p) {
-                if (allPlayersToOptimize[i].size() == 1 || (i == allPlayersToOptimize.size()-1 && allPlayersToOptimize[i].size() == 3))
-                    break;
-                if (topXTeams.find(allPlayersToOptimize[i][p].teamCode) == topXTeams.end()) {
-                    allPlayersToOptimize[i].erase(allPlayersToOptimize[i].begin() + p);
-                }
-            }
-        }
-    }
-
 	
     if (!stackMaxNumTeams) {
         for (unsigned int ap = 0; ap < allPlayersToOptimize.size(); ++ap)
@@ -3685,25 +3839,91 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
 			changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 1, a, numPlayersFromTeam, totalSalary);
 			for (unsigned int b = 0; b < allPlayersToOptimize[2].size(); ++b) {
                 changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 2, b, numPlayersFromTeam, totalSalary);
+                unordered_map<string, int> teamsUsed;
+                PlayerData thisPlayer = allPlayersToOptimize[1][idealPlayerPerPosition[1]];
+                teamsUsed.insert({thisPlayer.teamCode,thisPlayer.battingOrder});
+                thisPlayer = allPlayersToOptimize[2][idealPlayerPerPosition[2]];
+                auto existingTeam = teamsUsed.find(thisPlayer.teamCode);
+                if (existingTeam != teamsUsed.end())
+                    existingTeam->second += thisPlayer.battingOrder;
+                else if (teamsUsed.size() == 1)
+                    teamsUsed.insert({thisPlayer.teamCode,thisPlayer.battingOrder});
+                else
+                    continue;
                 for (unsigned int c = 0; c < allPlayersToOptimize[3].size(); ++c) {
                     changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 3, c, numPlayersFromTeam, totalSalary);
+                    thisPlayer = allPlayersToOptimize[3][idealPlayerPerPosition[3]];
+                    existingTeam = teamsUsed.find(thisPlayer.teamCode);
+                    if (existingTeam != teamsUsed.end())
+                        existingTeam->second += thisPlayer.battingOrder;
+                    else if (teamsUsed.size() == 1)
+                        teamsUsed.insert({thisPlayer.teamCode,thisPlayer.battingOrder});
+                    else
+                        continue;
                     for (unsigned int d = 0; d < allPlayersToOptimize[4].size(); ++d) {
                         changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 4, d, numPlayersFromTeam, totalSalary);
+                        thisPlayer = allPlayersToOptimize[4][idealPlayerPerPosition[4]];
+                        existingTeam = teamsUsed.find(thisPlayer.teamCode);
+                        if (existingTeam != teamsUsed.end())
+                            existingTeam->second += thisPlayer.battingOrder;
+                        else if (teamsUsed.size() == 1)
+                            teamsUsed.insert({thisPlayer.teamCode,thisPlayer.battingOrder});
+                        else
+                            continue;
 						unsigned int bestLastOutfielderIndex = 999999999;
 						for (unsigned int e = 0; e < allPlayersToOptimize[5].size(); ++e) {
                            
                             changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 5, e, numPlayersFromTeam, totalSalary);
+                            thisPlayer = allPlayersToOptimize[5][idealPlayerPerPosition[5]];
+                            existingTeam = teamsUsed.find(thisPlayer.teamCode);
+                            if (existingTeam != teamsUsed.end())
+                                existingTeam->second += thisPlayer.battingOrder;
+                            else if (teamsUsed.size() == 1)
+                                teamsUsed.insert({thisPlayer.teamCode,thisPlayer.battingOrder});
+                            else
+                                continue;
                             for (unsigned int f = e+1; f < allPlayersToOptimize[5].size(); ++f) {
                                 changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 6, f, numPlayersFromTeam, totalSalary);
+                                thisPlayer = allPlayersToOptimize[5][idealPlayerPerPosition[6]];
+                                existingTeam = teamsUsed.find(thisPlayer.teamCode);
+                                if (existingTeam != teamsUsed.end())
+                                    existingTeam->second += thisPlayer.battingOrder;
+                                else if (teamsUsed.size() == 1)
+                                    teamsUsed.insert({thisPlayer.teamCode,thisPlayer.battingOrder});
+                                else
+                                    continue;
                                 for (unsigned int g = f+1; g < allPlayersToOptimize[5].size(); ++g) {
                                     changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 7, g, numPlayersFromTeam, totalSalary);
+                                    thisPlayer = allPlayersToOptimize[5][idealPlayerPerPosition[7]];
+                                    existingTeam = teamsUsed.find(thisPlayer.teamCode);
+                                    if (existingTeam != teamsUsed.end())
+                                        existingTeam->second += thisPlayer.battingOrder;
+                                    else if (teamsUsed.size() == 1)
+                                        teamsUsed.insert({thisPlayer.teamCode,thisPlayer.battingOrder});
+                                    else
+                                        continue;
                                     bool foundALineup = false;
                                     for (unsigned int catcher = 0; catcher < allPlayersToOptimize[0].size(); ++catcher) {
 									
                                         if (gameType == GameType::DraftKings) {
                                             changeIdealPlayerAtPosition(allPlayersToOptimize, idealPlayerPerPosition, 0, catcher, numPlayersFromTeam, totalSalary);
+                                            thisPlayer = allPlayersToOptimize[0][idealPlayerPerPosition[0]];
+                                            existingTeam = teamsUsed.find(thisPlayer.teamCode);
+                                            if (existingTeam != teamsUsed.end())
+                                                existingTeam->second += thisPlayer.battingOrder;
+                                            else if (teamsUsed.size() == 1)
+                                                teamsUsed.insert({thisPlayer.teamCode,thisPlayer.battingOrder});
+                                            else
+                                                continue;
                                         } else if (gameType == GameType::Fanduel) {
                                             int bestUtilityPlayer = -1;
+                                            bool teamsUsedIncludePitcherTeam = false;
+                                            for (auto itr = pitcherTeamCodes.begin(); itr != pitcherTeamCodes.end(); ++itr) {
+                                                if (teamsUsed.find(*itr) != teamsUsed.end()) {
+                                                    teamsUsedIncludePitcherTeam = true;
+                                                    break;
+                                                }
+                                            }
                                             for (unsigned int h = 0; h < allPlayersToOptimize[0].size(); ++h) {
                                                 PlayerData newCandidate = allPlayersToOptimize[0][h];
                                                 PlayerData currentUtilityPlayer = allPlayersToOptimize[0][idealPlayerPerPosition[0]];
@@ -3716,6 +3936,15 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
                                                     }
                                                 }
                                                 if (teamCurrentSize > maxPlayersPerTeam || (teamCurrentSize >= maxPlayersPerTeam && newCandidate.teamCode != currentUtilityPlayer.teamCode))
+                                                    continue;
+                                                existingTeam = teamsUsed.find(newCandidate.teamCode);
+                                                
+                                                if (!teamsUsedIncludePitcherTeam && existingTeam != teamsUsed.end())
+                                                    existingTeam->second += newCandidate.battingOrder;
+                                                else if (teamsUsedIncludePitcherTeam && existingTeam == teamsUsed.end()) {
+                                                    // we need a third team to have a legal lineup, don't continue
+                                                }
+                                                else
                                                     continue;
                                                 
                                                 if (totalSalary - currentUtilityPlayer.playerSalary + newCandidate.playerSalary <= maxTotalBudget ) {
@@ -3797,6 +4026,14 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
                                         }
                                         teamStackScore = teamsInLineup.size();// +4 - maxInOneTeam;
                                         
+                                        int lineupsInBack = 0;
+                                        for (auto itr = teamsUsed.begin(); itr != teamsUsed.end(); ++itr) {
+                                            if (itr->second > 14) {
+                                                lineupsInBack++;
+                                            }
+                                        }
+                                      //  if (lineupsInBack > 1)
+                                      //      noRepeatedPlayers = false;
                                         if (noRepeatedPlayers && totalSalary <= maxTotalBudget && teamsWithNumPlayersAboveThreshold(numPlayersFromTeam, maxPlayersPerTeam).size() == 0) {
                                             if ((expectedScore > bestValidScore && teamStackScore == leastTeamsRepresented) || teamStackScore < leastTeamsRepresented) {
                                                 leastTeamsRepresented = teamStackScore;
@@ -3837,11 +4074,6 @@ vector<PlayerData> OptimizeLineupToFitBudget(vector< vector<PlayerData> > allPla
         }
         return playersToReturn;
     }
-	
-
-	for (const auto& pitcherString : pitcherTeamCodes) {
-		addPlayerToTeam(numPlayersFromTeam, pitcherString);
-	}
 	
 	vector<string> teamsWithTooManyPlayers = teamsWithNumPlayersAboveThreshold(numPlayersFromTeam, maxPlayersPerTeam);
 	while (teamsWithTooManyPlayers.size() > 0) {
