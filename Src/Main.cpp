@@ -21,13 +21,13 @@ using namespace std;
 GameType gameType = GameType::Fanduel;
 int maxTotalBudget = 35000;
 // game times in Eastern and 24 hour format
-int latestGameTime =   99;
-int earliestGameTime = 22;
-std::string todaysDate = "20180914";
+int latestGameTime =   2050;
+int earliestGameTime = 2005;
+std::string todaysDate = "20180924";
 bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
-float percentOfSeasonPassed = 145.0f / 162.0f;
+float percentOfSeasonPassed = 154.0f / 162.0f;
 // whether or not to limit to 3 teams to maximize stacking (high risk, high reward)
 bool stackMaxNumTeams = false;
 // regular (non-tournament) is:
@@ -54,7 +54,7 @@ int main(void)
 {
 	FillZScoreData();
 	enum ProcessType { Analyze2016, GenerateLineup, Refine, UnitTest, AnalyzeTeamWins};
-	ProcessType processType = ProcessType::GenerateLineup;
+	ProcessType processType = ProcessType::Refine;
 	switch (processType)
 	{
 	case UnitTest:
@@ -410,19 +410,26 @@ void FillZScoreData() {
 void RefineAlgorithm()
 {
 	stackMaxNumTeams = true;
-	bool bRefineForPitchers = true;
+	bool bRefineForPitchers = false;
 	bool bRefineForBatters = true;
-	bool bCombinePitcherIntoLineup = true;
-	bool bRefineForGames = false;
+	bool bRefineForGames = true;
     bool bRefineForStats = false;
+    bool needToCreateGamesRecordOverallFile = false;
 
 	fstream gamesRecordOverallFile;
+    string gamesRecordOverallContents;
 	if (bRefineForGames) {
-        string gamesRecordFileName = "2017ResultsTracker\\TeamWinResults\\AllGames.txt";
+        string gamesRecordFileName = CURRENT_YEAR;
+        gamesRecordFileName += "ResultsTracker\\TeamWinResults\\AllGames.txt";
+        if (needToCreateGamesRecordOverallFile) {
+            
 #if PLATFORM_OSX
-        gamesRecordFileName = GetPlatformCompatibleFileNameFromRelativePath(gamesRecordFileName);
+            gamesRecordFileName = GetPlatformCompatibleFileNameFromRelativePath(gamesRecordFileName);
 #endif
-		gamesRecordOverallFile.open(gamesRecordFileName);
+            gamesRecordOverallFile.open(gamesRecordFileName);
+        } else {
+            gamesRecordOverallContents = GetEntireFileContents(gamesRecordFileName);
+        }
 	}
 	CURL *curl;  
 
@@ -454,8 +461,8 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = 20180715;
-		reviewDateEnd = 20180829;
+        reviewDateStart = 20180401;
+		reviewDateEnd = 20180930;
 		percentOfSeasonPassed = 81.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -1980,49 +1987,51 @@ void RefineAlgorithm()
 				pitcherResultsTrackerFile.close();
 			}
 
-			if (bRefineForGames) {
-				string actualGamesResults = GetEntireFileContents("2017ResultsTracker\\OddsWinsResults\\AllGamesResults.txt");
-				ifstream gamesPredictorFile;
-				string gamesPredictorFileName = "2017ResultsTracker\\TeamWinResults\\";
-				gamesPredictorFileName += thisDate + ".txt";
-#if PLATFORM_OSX
-                gamesPredictorFileName = GetPlatformCompatibleFileNameFromRelativePath(gamesPredictorFileName);
-#endif
-				gamesPredictorFile.open(gamesPredictorFileName);
-
-				while (getline(gamesPredictorFile, resultsLine)) {
-					vector<string> lineValues = SplitStringIntoMultiple(resultsLine, ";");
-					size_t curentActualGamesIndex = actualGamesResults.find(thisDate);
-					vector<string> oddsResultsValues;
-					while (curentActualGamesIndex < string::npos) {
-						size_t nextActualGamesIndex = actualGamesResults.find("\n", curentActualGamesIndex + 1);
-						size_t teamNameIndex = actualGamesResults.find(ConvertTeamCodeToOddsPortalName(lineValues[0], false), curentActualGamesIndex);
-						if (teamNameIndex < nextActualGamesIndex) {
-							oddsResultsValues = SplitStringIntoMultiple(actualGamesResults.substr(curentActualGamesIndex, nextActualGamesIndex - curentActualGamesIndex), ";");
-						}
-						curentActualGamesIndex = actualGamesResults.find(thisDateWithoutYear, curentActualGamesIndex + 1);
-					}
-					if (oddsResultsValues.size() > 0) {
-						string correctPrediction = "0";
-						if (oddsResultsValues[1] == ConvertTeamCodeToOddsPortalName(lineValues[0], false))
-							correctPrediction = "1";
-						else if (oddsResultsValues[2] == ConvertTeamCodeToOddsPortalName(lineValues[0], false))
-							correctPrediction = "-1";
-						else {
-							cout << "something went wrong with a game on " << thisDate << " expecting " << lineValues[0] << " and " << lineValues[2] << endl;
-							continue;
-						}
-						gamesRecordOverallFile << thisDateWithoutYear << ";";
-						gamesRecordOverallFile << resultsLine << correctPrediction << ";";
-						if (correctPrediction == "1")
-							gamesRecordOverallFile << oddsResultsValues[4] << ";" << oddsResultsValues[5];
-						else if (correctPrediction == "-1")
-							gamesRecordOverallFile << oddsResultsValues[5] << ";" << oddsResultsValues[4];
-						gamesRecordOverallFile << endl;
-					}
-				}
+			if (bRefineForGames ) {
+                
+                if (needToCreateGamesRecordOverallFile) {
+                    ifstream gamesPredictorFile;
+                    string gamesPredictorFileName = CURRENT_YEAR;
+                    gamesPredictorFileName += "ResultsTracker\\TeamWinResults\\";
+                    gamesPredictorFileName += thisDate + ".txt";
+    #if PLATFORM_OSX
+                    gamesPredictorFileName = GetPlatformCompatibleFileNameFromRelativePath(gamesPredictorFileName);
+    #endif
+                    gamesPredictorFile.open(gamesPredictorFileName);
+                    
+                    string gameMoneyLinesURL = "http://www.donbest.com/mlb/odds/money-lines/" + thisDate + ".html";
+                    string gameMoneyLines = "";
+                    CurlGetSiteContents(curl, gameMoneyLinesURL, gameMoneyLines, true);
+                    CutStringToOnlySectionBetweenKeywords(gameMoneyLines, "class=\"odds_gamesHolder\"", "class=\"odds_pages\"");
+                    size_t oddsOpenerBegin = gameMoneyLines.find("oddsOpener");
+                    while (oddsOpenerBegin != string::npos) {
+                        size_t oddsOpenerEnd = gameMoneyLines.find("oddsOpener", oddsOpenerBegin + 1);
+                        if (oddsOpenerEnd == string::npos) {
+                            oddsOpenerEnd = gameMoneyLines.find("</table>");
+                        }
+                        string gameSection = gameMoneyLines.substr(oddsOpenerBegin, oddsOpenerEnd - oddsOpenerBegin);
+                        vector<string> asColumns = MultineRegex(gameSection, ".*?>(.*?)<.*?");// MultineRegex(gameSection, ".*?<div.*?>([^<b>].*?[^</b>])</div>.*?");
+                        if (asColumns.size() > 43 && StringStartsWith(asColumns[41], "MAJOR LEAGUE BASEBALL")) {
+                            asColumns.erase(asColumns.begin() + 43, asColumns.end());
+                        }
+                        if (asColumns.size() == 43 || asColumns.size() == 41) {
+                            //bovada is on 29/30 capture for perfect data captures
+                            gamesRecordOverallFile << thisDate << ";" << asColumns[6] << ";" << asColumns[4] << ";" << asColumns[5] << ";" << asColumns[2] << ";" << asColumns[3] << ";" << asColumns[7] << ";" << asColumns[8] << ";" << asColumns[0] << ";" << asColumns[1] << ";" << asColumns[29] << ";" << asColumns[30] << endl;
+                        } else {
+                            string gameName = "";
+                            if (asColumns.size() > 5) {
+                                gameName = asColumns[4] + asColumns[5];
+                            }
+                            cout << "There were " << asColumns.size() << " columns for game " << thisDate << " " << gameName << endl;
+                        }
+                        oddsOpenerBegin = gameMoneyLines.find("oddsOpener", oddsOpenerEnd);
+                    }
+                }
 			}
 		}
+        if (bRefineForGames && needToCreateGamesRecordOverallFile) {
+            gamesRecordOverallFile.close();
+        }
 		top10PitchersTrainingFile.close();
 		top25BattersTrainingFile.close();
 		top30BattersWithPitcherTrainingFile.close();
@@ -2986,7 +2995,7 @@ void ChooseAPitcher(CURL *curl)
             }
 
 			bool bRainedOut = false;
-			int gameStartTime = 99;
+			int gameStartTime = 99999;
 			if (opponentsInfo != opponentMap.end())
 			{
 				for (unsigned int i = 0; i < probableRainoutGames.size(); ++i)
@@ -3362,7 +3371,7 @@ void GenerateLineups(CURL *curl)
 				
 				float batterCombinedSluggingPoints = combinedBatterStats.slugging * 100.0f;
                 
-				int gameStartTime = 999;
+				int gameStartTime = 99999;
 				size_t colonIndex = readBuffer.find(":", placeHolderIndex + 1);
 				size_t nextSemiColonIndex = readBuffer.find("\n", placeHolderIndex + 1);
 				if (colonIndex != string::npos && colonIndex < nextSemiColonIndex)
@@ -3375,36 +3384,37 @@ void GenerateLineups(CURL *curl)
 					{
 						gameStartTime += 12;
 					}
+                    gameStartTime *= 100;
+                    gameStartTime += atoi(readBuffer.substr(colonIndex + 1, 2).c_str());
 				}
 				else if (readBuffer.find("Final", placeHolderIndex + 1) != string::npos && readBuffer.find("Final", placeHolderIndex + 1) < nextSemiColonIndex)
 				{
 					// game has gone final
-					gameStartTime = 999;
+					gameStartTime = 99999;
 				}
 				else if (readBuffer.find("Mid", placeHolderIndex + 1) != string::npos && readBuffer.find("Mid", placeHolderIndex + 1) < nextSemiColonIndex)
 				{
 					// game is in progress
-					gameStartTime = 999;
+					gameStartTime = 99999;
 				}
 				else if (readBuffer.find("Top", placeHolderIndex + 1) != string::npos && readBuffer.find("Top", placeHolderIndex + 1) < nextSemiColonIndex)
 				{
 					// game is in progress
-					gameStartTime = 999;
+					gameStartTime = 99999;
 				}
 				else if (readBuffer.find("Bot", placeHolderIndex + 1) != string::npos && readBuffer.find("Bot", placeHolderIndex + 1) < nextSemiColonIndex)
 				{
 					// game is in progress
-					gameStartTime = 999;
+					gameStartTime = 99999;
                 } else if (readBuffer.find("Postponed", placeHolderIndex + 1) != string::npos && readBuffer.find("Postponed", placeHolderIndex + 1) < nextSemiColonIndex)
                 {
                     // game is in progress
-                    gameStartTime = 999;
+                    gameStartTime = 99999;
                 } else if (readBuffer.find("End", placeHolderIndex + 1) != string::npos && readBuffer.find("End", placeHolderIndex + 1) < nextSemiColonIndex)
                 {
                     // game is in progress
-                    gameStartTime = 999;
+                    gameStartTime = 99999;
                 }
-                
 
 				size_t closestRainOutPark = string::npos;
 				for (unsigned int i = 0; i < probableRainoutGames.size(); ++i)
@@ -3483,8 +3493,8 @@ void GenerateLineups(CURL *curl)
                 
 				// throw this guy out if he's not a starter or his game will most likely be rained out
 				if (!bFacingChosenPitcher
-					&& gameStartTime <= latestGameTime
-					&& gameStartTime >= earliestGameTime
+                    && gameStartTime <= latestGameTime
+                    && gameStartTime >= earliestGameTime
 					&& !bRainedOut
                     && singlePlayerData.playerSalary > 0) {
                     
@@ -3569,8 +3579,9 @@ void GenerateLineups(CURL *curl)
                             singlePlayerData.playerPointsPerGame = battingOrderZScore * 0.25f + sabrPredictZScore * 0.25f + oppPitcherSabrZScore * 0.25f + isoHandednessZScore * 0.25f;
                         }
 						singlePlayerData.playerPointsPerGame = 3000 - 1000 * singlePlayerData.playerPointsPerGame;
-                        if (ZScoreLineupPlayersTaken.find(singlePlayerData.playerId) == ZScoreLineupPlayersTaken.end())
+                        if (ZScoreLineupPlayersTaken.find(singlePlayerData.playerId) == ZScoreLineupPlayersTaken.end()) {
                             allPlayersZScore[positionIndex].push_back(singlePlayerData);
+                        }
 					}
                     
 					addedAtLeast1Player = true;
@@ -4885,6 +4896,8 @@ void PopulateProbableRainoutGames(CURL *curl)
 				gameStartTime += 2;
 			else if (weatherData.find("CDT", dashIndex) < timeIndex)
 				gameStartTime += 1;
+            gameStartTime *= 100;
+            gameStartTime += atoi(weatherData.substr(colonIndex + 1, 2).c_str());
 
 			
 			size_t atIndex = weatherData.rfind(" at ", dashIndex);
@@ -4929,6 +4942,7 @@ void PopulateProbableRainoutGames(CURL *curl)
 			awayTeamInformation.teamCodeRotoGuru = awayTeamCode;
 			awayTeamInformation.rankingsSiteTeamName = awayTeamAlternativeName;
 			awayTeamInformation.gameTime = gameStartTime;
+            cout << awayTeamCode << " at " << homeTeamCode << " starts at " << gameStartTime << endl;
 
 			// rotogur1.com uses different team codes than standard...
 			if (awayTeamInformation.teamCodeRotoGuru == "laa")
