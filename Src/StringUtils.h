@@ -30,10 +30,13 @@ std::string GetSubStringBetweenStrings(const std::string& wholeString, const std
 void CutStringToOnlySectionBetweenKeywords(std::string& wholeString, const std::string& sectionBegin, const std::string& sectionEnd);
 std::string ExtractStringToBeOnlySectionBetweenKeywords(const std::string& wholeString, const std::string& sectionBegin, const std::string& sectionEnd);
 void ReplaceInStringIfExists(std::string& originalString, const std::string& removeString, const std::string& replaceString);
+std::vector<std::string> MultineRegex(std::string multiLineString, std::string regexExpression);
 void EraseInString(std::string& originalString, const std::string& eraseString);
 std::vector<std::string> SplitStringIntoMultiple(std::string wholeString, std::string tokens, std::string removeFromIndividual = "");
 size_t FindPlayerNameIndexInList(const std::string& playerName, const std::string& searchText);
 int GetNumDaysInMonth(int monthInteger);
+
+bool StringStartsWith(std::string mainString, std::string beginning);
 
 void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuffer, bool allowRedirects = false);
 #endif

@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include <assert.h>
 #include <sys/stat.h>
+#include <regex>
 //#include <unistd.h>
 #include "StringUtils.h"
 #include "StatsCollectionFunctions.h"
@@ -441,4 +442,39 @@ std::vector<string> SplitStringIntoMultiple(std::string wholeString, std::string
 	} while (next_token != string::npos);
 
 	return stringArray;
+}
+
+bool StringStartsWith(std::string mainString, std::string beginning) {
+    size_t beginningLength = beginning.length();
+    if (mainString.length() >= beginningLength) {
+        for (int i = 0; i < beginningLength; ++i) {
+            if (mainString[i] != beginning[i])
+                return false;
+        }
+        return true;
+    }
+    return false;
+}
+
+std::vector<std::string> MultineRegex(std::string multiLineString, std::string regexExpression) {
+    vector<string> captures;
+    size_t lineIndexBegin = 0;
+    std::regex regexRows(regexExpression);
+    while (lineIndexBegin != string::npos) {
+        size_t lineIndexEnd = multiLineString.find("\n", lineIndexBegin + 1);
+        string singleLine = multiLineString.substr(lineIndexBegin +1, lineIndexEnd != string::npos ? lineIndexEnd - lineIndexBegin - 1 : string::npos);
+        std::smatch matches;
+        std::regex_match(singleLine, matches, regexRows);
+        int i = 0;
+        string::const_iterator searchStart( singleLine.cbegin() );
+        while (std::regex_search(searchStart, singleLine.cend(), matches, regexRows)) {
+            if (matches.size() > 1 && matches[matches.size()-1].length() > 0) {
+                captures.push_back(matches[matches.size()-1]);
+            }
+            searchStart += matches.position() + matches.length();
+            i++;
+        }
+        lineIndexBegin = lineIndexEnd;
+    }
+    return captures;
 }
