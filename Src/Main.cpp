@@ -14,6 +14,7 @@
 #include "SharedGlobals.h"
 #include "StatsCollectionFunctions.h"
 #include "StringUtils.h"
+#include "GameTeamWinContainer.h"
 #include "Main.h"
 using namespace std;
 
@@ -431,7 +432,8 @@ void RefineAlgorithm()
             gamesRecordOverallContents = GetEntireFileContents(gamesRecordFileName);
         }
 	}
-	CURL *curl;  
+	CURL *curl;
+    GameTeamWinContainer gameTeamWinContainer;
 
 	curl = curl_easy_init();
 	if (curl)
@@ -837,8 +839,8 @@ void RefineAlgorithm()
 						} else {
 							gameStartTime = gameTimeElement->second;
 						}
-						if (gameStartTime < mainStartTime)
-							playerPosition = -999;
+					//	if (gameStartTime < mainStartTime)
+					//		playerPosition = -999;
 						
 						if (playerPosition >= 0) {
 							int mainBattingOrderMin = 1;
@@ -1162,6 +1164,7 @@ void RefineAlgorithm()
                                     // <5 to >15 every 1
                                     sabrPredictorToPointsData[sabrIndex].push_back(actualPlayerPoints);
                                 }
+                                gameTeamWinContainer.nextPlayer(thisLineActualResults, expectedFdPoints);
                                 
 								singlePlayerData.playerPointsPerGame = expectedFdPoints;
                                 if (battingOrder >= mainBattingOrderMin && battingOrder <= mainBattingOrderMax) {
