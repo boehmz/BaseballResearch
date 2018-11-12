@@ -37,6 +37,18 @@ template <typename T> T ClampVariable(T varToClamp, const T& min, const T& max) 
         varToClamp = max;
     return varToClamp;
 }
+template <typename T> T AverageArrayExcludingThreshold(T* array, int size, T minThreshold) {
+    T total = 0;
+    int count = 0;
+    for (int i = 0; i < size; ++i) {
+        T iValue = *(array + i);
+        if (iValue >= minThreshold) {
+            total += *(array + i);
+            count++;
+        }
+    }
+    return total / (float)count;
+}
 
 std::string GetPlayerStatsRawString(std::string playerId, std::string yearString, CURL *curl);
 bool doesPlayerThrowLeftHanded(std::string playerId, CURL *curl);

@@ -16,6 +16,7 @@ class GameTeamWinContainer {
 public:
     void nextDate(std::string newDate);
     void nextPlayer(std::vector<std::string> actualResultsLine, float sabrPredictor);
+    void runAnalysis();
 };
 
 #endif

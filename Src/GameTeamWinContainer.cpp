@@ -15,6 +15,7 @@
 #include "GameTeamWinContainer.h"
 #include "SharedGlobals.h"
 #include "StringUtils.h"
+#include "StatsCollectionFunctions.h"
 
 using namespace std;
 TeamInformation::TeamInformation() {
@@ -22,6 +23,41 @@ TeamInformation::TeamInformation() {
     runs = -1;
     for (int i = 0; i < 9; ++i) {
         fanduelSabrPredictor[i] = -1;
+    }
+}
+
+void GameTeamWinContainer::runAnalysis() {
+    nextDate("");
+    if (allDatesToTeamInfoMaps.size() == 0)
+        return;
+    
+    fstream gamesRecordOverallFile;
+    string gamesRecordFileName = CURRENT_YEAR;
+    gamesRecordFileName += "ResultsTracker\\TeamWinResults\\AllGamesSabrPredictions.txt";
+#if PLATFORM_OSX
+    gamesRecordFileName = GetPlatformCompatibleFileNameFromRelativePath(gamesRecordFileName);
+#endif
+    gamesRecordOverallFile.open(gamesRecordFileName, std::ios::out);
+            
+    for (auto dateItr = allDatesToTeamInfoMaps.begin(); dateItr != allDatesToTeamInfoMaps.end(); ++dateItr) {
+        unordered_set<string> teamsWritten;
+        for (auto teamItr = dateItr->second.begin(); teamItr != dateItr->second.end(); ++teamItr) {
+            if (teamsWritten.find(teamItr->first) != teamsWritten.end())
+                continue;
+            auto oppTeamItr = dateItr->second.find(teamItr->second.opponentKey);
+            if (oppTeamItr != dateItr->second.end()) {
+                teamsWritten.insert(oppTeamItr->first);
+                
+                float teamSabrAverage = AverageArrayExcludingThreshold((teamItr->second.fanduelSabrPredictor), 9, 0.0f);
+                float oppTeamSabrAverage = AverageArrayExcludingThreshold((oppTeamItr->second.fanduelSabrPredictor), 9, 0.0f);
+                
+                gamesRecordOverallFile << dateItr->first << ";" << teamItr->first << ";" << oppTeamItr->first << ";" <<
+                teamItr->second.runs << ";" << oppTeamItr->second.runs << ";" << teamSabrAverage << ";" << oppTeamSabrAverage << endl;
+                
+            } else {
+                cout << "error could not find opponent of " << teamItr->first << " as " << teamItr->second.opponentKey << endl;
+            }
+        }
     }
 }
 
@@ -41,7 +77,8 @@ void GameTeamWinContainer::nextPlayer(std::vector<std::string> actualResultsLine
     if (actualResultsLine[0] != currentDate) {
         nextDate(actualResultsLine[0]);
     }
-    string teamNameKey = actualResultsLine[9] + actualResultsLine[11];
+    std::transform(actualResultsLine[9].begin(), actualResultsLine[9].end(), actualResultsLine[9].begin(), ::tolower);
+    string teamNameKey =  actualResultsLine[9] + actualResultsLine[11];
     auto teamInfo = teamToInfoMap.find(teamNameKey);
     if (teamInfo == teamToInfoMap.end()) {
         TeamInformation ti;
