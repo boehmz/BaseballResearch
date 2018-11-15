@@ -410,6 +410,8 @@ void FillZScoreData() {
 
 void RefineAlgorithm()
 {
+    //CompileVegasOddsIntoWinPredictionFile("2018ResultsTracker\\TeamWinResults\\AllGamesSabrPredictions.txt");
+    //return;
 	stackMaxNumTeams = true;
 	bool bRefineForPitchers = false;
 	bool bRefineForBatters = true;
@@ -554,6 +556,7 @@ void RefineAlgorithm()
 		
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
+            cout << d << endl;
             vector<VegasTeamRunPair> vegasRunsPerTeam;
             vegasRunsPerTeam.clear();
 			int yearInt = d / 10000;
@@ -1852,6 +1855,9 @@ void RefineAlgorithm()
                 allPlayersLineupOrder.push_back(allPlayersZScore);
 				allPlayersLineupOrder.push_back(allPlayersActualScores);
 
+                if (bRefineForGames) {
+                    allPlayersLineupOrder.clear();
+                }
 				chosenLineupsList.resize(allPlayersLineupOrder.size());
 				std::vector<std::thread> allThreads;
 				float battingOrderBonus = 0.0f;
@@ -2032,8 +2038,11 @@ void RefineAlgorithm()
                 }
 			}
 		}
-        if (bRefineForGames && needToCreateGamesRecordOverallFile) {
-            gamesRecordOverallFile.close();
+        if (bRefineForGames) {
+            if (needToCreateGamesRecordOverallFile)
+                gamesRecordOverallFile.close();
+            else
+                gameTeamWinContainer.runAnalysis();
         }
 		top10PitchersTrainingFile.close();
 		top25BattersTrainingFile.close();
