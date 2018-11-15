@@ -16,6 +16,7 @@
 #include "SharedGlobals.h"
 #include "StringUtils.h"
 #include "StatsCollectionFunctions.h"
+#include "Main.h"
 
 using namespace std;
 TeamInformation::TeamInformation() {
@@ -71,7 +72,7 @@ void GameTeamWinContainer::nextDate(std::string newDate) {
 
 void GameTeamWinContainer::nextPlayer(std::vector<std::string> actualResultsLine, float sabrPredictor) {
     if (actualResultsLine.size() != 14) {
-        cout << "Erroenous data sent to GameTeamWinContainer" << endl;
+        cout << "Erroneous data sent to GameTeamWinContainer" << endl;
         return;
     }
     if (actualResultsLine[0] != currentDate) {
@@ -90,6 +91,88 @@ void GameTeamWinContainer::nextPlayer(std::vector<std::string> actualResultsLine
     if (actualResultsLine[4] != "1")
         return;
     teamInfo->second.fanduelSabrPredictor[atoi(actualResultsLine[5].c_str()) - 1] = sabrPredictor;
+}
+
+void CompileVegasOddsIntoWinPredictionFile(std::string filename) {
+    string vegasOddsFileName = CURRENT_YEAR;
+    vegasOddsFileName += "ResultsTracker\\TeamWinResults\\AllGames.txt";
+    string vegasOddsFileContents = GetEntireFileContents(vegasOddsFileName);
+    string vegasOddsSection = "";
+
+    string fileContents = GetEntireFileContents(filename);
+    
+#if PLATFORM_OSX
+    filename = GetPlatformCompatibleFileNameFromRelativePath(filename);
+#endif
+    string filenameCombinedWithVegasOdds = filename.substr(0,filename.length()-4) +  "CombinedVegasOdds.txt";
+    fstream combinedOddsFile;
+    combinedOddsFile.open(filenameCombinedWithVegasOdds, std::ios::out);
+    
+    size_t currentLineStart = 0;
+    while (currentLineStart != string::npos) {
+        size_t currentLineEnd = fileContents.find("\n", currentLineStart);
+        string thisLine = fileContents.substr(currentLineStart, currentLineEnd != string::npos ? (currentLineEnd - currentLineStart) : string::npos);
+        vector<string> thisLineColumns = SplitStringIntoMultiple(thisLine, ";");
+        if (thisLineColumns.size() != 7) {
+            cout << "breaking because line has " << thisLineColumns.size() << " columns for line " << thisLine << endl;
+            break;
+        }
+        int doubleHeaderIndex = 0;
+        if (thisLineColumns[1].at(thisLineColumns[1].length()-1) == '2') {
+            doubleHeaderIndex = 1;
+            // double headers still an inacuraccy as they are not properly handled yet
+         //   thisLineColumns[1] = thisLineColumns[1].substr(0,thisLineColumns[1].length()-1);
+         //   thisLineColumns[2] = thisLineColumns[2].substr(0,thisLineColumns[2].length()-1);
+        }
+        if (!StringStartsWith(vegasOddsSection, thisLineColumns[0])) {
+            size_t sectionStart = vegasOddsFileContents.find(thisLineColumns[0]);
+            if (sectionStart == string::npos) {
+                vegasOddsSection = thisLineColumns[0];
+                cout << "There are no vegas odds for date " << vegasOddsSection << endl;
+            } else {
+                size_t sectionEnd = vegasOddsFileContents.find("\n", sectionStart);
+                size_t sectionEndSearch = vegasOddsFileContents.find(thisLineColumns[0], sectionEnd);
+                while (sectionEndSearch != string::npos) {
+                    sectionEnd = vegasOddsFileContents.find("\n", sectionEndSearch);
+                    sectionEndSearch = vegasOddsFileContents.find(thisLineColumns[0], sectionEnd);
+                }
+                vegasOddsSection = vegasOddsFileContents.substr(sectionStart, sectionEnd != string::npos ? sectionEnd - sectionStart : string::npos);
+            }
+        }
+        
+        string fullteamName1 = convertTeamCodeToSynonym(ConvertRotoGuruTeamCodeToStandardTeamCode(thisLineColumns[1]), 0);
+        string fullteamName2 = convertTeamCodeToSynonym(ConvertRotoGuruTeamCodeToStandardTeamCode(thisLineColumns[2]), 0);
+        size_t fullteamName1Index = vegasOddsSection.find(fullteamName1 + ";");
+        size_t fullteamName2Index = vegasOddsSection.find(fullteamName2 + ";");
+        
+        if (fullteamName1Index != string::npos && fullteamName2Index != string::npos) {
+            size_t vegasLineStart = vegasOddsSection.rfind("\n", fullteamName1Index);
+            size_t vegasLineEnd = vegasOddsSection.find("\n", fullteamName1Index);
+            if (vegasLineStart == string::npos)
+                vegasLineStart = 0;
+            if (vegasLineEnd == string::npos)
+                vegasLineEnd = vegasOddsSection.length();
+            string thisVegasLine = vegasOddsSection.substr(vegasLineStart, vegasLineEnd - vegasLineStart);
+            vector<string> thisVegasLineColumns = SplitStringIntoMultiple(thisVegasLine, ";");
+            if (thisVegasLineColumns.size() == 12) {
+                combinedOddsFile << thisLine;
+                if (fullteamName1Index < fullteamName2Index)
+                    combinedOddsFile << ";" << thisVegasLineColumns[10] << ";" << thisVegasLineColumns[11];
+                else
+                    combinedOddsFile << ";" << thisVegasLineColumns[11] << ";" << thisVegasLineColumns[10];
+                combinedOddsFile << endl;
+            }
+        } else {
+            if (doubleHeaderIndex == 0 && vegasOddsSection != thisLineColumns[0]) {
+                cout << "Could not find matching vegas odds for teams " << thisLine << endl;
+            }
+        }
+        
+        if (currentLineEnd == string::npos)
+            break;
+        else
+            currentLineStart = currentLineEnd + 1;
+    }
 }
 
 /*

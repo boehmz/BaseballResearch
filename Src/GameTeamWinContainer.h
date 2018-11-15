@@ -19,4 +19,6 @@ public:
     void runAnalysis();
 };
 
+void CompileVegasOddsIntoWinPredictionFile(std::string filename);
+
 #endif
