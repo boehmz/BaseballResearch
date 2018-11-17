@@ -137,9 +137,8 @@ void GameTeamWinContainer::CompileVegasOddsIntoWinPredictionFile() {
         int doubleHeaderIndex = 0;
         if (thisLineColumns[1].at(thisLineColumns[1].length()-1) == '2') {
             doubleHeaderIndex = 1;
-            // double headers still an inacuraccy as they are not properly handled yet
-         //   thisLineColumns[1] = thisLineColumns[1].substr(0,thisLineColumns[1].length()-1);
-         //   thisLineColumns[2] = thisLineColumns[2].substr(0,thisLineColumns[2].length()-1);
+            thisLineColumns[1] = thisLineColumns[1].substr(0,thisLineColumns[1].length()-1);
+            thisLineColumns[2] = thisLineColumns[2].substr(0,thisLineColumns[2].length()-1);
         }
         if (!StringStartsWith(vegasOddsSection, thisLineColumns[0])) {
             size_t sectionStart = vegasOddsFileContents.find(thisLineColumns[0]);
@@ -161,6 +160,10 @@ void GameTeamWinContainer::CompileVegasOddsIntoWinPredictionFile() {
         string fullteamName2 = convertTeamCodeToSynonym(ConvertRotoGuruTeamCodeToStandardTeamCode(thisLineColumns[2]), 0);
         size_t fullteamName1Index = vegasOddsSection.find(fullteamName1 + ";");
         size_t fullteamName2Index = vegasOddsSection.find(fullteamName2 + ";");
+        if (doubleHeaderIndex != 0) {
+            fullteamName1Index = vegasOddsSection.find(fullteamName1 + ";", fullteamName1Index + 1);
+            fullteamName2Index = vegasOddsSection.find(fullteamName2 + ";", fullteamName2Index + 1);
+        }
         
         if (fullteamName1Index != string::npos && fullteamName2Index != string::npos) {
             size_t vegasLineStart = vegasOddsSection.rfind("\n", fullteamName1Index);
