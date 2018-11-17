@@ -410,19 +410,18 @@ void FillZScoreData() {
 
 void RefineAlgorithm()
 {
-  //  CompileVegasOddsIntoWinPredictionFile("2018ResultsTracker\\TeamWinResults\\AllGamesSabrPredictions.txt");
-  //  return;
 	stackMaxNumTeams = true;
 	bool bRefineForPitchers = false;
 	bool bRefineForBatters = true;
 	bool bRefineForGames = true;
     bool bRefineForStats = false;
     bool needToCreateGamesRecordOverallFile = false;
+    string yearRefiningFor = LAST_YEAR;
 
 	fstream gamesRecordOverallFile;
     string gamesRecordOverallContents;
 	if (bRefineForGames) {
-        string gamesRecordFileName = CURRENT_YEAR;
+        string gamesRecordFileName = yearRefiningFor;
         gamesRecordFileName += "ResultsTracker\\TeamWinResults\\AllGames.txt";
         if (needToCreateGamesRecordOverallFile) {
             
@@ -465,8 +464,8 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = 20180401;
-		reviewDateEnd = 20180930;
+        reviewDateStart = atoi(yearRefiningFor.c_str()) * 10000 + 806;
+		reviewDateEnd = atoi(yearRefiningFor.c_str()) * 10000 + 930;
 		percentOfSeasonPassed = 81.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
@@ -642,14 +641,14 @@ void RefineAlgorithm()
             numBattersZScoreInTrainingFileToday = 0;
 			if (bRefineForBatters) {
 				ifstream resultsTrackerFile;
-				string resultsTrackerFileName = "2017ResultsTracker\\";
+				string resultsTrackerFileName = yearRefiningFor + "ResultsTracker\\";
 				resultsTrackerFileName += thisDate + ".txt";
 #if PLATFORM_OSX
                 resultsTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(resultsTrackerFileName);
 #endif
 				resultsTrackerFile.open(resultsTrackerFileName);
 				string sabrPredictorText = getSabrPredictorFileContents(thisDate, false);
-				string batterVSpecificPitcherTextFileName = "2017ResultsTracker\\BatterVPitcherLogs\\" + thisDate + ".txt";
+				string batterVSpecificPitcherTextFileName = yearRefiningFor + "ResultsTracker\\BatterVPitcherLogs\\" + thisDate + ".txt";
 				string batterVSpecificPitcherText = GetEntireFileContents(batterVSpecificPitcherTextFileName);
 				string sabrPredictorTextPitchers = getSabrPredictorFileContents(thisDate, true);
                 string relieverStatsAdvancedFileName = "FangraphsCachedPages\\CachedAtDate\\" + thisDate + "\\RelieverStatsAdvanced.txt";
@@ -1958,7 +1957,7 @@ void RefineAlgorithm()
 
 			if (bRefineForPitchers) {
 				ifstream pitcherResultsTrackerFile;
-				string pitcherResultsTrackerFileName = "2017ResultsTracker\\Pitchers\\";
+				string pitcherResultsTrackerFileName = yearRefiningFor + "ResultsTracker\\Pitchers\\";
 				pitcherResultsTrackerFileName += thisDate + ".txt";
 #if PLATFORM_OSX
                 pitcherResultsTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(pitcherResultsTrackerFileName);
@@ -2005,13 +2004,6 @@ void RefineAlgorithm()
                 
                 if (needToCreateGamesRecordOverallFile) {
                     ifstream gamesPredictorFile;
-                    string gamesPredictorFileName = CURRENT_YEAR;
-                    gamesPredictorFileName += "ResultsTracker\\TeamWinResults\\";
-                    gamesPredictorFileName += thisDate + ".txt";
-    #if PLATFORM_OSX
-                    gamesPredictorFileName = GetPlatformCompatibleFileNameFromRelativePath(gamesPredictorFileName);
-    #endif
-                    gamesPredictorFile.open(gamesPredictorFileName);
                     
                     string gameMoneyLinesURL = "http://www.donbest.com/mlb/odds/money-lines/" + thisDate + ".html";
                     string gameMoneyLines = "";
@@ -2055,7 +2047,7 @@ void RefineAlgorithm()
         top50ZScoreTrainingFile.close();
         if (bRefineForStats) {
             ofstream statsDataTrackerFile;
-            string statsDataTrackerFileName = "2018ResultsTracker\\StatsRelationships.txt";
+            string statsDataTrackerFileName = yearRefiningFor + "ResultsTracker\\StatsRelationships.txt";
 #if PLATFORM_OSX
             statsDataTrackerFileName = GetPlatformCompatibleFileNameFromRelativePath(statsDataTrackerFileName);
 #endif

@@ -9,16 +9,21 @@ struct TeamInformation {
 };
 
 class GameTeamWinContainer {
+    std::string currentYear;
     std::string currentDate;
     std::unordered_map<std::string, TeamInformation> teamToInfoMap;
     std::unordered_map<std::string, std::unordered_map<std::string, TeamInformation>> allDatesToTeamInfoMaps;
 
+    void CompileVegasOddsIntoWinPredictionFile();
+    std::string GetGamesRecordFilename();
+    
 public:
+    GameTeamWinContainer();
     void nextDate(std::string newDate);
     void nextPlayer(std::vector<std::string> actualResultsLine, float sabrPredictor);
     void runAnalysis();
 };
 
-void CompileVegasOddsIntoWinPredictionFile(std::string filename);
+
 
 #endif

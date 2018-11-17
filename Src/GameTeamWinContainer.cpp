@@ -19,6 +19,7 @@
 #include "Main.h"
 
 using namespace std;
+
 TeamInformation::TeamInformation() {
     opponentKey = "";
     runs = -1;
@@ -26,15 +27,22 @@ TeamInformation::TeamInformation() {
         fanduelSabrPredictor[i] = -1;
     }
 }
+GameTeamWinContainer::GameTeamWinContainer() {
+    currentDate = currentYear = "";
+}
 
 void GameTeamWinContainer::runAnalysis() {
+    if (currentDate.length() > 4) {
+        currentYear = currentDate.substr(0,4);
+    } else {
+        return;
+    }
     nextDate("");
     if (allDatesToTeamInfoMaps.size() == 0)
         return;
     
     fstream gamesRecordOverallFile;
-    string gamesRecordFileName = CURRENT_YEAR;
-    gamesRecordFileName += "ResultsTracker\\TeamWinResults\\AllGamesSabrPredictions.txt";
+    string gamesRecordFileName = GetGamesRecordFilename();
 #if PLATFORM_OSX
     gamesRecordFileName = GetPlatformCompatibleFileNameFromRelativePath(gamesRecordFileName);
 #endif
@@ -60,6 +68,7 @@ void GameTeamWinContainer::runAnalysis() {
             }
         }
     }
+    CompileVegasOddsIntoWinPredictionFile();
 }
 
 void GameTeamWinContainer::nextDate(std::string newDate) {
@@ -93,8 +102,16 @@ void GameTeamWinContainer::nextPlayer(std::vector<std::string> actualResultsLine
     teamInfo->second.fanduelSabrPredictor[atoi(actualResultsLine[5].c_str()) - 1] = sabrPredictor;
 }
 
-void CompileVegasOddsIntoWinPredictionFile(std::string filename) {
-    string vegasOddsFileName = CURRENT_YEAR;
+string GameTeamWinContainer::GetGamesRecordFilename () {
+    string gamesRecordFileName = currentYear;
+    gamesRecordFileName += "ResultsTracker\\TeamWinResults\\AllGamesSabrPredictions.txt";
+
+    return gamesRecordFileName;
+}
+
+void GameTeamWinContainer::CompileVegasOddsIntoWinPredictionFile() {
+    string filename = GetGamesRecordFilename();
+    string vegasOddsFileName = currentYear;
     vegasOddsFileName += "ResultsTracker\\TeamWinResults\\AllGames.txt";
     string vegasOddsFileContents = GetEntireFileContents(vegasOddsFileName);
     string vegasOddsSection = "";
