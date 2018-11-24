@@ -207,6 +207,12 @@ size_t FindPlayerNameIndexInList(const std::string& playerName, const std::strin
 					if (index == string::npos) {
 						ReplaceInStringIfExists(tempFinder, "Nick", "Nicholas");
 						ReplaceInStringIfExists(tempFinder, "Mike", "Michael");
+                        ReplaceInStringIfExists(tempFinder, "Steven", "Steve");
+                        ReplaceInStringIfExists(tempFinder, "Norichika", "Nori");
+                        ReplaceInStringIfExists(tempFinder, "Reymond", "Rey");
+                        ReplaceInStringIfExists(tempFinder, "Hyun-Soo", "Hyun Soo");
+                        ReplaceInStringIfExists(tempFinder, "Daniel", "Dan");
+
 						EraseInString(tempFinder, "-hitter");
 						index = searchText.find(tempFinder);
 						if (index == string::npos) {
@@ -214,11 +220,22 @@ size_t FindPlayerNameIndexInList(const std::string& playerName, const std::strin
                             ReplaceInStringIfExists(tempFinder, "Michael", "Mike");
 							ReplaceInStringIfExists(tempFinder, "Rafael", "Raffy");
 							ReplaceInStringIfExists(tempFinder, "JR ", "John Ryan ");
+                            ReplaceInStringIfExists(tempFinder, "Steve", "Steven");
+                            ReplaceInStringIfExists(tempFinder, "Nori", "Norichika");
+                            ReplaceInStringIfExists(tempFinder, "Rey", "Reymond");
+                            ReplaceInStringIfExists(tempFinder, "Hyun Soo", "Hyun-Soo");
+                            ReplaceInStringIfExists(tempFinder, "Dan", "Daniel");
+
 							index = searchText.find(tempFinder);
                             if (index == string::npos) {
                                 ReplaceInStringIfExists(tempFinder, "Jake", "Jakob");
+                                ReplaceInStringIfExists(tempFinder, "Michael A.", "Michael");
+                                ReplaceInStringIfExists(tempFinder, "Nicky", "Nick");
+
                                 index = searchText.find(tempFinder);
                                  if (index == string::npos) {
+                                     ReplaceInStringIfExists(tempFinder, "Michael", "Michael A.");
+                                     ReplaceInStringIfExists(tempFinder, "Nick", "Nicky");
                                      ReplaceInStringIfExists(tempFinder, "Jakob", "Jacob");
                                      index = searchText.find(tempFinder);
                                      if (index == string::npos) {
