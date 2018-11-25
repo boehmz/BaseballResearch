@@ -63,7 +63,6 @@
 20170810;1:10 PM;Pittsburgh Pirates;Detroit Tigers;G COLE     -R;D VERHAGEN -R;7;5;-150;+135;-166;+143
 20170810;7:15 PM;Kansas City Royals;St. Louis Cardinals;J HAMMEL   -R;L LYNN     -R;6;8;+126;-140;+135;-155
 20170810;8:10 PM;Minnesota Twins;Milwaukee Brewers;D Enns     -L;Z DAVIES   -R;7;2;+149;-165;+143;-166
-20170811;PP;San Francisco Giants;Washington Nationals;C STRATTON -R;E JACKSON  -R;-;-;+153;-170;+168;-196
 20170811;7:05 PM;New York Mets;Philadelphia Phillies;S LUGO     -R;N PIVETTA  -R;7;6;-110;+100;-110;-110
 20170811;7:10 PM;Colorado Rockies;Miami Marlins;J GRAY     -R;J URENA    -R;3;6;+100;-110;-118;-102
 20170811;8:10 PM;Cincinnati Reds;Milwaukee Brewers;H BAILEY   -R;J NELSON   -R;11;10;+162;-180;+165;-190
@@ -141,7 +140,6 @@
 20170816;3:40 PM;Baltimore Orioles;Seattle Mariners;U JIMENEZ  -R;M GONZALES -L;6;7;+105;-115;+102;-122
 20170816;7:05 PM;Tampa Bay Rays;Toronto Blue Jays;J FARIA    -R;M STROMAN  -R;2;3;+131;-145;+118;-138
 20170816;8:05 PM;Detroit Tigers;Texas Rangers;A SANCHEZ  -R;C HAMELS   -L;6;12;+166;-185;+167;-194
-20170816;PP;Cleveland Indians;Minnesota Twins;C CARRASCO -R;K GIBSON   -R;-;-;-170;+153;-184;+159
 20170816;1:05 PM;Los Angeles Angels;Washington Nationals;R NOLASCO  -R;T ROARK    -R;3;2;+114;-125;+119;-139
 20170816;7:10 PM;New York Yankees;New York Mets;J GARCIA   -L;R GSELLMAN -R;5;3;-145;+131;-168;+144
 20170816;7:10 PM;St. Louis Cardinals;Boston Red Sox;L LYNN     -R;E RODRIGUEZ-L;4;5;+122;-135;+142;-164
@@ -312,17 +310,14 @@
 20170828;10:05 PM;Oakland Athletics;Los Angeles Angels;D GOSSETT  -R;A HEANEY   -L;1;3;+153;-170;+120;-140
 20170828;8:40 PM;Detroit Tigers;Colorado Rockies;J ZIMMERMANN  -R;A SENZATELA-R;4;3;+149;-165;+205;-240
 20170829;7:30 PM;Miami Marlins;Washington Nationals;V WORLEY   -R;E JACKSON  -R;3;8;+144;-160;+135;-155
-20170829;PP;Atlanta Braves;Philadelphia Phillies;R DICKEY   -R;M LEITER   -R;-;-;+110;-121;-112;-108
 20170829;7:10 PM;New York Mets;Cincinnati Reds;C FLEXEN   -R;S ROMANO   -R;4;14;+127;-141;+142;-164
 20170829;7:40 PM;St. Louis Cardinals;Milwaukee Brewers;L WEAVER   -R;M GARZA    -R;10;2;+100;-110;-135;+115
 20170829;8:05 PM;Pittsburgh Pirates;Chicago Cubs;C KUHL     -R;J ARRIETA  -R;1;4;+192;-215;+205;-240
 20170829;9:40 PM;Los Angeles Dodgers;Arizona Diamondbacks;R HILL     -L;Z GODLEY   -R;6;7;-126;+114;-122;+102
 20170829;10:10 PM;San Francisco Giants;San Diego Padres;M MOORE    -L;L PERDOMO  -R;3;6;+103;-113;+133;-153
-20170829;PP;Cleveland Indians;New York Yankees;T BAUER    -R;J GARCIA   -L;-;-;+101;-111;-112;-108
 20170829;7:35 PM;Seattle Mariners;Baltimore Orioles;E RAMIREZ  -R;D BUNDY    -R;0;4;+132;-146;+130;-150
 20170829;7:05 PM;Boston Red Sox;Toronto Blue Jays;C SALE     -L;B ANDERSON -L;3;0;-221;+197;-250;+210
 20170829;8:10 PM;Chicago White Sox;Minnesota Twins;J SHIELDS  -R;E SANTANA  -R;4;6;+192;-215;+205;-240
-20170829;8:10 PM;Texas Rangers;Houston Astros;M PEREZ    -L;M FIERS    -R;-;-;-;-;-;-
 20170829;8:15 PM;Tampa Bay Rays;Kansas City Royals;A COBB     -R;J JUNIS    -R;2;6;+105;-115;-118;-102
 20170829;10:05 PM;Oakland Athletics;Los Angeles Angels;C SMITH    -R;T SCRIBNER -R;2;8;+153;-170;+127;-147
 20170829;8:40 PM;Detroit Tigers;Colorado Rockies;M FULMER   -R;G MARQUEZ  -R;3;7;+118;-131;+180;-210
@@ -430,7 +425,6 @@
 20170905;8:10 PM;Cleveland Indians;Chicago White Sox;D SALAZAR  -R;D HOLMBERG -L;9;4;-240;+213;-280;+230
 20170905;10:05 PM;Los Angeles Angels;Oakland Athletics;G RICHARDS -R;K GRAVEMAN -R;8;7;-145;+131;-147;+127
 20170905;10:10 PM;Houston Astros;Seattle Mariners;J VERLANDER-R;A MIRANDA  -L;3;1;-164;+148;-164;+142
-20170905;PP;Texas Rangers;Atlanta Braves;M GONZALEZ -R;L GOHARA   -L;-;-;+101;-111;-112;-108
 20170906;12:35 PM;Milwaukee Brewers;Cincinnati Reds;M GARZA    -R;L CASTILLO -R;1;7;+135;-150;+110;-130
 20170906;7:05 PM;Chicago Cubs;Pittsburgh Pirates;J QUINTANA -L;G COLE     -R;1;0;-136;+123;-134;+114
 20170906;7:10 PM;Washington Nationals;Miami Marlins;G GONZALEZ -L;D PETERS   -L;8;1;-126;+114;-128;+108
@@ -440,7 +434,6 @@
 20170906;10:10 PM;St. Louis Cardinals;San Diego Padres;J FLAHERTY -R;D LAMET    -R;3;1;-116;+106;+123;-143
 20170906;1:10 PM;Minnesota Twins;Tampa Bay Rays;A SLEGERS  -R;B SNELL    -L;10;6;+139;-154;+150;-175
 20170906;3:35 PM;Los Angeles Angels;Oakland Athletics;T SKAGGS   -L;S MANAEA   -L;1;3;-131;+118;-128;+108
-20170906;PP;New York Yankees;Baltimore Orioles;S GRAY     -R;K GAUSMAN  -R;-;-;-115;+105;-108;-112
 20170906;7:10 PM;Toronto Blue Jays;Boston Red Sox;J BIAGINI  -R;D FISTER   -R;1;6;+149;-166;+165;-190
 20170906;7:10 PM;Kansas City Royals;Detroit Tigers;J HAMMEL   -R;M BOYD     -L;13;2;-150;+135;-142;+122
 20170906;8:10 PM;Cleveland Indians;Chicago White Sox;C CARRASCO -R;R LOPEZ    -R;5;1;-290;+255;-280;+230
