@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Src\Deprecated.cpp" />
+    <ClCompile Include="..\Src\GameTeamWinContainer.cpp" />
     <ClCompile Include="..\Src\Main.cpp" />
     <ClCompile Include="..\Src\MainGUI.cpp" />
     <ClCompile Include="..\Src\StatsCollectionFunctions.cpp" />
     <ClCompile Include="..\Src\StringUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Src\GameTeamWinContainer.h" />
     <ClInclude Include="..\Src\Main.h" />
     <ClInclude Include="..\Src\SharedGlobals.h" />
     <ClInclude Include="..\Src\StatsCollectionFunctions.h" />
