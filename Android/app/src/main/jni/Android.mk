@@ -11,7 +11,8 @@ include $(PREBUILT_STATIC_LIBRARY)
 #Test Library
 include $(CLEAR_VARS)
 LOCAL_MODULE := native-lib
-LOCAL_SRC_FILES := ../cpp/native-lib.cpp
+FILE_LIST := $(wildcard $(LOCAL_PATH)/../cpp/*.cpp)
+LOCAL_SRC_FILES := $(FILE_LIST:$(LOCAL_PATH)/%=%)
 LOCAL_STATIC_LIBRARIES := curl-prebuilt 
 COMMON_CFLAGS := -Werror -DANDROID 
 

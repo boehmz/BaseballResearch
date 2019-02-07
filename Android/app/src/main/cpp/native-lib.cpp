@@ -2,6 +2,27 @@
 #include <string>
 #include <curl/curl.h>
 #include <android/log.h>
+#include <stdio.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+#include <unordered_map>
+#include <unordered_set>
+#include <assert.h>
+#include <thread>
+#include "SharedGlobals.h"
+#include "GameTeamWinContainer.h"
+#include "StatsCollectionFunctions.h"
+
+
+int latestGameTime =   2050;
+int earliestGameTime = 2005;
+std::string todaysDate = "20180924";
+bool skipStatsCollection = false;
+int reviewDateStart = 515;
+int reviewDateEnd = 609;
 
 #define TRUE 1
 #define FALSE 0
@@ -13,12 +34,7 @@
 	#define LOGI(...) printf(__VA_ARGS__)
 #endif
 
-size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
-{
-    if (userp != NULL)
-        ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
-}
+
 
 std::string GetSiteHtml() {
 
