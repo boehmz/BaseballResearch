@@ -15,6 +15,7 @@
 #include "SharedGlobals.h"
 #include "GameTeamWinContainer.h"
 #include "StatsCollectionFunctions.h"
+#include "StringUtils.h"
 
 
 int latestGameTime =   2050;
@@ -33,7 +34,7 @@ int reviewDateEnd = 609;
 #else
 	#define LOGI(...) printf(__VA_ARGS__)
 #endif
-
+using namespace std;
 
 
 std::string GetSiteHtml() {
@@ -64,6 +65,233 @@ std::string GetSiteHtml() {
 
     }
     return "could not make curl";
+}
+
+string getSabrPredictorFileContents(string date, bool bPitchers) {
+    // TODO: get it fromt he internet
+    return "temp stuff";
+}
+
+void GenerateLineups()
+{
+	CURL* curl = curl_easy_init();
+	if (curl)
+	{
+        string todaysLineups;
+        curl_easy_setopt(curl, CURLOPT_URL, "http://www.fantasyalarm.com/mlb/lineups/");
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &todaysLineups);
+        curl_easy_perform(curl);
+        curl_easy_reset(curl);
+        todaysLineups = ConvertSpecialCharactersToEnglish26(todaysLineups);
+
+        // TODO: get sabr projections from live website rather than file
+		string sabrPredictorText = getSabrPredictorFileContents(todaysDate, false);
+		string sabrPredictorTextPitchers = getSabrPredictorFileContents(todaysDate, true);
+
+		for (int p = 2; p <= 7; ++p)
+		{
+			int positionIndex = p - 2;
+			std::string readBuffer;
+			char pAsString[5];
+			itoa(p, pAsString, 10);
+			string pAsStringString(pAsString);
+			string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=" + pAsStringString + "&sort=6";
+			thisPositionURL += "&game=d&colA=0&daypt=0&denom=3&xavg=3&inact=0&maxprc=99999&sched=1&starters=0&hithand=0&numlist=c&user=GoldenExcalibur&key=G5970032941";
+
+			curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+			curl_easy_perform(curl);
+			curl_easy_reset(curl);
+
+			size_t placeHolderIndex = readBuffer.find("GID;", 0);
+			size_t endOfPlayerDataIndex = readBuffer.find("Statistical data provided", placeHolderIndex);
+
+			for (int i = 0; i < 23; ++i)
+			{
+				placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+			}
+			placeHolderIndex = readBuffer.find("\n", placeHolderIndex + 1);
+			while (placeHolderIndex != string::npos && readBuffer.find(";", placeHolderIndex + 1) < endOfPlayerDataIndex - 1)
+			{
+				PlayerData singlePlayerData;
+
+				// player id
+				size_t nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.playerId = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+
+				// player name
+				for (int i = 0; i < 2; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.playerName = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+				// team name code
+				for (int i = 0; i < 1; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.teamCode = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+
+				// player salary
+				for (int i = 0; i < 1; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+				nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+				singlePlayerData.playerSalary = atoi(readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1).c_str());
+
+                // number of games started this season
+                for (int i = 0; i < 17; ++i)
+                {
+                    placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+                }
+                nextIndex = readBuffer.find(";", placeHolderIndex + 1);
+                string opponentTeamCode = readBuffer.substr(placeHolderIndex + 1, nextIndex - placeHolderIndex - 1);
+
+				// number of games started this season
+				for (int i = 0; i < 2; ++i)
+				{
+					placeHolderIndex = readBuffer.find(";", placeHolderIndex + 1);
+				}
+
+				singlePlayerData.playerPointsPerGame = -1;
+
+                float expectedFdPointsOpposingPitcher = -1;
+                float expectedYahooPointsOpposingPitcher = -1;
+                float expectedFdPoints = -1;
+                float expectedPitcherOpsAllowed = -1;
+				size_t playerNameIndex = sabrPredictorText.find(ConvertLFNameToFLName(singlePlayerData.playerName));
+                if (playerNameIndex == string::npos)
+                    playerNameIndex = FindPlayerNameIndexInList(singlePlayerData.playerName, sabrPredictorText);
+
+				if (playerNameIndex != string::npos) {
+
+					size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
+					vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
+                    expectedFdPoints = stof(thisSabrLine[17]);
+			//		if (gameType == GameType::DraftKings)
+			//			expectedFdPoints = stof(thisSabrLine[18]);
+					singlePlayerData.playerPointsPerGame = expectedFdPoints;
+
+                /*
+					if (sabrPredictorTextPitchers != "") {
+						string playerTeamName = thisSabrLine[1];
+						string playerGameName = thisSabrLine[2];
+						size_t gameNameIndex = sabrPredictorTextPitchers.find(playerGameName);
+                        if (playerGameName == "")
+                            gameNameIndex = string::npos;
+						if (gameNameIndex != string::npos) {
+							size_t prevNewLinePitchers = sabrPredictorTextPitchers.rfind("\n", gameNameIndex);
+							size_t nextNewLinePitchers = sabrPredictorTextPitchers.find("\n", gameNameIndex);
+							vector<string> thisSabrLinePitchers = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(prevNewLinePitchers, nextNewLinePitchers - prevNewLinePitchers), ",", "\"");
+							if (thisSabrLinePitchers[1] == playerTeamName) {
+								gameNameIndex = sabrPredictorTextPitchers.find(playerGameName, nextNewLinePitchers);
+								if (gameNameIndex != string::npos) {
+									prevNewLinePitchers = sabrPredictorTextPitchers.rfind("\n", gameNameIndex);
+									nextNewLinePitchers = sabrPredictorTextPitchers.find("\n", gameNameIndex);
+									thisSabrLinePitchers.clear();
+									thisSabrLinePitchers = SplitStringIntoMultiple(sabrPredictorTextPitchers.substr(prevNewLinePitchers, nextNewLinePitchers - prevNewLinePitchers), ",", "\"");
+								}
+							}
+                            expectedFdPointsOpposingPitcher = stof(thisSabrLinePitchers[14]);
+                            expectedYahooPointsOpposingPitcher = stof(thisSabrLinePitchers[13]);
+                            float pitcherOnBaseAllowed = stof(thisSabrLinePitchers[6]) + stof(thisSabrLinePitchers[11]);
+                            float pitcherBattersFaced = stof(thisSabrLinePitchers[5]);
+                            float pitcherTotalBasesAllowed = stof(thisSabrLinePitchers[7]) + stof(thisSabrLinePitchers[8]) * 2 + stof(thisSabrLinePitchers[9]) * 3 + stof(thisSabrLinePitchers[10]) * 4;
+                            expectedPitcherOpsAllowed = pitcherOnBaseAllowed / pitcherBattersFaced + pitcherTotalBasesAllowed / pitcherBattersFaced;
+						}
+					}
+					*/
+				}
+
+				int gameStartTime = 99999;
+				size_t colonIndex = readBuffer.find(":", placeHolderIndex + 1);
+				size_t nextSemiColonIndex = readBuffer.find("\n", placeHolderIndex + 1);
+				if (colonIndex != string::npos && colonIndex < nextSemiColonIndex)
+				{
+					size_t spaceIndex = readBuffer.rfind(" ", colonIndex);
+					gameStartTime = atoi(readBuffer.substr(spaceIndex + 1, colonIndex - spaceIndex - 1).c_str());
+					size_t pmIndex = readBuffer.find("PM", spaceIndex);
+					size_t edtIndex = readBuffer.find("EDT", spaceIndex);
+					if (pmIndex != string::npos && pmIndex < edtIndex)
+					{
+						gameStartTime += 12;
+					}
+                    gameStartTime *= 100;
+                    gameStartTime += atoi(readBuffer.substr(colonIndex + 1, 2).c_str());
+				}
+				else if (readBuffer.find("Final", placeHolderIndex + 1) != string::npos && readBuffer.find("Final", placeHolderIndex + 1) < nextSemiColonIndex)
+				{
+					// game has gone final
+					gameStartTime = 99999;
+				}
+				else if (readBuffer.find("Mid", placeHolderIndex + 1) != string::npos && readBuffer.find("Mid", placeHolderIndex + 1) < nextSemiColonIndex)
+				{
+					// game is in progress
+					gameStartTime = 99999;
+				}
+				else if (readBuffer.find("Top", placeHolderIndex + 1) != string::npos && readBuffer.find("Top", placeHolderIndex + 1) < nextSemiColonIndex)
+				{
+					// game is in progress
+					gameStartTime = 99999;
+				}
+				else if (readBuffer.find("Bot", placeHolderIndex + 1) != string::npos && readBuffer.find("Bot", placeHolderIndex + 1) < nextSemiColonIndex)
+				{
+					// game is in progress
+					gameStartTime = 99999;
+                } else if (readBuffer.find("Postponed", placeHolderIndex + 1) != string::npos && readBuffer.find("Postponed", placeHolderIndex + 1) < nextSemiColonIndex)
+                {
+                    // game is in progress
+                    gameStartTime = 99999;
+                } else if (readBuffer.find("End", placeHolderIndex + 1) != string::npos && readBuffer.find("End", placeHolderIndex + 1) < nextSemiColonIndex)
+                {
+                    // game is in progress
+                    gameStartTime = 99999;
+                }
+
+				int actualBattingOrder = -1;
+                size_t playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertLFNameToFLName(singlePlayerData.playerName) + " ");
+				if (playerIndexInTodaysLineups == string::npos) {
+					playerIndexInTodaysLineups = todaysLineups.find(">" + ConvertNameToFirstInitialLastName(singlePlayerData.playerName) + " ");
+
+				}
+				if (playerIndexInTodaysLineups != string::npos) {
+                    size_t prevLineupOrderIndex = todaysLineups.rfind("lineup-large-pos", playerIndexInTodaysLineups);
+                    size_t lineupOrderStartIndex = todaysLineups.find(">", prevLineupOrderIndex);
+                    size_t lineupOrderEndIndex = todaysLineups.find("<", prevLineupOrderIndex);
+
+                    string lineupOrderString = todaysLineups.substr(lineupOrderStartIndex + 1, lineupOrderEndIndex - lineupOrderStartIndex - 1);
+                    // if this player's lineup is not out yet, base it off previous/general lineup orders
+                    if (lineupOrderString != "-")
+                    {
+                        actualBattingOrder = atoi(lineupOrderString.c_str());
+                    }
+				}
+
+				// throw this guy out if he's not a starter or his game will most likely be rained out
+				if (gameStartTime < 99999
+                    && singlePlayerData.playerSalary > 0
+                    && actualBattingOrder >= 0) {
+
+                    if (expectedFdPoints > 0) {
+                        singlePlayerData.playerPointsPerGame = expectedFdPoints;
+                        // TODO: now send to gamewincontainer
+                    }
+
+				}
+				if (placeHolderIndex == string::npos)
+					break;
+				else
+					placeHolderIndex = readBuffer.find("\n", placeHolderIndex + 1);
+			}
+		}
+		curl_easy_cleanup(curl);
+	}
+	int breakpoint = 0;
 }
 
 extern "C" JNIEXPORT jstring JNICALL
