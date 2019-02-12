@@ -15,11 +15,10 @@
 
 #include "GameTeamWinContainer.h"
 #include "StringUtils.h"
-/*
 #include "SharedGlobals.h"
 #include "StatsCollectionFunctions.h"
-#include "Main.h"
-*/
+//#include "Main.h"
+
 using namespace std;
 
 TeamInformation::TeamInformation() {
@@ -59,8 +58,8 @@ void GameTeamWinContainer::runAnalysis() {
             if (oppTeamItr != dateItr->second.end()) {
                 teamsWritten.insert(oppTeamItr->first);
 
-                float teamSabrAverage;// = AverageArrayExcludingThreshold((teamItr->second.fanduelSabrPredictor), 9, 0.0f);
-                float oppTeamSabrAverage;// = AverageArrayExcludingThreshold((oppTeamItr->second.fanduelSabrPredictor), 9, 0.0f);
+                float teamSabrAverage = AverageArrayExcludingThreshold((teamItr->second.fanduelSabrPredictor), 9, 0.0f);
+                float oppTeamSabrAverage = AverageArrayExcludingThreshold((oppTeamItr->second.fanduelSabrPredictor), 9, 0.0f);
 
                 gamesRecordOverallFile << dateItr->first << ";" << teamItr->first << ";" << oppTeamItr->first << ";" <<
                 teamItr->second.runs << ";" << oppTeamItr->second.runs << ";" << teamSabrAverage << ";" << oppTeamSabrAverage << endl;
@@ -70,7 +69,29 @@ void GameTeamWinContainer::runAnalysis() {
             }
         }
     }
-    CompileVegasOddsIntoWinPredictionFile();
+    //CompileVegasOddsIntoWinPredictionFile();
+}
+
+string GameTeamWinContainer::getStringFromTodaysDate() {
+    string resultsCompiledString = "";
+    unordered_set<string> teamsWritten;
+    for (auto teamItr = teamToInfoMap.begin(); teamItr != teamToInfoMap.end(); ++teamItr) {
+        if (teamsWritten.find(teamItr->first) != teamsWritten.end())
+            continue;
+        auto oppTeamItr = teamToInfoMap.find(teamItr->second.opponentKey);
+        if (oppTeamItr != teamToInfoMap.end()) {
+            teamsWritten.insert(oppTeamItr->first);
+
+            float teamSabrAverage = AverageArrayExcludingThreshold((teamItr->second.fanduelSabrPredictor), 9, 0.0f);
+            float oppTeamSabrAverage = AverageArrayExcludingThreshold((oppTeamItr->second.fanduelSabrPredictor), 9, 0.0f);
+
+            resultsCompiledString += teamItr->first + ";" + oppTeamItr->first + ";" + to_string(teamSabrAverage) + ";" + to_string(oppTeamSabrAverage) + "\n";
+
+        } else {
+            cout << "error could not find opponent of " << teamItr->first << " as " << teamItr->second.opponentKey << endl;
+        }
+    }
+    return resultsCompiledString;
 }
 
 void GameTeamWinContainer::nextDate(std::string newDate) {
@@ -104,97 +125,28 @@ void GameTeamWinContainer::nextPlayer(std::vector<std::string> actualResultsLine
     teamInfo->second.fanduelSabrPredictor[atoi(actualResultsLine[5].c_str()) - 1] = sabrPredictor;
 }
 
+void GameTeamWinContainer::nextPlayer(PlayerData singlePlayerData, string opponentTeamCode) {
+    if (singlePlayerData.battingOrder < 0 || singlePlayerData.playerPointsPerGame <= 0) {
+        return;
+    }
+    string teamNameKey = singlePlayerData.teamCode;
+    // TODO: include double header in team name key
+    auto teamInfo = teamToInfoMap.find(teamNameKey);
+    if (teamInfo == teamToInfoMap.end()) {
+        TeamInformation ti;
+        ti.opponentKey = opponentTeamCode; //TODO: double header goes here too or maybe in the parameter
+        teamToInfoMap.insert({ teamNameKey, ti });
+        teamInfo = teamToInfoMap.find(teamNameKey);
+    }
+    teamInfo->second.fanduelSabrPredictor[singlePlayerData.battingOrder] = singlePlayerData.playerPointsPerGame;
+}
+
+
 string GameTeamWinContainer::GetGamesRecordFilename () {
     string gamesRecordFileName = currentYear;
     gamesRecordFileName += "ResultsTracker\\TeamWinResults\\AllGamesSabrPredictions.txt";
 
     return gamesRecordFileName;
-}
-
-void GameTeamWinContainer::CompileVegasOddsIntoWinPredictionFile() {
-    string filename = GetGamesRecordFilename();
-    string vegasOddsFileName = currentYear;
-    vegasOddsFileName += "ResultsTracker\\TeamWinResults\\AllGames.txt";
-    string vegasOddsFileContents;// = GetEntireFileContents(vegasOddsFileName);
-    string vegasOddsSection = "";
-
-    string fileContents;// = GetEntireFileContents(filename);
-
-#if PLATFORM_OSX
-    filename = GetPlatformCompatibleFileNameFromRelativePath(filename);
-#endif
-    string filenameCombinedWithVegasOdds = filename.substr(0,filename.length()-4) +  "CombinedVegasOdds.txt";
-    fstream combinedOddsFile;
-    combinedOddsFile.open(filenameCombinedWithVegasOdds, std::ios::out);
-
-    size_t currentLineStart = 0;
-    while (currentLineStart != string::npos) {
-        size_t currentLineEnd = fileContents.find("\n", currentLineStart);
-        string thisLine = fileContents.substr(currentLineStart, currentLineEnd != string::npos ? (currentLineEnd - currentLineStart) : string::npos);
-        vector<string> thisLineColumns = SplitStringIntoMultiple(thisLine, ";");
-        if (thisLineColumns.size() != 7) {
-            cout << "breaking because line has " << thisLineColumns.size() << " columns for line " << thisLine << endl;
-            break;
-        }
-        int doubleHeaderIndex = 0;
-        if (thisLineColumns[1].at(thisLineColumns[1].length()-1) == '2') {
-            doubleHeaderIndex = 1;
-            thisLineColumns[1] = thisLineColumns[1].substr(0,thisLineColumns[1].length()-1);
-            thisLineColumns[2] = thisLineColumns[2].substr(0,thisLineColumns[2].length()-1);
-        }
-        if (!StringStartsWith(vegasOddsSection, thisLineColumns[0])) {
-            size_t sectionStart = vegasOddsFileContents.find(thisLineColumns[0]);
-            if (sectionStart == string::npos) {
-                vegasOddsSection = thisLineColumns[0];
-                cout << "There are no vegas odds for date " << vegasOddsSection << endl;
-            } else {
-                size_t sectionEnd = vegasOddsFileContents.find("\n", sectionStart);
-                size_t sectionEndSearch = vegasOddsFileContents.find(thisLineColumns[0], sectionEnd);
-                while (sectionEndSearch != string::npos) {
-                    sectionEnd = vegasOddsFileContents.find("\n", sectionEndSearch);
-                    sectionEndSearch = vegasOddsFileContents.find(thisLineColumns[0], sectionEnd);
-                }
-                vegasOddsSection = vegasOddsFileContents.substr(sectionStart, sectionEnd != string::npos ? sectionEnd - sectionStart : string::npos);
-            }
-        }
-
-        string fullteamName1 = "todo";// convertTeamCodeToSynonym(ConvertRotoGuruTeamCodeToStandardTeamCode(thisLineColumns[1]), 0);
-        string fullteamName2 = "todo";//convertTeamCodeToSynonym(ConvertRotoGuruTeamCodeToStandardTeamCode(thisLineColumns[2]), 0);
-        size_t fullteamName1Index = vegasOddsSection.find(fullteamName1 + ";");
-        size_t fullteamName2Index = vegasOddsSection.find(fullteamName2 + ";");
-        if (doubleHeaderIndex != 0) {
-            fullteamName1Index = vegasOddsSection.find(fullteamName1 + ";", fullteamName1Index + 1);
-            fullteamName2Index = vegasOddsSection.find(fullteamName2 + ";", fullteamName2Index + 1);
-        }
-
-        if (fullteamName1Index != string::npos && fullteamName2Index != string::npos) {
-            size_t vegasLineStart = vegasOddsSection.rfind("\n", fullteamName1Index);
-            size_t vegasLineEnd = vegasOddsSection.find("\n", fullteamName1Index);
-            if (vegasLineStart == string::npos)
-                vegasLineStart = 0;
-            if (vegasLineEnd == string::npos)
-                vegasLineEnd = vegasOddsSection.length();
-            string thisVegasLine = vegasOddsSection.substr(vegasLineStart, vegasLineEnd - vegasLineStart);
-            vector<string> thisVegasLineColumns = SplitStringIntoMultiple(thisVegasLine, ";");
-            if (thisVegasLineColumns.size() == 12) {
-                combinedOddsFile << thisLine;
-                if (fullteamName1Index < fullteamName2Index)
-                    combinedOddsFile << ";" << thisVegasLineColumns[10] << ";" << thisVegasLineColumns[11];
-                else
-                    combinedOddsFile << ";" << thisVegasLineColumns[11] << ";" << thisVegasLineColumns[10];
-                combinedOddsFile << endl;
-            }
-        } else {
-            if (doubleHeaderIndex == 0 && vegasOddsSection != thisLineColumns[0]) {
-                cout << "Could not find matching vegas odds for teams " << thisLine << endl;
-            }
-        }
-
-        if (currentLineEnd == string::npos)
-            break;
-        else
-            currentLineStart = currentLineEnd + 1;
-    }
 }
 
 /*

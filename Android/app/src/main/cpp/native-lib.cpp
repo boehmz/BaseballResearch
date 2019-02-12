@@ -88,6 +88,7 @@ void GenerateLineups()
         // TODO: get sabr projections from live website rather than file
 		string sabrPredictorText = getSabrPredictorFileContents(todaysDate, false);
 		string sabrPredictorTextPitchers = getSabrPredictorFileContents(todaysDate, true);
+        GameTeamWinContainer gameTeamWinContainer;
 
 		for (int p = 2; p <= 7; ++p)
 		{
@@ -275,12 +276,12 @@ void GenerateLineups()
 				// throw this guy out if he's not a starter or his game will most likely be rained out
 				if (gameStartTime < 99999
                     && singlePlayerData.playerSalary > 0
-                    && actualBattingOrder >= 0) {
+                    && actualBattingOrder >= 0
+                    && expectedFdPoints > 0) {
 
-                    if (expectedFdPoints > 0) {
                         singlePlayerData.playerPointsPerGame = expectedFdPoints;
-                        // TODO: now send to gamewincontainer
-                    }
+                        singlePlayerData.battingOrder = actualBattingOrder;
+                        gameTeamWinContainer.nextPlayer(singlePlayerData, opponentTeamCode);
 
 				}
 				if (placeHolderIndex == string::npos)
@@ -290,8 +291,34 @@ void GenerateLineups()
 			}
 		}
 		curl_easy_cleanup(curl);
+		gameTeamWinContainer.getStringFromTodaysDate();
+
 	}
 	int breakpoint = 0;
+}
+
+string uiTest() {
+    GameTeamWinContainer gameTeamWinContainer;
+    PlayerData pd;
+    pd.teamCode = "kan";
+    pd.battingOrder = 0;
+    pd.playerPointsPerGame = 8;
+    gameTeamWinContainer.nextPlayer(pd, "min");
+    pd.teamCode = "min";
+    gameTeamWinContainer.nextPlayer(pd, "kan");
+
+    pd.teamCode = "nyy";
+    pd.playerPointsPerGame = 10;
+    gameTeamWinContainer.nextPlayer(pd, "bos");
+
+        pd.playerPointsPerGame = 12;
+        pd.battingOrder = 1;
+        gameTeamWinContainer.nextPlayer(pd, "bos");
+
+
+    pd.teamCode = "bos";
+    gameTeamWinContainer.nextPlayer(pd, "nyy");
+    return gameTeamWinContainer.getStringFromTodaysDate();
 }
 
 extern "C" JNIEXPORT jstring JNICALL
@@ -299,5 +326,5 @@ Java_com_predictor_mlb_mlbpredictor_MainActivity_stringFromJNI(
         JNIEnv* env,
         jobject /* this */) {
     std::string readBuffer = GetSiteHtml();
-    return env->NewStringUTF(readBuffer.substr(0,100).c_str());
+    return env->NewStringUTF(uiTest().c_str());
 }
