@@ -311,13 +311,21 @@ string uiTest() {
     pd.playerPointsPerGame = 10;
     gameTeamWinContainer.nextPlayer(pd, "bos");
 
-        pd.playerPointsPerGame = 12;
-        pd.battingOrder = 1;
-        gameTeamWinContainer.nextPlayer(pd, "bos");
-
+    pd.playerPointsPerGame = 12;
+    pd.battingOrder = 1;
+    gameTeamWinContainer.nextPlayer(pd, "bos");
 
     pd.teamCode = "bos";
     gameTeamWinContainer.nextPlayer(pd, "nyy");
+
+    pd.teamCode = "nat";
+    pd.playerPointsPerGame = 12;
+    pd.battingOrder = 1;
+    gameTeamWinContainer.nextPlayer(pd, "lad");
+
+    pd.teamCode = "lad";
+    gameTeamWinContainer.nextPlayer(pd, "nat");
+
     return gameTeamWinContainer.getStringFromTodaysDate();
 }
 
