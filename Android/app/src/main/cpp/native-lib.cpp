@@ -297,6 +297,45 @@ void GenerateLineups()
 	int breakpoint = 0;
 }
 
+void getTodaysMoneyLines() {
+    string gameMoneyLinesURL = "http://www.donbest.com/mlb/odds/money-lines.html";
+    string gameMoneyLines = "";
+    CurlGetSiteContents(curl, gameMoneyLinesURL, gameMoneyLines, true);
+    CutStringToOnlySectionBetweenKeywords(gameMoneyLines, "class=\"odds_gamesHolder\"", "class=\"odds_pages\"");
+    size_t oddsOpenerBegin = gameMoneyLines.find("oddsOpener");
+    while (oddsOpenerBegin != string::npos) {
+        size_t oddsOpenerEnd = gameMoneyLines.find("oddsOpener", oddsOpenerBegin + 1);
+        if (oddsOpenerEnd == string::npos) {
+            oddsOpenerEnd = gameMoneyLines.find("</table>");
+        }
+        string gameSection = gameMoneyLines.substr(oddsOpenerBegin, oddsOpenerEnd - oddsOpenerBegin);
+        vector<string> asColumns = MultineRegex(gameSection, ".*?>(.*?)<.*?");
+        if (asColumns.size() > 43 && StringStartsWith(asColumns[41], "MAJOR LEAGUE BASEBALL")) {
+            asColumns.erase(asColumns.begin() + 43, asColumns.end());
+        }
+        if (asColumns.size() == 43 || asColumns.size() == 41) {
+            //bovada is on 29/30 capture for perfect data captures
+            // TODO:
+            // this is for completed games that have the score and opening lines included as well, will prob need to modify
+            string gameTime = asColumns[6];
+            string awayTeam = asColumns[4];
+            string awayPitcher = asColumns[2];
+            string homeTeam = asColumns[5];
+            string homePitcher = asColumns[3];
+            string awayTeamOdds = asCOlumns[29];
+            string homeTeamOdds = asColumns[30];
+
+        } else {
+            string gameName = "";
+            if (asColumns.size() > 5) {
+                gameName = asColumns[4] + asColumns[5];
+            }
+            LOGI("There were %d columns for game %s.", asColumns.size(), gameName);
+        }
+        oddsOpenerBegin = gameMoneyLines.find("oddsOpener", oddsOpenerEnd);
+    }
+}
+
 string uiTest() {
     GameTeamWinContainer gameTeamWinContainer;
     PlayerData pd;
