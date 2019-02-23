@@ -1,3 +1,4 @@
+#include <android/log.h>
 #include <stdio.h>
 #include <curl/curl.h>
 #include <iostream>
@@ -503,4 +504,43 @@ std::vector<std::string> MultineRegex(std::string multiLineString, std::string r
         lineIndexBegin = lineIndexEnd;
     }
     return captures;
+}
+
+string teamCodesDataShared = "\nTampa Bay Rays;Tropicana Field;Tampa Bay;tam;Rays;\nBoston Red Sox;Fenway Park;Boston;bos;Red Sox;\nChicago White Sox;U.S. Cellular Field;Chi Sox;chw;White Sox;\nNew York Yankees;Yankee Stadium;NY Yankees;nyy;Yankees;\nPittsburgh Pirates;PNC Park;Pittsburgh;pit;Pirates;\nSt. Louis Cardinals;Busch Stadium;St. Louis;stl;Cardinals;\nSan Diego Padres;Petco Park;San Diego;sdg;Padres;\nAtlanta Braves;SunTrust Park;Atlanta;atl;Braves;\nMilwaukee Brewers;Miller Park;Milwaukee;mil;Brewers;\nChicago Cubs;Wrigley Field;Chi Cubs;chc;Cubs;\nCleveland Indians;Progressive Field;Cleveland;cle;Indians;\nMinnesota Twins;Target Field;Minnesota;min;Twins;\nLos Angeles Angels;Angel Stadium;LA Angels;laa;Angels;\nHouston Astros;Minute Maid Park;Houston;hou;Astros;\nTexas Rangers;Rangers Ballpark;Texas;tex;Rangers;\nOakland Athletics;Oakland Coliseum;Oakland;oak;Athletics;\nMiami Marlins;Marlins Park;Miami;mia;Marlins;\nSeattle Mariners;Safeco Field;Seattle;sea;Mariners;\nArizona Diamondbacks;Chase Field;Arizona;ari;Diamondbacks;\nLos Angeles Dodgers;Dodger Stadium;LA Dodgers;lad;Dodgers;\nToronto Blue Jays;Rogers Centre;Toronto;tor;Blue Jays;\nBaltimore Orioles;Camden Yards;Baltimore;bal;Orioles;\nCincinnati Reds;Great American Ball Park;Cincinnati;cin;Reds;\nSan Francisco Giants;AT&T Park;SF Giants;sfo;Giants;\nKansas City Royals;Kauffman Stadium;Kansas City;kan;Royals;\nPhiladelphia Phillies;Citizens Bank Park;Philadelphia;phi;Phillies;\nNew York Mets;Citi Field;NY Mets;nym;Mets;\nDetroit Tigers;Comerica Park;Detroit;det;Tigers;\nColorado Rockies;Coors Field;Colorado;col;Rockies;\nWashington Nationals;Nationals Park;Washington;was;Nationals;\n";
+
+std::string ConvertStandardTeamCodeToRotoGuruTeamCode(std::string standardCode) {
+	// rotogur1.com uses different team codes than standard...
+	if (standardCode == "laa")
+		standardCode = "ana";
+	if (standardCode == "lad")
+		standardCode = "los";
+	if (standardCode == "mia")
+		standardCode = "fla";
+	return standardCode;
+}
+std::string ConvertRotoGuruTeamCodeToStandardTeamCode(std::string rotoGuruCode) {
+	// rotogur1.com uses different team codes than standard...
+	if (rotoGuruCode == "ana")
+		rotoGuruCode = "laa";
+	if (rotoGuruCode == "los")
+		rotoGuruCode = "lad";
+	if (rotoGuruCode == "fla")
+		rotoGuruCode = "mia";
+	return rotoGuruCode;
+}
+string convertTeamCodeToSynonym(string teamCode, int codeIndex) {
+    size_t teamNameBeginIndex = teamCodesDataShared.find(";" + teamCode + ";", 0);
+    if (teamNameBeginIndex == string::npos) {
+        teamNameBeginIndex = teamCodesDataShared.find(teamCode + ";", 0);
+    }
+    if (teamNameBeginIndex != string::npos) {
+        teamNameBeginIndex = teamCodesDataShared.rfind("\n", teamNameBeginIndex);
+        teamNameBeginIndex++;
+        size_t teamCodeLineEndIndex = teamCodesDataShared.find("\n", teamNameBeginIndex);
+        string teamCodesLine = teamCodesDataShared.substr(teamNameBeginIndex, teamCodeLineEndIndex - teamNameBeginIndex);
+        vector<string> teamCodesColumns = SplitStringIntoMultiple(teamCodesLine, ";");
+        return teamCodesColumns[codeIndex];
+    }
+    LOGI("team %s wasn't found in synonyms list", teamCode.c_str());
+    return "";
 }

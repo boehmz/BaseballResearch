@@ -25,17 +25,13 @@ bool skipStatsCollection = false;
 int reviewDateStart = 515;
 int reviewDateEnd = 609;
 
+
 #define TRUE 1
 #define FALSE 0
 
 
-#ifdef ANDROID
-	#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "MLBPredictor", __VA_ARGS__))
-#else
-	#define LOGI(...) printf(__VA_ARGS__)
-#endif
-using namespace std;
 
+using namespace std;
 
 std::string GetSiteHtml() {
 
@@ -297,7 +293,16 @@ void GenerateLineups()
 	int breakpoint = 0;
 }
 
-void getTodaysMoneyLines() {
+
+struct TeamVegasInfo {
+    string teamName;
+    string gameTime;
+    int bovadaMoneyline;
+    string pitcherName;
+};
+
+unordered_map<string,TeamVegasInfo> getTodaysMoneyLines() {
+    unordered_map<string,TeamVegasInfo> teamToMoneyLinesInfo;
     CURL* curl = curl_easy_init();
     string gameMoneyLinesURL = "http://www.donbest.com/mlb/odds/money-lines";
     string gameMoneyLines = "";
@@ -317,13 +322,25 @@ void getTodaysMoneyLines() {
         if (asColumns.size() == 43 || asColumns.size() == 41) {
             //bovada is on 29/30 capture for perfect data captures
             string gameTime = asColumns[6];
-            string awayTeam = asColumns[4];
+            string awayTeam = ConvertStandardTeamCodeToRotoGuruTeamCode(convertTeamCodeToSynonym(asColumns[4],3));
             string awayPitcher = asColumns[2];
-            string homeTeam = asColumns[5];
+            string homeTeam = ConvertStandardTeamCodeToRotoGuruTeamCode(convertTeamCodeToSynonym(asColumns[5],3));
             string homePitcher = asColumns[3];
             string awayTeamOdds = asColumns[29];
             string homeTeamOdds = asColumns[30];
 
+            TeamVegasInfo awayTeamInfo;
+            awayTeamInfo.gameTime = gameTime;
+            awayTeamInfo.teamName = awayTeam;
+            awayTeamInfo.pitcherName = awayPitcher;
+            awayTeamInfo.bovadaMoneyline = atoi(awayTeamOdds.c_str());
+            teamToMoneyLinesInfo.insert({awayTeam,awayTeamInfo});
+            TeamVegasInfo homeTeamInfo;
+            homeTeamInfo.gameTime = gameTime;
+            homeTeamInfo.teamName = homeTeam;
+            homeTeamInfo.pitcherName = homePitcher;
+            homeTeamInfo.bovadaMoneyline = atoi(homeTeamOdds.c_str());
+            teamToMoneyLinesInfo.insert({homeTeam,homeTeamInfo});
         } else {
             string gameName = "";
             if (asColumns.size() > 5) {
@@ -333,6 +350,7 @@ void getTodaysMoneyLines() {
         }
         oddsOpenerBegin = gameMoneyLines.find("oddsOpener", oddsOpenerEnd);
     }
+    return teamToMoneyLinesInfo;
 }
 
 string uiTest() {
@@ -364,9 +382,10 @@ string uiTest() {
     pd.teamCode = "lad";
     gameTeamWinContainer.nextPlayer(pd, "nat");
 
-    getTodaysMoneyLines();
+    string sabrPredictorOdds = gameTeamWinContainer.getStringFromTodaysDate();
+    unordered_map<string,TeamVegasInfo> teamToVegasInfoMap = getTodaysMoneyLines();
 
-    return gameTeamWinContainer.getStringFromTodaysDate();
+    return "";
 }
 
 extern "C" JNIEXPORT jstring JNICALL

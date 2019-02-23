@@ -7,6 +7,11 @@
 
 #define itoa _itoa_osx
 
+#ifdef ANDROID
+	#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "MLBPredictor", __VA_ARGS__))
+#else
+	#define LOGI(...) printf(__VA_ARGS__)
+#endif
 
 std::string GetPlatformCompatibleFileNameFromRelativePath(std::string relativeFileName);
 void _itoa_osx(int value, char* result, int base);
@@ -32,6 +37,9 @@ void EraseInString(std::string& originalString, const std::string& eraseString);
 std::vector<std::string> SplitStringIntoMultiple(std::string wholeString, std::string tokens, std::string removeFromIndividual = "");
 size_t FindPlayerNameIndexInList(const std::string& playerName, const std::string& searchText);
 int GetNumDaysInMonth(int monthInteger);
+std::string ConvertStandardTeamCodeToRotoGuruTeamCode(std::string standardCode);
+std::string ConvertRotoGuruTeamCodeToStandardTeamCode(std::string rotoGuruCode);
+std::string convertTeamCodeToSynonym(std::string teamCode, int codeIndex);
 
 bool StringStartsWith(std::string mainString, std::string beginning);
 
