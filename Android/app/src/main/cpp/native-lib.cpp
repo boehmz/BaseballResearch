@@ -298,7 +298,8 @@ void GenerateLineups()
 }
 
 void getTodaysMoneyLines() {
-    string gameMoneyLinesURL = "http://www.donbest.com/mlb/odds/money-lines.html";
+    CURL* curl = curl_easy_init();
+    string gameMoneyLinesURL = "http://www.donbest.com/mlb/odds/money-lines";
     string gameMoneyLines = "";
     CurlGetSiteContents(curl, gameMoneyLinesURL, gameMoneyLines, true);
     CutStringToOnlySectionBetweenKeywords(gameMoneyLines, "class=\"odds_gamesHolder\"", "class=\"odds_pages\"");
@@ -315,14 +316,12 @@ void getTodaysMoneyLines() {
         }
         if (asColumns.size() == 43 || asColumns.size() == 41) {
             //bovada is on 29/30 capture for perfect data captures
-            // TODO:
-            // this is for completed games that have the score and opening lines included as well, will prob need to modify
             string gameTime = asColumns[6];
             string awayTeam = asColumns[4];
             string awayPitcher = asColumns[2];
             string homeTeam = asColumns[5];
             string homePitcher = asColumns[3];
-            string awayTeamOdds = asCOlumns[29];
+            string awayTeamOdds = asColumns[29];
             string homeTeamOdds = asColumns[30];
 
         } else {
@@ -330,7 +329,7 @@ void getTodaysMoneyLines() {
             if (asColumns.size() > 5) {
                 gameName = asColumns[4] + asColumns[5];
             }
-            LOGI("There were %d columns for game %s.", asColumns.size(), gameName);
+            LOGI("There were %u columns for game %s.", (unsigned int)asColumns.size(), gameName.c_str());
         }
         oddsOpenerBegin = gameMoneyLines.find("oddsOpener", oddsOpenerEnd);
     }
@@ -364,6 +363,8 @@ string uiTest() {
 
     pd.teamCode = "lad";
     gameTeamWinContainer.nextPlayer(pd, "nat");
+
+    getTodaysMoneyLines();
 
     return gameTeamWinContainer.getStringFromTodaysDate();
 }
