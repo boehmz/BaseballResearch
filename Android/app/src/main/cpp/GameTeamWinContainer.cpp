@@ -72,8 +72,8 @@ void GameTeamWinContainer::runAnalysis() {
     //CompileVegasOddsIntoWinPredictionFile();
 }
 
-string GameTeamWinContainer::getStringFromTodaysDate() {
-    string resultsCompiledString = "";
+std::vector<std::string> GameTeamWinContainer::getStringsFromTodaysDate() {
+    vector<string> resultsCompiledString;
     unordered_set<string> teamsWritten;
     for (auto teamItr = teamToInfoMap.begin(); teamItr != teamToInfoMap.end(); ++teamItr) {
         if (teamsWritten.find(teamItr->first) != teamsWritten.end())
@@ -85,7 +85,8 @@ string GameTeamWinContainer::getStringFromTodaysDate() {
             float teamSabrAverage = AverageArrayExcludingThreshold((teamItr->second.fanduelSabrPredictor), 9, 0.0f);
             float oppTeamSabrAverage = AverageArrayExcludingThreshold((oppTeamItr->second.fanduelSabrPredictor), 9, 0.0f);
 
-            resultsCompiledString += teamItr->first + ";" + oppTeamItr->first + ";" + to_string(teamSabrAverage) + ";" + to_string(oppTeamSabrAverage) + "\n";
+            string thisGame = teamItr->first + ";" + oppTeamItr->first + ";" + to_string(teamSabrAverage) + ";" + to_string(oppTeamSabrAverage);
+            resultsCompiledString.push_back(thisGame);
 
         } else {
             cout << "error could not find opponent of " << teamItr->first << " as " << teamItr->second.opponentKey << endl;

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <list>
 #include <algorithm>
 #include <sstream>
 #include <unordered_map>
@@ -29,9 +30,17 @@ int reviewDateEnd = 609;
 #define TRUE 1
 #define FALSE 0
 
-
-
 using namespace std;
+
+struct TeamVegasInfo {
+    string teamName;
+    string gameTime;
+    int bovadaMoneyline;
+    string pitcherName;
+};
+
+string allOfTodaysGames(vector<string> sabrPredictorOdds, unordered_map<string,TeamVegasInfo> teamToVegasInfoMap);
+unordered_map<string,TeamVegasInfo> getTodaysMoneyLines();
 
 std::string GetSiteHtml() {
 
@@ -68,7 +77,7 @@ string getSabrPredictorFileContents(string date, bool bPitchers) {
     return "temp stuff";
 }
 
-void GenerateLineups()
+string GenerateLineups()
 {
 	CURL* curl = curl_easy_init();
 	if (curl)
@@ -287,19 +296,12 @@ void GenerateLineups()
 			}
 		}
 		curl_easy_cleanup(curl);
-		gameTeamWinContainer.getStringFromTodaysDate();
 
+	    return allOfTodaysGames(gameTeamWinContainer.getStringsFromTodaysDate(), getTodaysMoneyLines());
 	}
 	int breakpoint = 0;
+	return "";
 }
-
-
-struct TeamVegasInfo {
-    string teamName;
-    string gameTime;
-    int bovadaMoneyline;
-    string pitcherName;
-};
 
 unordered_map<string,TeamVegasInfo> getTodaysMoneyLines() {
     unordered_map<string,TeamVegasInfo> teamToMoneyLinesInfo;
@@ -382,16 +384,105 @@ string uiTest() {
     pd.teamCode = "lad";
     gameTeamWinContainer.nextPlayer(pd, "nat");
 
-    string sabrPredictorOdds = gameTeamWinContainer.getStringFromTodaysDate();
-    unordered_map<string,TeamVegasInfo> teamToVegasInfoMap = getTodaysMoneyLines();
+    pd.teamCode = "cle";
+    pd.playerPointsPerGame = 12;
+    pd.battingOrder = 1;
+    gameTeamWinContainer.nextPlayer(pd, "col");
 
-    return "";
+    pd.teamCode = "col";
+     pd.playerPointsPerGame = 10;
+    gameTeamWinContainer.nextPlayer(pd, "cle");
+
+    return allOfTodaysGames(gameTeamWinContainer.getStringsFromTodaysDate(), getTodaysMoneyLines());
+}
+
+string allOfTodaysGames(vector<string> sabrPredictorOdds, unordered_map<string,TeamVegasInfo> teamToVegasInfoMap) {
+    list<string> underDogsToBetOn;
+    list<float> underDogsFloats;
+    list<string> allOthers;
+    list<float> allOthersFloats;
+    for (int i = 0; i < sabrPredictorOdds.size(); ++i) {
+        vector<string> singleGameSabrOdds = SplitStringIntoMultiple(sabrPredictorOdds[i], ";");
+        if (singleGameSabrOdds.size() == 4) {
+            string teamA = singleGameSabrOdds[0];
+            string teamB = singleGameSabrOdds[1];
+            float teamASabrPoints = stof(singleGameSabrOdds[2]);
+            float teamBSabrPoints = stof(singleGameSabrOdds[3]);
+            auto teamAVegasInfo = teamToVegasInfoMap.find(teamA);
+            auto teamBVegasInfo = teamToVegasInfoMap.find(teamB);
+            float teamAMyPercent = abs(teamASabrPoints - teamBSabrPoints) * 0.07933333333f;
+            if (teamASabrPoints > teamBSabrPoints) {
+                teamAMyPercent += 0.5f;
+            } else {
+                teamAMyPercent = 0.5f - teamAMyPercent;
+            }
+            float teamBMyPercent = 1.0f - teamAMyPercent;
+            string gameString = "";
+            float teamAVegasPercent = 1;
+            float teamBVegasPercent = 1;
+
+            if (teamAVegasInfo != teamToVegasInfoMap.end() && teamBVegasInfo != teamToVegasInfoMap.end()) {
+                teamAVegasPercent = (teamAVegasInfo->second.bovadaMoneyline > 0) ? ((float)teamAVegasInfo->second.bovadaMoneyline / ((float)teamAVegasInfo->second.bovadaMoneyline + 100)) : ((float)teamAVegasInfo->second.bovadaMoneyline / ((float)teamAVegasInfo->second.bovadaMoneyline - 100));
+                teamBVegasPercent = (teamBVegasInfo->second.bovadaMoneyline > 0) ? ((float)teamBVegasInfo->second.bovadaMoneyline / ((float)teamBVegasInfo->second.bovadaMoneyline + 100)) : ((float)teamBVegasInfo->second.bovadaMoneyline / ((float)teamBVegasInfo->second.bovadaMoneyline - 100));
+                if (teamASabrPoints > teamBSabrPoints) {
+                    gameString += teamA + ";" + to_string(teamAMyPercent) + ";" + to_string(teamAVegasPercent) + ";" + teamAVegasInfo->second.pitcherName + ";";
+                    gameString += teamAVegasInfo->second.gameTime + ";";
+                    gameString += teamB + ";" + to_string(teamBMyPercent) + ";" + to_string(teamBVegasPercent) + ";" + teamBVegasInfo->second.pitcherName + ";";
+                } else {
+                    gameString += teamB + ";" + to_string(teamBMyPercent) + ";" + to_string(teamBVegasPercent) + ";" + teamBVegasInfo->second.pitcherName + ";";
+                    gameString += teamAVegasInfo->second.gameTime + ";";
+                    gameString += teamA + ";" + to_string(teamAMyPercent) + ";" + to_string(teamAVegasPercent) + ";" + teamAVegasInfo->second.pitcherName + ";";
+                }
+            } else {
+                // for some reason odds could not be found, still put it in the string
+                if (teamASabrPoints > teamBSabrPoints) {
+                    gameString += teamA + ";" + to_string(teamAMyPercent) + ";;;";
+                    gameString += ";";
+                    gameString += teamB + ";" + to_string(teamBMyPercent) + ";;;";
+                } else {
+                    gameString += teamB + ";" + to_string(teamBMyPercent) + ";;;";
+                    gameString += ";";
+                    gameString += teamA + ";" + to_string(teamAMyPercent) + ";;;";
+                }
+            }
+
+            float sortedPercent = (teamASabrPoints > teamBSabrPoints) ? teamAMyPercent : teamBMyPercent;
+            if (sortedPercent >= 0.5f && teamAVegasPercent < 0.5f) {
+                list<float>::iterator dogsFloatItr = underDogsFloats.begin();
+                for (list<string>::iterator dogsItr = underDogsToBetOn.begin(); ; ++dogsItr) {
+                    if (dogsItr == underDogsToBetOn.end() || sortedPercent < *dogsFloatItr) {
+                        underDogsFloats.insert(dogsFloatItr, sortedPercent);
+                        underDogsToBetOn.insert(dogsItr, gameString);
+                        break;
+                    }
+                }
+            } else {
+                list<float>::iterator floatsItr = allOthersFloats.begin();
+                for (list<string>::iterator itr = allOthers.begin(); ; ++itr) {
+                    if (itr == allOthers.end() || sortedPercent < *floatsItr) {
+                        allOthersFloats.insert(floatsItr, sortedPercent);
+                        allOthers.insert(itr, gameString);
+                        break;
+                    }
+                }
+
+            }
+        }
+    }
+
+    string finalString = "";
+    for (list<string>::iterator dogsItr = underDogsToBetOn.begin(); ; ++dogsItr) {
+        finalString += *dogsItr + "\n";
+    }
+    for (list<string>::iterator itr = allOthers.begin(); itr != allOthers.end(); ++itr) {
+        finalString += *itr + "\n";
+    }
+    return finalString;
 }
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_predictor_mlb_mlbpredictor_MainActivity_stringFromJNI(
         JNIEnv* env,
         jobject /* this */) {
-    std::string readBuffer = GetSiteHtml();
     return env->NewStringUTF(uiTest().c_str());
 }

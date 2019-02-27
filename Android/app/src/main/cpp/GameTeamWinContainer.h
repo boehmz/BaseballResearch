@@ -22,7 +22,7 @@ public:
     void nextPlayer(std::vector<std::string> actualResultsLine, float sabrPredictor);
     void nextPlayer(struct PlayerData singlePlayerData, std::string opponentTeamCode);
     void runAnalysis();
-    std::string getStringFromTodaysDate();
+    std::vector<std::string> getStringsFromTodaysDate();
 };
 
 
