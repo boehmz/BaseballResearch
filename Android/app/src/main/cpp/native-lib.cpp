@@ -397,6 +397,7 @@ string uiTest() {
 }
 
 string allOfTodaysGames(vector<string> sabrPredictorOdds, unordered_map<string,TeamVegasInfo> teamToVegasInfoMap) {
+
     list<string> underDogsToBetOn;
     list<float> underDogsFloats;
     list<string> allOthers;
@@ -422,8 +423,8 @@ string allOfTodaysGames(vector<string> sabrPredictorOdds, unordered_map<string,T
             float teamBVegasPercent = 1;
 
             if (teamAVegasInfo != teamToVegasInfoMap.end() && teamBVegasInfo != teamToVegasInfoMap.end()) {
-                teamAVegasPercent = (teamAVegasInfo->second.bovadaMoneyline > 0) ? ((float)teamAVegasInfo->second.bovadaMoneyline / ((float)teamAVegasInfo->second.bovadaMoneyline + 100)) : ((float)teamAVegasInfo->second.bovadaMoneyline / ((float)teamAVegasInfo->second.bovadaMoneyline - 100));
-                teamBVegasPercent = (teamBVegasInfo->second.bovadaMoneyline > 0) ? ((float)teamBVegasInfo->second.bovadaMoneyline / ((float)teamBVegasInfo->second.bovadaMoneyline + 100)) : ((float)teamBVegasInfo->second.bovadaMoneyline / ((float)teamBVegasInfo->second.bovadaMoneyline - 100));
+                teamAVegasPercent = (teamAVegasInfo->second.bovadaMoneyline > 0) ? (1.0f - ((float)teamAVegasInfo->second.bovadaMoneyline / ((float)teamAVegasInfo->second.bovadaMoneyline + 100))) : ((float)teamAVegasInfo->second.bovadaMoneyline / ((float)teamAVegasInfo->second.bovadaMoneyline - 100));
+                teamBVegasPercent = (teamBVegasInfo->second.bovadaMoneyline > 0) ? (1.0f - ((float)teamBVegasInfo->second.bovadaMoneyline / ((float)teamBVegasInfo->second.bovadaMoneyline + 100))) : ((float)teamBVegasInfo->second.bovadaMoneyline / ((float)teamBVegasInfo->second.bovadaMoneyline - 100));
                 if (teamASabrPoints > teamBSabrPoints) {
                     gameString += teamA + ";" + to_string(teamAMyPercent) + ";" + to_string(teamAVegasPercent) + ";" + teamAVegasInfo->second.pitcherName + ";";
                     gameString += teamAVegasInfo->second.gameTime + ";";
@@ -445,12 +446,12 @@ string allOfTodaysGames(vector<string> sabrPredictorOdds, unordered_map<string,T
                     gameString += teamA + ";" + to_string(teamAMyPercent) + ";;;";
                 }
             }
-
             float sortedPercent = (teamASabrPoints > teamBSabrPoints) ? teamAMyPercent : teamBMyPercent;
-            if (sortedPercent >= 0.5f && teamAVegasPercent < 0.5f) {
+            float sortedVegasPercent = (teamASabrPoints > teamBSabrPoints) ? teamAVegasPercent : teamBVegasPercent;
+            if (sortedPercent >= 0.5f && sortedVegasPercent < 0.5f) {
                 list<float>::iterator dogsFloatItr = underDogsFloats.begin();
-                for (list<string>::iterator dogsItr = underDogsToBetOn.begin(); ; ++dogsItr) {
-                    if (dogsItr == underDogsToBetOn.end() || sortedPercent < *dogsFloatItr) {
+                for (list<string>::iterator dogsItr = underDogsToBetOn.begin(); ; ++dogsItr, ++dogsFloatItr) {
+                    if (dogsItr == underDogsToBetOn.end() || sortedPercent > *dogsFloatItr) {
                         underDogsFloats.insert(dogsFloatItr, sortedPercent);
                         underDogsToBetOn.insert(dogsItr, gameString);
                         break;
@@ -458,8 +459,8 @@ string allOfTodaysGames(vector<string> sabrPredictorOdds, unordered_map<string,T
                 }
             } else {
                 list<float>::iterator floatsItr = allOthersFloats.begin();
-                for (list<string>::iterator itr = allOthers.begin(); ; ++itr) {
-                    if (itr == allOthers.end() || sortedPercent < *floatsItr) {
+                for (list<string>::iterator itr = allOthers.begin(); ; ++itr, ++floatsItr) {
+                    if (itr == allOthers.end() || sortedPercent > *floatsItr) {
                         allOthersFloats.insert(floatsItr, sortedPercent);
                         allOthers.insert(itr, gameString);
                         break;
@@ -471,11 +472,11 @@ string allOfTodaysGames(vector<string> sabrPredictorOdds, unordered_map<string,T
     }
 
     string finalString = "";
-    for (list<string>::iterator dogsItr = underDogsToBetOn.begin(); ; ++dogsItr) {
-        finalString += *dogsItr + "\n";
+    for (list<string>::iterator dogsItr = underDogsToBetOn.begin(); dogsItr != underDogsToBetOn.end(); ++dogsItr) {
+        finalString += *dogsItr + "\n\n";
     }
     for (list<string>::iterator itr = allOthers.begin(); itr != allOthers.end(); ++itr) {
-        finalString += *itr + "\n";
+        finalString += *itr + "\n\n";
     }
     return finalString;
 }
