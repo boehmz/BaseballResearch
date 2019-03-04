@@ -337,12 +337,15 @@ unordered_map<string,TeamVegasInfo> getTodaysMoneyLines() {
             awayTeamInfo.pitcherName = awayPitcher;
             awayTeamInfo.bovadaMoneyline = atoi(awayTeamOdds.c_str());
             teamToMoneyLinesInfo.insert({awayTeam,awayTeamInfo});
+            LOGI("adding %s with moneyline %d", awayTeam.c_str(), awayTeamInfo.bovadaMoneyline);
+
             TeamVegasInfo homeTeamInfo;
             homeTeamInfo.gameTime = gameTime;
             homeTeamInfo.teamName = homeTeam;
             homeTeamInfo.pitcherName = homePitcher;
             homeTeamInfo.bovadaMoneyline = atoi(homeTeamOdds.c_str());
             teamToMoneyLinesInfo.insert({homeTeam,homeTeamInfo});
+            LOGI("adding %s with moneyline %d", homeTeam.c_str(), homeTeamInfo.bovadaMoneyline);
         } else {
             string gameName = "";
             if (asColumns.size() > 5) {
@@ -376,13 +379,13 @@ string uiTest() {
     pd.teamCode = "bos";
     gameTeamWinContainer.nextPlayer(pd, "nyy");
 
-    pd.teamCode = "nat";
+    pd.teamCode = "was";
     pd.playerPointsPerGame = 12;
     pd.battingOrder = 1;
-    gameTeamWinContainer.nextPlayer(pd, "lad");
+    gameTeamWinContainer.nextPlayer(pd, "los");
 
-    pd.teamCode = "lad";
-    gameTeamWinContainer.nextPlayer(pd, "nat");
+    pd.teamCode = "los";
+    gameTeamWinContainer.nextPlayer(pd, "was");
 
     pd.teamCode = "cle";
     pd.playerPointsPerGame = 12;
@@ -418,37 +421,43 @@ string allOfTodaysGames(vector<string> sabrPredictorOdds, unordered_map<string,T
                 teamAMyPercent = 0.5f - teamAMyPercent;
             }
             float teamBMyPercent = 1.0f - teamAMyPercent;
+            teamAMyPercent *= 100;
+            teamBMyPercent *= 100;
+
             string gameString = "";
-            float teamAVegasPercent = 1;
-            float teamBVegasPercent = 1;
+            float teamAVegasPercent = 100;
+            float teamBVegasPercent = 100;
 
             if (teamAVegasInfo != teamToVegasInfoMap.end() && teamBVegasInfo != teamToVegasInfoMap.end()) {
                 teamAVegasPercent = (teamAVegasInfo->second.bovadaMoneyline > 0) ? (1.0f - ((float)teamAVegasInfo->second.bovadaMoneyline / ((float)teamAVegasInfo->second.bovadaMoneyline + 100))) : ((float)teamAVegasInfo->second.bovadaMoneyline / ((float)teamAVegasInfo->second.bovadaMoneyline - 100));
                 teamBVegasPercent = (teamBVegasInfo->second.bovadaMoneyline > 0) ? (1.0f - ((float)teamBVegasInfo->second.bovadaMoneyline / ((float)teamBVegasInfo->second.bovadaMoneyline + 100))) : ((float)teamBVegasInfo->second.bovadaMoneyline / ((float)teamBVegasInfo->second.bovadaMoneyline - 100));
+                teamAVegasPercent *= 100;
+                teamBVegasPercent *= 100;
+
                 if (teamASabrPoints > teamBSabrPoints) {
-                    gameString += teamA + ";" + to_string(teamAMyPercent) + ";" + to_string(teamAVegasPercent) + ";" + teamAVegasInfo->second.pitcherName + ";";
+                    gameString += teamA + ";" + to_string(teamAMyPercent).substr(0,4) + ";" + to_string(teamAVegasPercent).substr(0,4) + ";" + teamAVegasInfo->second.pitcherName + ";";
                     gameString += teamAVegasInfo->second.gameTime + ";";
-                    gameString += teamB + ";" + to_string(teamBMyPercent) + ";" + to_string(teamBVegasPercent) + ";" + teamBVegasInfo->second.pitcherName + ";";
+                    gameString += teamB + ";" + to_string(teamBMyPercent).substr(0,4) + ";" + to_string(teamBVegasPercent).substr(0,4) + ";" + teamBVegasInfo->second.pitcherName + ";";
                 } else {
-                    gameString += teamB + ";" + to_string(teamBMyPercent) + ";" + to_string(teamBVegasPercent) + ";" + teamBVegasInfo->second.pitcherName + ";";
+                    gameString += teamB + ";" + to_string(teamBMyPercent).substr(0,4) + ";" + to_string(teamBVegasPercent).substr(0,4) + ";" + teamBVegasInfo->second.pitcherName + ";";
                     gameString += teamAVegasInfo->second.gameTime + ";";
-                    gameString += teamA + ";" + to_string(teamAMyPercent) + ";" + to_string(teamAVegasPercent) + ";" + teamAVegasInfo->second.pitcherName + ";";
+                    gameString += teamA + ";" + to_string(teamAMyPercent).substr(0,4) + ";" + to_string(teamAVegasPercent).substr(0,4) + ";" + teamAVegasInfo->second.pitcherName + ";";
                 }
             } else {
                 // for some reason odds could not be found, still put it in the string
                 if (teamASabrPoints > teamBSabrPoints) {
-                    gameString += teamA + ";" + to_string(teamAMyPercent) + ";;;";
+                    gameString += teamA + ";" + to_string(teamAMyPercent).substr(0,4) + ";;;";
                     gameString += ";";
-                    gameString += teamB + ";" + to_string(teamBMyPercent) + ";;;";
+                    gameString += teamB + ";" + to_string(teamBMyPercent).substr(0,4) + ";;;";
                 } else {
-                    gameString += teamB + ";" + to_string(teamBMyPercent) + ";;;";
+                    gameString += teamB + ";" + to_string(teamBMyPercent).substr(0,4) + ";;;";
                     gameString += ";";
-                    gameString += teamA + ";" + to_string(teamAMyPercent) + ";;;";
+                    gameString += teamA + ";" + to_string(teamAMyPercent).substr(0,4) + ";;;";
                 }
             }
             float sortedPercent = (teamASabrPoints > teamBSabrPoints) ? teamAMyPercent : teamBMyPercent;
             float sortedVegasPercent = (teamASabrPoints > teamBSabrPoints) ? teamAVegasPercent : teamBVegasPercent;
-            if (sortedPercent >= 0.5f && sortedVegasPercent < 0.5f) {
+            if (sortedPercent >= 50 && sortedVegasPercent < 50) {
                 list<float>::iterator dogsFloatItr = underDogsFloats.begin();
                 for (list<string>::iterator dogsItr = underDogsToBetOn.begin(); ; ++dogsItr, ++dogsFloatItr) {
                     if (dogsItr == underDogsToBetOn.end() || sortedPercent > *dogsFloatItr) {
