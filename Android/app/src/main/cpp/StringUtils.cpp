@@ -427,6 +427,8 @@ void CurlGetSiteContents(CURL* curl, std::string readURL, std::string& writeBuff
 			curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
             curl_easy_setopt(curl, CURLOPT_TIMEOUT, 60L);
         }
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
 		curl_easy_perform(curl);
 		curl_easy_reset(curl);
 	}

@@ -72,9 +72,20 @@ std::string GetSiteHtml() {
     return "could not make curl";
 }
 
-string getSabrPredictorFileContents(string date, bool bPitchers) {
-    // TODO: get it fromt he internet
-    return "temp stuff";
+string getSabrPredictorFileContents(CURL* curl, string date, bool bPitchers) {
+	if (curl == NULL) {
+		curl = curl_easy_init();
+	}
+    string htmlContents = "";
+    if (bPitchers) {
+    	CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=all&stats=pit&type=sabersim&team=0&lg=all&players=0", htmlContents, true);
+    	CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+    } else {
+   		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=all&stats=bat&type=sabersim&team=0&lg=all&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+    }
+    //LOGI("length = %u contents = %s", (unsigned int)htmlContents.length(), htmlContents.c_str());
+    return htmlContents;
 }
 
 string GenerateLineups()
@@ -90,9 +101,8 @@ string GenerateLineups()
         curl_easy_reset(curl);
         todaysLineups = ConvertSpecialCharactersToEnglish26(todaysLineups);
 
-        // TODO: get sabr projections from live website rather than file
-		string sabrPredictorText = getSabrPredictorFileContents(todaysDate, false);
-		string sabrPredictorTextPitchers = getSabrPredictorFileContents(todaysDate, true);
+		string sabrPredictorText = getSabrPredictorFileContents(curl, todaysDate, false);
+		string sabrPredictorTextPitchers = getSabrPredictorFileContents(curl, todaysDate, true);
         GameTeamWinContainer gameTeamWinContainer;
 
 		for (int p = 2; p <= 7; ++p)
@@ -175,13 +185,20 @@ string GenerateLineups()
                     playerNameIndex = FindPlayerNameIndexInList(singlePlayerData.playerName, sabrPredictorText);
 
 				if (playerNameIndex != string::npos) {
+					size_t htmlSectionStart = sabrPredictorText.rfind("<td class", playerNameIndex);
+					size_t htmlSectionEnd = sabrPredictorText.find("</tr>", playerNameIndex);
+					string htmlSection = sabrPredictorText.substr(htmlSectionStart, htmlSectionEnd - htmlSectionStart);
 
-					size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
-					vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
-                    expectedFdPoints = stof(thisSabrLine[17]);
-			//		if (gameType == GameType::DraftKings)
-			//			expectedFdPoints = stof(thisSabrLine[18]);
-					singlePlayerData.playerPointsPerGame = expectedFdPoints;
+					vector<string> thisSabrLine = MultineRegex(htmlSection, ".*?>(.*?)<.*?");
+					//vector<string> thisSabrLine = SplitStringIntoMultiple(sabrPredictorText.substr(playerNameIndex, nextNewLine - playerNameIndex), ",", "\"");
+                    if (thisSabrLine.size() == 19) {
+	                    expectedFdPoints = stof(thisSabrLine[17]);
+						singlePlayerData.playerPointsPerGame = expectedFdPoints;
+						if (static_cast <float> (rand()) > 0.7f)
+							LOGI("%s expected fd points of %f", singlePlayerData.playerName.c_str(), singlePlayerData.playerPointsPerGame);
+					} else {
+						LOGI("%s has %u lines in predictor file", singlePlayerData.playerName.c_str(), (unsigned int)thisSabrLine.size());
+					}
 
                 /*
 					if (sabrPredictorTextPitchers != "") {
@@ -212,7 +229,9 @@ string GenerateLineups()
 						}
 					}
 					*/
-				}
+				} else {
+					LOGI("Could not find sabr prediction for %s on team %s", singlePlayerData.playerName.c_str(), singlePlayerData.teamCode.c_str());
+                }
 
 				int gameStartTime = 99999;
 				size_t colonIndex = readBuffer.find(":", placeHolderIndex + 1);
@@ -277,17 +296,17 @@ string GenerateLineups()
                         actualBattingOrder = atoi(lineupOrderString.c_str());
                     }
 				}
+              //  LOGI("%s is starting at %d with salary %d and batting order %d", singlePlayerData.playerName.c_str(), gameStartTime, singlePlayerData.playerSalary, actualBattingOrder);
 
 				// throw this guy out if he's not a starter or his game will most likely be rained out
-				if (gameStartTime < 99999
+				if (/*gameStartTime < 99999
                     && singlePlayerData.playerSalary > 0
-                    && actualBattingOrder >= 0
+                    &&*/ actualBattingOrder >= 0
                     && expectedFdPoints > 0) {
-
                         singlePlayerData.playerPointsPerGame = expectedFdPoints;
                         singlePlayerData.battingOrder = actualBattingOrder;
                         gameTeamWinContainer.nextPlayer(singlePlayerData, opponentTeamCode);
-
+                        //LOGI("adding player %s to win container", singlePlayerData.playerName.c_str());
 				}
 				if (placeHolderIndex == string::npos)
 					break;
@@ -494,5 +513,5 @@ extern "C" JNIEXPORT jstring JNICALL
 Java_com_predictor_mlb_mlbpredictor_MainActivity_stringFromJNI(
         JNIEnv* env,
         jobject /* this */) {
-    return env->NewStringUTF(uiTest().c_str());
+    return env->NewStringUTF(GenerateLineups().c_str());
 }
