@@ -76,16 +76,105 @@ string getSabrPredictorFileContents(CURL* curl, string date, bool bPitchers) {
 	if (curl == NULL) {
 		curl = curl_easy_init();
 	}
+	string entireContents = "";
     string htmlContents = "";
     if (bPitchers) {
-    	CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=all&stats=pit&type=sabersim&team=0&lg=all&players=0", htmlContents, true);
-    	CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+    	CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=all&stats=pit&type=sabersim&team=0&lg=all&players=0", entireContents, true);
+    	CutStringToOnlySectionBetweenKeywords(entireContents, "class=\"rgMasterTable\"", "</table>");
     } else {
-   		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=all&stats=bat&type=sabersim&team=0&lg=all&players=0", htmlContents, true);
+   		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=c&stats=bat&type=sabersim&team=0&lg=al&players=0", htmlContents, true);
    		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=1b&stats=bat&type=sabersim&team=0&lg=al&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=2b&stats=bat&type=sabersim&team=0&lg=al&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=ss&stats=bat&type=sabersim&team=0&lg=al&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=3b&stats=bat&type=sabersim&team=0&lg=al&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=rf&stats=bat&type=sabersim&team=0&lg=al&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=cf&stats=bat&type=sabersim&team=0&lg=al&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=lf&stats=bat&type=sabersim&team=0&lg=al&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=dh&stats=bat&type=sabersim&team=0&lg=al&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=c&stats=bat&type=sabersim&team=0&lg=nl&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=1b&stats=bat&type=sabersim&team=0&lg=nl&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=2b&stats=bat&type=sabersim&team=0&lg=nl&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=ss&stats=bat&type=sabersim&team=0&lg=nl&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=3b&stats=bat&type=sabersim&team=0&lg=nl&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=rf&stats=bat&type=sabersim&team=0&lg=nl&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=cf&stats=bat&type=sabersim&team=0&lg=nl&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=lf&stats=bat&type=sabersim&team=0&lg=nl&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
+		
+		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=dh&stats=bat&type=sabersim&team=0&lg=nl&players=0", htmlContents, true);
+   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+		entireContents += htmlContents;
+		htmlContents = "";
     }
     //LOGI("length = %u contents = %s", (unsigned int)htmlContents.length(), htmlContents.c_str());
-    return htmlContents;
+    return entireContents;
 }
 
 string GenerateLineups()
