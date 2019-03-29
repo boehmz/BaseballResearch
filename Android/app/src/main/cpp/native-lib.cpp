@@ -442,6 +442,8 @@ unordered_map<string,TeamVegasInfo> getTodaysMoneyLines() {
             TeamVegasInfo awayTeamInfo;
             awayTeamInfo.gameTime = gameTime;
             awayTeamInfo.teamName = awayTeam;
+            size_t rightMostSpace = awayPitcher.rfind(" ", awayPitcher.length() - 1);
+            awayPitcher = awayPitcher.substr(0, rightMostSpace);
             awayTeamInfo.pitcherName = awayPitcher;
             awayTeamInfo.bovadaMoneyline = atoi(awayTeamOdds.c_str());
             teamToMoneyLinesInfo.insert({awayTeam,awayTeamInfo});
@@ -450,6 +452,8 @@ unordered_map<string,TeamVegasInfo> getTodaysMoneyLines() {
             TeamVegasInfo homeTeamInfo;
             homeTeamInfo.gameTime = gameTime;
             homeTeamInfo.teamName = homeTeam;
+            rightMostSpace = homePitcher.rfind(" ", homePitcher.length() - 1);
+            homePitcher = homePitcher.substr(0, rightMostSpace);
             homeTeamInfo.pitcherName = homePitcher;
             homeTeamInfo.bovadaMoneyline = atoi(homeTeamOdds.c_str());
             teamToMoneyLinesInfo.insert({homeTeam,homeTeamInfo});

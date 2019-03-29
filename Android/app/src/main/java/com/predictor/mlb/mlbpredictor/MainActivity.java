@@ -1,6 +1,7 @@
 package com.predictor.mlb.mlbpredictor;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Example of a call to a native method
         TextView tv = (TextView) findViewById(R.id.sample_text);
+        tv.setMovementMethod(new ScrollingMovementMethod());
         tv.setText("not loaded yet");
 
     }
