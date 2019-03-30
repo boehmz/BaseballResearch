@@ -152,6 +152,8 @@ string GenerateLineups()
 	CURL* curl = curl_easy_init();
 	if (curl)
 	{
+		unordered_map<string,TeamVegasInfo> vegasInfo = getTodaysMoneyLines(curl);
+
         string todaysLineups;
         curl_easy_setopt(curl, CURLOPT_URL, "http://www.fantasyalarm.com/mlb/lineups/");
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -361,6 +363,13 @@ string GenerateLineups()
 				if (gameStartTime < 999999
                     && actualBattingOrder >= 0
                     && expectedFdPoints > 0) {
+						auto vegasGame = vegasInfo.find(singlePlayerData.teamCode);
+						if (vegasGame != vegasInfo.end()) {
+							size_t dashStart = readBuffer.find("- ", placeHolderIndex);
+							size_t dashEnd = readBuffer.find(" -", dashStart + 1);
+							string gameTime = readBuffer.substr(dashStart + 2, dashEnd - dashStart - 2);
+							vegasGame->second.gameTime = gameTime;
+						}
                         singlePlayerData.playerPointsPerGame = expectedFdPoints;
                         singlePlayerData.battingOrder = actualBattingOrder;
                         gameTeamWinContainer.nextPlayer(singlePlayerData, opponentTeamCode);
@@ -374,7 +383,7 @@ string GenerateLineups()
 		}
 		
 
-	    string ret = allOfTodaysGames(gameTeamWinContainer.getStringsFromTodaysDate(), getTodaysMoneyLines(curl));
+	    string ret = allOfTodaysGames(gameTeamWinContainer.getStringsFromTodaysDate(), vegasInfo);
 	    curl_easy_cleanup(curl);
 	    curl = NULL;
 	    return ret;
