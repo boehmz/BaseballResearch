@@ -37,6 +37,7 @@ void EraseInString(std::string& originalString, const std::string& eraseString);
 std::vector<std::string> SplitStringIntoMultiple(std::string wholeString, std::string tokens, std::string removeFromIndividual = "");
 size_t FindPlayerNameIndexInList(const std::string& playerName, const std::string& searchText);
 int GetNumDaysInMonth(int monthInteger);
+std::string getJsonValueFromKey(std::string wholeJson, std::string key, size_t startingSearchIndex = 0);
 std::string ConvertStandardTeamCodeToRotoGuruTeamCode(std::string standardCode);
 std::string ConvertRotoGuruTeamCodeToStandardTeamCode(std::string rotoGuruCode);
 std::string convertTeamCodeToSynonym(std::string teamCode, int codeIndex);

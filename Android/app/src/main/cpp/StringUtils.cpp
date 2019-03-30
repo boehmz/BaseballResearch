@@ -473,6 +473,24 @@ std::vector<string> SplitStringIntoMultiple(std::string wholeString, std::string
 	return stringArray;
 }
 
+std::string getJsonValueFromKey(std::string wholeJson, std::string key, size_t startingSearchIndex) {
+    string value = "";
+    size_t keyIndex = wholeJson.find(key, startingSearchIndex);
+    if (keyIndex != string::npos) {
+        size_t colonIndex = wholeJson.find(":", keyIndex + 1);
+        size_t openingQuoteIndex = wholeJson.find("\"", colonIndex);
+        if (openingQuoteIndex != string::npos) {
+            size_t closingQuoteIndex = wholeJson.find("\"", openingQuoteIndex + 1);
+            if (closingQuoteIndex != string::npos) {
+                value = wholeJson.substr(openingQuoteIndex + 1, closingQuoteIndex - openingQuoteIndex - 1);
+            } else {
+                value = wholeJson.substr(openingQuoteIndex + 1);
+            }
+        }
+    }
+    return value;
+}
+
 bool StringStartsWith(std::string mainString, std::string beginning) {
     size_t beginningLength = beginning.length();
     if (mainString.length() >= beginningLength) {
