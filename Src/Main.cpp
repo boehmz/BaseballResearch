@@ -416,10 +416,9 @@ void RefineAlgorithm()
 	bool bRefineForGames = true;
     bool bRefineForStats = false;
     bool needToCreateGamesRecordOverallFile = false;
-    string yearRefiningFor = LAST_YEAR;
+    string yearRefiningFor = CURRENT_YEAR;
 
 	fstream gamesRecordOverallFile;
-    string gamesRecordOverallContents;
 	if (bRefineForGames) {
         string gamesRecordFileName = yearRefiningFor;
         gamesRecordFileName += "ResultsTracker\\TeamWinResults\\AllGames.txt";
@@ -429,8 +428,6 @@ void RefineAlgorithm()
             gamesRecordFileName = GetPlatformCompatibleFileNameFromRelativePath(gamesRecordFileName);
 #endif
             gamesRecordOverallFile.open(gamesRecordFileName);
-        } else {
-            gamesRecordOverallContents = GetEntireFileContents(gamesRecordFileName);
         }
 	}
 	CURL *curl;
@@ -455,6 +452,8 @@ void RefineAlgorithm()
 		vector<float> sabrPredictorOutputValues;
 		float inputCoefficients[2] = { 0.0f, 1.0f };
 		vector< float > outputValues;
+        unordered_set<string> playerNamesFoundInSabrPredictor;
+        unordered_set<string> playerNamesNotFoundInSabrPredictor;
 
 		vector< vector<float>> chosenLineupsList(59);
 		string batters2017SeasonProjections = GetEntireFileContents("ZiPSBatterProjections2017.txt");
@@ -464,7 +463,7 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = atoi(yearRefiningFor.c_str()) * 10000 + 806;
+        reviewDateStart = atoi(yearRefiningFor.c_str()) * 10000 + 402;
 		reviewDateEnd = atoi(yearRefiningFor.c_str()) * 10000 + 930;
 		percentOfSeasonPassed = 81.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
@@ -592,11 +591,12 @@ void RefineAlgorithm()
             itoa(dayInt, dayStringC, 10);
 			itoa(yearInt - 1, lastYearStringC, 10);
 			if (strcmp(yearStringC, CURRENT_YEAR) == 0) {
-				resultsURL += monthStringC;
-				if (strlen(dayStringC) == 1) {
-					resultsURL += "0";
-				}
-				resultsURL += dayStringC;
+                resultsURL += "&month=";
+                resultsURL += monthStringC;
+                resultsURL += "&day=";
+                resultsURL += dayStringC;
+                resultsURL += "&year=";
+                resultsURL += yearStringC;
 				if (gameType == GameType::Fanduel)
 					resultsURL += "&game=fd";
 				else if (gameType == GameType::DraftKings)
@@ -812,28 +812,31 @@ void RefineAlgorithm()
 									if (lineTotalsSectionBegin != string::npos) {
 										lineTotalsSectionBegin = gameTimeSection.find(">", lineTotalsSectionBegin);
 										size_t lineTotalsSectionEnd = gameTimeSection.find("<", lineTotalsSectionBegin);
-										float linetotalsNumber2 = stof(gameTimeSection.substr(lineTotalsSectionBegin + 1, lineTotalsSectionEnd - lineTotalsSectionBegin - 1));
-										float oddsLine = linetotalsNumber1;
-										float totalsLine = linetotalsNumber2;
-										if (linetotalsNumber2 <= 0 || linetotalsNumber2 >= 99) {
-											oddsLine = linetotalsNumber2;
-											totalsLine = linetotalsNumber1;
-										}
-										float totalsPercent = (oddsLine + 110) / -190;
-										if (totalsPercent < 0)
-											totalsPercent = 0;
-										if (totalsPercent > 1)
-											totalsPercent = 1;
-										totalsPercent = 0.55f + totalsPercent * 0.35f;
-										if ((isHomeTeam && linetotalsNumber2 == totalsLine) || (!isHomeTeam && linetotalsNumber1 == totalsLine))
-											totalsPercent = 1.0f - totalsPercent;
+                                        string linetotalString2 = gameTimeSection.substr(lineTotalsSectionBegin + 1, lineTotalsSectionEnd - lineTotalsSectionBegin - 1);
+                                        if (linetotalString2 != "-" && linetotalString2.size() > 0) {
+                                            float linetotalsNumber2 = stof(linetotalString2);
+                                            float oddsLine = linetotalsNumber1;
+                                            float totalsLine = linetotalsNumber2;
+                                            if (linetotalsNumber2 <= 0 || linetotalsNumber2 >= 99) {
+                                                oddsLine = linetotalsNumber2;
+                                                totalsLine = linetotalsNumber1;
+                                            }
+                                            float totalsPercent = (oddsLine + 110) / -190;
+                                            if (totalsPercent < 0)
+                                                totalsPercent = 0;
+                                            if (totalsPercent > 1)
+                                                totalsPercent = 1;
+                                            totalsPercent = 0.55f + totalsPercent * 0.35f;
+                                            if ((isHomeTeam && linetotalsNumber2 == totalsLine) || (!isHomeTeam && linetotalsNumber1 == totalsLine))
+                                                totalsPercent = 1.0f - totalsPercent;
 
-										float vegasRuns = totalsPercent * totalsLine;
-										VegasTeamRunPair vtrp;
-										vtrp.teamCode = singlePlayerData.teamCode;
-										vtrp.vegasRuns = vegasRuns;
-										if (gameStartTime >= mainStartTime)
-											vegasRunsPerTeam.push_back(vtrp);
+                                            float vegasRuns = totalsPercent * totalsLine;
+                                            VegasTeamRunPair vtrp;
+                                            vtrp.teamCode = singlePlayerData.teamCode;
+                                            vtrp.vegasRuns = vegasRuns;
+                                            if (gameStartTime >= mainStartTime)
+                                                vegasRunsPerTeam.push_back(vtrp);
+                                        }
 									}
 								}
                             }
@@ -1148,6 +1151,14 @@ void RefineAlgorithm()
 							}
 							
 							size_t playerNameIndex = FindPlayerNameIndexInList(singlePlayerData.playerName, sabrPredictorText);
+                            if (playerNameIndex == string::npos) {
+                                if (playerNamesFoundInSabrPredictor.find(singlePlayerData.playerName) == playerNamesFoundInSabrPredictor.end()) {
+                                    playerNamesNotFoundInSabrPredictor.insert(singlePlayerData.playerName);
+                                }
+                            } else {
+                                playerNamesFoundInSabrPredictor.insert(singlePlayerData.playerName);
+                                playerNamesNotFoundInSabrPredictor.erase(singlePlayerData.playerName);
+                            }
 							
 							if (playerNameIndex != string::npos) {
 								size_t nextNewLine = sabrPredictorText.find("\n", playerNameIndex);
@@ -1170,7 +1181,7 @@ void RefineAlgorithm()
                                         // <5 to >15 every 1
                                         sabrPredictorToPointsData[sabrIndex].push_back(actualPlayerPoints);
                                     }
-                                    gameTeamWinContainer.nextPlayer(thisLineActualResults, expectedFdPoints);
+                                    gameTeamWinContainer.nextPlayer(thisLineActualResults, stof(thisSabrLine[10]));
                                     
                                     singlePlayerData.playerPointsPerGame = expectedFdPoints;
                                     if (battingOrder >= mainBattingOrderMin && battingOrder <= mainBattingOrderMax) {
@@ -2040,6 +2051,9 @@ void RefineAlgorithm()
                 gamesRecordOverallFile.close();
             else
                 gameTeamWinContainer.runAnalysis();
+            for (auto itr = playerNamesNotFoundInSabrPredictor.begin(); itr != playerNamesNotFoundInSabrPredictor.end(); ++itr) {
+            //    cout << *itr << " not found in any sabr files" << endl;
+            }
         }
 		top10PitchersTrainingFile.close();
 		top25BattersTrainingFile.close();
