@@ -40,37 +40,7 @@ struct TeamVegasInfo {
 };
 
 string allOfTodaysGames(vector<string> sabrPredictorOdds, unordered_map<string,TeamVegasInfo> teamToVegasInfoMap);
-unordered_map<string,TeamVegasInfo> getTodaysMoneyLines();
-
-std::string GetSiteHtml() {
-
-    CURL *curl = curl_easy_init();
-    if (curl)
-    {
-
-        std::string httpBuffer;
-        std::string thisPositionURL = "http://rotoguru1.com/cgi-bin/stats.cgi?pos=1&sort=4";
-        thisPositionURL = "https://www.fangraphs.com/dailyprojections.aspx?pos=all&stats=bat&type=sabersim&team=0&lg=all&players=0";
-        curl_easy_setopt(curl, CURLOPT_URL, thisPositionURL.c_str());
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &httpBuffer);
-        curl_easy_setopt(curl, CURLOPT_FAILONERROR, TRUE);
-        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, TRUE);
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-	    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, FALSE);
-
-        CURLcode res = curl_easy_perform(curl);
-        if (res != CURLE_OK){
-            LOGI("CURL failed with error code %d", res);
-        }
-        curl_easy_reset(curl);
-        int testInt = 0;
-        LOGI("Html result from site %s was: %s", thisPositionURL.c_str(), httpBuffer.c_str());
-        return httpBuffer;
-
-    }
-    return "could not make curl";
-}
+unordered_map<string,TeamVegasInfo> getTodaysMoneyLines(CURL* curl);
 
 string getSabrPredictorFileContents(CURL* curl, string date, bool bPitchers) {
 	if (curl == NULL) {
@@ -341,7 +311,7 @@ string GenerateLineups()
 				else if (readBuffer.find("Final", placeHolderIndex + 1) != string::npos && readBuffer.find("Final", placeHolderIndex + 1) < nextSemiColonIndex)
 				{
 					// game has gone final
-					gameStartTime = 99999;
+					gameStartTime = 999999;
 				}
 				else if (readBuffer.find("Mid", placeHolderIndex + 1) != string::npos && readBuffer.find("Mid", placeHolderIndex + 1) < nextSemiColonIndex)
 				{
@@ -388,9 +358,8 @@ string GenerateLineups()
               //  LOGI("%s is starting at %d with salary %d and batting order %d", singlePlayerData.playerName.c_str(), gameStartTime, singlePlayerData.playerSalary, actualBattingOrder);
 
 				// throw this guy out if he's not a starter or his game will most likely be rained out
-				if (/*gameStartTime < 99999
-                    && singlePlayerData.playerSalary > 0
-                    &&*/ actualBattingOrder >= 0
+				if (gameStartTime < 999999
+                    && actualBattingOrder >= 0
                     && expectedFdPoints > 0) {
                         singlePlayerData.playerPointsPerGame = expectedFdPoints;
                         singlePlayerData.battingOrder = actualBattingOrder;
@@ -403,69 +372,78 @@ string GenerateLineups()
 					placeHolderIndex = readBuffer.find("\n", placeHolderIndex + 1);
 			}
 		}
-		curl_easy_cleanup(curl);
+		
 
-	    return allOfTodaysGames(gameTeamWinContainer.getStringsFromTodaysDate(), getTodaysMoneyLines());
+	    string ret = allOfTodaysGames(gameTeamWinContainer.getStringsFromTodaysDate(), getTodaysMoneyLines(curl));
+	    curl_easy_cleanup(curl);
+	    curl = NULL;
+	    return ret;
 	}
 	int breakpoint = 0;
 	return "";
 }
 
-unordered_map<string,TeamVegasInfo> getTodaysMoneyLines() {
+unordered_map<string,TeamVegasInfo> getTodaysMoneyLines(CURL* curl) {
     unordered_map<string,TeamVegasInfo> teamToMoneyLinesInfo;
-    CURL* curl = curl_easy_init();
-    string gameMoneyLinesURL = "http://www.donbest.com/mlb/odds/money-lines";
+    if (curl == NULL) {
+    	curl = curl_easy_init();
+	}
+    string gameMoneyLinesURL = "https://www.bovada.lv/services/sports/event/v2/events/A/description/baseball/mlb?marketFilterId=def&preMatchOnly=false&lang=en";
     string gameMoneyLines = "";
     CurlGetSiteContents(curl, gameMoneyLinesURL, gameMoneyLines, true);
-    CutStringToOnlySectionBetweenKeywords(gameMoneyLines, "class=\"odds_gamesHolder\"", "class=\"odds_pages\"");
-    size_t oddsOpenerBegin = gameMoneyLines.find("oddsOpener");
+    size_t oddsOpenerBegin = gameMoneyLines.find("Moneyline");
     while (oddsOpenerBegin != string::npos) {
-        size_t oddsOpenerEnd = gameMoneyLines.find("oddsOpener", oddsOpenerBegin + 1);
-        if (oddsOpenerEnd == string::npos) {
-            oddsOpenerEnd = gameMoneyLines.find("</table>");
-        }
-        string gameSection = gameMoneyLines.substr(oddsOpenerBegin, oddsOpenerEnd - oddsOpenerBegin);
-        vector<string> asColumns = MultineRegex(gameSection, ".*?>(.*?)<.*?");
-        if (asColumns.size() > 43 && StringStartsWith(asColumns[41], "MAJOR LEAGUE BASEBALL")) {
-            asColumns.erase(asColumns.begin() + 43, asColumns.end());
-        }
-        if (asColumns.size() == 43 || asColumns.size() == 41) {
-            //bovada is on 29/30 capture for perfect data captures
-            string gameTime = asColumns[6];
-            string awayTeam = ConvertStandardTeamCodeToRotoGuruTeamCode(convertTeamCodeToSynonym(asColumns[4],3));
-            string awayPitcher = asColumns[2];
-            string homeTeam = ConvertStandardTeamCodeToRotoGuruTeamCode(convertTeamCodeToSynonym(asColumns[5],3));
-            string homePitcher = asColumns[3];
-            string awayTeamOdds = asColumns[29];
-            string homeTeamOdds = asColumns[30];
+    	size_t outcomesArrayBegin = gameMoneyLines.find("outcomes", oddsOpenerBegin);
+    	if (outcomesArrayBegin != string::npos) {
+    		outcomesArrayBegin = gameMoneyLines.find("[", outcomesArrayBegin);
+    		size_t outcomesArrayEnd = gameMoneyLines.find("]", outcomesArrayBegin);
+    		size_t nextArrayOpener = gameMoneyLines.find("[", outcomesArrayBegin);
+    		while (nextArrayOpener < outcomesArrayEnd) {
+    			outcomesArrayEnd = gameMoneyLines.find("]", outcomesArrayEnd + 1);
+    			nextArrayOpener = gameMoneyLines.find("[", nextArrayOpener + 1);
+    		}
+    		string gameSection = gameMoneyLines.substr(outcomesArrayBegin, outcomesArrayEnd - outcomesArrayBegin);
+    		size_t description1 = gameSection.find("description");
+    		string teamName1 = getJsonValueFromKey(gameSection, "description");
+    		string americanOdds1 = getJsonValueFromKey(gameSection, "american", description1);
 
-            TeamVegasInfo awayTeamInfo;
-            awayTeamInfo.gameTime = gameTime;
-            awayTeamInfo.teamName = awayTeam;
-            size_t rightMostSpace = awayPitcher.rfind(" ", awayPitcher.length() - 1);
-            awayPitcher = awayPitcher.substr(0, rightMostSpace);
-            awayTeamInfo.pitcherName = awayPitcher;
-            awayTeamInfo.bovadaMoneyline = atoi(awayTeamOdds.c_str());
-            teamToMoneyLinesInfo.insert({awayTeam,awayTeamInfo});
-            LOGI("adding %s with moneyline %d", awayTeam.c_str(), awayTeamInfo.bovadaMoneyline);
+    		size_t description2 = gameSection.find("description", description1 + 1);
+    		string teamName2 = getJsonValueFromKey(gameSection, "description", description2);
+    		string americanOdds2 = getJsonValueFromKey(gameSection, "american", description2);
 
-            TeamVegasInfo homeTeamInfo;
-            homeTeamInfo.gameTime = gameTime;
-            homeTeamInfo.teamName = homeTeam;
-            rightMostSpace = homePitcher.rfind(" ", homePitcher.length() - 1);
-            homePitcher = homePitcher.substr(0, rightMostSpace);
-            homeTeamInfo.pitcherName = homePitcher;
-            homeTeamInfo.bovadaMoneyline = atoi(homeTeamOdds.c_str());
-            teamToMoneyLinesInfo.insert({homeTeam,homeTeamInfo});
-            LOGI("adding %s with moneyline %d", homeTeam.c_str(), homeTeamInfo.bovadaMoneyline);
-        } else {
-            string gameName = "";
-            if (asColumns.size() > 5) {
-                gameName = asColumns[4] + asColumns[5];
-            }
-            LOGI("There were %u columns for game %s.", (unsigned int)asColumns.size(), gameName.c_str());
-        }
-        oddsOpenerBegin = gameMoneyLines.find("oddsOpener", oddsOpenerEnd);
+    		if (americanOdds1 == "EVEN") {
+    			americanOdds1 = "100";
+    		}
+    		if (americanOdds2 == "EVEN") {
+    			americanOdds2 = "100";
+    		}
+
+    		teamName1 = ConvertStandardTeamCodeToRotoGuruTeamCode(convertTeamCodeToSynonym(teamName1,3));
+    		teamName2 = ConvertStandardTeamCodeToRotoGuruTeamCode(convertTeamCodeToSynonym(teamName2,3));
+
+    		if (teamToMoneyLinesInfo.find(teamName1) == teamToMoneyLinesInfo.end()) {
+	    		TeamVegasInfo team1Info;
+	            //team1Info.gameTime = gameTime;
+	            team1Info.teamName = teamName1;
+	            //size_t rightMostSpace = awayPitcher.rfind(" ", awayPitcher.length() - 1);
+	            //awayPitcher = awayPitcher.substr(0, rightMostSpace);
+	            //awayTeamInfo.pitcherName = awayPitcher;
+	            team1Info.bovadaMoneyline = atoi(americanOdds1.c_str());
+	            teamToMoneyLinesInfo.insert({teamName1,team1Info});
+	            LOGI("adding %s with moneyline %d", teamName1.c_str(), team1Info.bovadaMoneyline);
+
+	            TeamVegasInfo team2Info;
+	            //team1Info.gameTime = gameTime;
+	            team2Info.teamName = teamName1;
+	            //size_t rightMostSpace = awayPitcher.rfind(" ", awayPitcher.length() - 1);
+	            //awayPitcher = awayPitcher.substr(0, rightMostSpace);
+	            //awayTeamInfo.pitcherName = awayPitcher;
+	            team2Info.bovadaMoneyline = atoi(americanOdds2.c_str());
+	            teamToMoneyLinesInfo.insert({teamName2,team2Info});
+	            LOGI("adding %s with moneyline %d", teamName2.c_str(), team2Info.bovadaMoneyline);
+        	}
+    	}
+        oddsOpenerBegin = gameMoneyLines.find("Moneyline", oddsOpenerBegin + 5);
     }
     return teamToMoneyLinesInfo;
 }
@@ -508,7 +486,7 @@ string uiTest() {
      pd.playerPointsPerGame = 10;
     gameTeamWinContainer.nextPlayer(pd, "cle");
 
-    return allOfTodaysGames(gameTeamWinContainer.getStringsFromTodaysDate(), getTodaysMoneyLines());
+    return allOfTodaysGames(gameTeamWinContainer.getStringsFromTodaysDate(), getTodaysMoneyLines(NULL));
 }
 
 string allOfTodaysGames(vector<string> sabrPredictorOdds, unordered_map<string,TeamVegasInfo> teamToVegasInfoMap) {
@@ -606,5 +584,5 @@ extern "C" JNIEXPORT jstring JNICALL
 Java_com_predictor_mlb_mlbpredictor_MainActivity_stringFromJNI(
         JNIEnv* env,
         jobject /* this */) {
-    return env->NewStringUTF(GenerateLineups().c_str());
+	    return env->NewStringUTF(GenerateLineups().c_str());
 }
