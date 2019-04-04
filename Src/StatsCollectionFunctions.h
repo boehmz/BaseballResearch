@@ -37,7 +37,7 @@ template <typename T> T ClampVariable(T varToClamp, const T& min, const T& max) 
         varToClamp = max;
     return varToClamp;
 }
-template <typename T> T AverageArrayExcludingThreshold(T* array, int size, T minThreshold) {
+template <typename T> T AverageArrayExcludingThreshold(T* array, int size, T minThreshold, int minCount) {
     T total = 0;
     int count = 0;
     for (int i = 0; i < size; ++i) {
@@ -46,6 +46,9 @@ template <typename T> T AverageArrayExcludingThreshold(T* array, int size, T min
             total += *(array + i);
             count++;
         }
+    }
+    if (count < minCount) {
+        return -1;
     }
     return total / (float)count;
 }

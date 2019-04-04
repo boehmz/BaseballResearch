@@ -411,17 +411,17 @@ void FillZScoreData() {
 void RefineAlgorithm()
 {
 	stackMaxNumTeams = true;
-	bool bRefineForPitchers = false;
+	bool bRefineForPitchers = true;
 	bool bRefineForBatters = true;
 	bool bRefineForGames = true;
     bool bRefineForStats = false;
     bool needToCreateGamesRecordOverallFile = false;
-    string yearRefiningFor = CURRENT_YEAR;
+    string yearRefiningFor = "2017";
 
 	fstream gamesRecordOverallFile;
 	if (bRefineForGames) {
         string gamesRecordFileName = yearRefiningFor;
-        gamesRecordFileName += "ResultsTracker\\TeamWinResults\\AllGames.txt";
+        gamesRecordFileName += "ResultsTracker\\TeamWinResults\\AllGamesRunLines.txt";
         if (needToCreateGamesRecordOverallFile) {
             
 #if PLATFORM_OSX
@@ -463,9 +463,9 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = atoi(yearRefiningFor.c_str()) * 10000 + 402;
+        reviewDateStart = atoi(yearRefiningFor.c_str()) * 10000 + 806;
 		reviewDateEnd = atoi(yearRefiningFor.c_str()) * 10000 + 930;
-		percentOfSeasonPassed = 81.0f / 162.0f;
+		percentOfSeasonPassed = 100.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
         string top30BattersWithPitcherTrainingFileName = "Top30Order25BattersWithPitcherTrainingFile.csv";
@@ -590,7 +590,15 @@ void RefineAlgorithm()
             itoa(monthInt, monthStringC, 10);
             itoa(dayInt, dayStringC, 10);
 			itoa(yearInt - 1, lastYearStringC, 10);
-			if (strcmp(yearStringC, CURRENT_YEAR) == 0) {
+            if (strcmp(yearStringC, "2019") == 0) {
+                resultsURL += monthStringC;
+                resultsURL += dayStringC;
+                if (gameType == GameType::Fanduel)
+                    resultsURL += "&game=fd";
+                else if (gameType == GameType::DraftKings)
+                    resultsURL += "&game=dk";
+                resultsURL += "&scsv=1&nowrap=1";
+            } else if (strcmp(yearStringC, "2018") == 0) {
                 resultsURL += "&month=";
                 resultsURL += monthStringC;
                 resultsURL += "&day=";
@@ -604,7 +612,7 @@ void RefineAlgorithm()
 				resultsURL += "&scsv=1&nowrap=1";
                 resultsURL += "&user=GoldenExcalibur&key=G5970032941";
 			}
-			else {
+			else if (strcmp(yearStringC, "2017") == 0){
 				resultsURL += "&month=";
 				resultsURL += monthStringC;
 				resultsURL += "&day=";
@@ -879,6 +887,8 @@ void RefineAlgorithm()
                             if (batterStatsHandedness.numPlateAppearancesVersusRighty > 10 && batterStatsHandedness.numPlateAppearancesVersusLefty > 10)
                                 combinedBatterStatsHandedness = combinedBatterStatsHandedness * (1.0f - percentOfSeasonPassed) + percentOfSeasonPassed * batterStatsHandedness;
                             
+                            
+
                             auto opponentRelieverStats = teamToOpponentsRelieverStatsMap.find(singlePlayerData.teamCode);
                             if (relieverStatsAdvancedFileContents != "" && opponentRelieverStats == teamToOpponentsRelieverStatsMap.end()) {
                                 RelieverStats* rs = new RelieverStats();
@@ -1181,7 +1191,15 @@ void RefineAlgorithm()
                                         // <5 to >15 every 1
                                         sabrPredictorToPointsData[sabrIndex].push_back(actualPlayerPoints);
                                     }
-                                    gameTeamWinContainer.nextPlayer(thisLineActualResults, stof(thisSabrLine[10]));
+                                    float battingBonus = 4.65f - 0.1f * battingOrder;
+
+                                    if (opponentPitcher != opponentPitcherScoreMap.end() && opponentPitcher->second.numInnings > 10) {
+                                        if (combinedBatterStats.woba > 0) {
+                                            float val =combinedBatterStats.wrcPlus + opponentPitcher->second.xfip * 0.667f * 20.0f;
+                                          //  gameTeamWinContainer.nextPlayer(thisLineActualResults, val * battingBonus);
+                                        }
+                                    }
+                                    gameTeamWinContainer.nextPlayer(thisLineActualResults, stof(thisSabrLine[17]));
                                     
                                     singlePlayerData.playerPointsPerGame = expectedFdPoints;
                                     if (battingOrder >= mainBattingOrderMin && battingOrder <= mainBattingOrderMax) {
@@ -1255,6 +1273,7 @@ void RefineAlgorithm()
                                             float pitcherBattersFaced = stof(thisSabrLinePitchers[5]);
                                             float pitcherTotalBasesAllowed = stof(thisSabrLinePitchers[7]) + stof(thisSabrLinePitchers[8]) * 2 + stof(thisSabrLinePitchers[9]) * 3 + stof(thisSabrLinePitchers[10]) * 4;
                                             float pitcherOpsAllowed = pitcherOnBaseAllowed / pitcherBattersFaced + pitcherTotalBasesAllowed / pitcherBattersFaced;
+                                            float pitcherIsoAllowed = (pitcherTotalBasesAllowed - stof(thisSabrLine[6])) / pitcherBattersFaced;
                                             
                                             {
                                                 int opposingPitcherIndex = (expectedFdPointsPitcher - 18.0f) / 2.0f;
@@ -2016,7 +2035,7 @@ void RefineAlgorithm()
                 if (needToCreateGamesRecordOverallFile) {
                     ifstream gamesPredictorFile;
                     
-                    string gameMoneyLinesURL = "http://www.donbest.com/mlb/odds/money-lines/" + thisDate + ".html";
+                    string gameMoneyLinesURL = "http://www.donbest.com/mlb/odds/run-lines/" + thisDate + ".html";
                     string gameMoneyLines = "";
                     CurlGetSiteContents(curl, gameMoneyLinesURL, gameMoneyLines, true);
                     CutStringToOnlySectionBetweenKeywords(gameMoneyLines, "class=\"odds_gamesHolder\"", "class=\"odds_pages\"");
@@ -2027,6 +2046,19 @@ void RefineAlgorithm()
                             oddsOpenerEnd = gameMoneyLines.find("</table>");
                         }
                         string gameSection = gameMoneyLines.substr(oddsOpenerBegin, oddsOpenerEnd - oddsOpenerBegin);
+                        bool isRunLine = true;
+                        if (isRunLine) {
+                            size_t newLineIndex = gameSection.find("\n");
+                            while (newLineIndex != string::npos) {
+                                gameSection.erase(newLineIndex, 1);
+                                newLineIndex = gameSection.find("\n");
+                            }
+                            size_t slashTdIndex = gameSection.find("/td>");
+                            while (slashTdIndex != string::npos) {
+                                gameSection.insert(slashTdIndex + 4, "\n");
+                                slashTdIndex = gameSection.find("/td>", slashTdIndex + 3);
+                            }
+                        }
                         vector<string> asColumns = MultineRegex(gameSection, ".*?>(.*?)<.*?");// MultineRegex(gameSection, ".*?<div.*?>([^<b>].*?[^</b>])</div>.*?");
                         if (asColumns.size() > 43 && StringStartsWith(asColumns[41], "MAJOR LEAGUE BASEBALL")) {
                             asColumns.erase(asColumns.begin() + 43, asColumns.end());

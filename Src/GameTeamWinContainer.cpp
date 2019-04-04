@@ -57,11 +57,20 @@ void GameTeamWinContainer::runAnalysis() {
             if (oppTeamItr != dateItr->second.end()) {
                 teamsWritten.insert(oppTeamItr->first);
                 
-                float teamSabrAverage = AverageArrayExcludingThreshold((teamItr->second.fanduelSabrPredictor), 9, 0.0f);
-                float oppTeamSabrAverage = AverageArrayExcludingThreshold((oppTeamItr->second.fanduelSabrPredictor), 9, 0.0f);
+                for (int t = 0; t < 9; ++t) {
+                    if (oppTeamItr->second.fanduelSabrPredictor[t] <= 0.01 || teamItr->second.fanduelSabrPredictor[t] <= 0.01) {
+                        oppTeamItr->second.fanduelSabrPredictor[t] = 0;
+                        teamItr->second.fanduelSabrPredictor[t] = 0;
+                    }
+                }
                 
-                gamesRecordOverallFile << dateItr->first << ";" << teamItr->first << ";" << oppTeamItr->first << ";" <<
-                teamItr->second.runs << ";" << oppTeamItr->second.runs << ";" << teamSabrAverage << ";" << oppTeamSabrAverage << endl;
+                float teamSabrAverage = AverageArrayExcludingThreshold((teamItr->second.fanduelSabrPredictor), 9, 0.0f, 5);
+                float oppTeamSabrAverage = AverageArrayExcludingThreshold((oppTeamItr->second.fanduelSabrPredictor), 9, 0.0f, 5);
+                
+                if (teamSabrAverage > 0 && oppTeamSabrAverage > 0) {
+                    gamesRecordOverallFile << dateItr->first << ";" << teamItr->first << ";" << oppTeamItr->first << ";" <<
+                    teamItr->second.runs << ";" << oppTeamItr->second.runs << ";" << teamSabrAverage << ";" << oppTeamSabrAverage << endl;
+                }
                 
             } else {
                 cout << "error could not find opponent of " << teamItr->first << " as " << teamItr->second.opponentKey << endl;
