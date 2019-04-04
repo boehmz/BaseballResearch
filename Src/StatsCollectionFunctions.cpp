@@ -133,7 +133,7 @@ bool doesPlayerThrowLeftHanded(std::string playerId, CURL *curl) {
         if (throwBeginIndex != string::npos && throwEndIndex != string::npos) {
             string throwsString = rotoguruData.substr(throwBeginIndex + 1, throwEndIndex - throwBeginIndex - 1);
             if (throwsString == "") {
-                rotoguruData = GetPlayerStatsRawString(playerId, "2018", curl);
+                rotoguruData = GetPlayerStatsRawString(playerId, "any", curl);
                 throwsIndex = rotoguruData.find("Throws:");
                 if (throwsIndex != string::npos) {
                     throwBeginIndex = rotoguruData.find(">", throwsIndex + 1);
@@ -179,7 +179,7 @@ char getPlayerBattingHandedness(std::string playerId, CURL *curl) {
         if (throwBeginIndex != string::npos && throwEndIndex != string::npos) {
             string throwsString = rotoguruData.substr(throwBeginIndex + 1, throwEndIndex - throwBeginIndex - 1);
             if (throwsString == "") {
-                rotoguruData = GetPlayerStatsRawString(playerId, "2018", curl);
+                rotoguruData = GetPlayerStatsRawString(playerId, "any", curl);
                 throwsIndex = rotoguruData.find("Bats:");
                 if (throwsIndex != string::npos) {
                     throwBeginIndex = rotoguruData.find(">", throwsIndex + 1);
@@ -232,10 +232,15 @@ string GetPlayerStatsRawString(string playerId, string yearString, CURL *curl)
 	}
     // if this year cached file not found, try last year because looking for any
     if (playerStatsLookupBuffer == "" && yearString == "any") {
-        string tempPlayerStatsFileName = "Player";
-        tempPlayerStatsFileName += LAST_YEAR;
-        tempPlayerStatsFileName += "DataCached\\PlayerId" + playerId + ".txt";
-        playerStatsLookupBuffer = GetEntireFileContents(tempPlayerStatsFileName);
+        int currentYear = CurrentYearAsInt();
+        for (int i = currentYear - 1; i >= 2017 && playerStatsLookupBuffer == ""; --i) {
+            string tempPlayerStatsFileName = "Player";
+            char iAsString[5];
+            itoa(i, iAsString, 10);
+            tempPlayerStatsFileName += iAsString;
+            tempPlayerStatsFileName += "DataCached\\PlayerId" + playerId + ".txt";
+            playerStatsLookupBuffer = GetEntireFileContents(tempPlayerStatsFileName);
+        }
     }
 
 	if (playerStatsLookupBuffer == "")

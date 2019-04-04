@@ -3,8 +3,8 @@
 
 #include <string>
 
-#define CURRENT_YEAR "2018"
-#define LAST_YEAR "2017"
+#define CURRENT_YEAR "2019"
+#define LAST_YEAR "2018"
 
 enum GameType { Fanduel, DraftKings, BeatTheStreak };
 
