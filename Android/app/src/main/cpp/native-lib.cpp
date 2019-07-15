@@ -52,11 +52,22 @@ string getSabrPredictorFileContents(CURL* curl, string date, bool bPitchers) {
     	CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=all&stats=pit&type=sabersim&team=0&lg=all&players=0", entireContents, true);
     	CutStringToOnlySectionBetweenKeywords(entireContents, "class=\"rgMasterTable\"", "</table>");
     } else {
-   		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=c&stats=bat&type=sabersim&team=0&lg=al&players=0", htmlContents, true);
-   		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
-		entireContents += htmlContents;
-		htmlContents = "";
-		
+
+        for (int i = 1; i <= 30; ++i) {
+                string teamURL = "https://www.fangraphs.com/dailyprojections.aspx?pos=all&stats=bat&type=sabersim&team=";
+                char iAsString[2];
+                itoa(i, iAsString, 10);
+                teamURL += iAsString;
+                teamURL += "&lg=all&players=0";
+
+           		CurlGetSiteContents(curl, teamURL, htmlContents, true);
+           		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
+        		entireContents += htmlContents;
+        		htmlContents = "";
+
+        }
+
+/*
 		CurlGetSiteContents(curl, "https://www.fangraphs.com/dailyprojections.aspx?pos=1b&stats=bat&type=sabersim&team=0&lg=al&players=0", htmlContents, true);
    		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
 		entireContents += htmlContents;
@@ -142,6 +153,7 @@ string getSabrPredictorFileContents(CURL* curl, string date, bool bPitchers) {
    		CutStringToOnlySectionBetweenKeywords(htmlContents, "class=\"rgMasterTable\"", "</table>");
 		entireContents += htmlContents;
 		htmlContents = "";
+		*/
     }
     //LOGI("length = %u contents = %s", (unsigned int)htmlContents.length(), htmlContents.c_str());
     return entireContents;
@@ -163,6 +175,7 @@ string GenerateLineups()
         todaysLineups = ConvertSpecialCharactersToEnglish26(todaysLineups);
 
 		string sabrPredictorText = getSabrPredictorFileContents(curl, todaysDate, false);
+		//LOGI("%s is the sabrPredictorText", sabrPredictorText.c_str());
 		string sabrPredictorTextPitchers = getSabrPredictorFileContents(curl, todaysDate, true);
         GameTeamWinContainer gameTeamWinContainer;
 
