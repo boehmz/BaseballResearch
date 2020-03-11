@@ -1107,7 +1107,7 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
 			finalFangraphsURL += "2";
 		else
 			finalFangraphsURL += "0";
-		string beginningDateWithDashes = dateUpTo.substr(0, 4) + "-04-00";
+		string beginningDateWithDashes = dateUpTo.substr(0, 4) + "-03-25";
 		if (entireCareer) {
 			beginningDateWithDashes = "2006-04-01";
 		}
@@ -1133,7 +1133,9 @@ string GetPlayerFangraphsPageDataCumulativeUpTo(string playerId, CURL *curl, str
             }
 		}
 		else {
-			writeToFileIndexEnd = fangraphsData.find("id=\"footer\"", writeToFileIndexBegin);
+            fangraphsData = "No Data";
+            writeToFileIndexBegin = 0;
+            writeToFileIndexEnd = string::npos;
 		}
 		size_t writeToFileLength = string::npos;
 		if (writeToFileIndexEnd != string::npos) {

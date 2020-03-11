@@ -411,17 +411,17 @@ void FillZScoreData() {
 void RefineAlgorithm()
 {
 	stackMaxNumTeams = true;
-	bool bRefineForPitchers = true;
+	bool bRefineForPitchers = false;
 	bool bRefineForBatters = true;
-	bool bRefineForGames = true;
+	bool bRefineForGames = false;
     bool bRefineForStats = false;
     bool needToCreateGamesRecordOverallFile = false;
-    string yearRefiningFor = "2017";
+    string yearRefiningFor = "2018";
 
 	fstream gamesRecordOverallFile;
 	if (bRefineForGames) {
         string gamesRecordFileName = yearRefiningFor;
-        gamesRecordFileName += "ResultsTracker\\TeamWinResults\\AllGamesRunLines.txt";
+        gamesRecordFileName += "ResultsTracker\\TeamWinResults\\AllGames.txt";
         if (needToCreateGamesRecordOverallFile) {
             
 #if PLATFORM_OSX
@@ -463,9 +463,9 @@ void RefineAlgorithm()
 		vector<float> pitcherOutputValues;
 		vector<float> sabrPredictorPitcherInputValues;
 		vector<float> sabrPredictorPitcherOutputValues;
-        reviewDateStart = atoi(yearRefiningFor.c_str()) * 10000 + 806;
+        reviewDateStart = atoi(yearRefiningFor.c_str()) * 10000 + 329;
 		reviewDateEnd = atoi(yearRefiningFor.c_str()) * 10000 + 930;
-		percentOfSeasonPassed = 100.0f / 162.0f;
+		percentOfSeasonPassed = 0.0f / 162.0f;
         string top10PitchersTrainingFileName = "Top10PitchersTrainingFile.csv";
         string top25BattersTrainingFileName = "Top25Order25BattersTrainingFile.csv";
         string top30BattersWithPitcherTrainingFileName = "Top30Order25BattersWithPitcherTrainingFile.csv";
@@ -490,31 +490,6 @@ void RefineAlgorithm()
 		playersOver25PointsSumPitcher.era = playersOver25PointsSumPitcher.fip = playersOver25PointsSumPitcher.numInnings = playersOver25PointsSumPitcher.opsAllowed = playersOver25PointsSumPitcher.strikeOutsPer9 = playersOver25PointsSumPitcher.whip = playersOver25PointsSumPitcher.xfip = playersOver25PointsSumPitcher.wobaAllowed = 0;
 		playersOver25PointsSum.average = playersOver25PointsSum.iso = playersOver25PointsSum.onBaseAverage = playersOver25PointsSum.ops = playersOver25PointsSum.slugging = playersOver25PointsSum.strikeoutPercent = playersOver25PointsSum.walkPercent = playersOver25PointsSum.woba = playersOver25PointsSum.wrcPlus = 0;
 		
-		unordered_set<string> top10OffensesMay14;
-		top10OffensesMay14.insert("nyy");
-		top10OffensesMay14.insert("bos");
-		top10OffensesMay14.insert("atl");
-		top10OffensesMay14.insert("laa");
-		top10OffensesMay14.insert("chc");
-		top10OffensesMay14.insert("sea");
-		top10OffensesMay14.insert("pit");
-		top10OffensesMay14.insert("hou");
-		top10OffensesMay14.insert("cle");
-		top10OffensesMay14.insert("oak");
-		top10OffensesMay14.insert("tam");
-		unordered_set<string> bottom10BullpensMay13;
-		bottom10BullpensMay13.insert("kan");
-		bottom10BullpensMay13.insert("chw");
-		bottom10BullpensMay13.insert("mia");
-		bottom10BullpensMay13.insert("cle");
-		bottom10BullpensMay13.insert("min");
-		bottom10BullpensMay13.insert("oak");
-		bottom10BullpensMay13.insert("lad");
-		bottom10BullpensMay13.insert("sfo");
-		bottom10BullpensMay13.insert("bal");
-		bottom10BullpensMay13.insert("laa");
-		bottom10BullpensMay13.insert("det");
-
 		struct PrevPlayerDailyPointsData {
 			int numGames;
 			int numGamesOverThreshold;
@@ -554,12 +529,16 @@ void RefineAlgorithm()
 		
 		for (int d = reviewDateStart; d <= reviewDateEnd; ++d)
 		{
-            cout << d << endl;
             vector<VegasTeamRunPair> vegasRunsPerTeam;
             vegasRunsPerTeam.clear();
 			int yearInt = d / 10000;
 			int monthInt = (d - yearInt * 10000) / 100;
 			int dayInt = (d - yearInt * 10000 - monthInt * 100);
+            if (dayInt > 30) {
+                if (monthInt == 4 || monthInt == 6 || monthInt == 9) {
+                    dayInt = 33;
+                }
+            }
 			if (dayInt > 31) {
 				d = yearInt * 10000 + (monthInt + 1) * 100;
 				continue;
@@ -569,6 +548,7 @@ void RefineAlgorithm()
 				d = (yearInt + 1) * 10000 + 315;
 				continue;
 			}
+            cout << d << endl;
 			percentOfSeasonPassed += 1.0f / 162.0f;
 			if (percentOfSeasonPassed > 1)
 				percentOfSeasonPassed = 1;
@@ -592,6 +572,9 @@ void RefineAlgorithm()
 			itoa(yearInt - 1, lastYearStringC, 10);
             if (strcmp(yearStringC, "2019") == 0) {
                 resultsURL += monthStringC;
+                if (dayInt < 10) {
+                    resultsURL += "0";
+                }
                 resultsURL += dayStringC;
                 if (gameType == GameType::Fanduel)
                     resultsURL += "&game=fd";
@@ -2035,7 +2018,7 @@ void RefineAlgorithm()
                 if (needToCreateGamesRecordOverallFile) {
                     ifstream gamesPredictorFile;
                     
-                    string gameMoneyLinesURL = "http://www.donbest.com/mlb/odds/run-lines/" + thisDate + ".html";
+                    string gameMoneyLinesURL = "http://www.donbest.com/mlb/odds/money-lines/" + thisDate + ".html";
                     string gameMoneyLines = "";
                     CurlGetSiteContents(curl, gameMoneyLinesURL, gameMoneyLines, true);
                     CutStringToOnlySectionBetweenKeywords(gameMoneyLines, "class=\"odds_gamesHolder\"", "class=\"odds_pages\"");
@@ -2046,7 +2029,7 @@ void RefineAlgorithm()
                             oddsOpenerEnd = gameMoneyLines.find("</table>");
                         }
                         string gameSection = gameMoneyLines.substr(oddsOpenerBegin, oddsOpenerEnd - oddsOpenerBegin);
-                        bool isRunLine = true;
+                        bool isRunLine = false;
                         if (isRunLine) {
                             size_t newLineIndex = gameSection.find("\n");
                             while (newLineIndex != string::npos) {
